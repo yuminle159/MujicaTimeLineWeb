@@ -19,10 +19,13 @@ XLSX 列说明：
   media_caption - 媒体说明文字（image/video 用）
   media_url   - 外部链接地址（link 用）
   media_title - 外部链接显示文字（link 用）
+  group       - 跨日事件分组（可选），同一 group 值的多行合并为一条事件
 
 规则：
   - 同一事件的多个媒体项，重复填写 date/title/category/description/tag
   - 脚本会自动合并为同一事件的 media 数组
+  - group 不为空时：同一 group 值跨行合并，日期取最早-最晚范围，媒体全部合并
+  - group 为空时：按 (date,title,category,desc,tag) 合并（原有逻辑）
 """
 
 import os
@@ -73,26 +76,52 @@ def normalize_date(raw):
     # 已经是 YYYY/M/D 格式，直接返回
     return raw
 
+def fix_path(p):
+    """将 images/ 或 icons/ 路径转为 ../images/ 或 ../icons/（HTML 在子文件夹中）"""
+    p = p.strip()
+    if p.startswith("images/") or p.startswith("icons/"):
+        return "../" + p
+    return p
+
 # 读取事件
 events = OrderedDict()  # key: (date, title, category, desc, tag), value: media list
+grouped_rows = OrderedDict()  # key: group_name, value: list of row dicts
 
 for row in data_rows:
-    key = (
-        normalize_date(get_col(row, "date")),
-        get_col(row, "title"),
-        get_col(row, "category"),
-        get_col(row, "description"),
-        get_col(row, "tag")
-    )
+    group = get_col(row, "group")
+    date = normalize_date(get_col(row, "date"))
+    title = get_col(row, "title")
+    category = get_col(row, "category")
+    desc = get_col(row, "description")
+    tag = get_col(row, "tag")
+    mt = get_col(row, "media_type").lower()
 
+    if group:
+        # 分组事件：先收集到 grouped_rows
+        if group not in grouped_rows:
+            grouped_rows[group] = []
+        grouped_rows[group].append({
+            "date": date,
+            "title": title,
+            "category": category,
+            "desc": desc,
+            "tag": tag,
+            "media_type": mt,
+            "media_src": get_col(row, "media_src"),
+            "media_caption": get_col(row, "media_caption"),
+            "media_url": get_col(row, "media_url"),
+            "media_title": get_col(row, "media_title"),
+        })
+        continue
+
+    # 非分组事件：原有逻辑
+    key = (date, title, category, desc, tag)
     if key not in events:
         events[key] = []
 
-    mt = get_col(row, "media_type").lower()
-
     media = None
     if mt == "image":
-        media = {"type": "image", "src": get_col(row, "media_src")}
+        media = {"type": "image", "src": fix_path(get_col(row, "media_src"))}
         caption = get_col(row, "media_caption")
         if caption:
             media["caption"] = caption
@@ -103,12 +132,41 @@ for row in data_rows:
             media["caption"] = caption
     elif mt == "link":
         media = {"type": "link", "url": get_col(row, "media_url")}
-        title = get_col(row, "media_title")
-        if title:
-            media["title"] = title
+        lt = get_col(row, "media_title")
+        if lt:
+            media["title"] = lt
 
     if media:
         events[key].append(media)
+
+# 处理分组事件：合并为一个事件
+for group_name, rows in grouped_rows.items():
+    dates = sorted(set(r["date"] for r in rows if r["date"]))
+    if len(dates) == 1:
+        merged_date = dates[0]
+    else:
+        merged_date = f"{dates[0]} - {dates[-1]}"
+    first = rows[0]
+    key = (merged_date, first["title"], first["category"], first["desc"], first["tag"])
+    events[key] = []
+
+    for r in rows:
+        mt = r["media_type"].lower()
+        media = None
+        if mt == "image":
+            media = {"type": "image", "src": fix_path(r["media_src"])}
+            if r["media_caption"]:
+                media["caption"] = r["media_caption"]
+        elif mt == "video":
+            media = {"type": "video", "src": r["media_src"]}
+            if r["media_caption"]:
+                media["caption"] = r["media_caption"]
+        elif mt == "link":
+            media = {"type": "link", "url": r["media_url"]}
+            if r["media_title"]:
+                media["title"] = r["media_title"]
+        if media:
+            events[key].append(media)
 
 # 生成 data.js
 def js_str(s):

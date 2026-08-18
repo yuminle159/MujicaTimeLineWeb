@@ -25,6 +25,23 @@ body {
 .page-header {
   padding: 48px 60px 24px;
 }
+.back-nav {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  border: 1px solid #ff4d4d;
+  border-radius: 20px;
+  background: rgba(255, 77, 77, 0.12);
+  color: #ff4d4d;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+.back-nav:hover {
+  background: #ff4d4d;
+  color: #fff;
+}
 .page-header h1 {
   margin: 0 0 6px;
   font-size: 26px;
@@ -37,6 +54,63 @@ body {
   color: #666;
   font-size: 13px;
   letter-spacing: 1px;
+}
+
+/* ===== 标签筛选器 ===== */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 60px 16px;
+  flex-wrap: wrap;
+}
+.filter-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid #444;
+  border-radius: 20px;
+  background: #141414;
+  color: #999;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.filter-chip:hover {
+  border-color: #ff4d4d;
+  color: #ddd;
+}
+.filter-chip.active {
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.12);
+  color: #ff4d4d;
+}
+.filter-chip img {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+.filter-clear {
+  padding: 6px 14px;
+  border: 1px solid #ff4d4d;
+  border-radius: 20px;
+  background: rgba(255, 77, 77, 0.12);
+  color: #ff4d4d;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.filter-clear:hover {
+  background: #ff4d4d;
+  color: #fff;
 }
 
 /* ===== 双轨容器 ===== */
@@ -156,6 +230,11 @@ body {
 
 .event-group.org { align-items: flex-start; }
 .event-group.per { align-items: flex-end; }
+
+/* 筛选隐藏状态 */
+.event-group.hidden {
+  display: none;
+}
 
 /* ===== 事件行（连接线 + 气泡） ===== */
 .event-wrap {
@@ -480,6 +559,14 @@ body {
   .page-header h1 {
     font-size: 20px;
     letter-spacing: 1px;
+  }
+
+  .filter-bar {
+    padding: 0 24px 12px;
+  }
+  .filter-chip {
+    padding: 4px 10px;
+    font-size: 11px;
   }
 
   .ticks-left, .ticks-right {

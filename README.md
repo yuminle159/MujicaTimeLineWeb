@@ -47,10 +47,10 @@ web/
 
 双击 `data.xlsx`，Excel 会打开。看到以下列（**tag、category、media_type 列有下拉选择，tag 列根据 category 联动筛选**）：
 
-| date     | title               | category     | description | tag  | media_type | media_src      | media_caption | media_url           | media_title |
+| date     | title               | category     | description | tag  | media_type | media_src      | media_caption | media_url           | media_title | group |
 | -------- | ------------------- | ------------ | ----------- | ---- | ---------- | -------------- | ------------- | ------------------- | ----------- |
-| 2023/6/4 | Ave Mujica 0th LIVE | organization | 「初次登台」      | live | image      | images/0th.png | 0th Live 主视图  |                     |             |
-| 2023/6/4 | Ave Mujica 0th LIVE | organization | 「初次登台」      | live | link       |                |               | https://example.com | 在线观看        |
+| 2023/6/4 | Ave Mujica 0th LIVE | organization | 「初次登台」      | oml  | image      | images/0th.png | 0th Live 主视图  |                     |             |
+| 2023/6/4 | Ave Mujica 0th LIVE | organization | 「初次登台」      | oml  | link       |                |               | https://example.com | 在线观看        |
 
 ### 第二步：填写你的事件
 
@@ -104,12 +104,15 @@ python generate_data.py
 | `media_caption` | 否     | 图片/视频的说明文字（显示在下方）                                    | `现场照片`                |
 | `media_url`     | link时 | 外部链接地址                                               | `https://example.com` |
 | `media_title`   | link时 | 链接显示文字                                               | `详细报道`                |
+| `group`         | 否     | 跨日事件分组（见下方说明），留空 = 独立事件                            | `MyGO 7th`            |
 
 ### 支持的 tag 值
 
 | tag 值      | 含义      | 分类   | 图标文件                 |
 | ---------- | ------- | ---- | -------------------- |
-| `live`     | Live 演出 | 组织相关 | `icons/live.png`     |
+| `oml`      | One Man Live | 组织相关 | `icons/oml.png`      |
+| `bandori_fes` | BanG Dream! Fes | 组织相关 | `icons/bandori_fes.png` |
+| `fes`      | 联合演出 | 组织相关 | `icons/fes.png`        |
 | `single`   | 单曲发售    | 组织相关 | `icons/single.png`   |
 | `album`    | 专辑发售    | 组织相关 | `icons/album.png`    |
 | `anime`    | 动画      | 组织相关 | `icons/anime.png`    |
@@ -147,6 +150,21 @@ https://player.bilibili.com/player.html?bvid=BVxxxxxx
 3. **日期格式**：统一使用 `YYYY/M/D`（如 `2023/6/4`），脚本会自动规范化 Excel 日期格式
 4. **事件顺序**：按 `date` 从早到晚排列，页面从顶部到底部显示
 5. **换行支持**：description 和 media_caption 支持多行文字（Excel 中 Alt+Enter 换行）
+
+### 跨日事件分组（group 列）
+
+当同一场活动跨越多天（如演唱会 D1 + D2），不希望拆成两个气泡时，使用 `group` 列合并：
+
+| date     | title         | group  | media_type | media_src  |
+| -------- | ------------- | ------ | ---------- | ---------- |
+| 2024/7/13 | MyGO 7th LIVE | MyGO 7th | image      | D1图1.jpg  |
+| 2024/7/13 | MyGO 7th LIVE | MyGO 7th | image      | D1图2.jpg  |
+| 2024/7/14 | MyGO 7th LIVE | MyGO 7th | image      | D2图1.jpg  |
+
+效果：
+- 合并为**一个气泡**，日期显示为 `2024/7/13 - 2024/7/14`
+- 所有媒体合并到一个数组，≥ 2 张图时自动轮播
+- 不填 group 的行仍然独立显示，完全兼容
 
 ---
 

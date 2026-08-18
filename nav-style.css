@@ -1,0 +1,166 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #080808;
+  color: #ddd;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* ===== 主标题区域 ===== */
+.nav-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.nav-header .main-title {
+  margin: 0;
+  font-family: "Ma Shan Zheng", "Dancing Script", "KaiTi", "STKaiti", cursive;
+  font-size: clamp(48px, 8vw, 80px);
+  font-weight: 400;
+  color: #ff4d4d;
+  letter-spacing: 6px;
+  line-height: 1.2;
+  text-shadow: 0 0 40px rgba(255, 77, 77, 0.3);
+}
+
+.nav-header .sub-title {
+  margin: 8px 0 0;
+  font-family: "Dancing Script", "Great Vibes", "Brush Script MT", cursive;
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 400;
+  color: #ff8080;
+  letter-spacing: 2px;
+  opacity: 0.85;
+}
+
+/* ===== 导航卡片网格 ===== */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 800px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+/* ===== 导航卡片 ===== */
+.nav-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 24px;
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #ddd;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle at center, rgba(255, 77, 77, 0.08) 0%, transparent 70%);
+}
+
+.nav-card:hover {
+  border-color: #ff4d4d;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(255, 77, 77, 0.15);
+}
+
+.nav-card:hover::before {
+  opacity: 1;
+}
+
+.nav-card .card-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.nav-card .card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ff4d4d;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.nav-card .card-desc {
+  font-size: 12px;
+  color: #666;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.nav-card .card-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 3px 10px;
+  background: rgba(255, 77, 77, 0.15);
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  border-radius: 10px;
+  font-size: 10px;
+  color: #ff8080;
+  letter-spacing: 1px;
+}
+
+/* 禁用态卡片（未开放） */
+.nav-card.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.nav-card.disabled:hover {
+  border-color: #2a2a2a;
+  transform: none;
+  box-shadow: none;
+}
+
+.nav-card.disabled::before {
+  opacity: 0;
+}
+
+/* ===== 页脚 ===== */
+.nav-footer {
+  margin-top: 48px;
+  text-align: center;
+  color: #444;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 480px) {
+  .nav-header {
+    margin-bottom: 40px;
+  }
+  .nav-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .nav-card {
+    padding: 28px 20px;
+  }
+}
