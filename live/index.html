@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+  <div class="live-page">
+    <header class="page-header">
+      <a class="back-nav" href="../index.html">← 唯鸡百科</a>
+      <h1>Live</h1>
+    </header>
+
+    <main class="gallery-container" id="gallery">
+      <div class="no-results" id="noResults" style="display:none">没有找到匹配的演唱会</div>
+    </main>
+  </div>
+
+  <!-- 抽屉详情 -->
+  <div id="liveDrawer" class="drawer-overlay" onclick="closeDrawer(event)">
+    <div class="drawer" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="closeDrawer(event)">&times;</button>
+      <div class="drawer-body" id="drawerBody"></div>
+    </div>
+  </div>
+
+  <!-- Song 详情模态框（嵌入，用于 setlist 点击） -->
+  <div class="song-modal-overlay" id="songModalOverlay">
+    <div class="song-modal-container" id="songModalContainer">
+      <button class="song-modal-close" id="songModalClose">&times;</button>
+      <div class="song-modal-left" id="songModalLeft"></div>
+      <div class="song-modal-right" id="songModalRight"></div>
+    </div>
+  </div>
+
+  <!-- MC 弹窗 -->
+  <div id="mcModal" class="mc-modal" onclick="closeMcModal()">
+    <div class="mc-modal-container" onclick="event.stopPropagation()">
+      <button class="mc-modal-close" onclick="closeMcModal()">&times;</button>
+      <div class="mc-modal-body" id="mcModalBody"></div>
+    </div>
+  </div>
+
+  <!-- KV 全图灯箱 -->
+  <div id="kvLightbox" class="kv-lightbox" onclick="closeKvLightbox()">
+    <button class="kv-lightbox-close" onclick="closeKvLightbox()">&times;</button>
+    <button class="kv-lightbox-arrow kv-lightbox-prev" onclick="event.stopPropagation();moveKvLightbox(-1)">&#10094;</button>
+    <img id="kvLightboxImg" src="" alt="">
+    <span class="kv-lightbox-counter" id="kvLightboxCounter"></span>
+    <button class="kv-lightbox-arrow kv-lightbox-next" onclick="event.stopPropagation();moveKvLightbox(1)">&#10095;</button>
+  </div>
+
+  <script src="../songs/data.js?v=3"></script>
+  <script src="data.js?v=1"></script>
+  <script>
+(function() {
+  const gallery = document.getElementById("gallery");
+  const noResults = document.getElementById("noResults");
+  const drawerOverlay = document.getElementById("liveDrawer");
+  const drawerBody = document.getElementById("drawerBody");
+  let cachedLiveIndex = -1;  // 缓存已渲染的演唱会，避免重复构建
+
+  // 歌曲名→索引 查找表（用于 setlist 点击跳转）
+  const songLookup = {};
+  if (typeof songsData !== "undefined") {
+    songsData.forEach((s, i) => { if (s.name_jp) songLookup[s.name_jp] = i; });
+  }
+
+  // 简易 Markdown 渲染器（支持双栏中日对照 + 5 种颜色）
+  function renderMarkdown(md) {
+    if (!md) return "";
+    let html = md;
+    // 转义 HTML
+    html = html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    // 自定义颜色 [c1]~[c5]
+    html = html.replace(/\[c1\](.+?)\[\/c1\]/g, '<span class="mc-c1">$1</span>');
+    html = html.replace(/\[c2\](.+?)\[\/c2\]/g, '<span class="mc-c2">$1</span>');
+    html = html.replace(/\[c3\](.+?)\[\/c3\]/g, '<span class="mc-c3">$1</span>');
+    html = html.replace(/\[c4\](.+?)\[\/c4\]/g, '<span class="mc-c4">$1</span>');
+    html = html.replace(/\[c5\](.+?)\[\/c5\]/g, '<span class="mc-c5">$1</span>');
+    // 粗体
+    html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    // 斜体
+    html = html.replace(/\*(.+?)\*/g, "<em>$1</em>");
+    // 横线（分隔 JP / CN）
+    html = html.replace(/^---$/gm, "<!--split-->");
+    // 分割为 JP 和 CN 两部分
+    const parts = html.split("<!--split-->");
+    const jp = parts[0] || "";
+    const cn = parts.slice(1).join("<!--split-->") || "";
+    // 列表项
+    const procLines = function(text) {
+      text = text.replace(/^- (.+)$/gm, "<li>$1</li>");
+      text = text.replace(/((?:<li>.*<\/li>\n?)+)/g, "<ul>$1</ul>");
+      text = text.replace(/\n\n/g, "</p><p>");
+      text = text.replace(/\n/g, "<br>");
+      text = "<p>" + text + "</p>";
+      text = text.replace(/<p><\/p>/g, "");
+      text = text.replace(/<ul>\s*<\/ul>/g, "");
+      return text;
+    };
+    let jpHtml = procLines(jp);
+    let cnHtml = procLines(cn);
+    if (cn.trim()) {
+      return '<div class="mc-columns"><div class="mc-col mc-col-jp">' + jpHtml + '</div><div class="mc-col mc-col-cn">' + cnHtml + '</div></div>';
+    }
+    return jpHtml;
+  }
+
+  // MC 弹窗
+  window._mcContentMap = {};
+  window.closeMcModal = function() {
+    document.getElementById("mcModal").classList.remove("active");
+    document.body.style.overflow = "";
+  };
+  window.openMcModal = function(key) {
+    const mcContent = window._mcContentMap[key];
+    document.getElementById("mcModalBody").innerHTML = renderMarkdown(mcContent);
+    document.getElementById("mcModal").classList.add("active");
+    document.body.style.overflow = "hidden";
+  };
+
+  function escapeHTML(str) {
+    const div = document.createElement("div");
+    div.textContent = str || "";
+    return div.innerHTML;
+  }
+
+  function stripTime(dateStr) {
+    if (!dateStr) return "";
+    return dateStr.replace(/\s[\d:]+$/, "").trim();
+  }
+
+  // ===== 渲染画廊 =====
+  function renderGallery() {
+    gallery.innerHTML = "";
+    if (!livesData || livesData.length === 0) {
+      noResults.style.display = "block";
+      return;
+    }
+    noResults.style.display = "none";
+
+    livesData.forEach((live, i) => {
+      const card = document.createElement("article");
+      card.className = "live-card";
+      card.innerHTML = `
+        <div class="card-image" onclick="openDrawer(${i})">
+          ${live.poster ? `<img src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}" loading="lazy">` : '<div class="card-placeholder"></div>'}
+        </div>
+        <div class="card-info" onclick="openDrawer(${i})">
+          <div class="card-date">${stripTime(escapeHTML(live.date))}</div>
+          <h2 class="card-title">${escapeHTML(live.name)}</h2>
+          <div class="card-venue">${escapeHTML(live.venue)}</div>
+        </div>`;
+      gallery.appendChild(card);
+    });
+  }
+
+  // ===== 打开抽屉 =====
+  window.openDrawer = function(index) {
+    if (cachedLiveIndex === index) {
+      drawerOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+      return;
+    }
+    const live = livesData[index];
+    if (!live) return;
+    document.body.style.overflow = "hidden";
+
+    // 曲目列表
+    let setlistHTML = "";
+    if (live.setlist && live.setlist.length) {
+      setlistHTML = `<div class="col-setlist">
+        <h3 class="section-title">Setlist</h3>
+        <ul class="setlist-list">`;
+      live.setlist.forEach((track, j) => {
+        const num = track.num || "&nbsp;&nbsp;";
+        const songIdx = (track.title !== "Interlude") ? songLookup[track.title] : undefined;
+        const hasMc = !!(track.mc_content);
+        const clickable = (songIdx !== undefined) || hasMc;
+        const labelClass = track.highlight_label ? ` highlight-${track.highlight_label.toLowerCase().replace(/\s+/g, '-')}` : "";
+        let clickAttr = "";
+        if (songIdx !== undefined) {
+          clickAttr = `onclick="event.stopPropagation();openSongModal(${songIdx})"`;
+        } else if (hasMc) {
+          const mcKey = `mc_${index}_${j}`;
+          window._mcContentMap[mcKey] = track.mc_content;
+          clickAttr = `onclick="event.stopPropagation();openMcModal('${mcKey}')"`;
+        }
+        setlistHTML += `<li class="setlist-item${clickable ? ' setlist-clickable' : ''}">
+          <div class="track-info" ${clickAttr}>
+            <span class="track-num">${num}</span>
+            <span class="track-title">${escapeHTML(track.title)}${clickable ? ' <span class="track-link-icon">↗</span>' : ''}</span>
+            ${track.highlight_label || track.highlight_text ? `<span class="track-highlight${labelClass}" data-tooltip="${track.highlight_text ? escapeHTML(track.highlight_text).replace(/"/g, '&quot;').replace(/\\n/g, '&#10;') : ''}">${track.highlight_label ? `<span class="highlight-badge">${escapeHTML(track.highlight_label)}</span>` : ""}${track.highlight_text ? `<span class="highlight-desc">${escapeHTML(track.highlight_text).replace(/\\n/g, "<br>")}</span>` : ""}</span>` : ""}
+          </div>
+        </li>`;
+      });
+      setlistHTML += `</ul></div>`;
+    }
+
+    // 幕后照片（按 group_id 分组，同组照片使用轮播）
+    let backstageHTML = "";
+    if (live.backstage && live.backstage.length) {
+      // 分组：无 group_id 的独立显示，相同 group_id 的归入一组
+      const groups = [];
+      let currentGroup = null;
+      live.backstage.forEach(photo => {
+        const gid = photo.group_id || "";
+        if (!gid) {
+          groups.push({ photos: [photo], credit: photo.credit, credit_text: photo.credit_text, source_url: photo.source_url, source_label: photo.source_label });
+        } else if (currentGroup && currentGroup.id === gid) {
+          currentGroup.photos.push(photo);
+        } else {
+          currentGroup = { id: gid, photos: [photo], credit: photo.credit, credit_text: photo.credit_text, source_url: photo.source_url, source_label: photo.source_label };
+          groups.push(currentGroup);
+        }
+      });
+      // 存储到全局以便 lightbox 轮播使用
+      window._backstageGroups = groups;
+
+      backstageHTML = `<div class="col-gallery">
+        <h3 class="section-title">Backstage</h3>
+        <div class="photo-grid">`;
+      groups.forEach((group, gi) => {
+        const srcLink = group.source_url
+          ? `<a href="${escapeHTML(group.source_url)}" class="source-link" target="_blank" rel="noopener">${escapeHTML(group.source_label || "来源")} ↗</a>`
+          : "";
+        if (group.photos.length === 1) {
+          const p = group.photos[0];
+          backstageHTML += `<div class="photo-card">
+            <img src="${escapeHTML(p.photo)}" alt="${escapeHTML(group.credit || '')}" loading="lazy" onclick="openKvLightbox('${escapeHTML(p.photo)}')">
+            <div class="photo-overlay">
+              <div class="photo-credit">
+                ${group.credit ? `<span>${escapeHTML(group.credit)}</span>` : ""}
+                ${group.credit_text ? escapeHTML(group.credit_text) : ""}
+              </div>
+              ${srcLink}
+            </div>
+          </div>`;
+        } else {
+          // 多图轮播
+          const photoUrls = group.photos.map(p => p.photo);
+          backstageHTML += `<div class="photo-card photo-carousel" data-carousel="${gi}">
+            <div class="carousel-track" id="carouselTrack_${gi}">`;
+          group.photos.forEach((p, pi) => {
+            backstageHTML += `<img src="${escapeHTML(p.photo)}" alt="${escapeHTML(group.credit || '')}" class="${pi === 0 ? 'active' : ''}" onclick="openKvLightbox('${escapeHTML(p.photo)}', window._backstageGroups[${gi}].photos.map(function(p){return p.photo}), ${pi})">`;
+          });
+          backstageHTML += `</div>
+            <div class="carousel-controls">
+              <button class="carousel-arrow carousel-prev" onclick="event.stopPropagation();moveCarousel(${gi}, -1)">&#10094;</button>
+              <span class="carousel-counter" id="carouselCounter_${gi}">1 / ${group.photos.length}</span>
+              <button class="carousel-arrow carousel-next" onclick="event.stopPropagation();moveCarousel(${gi}, 1)">&#10095;</button>
+            </div>
+            <div class="photo-overlay">
+              <div class="photo-credit">
+                ${group.credit ? `<span>${escapeHTML(group.credit)}</span>` : ""}
+                ${group.credit_text ? escapeHTML(group.credit_text) : ""}
+              </div>
+              ${srcLink}
+            </div>
+          </div>`;
+        }
+      });
+      backstageHTML += `</div></div>`;
+    }
+
+    drawerBody.innerHTML = `
+      <div class="drawer-hero">
+        ${live.kv ? `<img class="hero-poster" src="${escapeHTML(live.kv)}" alt="${escapeHTML(live.name)}" onclick="openKvLightbox('${escapeHTML(live.kv)}')">` : (live.poster ? `<img class="hero-poster" src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}">` : "")}
+        <div class="hero-info">
+          <div class="hero-date">${stripTime(escapeHTML(live.date))}</div>
+          <h1 class="hero-title">${escapeHTML(live.name)}</h1>
+          <div class="hero-venue">${live.venue ? '📍 ' + escapeHTML(live.venue) : ""}</div>
+          <div class="hero-action-row">
+            ${live.video_url ? `<a href="${escapeHTML(live.video_url)}" class="btn-play" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              WATCH ARCHIVE
+            </a>` : `<span class="btn-unrecorded">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              UNRECORDED
+            </span>`}
+            ${live.description ? `<span class="hero-desc">${escapeHTML(live.description)}</span>` : ""}
+          </div>
+        </div>
+      </div>
+      <div class="drawer-content">
+        ${setlistHTML}
+        ${backstageHTML}
+      </div>`;
+
+    drawerOverlay.classList.add("active");
+    cachedLiveIndex = index;
+  };
+
+  // ===== 关闭抽屉 =====
+  window.closeDrawer = function(event) {
+    if (event.target === drawerOverlay || event.target.classList.contains("close-btn")) {
+      drawerOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  };
+
+  // ===== 键盘 ESC 关闭 =====
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      const mcModal = document.getElementById("mcModal");
+      if (mcModal && mcModal.classList.contains("active")) {
+        closeMcModal();
+        return;
+      }
+      if (songModalOverlay.classList.contains("open")) {
+        closeSongModal();
+        return;
+      }
+      if (drawerOverlay.classList.contains("active")) {
+        drawerOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+      if (document.getElementById("kvLightbox").classList.contains("active")) {
+        closeKvLightbox();
+      }
+    }
+    if (document.getElementById("kvLightbox").classList.contains("active")) {
+      if (e.key === "ArrowLeft") moveKvLightbox(-1);
+      if (e.key === "ArrowRight") moveKvLightbox(1);
+    }
+  });
+
+  // ===== KV 全图灯箱 =====
+  let kvGroup = null;
+  let kvIndex = 0;
+  window.openKvLightbox = function(src, group, index) {
+    kvGroup = (group && group.length > 0) ? group : null;
+    kvIndex = (index !== undefined) ? index : 0;
+    const lb = document.getElementById("kvLightbox");
+    const img = document.getElementById("kvLightboxImg");
+    const counter = document.getElementById("kvLightboxCounter");
+    img.src = (kvGroup ? kvGroup[kvIndex] : src);
+    lb.classList.add("active");
+    document.body.style.overflow = "hidden";
+    if (kvGroup) {
+      counter.textContent = (kvIndex + 1) + " / " + kvGroup.length;
+      counter.style.display = "block";
+      document.querySelectorAll(".kv-lightbox-arrow").forEach(a => a.style.display = "flex");
+    } else {
+      counter.style.display = "none";
+      document.querySelectorAll(".kv-lightbox-arrow").forEach(a => a.style.display = "none");
+    }
+  };
+  window.moveKvLightbox = function(direction) {
+    if (!kvGroup) return;
+    kvIndex = ((kvIndex + direction) % kvGroup.length + kvGroup.length) % kvGroup.length;
+    const img = document.getElementById("kvLightboxImg");
+    const counter = document.getElementById("kvLightboxCounter");
+    img.src = kvGroup[kvIndex];
+    counter.textContent = (kvIndex + 1) + " / " + kvGroup.length;
+  };
+  window.closeKvLightbox = function() {
+    const lb = document.getElementById("kvLightbox");
+    lb.classList.remove("active");
+    document.body.style.overflow = "";
+    kvGroup = null;
+    kvIndex = 0;
+  };
+
+  // ===== Backstage 轮播控制器 =====
+  window.moveCarousel = function(gi, direction) {
+    const track = document.getElementById("carouselTrack_" + gi);
+    const counter = document.getElementById("carouselCounter_" + gi);
+    if (!track) return;
+    const imgs = track.querySelectorAll("img");
+    if (imgs.length === 0) return;
+    let activeIdx = -1;
+    imgs.forEach((img, i) => { if (img.classList.contains("active")) activeIdx = i; });
+    const newIdx = ((activeIdx + direction) % imgs.length + imgs.length) % imgs.length;
+    imgs.forEach((img, i) => { img.classList.toggle("active", i === newIdx); });
+    if (counter) counter.textContent = (newIdx + 1) + " / " + imgs.length;
+  };
+
+  // ===== Highlight 气泡 =====
+  let bubbleEl = null;
+  let bubbleTimer = null;
+  document.addEventListener("mouseover", function(e) {
+    const trackInfo = e.target.closest(".track-info");
+    if (!trackInfo) return;
+    const highlight = trackInfo.querySelector(".track-highlight[data-tooltip]");
+    if (!highlight) return;
+    const tooltip = highlight.getAttribute("data-tooltip");
+    if (!tooltip) return;
+    // 如果文本已显示全则不弹气泡
+    const desc = highlight.querySelector(".highlight-desc");
+    if (desc && desc.scrollWidth <= desc.clientWidth) return;
+    clearTimeout(bubbleTimer);
+    if (!bubbleEl) {
+      bubbleEl = document.createElement("div");
+      bubbleEl.className = "highlight-bubble";
+      document.body.appendChild(bubbleEl);
+    }
+    bubbleEl.textContent = tooltip;
+    bubbleEl.classList.add("show");
+    const rect = highlight.getBoundingClientRect();
+    bubbleEl.style.left = rect.left + "px";
+    bubbleEl.style.top = (rect.top - 8) + "px";
+    bubbleEl.style.transform = "translateY(-100%)";
+  });
+  document.addEventListener("mouseout", function(e) {
+    const trackInfo = e.target.closest(".track-info");
+    if (trackInfo && e.relatedTarget && trackInfo.contains(e.relatedTarget)) return;
+    if (bubbleEl) {
+      bubbleTimer = setTimeout(function() {
+        if (bubbleEl) bubbleEl.classList.remove("show");
+      }, 100);
+    }
+  });
+
+  // ===== Song 详情模态框（嵌入） =====
+  const songModalOverlay = document.getElementById("songModalOverlay");
+  const songModalLeft = document.getElementById("songModalLeft");
+  const songModalRight = document.getElementById("songModalRight");
+  const songModalClose = document.getElementById("songModalClose");
+  let cachedSongModalIndex = -1;
+  let songModalComments = null;
+
+  function songModalStripTime(dateStr) {
+    return dateStr ? dateStr.replace(/\s[\d:]+$/, "").trim() : "";
+  }
+
+  window.switchSongComment = function(index) {
+    if (!songModalComments || index < 0 || index >= songModalComments.length) return;
+    const c = songModalComments[index];
+    const textEl = document.getElementById("songCommentaryText");
+    const tabs = document.querySelectorAll(".song-comment-tab");
+    if (textEl) {
+      textEl.innerHTML = escapeHTML(c.text).replace(/\\n/g, "<br>") + (c.source ? (function() {
+        const isURL = /^https?:\/\//i.test(c.source);
+        if (isURL) {
+          return '<div class="song-comment-source"><a href="' + escapeHTML(c.source) + '" target="_blank" rel="noopener">&#128279; 出处</a></div>';
+        } else {
+          return '<div class="song-comment-source is-text">' + escapeHTML(c.source) + '</div>';
+        }
+      })() : "");
+    }
+    tabs.forEach((t, i) => t.classList.toggle("active", i === index));
+  };
+
+  window.openSongModal = function(index) {
+    if (cachedSongModalIndex === index) {
+      songModalOverlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+      return;
+    }
+    const song = songsData[index];
+    if (!song) return;
+    document.body.style.overflow = "hidden";
+
+    const cnTitle = song.name ? '<div class="song-modal-title-cn">' + escapeHTML(song.name) + '</div>' : "";
+    songModalLeft.innerHTML = '' +
+      (song.cover ? '<img class="song-modal-cover" src="' + escapeHTML(song.cover) + '" alt="' + escapeHTML(song.name_jp || song.name) + '">' : "") +
+      '<div class="song-modal-title">' + escapeHTML(song.name_jp || song.name) + '</div>' +
+      cnTitle +
+      (song.type ? '<span class="song-modal-type">' + escapeHTML(song.type) + '</span>' : "") +
+      '<div class="song-modal-meta">' +
+        (song.release_date ? '<div><span class="song-meta-label">发行日期</span> <span class="song-meta-value">' + escapeHTML(song.release_date) + '</span></div>' : "") +
+        (song.album ? '<div><span class="song-meta-label">首发形式</span> <span class="song-meta-value">' + escapeHTML(song.album) + '</span></div>' : "") +
+        (song.lyricist ? '<div><span class="song-meta-label">作词</span> <span class="song-meta-value">' + escapeHTML(song.lyricist) + '</span></div>' : "") +
+        (song.composer ? '<div><span class="song-meta-label">作曲</span> <span class="song-meta-value">' + escapeHTML(song.composer) + '</span></div>' : "") +
+        (song.arranger ? '<div><span class="song-meta-label">编曲</span> <span class="song-meta-value">' + escapeHTML(song.arranger) + '</span></div>' : "") +
+        (song.first_stage ? '<div><span class="song-meta-label">首次登台</span> <span class="song-meta-value">' + escapeHTML(song.first_stage) + '</span></div>' : "") +
+        (song.mv_url ? '<div><span class="song-meta-label">MV链接</span> <a class="song-meta-link" href="' + escapeHTML(song.mv_url) + '" target="_blank" rel="noopener">观看 MV &#8599;</a></div>' : "") +
+        (song.appearances && song.appearances.length ? '<div style="margin-top:12px;"><span class="song-meta-label">收录CD</span><div class="song-appearances-list">' + song.appearances.map(function(a) { return '<span class="song-cd-item"><span class="song-cd-icon"></span><span>' + escapeHTML(a) + '</span></span>'; }).join("") + '</div></div>' : "") +
+      '</div>';
+
+    let rightHTML = "";
+    if (song.comments && song.comments.length) {
+      songModalComments = song.comments;
+      let tabsHTML = '<span class="song-comment-tabs">';
+      song.comments.forEach(function(c, i) {
+        tabsHTML += '<span class="song-comment-tab' + (i === 0 ? ' active' : '') + '" onclick="event.stopPropagation();switchSongComment(' + i + ')">' + escapeHTML(c.from || 'Comment ' + (i + 1)) + '</span>';
+      });
+      tabsHTML += '</span>';
+      var first = song.comments[0];
+      rightHTML += '<div class="song-commentary-block">' +
+        '<div class="song-commentary-header"><div class="song-section-title">Comment</div>' + tabsHTML + '</div>' +
+        '<div class="song-commentary-body"><div class="song-commentary-text" id="songCommentaryText">' + escapeHTML(first.text).replace(/\\n/g, "<br>") + '</div></div></div>';
+    }
+
+    if (song.lyrics_jp || song.lyrics_cn) {
+      var jpLines = (song.lyrics_jp || "").split("\\n");
+      var cnLines = (song.lyrics_cn || "").split("\\n");
+      var maxLen = Math.max(jpLines.length, cnLines.length);
+      var lyricsRows = "";
+      for (var i = 0; i < maxLen; i++) {
+        var jp = i < jpLines.length ? escapeHTML(jpLines[i]) : "";
+        var cn = i < cnLines.length ? escapeHTML(cnLines[i]) : "";
+        lyricsRows += '<div class="song-lyrics-row"><span class="song-lyrics-jp">' + jp + '</span><span class="song-lyrics-cn">' + cn + '</span></div>';
+      }
+      rightHTML += '<div class="song-lyrics-block"><div class="song-lyrics-header"><div class="song-section-title" style="border:none;margin:0;padding:0;">Lyrics</div>' +
+        '<div class="song-lyrics-actions"><button class="song-lyrics-toggle" id="songLyricsToggle">歌词mode</button><button class="song-lyrics-copy" id="songLyricsCopy" title="一键复制全部歌词">&#128203; 复制</button></div></div>' +
+        '<div class="song-lyrics-columns">' + lyricsRows + '</div></div>';
+    }
+
+    if (song.live_history && song.live_history.length) {
+      var lh = song.live_history;
+      var sorted = [].concat(lh).sort(function(a, b) { return (a.date || "").localeCompare(b.date || ""); });
+      var firstDate = songModalStripTime(sorted[0] && sorted[0].date || "");
+      var lastDate = songModalStripTime(sorted[sorted.length - 1] && sorted[sorted.length - 1].date || "");
+      var stats = firstDate + ' ~ ' + lastDate + '，共演奏 ' + lh.length + ' 次';
+      rightHTML += '<div class="song-live-block"><div class="song-live-header"><div class="song-section-title" style="border:none;margin:0;padding:0;">Performance History</div>' +
+        '<div class="song-live-stats">' + escapeHTML(stats) + '</div></div><div class="song-live-timeline">' +
+        lh.map(function(l) {
+          return '<div class="song-live-node ' + (l.has_video ? 'has-video' : 'no-video') + '">' +
+            '<div class="song-live-date">' + escapeHTML(songModalStripTime(l.date)) + '</div>' +
+            (l.has_video && l.video_url
+              ? '<a class="song-live-name" href="' + escapeHTML(l.video_url) + '" target="_blank" rel="noopener">' + escapeHTML(l.name) + '</a>'
+              : '<span class="song-live-name">' + escapeHTML(l.name) + '</span>') +
+            (l.venue ? '<div class="song-live-venue">' + escapeHTML(l.venue) + '</div>' : "") +
+          '</div>';
+        }).join("") + '</div></div>';
+    }
+
+    songModalRight.innerHTML = rightHTML || '<div style="color:#555;text-align:center;padding:40px;">暂无更多信息</div>';
+
+    setTimeout(function() {
+      var toggle = document.getElementById("songLyricsToggle");
+      var lyricsBlock = songModalRight.querySelector(".song-lyrics-columns");
+      var copyBtn = document.getElementById("songLyricsCopy");
+      if (toggle && lyricsBlock) {
+        toggle.addEventListener("click", function(e) {
+          e.stopPropagation();
+          lyricsBlock.parentElement.classList.toggle("song-clean-mode");
+          toggle.textContent = lyricsBlock.parentElement.classList.contains("song-clean-mode") ? "退出Lyrics mode" : "歌词mode";
+        });
+      }
+      if (copyBtn && song) {
+        copyBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          var jp = (song.lyrics_jp || "").replace(/\\n/g, "\n");
+          var cn = (song.lyrics_cn || "").replace(/\\n/g, "\n");
+          var all = "【" + (song.name_jp || song.name) + "】\n\n[JP]\n" + jp + "\n\n[CN]\n" + cn;
+          navigator.clipboard.writeText(all).then(function() {
+            copyBtn.textContent = "已复制!";
+            setTimeout(function() { copyBtn.textContent = "复制"; }, 1500);
+          }).catch(function() {
+            var ta = document.createElement("textarea");
+            ta.value = all;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+            copyBtn.textContent = "已复制!";
+            setTimeout(function() { copyBtn.textContent = "复制"; }, 1500);
+          });
+        });
+      }
+    }, 0);
+
+    songModalOverlay.classList.add("open");
+    cachedSongModalIndex = index;
+  };
+
+  function closeSongModal() {
+    songModalOverlay.classList.remove("open");
+    document.body.style.overflow = "";
+    var lb = songModalRight.querySelector(".song-lyrics-block");
+    if (lb) lb.classList.remove("song-clean-mode");
+  }
+
+  songModalClose.addEventListener("click", closeSongModal);
+  songModalOverlay.addEventListener("click", function(e) {
+    if (e.target === songModalOverlay) closeSongModal();
+  });
+
+  renderGallery();
+})();
+  </script>
+</body>
+</html>

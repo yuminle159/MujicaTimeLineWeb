@@ -1,36 +1,83 @@
-# Ave Mujica TimeLine - 维护指南
+# Ave Mujica · 唯鸡百科 (wijipedia) — 维护指南
 
-双轨时间轴网页，左侧展示 Band（组织）事件，右侧展示 Nonrico（个人）事件。黑色背景 + 红色时间轴，支持图片轮播、视频轮播、外部链接、标签图标。
+黑色背景 + 红色主题的乐队资料站，包含三个页面：
+- **导航页** — 入口导航
+- **时间线** — 双轨时间轴，展示 Band / Nonrico 事件
+- **曲目** — 歌曲百科，含歌词、制作人讲解、Live 履历
+- **演唱会** — 演唱会存档，含曲目列表、幕后照片
 
 ---
 
 ## 目录
 
-- [文件结构](#文件结构)
-- [快速上手：添加事件](#快速上手添加事件)
-- [XLSX 列说明](#xlsx-列说明)
-- [标签图标（Tag Icon）](#标签图标tag-icon)
+- [通用工作流程](#通用工作流程)
+- [时间线 (Timeline)](#时间线-timeline)
+  - [文件结构](#文件结构)
+  - [XLSX 列说明](#xlsx-列说明)
+  - [标签图标](#标签图标tag-icon)
+  - [媒体类型详解](#媒体类型详解)
+  - [重要规则](#重要规则)
+- [曲目 (Songs)](#曲目-songs)
+  - [XLSX 列说明](#songs-xlsx-列说明)
+  - [显示效果](#songs-显示效果)
+- [演唱会 (Live)](#演唱会-live)
+  - [XLSX 列说明](#live-xlsx-列说明)
+  - [显示效果](#live-显示效果)
 - [修改样式](#修改样式)
-- [修改页面标题](#修改页面标题)
-- [调整时间轴间距](#调整时间轴间距)
 - [部署](#部署)
 - [常见问题](#常见问题)
 
 ---
 
-## 文件结构
+## 通用工作流程
+
+所有页面的数据更新都遵循相同的流程：
+
+```
+编辑对应页面的 data.xlsx（Excel） → 双击「一键更新数据.bat」 → 刷新网页（Ctrl+F5）
+```
+
+每个子页面有独立的 `data.xlsx` 和 `generate_data.py`，互不干扰。
+
+---
+
+## 时间线 (Timeline)
+
+### 文件结构
 
 ```
 web/
-├── index.html           # 主页面（HTML 结构 + 内联 JS 逻辑）
-├── style.css            # 样式表（所有颜色、字体、大小、响应式）
-├── data.js              # 时间轴数据（由 generate_data.py 自动生成，勿手动改）
-├── data.xlsx            # 数据源（Excel 编辑，带下拉验证）
-├── generate_data.py     # 转换脚本：data.xlsx → data.js
-├── 一键更新数据.bat       # 一键运行脚本（双击即可）
-├── images/              # 图片文件夹（放这里，用相对路径引用）
-├── icons/               # 标签图标文件夹（放 tag 对应的 icon 图片）
-└── README.md            # 本文件
+├── index.html              # 导航页
+├── nav-style.css           # 导航页样式
+├── README.md               # 本文件
+│
+├── timeline/
+│   ├── index.html          # 时间线页面
+│   ├── style.css           # 时间线样式
+│   ├── data.js             # 数据文件（由 generate_data.py 生成，勿手动改）
+│   ├── data.xlsx           # 数据源（Excel 编辑）
+│   ├── generate_data.py    # 转换脚本：data.xlsx → data.js
+│   ├── 一键更新数据.bat      # 一键运行脚本
+│   ├── icons/              # 标签图标文件夹
+│   └── images/             # 图片文件夹
+│
+├── songs/
+│   ├── index.html          # 曲目页面
+│   ├── style.css           # 曲目样式
+│   ├── data.js             # 数据文件（由 generate_data.py 生成）
+│   ├── data.xlsx           # 数据源（Excel 编辑）
+│   ├── generate_data.py    # 转换脚本
+│   └── 一键更新数据.bat      # 一键运行脚本
+│
+├── live/
+│   ├── index.html          # 演唱会页面
+│   ├── style.css           # 演唱会样式
+│   ├── data.js             # 数据文件（由 generate_data.py 生成）
+│   ├── data.xlsx           # 数据源（Excel 编辑，3 个 Sheet）
+│   ├── generate_data.py    # 转换脚本
+│   └── 一键更新数据.bat      # 一键运行脚本
+│
+└── images/                 # 共享图片文件夹
 ```
 
 **工作流程：**
@@ -41,9 +88,9 @@ web/
 
 ---
 
-## 快速上手：添加事件
+### 快速上手：添加事件
 
-### 第一步：用 Excel 打开 `data.xlsx`
+#### 第一步：用 Excel 打开 `data.xlsx`
 
 双击 `data.xlsx`，Excel 会打开。看到以下列（**tag、category、media_type 列有下拉选择，tag 列根据 category 联动筛选**）：
 
@@ -52,7 +99,7 @@ web/
 | 2023/6/4 | Ave Mujica 0th LIVE | organization | 「初次登台」      | oml  | image      | images/0th.png | 0th Live 主视图  |                     |             |
 | 2023/6/4 | Ave Mujica 0th LIVE | organization | 「初次登台」      | oml  | link       |                |               | https://example.com | 在线观看        |
 
-### 第二步：填写你的事件
+#### 第二步：填写你的事件
 
 每一行 = 一个事件的一条媒体。**同一个事件有多个媒体时，重复填写前 5 列，只在媒体列填不同内容。**
 
@@ -72,7 +119,7 @@ web/
 
 `media_type` 列留空即可，tag 留空则不显示图标。
 
-### 第三步：运行脚本
+#### 第三步：运行脚本
 
 **方式一（推荐）：** 双击 `一键更新数据.bat`，自动完成转换。
 
@@ -84,7 +131,7 @@ python generate_data.py
 
 看到 `Done! X events written to data.js` 即成功。
 
-### 第四步：刷新网页
+#### 第四步：刷新网页
 
 打开 `index.html`（或已部署的网址），Ctrl+F5 强制刷新即可看到新事件。
 
@@ -199,6 +246,125 @@ const TAG_ICONS = {
 - 建议尺寸：52×52px 或 64×64px（会缩放至 26×26px 显示）
 - 格式：PNG（支持透明背景）
 - 风格：白色或浅色图标（气泡背景是红色/蓝黄渐变）
+
+---
+
+## 曲目 (Songs)
+
+歌曲百科页面，按专辑分组展示，支持搜索、排序。点击歌曲打开详情弹窗，显示歌词、制作人讲解、Live 演唱履历。
+
+### Songs XLSX 列说明
+
+`data.xlsx` 包含 3 个 Sheet：
+
+#### Sheet 1 — "songs"（歌曲信息）
+
+| 列名 | 必填 | 说明 | 示例 |
+|------|------|------|------|
+| `song_name` | 是 | 歌曲名（中文） | `Ave Mujica` |
+| `song_name_jp` | 否 | 歌曲名（日文） | `Ave Mujica` |
+| `album` | 是 | 所属专辑 | `Alea jacta est` |
+| `album_year` | 是 | 专辑年份 | `2023` |
+| `release_date` | 是 | 发行日期 `YYYY/M/D` | `2023/9/13` |
+| `cover` | 否 | 封面图片路径 | `images/cover.jpg` |
+| `type` | 是 | 原创 / 翻唱 | `原创` |
+| `lyricist` | 否 | 作词 | `Diggy-MO'` |
+| `composer` | 否 | 作曲 | `長谷川大介` |
+| `arranger` | 否 | 编曲 | `長谷川大介` |
+| `first_stage` | 否 | 首次登台 | `2023/6/4 0th LIVE` |
+| `mv_url` | 否 | MV 链接 | `https://...` |
+| `lyrics_jp` | 否 | 日文歌词（`\n` 换行） | `壊れてしまう...` |
+| `lyrics_cn` | 否 | 中文歌词（`\n` 换行） | `崩坏殆尽...` |
+| `appearances` | 否 | 收录履历（逗号分隔） | `1st Single, ELEMENTS` |
+
+#### Sheet 2 — "comments"（制作人讲解）
+
+| 列名 | 必填 | 说明 |
+|------|------|------|
+| `song_name` | 是 | 歌曲名（与 Sheet1 对应） |
+| `comment_text` | 是 | 讲解内容 |
+| `comment_source` | 否 | 出处链接 |
+
+#### Sheet 3 — "live_history"（Live 演唱履历）
+
+| 列名 | 必填 | 说明 |
+|------|------|------|
+| `song_name` | 是 | 歌曲名（与 Sheet1 对应） |
+| `live_date` | 是 | Live 日期 |
+| `live_venue` | 否 | 场地 |
+| `live_name` | 否 | Live 名称 |
+| `has_video` | 否 | 有无影像：`yes` / `no` |
+| `video_url` | 否 | 影像链接（has_video=yes 时） |
+
+### Songs 显示效果
+
+- 页面顶部显示歌曲总数和专辑列表
+- 按专辑分组，每组显示专辑名、年份和分隔线
+- 点击排序按钮切换「时间正序/倒序」排列
+- 搜索框支持搜索歌名和歌词
+- 点击封面 / 歌曲名打开详情弹窗：
+  - 左侧：封面图 + 歌曲信息 + 制作人讲解（多条）
+  - 右侧：日文歌词 + 中文歌词（可滚动，可选折叠）
+  - 底部：Live 演唱履历时间线 + 影像链接
+
+---
+
+## 演唱会 (Live)
+
+演唱会存档页面，画廊卡片展示所有演唱会。点击卡片进入详情抽屉，查看曲目列表、幕后照片、KV 主视觉。
+
+### Live XLSX 列说明
+
+`data.xlsx` 包含 3 个 Sheet：
+
+#### Sheet 1 — "lives"（演唱会信息）
+
+| 列名 | 必填 | 说明 | 示例 |
+|------|------|------|------|
+| `live_name` | 是 | 演唱会名称 | `Ave Mujica 0st LIVE「Primo die in scaena」` |
+| `live_date` | 是 | 日期 `YYYY/M/D` | `2023/6/4` |
+| `live_venue` | 是 | 场地 | `中野サンプラザ` |
+| `poster` | 否 | 海报图片路径（用于画廊卡片缩略图） | `../images/0th.png` |
+| `kv` | 否 | KV 主视觉图片路径（用于详情页，点击放大） | `../images/1st_live_kv.jpg` |
+| `video_url` | 否 | 影像链接（留空则显示灰色 UNRECORDED） | `https://www.bilibili.com/video/...` |
+| `description` | 否 | 简介（显示在按钮右侧） | `「初次登台」` |
+
+> **KV 与 Poster 的区别**：`poster` 用于画廊卡片缩略图，`kv` 用于详情页左上角主视觉图。两者可设为不同图片。点击 KV 可放大查看全图。
+
+#### Sheet 2 — "setlist"（曲目列表）
+
+| 列名 | 必填 | 说明 |
+|------|------|------|
+| `live_name` | 是 | 演唱会名称（与 Sheet1 对应） |
+| `track_num` | 否 | 曲目序号（如 `01`, `M0`, `SE` 等，留空显示占位符） |
+| `track_title` | 是 | 歌曲名 |
+| `highlight_label` | 否 | 高亮标签（如 `Live Highlight`） |
+| `highlight_text` | 否 | 高亮说明 |
+
+> **序号填写注意**：`track_num` 支持自定义（如 `01`, `M0`, `SE`, `-` 等），也可以留空（显示两个空格占位符，保持与歌名对齐）。
+
+#### Sheet 3 — "backstage"（幕后照片）
+
+| 列名 | 必填 | 说明 |
+|------|------|------|
+| `live_name` | 是 | 演唱会名称（与 Sheet1 对应） |
+| `photo` | 是 | 照片路径 |
+| `credit` | 否 | 来源署名（如 `@Official_Info`） |
+| `credit_text` | 否 | 来源说明文字 |
+| `source_url` | 否 | 来源链接 |
+| `source_label` | 否 | 链接标签（如 `View on X`） |
+
+### Live 显示效果
+
+- 画廊卡片网格展示所有演唱会，显示海报、日期、名称、场地
+- 点击卡片打开右侧抽屉详情：
+  - **Hero 区**：KV 主视觉图（点击放大全图）+ 日期、标题、场地、影像按钮
+  - **有影像**：红色 `WATCH ARCHIVE` 按钮，可点击跳转
+  - **无影像**：灰色 `UNRECORDED` 标签，不可点击
+  - **简介**：斜体灰色文字显示在按钮右侧
+  - **Setlist**：左侧列，独立滚动，曲目序号自定义，支持高亮标记
+  - **Backstage**：右侧列，独立滚动，照片网格，hover 显示来源信息，点击照片放大全图
+- 点击 KV 或 Backstage 照片弹出全屏灯箱，× / 遮罩 / ESC 关闭
 
 ---
 

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Songs · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
@@ -20,8 +23,8 @@
         <input type="text" id="searchInput" placeholder="搜索歌名、歌词...">
       </div>
       <button class="sort-btn" id="sortBtn">
-        <span id="sortLabel">时间倒序</span>
-        <span class="arrow" id="sortArrow">&#8595;</span>
+        <span id="sortLabel">时间正序</span>
+        <span class="arrow" id="sortArrow">&#8593;</span>
       </button>
       <span class="result-count" id="resultCount"></span>
     </div>
@@ -42,27 +45,27 @@
     </div>
   </div>
 
-  <script src="data.js?v=2"></script>
+  <script src="data.js?v=3"></script>
   <script>
 (function() {
-  let sortAsc = false;
+  let sortAsc = true;  // 默认：时间正序（旧→新）
   let searchQuery = "";
 
-  // ===== 按专辑分组 =====
-  function groupByAlbum() {
+  // ===== 按年份分组 =====
+  function groupByYear() {
     const map = {};
     songsData.forEach(song => {
-      const key = song.album || "未分类";
-      if (!map[key]) map[key] = { name: key, year: song.album_year || "", songs: [] };
-      map[key].songs.push(song);
+      const year = (song.release_date || "").substring(0, 4) || "未分类";
+      if (!map[year]) map[year] = { year, songs: [] };
+      map[year].songs.push(song);
     });
-    let albums = Object.values(map);
-    albums.sort((a, b) => {
+    let years = Object.values(map);
+    years.sort((a, b) => {
       const ya = parseInt(a.year) || 0;
       const yb = parseInt(b.year) || 0;
       return sortAsc ? ya - yb : yb - ya;
     });
-    return albums;
+    return years;
   }
 
   function filterSongs(songs) {
@@ -83,10 +86,10 @@
   function renderGallery() {
     gallery.innerHTML = "";
     let totalVisible = 0;
-    const albums = groupByAlbum();
+    const years = groupByYear();
 
-    albums.forEach(album => {
-      const filtered = filterSongs(album.songs);
+    years.forEach(year => {
+      const filtered = filterSongs(year.songs);
       filtered.sort((a, b) => {
         return sortAsc
           ? (a.release_date || "").localeCompare(b.release_date || "")
@@ -99,8 +102,7 @@
       section.className = "album-section";
       section.innerHTML = `
         <div class="album-divider">
-          <span class="album-name">${escapeHTML(album.name)}</span>
-          <span class="album-year">${escapeHTML(album.year)}</span>
+          <span class="album-name">${escapeHTML(year.year)}</span>
         </div>
         <div class="cover-grid">
           ${filtered.map(s => renderCoverCard(s)).join("")}
@@ -117,17 +119,29 @@
     div.textContent = str;
     return div.innerHTML;
   }
+  function stripTime(dateStr) {
+    // 去除 00:00:00 等时间部分，保留 YYYY-MM-DD 或 YYYY/M/D
+    return dateStr.replace(/\s[\d:]+$/, "").trim();
+  }
 
   function renderCoverCard(song) {
     const coverSrc = song.cover || "";
-    const jp = song.name_jp ? `<span class="cover-song-name-jp">${escapeHTML(song.name_jp)}</span>` : "";
+    const jp = song.name_jp ? `<span class="cover-song-name">${escapeHTML(song.name_jp)}</span>` : "";
+    const cn = song.name ? `<span class="cover-song-name-cn">${escapeHTML(song.name)}</span>` : "";
     return `
       <div class="cover-card" data-song-index="${songsData.indexOf(song)}" onclick="openModal(${songsData.indexOf(song)})">
-        ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name)}" loading="lazy">` : '<div class="cover-placeholder"></div>'}
+        ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name_jp || song.name)}" loading="lazy">` : '<div class="cover-placeholder"></div>'}
         <div class="cover-overlay">
-          <span class="cover-song-name">${escapeHTML(song.name)}</span>
           ${jp}
-          <span class="cover-info-icon">i</span>
+          ${cn}
+          <svg class="cover-info-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <g class="hexagram-ring">
+            <polygon class="hexagram-up" points="43.1,13 4.9,13 24,46"/>
+            <polygon class="hexagram-down" points="24,2 4.9,35 43.1,35"/>
+          </g>
+          <path class="eye-almond" d="M16,24 Q24,17 32,24 Q24,31 16,24"/>
+          <circle class="eye-pupil" cx="24" cy="24" r="3"/>
+        </svg>
         </div>
       </div>`;
   }
@@ -154,31 +168,61 @@
   const modalLeft = document.getElementById("modalLeft");
   const modalRight = document.getElementById("modalRight");
   const modalClose = document.getElementById("modalClose");
+  let cachedSongIndex = -1;  // 缓存当前已渲染的歌曲，避免重复构建
+  let currentComments = null;  // 当前歌曲的评论数组，用于切换
+
+  function buildSourceLink(c) {
+    if (!c.source) return '';
+    const isURL = /^https?:\/\//i.test(c.source);
+    if (isURL) {
+      return `<div class="comment-source"><a href="${escapeHTML(c.source)}" target="_blank" rel="noopener">&#128279; 出处</a></div>`;
+    } else {
+      return `<div class="comment-source is-text">${escapeHTML(c.source)}</div>`;
+    }
+  }
+
+  window.switchComment = function(index) {
+    if (!currentComments || index < 0 || index >= currentComments.length) return;
+    const c = currentComments[index];
+    const textEl = document.getElementById("commentaryText");
+    const tabs = document.querySelectorAll(".comment-tab");
+    if (textEl) {
+      textEl.innerHTML = escapeHTML(c.text).replace(/\\n/g, "<br>") + buildSourceLink(c);
+    }
+    tabs.forEach((t, i) => t.classList.toggle("active", i === index));
+  };
 
   window.openModal = function(index) {
+    if (cachedSongIndex === index) {
+      // 同一首歌，直接打开，不重建 DOM
+      modalOverlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+      return;
+    }
     const song = songsData[index];
     if (!song) return;
     document.body.style.overflow = "hidden";
 
-    // 左侧栏：中日文歌名上下排列
-    const jpTitle = song.name_jp ? `<div class="modal-song-title-jp">${escapeHTML(song.name_jp)}</div>` : "";
+    // 左侧栏：中日文歌名上下排列（日文为主，红色加粗大字体）
+    const cnTitle = song.name ? `<div class="modal-song-title-cn">${escapeHTML(song.name)}</div>` : "";
     modalLeft.innerHTML = `
-      ${song.cover ? `<img class="modal-cover" src="${escapeHTML(song.cover)}" alt="${escapeHTML(song.name)}">` : ""}
-      <div class="modal-song-title">${escapeHTML(song.name)}</div>
-      ${jpTitle}
+      ${song.cover ? `<img class="modal-cover" src="${escapeHTML(song.cover)}" alt="${escapeHTML(song.name_jp || song.name)}">` : ""}
+      <div class="modal-song-title">${escapeHTML(song.name_jp || song.name)}</div>
+      ${cnTitle}
       ${song.type ? `<span class="modal-song-type">${escapeHTML(song.type)}</span>` : ""}
       <div class="modal-meta">
         ${song.release_date ? `<div><span class="meta-label">发行日期</span> <span class="meta-value">${escapeHTML(song.release_date)}</span></div>` : ""}
-        ${song.album ? `<div><span class="meta-label">所属专辑</span> <span class="meta-value">${escapeHTML(song.album)}</span></div>` : ""}
+        ${song.album ? `<div><span class="meta-label">首发形式</span> <span class="meta-value">${escapeHTML(song.album)}</span></div>` : ""}
         ${song.lyricist ? `<div><span class="meta-label">作词</span> <span class="meta-value">${escapeHTML(song.lyricist)}</span></div>` : ""}
         ${song.composer ? `<div><span class="meta-label">作曲</span> <span class="meta-value">${escapeHTML(song.composer)}</span></div>` : ""}
         ${song.arranger ? `<div><span class="meta-label">编曲</span> <span class="meta-value">${escapeHTML(song.arranger)}</span></div>` : ""}
         ${song.first_stage ? `<div><span class="meta-label">首次登台</span> <span class="meta-value">${escapeHTML(song.first_stage)}</span></div>` : ""}
+        ${song.mv_url ? `<div><span class="meta-label">MV链接</span> <a class="meta-value meta-link" href="${escapeHTML(song.mv_url)}" target="_blank" rel="noopener">观看 MV &#8599;</a></div>` : ""}
         ${song.appearances && song.appearances.length ? `
-          <div style="margin-top:8px;">
-            <span class="meta-label">收录履历</span>
-            <div class="appearances">
-              ${song.appearances.map(a => `<span class="appearance-tag">${escapeHTML(a)}</span>`).join("")}
+          <div style="margin-top:12px;">
+            <span class="meta-label">收录CD</span>
+            <div class="appearances-list">
+              ${song.appearances.map(a => `<span class="cd-item"><span class="cd-icon" aria-hidden="true"></span><span>${escapeHTML(a)}</span></span>`).join("")}
             </div>
           </div>` : ""}
       </div>`;
@@ -188,35 +232,46 @@
 
     // 区块 A：Comment
     if (song.comments && song.comments.length) {
-      rightHTML += `<div class="commentary-block">
-        <div class="section-title">Comment</div>`;
-      song.comments.forEach(c => {
-        const srcLink = c.source ? `<a class="comment-source" href="${escapeHTML(c.source)}" target="_blank" rel="noopener">&#128279; 出处</a>` : "";
-        rightHTML += `<div class="commentary-text">${escapeHTML(c.text).replace(/\\n/g, "<br>")}${srcLink}</div>`;
+      currentComments = song.comments;
+      let tabsHTML = '<span class="comment-tabs">';
+      song.comments.forEach((c, i) => {
+        const label = c.from || `Comment ${i + 1}`;
+        tabsHTML += `<span class="comment-tab${i === 0 ? ' active' : ''}" onclick="event.stopPropagation();switchComment(${i})">${escapeHTML(label)}</span>`;
       });
-      rightHTML += `</div>`;
+      tabsHTML += '</span>';
+      const first = song.comments[0];
+      rightHTML += `<div class="commentary-block" id="commentaryBlock">
+        <div class="commentary-header">
+          <div class="section-title">Comment</div>
+          ${tabsHTML}
+        </div>
+        <div class="commentary-body">
+          <div class="commentary-text" id="commentaryText">${escapeHTML(first.text).replace(/\\n/g, "<br>")}${buildSourceLink(first)}</div>
+        </div></div>`;
     }
 
     // 区块 B：双语歌词
     if (song.lyrics_jp || song.lyrics_cn) {
+      const jpLines = (song.lyrics_jp || "").split("\\n");
+      const cnLines = (song.lyrics_cn || "").split("\\n");
+      const maxLen = Math.max(jpLines.length, cnLines.length);
+      let lyricsRows = "";
+      for (let i = 0; i < maxLen; i++) {
+        const jp = i < jpLines.length ? escapeHTML(jpLines[i]) : "";
+        const cn = i < cnLines.length ? escapeHTML(cnLines[i]) : "";
+        lyricsRows += `<div class="lyrics-row"><span class="lyrics-jp">${jp}</span><span class="lyrics-cn">${cn}</span></div>`;
+      }
       rightHTML += `
         <div class="lyrics-block" id="lyricsBlock">
           <div class="lyrics-header">
-            <div class="section-title" style="border:none;margin:0;padding:0;">歌词</div>
+            <div class="section-title" style="border:none;margin:0;padding:0;">Lyrics</div>
             <div class="lyrics-actions">
               <button class="lyrics-toggle" id="lyricsToggle">歌词mode</button>
               <button class="lyrics-copy" id="lyricsCopy" title="一键复制全部歌词">&#128203; 复制</button>
             </div>
           </div>
           <div class="lyrics-columns">
-            <div class="lyrics-col">
-              <div class="lyrics-label">JP</div>
-              <div class="lyrics-text">${(song.lyrics_jp || "").replace(/\\n/g, "<br>")}</div>
-            </div>
-            <div class="lyrics-col">
-              <div class="lyrics-label">CN</div>
-              <div class="lyrics-text">${(song.lyrics_cn || "").replace(/\\n/g, "<br>")}</div>
-            </div>
+            ${lyricsRows}
           </div>
         </div>`;
     }
@@ -225,19 +280,19 @@
     if (song.live_history && song.live_history.length) {
       const lh = song.live_history;
       const sorted = [...lh].sort((a, b) => (a.date || "").localeCompare(b.date || ""));
-      const firstDate = sorted[0]?.date || "";
-      const lastDate = sorted[sorted.length - 1]?.date || "";
+      const firstDate = stripTime(sorted[0]?.date || "");
+      const lastDate = stripTime(sorted[sorted.length - 1]?.date || "");
       const stats = `${firstDate} ~ ${lastDate}，共演奏 ${lh.length} 次`;
       rightHTML += `
         <div class="live-block">
           <div class="live-header">
-            <div class="section-title" style="border:none;margin:0;padding:0;">Live 演唱履历</div>
+            <div class="section-title" style="border:none;margin:0;padding:0;">Performance History</div>
             <div class="live-stats">${escapeHTML(stats)}</div>
           </div>
           <div class="live-timeline">
             ${lh.map(l => `
               <div class="live-node ${l.has_video ? 'has-video' : 'no-video'}">
-                <div class="live-date">${escapeHTML(l.date)}</div>
+                <div class="live-date">${escapeHTML(stripTime(l.date))}</div>
                 ${l.has_video && l.video_url
                   ? `<a class="live-name" href="${escapeHTML(l.video_url)}" target="_blank" rel="noopener">${escapeHTML(l.name)}</a>`
                   : `<span class="live-name">${escapeHTML(l.name)}</span>`}
@@ -259,7 +314,7 @@
         toggle.addEventListener("click", function(e) {
           e.stopPropagation();
           lyricsBlock.classList.toggle("clean-mode");
-          toggle.textContent = lyricsBlock.classList.contains("clean-mode") ? "退出歌词mode" : "歌词mode";
+          toggle.textContent = lyricsBlock.classList.contains("clean-mode") ? "退出Lyrics mode" : "Lyrics mode";
         });
       }
       if (copyBtn && song) {
@@ -267,7 +322,7 @@
           e.stopPropagation();
           const jp = (song.lyrics_jp || "").replace(/\\n/g, "\n");
           const cn = (song.lyrics_cn || "").replace(/\\n/g, "\n");
-          const all = `【${song.name}】\n\n[JP]\n${jp}\n\n[CN]\n${cn}`;
+          const all = `【${song.name_jp || song.name}】\n\n[JP]\n${jp}\n\n[CN]\n${cn}`;
           navigator.clipboard.writeText(all).then(() => {
             copyBtn.textContent = "已复制!";
             setTimeout(() => { copyBtn.textContent = "复制"; }, 1500);
@@ -287,6 +342,7 @@
     }, 0);
 
     modalOverlay.classList.add("open");
+    cachedSongIndex = index;
   };
 
   modalClose.addEventListener("click", closeModal);
@@ -305,6 +361,13 @@
   }
 
   renderGallery();
+
+  // 哈希自动打开：/songs/index.html#song=SONG_NAME_JP
+  if (window.location.hash.startsWith("#song=")) {
+    const songName = decodeURIComponent(window.location.hash.slice(6));
+    const idx = songsData.findIndex(s => s.name_jp === songName);
+    if (idx >= 0) openModal(idx);
+  }
 })();
   </script>
 </body>
