@@ -122,6 +122,14 @@
       img.src = item.filename;
       img.alt = item.title;
       img.loading = 'lazy';
+      img.onload = () => card.classList.add('loaded');
+      // 如果图片已缓存，onload 可能不触发
+      if (img.complete) card.classList.add('loaded');
+
+      const cornerTL = document.createElement('div');
+      cornerTL.className = 'corner-tl';
+      const cornerBR = document.createElement('div');
+      cornerBR.className = 'corner-br';
 
       const overlay = document.createElement('div');
       overlay.className = 'item-overlay';
@@ -131,6 +139,8 @@
       `;
 
       card.appendChild(img);
+      card.appendChild(cornerTL);
+      card.appendChild(cornerBR);
       card.appendChild(overlay);
 
       card.addEventListener('click', () => openLightbox(item));
