@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -12,7 +12,7 @@
 <body>
   <div class="timeline-page">
     <header class="page-header">
-      <a href="../index.html" class="back-nav">&larr; 唯鸡百科</a>
+      <a href="../index.html" class="back-nav">&larr; 返回主页</a>
       <h1>Ave Mujica TimeLine</h1>
       <p>Band &amp; Nonrico</p>
     </header>
@@ -20,7 +20,6 @@
     <!-- 标签筛选器 -->
     <div class="filter-bar" id="filterBar">
       <div class="filter-tags" id="filterTags"></div>
-      <button class="filter-clear" id="filterClear">重置</button>
     </div>
 
     <div class="timeline-wrapper" id="timelineWrapper">
@@ -173,31 +172,38 @@
 
   // ===== 筛选器 =====
   const filterTags = document.getElementById("filterTags");
-  const filterClear = document.getElementById("filterClear");
   let activeFilters = new Set();
+
+  // 生成 ALL 按钮
+  const allChip = document.createElement("button");
+  allChip.className = "filter-chip active";
+  allChip.innerHTML = '<span class="diamond">&#9670;</span> ALL';
+  allChip.addEventListener("click", () => {
+    activeFilters.clear();
+    document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+    allChip.classList.add("active");
+    applyFilter();
+  });
+  filterTags.appendChild(allChip);
 
   // 生成筛选按钮
   Object.keys(TAG_ICONS).forEach(tag => {
-    const chip = document.createElement("div");
+    const chip = document.createElement("button");
     chip.className = "filter-chip";
     chip.dataset.tag = tag;
-    chip.innerHTML = `<span>${TAG_NAMES[tag] || tag}</span>`;
+    chip.innerHTML = '<span class="diamond">&#9670;</span> ' + (TAG_NAMES[tag] || tag);
     chip.addEventListener("click", () => {
+      allChip.classList.remove("active");
       chip.classList.toggle("active");
       if (chip.classList.contains("active")) {
         activeFilters.add(tag);
       } else {
         activeFilters.delete(tag);
       }
+      if (activeFilters.size === 0) allChip.classList.add("active");
       applyFilter();
     });
     filterTags.appendChild(chip);
-  });
-
-  filterClear.addEventListener("click", () => {
-    activeFilters.clear();
-    document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
-    applyFilter();
   });
 
   function applyFilter() {

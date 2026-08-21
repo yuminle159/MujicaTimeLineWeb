@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <div class="gallery-page">
+    <header class="page-header">
+      <a href="../index.html" class="back-nav">&larr; 返回主页</a>
+      <h1>Gallery</h1>
+    </header>
+
+    <div class="filter-bar" id="filterBar">
+        <!-- 由 JS 动态生成 -->
+      </div>
+
+      <div class="masonry-grid" id="masonryGrid">
+        <!-- 由 JS 动态生成 -->
+      </div>
+
+  <!-- 灯箱 -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-info">
+      <div class="lightbox-date" id="lightboxDate"></div>
+      <div class="lightbox-title" id="lightboxTitle"></div>
+      <div class="lightbox-desc" id="lightboxDesc"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    // ==================== 动态生成筛选器 ====================
+    const catMap = {}; // { CATEGORY: Set of subtags }
+    galleryData.forEach(item => {
+      Object.entries(item.tags).forEach(([cat, subs]) => {
+        if (!catMap[cat]) catMap[cat] = new Set();
+        subs.forEach(s => catMap[cat].add(s));
+      });
+    });
+    const categories = Object.keys(catMap).sort();
+
+    const filterBar = document.getElementById('filterBar');
+
+    // ALL 组
+    const allGroup = document.createElement('div');
+    allGroup.className = 'filter-group';
+    const allBtn = document.createElement('button');
+    allBtn.className = 'main-tag active';
+    allBtn.setAttribute('data-filter', 'all');
+    allBtn.innerHTML = '<span class="diamond">&#9670;</span> ALL';
+    allBtn.addEventListener('click', () => filterBy('all', allBtn));
+    allGroup.appendChild(allBtn);
+    filterBar.appendChild(allGroup);
+
+    // 分类 + 子标签
+    categories.forEach(cat => {
+      const sep = document.createElement('div');
+      sep.className = 'separator';
+      filterBar.appendChild(sep);
+
+      const group = document.createElement('div');
+      group.className = 'filter-group';
+
+      const catBtn = document.createElement('button');
+      catBtn.className = 'main-tag';
+      catBtn.setAttribute('data-filter', cat);
+      catBtn.innerHTML = '<span class="diamond">&#9670;</span> ' + cat;
+      catBtn.addEventListener('click', () => filterBy(cat, catBtn));
+      group.appendChild(catBtn);
+
+      const subs = Array.from(catMap[cat]).sort();
+      subs.forEach(sub => {
+        const subBtn = document.createElement('button');
+        subBtn.className = 'sub-tag pill';
+        subBtn.setAttribute('data-filter', cat + ':' + sub);
+        subBtn.textContent = sub;
+        subBtn.addEventListener('click', () => filterBy(cat + ':' + sub, subBtn));
+        group.appendChild(subBtn);
+      });
+
+      filterBar.appendChild(group);
+    });
+
+    function filterBy(target, clickedBtn) {
+      // 更新激活状态
+      document.querySelectorAll('.main-tag, .sub-tag').forEach(b => b.classList.remove('active'));
+      clickedBtn.classList.add('active');
+
+      document.querySelectorAll('.masonry-item').forEach(card => {
+        const cardTags = JSON.parse(card.getAttribute('data-tags'));
+        let show = false;
+
+        if (target === 'all') {
+          show = true;
+        } else if (target.includes(':')) {
+          const [cat, sub] = target.split(':');
+          show = cardTags[cat] && cardTags[cat].includes(sub);
+        } else {
+          show = target in cardTags;
+        }
+
+        card.classList.toggle('hidden', !show);
+      });
+    }
+
+    // ==================== 动态生成图片卡片 ====================
+    const grid = document.getElementById('masonryGrid');
+    galleryData.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'masonry-item';
+      card.setAttribute('data-tags', JSON.stringify(item.tags));
+
+      const img = document.createElement('img');
+      img.src = item.filename;
+      img.alt = item.title;
+      img.loading = 'lazy';
+
+      const overlay = document.createElement('div');
+      overlay.className = 'item-overlay';
+      overlay.innerHTML = `
+        <div class="item-date">${item.date}</div>
+        <div class="item-desc">${item.title}</div>
+      `;
+
+      card.appendChild(img);
+      card.appendChild(overlay);
+
+      card.addEventListener('click', () => openLightbox(item));
+
+      grid.appendChild(card);
+    });
+
+    // ==================== 灯箱 ====================
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxDate = document.getElementById('lightboxDate');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDesc = document.getElementById('lightboxDesc');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(item) {
+      lightboxImg.src = item.filename;
+      lightboxDate.textContent = item.date;
+      lightboxTitle.textContent = item.title;
+      lightboxDesc.textContent = item.description || '';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+  </div>
+</body>
+</html>

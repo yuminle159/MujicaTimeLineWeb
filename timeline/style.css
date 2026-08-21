@@ -26,20 +26,13 @@ body {
 .back-nav {
   display: inline-block;
   margin-bottom: 12px;
-  padding: 6px 14px;
-  border: 1px solid #ff4d4d;
-  border-radius: 20px;
-  background: rgba(255, 77, 77, 0.12);
-  color: #ff4d4d;
+  color: #555;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 1px;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
-.back-nav:hover {
-  background: #ff4d4d;
-  color: #fff;
-}
+.back-nav:hover { color: #ff4d4d; }
 .page-header h1 {
   margin: 0 0 6px;
   font-family: "Cinzel", serif;
@@ -65,73 +58,31 @@ body {
 }
 .filter-tags {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 .filter-chip {
   display: flex;
   align-items: center;
+  gap: 6px;
   font-size: 13px;
   color: #666;
   cursor: pointer;
-  position: relative;
-  padding-bottom: 6px;
   user-select: none;
   transition: color 0.25s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
 }
-.filter-chip::before {
-  content: "";
-  width: 4px;
-  height: 4px;
-  background: #444;
-  transform: rotate(45deg);
-  margin-right: 8px;
-  flex-shrink: 0;
-  transition: background 0.25s ease, transform 0.25s ease;
-}
-.filter-chip::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  background: #ff4d4d;
-  transition: width 0.3s ease;
-  transform: translateX(-50%);
-}
-.filter-chip:hover {
-  color: #999;
-}
-.filter-chip:hover::before {
-  background: #666;
-}
-.filter-chip.active {
-  color: #fff;
-  font-weight: 700;
-}
-.filter-chip.active::before {
-  background: #ff4d4d;
-  transform: rotate(45deg) scale(1.5);
-}
-.filter-chip.active::after {
-  width: 100%;
-}
-.filter-clear {
-  padding: 6px 14px;
-  border: 1px solid #ff4d4d;
-  border-radius: 20px;
-  background: rgba(255, 77, 77, 0.12);
-  color: #ff4d4d;
+.filter-chip .diamond {
   font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
+  color: #333;
+  transition: color 0.25s ease;
 }
-.filter-clear:hover {
-  background: #ff4d4d;
-  color: #fff;
-}
+.filter-chip:hover { color: #aaa; }
+.filter-chip.active { color: #fff; font-weight: bold; }
+.filter-chip.active .diamond { color: #ff4d4d; }
 
 /* ===== 双轨容器 ===== */
 .timeline-wrapper {
@@ -747,7 +698,6 @@ body {
     padding: 0 24px 12px;
   }
   .filter-chip {
-    padding: 4px 10px;
     font-size: 11px;
   }
 

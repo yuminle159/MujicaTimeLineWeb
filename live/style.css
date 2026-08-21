@@ -57,20 +57,14 @@ body {
 /* ===== 返回导航 ===== */
 .back-nav {
   display: inline-block;
-  padding: 6px 14px;
-  border: 1px solid var(--md-primary);
-  border-radius: var(--md-radius-full);
-  background: var(--md-primary-container);
-  color: var(--md-primary);
-  font-size: 12px;
-  text-decoration: none;
   margin-bottom: 16px;
-  transition: all var(--md-duration-short) var(--md-easing-standard);
+  color: var(--md-on-surface-muted);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  transition: color var(--md-duration-short) var(--md-easing-standard);
 }
-.back-nav:hover {
-  background: var(--md-primary);
-  color: #fff;
-}
+.back-nav:hover { color: var(--md-primary); }
 
 /* ===== 画廊网格 ===== */
 .gallery-container {

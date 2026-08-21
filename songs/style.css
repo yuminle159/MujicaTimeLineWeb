@@ -48,24 +48,15 @@ body {
   padding: 40px 60px 12px;
 }
 .back-nav {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   margin-bottom: 12px;
-  padding: 6px 16px;
-  border: 1px solid var(--md-primary);
-  border-radius: var(--md-radius-full);
-  background: var(--md-primary-container);
-  color: var(--md-primary);
+  color: var(--md-on-surface-muted);
   text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 13px;
   letter-spacing: 0.5px;
-  transition: all var(--md-duration-short) var(--md-easing-standard);
+  transition: color var(--md-duration-short) var(--md-easing-standard);
 }
-.back-nav:hover {
-  background: var(--md-primary);
-  color: #fff;
-}
+.back-nav:hover { color: var(--md-primary); }
 .page-header h1 {
   margin: 0;
   font-family: "Cinzel", serif;
