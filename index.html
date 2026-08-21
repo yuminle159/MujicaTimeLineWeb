@@ -6,42 +6,153 @@
   <title>唯鸡百科 · wijipedia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@400;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="nav-style.css?v=1">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="nav-style.css?v=2">
 </head>
 <body>
+  <div class="silk-background">
+    <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g class="silk-group gold-sway">
+        <path class="silk-path silk-glow gold-base" d="M -100,300 C 300,0 700,1000 1100,700" />
+        <path class="silk-path silk-core gold-base" d="M -100,300 C 300,0 700,1000 1100,700" />
+        <path class="silk-path silk-stray gold-base stray-1" d="M -100,450 C 400,200 600,800 1100,550" />
+        <path class="silk-path silk-stray gold-base stray-2" d="M -100,150 C 200,500 800,600 1100,850" />
+        <path class="silk-path silk-stray gold-base stray-3" d="M 100,-100 C 300,400 700,600 900,1100" />
+      </g>
+      <g class="silk-group blue-sway">
+        <path class="silk-path silk-glow blue-base" d="M -100,700 C 300,1000 700,0 1100,300" />
+        <path class="silk-path silk-core blue-base" d="M -100,700 C 300,1000 700,0 1100,300" />
+        <path class="silk-path silk-stray blue-base stray-1" d="M -100,550 C 400,800 600,200 1100,450" />
+        <path class="silk-path silk-stray blue-base stray-2" d="M -100,850 C 200,500 800,400 1100,150" />
+        <path class="silk-path silk-stray blue-base stray-3" d="M 200,1100 C 400,600 600,400 800,-100" />
+      </g>
+    </svg>
+  </div>
+
   <header class="nav-header">
-    <h1 class="main-title">唯鸡百科</h1>
+    <svg class="main-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" width="100%" height="auto" overflow="visible">
+      <defs>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap');
+          .text-base {
+            font-family: 'FangSong', 'STFangsong', 'Noto Serif SC', serif;
+            font-weight: 700;
+            font-size: 540px;
+            letter-spacing: 14px;
+          }
+          .ghost-gray {
+            fill: #888899;
+            opacity: 0;
+            animation: breathe-gray 5s ease-in-out infinite;
+          }
+          .ghost-dark {
+            fill: #1a1a24;
+            opacity: 0;
+            animation: breathe-dark 6s ease-in-out infinite 1s;
+          }
+          .title-main {
+            fill: url(#crimson-gradient);
+            filter: url(#sharp-emboss);
+          }
+          @keyframes breathe-gray {
+            0% { transform: translate(-2px, -1px) scale(1); filter: blur(2px); opacity: 0.3; }
+            50% { transform: translate(-8px, -2px) scale(1.02); filter: blur(4px); opacity: 0.6; }
+            100% { transform: translate(-2px, -1px) scale(1); filter: blur(2px); opacity: 0.3; }
+          }
+          @keyframes breathe-dark {
+            0% { transform: translate(2px, 1px) scale(1); filter: blur(2px); opacity: 0.4; }
+            50% { transform: translate(6px, 3px) scale(1.03); filter: blur(6px); opacity: 0.8; }
+            100% { transform: translate(2px, 1px) scale(1); filter: blur(2px); opacity: 0.4; }
+          }
+        </style>
+        <linearGradient id="crimson-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#ff4d4d" />
+          <stop offset="50%" stop-color="#cc2929" />
+          <stop offset="100%" stop-color="#7a1414" />
+        </linearGradient>
+        <filter id="sharp-emboss" x="-20%" y="-20%" width="140%" height="140%">
+          <feMorphology in="SourceAlpha" operator="dilate" radius="0.5" result="thickened" />
+          <feDropShadow in="SourceGraphic" dx="2" dy="4" stdDeviation="1.5" flood-color="#000" flood-opacity="0.95" result="shadow" />
+          <feMerge>
+            <feMergeNode in="shadow"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <g style="transform-origin: center;">
+        <text x="51.5%" y="53%" text-anchor="middle" dominant-baseline="middle" class="text-base ghost-gray">唯鸡百科</text>
+        <text x="51.5%" y="53%" text-anchor="middle" dominant-baseline="middle" class="text-base ghost-dark">唯鸡百科</text>
+        <text x="51.5%" y="53%" text-anchor="middle" dominant-baseline="middle" class="text-base title-main">唯鸡百科</text>
+      </g>
+    </svg>
     <p class="sub-title">wijipedia</p>
   </header>
 
   <nav class="nav-grid">
     <!-- 时间线 -->
     <a class="nav-card" href="timeline/index.html">
-      <span class="card-icon">&#9200;</span>
-      <span class="card-title">Timeline</span>
+      <svg class="sigil-icon" viewBox="0 0 100 100">
+        <circle cx="50" cy="35" r="20" />
+        <circle cx="50" cy="65" r="20" />
+        <line class="sigil-time-axis" x1="50" y1="5" x2="50" y2="95" />
+        <polygon class="sigil-time-axis" points="46,15 50,5 54,15" />
+      </svg>
+      <span class="card-title">TIMELINE</span>
       <span class="card-desc">时间线</span>
     </a>
 
     <!-- 曲目 -->
     <a class="nav-card" href="songs/index.html">
-      <span class="card-icon">&#9835;</span>
-      <span class="card-title">Songs</span>
+      <svg class="sigil-icon" viewBox="0 0 100 100">
+        <polygon points="20,30 80,30 50,80" />
+        <line x1="32" y1="50" x2="68" y2="50" />
+        <path class="sigil-wave sigil-wave-1" d="M 40,90 Q 50,100 60,90" />
+        <path class="sigil-wave sigil-wave-2" d="M 30,100 Q 50,115 70,100" />
+        <path class="sigil-wave sigil-wave-3" d="M 20,110 Q 50,130 80,110" />
+      </svg>
+      <span class="card-title">SONGS</span>
       <span class="card-desc">曲目</span>
     </a>
 
     <!-- 演唱会 -->
     <a class="nav-card" href="live/index.html">
-      <span class="card-icon">&#127903;</span>
-      <span class="card-title">Live</span>
+      <svg class="sigil-icon" viewBox="0 0 100 100">
+        <polyline points="20,90 50,70 80,90" />
+        <g class="sigil-eclipse-rays">
+          <line x1="50" y1="10" x2="50" y2="70" />
+          <line x1="20" y1="40" x2="80" y2="40" />
+          <line x1="28" y1="18" x2="72" y2="62" />
+          <line x1="72" y1="18" x2="28" y2="62" />
+        </g>
+        <circle cx="50" cy="40" r="18" fill="var(--card-bg)" stroke="currentColor" />
+      </svg>
+      <span class="card-title">LIVE</span>
       <span class="card-desc">演唱会</span>
     </a>
 
     <!-- 采访 -->
     <a class="nav-card disabled" href="interview/index.html">
-      <span class="card-icon">&#127908;</span>
-      <span class="card-title">Interview</span>
+      <svg class="sigil-icon" viewBox="0 0 100 100">
+        <polyline class="sigil-door sigil-door-left" points="50,15 20,50 50,85" />
+        <polyline class="sigil-door sigil-door-right" points="50,15 80,50 50,85" />
+        <circle cx="50" cy="40" r="10" />
+        <path d="M 38,28 Q 50,45 62,28" />
+        <line x1="50" y1="50" x2="50" y2="75" />
+        <line x1="40" y1="65" x2="60" y2="65" />
+      </svg>
+      <span class="card-title">INTERVIEW</span>
       <span class="card-desc">采访</span>
+    </a>
+
+    <!-- 画廊 -->
+    <a class="nav-card disabled" href="gallery/index.html">
+      <svg class="sigil-icon" viewBox="0 0 100 100">
+        <polygon points="50,10 90,80 10,80" />
+        <polygon points="50,90 10,20 90,20" />
+        <polygon class="sigil-spark" points="50,35 55,50 70,50 58,60 62,75 50,65 38,75 42,60 30,50 45,50" />
+      </svg>
+      <span class="card-title">GALLERY</span>
+      <span class="card-desc">画廊</span>
     </a>
   </nav>
 

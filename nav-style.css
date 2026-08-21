@@ -1,12 +1,18 @@
 *, *::before, *::after { box-sizing: border-box; }
 
+:root {
+  --card-bg: #141414;
+  --sigil-default: #888888;
+  --sigil-hover: #ff4d4d;
+}
+
 body {
   margin: 0;
-  background: #080808;
+  background: transparent;
   color: #ddd;
   font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,14 +27,9 @@ body {
 }
 
 .nav-header .main-title {
-  margin: 0;
-  font-family: "Ma Shan Zheng", "Dancing Script", "KaiTi", "STKaiti", cursive;
-  font-size: clamp(48px, 8vw, 80px);
-  font-weight: 400;
-  color: #ff4d4d;
-  letter-spacing: 6px;
-  line-height: 1.2;
-  text-shadow: 0 0 40px rgba(255, 77, 77, 0.3);
+  display: block;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .nav-header .sub-title {
@@ -44,12 +45,66 @@ body {
 /* ===== 导航卡片网格 ===== */
 .nav-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 24px;
-  max-width: 800px;
+  max-width: 920px;
   width: 100%;
   padding: 0 16px;
 }
+
+/* ===== SVG 神秘学图标 ===== */
+.sigil-icon {
+  width: 48px;
+  height: 48px;
+  stroke: var(--sigil-default);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.4s ease;
+  overflow: visible;
+  margin-bottom: 12px;
+}
+
+.nav-card:hover .sigil-icon {
+  stroke: var(--sigil-hover);
+  filter: drop-shadow(0 0 8px rgba(255, 77, 77, 0.4));
+}
+
+/* --- Timeline: 时间轴指针旋转 --- */
+.nav-card:hover .sigil-time-axis {
+  transform-origin: center;
+  animation: spinAxis 3s linear infinite;
+}
+@keyframes spinAxis { 100% { transform: rotate(180deg); } }
+
+/* --- Songs: 水之涟漪扩散 --- */
+.sigil-wave { transition: all 0.4s ease; transform-origin: center; }
+.nav-card:hover .sigil-wave-1 { transform: scale(1.1); opacity: 0.8; }
+.nav-card:hover .sigil-wave-2 { transform: scale(1.3); opacity: 0.5; }
+.nav-card:hover .sigil-wave-3 { transform: scale(1.5); opacity: 0; }
+
+/* --- Live: 日食/芒星呼吸 --- */
+.nav-card:hover .sigil-eclipse-rays {
+  transform-origin: center;
+  animation: pulseRays 2s ease-in-out infinite alternate;
+}
+@keyframes pulseRays {
+  0% { transform: scale(0.9) rotate(0deg); }
+  100% { transform: scale(1.1) rotate(5deg); }
+}
+
+/* --- Interview: 真理之门开合 --- */
+.sigil-door { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); transform-origin: center; }
+.nav-card:hover .sigil-door-left { transform: translateX(-4px); }
+.nav-card:hover .sigil-door-right { transform: translateX(4px); }
+
+/* --- Gallery: 棱镜星火旋转 --- */
+.nav-card:hover .sigil-spark {
+  transform-origin: center;
+  animation: spinSpark 4s linear infinite;
+}
+@keyframes spinSpark { 100% { transform: rotate(360deg); } }
 
 /* ===== 导航卡片 ===== */
 .nav-card {
@@ -58,12 +113,12 @@ body {
   align-items: center;
   justify-content: center;
   padding: 36px 24px;
-  background: #141414;
+  background: var(--card-bg);
   border: 1px solid #2a2a2a;
   border-radius: 16px;
   text-decoration: none;
   color: #ddd;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -84,33 +139,27 @@ body {
 
 .nav-card:hover {
   border-color: #ff4d4d;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(255, 77, 77, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(204, 41, 41, 0.15);
 }
 
 .nav-card:hover::before {
   opacity: 1;
 }
 
-.nav-card .card-icon {
-  font-size: 40px;
-  margin-bottom: 12px;
-  line-height: 1;
-}
-
 .nav-card .card-title {
   font-family: "Cinzel", serif;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
   color: #ff4d4d;
   letter-spacing: 2px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .nav-card .card-desc {
-  font-size: 12px;
-  color: #666;
-  letter-spacing: 1px;
+  font-size: 11px;
+  color: #555;
+  letter-spacing: 2px;
   text-align: center;
 }
 
@@ -143,6 +192,19 @@ body {
   opacity: 0;
 }
 
+.nav-card.disabled:hover .sigil-icon {
+  stroke: var(--sigil-default);
+  filter: none;
+}
+
+.nav-card.disabled:hover .sigil-time-axis,
+.nav-card.disabled:hover .sigil-eclipse-rays,
+.nav-card.disabled:hover .sigil-spark {
+  animation: none;
+}
+.nav-card.disabled:hover .sigil-wave { transform: none; opacity: 1; }
+.nav-card.disabled:hover .sigil-door { transform: none; }
+
 /* ===== 页脚 ===== */
 .nav-footer {
   margin-top: 48px;
@@ -150,6 +212,71 @@ body {
   color: #444;
   font-size: 11px;
   letter-spacing: 1px;
+}
+
+/* ===== 黯淡丝线背景 ===== */
+.silk-background {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #050507;
+  transform: translateZ(0);
+}
+.silk-background svg { display: block; width: 100%; height: 100%; }
+
+.gold-base { stroke: #9a7d35; }
+.blue-base { stroke: #455d7a; }
+
+.silk-path {
+  fill: none;
+  stroke-linecap: round;
+  will-change: stroke-dashoffset;
+}
+
+.silk-glow { stroke-width: 14px; opacity: 0.06; }
+.silk-core { stroke-width: 1px; opacity: 0.4; }
+.silk-stray { stroke-width: 0.5px; opacity: 0.2; }
+
+.silk-core, .silk-glow {
+  stroke-dasharray: 4000;
+  stroke-dashoffset: 4000;
+  animation: flow-core 35s ease-in-out infinite alternate;
+}
+.stray-1 {
+  stroke-dasharray: 3000; stroke-dashoffset: 3000;
+  animation: flow-stray 28s ease-in-out infinite alternate-reverse;
+}
+.stray-2 {
+  stroke-dasharray: 5000; stroke-dashoffset: 5000;
+  animation: flow-stray 42s linear infinite;
+}
+.stray-3 {
+  stroke-dasharray: 2000; stroke-dashoffset: 2000;
+  animation: flow-stray 38s ease-in-out infinite alternate;
+}
+
+@keyframes flow-core { 100% { stroke-dashoffset: 0; } }
+@keyframes flow-stray { 100% { stroke-dashoffset: -1000; } }
+
+.silk-group {
+  transform-origin: center;
+  will-change: transform;
+}
+.gold-sway {
+  animation: sway-gold 20s ease-in-out infinite alternate;
+}
+.blue-sway {
+  animation: sway-blue 24s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes sway-gold {
+  0% { transform: scale(1) translate(0, 0) skewX(0deg); }
+  100% { transform: scale(1.05) translate(-2%, 2%) skewX(-2deg); }
+}
+@keyframes sway-blue {
+  0% { transform: scale(1) translate(0, 0) skewY(0deg); }
+  100% { transform: scale(1.03) translate(2%, -1%) skewY(1deg); }
 }
 
 /* ===== 响应式 ===== */
