@@ -1,6 +1,6 @@
 """
  wijipedia 数据更新工具
- 自动发现子目录中的 generate_data.py 并执行
+ 自动发现子目录中的 generate_data.py 并执行，支持图片转 WebP
 """
 import os
 import sys
@@ -8,6 +8,12 @@ import io
 import runpy
 import tkinter as tk
 from tkinter import ttk, messagebox
+
+try:
+    from PIL import Image
+    HAS_PILLOW = True
+except ImportError:
+    HAS_PILLOW = False
 
 BASE_DIR = os.path.dirname(os.path.abspath(sys.argv[0] if getattr(sys, 'frozen', False) else __file__))
 
@@ -35,6 +41,38 @@ def discover_pages():
                     "has_xlsx": os.path.isfile(xlsx),
                 })
     return sorted(pages, key=lambda p: p["label"])
+
+
+def convert_images_to_webp(folder_path, quality=95, log_func=None):
+    """将文件夹中的图片转为 WebP 格式（保留原尺寸，不缩放）"""
+    def log(msg):
+        if log_func:
+            log_func(msg)
+        else:
+            print(msg)
+
+    if not os.path.isdir(folder_path):
+        log(f"  [跳过] 目录不存在: {folder_path}")
+        return 0
+
+    converted = 0
+    for filename in os.listdir(folder_path):
+        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            file_path = os.path.join(folder_path, filename)
+            name_without_ext = os.path.splitext(filename)[0]
+            webp_path = os.path.join(folder_path, f"{name_without_ext}.webp")
+
+            try:
+                with Image.open(file_path) as img:
+                    if img.mode not in ('RGB', 'RGBA'):
+                        img = img.convert('RGBA')
+                    img.save(webp_path, 'webp', quality=quality)
+                    log(f"    {filename} -> {name_without_ext}.webp")
+                    converted += 1
+            except Exception as e:
+                log(f"    [失败] {filename}: {e}")
+
+    return converted
 
 
 def run_script(page, log_func):
@@ -66,7 +104,7 @@ class App:
     def __init__(self, root):
         self.root = root
         root.title(" wijipedia 数据更新工具")
-        root.geometry("560x520")
+        root.geometry("560x600")
         root.resizable(True, True)
         root.configure(bg="#0d0d0d")
 
@@ -133,6 +171,34 @@ class App:
             )
             btn_none.pack(side="left", padx=4)
 
+        # --- 图片转 WebP 选项 ---
+        sep = tk.Frame(root, bg="#2a2a2a", height=1)
+        sep.pack(fill="x", padx=24, pady=(12, 8))
+
+        webp_var = tk.BooleanVar(value=False)
+        self.webp_var = webp_var
+
+        if HAS_PILLOW:
+            cb_webp = tk.Checkbutton(
+                root,
+                text="图片转 WebP（images + icons 目录）",
+                variable=webp_var,
+                font=("Microsoft YaHei", 10),
+                fg="#ddd", bg="#0d0d0d",
+                selectcolor="#0d0d0d",
+                activebackground="#0d0d0d",
+                activeforeground="#ff4d4d",
+            )
+            cb_webp.pack(anchor="w", padx=24, pady=2)
+        else:
+            lbl_no_pil = tk.Label(
+                root,
+                text="图片转 WebP（需要安装 Pillow: pip install Pillow）",
+                font=("Microsoft YaHei", 9),
+                fg="#555", bg="#0d0d0d",
+            )
+            lbl_no_pil.pack(anchor="w", padx=24, pady=2)
+
         # 执行按钮
         btn_build = tk.Button(
             root, text="更新选中页面", command=self.build_selected,
@@ -168,12 +234,28 @@ class App:
 
     def build_selected(self):
         selected = [p for p in self.pages if self.vars[p["id"]].get()]
-        if not selected:
-            messagebox.showwarning("未选择", "请至少选择一个页面。")
+        do_webp = self.webp_var.get() if HAS_PILLOW else False
+
+        if not selected and not do_webp:
+            messagebox.showwarning("未选择", "请至少选择一个页面或勾选图片转 WebP。")
             return
 
         self.output.delete("1.0", "end")
         self.log("开始更新...")
+
+        # 图片转 WebP
+        if do_webp:
+            self.log(f"\n{'='*50}")
+            self.log(f"  图片转 WebP")
+            self.log(f"{'='*50}")
+            for folder_name in ["images", "icons"]:
+                folder_path = os.path.join(BASE_DIR, folder_name)
+                self.log(f"  [{folder_name}]")
+                count = convert_images_to_webp(folder_path, quality=95, log_func=self.log)
+                self.log(f"  共转换 {count} 张图片")
+            self.log(f"[OK] 图片转 WebP - 完成")
+
+        # 更新数据页面
         for p in selected:
             run_script(p, self.log)
         self.log(f"\n{'='*50}")

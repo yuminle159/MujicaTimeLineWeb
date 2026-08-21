@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -35,6 +35,23 @@
       <!-- 右侧：个人 -->
       <div class="track track-right" id="trackRight"></div>
     </div>
+  </div>
+
+  <!-- 详情模态框 -->
+  <div class="tl-modal-overlay" id="tlModalOverlay">
+    <div class="tl-modal-container">
+      <button class="tl-modal-close" id="tlModalClose">&times;</button>
+      <div class="tl-modal-body" id="tlModalBody"></div>
+    </div>
+  </div>
+
+  <!-- 图片灯箱 -->
+  <div id="tlLightbox" class="tl-lightbox">
+    <button class="tl-lightbox-close">&times;</button>
+    <button class="tl-lightbox-arrow tl-lightbox-prev">&#10094;</button>
+    <div class="tl-lightbox-images" id="tlLightboxImages"></div>
+    <span class="tl-lightbox-counter" id="tlLightboxCounter"></span>
+    <button class="tl-lightbox-arrow tl-lightbox-next">&#10095;</button>
   </div>
 
   <script src="data.js?v=4"></script>
@@ -127,64 +144,19 @@
     });
   }
 
-  // 渲染媒体
-  function mediaHTML(m) {
-    if (m.type === "image") {
-      const cap = m.caption ? `<div class="mc">${m.caption.replace(/\n/g, "<br>")}</div>` : "";
-      return `<div><img src="${m.src}" alt="${m.caption||""}" loading="lazy">${cap}</div>`;
-    }
-    if (m.type === "video") {
-      return `<iframe data-src="${m.src}" allowfullscreen loading="lazy"></iframe>`;
-    }
-    if (m.type === "link") {
-      return `<a class="ext-link" href="${m.url}" target="_blank" rel="noopener">${m.title||m.url}</a>`;
-    }
-    return "";
-  }
-
-  // 多图轮播组件
-  function renderCarousel(images) {
-    const imgs = images.map((img, i) =>
-      `<img src="${img.src}" alt="${img.caption||""}" class="carousel-img${i === 0 ? ' active' : ''}" loading="lazy" data-index="${i}">`
-    ).join("");
-    return `
-      <div class="carousel" data-current="0" data-total="${images.length}">
-        <div class="carousel-imgs">${imgs}</div>
-        <button class="carousel-arrow carousel-prev">&#8249;</button>
-        <button class="carousel-arrow carousel-next">&#8250;</button>
-        <div class="carousel-counter">1 / ${images.length}</div>
-        <div class="carousel-caption">${images[0].caption || ""}</div>
-      </div>`;
-  }
-
-  // 多视频轮播组件
-  function renderVideoCarousel(videos) {
-    const items = videos.map((v, i) =>
-      `<iframe data-src="${v.src}" data-caption="${v.caption || ''}" class="carousel-video${i === 0 ? ' active' : ''}" allowfullscreen loading="lazy" data-index="${i}"></iframe>`
-    ).join("");
-    return `
-      <div class="carousel" data-current="0" data-total="${videos.length}">
-        <div class="carousel-imgs">${items}</div>
-        <button class="carousel-arrow carousel-prev">&#8249;</button>
-        <button class="carousel-arrow carousel-next">&#8250;</button>
-        <div class="carousel-counter">1 / ${videos.length}</div>
-        <div class="carousel-caption">${videos[0].caption || ""}</div>
-      </div>`;
-  }
-
   // tag 到 icon 的映射（icons/ 文件夹下）
   const TAG_ICONS = {
     // 组织相关
-    oml: "../icons/oml.png",
-    bandori_fes: "../icons/bandori_fes.png",
-    fes: "../icons/fes.png",
-    single: "../icons/single.png",
-    album: "../icons/album.png",
-    anime: "../icons/anime.png",
-    offline: "../icons/offline.png",
+    oml: "../icons/oml.webp",
+    bandori_fes: "../icons/bandori_fes.webp",
+    fes: "../icons/fes.webp",
+    single: "../icons/single.webp",
+    album: "../icons/album.webp",
+    anime: "../icons/anime.webp",
+    offline: "../icons/offline.webp",
     // 个人相关
-    private: "../icons/private.png",
-    business: "../icons/business.png"
+    private: "../icons/private.webp",
+    business: "../icons/business.webp"
   };
   // tag 显示名称
   const TAG_NAMES = {
@@ -209,7 +181,7 @@
     const chip = document.createElement("div");
     chip.className = "filter-chip";
     chip.dataset.tag = tag;
-    chip.innerHTML = `<img src="${TAG_ICONS[tag]}" alt="${tag}"><span>${TAG_NAMES[tag] || tag}</span>`;
+    chip.innerHTML = `<span>${TAG_NAMES[tag] || tag}</span>`;
     chip.addEventListener("click", () => {
       chip.classList.toggle("active");
       if (chip.classList.contains("active")) {
@@ -234,18 +206,11 @@
       ...Array.from(trackR.querySelectorAll(".event-group"))
     ];
 
-    // 收起所有展开的详情
-    allGroups.forEach(g => {
-      const detail = g.querySelector(".detail");
-      if (detail) detail.classList.remove("open");
-    });
-
     if (activeFilters.size === 0) {
       allGroups.forEach(g => g.classList.remove("hidden"));
     } else {
       allGroups.forEach(g => {
-        const tagIcon = g.querySelector(".tag-icon");
-        const tag = tagIcon ? tagIcon.dataset.tag : "";
+        const tag = g.dataset.tag;
         if (activeFilters.has(tag)) {
           g.classList.remove("hidden");
         } else {
@@ -265,76 +230,17 @@
 
     const group = document.createElement("div");
     group.className = "event-group " + (isOrg ? "org" : "per");
-    // 不在创建时设 style.top，由 resolveOverlaps 统一设置（避免初始过渡动画）
     group.dataset.originalTop = top;
     group.dataset.monthKey = monthKey;
     group.dataset.index = idx;
     group.dataset.category = ev.category;
+    group.dataset.tag = ev.tag || "";
 
     const bubble = document.createElement("div");
     bubble.className = "bubble";
     const tagIcon = ev.tag && TAG_ICONS[ev.tag] ? `<img class="tag-icon" src="${TAG_ICONS[ev.tag]}" alt="${ev.tag}" data-tag="${ev.tag}">` : "";
     bubble.innerHTML = `<div class="b-date">${ev.date}</div><div class="b-title">${ev.title}</div>${tagIcon}`;
-    bubble.onclick = function () {
-      const g = this.closest(".event-group");
-      const d = g.querySelector(".detail");
-      const wasOpen = d.classList.contains("open");
-
-      // 关闭所有已展开的：先停止视频，再移除样式
-      document.querySelectorAll(".detail.open iframe").forEach(iframe => { iframe.src = ""; });
-      document.querySelectorAll(".event-group.expanded").forEach(eg => {
-        eg.classList.remove("expanded");
-        eg.style.zIndex = "3";
-      });
-      document.querySelectorAll(".detail.open").forEach(x => x.classList.remove("open"));
-
-      if (!wasOpen) {
-        d.classList.add("open");
-        g.classList.add("expanded");
-        g.style.zIndex = "100";
-        // 展开后启动视频播放：轮播只播 active 的，单视频直接播
-        d.querySelectorAll("iframe[data-src]").forEach(iframe => {
-          const isCarousel = iframe.classList.contains("carousel-video");
-          if (isCarousel && iframe.classList.contains("active")) { iframe.src = iframe.dataset.src; }
-          else if (!isCarousel) { iframe.src = iframe.dataset.src; }
-        });
-      }
-
-      updatePositions();
-    };
-
-    const detail = document.createElement("div");
-    detail.className = "detail";
-    const mediaItems = ev.media || [];
-    const imageItems = mediaItems.filter(m => m.type === "image");
-    const videoItems = mediaItems.filter(m => m.type === "video");
-    const linkItems = mediaItems.filter(m => m.type === "link");
-
-    // 多图/多视频 → 轮播；单图/单视频/链接 → 普通渲染
-    let mediaParts = [];
-    if (imageItems.length > 1) {
-      mediaParts.push(renderCarousel(imageItems));
-    } else {
-      imageItems.forEach(m => mediaParts.push(mediaHTML(m)));
-    }
-    if (videoItems.length > 1) {
-      mediaParts.push(renderVideoCarousel(videoItems));
-    } else {
-      videoItems.forEach(m => mediaParts.push(mediaHTML(m)));
-    }
-    // 链接始终显示在图片/视频下方
-    linkItems.forEach(m => mediaParts.push(mediaHTML(m)));
-
-    const mediaContent = mediaParts.length ? '<div class="d-media">' + mediaParts.join("") + '</div>' : "";
-    detail.innerHTML = `<div class="d-desc">${ev.description.replace(/\n/g, "<br>")}</div>${mediaContent}`;
-    // 图片加载完成后重新计算撑开量（height:auto 的图片在加载前高度为 0）
-    detail.querySelectorAll("img").forEach(img => {
-      if (!img.complete) {
-        img.addEventListener("load", () => {
-          if (detail.classList.contains("open")) updatePositions();
-        });
-      }
-    });
+    bubble.onclick = function () { openTimelineModal(idx); };
 
     const connector = document.createElement("div");
     connector.className = "connector";
@@ -349,16 +255,12 @@
     eventWrap.appendChild(spacer);
 
     group.appendChild(eventWrap);
-    group.appendChild(detail);
     track.appendChild(group);
   });
 
   // 相邻事件间距不足时自动错开，避免气泡重叠
-  // 左右轨事件统一排序处理，共享同一个 lastBottom 坐标系统
-  // 确保刻度位置 = 左+右 事件数取最大值，年份/月份完全对齐
-  const MIN_GAP = 10; // 事件之间的最小间距（px），可自行调整
+  const MIN_GAP = 10;
   function resolveOverlaps() {
-    // 收集左右轨所有事件，按日历日期统一排序
     const allGroups = [
       ...Array.from(trackL.querySelectorAll('.event-group')),
       ...Array.from(trackR.querySelectorAll('.event-group'))
@@ -392,161 +294,238 @@
     return monthMap;
   }
 
-  // 获取详情框在展开宽度下的真实内容高度
-  function getExpandedHeight(detail) {
-    const expandedWidth = getComputedStyle(document.documentElement).getPropertyValue('--detail-expanded-width').trim();
-    // 保存原始内联样式
-    const origTransition = detail.style.transition;
-    const origWidth = detail.style.width;
-    const origMaxHeight = detail.style.maxHeight;
-    const origOverflow = detail.style.overflow;
-    const origPadding = detail.style.padding;
-    // 关键：先禁用 CSS transition，确保下面设置的值瞬间生效，不会在过渡中间态测量
-    detail.style.transition = 'none';
-    detail.style.width = expandedWidth;
-    detail.style.maxHeight = 'none';
-    detail.style.overflow = 'visible';
-    detail.style.padding = '18px'; // 展开态 padding，确保 scrollHeight 包含 padding
-    detail.offsetHeight; // 强制 reflow，此时宽度已瞬间变为展开宽度
-    const h = detail.scrollHeight;
-    // 恢复原始内联样式
-    detail.style.transition = origTransition;
-    detail.style.width = origWidth;
-    detail.style.maxHeight = origMaxHeight;
-    detail.style.overflow = origOverflow;
-    detail.style.padding = origPadding;
-    detail.offsetHeight; // 再触发一次 reflow，让 CSS transition 从正确状态重新开始
-    return h;
-  }
+  // ===== 模态框 =====
+  const tlModalOverlay = document.getElementById("tlModalOverlay");
+  const tlModalBody = document.getElementById("tlModalBody");
+  const tlModalClose = document.getElementById("tlModalClose");
 
-  // 更新所有事件 + 刻度位置
-  function updatePositions() {
-    const allGroups = [
-      ...Array.from(trackL.querySelectorAll(".event-group")),
-      ...Array.from(trackR.querySelectorAll(".event-group"))
-    ];
-    // 用 baseTop 排序（含重叠偏移）
-    allGroups.sort((a, b) => (parseFloat(a.dataset.baseTop) || parseFloat(a.dataset.originalTop)) - (parseFloat(b.dataset.baseTop) || parseFloat(b.dataset.originalTop)));
+  function openTimelineModal(index) {
+    const ev = timelineData[index];
+    if (!ev) return;
+    document.body.style.overflow = "hidden";
 
-    let offset = 0;
-    allGroups.forEach(g => {
-      const baseTop = parseFloat(g.dataset.baseTop) || parseFloat(g.dataset.originalTop);
-      const detail = g.querySelector(".detail");
-      const isOpen = detail && detail.classList.contains("open");
+    const mediaItems = ev.media || [];
+    const imageItems = mediaItems.filter(m => m.type === "image");
+    const videoItems = mediaItems.filter(m => m.type === "video");
+    const linkItems = mediaItems.filter(m => m.type === "link");
 
-      g.style.top = (baseTop + offset) + "px";
+    let mediaHTML = "";
 
-      if (isOpen) {
-        // 在展开宽度下测量真实内容高度，确保宽屏/窄屏都准确
-        offset += getExpandedHeight(detail) + 24;
-      }
-    });
-
-    // 对齐详情框与气泡：测量 connector 宽度设置 margin
-    allGroups.forEach(g => {
-      const connector = g.querySelector(".connector");
-      const detail = g.querySelector(".detail");
-      if (connector && detail) {
-        const cw = connector.offsetWidth;
-        if (g.classList.contains("org")) {
-          detail.style.marginLeft = cw + "px";
-          detail.style.marginRight = "0";
-        } else {
-          detail.style.marginRight = cw + "px";
-          detail.style.marginLeft = "0";
-        }
-      }
-    });
-
-    // 同步刻度位置（比较基于事件的实际 baseTop，确保刻度与事件对齐）
-    allTicks.forEach(t => {
-      const tickBaseTop = parseFloat(t.dataset.originalTop);
-      let tickOffset = 0;
-      allGroups.forEach(g => {
-        const gBaseTop = parseFloat(g.dataset.baseTop) || parseFloat(g.dataset.originalTop);
-        if (gBaseTop < tickBaseTop) {
-          const detail = g.querySelector(".detail");
-          if (detail && detail.classList.contains("open")) {
-            tickOffset += getExpandedHeight(detail) + 24;
-          }
-        }
-      });
-      t.style.top = (tickBaseTop + tickOffset) + "px";
-    });
-
-    // 同步年份标签位置
-    yearLabels.forEach(yl => {
-      const ylBaseTop = parseFloat(yl.dataset.originalTop);
-      let ylOffset = 0;
-      allGroups.forEach(g => {
-        const gBaseTop = parseFloat(g.dataset.baseTop) || parseFloat(g.dataset.originalTop);
-        if (gBaseTop < ylBaseTop) {
-          const detail = g.querySelector(".detail");
-          if (detail && detail.classList.contains("open")) {
-            ylOffset += getExpandedHeight(detail) + 24;
-          }
-        }
-      });
-      yl.style.top = (ylBaseTop + ylOffset) + "px";
-    });
-
-    // 调整容器高度
-    requestAnimationFrame(() => {
-      let maxH = 600;
-      [trackL, trackR].forEach(track => {
-        track.querySelectorAll(".event-group").forEach(g => {
-          const b = g.offsetTop + g.offsetHeight;
-          if (b > maxH) maxH = b;
+    // 图片区域（轮播，点击可放大→灯箱）
+    if (imageItems.length > 0) {
+      if (imageItems.length === 1) {
+        const img = imageItems[0];
+        mediaHTML += `<div class="tl-modal-img-carousel">
+          <div class="tl-img-track">
+            <img src="${img.src}" alt="${img.caption || ''}" class="active" onclick="openTlLightbox('${img.src}', ${JSON.stringify(imageItems.map(m => m.src)).replace(/"/g, '&quot;')}, 0)">
+          </div>
+          ${img.caption ? `<div class="tl-modal-img-cap">${img.caption.replace(/\n/g, "<br>")}</div>` : ""}
+        </div>`;
+      } else {
+        mediaHTML += '<div class="tl-modal-img-carousel" id="tlImgCarousel">';
+        mediaHTML += '<div class="tl-img-track">';
+        imageItems.forEach((img, i) => {
+          mediaHTML += `<img src="${img.src}" alt="${img.caption || ''}" class="${i === 0 ? 'active' : ''}" loading="lazy" data-index="${i}" onclick="openTlLightbox('${img.src}', ${JSON.stringify(imageItems.map(m => m.src)).replace(/"/g, '&quot;')}, ${i})">`;
         });
-      });
-      wrapper.style.minHeight = (maxH + 80) + "px";
-      ticksL.style.height = (maxH + 80) + "px";
-      ticksR.style.height = (maxH + 80) + "px";
-    });
-  }
-
-  // 轮播交互：事件委托，箭头切换图片/视频
-  wrapper.addEventListener("click", function(e) {
-    const btn = e.target.closest(".carousel-arrow");
-    if (!btn) return;
-    e.stopPropagation();
-
-    const carousel = btn.closest(".carousel");
-    const dir = btn.classList.contains("carousel-prev") ? -1 : 1;
-    const items = carousel.querySelectorAll(".carousel-img, .carousel-video");
-    const total = items.length;
-    let current = parseInt(carousel.dataset.current);
-
-    items[current].classList.remove("active");
-    // 停止旧视频
-    if (items[current].tagName === "IFRAME") { items[current].src = ""; }
-    current = (current + dir + total) % total;
-    const activeItem = items[current];
-    activeItem.classList.add("active");
-
-    // 启动新视频
-    if (activeItem.tagName === "IFRAME") {
-      activeItem.src = activeItem.dataset.src;
+        mediaHTML += '</div>';
+        mediaHTML += '<div class="tl-img-controls">';
+        mediaHTML += '<button class="tl-img-arrow tl-img-prev" onclick="moveTlImg(-1)">&#10094;</button>';
+        mediaHTML += `<span class="tl-img-counter">1 / ${imageItems.length}</span>`;
+        mediaHTML += '<button class="tl-img-arrow tl-img-next" onclick="moveTlImg(1)">&#10095;</button>';
+        mediaHTML += '</div>';
+        // caption 跟随当前图片
+        mediaHTML += `<div class="tl-modal-img-cap" id="tlImgCaption">${imageItems[0].caption || ""}</div>`;
+        mediaHTML += '</div>';
+      }
     }
 
-    carousel.querySelector(".carousel-counter").textContent = (current + 1) + " / " + total;
-    const caption = activeItem.dataset.caption || activeItem.alt || "";
-    carousel.querySelector(".carousel-caption").textContent = caption;
-    carousel.dataset.current = current;
+    // 视频区域
+    if (videoItems.length > 0) {
+      if (videoItems.length === 1) {
+        mediaHTML += `<div class="tl-modal-video"><iframe src="${videoItems[0].src}" allowfullscreen></iframe></div>`;
+      } else {
+        mediaHTML += '<div class="tl-modal-video-carousel" id="tlVideoCarousel">';
+        mediaHTML += '<div class="tl-video-track">';
+        videoItems.forEach((v, i) => {
+          mediaHTML += `<iframe data-src="${v.src}" class="tl-carousel-video${i === 0 ? ' active' : ''}" allowfullscreen data-index="${i}"></iframe>`;
+        });
+        mediaHTML += '</div>';
+        mediaHTML += '<div class="tl-video-controls">';
+        mediaHTML += '<button class="tl-video-arrow tl-video-prev" onclick="moveTlVideo(-1)">&#10094;</button>';
+        mediaHTML += `<span class="tl-video-counter">1 / ${videoItems.length}</span>`;
+        mediaHTML += '<button class="tl-video-arrow tl-video-next" onclick="moveTlVideo(1)">&#10095;</button>';
+        mediaHTML += '</div></div>';
+      }
+    }
 
-    // 切换后重算撑开量
-    const detail = carousel.closest(".detail");
-    if (detail && detail.classList.contains("open")) {
-      updatePositions();
+    // 链接区域
+    if (linkItems.length > 0) {
+      mediaHTML += '<div class="tl-modal-links">';
+      linkItems.forEach(l => {
+        mediaHTML += `<a class="tl-modal-link" href="${l.url}" target="_blank" rel="noopener">${l.title || l.url}</a>`;
+      });
+      mediaHTML += '</div>';
+    }
+
+    tlModalBody.innerHTML = `
+      <div class="tl-modal-title">${ev.title}</div>
+      <div class="tl-modal-date">${ev.date}</div>
+      <div class="tl-modal-desc">${(ev.description || "").replace(/\n/g, "<br>")}</div>
+      ${mediaHTML}
+    `;
+
+    // 启动视频轮播首帧
+    setTimeout(() => {
+      const firstVideo = tlModalBody.querySelector(".tl-carousel-video.active");
+      if (firstVideo && firstVideo.dataset.src) firstVideo.src = firstVideo.dataset.src;
+    }, 0);
+
+    tlModalOverlay.classList.add("open");
+  }
+
+  function closeTimelineModal() {
+    tlModalOverlay.classList.remove("open");
+    document.body.style.overflow = "";
+    // 停止所有视频
+    tlModalBody.querySelectorAll("iframe").forEach(f => { f.src = ""; });
+  }
+
+  tlModalClose.addEventListener("click", closeTimelineModal);
+  tlModalOverlay.addEventListener("click", function(e) {
+    if (e.target === tlModalOverlay) closeTimelineModal();
+  });
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && tlModalOverlay.classList.contains("open")) {
+      if (document.getElementById("tlLightbox").classList.contains("active")) {
+        closeTlLightbox();
+      } else {
+        closeTimelineModal();
+      }
     }
   });
 
-  // 初始布局：禁用过渡动画，防止页面加载时出现下移特效
+  // 模态框内视频轮播
+  window.moveTlVideo = function(dir) {
+    const track = document.getElementById("tlVideoCarousel");
+    if (!track) return;
+    const videos = track.querySelectorAll(".tl-carousel-video");
+    let current = -1;
+    videos.forEach((v, i) => { if (v.classList.contains("active")) current = i; });
+    if (current < 0) return;
+    videos[current].classList.remove("active");
+    videos[current].src = "";
+    const next = (current + dir + videos.length) % videos.length;
+    videos[next].classList.add("active");
+    if (videos[next].dataset.src) videos[next].src = videos[next].dataset.src;
+    track.querySelector(".tl-video-counter").textContent = (next + 1) + " / " + videos.length;
+  };
+
+  // 模态框内图片轮播
+  window.moveTlImg = function(dir) {
+    const carousel = document.getElementById("tlImgCarousel");
+    if (!carousel) return;
+    const imgs = carousel.querySelectorAll(".tl-img-track img");
+    const total = imgs.length;
+    let current = -1;
+    imgs.forEach((img, i) => { if (img.classList.contains("active")) current = i; });
+    if (current < 0) return;
+    imgs[current].classList.remove("active");
+    const next = (current + dir + total) % total;
+    imgs[next].classList.add("active");
+    carousel.querySelector(".tl-img-counter").textContent = (next + 1) + " / " + total;
+    const capEl = document.getElementById("tlImgCaption");
+    if (capEl) capEl.textContent = imgs[next].alt || "";
+  };
+
+  // ===== 灯箱 =====
+  let tlLightboxGroup = null;
+  let tlLightboxIndex = 0;
+  const tlLightboxImages = document.getElementById("tlLightboxImages");
+
+  window.openTlLightbox = function(src, group, index) {
+    tlLightboxGroup = (group && group.length > 0) ? group : null;
+    tlLightboxIndex = (index !== undefined) ? index : 0;
+    const lb = document.getElementById("tlLightbox");
+
+    // 预加载所有图片，只显示当前
+    tlLightboxImages.innerHTML = "";
+    if (tlLightboxGroup && tlLightboxGroup.length > 0) {
+      tlLightboxGroup.forEach((imgSrc, i) => {
+        const img = document.createElement("img");
+        img.src = imgSrc;
+        img.className = i === tlLightboxIndex ? "active" : "";
+        tlLightboxImages.appendChild(img);
+      });
+    } else {
+      const img = document.createElement("img");
+      img.src = src;
+      img.className = "active";
+      tlLightboxImages.appendChild(img);
+    }
+
+    const counter = document.getElementById("tlLightboxCounter");
+    const arrows = lb.querySelectorAll(".tl-lightbox-arrow");
+    if (tlLightboxGroup && tlLightboxGroup.length > 1) {
+      counter.textContent = (tlLightboxIndex + 1) + " / " + tlLightboxGroup.length;
+      counter.style.display = "block";
+      arrows.forEach(a => a.style.display = "flex");
+    } else {
+      counter.style.display = "none";
+      arrows.forEach(a => a.style.display = "none");
+    }
+    lb.classList.add("active");
+  };
+
+  window.moveTlLightbox = function(dir) {
+    if (!tlLightboxGroup) return;
+    const imgs = tlLightboxImages.querySelectorAll("img");
+    if (imgs.length === 0) return;
+    imgs[tlLightboxIndex].classList.remove("active");
+    tlLightboxIndex = ((tlLightboxIndex + dir) % tlLightboxGroup.length + tlLightboxGroup.length) % tlLightboxGroup.length;
+    imgs[tlLightboxIndex].classList.add("active");
+    document.getElementById("tlLightboxCounter").textContent = (tlLightboxIndex + 1) + " / " + tlLightboxGroup.length;
+  };
+
+  window.closeTlLightbox = function() {
+    document.getElementById("tlLightbox").classList.remove("active");
+    tlLightboxGroup = null;
+    tlLightboxIndex = 0;
+    // 延迟清理图片，避免关闭时闪烁
+    setTimeout(() => { tlLightboxImages.innerHTML = ""; }, 300);
+  };
+
+  // 灯箱键盘导航
+  document.addEventListener("keydown", function(e) {
+    if (!document.getElementById("tlLightbox").classList.contains("active")) return;
+    if (e.key === "ArrowLeft") moveTlLightbox(-1);
+    if (e.key === "ArrowRight") moveTlLightbox(1);
+  });
+
+  // 灯箱点击事件
+  document.getElementById("tlLightbox").addEventListener("click", function(e) {
+    if (e.target === this) closeTlLightbox();
+  });
+  document.querySelector("#tlLightbox .tl-lightbox-close").addEventListener("click", closeTlLightbox);
+  document.querySelector("#tlLightbox .tl-lightbox-prev").addEventListener("click", function(e) { e.stopPropagation(); moveTlLightbox(-1); });
+  document.querySelector("#tlLightbox .tl-lightbox-next").addEventListener("click", function(e) { e.stopPropagation(); moveTlLightbox(1); });
+
+  // ===== 初始布局 =====
   document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
 
   const monthMaps = resolveOverlaps();
   generateMonthTicks(monthMaps);
-  updatePositions();
+
+  // 调整容器高度
+  let maxH = 600;
+  [trackL, trackR].forEach(track => {
+    track.querySelectorAll(".event-group").forEach(g => {
+      const b = g.offsetTop + g.offsetHeight;
+      if (b > maxH) maxH = b;
+    });
+  });
+  wrapper.style.minHeight = (maxH + 80) + "px";
+  ticksL.style.height = (maxH + 80) + "px";
+  ticksR.style.height = (maxH + 80) + "px";
 
   // 布局完成后恢复过渡动画
   requestAnimationFrame(() => {
