@@ -107,7 +107,7 @@ const songsData = [
     ]
   },
   {
-    name: "元素：水",
+    name: "Symbol III : Water",
     name_jp: "Symbol III : 🜄",
     album: "Digital Single",
     album_year: "2024",
@@ -356,7 +356,7 @@ const songsData = [
     appearances: ["Ave Música"],
     comments: [
       {
-        text: "——刚才也提到过，作为新曲的「The Whole Blue World」是一首连接了 Ave Mujica 过去与未来的歌曲。 \\n佐佐木：是的呢。我觉得 Ave Mujica 给人一种孤高的印象。但是这首歌，感觉像是在歌颂共同坠落的美。看歌词的话，有很多像是“残酷的世界中”、“无法传达的焦躁”、“渐渐粉碎的梦境”、“感受到痛苦”之类的词汇。但在其中，依然有一种“想要切实地触碰你”的感觉。我觉得这部分的氛围和以前稍微有些不同。 歌词中出现了“我们”（僕ら）这个词，也让我印象非常深刻。应该说是一种选择一起受伤害的细腻感吗，其中也还有“明明想要去相信”的纠结和动摇的部分，我非常喜欢。带着这种动摇仍要继续前进的感觉，我觉得非常有 Ave Mujica 的风格。我是绷紧了神经，全神贯注地去演唱这首歌的。\\n冈田：我有个单纯的疑问，在录音的时候，你不会“哇——”地一下情绪失控吗？（笑） 佐佐木：虽然不会“哇——”地叫出来（笑），但确实有一种自己正在坠入黑暗的感觉。在之前的采访中我也提到过，在唱「Sophie」的时候，回过神来发现手上全是伤痕，我应该是下意识地用力攥紧了手，在“真的好讨厌”“真的好讨厌”（ほんとヤダ）那里。就是这样，贴近着歌词的情感去演唱的。 这首歌也是，感觉像是让内心静静地沸腾起来。我会一边想象着那种包含着心中的焦躁、痛苦和软弱，却依然要继续前行的感觉，一边去演唱。\\n——「The Whole Blue World」里的“Blue World”，让人既能感受到清澈的蓝，也能感受到那种仿佛要深深沉沦下去的蓝。\\n佐佐木：确实，感觉它不仅仅是一个普通的蓝色世界。在其中既能感觉到充满透明感的蓝，也能感觉到深邃的蓝。非常有Ave Mujica的风格。我觉得Ave Mujica不仅仅是有攻击性，那种细腻而优雅的部分也是 Ave Mujica 的一部分。我认为这首歌是一首能够同时体会到这两面的歌曲。\\n\n冈田：真是一种不可思议的平衡呢。和声也录制了非常多的版本。Ave Mujica的歌曲，都是由 Diggy-MO' 先生来录制Demo的。听到Diggy-MO'先生的演唱，我们也能明确地明白“这首歌想要呈现出怎样的感觉”。而且，我能听出来李子亲并没有完全仿照，而是很好地将其升华为Doloris的风格来演唱。这点每次都让我很感动。其他的歌曲中，强调沉重感的曲子比较多，但这首歌相对来说，让我感受到了深沉感。\\n\n佐佐木：我确实是有意识地在表现这种深沉感！而且，也刻意去表现了那种带着冰冷感的蓝。并不是粗暴地去击打，而是那种优美地夺走你呼吸的感觉，你能体会到这一层我真的很高兴。 \\n冈田：太棒了！",
+        text: "——刚才也提到过，作为新曲的「The Whole Blue World」是一首连接了 Ave Mujica 过去与未来的歌曲。 \\n佐佐木：是的呢。我觉得 Ave Mujica 给人一种孤高的印象。但是这首歌，感觉像是在歌颂共同坠落的美。看歌词的话，有很多像是“残酷的世界中”、“无法传达的焦躁”、“渐渐粉碎的梦境”、“感受到痛苦”之类的词汇。但在其中，依然有一种“想要切实地触碰你”的感觉。我觉得这部分的氛围和以前稍微有些不同。 歌词中出现了“我们”（僕ら）这个词，也让我印象非常深刻。应该说是一种选择一起受伤害的细腻感吗，其中也还有“明明想要去相信”的纠结和动摇的部分，我非常喜欢。带着这种动摇仍要继续前进的感觉，我觉得非常有 Ave Mujica 的风格。我是绷紧了神经，全神贯注地去演唱这首歌的。\\n冈田：我有个单纯的疑问，在录音的时候，你不会“哇——”地一下情绪失控吗？（笑）\\n 佐佐木：虽然不会“哇——”地叫出来（笑），但确实有一种自己正在坠入黑暗的感觉。在之前的采访中我也提到过，在唱「Sophie」的时候，回过神来发现手上全是伤痕，我应该是下意识地用力攥紧了手，在“真的好讨厌”“真的好讨厌”（ほんとヤダ）那里。就是这样，贴近着歌词的情感去演唱的。 这首歌也是，感觉像是让内心静静地沸腾起来。我会一边想象着那种包含着心中的焦躁、痛苦和软弱，却依然要继续前行的感觉，一边去演唱。\\n——「The Whole Blue World」里的“Blue World”，让人既能感受到清澈的蓝，也能感受到那种仿佛要深深沉沦下去的蓝。\\n佐佐木：确实，感觉它不仅仅是一个普通的蓝色世界。在其中既能感觉到充满透明感的蓝，也能感觉到深邃的蓝。非常有Ave Mujica的风格。我觉得Ave Mujica不仅仅是有攻击性，那种细腻而优雅的部分也是 Ave Mujica 的一部分。我认为这首歌是一首能够同时体会到这两面的歌曲。\\n\n冈田：真是一种不可思议的平衡呢。和声也录制了非常多的版本。Ave Mujica的歌曲，都是由 Diggy-MO' 先生来录制Demo的。听到Diggy-MO'先生的演唱，我们也能明确地明白“这首歌想要呈现出怎样的感觉”。而且，我能听出来李子亲并没有完全仿照，而是很好地将其升华为Doloris的风格来演唱。这点每次都让我很感动。其他的歌曲中，强调沉重感的曲子比较多，但这首歌相对来说，让我感受到了深沉感。\\n\n佐佐木：我确实是有意识地在表现这种深沉感！而且，也刻意去表现了那种带着冰冷感的蓝。并不是粗暴地去击打，而是那种优美地夺走你呼吸的感觉，你能体会到这一层我真的很高兴。 \\n冈田：太棒了！",
         source: "https://www.animatetimes.com/news/details.php?id=1781597468&p=2",
         from: "佐佐木李子&冈田梦以"
       }
@@ -376,14 +376,14 @@ const songsData = [
     arranger: "松坂康司 (SUPA LOVE)、Diggy-MO'",
     first_stage: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演",
     mv_url: "https://www.bilibili.com/video/BV13Ma2zjEMA",
-    lyrics_jp: "",
-    lyrics_cn: "",
+    lyrics_jp: "虜になっていた 光 うつらうつら\\n幻を見ていた 儚い夢の中\\nこの天（そら）の狭間に彷徨（さまよ）って 堕ちてゆく\\n[気づいて 気づいて このままじゃいけない]\\nそうね 知っているわ\\nwake up wake up babe don't fear\\n君の碧い瞳の中に ああ わたしはいたい\\nwake up wake up babe さあ いま\\nもういちど 自分を越えて 越えて\\n信じて\\n聖なる人も皆 生きる罪深さに苛まれ\\nやがて伝説は ただの土に\\nこの愛のあとにも また忘却が続くのかしら\\n[お願い お願い ねぇ 戻ってきて]\\nこのぬくもり 失えない\\nwake up wake up babe don't fear\\n君の碧い瞳が やさしく微笑む未来\\nwake up wake up babe さあ いま\\n奏でるの 世界を ともに描いて\\nwake up wake up babe don't fear\\n君の碧い瞳の中に ああ わたしはいたい\\nwake up wake up babe さあ いま\\nもういちど 自分を越えて 越えて\\n信じて",
+    lyrics_cn: "曾深陷其中 光芒朦朦胧胧\\n曾见到模糊的幻想 在转瞬即逝的梦中\\n在天空的狭缝中彷徨徘徊 逐渐坠落\\n[请察觉到 请察觉到 不能这样下去了]\\n是啊 我早已明白\\n醒来吧 醒来吧 亲爱的 别害怕\\n我愿长存于你空灵美丽的眼眸之中\\n醒来吧 醒来吧 亲爱的 就是现在\\n再一次 去超越自我 超越吧\\n请相信吧\\n纵使是圣洁之人 也会为生命的罪孽深受煎熬\\n而那传说 终将化作尘土\\n这份爱之后 是否仍唯有忘却相随\\n[求求你 求求你 呐 回到我身边吧]\\n不能失去这份温暖\\n醒来吧 醒来吧 亲爱的 别害怕\\n你空灵美丽的眼眸中温柔微笑的未来\\n醒来吧 醒来吧 亲爱的 就是现在\\n奏响由我们共同描绘的世界\\n醒来吧 醒来吧 亲爱的 别害怕\\n我愿长存于你空灵美丽的眼眸之中\\n醒来吧 醒来吧 亲爱的 就是现在\\n再一次 去超越自我 超越吧\\n请相信吧",
     appearances: ["Ave Música"],
     comments: [
       {
-        text: "No comment",
+        text: "明日方舟 Side Story 「无忧梦呓」 联动曲",
         source: "",
-        from: "Nobody"
+        from: "Tie-up"
       }
     ],
     live_history: [
@@ -411,22 +411,204 @@ const songsData = [
     ]
   },
   {
-    name: "黑色生日",
+    name: "Black Birthday",
     name_jp: "黒のバースデイ",
-    album: "",
-    album_year: "",
-    release_date: "",
-    cover: "",
-    type: "",
-    lyricist: "",
-    composer: "",
-    arranger: "",
-    first_stage: "",
-    mv_url: "",
-    lyrics_jp: "",
+    album: "Digital Single",
+    album_year: "2023",
+    release_date: "2023/4/10",
+    cover: "../images/黑色生日.webp",
+    type: "原创",
+    lyricist: "Diggy-MO'",
+    composer: "賀佐泰洋(SUPA LOVE)",
+    arranger: "賀佐泰洋(SUPA LOVE)",
+    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+    mv_url: "https://www.bilibili.com/video/BV16v4y1H7ZR",
+    lyrics_jp: "この領域まで侵されて そう プラットフォームは上下する\\n新しく記された my バースデイ 今夜 感じて 燃え 悶える\\nna, 生々しい艷やかな mad day 秘密めいた ruler loo-la, cool, cool,\\n“ようこそ おいでなさい” 告げる 始まりのとき\\nねぇ しなやかなつま先が ‘ゆらっ’描き出すわ輪舞曲(ロンド)\\n純白のドレスを さあ いま 染めて闇の色\\n殺める影よ 舞い上がれ\\n見える 見える 見えないものが ほら\\n生まれ変わる ああ 本当の私に\\nエンジェル・インターセプター concept 混乱のフェーズ 堕ちる術中\\nその小さな胸を引き裂いて\\nbloody lover, lover, la-la-la, bloody 散らばるよ 擦り切れたフィルム\\n場面 場面 蘇る 瞼の裏側で\\nねぇ 張り付く夜には また 究極の快楽が\\njack-jackie, 邪鬼 zap, zap, でもまだ 足りないよ足りない\\n求めて求めて 苛まれて\\n馳せる 馳せる 消えてゆく惑星(ほし)が ほら\\n宇宙(そら)のリスク 真実を歪めたなら\\ncallin' 呼び続けてもまだ darlin' 戻らない\\n誰もが 選ばれたパズルのピースに\\nこのまま このままでいい 世界をあげるわ\\n見える 見える 見えないものが ほら\\n生まれ変わる ああ 本当の私に\\noh, my..\\nblack-black, black, my black birthday",
     lyrics_cn: "",
-    appearances: [],
-    comments: [],
-    live_history: []
+    appearances: ["Alea jacta est", "Ave Música"],
+    comments: [
+      {
+        text: "Debut track",
+        source: "",
+        from: "Remark"
+      }
+    ],
+    live_history: [
+      {
+        date: "2023/6/4",
+        venue: "中野サンプラザホール",
+        name: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539"
+      },
+      {
+        date: "2024/1/27",
+        venue: "横須賀芸術劇場",
+        name: "Ave Mujica 1st LIVE 「Perdere Omnia」",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_2"
+      },
+      {
+        date: "2024/3/9",
+        venue: "神戸ワールド記念ホール",
+        name: "MEGA VEGAS 2024",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2024/6/8",
+        venue: "神奈川県民ホール 大ホール",
+        name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_3"
+      },
+      {
+        date: "2024/7/7",
+        venue: "愛知県芸術劇場 大ホール",
+        name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2024/7/13",
+        venue: "SHANGHAI NECC HONG ARENA",
+        name: "BILIBILI MACRO LINK 2024 DAY1",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2024/7/14",
+        venue: "SHANGHAI NECC HONG ARENA",
+        name: "BILIBILI MACRO LINK 2024 DAY2",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2024/10/13",
+        venue: "河口湖ステラシアター",
+        name: "Ave Mujica 3rd LIVE「Veritas」",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_4"
+      },
+      {
+        date: "2024/12/15",
+        venue: "武蔵野の森総合スポーツプラザ",
+        name: "Ave Mujica 4th LIVE「Adventus」",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_5"
+      },
+      {
+        date: "2025/1/25",
+        venue: "日本武道館",
+        name: "リスアニ!LIVE 2025 SATURDAY STAGE",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2025/2/2",
+        venue: "KT Zepp Yokohama",
+        name: "Ave Mujica「KiLLKiSS」購入者限定フリーライブ",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_6"
+      },
+      {
+        date: "2025/7/26",
+        venue: "LaLa arena TOKYO-BAY",
+        name: "Ave Mujica 5th LIVE「Nova Historia」DAY1",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_7"
+      },
+      {
+        date: "2025/7/27",
+        venue: "LaLa arena TOKYO-BAY",
+        name: "Ave Mujica 5th LIVE「Nova Historia」DAY2",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_8"
+      },
+      {
+        date: "2025/12/14",
+        venue: "東京国際フォーラム ホールA",
+        name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_9"
+      },
+      {
+        date: "2026/1/15",
+        venue: "グランキューブ大阪 メインホール",
+        name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2026/3/1",
+        venue: "Kアリーナ横浜",
+        name: "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac47932539_10"
+      },
+      {
+        date: "2026/4/11",
+        venue: "台北・大佳河濱公園",
+        name: "BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2026/4/17",
+        venue: "Zepp Fukuoka",
+        name: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2026/4/26",
+        venue: "Zepp Namba",
+        name: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2026/5/1",
+        venue: "Zepp Nagoya",
+        name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2026/5/4",
+        venue: "Zepp Haneda (TOKYO)",
+        name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2026/6/19",
+        venue: "SGC HALL ARIAKE",
+        name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac48752036"
+      },
+      {
+        date: "2026/6/20",
+        venue: "SGC HALL ARIAKE",
+        name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2",
+        has_video: true,
+        video_url: "https://www.acfun.cn/v/ac48752036_2"
+      },
+      {
+        date: "2026/8/8",
+        venue: "國立體育大學綜合體育館（林口體育館）",
+        name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1",
+        has_video: false,
+        video_url: ""
+      },
+      {
+        date: "2026/8/9",
+        venue: "國立體育大學綜合體育館（林口體育館）",
+        name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2",
+        has_video: false,
+        video_url: ""
+      }
+    ]
   }
 ];

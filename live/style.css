@@ -852,6 +852,8 @@ body {
   overflow: hidden;
   position: relative;
   box-shadow: var(--md-elevation-3);
+  will-change: transform;
+  transform: translateZ(0);
 }
 .song-modal-close {
   position: absolute;
@@ -990,6 +992,7 @@ body {
   padding: 40px 36px;
   overflow-y: auto;
   max-height: 90vh;
+  transform: translateZ(0);
 }
 .song-modal-right::-webkit-scrollbar {
   width: 4px;
@@ -1191,56 +1194,111 @@ body {
   line-height: 2;
   color: var(--md-on-surface-variant);
 }
-.song-live-block { margin-bottom: 36px; }
-.song-live-header {
+/* 区块 C：Live 演唱履历（与 songs 页面一致的时间线样式） */
+.live-block {
+  margin-bottom: 36px;
+}
+.live-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--md-outline-variant);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
-.song-live-stats {
+.live-stats {
   font-size: 11px;
-  color: var(--md-on-surface-variant);
-  font-family: "Space Grotesk", monospace, sans-serif;
-}
-.song-live-timeline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.song-live-node {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  background: var(--md-surface-container);
-  border-radius: var(--md-radius-sm);
-  font-size: 12px;
-  border-left: 3px solid var(--md-outline);
-}
-.song-live-node.has-video {
-  border-left-color: var(--md-primary);
-}
-.song-live-date {
   color: var(--md-on-surface-muted);
-  font-family: "Space Grotesk", monospace, sans-serif;
-  font-size: 11px;
-  white-space: nowrap;
-}
-.song-live-name {
-  color: var(--md-on-surface);
-  text-decoration: none;
   font-weight: 500;
-  transition: color var(--md-duration-short);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-a.song-live-name:hover {
-  color: var(--md-primary);
+.live-timeline {
+  position: relative;
+  padding-left: 24px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 8px;
 }
-.song-live-venue {
-  color: var(--md-on-surface-muted);
+.live-timeline::-webkit-scrollbar {
+  width: 4px;
+}
+.live-timeline::-webkit-scrollbar-track {
+  background: transparent;
+}
+.live-timeline::-webkit-scrollbar-thumb {
+  background: rgba(255, 77, 77, 0.12);
+  border-radius: 2px;
+}
+.live-timeline::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 77, 77, 0.25);
+}
+.live-timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--md-outline-variant);
+}
+.live-node {
+  position: relative;
+  padding: 10px 0 10px 20px;
+  margin-bottom: 4px;
+  border-radius: var(--md-radius-sm);
+  transition: background var(--md-duration-short) var(--md-easing-standard);
+}
+.live-node::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #333;
+  border: 2px solid var(--md-outline-variant);
+  transition: background var(--md-duration-short) var(--md-easing-standard);
+}
+.live-node.has-video::before {
+  background: var(--md-primary);
+  border-color: var(--md-primary);
+  box-shadow: 0 0 6px rgba(255, 77, 77, 0.4);
+}
+.live-node .live-date {
+  font-family: "Space Grotesk", monospace, sans-serif;
   font-size: 11px;
+  color: var(--md-on-surface-muted);
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+.live-node .live-name {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  color: var(--md-on-surface-muted);
+  cursor: default;
+  transition: color var(--md-duration-short) var(--md-easing-standard);
+}
+.live-node.has-video .live-name {
+  color: var(--md-primary);
+  cursor: pointer;
+}
+.live-node.has-video .live-name:hover {
+  color: var(--md-primary-hover);
+  text-decoration: underline;
+}
+.live-node.no-video .live-name {
+  color: var(--md-on-surface-muted);
+  cursor: default;
+}
+.live-node .live-venue {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
 }
 
 /* ===== 响应式 ===== */

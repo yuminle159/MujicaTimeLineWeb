@@ -449,6 +449,11 @@
   };
 
   window.openSongModal = function(index) {
+    // 临时隐藏抽屉，避免 Chrome 中 backdrop-filter 穿透大 GPU 层导致滚动卡顿
+    window._drawerWasActive = drawerOverlay.classList.contains("active");
+    if (window._drawerWasActive) {
+      drawerOverlay.classList.remove("active");
+    }
     if (cachedSongModalIndex === index) {
       songModalOverlay.classList.add("open");
       document.body.style.overflow = "hidden";
@@ -510,15 +515,15 @@
       var firstDate = songModalStripTime(sorted[0] && sorted[0].date || "");
       var lastDate = songModalStripTime(sorted[sorted.length - 1] && sorted[sorted.length - 1].date || "");
       var stats = firstDate + ' ~ ' + lastDate + '，共演奏 ' + lh.length + ' 次';
-      rightHTML += '<div class="song-live-block"><div class="song-live-header"><div class="song-section-title" style="border:none;margin:0;padding:0;">Performance History</div>' +
-        '<div class="song-live-stats">' + escapeHTML(stats) + '</div></div><div class="song-live-timeline">' +
+      rightHTML += '<div class="live-block"><div class="live-header"><div class="section-title" style="border:none;margin:0;padding:0;">Performance History</div>' +
+        '<div class="live-stats">' + escapeHTML(stats) + '</div></div><div class="live-timeline">' +
         lh.map(function(l) {
-          return '<div class="song-live-node ' + (l.has_video ? 'has-video' : 'no-video') + '">' +
-            '<div class="song-live-date">' + escapeHTML(songModalStripTime(l.date)) + '</div>' +
+          return '<div class="live-node ' + (l.has_video ? 'has-video' : 'no-video') + '">' +
+            '<div class="live-date">' + escapeHTML(songModalStripTime(l.date)) + '</div>' +
             (l.has_video && l.video_url
-              ? '<a class="song-live-name" href="' + escapeHTML(l.video_url) + '" target="_blank" rel="noopener">' + escapeHTML(l.name) + '</a>'
-              : '<span class="song-live-name">' + escapeHTML(l.name) + '</span>') +
-            (l.venue ? '<div class="song-live-venue">' + escapeHTML(l.venue) + '</div>' : "") +
+              ? '<a class="live-name" href="' + escapeHTML(l.video_url) + '" target="_blank" rel="noopener">' + escapeHTML(l.name) + '</a>'
+              : '<span class="live-name">' + escapeHTML(l.name) + '</span>') +
+            (l.venue ? '<div class="live-venue">' + escapeHTML(l.venue) + '</div>' : "") +
           '</div>';
         }).join("") + '</div></div>';
     }
@@ -566,6 +571,11 @@
   function closeSongModal() {
     songModalOverlay.classList.remove("open");
     document.body.style.overflow = "";
+    // 恢复抽屉状态
+    if (window._drawerWasActive) {
+      drawerOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
     var lb = songModalRight.querySelector(".song-lyrics-block");
     if (lb) lb.classList.remove("song-clean-mode");
   }
