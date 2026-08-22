@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=202608230148">
 </head>
 <body>
   <div class="songs-page">
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <script src="data.js?v=3"></script>
+  <script src="data.js?v=202608230148"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -291,6 +291,7 @@
             <div class="live-stats">${escapeHTML(stats)}</div>
           </div>
           <div class="live-timeline">
+            <div class="live-timeline-inner">
             ${lh.map(l => `
               <div class="live-node ${l.has_video ? 'has-video' : 'no-video'}">
                 <div class="live-date">${escapeHTML(stripTime(l.date))}</div>
@@ -300,7 +301,7 @@
                 ${l.venue ? `<div class="live-venue">${escapeHTML(l.venue)}</div>` : ""}
               </div>
             `).join("")}
-          </div>
+          </div></div>
         </div>`;
     }
 

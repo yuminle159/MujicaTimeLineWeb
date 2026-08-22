@@ -11,6 +11,7 @@ import re
 import json
 import sys
 from collections import OrderedDict
+from datetime import datetime
 
 # 修复 Windows 控制台编码（windowed exe 无控制台则跳过）
 if sys.platform == "win32" and sys.stdout is not None:
@@ -37,7 +38,7 @@ else:
     ROOT = BUNDLE_DIR
 
 DATA_DIR = os.path.join(ROOT, "_data")
-DOCS_DIR = os.path.join(ROOT, "_docs")
+DOCS_DIR = os.path.join(ROOT, "_data", "_docs")
 XLSX_PATH = os.path.join(DATA_DIR, "data.xlsx")
 
 # 输出文件路径
@@ -282,7 +283,7 @@ def generate_live(wb):
         })
 
     # 加载 MC 内容
-    MC_DIR = os.path.join(ROOT, "live")
+    MC_DIR = os.path.join(ROOT, "_data")
     mc_count = 0
     for live in lives:
         for track in live.get("setlist", []):
@@ -544,6 +545,35 @@ def init_merged_xlsx():
 
 
 # =========================== 主流程 ===========================
+def inject_version(log_func=None):
+    """在所有 HTML 中为 data.js / announcements.js 引用注入版本号，输出版本号字符串"""
+    version = datetime.now().strftime("%Y%m%d%H%M")
+    html_files = [
+        os.path.join(ROOT, "index.html"),
+        os.path.join(ROOT, "songs", "index.html"),
+        os.path.join(ROOT, "live", "index.html"),
+        os.path.join(ROOT, "timeline", "index.html"),
+        os.path.join(ROOT, "gallery", "index.html"),
+    ]
+    # 匹配所有本地 .css / .js / .svg 引用（跳过 https:// 外部链接）
+    pattern = re.compile(
+        r'((?:href|src)="(?!https?://)(?!data:)[^"]*\.(?:css|js|svg))'
+        r'(?:\?v=[^"]*)?(")'
+    )
+
+    for html_path in html_files:
+        if not os.path.exists(html_path):
+            continue
+        with open(html_path, "r", encoding="utf-8") as f:
+            html = f.read()
+        new_html = pattern.sub(rf"\1?v={version}\2", html)
+        if new_html != html:
+            with open(html_path, "w", encoding="utf-8") as f:
+                f.write(new_html)
+            (log_func or print)(f"  ✓ {os.path.relpath(html_path, ROOT)} → v={version}")
+    return version
+
+
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == "--init":
         print("=== 初始化：从旧 xlsx 合并创建 _data/data.xlsx ===")
@@ -597,6 +627,10 @@ def main():
         print(f"  ✓ gallery/data.js — {n} 张图片")
 
     wb.close()
+
+    print("\n--- 注入版本号 ---")
+    v = inject_version()
+    print(f"  版本号: {v}")
 
     print("\n=== 全部完成 ===")
     for k, v in results.items():

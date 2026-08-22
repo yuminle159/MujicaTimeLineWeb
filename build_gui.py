@@ -143,6 +143,13 @@ def run_update(selected_modules, do_webp, log_func):
                 log_func(f"[OK] {MODULE_NAMES.get(mod_id, mod_id)} - 更新完成")
 
             wb.close()
+
+            # 注入版本号
+            log_func("=" * 50)
+            v = generate_all.inject_version(log_func=log_func)
+            log_func(f"  版本号: {v}")
+            log_func("[OK] 版本号注入 - 完成")
+
         finally:
             sys.path.remove(BASE_DIR)
 

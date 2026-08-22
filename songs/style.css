@@ -727,7 +727,6 @@ body {
 }
 .live-timeline {
   position: relative;
-  padding-left: 24px;
   max-height: 260px;
   overflow-y: auto;
   padding-right: 8px;
@@ -745,14 +744,12 @@ body {
 .live-timeline::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 77, 77, 0.25);
 }
-.live-timeline::before {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 4px;
-  bottom: 4px;
-  width: 2px;
-  background: var(--md-outline-variant);
+.live-timeline-inner {
+  border-left: 2px solid var(--md-outline-variant);
+  margin-left: 6px;
+  padding-left: 18px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 .live-node {
   position: relative;
@@ -764,7 +761,7 @@ body {
 .live-node::before {
   content: "";
   position: absolute;
-  left: -20px;
+  left: -23px;
   top: 16px;
   width: 8px;
   height: 8px;

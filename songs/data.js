@@ -52,7 +52,7 @@ const songsData = [
     lyrics_cn: "吟咏月色 海之节奏\\n我是“最初降临之人”\\n既定的程式运作流转\\n彼此吸引的灵魂 灵魂之歌\\n呐喊的欲望 绷紧生命的琴弦\\n翻涌 翻涌 波浪层层涌来 在我的天性中激荡\\n疾驰 疾驰 梦想奔向远方 怀抱微弱的余音\\n摇曳 摇曳 爱情动摇不定 与身处对极的你 同那火焰重叠在一起\\n此刻 化作广阔天空\\n真是可怜 过来吧\\n终于舍弃了影子呢\\n旧书被焚毁\\n一个时代渐渐远去\\n直到如今 仍只祈祷着幸福的死亡降临\\n翻涌 翻涌 波浪层层涌来 啊啊 将所有尽数接纳\\n疾驰 疾驰 梦想奔向远方 纵然失去一切\\n摇曳 摇曳 爱情动摇不定 似近似远 你的火焰飞扬而起\\n世界变得一片纯白\\n仿佛命运指引一般\\n有处地方带微弱的磁场 闪烁光芒\\n没错 我是最初降临于此之人\\n在这纯白的世界\\n翻涌 翻涌 波浪层层涌来 在生命之中\\n疾驰 疾驰 梦想奔向远方 怀抱微弱的回响\\n摇曳 摇曳 爱情动摇不定 啊啊 与生命之火交融\\n此刻 化作无垠宇宙",
     appearances: ["ELEMENTS"],
     comments: [
-      { text: "Diggy-MO'：我在副歌的乐句中加入了“波浪”这一意象，它也是司掌水的精灵“温蒂妮”的语源。将“月亮”与“地球”相对比，以超然达观的视角进行了唯美的刻画，同时，也是因为我想要描绘出一个具有官能美的世界观。我刻意引入了处于对立面的阳性特质“火”，以此来反衬阴性特质“水”的神秘，使其更为深邃、宏大。内容上，最初我构建了一个从“月之使者降临此大地”开始的故事。我将这个“月之使者”设定成了，比如高维度的存在，掌管着阴性宫位～，诸如此类的感觉。对于高次元的存在而言，人类的历史不过是转瞬即逝的一瞬。于是，她俯视着这个地上——即三维的“Human Race”（人类种族），并将自己曾经历过的那些故事，如同追溯种种回忆一般，由她本人作为“讲述者”亲自道来，我是这样设定的。此外，歌词中也包含了很多跨越时代前后的复合元素，例如我运用了克里姆特“爱欲与死亡共存”这种偏近代的艺术概念，或者也融入了塔罗牌牌组所展现的那种联想空间。通过探索这些不同主题的组合，或许能进一步升华为Ave Mujica式的格调，那便是我的期望。我特意放入“欲望”、“紧张”、或者是“大宇宙”这样直白露骨的词汇，也是出于这一目的。阴性特质将阳性特质包容进去，形成一种宏大的感觉。在表达“两性交融”这一直接含义的同时，另一方面，我也将宗教的根源作为多层面的概念融入其中。阳性宫位之火的“△”与阴性宫位之水的“▽”重合，就会变成“六芒星”的符号，而这正意味着“大宇宙”，因此在第一段副歌中，我试图表达这种宇宙的完满性因果与秩序。而在最后的部分，我的期望是，最终不去描绘那种“大宇宙”般不可估量的宏大事物，而是珍重地描绘活在此刻“生命”中的“最微小的世界”。为了让听众能感受到这一点，我在结尾处忽然将视角拉回，只是从地上仰望这片“天空”。于是，支线故事包含着“生命赞歌”的含义，而我这首歌想要表达的本质依旧是“爱之歌”。", source: "https://natalie.mu/music/pp/avemujica02/page/2", from: "Diggy-MO'" }
+      { text: "我在副歌的乐句中加入了“波浪”这一意象，它也是司掌水的精灵“温蒂妮”的语源。将“月亮”与“地球”相对比，以超然达观的视角进行了唯美的刻画，同时，也是因为我想要描绘出一个具有官能美的世界观。我刻意引入了处于对立面的阳性特质“火”，以此来反衬阴性特质“水”的神秘，使其更为深邃、宏大。内容上，最初我构建了一个从“月之使者降临此大地”开始的故事。我将这个“月之使者”设定成了，比如高维度的存在，掌管着阴性宫位～，诸如此类的感觉。对于高次元的存在而言，人类的历史不过是转瞬即逝的一瞬。于是，她俯视着这个地上——即三维的“Human Race”（人类种族），并将自己曾经历过的那些故事，如同追溯种种回忆一般，由她本人作为“讲述者”亲自道来，我是这样设定的。此外，歌词中也包含了很多跨越时代前后的复合元素，例如我运用了克里姆特“爱欲与死亡共存”这种偏近代的艺术概念，或者也融入了塔罗牌牌组所展现的那种联想空间。通过探索这些不同主题的组合，或许能进一步升华为Ave Mujica式的格调，那便是我的期望。我特意放入“欲望”、“紧张”、或者是“大宇宙”这样直白露骨的词汇，也是出于这一目的。阴性特质将阳性特质包容进去，形成一种宏大的感觉。在表达“两性交融”这一直接含义的同时，另一方面，我也将宗教的根源作为多层面的概念融入其中。阳性宫位之火的“△”与阴性宫位之水的“▽”重合，就会变成“六芒星”的符号，而这正意味着“大宇宙”，因此在第一段副歌中，我试图表达这种宇宙的完满性因果与秩序。而在最后的部分，我的期望是，最终不去描绘那种“大宇宙”般不可估量的宏大事物，而是珍重地描绘活在此刻“生命”中的“最微小的世界”。为了让听众能感受到这一点，我在结尾处忽然将视角拉回，只是从地上仰望这片“天空”。于是，支线故事包含着“生命赞歌”的含义，而我这首歌想要表达的本质依旧是“爱之歌”。", source: "https://natalie.mu/music/pp/avemujica02/page/2", from: "Diggy-MO'" }
     ],
     live_history: [
       { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
@@ -165,10 +165,11 @@ const songsData = [
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "https://www.bilibili.com/video/BV16v4y1H7ZR",
     lyrics_jp: "この領域まで侵されて そう プラットフォームは上下する\\n新しく記された my バースデイ 今夜 感じて 燃え 悶える\\nna, 生々しい艷やかな mad day 秘密めいた ruler loo-la, cool, cool,\\n“ようこそ おいでなさい” 告げる 始まりのとき\\nねぇ しなやかなつま先が ‘ゆらっ’描き出すわ輪舞曲(ロンド)\\n純白のドレスを さあ いま 染めて闇の色\\n殺める影よ 舞い上がれ\\n見える 見える 見えないものが ほら\\n生まれ変わる ああ 本当の私に\\nエンジェル・インターセプター concept 混乱のフェーズ 堕ちる術中\\nその小さな胸を引き裂いて\\nbloody lover, lover, la-la-la, bloody 散らばるよ 擦り切れたフィルム\\n場面 場面 蘇る 瞼の裏側で\\nねぇ 張り付く夜には また 究極の快楽が\\njack-jackie, 邪鬼 zap, zap, でもまだ 足りないよ足りない\\n求めて求めて 苛まれて\\n馳せる 馳せる 消えてゆく惑星(ほし)が ほら\\n宇宙(そら)のリスク 真実を歪めたなら\\ncallin' 呼び続けてもまだ darlin' 戻らない\\n誰もが 選ばれたパズルのピースに\\nこのまま このままでいい 世界をあげるわ\\n見える 見える 見えないものが ほら\\n生まれ変わる ああ 本当の私に\\noh, my..\\nblack-black, black, my black birthday",
-    lyrics_cn: "",
+    lyrics_cn: "连此领域也被侵蚀 是的 舞台升起降下\\n被重新记载的 my 诞生日 今晚 去感受 燃烧着 痛苦挣扎\\nna, 鲜活妖艳的 mad day 充斥秘密的 ruler loo-la, cool, cool, \\n“欢迎前来 请过来这里” 宣告着 起始之时刻\\n呐啊 柔软优美的足尖 摇荡勾勒轮舞曲\\n将那纯白的礼服 来吧 此刻 染上黑暗之色\\n杀戮的暗影啊 升腾而起吧 \\n看见了 看见了 本不可见之物 看啊\\n重获新生 啊啊 成为真正的我\\n天使拦截者 concept 混乱的局面 堕入陷阱之中\\n将那小小的胸膛撕裂\\nbloody lover, lover, la-la-la, bloody 散落一地啊 磨损的胶片\\n一幕幕场景 重新浮现 在眼帘之后\\n呐啊 在这黏着不去的夜里 再一次 极致的快感…\\njack-jackie, 邪鬼 zap, zap, 但还不够啊 还远远不够啊\\n追求着渴望着 被折磨着\\n奔驰着 奔驰着 逐渐消逝的行星 看啊\\n若要扭曲真实 则将承受宇宙的风险\\ncallin' 即使不断呼喊 darlin' 也不会回来\\n无论是谁 都会被选中成为拼图的碎片\\n这样就好 维持这样就好 我会给你整个世界\\n看见了 看见了 本不可见之物 看啊\\n重获新生 啊啊 成为真正的我\\noh, my..\\nblack-black, black, my black birthday",
     appearances: ["Alea jacta est", "Ave Música"],
     comments: [
-      { text: "Debut track", source: "", from: "Remark" }
+      { text: "Debut track", source: "", from: "Remark" },
+      { text: "——感觉还能通宵畅聊呢（笑）。那么，如果要选一首特别有感情的乐曲的话？\\n\n高尾：真的很难选……我可能会选「黒のバースデイ」。因为它是0th LIVE上第一首演奏的歌曲，演奏的时候会有一种瞬间回到那个时候的感觉。或者说，能让我找回初心。\\n\n米泽：我懂！有一种穿着黑袍的感觉。\\n\n渡濑：确实（笑）。对观众来说，如果要说Ave Mujica的代表曲可能会想到「Ave Mujica」，但对我们来说，「黒のバースデイ」才是真正开始的曲子。最早练习的也是这首歌。\\n\n佐佐木：而且，它也是一首仿佛在为 Mujica 的诞生送上祝福的歌曲。\\n", source: "https://www.lisani.jp/0000271996/2/?show_more=1", from: "全员" }
     ],
     live_history: [
       { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932539" },
@@ -194,6 +195,83 @@ const songsData = [
       { date: "2026/5/4", venue: "Zepp Haneda (TOKYO)", name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演", has_video: false, video_url: "" },
       { date: "2026/6/19", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac48752036" },
       { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac48752036_2" },
+      { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
+      { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" }
+    ]
+  },
+  {
+    name: "Two Moons",
+    name_jp: "ふたつの月 ~Deep Into The Forest~",
+    album: "Digital Single",
+    album_year: "2023",
+    release_date: "2023/4/16",
+    cover: "../images/双月.webp",
+    type: "原创",
+    lyricist: "Diggy-MO'",
+    composer: "長谷川大介(SUPA LOVE)",
+    arranger: "長谷川大介(SUPA LOVE)",
+    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+    mv_url: "https://www.bilibili.com/video/BV1vs4y127DJ",
+    lyrics_jp: "ああ 深く 深く 迷い込んだ森で\\nなぜか私を開いて壊すもの そう そして 感じさせるもの\\n木から落ちる leaf に ほらいま 映り込む未来\\nこの風 吹き抜けるとき 私は祈り人(prayer)\\nおしえてよ おしえてよ こんなに美しいのはなぜ\\n惹かれてく 堕ちてく 月が笑う夜\\n銀のトレーにフルーツを キャンドルホルダーに火を\\nこのまま いくつかの意味をさがすの その幻を暴きたい\\n常に終わりは始まりと組まれる 不思議な creation\\nこの風 命集めて いま 昇るなら\\nおしえてよ おしえてよ こんなに苦しいのはなぜ\\n鏡の中の彼女が 嘲笑う夜\\n大気の重さで もうひとつの月が顔を出す\\n“早く目覚めて ここで眠ってしまわないように”\\nおしえてよ おしえてよ こんなに美しいのはなぜ\\n惹かれてく 堕ちてく 月が笑う夜",
+    lyrics_cn: "啊啊 深深地 深深地 迷失在森林中\\n某物莫名将我剖开破坏 是啊 而后又让我有所感受\\n从树上落下的 leaf 上 看吧 此刻 正映照着未来\\n当这阵风吹过时 我即是祈祷者（prayer）\\n请告诉我 请告诉我吧 为何如此美丽动人\\n渐受蛊惑 步步坠落 月亮嗤笑之夜\\n将果实盛入银盘 为烛台点燃火焰\\n就这样 寻找种种意义 渴望揭穿那重幻象\\n结束总与开始交织纠缠 不可思议的 creation\\n这阵风 汇聚生命 现在 若能升腾而起\\n请告诉我 请告诉我吧 为何如此痛苦难耐\\n镜中的她 嘲弄之夜\\n大气的重压之下 另一轮月亮显露真容\\n“快快醒来 可不要在此处沉睡”\\n请告诉我 请告诉我吧 为何如此美丽动人\\n渐受蛊惑 步步坠落 月亮嗤笑之夜",
+    appearances: ["Alea jacta est"],
+    comments: [
+      { text: "——初华和祥子，换句话说也就是 Doloris 和 Oblivionis，在演唱会上也有很多像「双月 ~Deep Into The Forest~」和「Symbol III : ▽」这样成对出现的演出呢。\\n高尾：大家也都非常敏锐地感受到了呢。我每次在演唱会上都会想着“请期待动画！”（笑）\\n渡濑：初华从动画的先导预告片时期开始，被截取出来的台词就几乎全都和祥子有关呢。我想大家从那个阶段开始，应该就已经察觉到一些端倪了吧（笑）。", source: "https://www.lisani.jp/0000274367/4/?show_more=1", from: "渡濑结月&高尾奏音" }
+    ],
+    live_history: [
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075" },
+      { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_2" },
+      { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
+      { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_3" },
+      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
+      { date: "2024/10/13", venue: "河口湖ステラシアター", name: "Ave Mujica 3rd LIVE「Veritas」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_4" },
+      { date: "2024/12/15", venue: "武蔵野の森総合スポーツプラザ", name: "Ave Mujica 4th LIVE「Adventus」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_5" },
+      { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_6" },
+      { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" }
+    ]
+  },
+  {
+    name: "Choir 'S' Choir",
+    name_jp: "Choir 'S' Choir",
+    album: "Digital Single",
+    album_year: "2023",
+    release_date: "2023/4/23",
+    cover: "../images/CSC.webp",
+    type: "原创",
+    lyricist: "Diggy-MO'",
+    composer: "角本麻衣(SUPA LOVE)",
+    arranger: "角本麻衣(SUPA LOVE)",
+    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+    mv_url: "https://www.bilibili.com/video/BV1Xg4y1j7Lt",
+    lyrics_jp: "[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa]\\nChoir Choir, Choir Choir ‘S’ Choir\\nそう サジェスチョンなら Spade 彷徨うスペクター [Spiritual, So Spiritual]\\nイミテーションやら聖なる讃美歌 [Sensual, So Sensual]\\nサディスティック サディスティック 堕天使\\nヒステリック ヒステリック 宿る刻\\n[look, 歌う胸像 the show must go on ルカ 精霊 精霊 ghost, oh, it's comin']\\n‘信じる？ 信じない？’ いないいないばあ\\n感情の万華鏡 引きずり込むのは\\nねぇ誰？ ねぇ誰？ 叫ぶ声が\\n夜に酔えば 真っ赤に腫れた唇がわたしを貪るの\\n‘S’ カレート ‘S’ カレート 忍び寄るわ mysterious\\n目眩く描くほどに 狂い咲くカーニヴァル\\nChoir Choir, Choir Choir ‘S’ Choir\\noh, イリュージョンなら左手のジェスチャー [Spiritual, So Spiritual]\\nテンプテーション 神話にはつづきが [Sensual, So Sensual]\\nサタニック サタニック マジェスティ\\nヒプノティック ヒプノティック 裁く刻\\n[see, 'il giudizio, la giustizia' 下る極彩色 shockin' psychic]\\n‘感じる？ 感じない？’ お気に召す mo'\\n触れてみて 触れてみて 試されてもいい\\nねぇ誰？ ねぇ誰？ 甘い夢が\\n闇に占う カードの悪魔 誘う魂の行方 今\\n‘S’ カレート ‘S’ カレート 気の触れた my desire\\n鼓膜を劈くほどに 咽び泣くアリア\\n[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa,\\ndaa-mennus, daa-menn, philis-poliaa, daa-la-la-daa-daa]\\nああ ワルツに身を委ねて ゆらゆらゆら\\n誰？ ねぇ誰？ 叫ぶ声が\\n夜に酔えば 真っ赤に腫れた唇がわたしを貪るの\\n‘S’ カレート ‘S’ カレート 忍び寄るわ mysterious\\n目眩く描くほどに 狂い咲くカーニヴァル\\n[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa,\\ndaa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa]\\nChoir Choir, Choir Choir ‘S’ Choir",
+    lyrics_cn: "[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa]\\nChoir Choir, Choir Choir ‘S’ Choir\\n是的 若要给出暗示 Spade 彷徨的幽灵 [Spiritual, So Spiritual]\\n赝品亦或是神圣的赞美歌 [Sensual, So Sensual]\\n嗜虐的 嗜虐的 堕天使\\n癔病的 癔病的 附身之时\\n[look, 歌唱的胸像 the show must go on 路加 精灵 精灵 ghost, oh, it's comin']\\n‘相信？ 不相信’ 不在、不在、在这里\\n感情的万华镜 被卷入其中的是\\n是谁？ 是谁？ 是谁正在呼喊\\n沉醉于夜晚 鲜红肿胀的嘴唇将我贪婪吞噬\\n‘S’calate ‘S’calate 悄然接近的 mysterious\\n勾勒到目眩神迷 癫狂盛放的狂欢\\nChoir Choir, Choir Choir ‘S’ Choir\\noh, 若是幻觉则用左手的手势 [Spiritual, So Spiritual]\\n诱惑 神话仍未终结 [Sensual, So Sensual]\\n恶魔般的 恶魔般的 无上威严\\n催眠的 催眠的 裁决之时\\n[see, 'il giudizio, la giustizia' 降临的绚丽色彩 shockin' psychic]\\n‘感觉到？ 感觉不到？’如你所愿 mo'\\n试着触摸 试着触摸 即使受到考验也无妨\\n是谁？ 是谁？ 将这甜美的梦…\\n向黑暗问卜 卡牌的恶魔 引诱灵魂的去向 此刻\\n‘S’calate ‘S’calate 陷入疯狂的 my desire\\n似要刺破鼓膜一般 呜咽的咏叹调\\n[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa,\\ndaa-mennus, daa-menn, philis-poliaa, daa-la-la-daa-daa]\\n啊啊 委身于华尔兹吧 摇摇晃晃\\n是谁？ 是谁？ 是谁正在呼喊\\n沉醉于夜晚 鲜红肿胀的嘴唇将我贪婪吞噬\\n‘S’calate ‘S’calate 悄然接近的 mysterious\\n勾勒到目眩神迷 癫狂盛放的狂欢\\n[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa,\\ndaa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa]\\nChoir Choir, Choir Choir ‘S’ Choir",
+    appearances: ["Alea jacta est", "Ave Música"],
+    comments: [
+      { text: "我觉得比较棘手的一首歌是「Choir ‘S’ Choir」。在大家都在踩正拍节奏的时候，唯独贝斯走的是反拍。此外，由于曲速很快、乐句也很细密，实际上在曲子中，我需要不断切换使用下拨和交替拨弦。虽然像这样极具挑战性的曲子有很多，但弹奏「Ave Mujica」总之就是非常开心（笑）。尤其喜欢变成三拍子那一段的乐句。", source: "https://www.oricon.co.jp/news/2294611/full/", from: "冈田梦以" },
+      { text: "——接下来请谈谈迷你专辑「Alea jacta est」。这张专辑收录了以重型乐器编排打造的硬核金属音效为主轴的共6首歌曲，能请各位说说各自最推的歌曲吗？\\n\n渡濑：刚才我们也稍微聊到了推的歌曲，当时めいしゃん（冈田）提到的「Choir ‘S’ Choir」我也很喜欢。虽然还不能详细透露，其实Ave Mujica的每首歌都有各自的主题元素（Theme），在看到0th LIVE的演出时，我发现这首歌正是沿着那个主题展开的，就觉得“就是这个！”而感觉很感动。从那以后一下子就喜欢上了。\\n\n佐佐木：我录音的时候也被告知了每首歌的母题（Motif），是注意着那种意象和世界观去演唱的。歌词里，Diggy-MO’先生独特的措辞和故事之中，也散落着与那个主题相关的关键词，希望大家一定要去考察解读。\\n\n渡濑：めいしゃん为什么最推「Choir ‘S’ Choir」？\\n\n冈田：因为这首的贝斯在原创曲里是最难的，跟它较劲的时间也比较长，还有就是我在这首歌里很喜欢李子酱的演唱。我觉得她对声音的运用以及演唱技巧的储备极其丰富，比如还加入了一点嘶吼式的唱法。\\n\n佐佐木：诶——好开心！不过「Choir ‘S’ Choir」里大家的和声也很多，所以完成得非常华丽呢。\\n\n冈田：のんたん（高尾）的念白也很棒。\\n\n高尾：谢谢！其他还有「Mas?uerade Rhapsody Re?uest」里也有念白，祥子在歌曲里就会突然开始说英语（笑）。而且「Choir ‘S’ Choir」里的rap部分还是拉丁语。还有，这个可能谁都没有注意到，在「神さま、バカ」副歌结尾的“神さま、バカ”那里，用耳语声加入了一句“神さま、バカ”的念白，其实那也是我（笑）。\\n\n（中略）\\n\n米泽：我也推「Choir ‘S’ Choir」当作推的歌曲。除此之外，「Ave Mujica」是我们最早拿到的歌曲，单纯是听得最多的一首，而且乐队名直接就是歌名，所以觉得这是很能代表我们的歌，感情很深。", source: "https://www.animatetimes.com/news/details.php?id=1711341820&p=3", from: "全员" },
+      { text: "高尾：（笑）。比如说，「Choir ‘S’ Choir」的话，就是想象着在草原上弹奏的感觉。我会在自己心里变换场景意象来演奏，所以刚才被你说中，吓了一跳。\\n\n佐佐木：我一直都感觉得到哦！\\n\n高尾：好厉害！我们心意相通了啊！\\n", source: "https://www.animatetimes.com/news/details.php?id=1711341820&p=3", from: "佐佐木李子&高尾奏音" }
+    ],
+    live_history: [
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101" },
+      { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_2" },
+      { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
+      { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_3" },
+      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
+      { date: "2024/10/13", venue: "河口湖ステラシアター", name: "Ave Mujica 3rd LIVE「Veritas」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_4" },
+      { date: "2024/12/15", venue: "武蔵野の森総合スポーツプラザ", name: "Ave Mujica 4th LIVE「Adventus」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_5" },
+      { date: "2025/2/2", venue: "KT Zepp Yokohama", name: "Ave Mujica「KiLLKiSS」購入者限定フリーライブ", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_6" },
+      { date: "2025/7/26", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_7" },
+      { date: "2025/7/27", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_8" },
+      { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_9" },
+      { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
+      { date: "2026/3/1", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_10" },
+      { date: "2026/4/11", venue: "台北・大佳河濱公園", name: "BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」", has_video: false, video_url: "" },
+      { date: "2026/4/17", venue: "Zepp Fukuoka", name: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演", has_video: false, video_url: "" },
+      { date: "2026/4/26", venue: "Zepp Namba", name: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演", has_video: false, video_url: "" },
+      { date: "2026/5/1", venue: "Zepp Nagoya", name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演", has_video: false, video_url: "" },
+      { date: "2026/5/4", venue: "Zepp Haneda (TOKYO)", name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演", has_video: false, video_url: "" },
+      { date: "2026/6/19", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac48752881" },
+      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac48752881_2" },
       { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" }
     ]
