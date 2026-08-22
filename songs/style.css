@@ -10,7 +10,7 @@
   --md-on-surface: #ddd;
   --md-on-surface-variant: #999;
   --md-on-surface-muted: #555;
-  --md-primary: #ff4d4d;
+  --md-primary: #cc2929;
   --md-primary-hover: #ff8080;
   --md-primary-container: rgba(255, 77, 77, 0.12);
   --md-radius-sm: 8px;
@@ -60,10 +60,10 @@ body {
 .page-header h1 {
   margin: 0;
   font-family: "Cinzel", serif;
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 700;
   color: var(--md-primary);
-  letter-spacing: 2px;
+  letter-spacing: 6px;
 }
 
 /* ===== 工具栏 ===== */

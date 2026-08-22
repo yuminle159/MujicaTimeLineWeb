@@ -1,6 +1,5 @@
 // 演唱会数据
-// 由 generate_data.py 自动生成，请勿手动修改
-// 编辑 data.xlsx 后运行「一键更新数据.bat」即可更新
+// 由 generate_all.py 自动生成，请勿手动修改
 
 const livesData = [
   {

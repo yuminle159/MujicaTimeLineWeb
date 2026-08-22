@@ -4,6 +4,8 @@
 :root {
   --edge-gap: clamp(16px, 3vw, 28px);           /* 刻度/连接线离边缘的距离（响应式） */
   --bubble-max-width: clamp(360px, 36vw, 520px); /* 气泡最大宽度（响应式） */
+  --md-primary: #cc2929;
+  --md-on-surface-muted: #555;
 }
 
 body {
@@ -21,25 +23,25 @@ body {
 }
 
 .page-header {
-  padding: 48px 60px 24px;
+  padding: 40px 60px 12px;
 }
 .back-nav {
   display: inline-block;
   margin-bottom: 12px;
-  color: #555;
+  color: var(--md-on-surface-muted);
   text-decoration: none;
   font-size: 13px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   transition: color 0.2s ease;
 }
-.back-nav:hover { color: #ff4d4d; }
+.back-nav:hover { color: var(--md-primary); }
 .page-header h1 {
-  margin: 0 0 6px;
+  margin: 0;
   font-family: "Cinzel", serif;
-  font-size: 26px;
-  font-weight: 800;
-  color: #ff4d4d;
-  letter-spacing: 3px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--md-primary);
+  letter-spacing: 6px;
 }
 .page-header p {
   margin: 0;

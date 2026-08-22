@@ -1,6 +1,5 @@
 // 时间轴数据
-// 由 generate_data.py 自动生成，请勿手动修改
-// 编辑 data.xlsx 后运行「一键更新数据.bat」即可更新
+// 由 generate_all.py 自动生成，请勿手动修改
 
 const timelineData = [
   {
@@ -514,8 +513,7 @@ const timelineData = [
   }
 ];
 
-// 时间轴配置
 const timelineConfig = {
   zeroDate: "2023-06-04",
-  pixelsPerDay: 4 // 每一天占多少像素，可自行调整
+  pixelsPerDay: 4
 };

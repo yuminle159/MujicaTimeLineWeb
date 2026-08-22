@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:,">
   <title>唯鸡百科 · wijipedia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,8 +148,10 @@
     <!-- 画廊 -->
     <a class="nav-card" href="gallery/index.html">
       <svg class="sigil-icon" viewBox="0 0 100 100">
-        <polygon points="50,10 90,80 10,80" />
-        <polygon points="50,90 10,20 90,20" />
+        <!-- 正六芒星：两个等边三角形 (R=35) -->
+        <polygon points="50,15 19.69,67.5 80.31,67.5" />
+        <polygon points="50,85 19.69,32.5 80.31,32.5" />
+        <!-- 核心星火 -->
         <polygon class="sigil-spark" points="50,35 55,50 70,50 58,60 62,75 50,65 38,75 42,60 30,50 45,50" />
       </svg>
       <span class="card-title">GALLERY</span>
@@ -156,8 +159,80 @@
     </a>
   </nav>
 
+  <!-- ================= 公告栏 ================= -->
+  <div class="archive-transmission" id="drawerTrigger">
+    <span class="transmission-label">LATEST DECRYPTION</span>
+    <div class="transmission-content" id="transmission-text">
+      <span class="t-pin-icon">[ PINNED ]</span>
+      <span class="t-date">2026.08.01</span>
+      <span class="t-msg">本档案库已全面升级，请查阅者严格遵守保密协议。</span>
+    </div>
+    <span class="blinking-cursor">_</span>
+  </div>
+
+  <!-- ================= 侧滑抽屉 ================= -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="archive-drawer" id="archiveDrawer">
+    <div class="drawer-header">
+      <span class="drawer-title">SYSTEM_LOGS // 解密记录</span>
+      <button class="close-drawer" id="closeDrawer">&times;</button>
+    </div>
+    <div class="drawer-content" id="drawerContent"></div>
+  </div>
+
   <footer class="nav-footer">
     Ave Mujica · Band &amp; Nonrico
   </footer>
+
+  <script src="announcements.js?v=1"></script>
+  <script>
+    // ==================== 公告轮播 ====================
+    let annIdx = 0;
+    const annText = document.getElementById('transmission-text');
+
+    function renderAnnouncement(data) {
+      const pin = data.pinned ? '<span class="t-pin-icon">[ PINNED ]</span> ' : '';
+      annText.innerHTML = pin + '<span class="t-date">' + data.date + '</span> <span class="t-msg">' + data.msg + '</span>';
+    }
+
+    // 初始渲染第一条非置顶公告（如果第一条是置顶则在底部显示了）
+    const nonPinned = window.ANNOUNCEMENTS.filter(a => !a.pinned);
+    if (nonPinned.length > 0) renderAnnouncement(nonPinned[0]);
+
+    setInterval(() => {
+      annText.classList.add('trans-fade-out');
+      setTimeout(() => {
+        annIdx = (annIdx + 1) % nonPinned.length;
+        renderAnnouncement(nonPinned[annIdx]);
+        annText.classList.remove('trans-fade-out');
+      }, 500);
+    }, 6000);
+
+    // ==================== 侧滑抽屉 ====================
+    const drawer = document.getElementById('archiveDrawer');
+    const overlay = document.getElementById('drawerOverlay');
+    const closeBtn = document.getElementById('closeDrawer');
+    const trigger = document.getElementById('drawerTrigger');
+    const drawerContent = document.getElementById('drawerContent');
+
+    // 渲染抽屉内容
+    window.ANNOUNCEMENTS.forEach(a => {
+      const item = document.createElement('div');
+      item.className = a.pinned ? 'log-item pinned-item' : 'log-item';
+      if (a.pinned) {
+        item.innerHTML = '<div class="log-meta"><span class="log-date">[ ' + a.date + ' ]</span><span class="pin-badge">PINNED</span></div><div class="log-text">' + a.msg + '</div>';
+      } else {
+        item.innerHTML = '<div class="log-date">[ ' + a.date + ' ]</div><div class="log-text">' + a.msg + '</div>';
+      }
+      drawerContent.appendChild(item);
+    });
+
+    trigger.addEventListener('click', () => {
+      drawer.classList.add('open');
+      overlay.classList.add('active');
+    });
+    closeBtn.addEventListener('click', () => { drawer.classList.remove('open'); overlay.classList.remove('active'); });
+    overlay.addEventListener('click', () => { drawer.classList.remove('open'); overlay.classList.remove('active'); });
+  </script>
 </body>
 </html>

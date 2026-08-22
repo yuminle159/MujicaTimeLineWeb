@@ -55,13 +55,11 @@ body {
 .filter-bar {
   display: flex;
   align-items: center;
-  overflow-x: auto;
-  white-space: nowrap;
+  flex-wrap: wrap;
   padding: 10px 60px;
   margin-bottom: 40px;
-  scrollbar-width: none;
+  row-gap: 12px;
 }
-.filter-bar::-webkit-scrollbar { display: none; }
 
 /* 每一组分类（主标签+胶囊） */
 .filter-group {
