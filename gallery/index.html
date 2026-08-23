@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:,">
+  <link rel="icon" href="../favicon.ico">
   <title>Gallery · 唯鸡百科</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608230148">
+  <link rel="stylesheet" href="style.css?v=202608232231">
 </head>
 <body>
   <div class="gallery-page">
@@ -25,6 +25,8 @@
         <!-- 由 JS 动态生成 -->
       </div>
 
+      <div class="pagination-bar" id="paginationBar"></div>
+
   <!-- 灯箱 -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">&times;</button>
@@ -36,7 +38,7 @@
     </div>
   </div>
 
-  <script src="data.js?v=202608230148"></script>
+  <script src="data.js?v=202608232231"></script>
   <script>
     // ==================== 动态生成筛选器 ====================
     const catMap = {}; // { CATEGORY: Set of subtags }
@@ -90,6 +92,9 @@
       filterBar.appendChild(group);
     });
 
+    let currentPage = 1;
+    const PER_PAGE = 50;
+
     function filterBy(target, clickedBtn) {
       // 更新激活状态
       document.querySelectorAll('.main-tag, .sub-tag').forEach(b => b.classList.remove('active'));
@@ -110,7 +115,66 @@
 
         card.classList.toggle('hidden', !show);
       });
+
+      currentPage = 1;
+      paginate();
     }
+
+    function paginate() {
+      const allCards = document.querySelectorAll('.masonry-item');
+      const visibleCards = [...allCards].filter(c => !c.classList.contains('hidden'));
+      const totalPages = Math.ceil(visibleCards.length / PER_PAGE) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      // 隐藏所有卡片，再显示当前页的
+      allCards.forEach(c => c.style.display = 'none');
+      const start = (currentPage - 1) * PER_PAGE;
+      const end = start + PER_PAGE;
+      visibleCards.slice(start, end).forEach(c => c.style.display = '');
+
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+      const bar = document.getElementById('paginationBar');
+      if (totalPages <= 1) { bar.innerHTML = ''; return; }
+
+      let html = '';
+      // 上一页
+      html += `<button class="pagination-btn arrow" ${currentPage === 1 ? 'disabled' : ''} onclick="window._galleryGoPage(${currentPage - 1})">&#10094;</button>`;
+
+      // 页码按钮（最多显示 7 个）
+      const maxVisible = 7;
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+      if (endPage - startPage < maxVisible - 1) startPage = Math.max(1, endPage - maxVisible + 1);
+
+      if (startPage > 1) {
+        html += `<button class="pagination-btn" onclick="window._galleryGoPage(1)">1</button>`;
+        if (startPage > 2) html += `<span class="pagination-dots">...</span>`;
+      }
+
+      for (let p = startPage; p <= endPage; p++) {
+        html += `<button class="pagination-btn${p === currentPage ? ' active' : ''}" onclick="window._galleryGoPage(${p})">${p}</button>`;
+      }
+
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) html += `<span class="pagination-dots">...</span>`;
+        html += `<button class="pagination-btn" onclick="window._galleryGoPage(${totalPages})">${totalPages}</button>`;
+      }
+
+      // 下一页
+      html += `<button class="pagination-btn arrow" ${currentPage === totalPages ? 'disabled' : ''} onclick="window._galleryGoPage(${currentPage + 1})">&#10095;</button>`;
+
+      html += `<span class="pagination-info">${currentPage} / ${totalPages}</span>`;
+      bar.innerHTML = html;
+    }
+
+    window._galleryGoPage = function(page) {
+      currentPage = page;
+      paginate();
+      document.getElementById('masonryGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
     // ==================== 动态生成图片卡片 ====================
     const grid = document.getElementById('masonryGrid');
@@ -148,6 +212,9 @@
 
       grid.appendChild(card);
     });
+
+    // 初始分页
+    paginate();
 
     // ==================== 灯箱 ====================
     const lightbox = document.getElementById('lightbox');

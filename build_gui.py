@@ -252,14 +252,26 @@ class App:
             lbl_no_pil.pack(anchor="w", padx=24, pady=2)
 
         # 执行按钮
+        btn_frame_actions = tk.Frame(root, bg="#0d0d0d")
+        btn_frame_actions.pack(pady=(12, 4))
+
         btn_build = tk.Button(
-            root, text="开始更新", command=self.build_selected,
+            btn_frame_actions, text="开始更新", command=self.build_selected,
             font=("Microsoft YaHei", 11, "bold"),
             fg="#fff", bg="#ff4d4d",
             relief="flat", padx=24, pady=8, cursor="hand2",
             activebackground="#ff8080", activeforeground="#fff",
         )
-        btn_build.pack(pady=(12, 8))
+        btn_build.pack(side="left", padx=4)
+
+        btn_scan = tk.Button(
+            btn_frame_actions, text="一键更新所有画廊图片", command=self.scan_gallery,
+            font=("Microsoft YaHei", 10),
+            fg="#ddd", bg="#1a1a1a",
+            relief="flat", padx=16, pady=8, cursor="hand2",
+            activebackground="#2a2a2a", activeforeground="#fff",
+        )
+        btn_scan.pack(side="left", padx=4)
 
         # 输出日志
         self.output = tk.Text(
@@ -303,6 +315,26 @@ class App:
         self.log("=" * 50)
         self.log("  更新完毕！请刷新浏览器查看变化。")
         self.log("=" * 50)
+
+    def scan_gallery(self):
+        self.output.delete("1.0", "end")
+        self.log("开始扫描 images/ 文件夹...\n")
+        try:
+            sys.path.insert(0, BASE_DIR)
+            import generate_all
+            try:
+                n = generate_all.scan_gallery_images(log_func=self.log)
+                self.log("=" * 50)
+                if n > 0:
+                    self.log(f"  新增 {n} 张图片，已写入 gallery_images sheet。")
+                    self.log("  请点击「开始更新」来生成新的 gallery/data.js。")
+                else:
+                    self.log("  无新增图片。")
+                self.log("=" * 50)
+            finally:
+                sys.path.remove(BASE_DIR)
+        except Exception as e:
+            self.log(f"[FAIL] 执行出错: {e}")
 
 
 def main():

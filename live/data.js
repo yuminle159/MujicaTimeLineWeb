@@ -6,6 +6,7 @@ const livesData = [
     name: "Ave Mujica 0th LIVE「Primo die in scaena」",
     date: "2023/6/4",
     venue: "中野サンプラザホール",
+    tag: "One Man Live",
     poster: "../images/0th.webp",
     kv: "../images/0th kv假.webp",
     video_url: "https://www.bilibili.com/video/BV1QsnXzBEWb/",

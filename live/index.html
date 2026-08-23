@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:,">
+  <link rel="icon" href="../favicon.ico">
   <title>Live · 唯鸡百科</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608230148">
+  <link rel="stylesheet" href="style.css?v=202608232231">
 </head>
 <body>
   <div class="live-page">
@@ -16,6 +16,8 @@
       <a class="back-nav" href="../index.html">← 返回主页</a>
       <h1>Live</h1>
     </header>
+
+    <div class="filter-bar" id="liveFilterBar"></div>
 
     <main class="gallery-container" id="gallery">
       <div class="no-results" id="noResults" style="display:none">没有找到匹配的演唱会</div>
@@ -56,8 +58,8 @@
     <button class="kv-lightbox-arrow kv-lightbox-next" onclick="event.stopPropagation();moveKvLightbox(1)">&#10095;</button>
   </div>
 
-  <script src="../songs/data.js?v=202608230148"></script>
-  <script src="data.js?v=202608230148"></script>
+  <script src="../songs/data.js?v=202608232231"></script>
+  <script src="data.js?v=202608232231"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -137,26 +139,61 @@
     return dateStr.replace(/\s[\d:]+$/, "").trim();
   }
 
+  // ===== 筛选 =====
+  let activeLiveTag = null;
+
+  function buildLiveFilter() {
+    const bar = document.getElementById("liveFilterBar");
+    if (!bar) return;
+    // 收集所有唯一的 tag
+    const tags = new Set();
+    livesData.forEach(l => { if (l.tag) tags.add(l.tag); });
+    if (tags.size === 0) return;
+
+    let html = '<div class="filter-group"><button class="main-tag active" data-tag=""><span class="diamond">◆</span> ALL</button></div>';
+    const sorted = [...tags].sort();
+    sorted.forEach((t) => {
+      html += '<div class="separator"></div>';
+      html += '<div class="filter-group"><button class="main-tag" data-tag="' + escapeHTML(t) + '"><span class="diamond">◆</span> ' + escapeHTML(t) + '</button></div>';
+    });
+    bar.innerHTML = html;
+
+    bar.querySelectorAll(".main-tag").forEach(btn => {
+      btn.addEventListener("click", function() {
+        bar.querySelectorAll(".main-tag").forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        activeLiveTag = this.getAttribute("data-tag") || null;
+        renderGallery();
+      });
+    });
+  }
+
   // ===== 渲染画廊 =====
   function renderGallery() {
     gallery.innerHTML = "";
-    if (!livesData || livesData.length === 0) {
+    let filtered = livesData;
+    if (activeLiveTag) {
+      filtered = livesData.filter(l => l.tag === activeLiveTag);
+    }
+    if (filtered.length === 0) {
       noResults.style.display = "block";
       return;
     }
     noResults.style.display = "none";
 
-    livesData.forEach((live, i) => {
+    filtered.forEach((live, i) => {
+      // 使用原始索引以便打开抽屉
+      const origIdx = livesData.indexOf(live);
       const card = document.createElement("article");
       card.className = "live-card";
       card.innerHTML = `
-        <div class="card-image" onclick="openDrawer(${i})">
+        <div class="card-image" onclick="openDrawer(${origIdx})">
           ${live.poster ? `<img src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}" loading="lazy">` : '<div class="card-placeholder"></div>'}
         </div>
-        <div class="card-info" onclick="openDrawer(${i})">
+        <div class="card-info" onclick="openDrawer(${origIdx})">
           <div class="card-date">${stripTime(escapeHTML(live.date))}</div>
           <h2 class="card-title">${escapeHTML(live.name)}</h2>
-          <div class="card-venue">${escapeHTML(live.venue)}</div>
+          <div class="card-meta-row">${live.tag ? `<span class="card-tag">${escapeHTML(live.tag)}</span>` : ""}<span class="card-venue">${escapeHTML(live.venue)}</span></div>
         </div>`;
       gallery.appendChild(card);
     });
@@ -276,7 +313,7 @@
         <div class="hero-info">
           <div class="hero-date">${stripTime(escapeHTML(live.date))}</div>
           <h1 class="hero-title">${escapeHTML(live.name)}</h1>
-          <div class="hero-venue">${live.venue ? '📍 ' + escapeHTML(live.venue) : ""}</div>
+          <div class="hero-meta-row">${live.tag ? '🎵 <span class="hero-tag">' + escapeHTML(live.tag) + '</span>' : ""}${live.venue ? ' 📍 ' + escapeHTML(live.venue) : ""}</div>
           <div class="hero-action-row">
             ${live.video_url ? `<a href="${escapeHTML(live.video_url)}" class="btn-play" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -586,6 +623,7 @@
     if (e.target === songModalOverlay) closeSongModal();
   });
 
+  buildLiveFilter();
   renderGallery();
 })();
   </script>

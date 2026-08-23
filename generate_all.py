@@ -112,14 +112,22 @@ def read_sheet(wb, sheet_name):
 # =========================== 1. 公告 ===========================
 def generate_announcements(wb):
     raw = read_sheet(wb, "announcements")
-    data = []
+    pinned_list = []
+    normal_list = []
     for r in raw:
         pinned = str(r.get("pinned", "")).strip().lower() in ("1", "true", "yes")
-        data.append({
+        item = {
             "date": r.get("date", "").strip(),
             "msg": r.get("msg", "").strip(),
             "pinned": pinned
-        })
+        }
+        if pinned:
+            pinned_list.append(item)
+        else:
+            normal_list.append(item)
+    # 置顶在前，普通条目反转（Excel 底部 = 最新 = 靠前显示）
+    normal_list.reverse()
+    data = pinned_list + normal_list
     js = "// 自动生成，请勿手动编辑。运行 generate_all.py 更新\n"
     js += "window.ANNOUNCEMENTS = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n"
     with open(OUTPUTS["announcements"], "w", encoding="utf-8") as f:
@@ -274,6 +282,7 @@ def generate_live(wb):
             "name": name,
             "date": normalize_date(l.get("live_date", "")),
             "venue": l.get("live_venue", ""),
+            "tag": l.get("live_tag", ""),
             "poster": fix_path(l.get("poster", ""), "live"),
             "kv": fix_path(l.get("kv", ""), "live"),
             "video_url": l.get("video_url", ""),
@@ -305,6 +314,7 @@ def generate_live(wb):
         lines.append(f'    name: "{js_str(live["name"])}",')
         lines.append(f'    date: "{js_str(live["date"])}",')
         lines.append(f'    venue: "{js_str(live["venue"])}",')
+        lines.append(f'    tag: "{js_str(live["tag"])}",')
         lines.append(f'    poster: "{js_str(live["poster"])}",')
         lines.append(f'    kv: "{js_str(live["kv"])}",')
         lines.append(f'    video_url: "{js_str(live["video_url"])}",')
@@ -542,6 +552,68 @@ def init_merged_xlsx():
     wb.save(XLSX_PATH)
     print(f"\n合并完成！{merged_count} 个 Sheet 已写入 {XLSX_PATH}")
     return merged_count
+
+
+# =========================== 画廊图片自动扫描 ===========================
+def scan_gallery_images(log_func=None):
+    """扫描 images/ 文件夹，将文件名写入 gallery_images sheet 的 filename 列"""
+    images_dir = os.path.join(ROOT, "images")
+    if not os.path.isdir(images_dir):
+        (log_func or print)("  [跳过] images/ 目录不存在")
+        return 0
+
+    # 读取现有 xlsx 中的 gallery_images sheet
+    try:
+        import openpyxl
+    except ImportError:
+        (log_func or print)("  [失败] 缺少 openpyxl")
+        return 0
+
+    wb = openpyxl.load_workbook(XLSX_PATH)
+    if "gallery_images" not in wb.sheetnames:
+        (log_func or print)("  [失败] 找不到 gallery_images sheet")
+        wb.close()
+        return 0
+
+    ws = wb["gallery_images"]
+    # 找到 filename 列
+    headers = [str(c.value).strip().lower() if c.value else "" for c in ws[1]]
+    if "filename" not in headers:
+        (log_func or print)("  [失败] gallery_images 表缺少 filename 列")
+        wb.close()
+        return 0
+    filename_col = headers.index("filename") + 1  # 1-based
+
+    # 收集现有文件名（跳过空行）
+    existing = set()
+    for row_idx in range(2, ws.max_row + 1):
+        val = ws.cell(row=row_idx, column=filename_col).value
+        if val and str(val).strip():
+            existing.add(str(val).strip())
+
+    # 扫描 images/ 下所有图片文件
+    IMG_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp"}
+    new_files = []
+    for fname in os.listdir(images_dir):
+        ext = os.path.splitext(fname)[1].lower()
+        if ext in IMG_EXTS and fname not in existing:
+            new_files.append(fname)
+
+    if not new_files:
+        (log_func or print)(f"  已扫描 {len(existing)} 张图片，无新增")
+        wb.close()
+        return 0
+
+    # 写入新图片（追加到现有数据之后，路径格式为 ../images/xxx）
+    next_row = ws.max_row + 1
+    for fname in new_files:
+        ws.cell(row=next_row, column=filename_col, value=f"../images/{fname}")
+        next_row += 1
+
+    wb.save(XLSX_PATH)
+    wb.close()
+    (log_func or print)(f"  新增 {len(new_files)} 张图片: {', '.join(new_files)}")
+    return len(new_files)
 
 
 # =========================== 主流程 ===========================
