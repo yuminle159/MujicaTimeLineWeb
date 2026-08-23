@@ -7,8 +7,13 @@
   <title>唯鸡百科 · wijipedia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="announcements.js?v=202608232242" as="script">
+  <link rel="preload" href="songs/data.js?v=202608232242" as="script">
+  <link rel="preload" href="live/data.js?v=202608232242" as="script">
+  <link rel="preload" href="timeline/data.js?v=202608232242" as="script">
+  <link rel="preload" href="gallery/data.js?v=202608232242" as="script">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="nav-style.css?v=202608232231">
+  <link rel="stylesheet" href="nav-style.css?v=202608232242">
 </head>
 <body>
   <div class="silk-background">
@@ -184,8 +189,35 @@
     Ave Mujica · Band &amp; Nonrico
   </footer>
 
-  <script src="announcements.js?v=202608232231"></script>
+  <script src="announcements.js?v=202608232242"></script>
   <script>
+    // ==================== 后台预加载子页面数据 ====================
+    // 在导航页加载完成后，主动下载并执行所有子页面的 data.js
+    // 确保用户点击进入子页面时数据已在浏览器缓存和内存中，消除卡顿
+    (function() {
+      var dataFiles = [
+        'songs/data.js?v=202608232242',
+        'live/data.js?v=202608232242',
+        'timeline/data.js?v=202608232242',
+        'gallery/data.js?v=202608232242'
+      ];
+      var loadNext = function(i) {
+        if (i >= dataFiles.length) return;
+        var s = document.createElement('script');
+        s.src = dataFiles[i];
+        s.async = false;
+        s.onload = function() { loadNext(i + 1); };
+        s.onerror = function() { loadNext(i + 1); };
+        document.head.appendChild(s);
+      };
+      // 等页面完全就绪后再开始加载，避免阻塞首屏渲染
+      if (document.readyState === 'complete') {
+        loadNext(0);
+      } else {
+        window.addEventListener('load', function() { loadNext(0); });
+      }
+    })();
+
     // ==================== 公告轮播 ====================
     let annIdx = 0;
     const annText = document.getElementById('transmission-text');
