@@ -187,6 +187,7 @@ def generate_songs(wb):
             "mv_url": s.get("mv_url", ""),
             "lyrics_jp": s.get("lyrics_jp", ""),
             "lyrics_cn": s.get("lyrics_cn", ""),
+            "search_keywords": s.get("search_keywords", ""),
             "appearances": [a.strip() for a in s.get("appearances", "").split(",") if a.strip()],
             "comments": comments_map.get(sn, []),
             "live_history": live_map.get(sn, [])
@@ -213,6 +214,7 @@ def generate_songs(wb):
         lines.append(f'    mv_url: "{js_str(song["mv_url"])}",')
         lines.append(f'    lyrics_jp: "{js_str(song["lyrics_jp"])}",')
         lines.append(f'    lyrics_cn: "{js_str(song["lyrics_cn"])}",')
+        lines.append(f'    search_keywords: "{js_str(song["search_keywords"])}",')
         lines.append(f'    appearances: {json.dumps(song["appearances"], ensure_ascii=False)},')
         if song["comments"]:
             lines.append("    comments: [")

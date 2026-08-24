@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608232242">
+  <link rel="stylesheet" href="style.css?v=202608242358">
 </head>
 <body>
   <div class="songs-page">
@@ -21,7 +21,7 @@
     <div class="toolbar">
       <div class="search-box">
         <span class="search-icon">&#128269;</span>
-        <input type="text" id="searchInput" placeholder="搜索歌名、歌词...">
+        <input type="text" id="searchInput" placeholder="搜索歌名...">
       </div>
       <button class="sort-btn" id="sortBtn">
         <span id="sortLabel">时间正序</span>
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <script src="data.js?v=202608232242"></script>
+  <script src="data.js?v=202608242358"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -75,8 +75,7 @@
     return songs.filter(s => {
       return s.name.toLowerCase().includes(q) ||
              (s.name_jp && s.name_jp.toLowerCase().includes(q)) ||
-             (s.lyrics_jp && s.lyrics_jp.toLowerCase().includes(q)) ||
-             (s.lyrics_cn && s.lyrics_cn.toLowerCase().includes(q));
+             (s.search_keywords && s.search_keywords.toLowerCase().includes(q));
     });
   }
 
@@ -92,9 +91,9 @@
     years.forEach(year => {
       const filtered = filterSongs(year.songs);
       filtered.sort((a, b) => {
-        return sortAsc
-          ? (a.release_date || "").localeCompare(b.release_date || "")
-          : (b.release_date || "").localeCompare(a.release_date || "");
+        const da = parseDate(a.release_date);
+        const db = parseDate(b.release_date);
+        return sortAsc ? da - db : db - da;
       });
       if (filtered.length === 0) return;
       totalVisible += filtered.length;
@@ -123,6 +122,16 @@
   function stripTime(dateStr) {
     // 去除 00:00:00 等时间部分，保留 YYYY-MM-DD 或 YYYY/M/D
     return dateStr.replace(/\s[\d:]+$/, "").trim();
+  }
+  function parseDate(str) {
+    if (!str) return 0;
+    // 支持 2023/5/7、2023-05-07、2023/05/07 等格式
+    const parts = str.split(/[\/\-]/);
+    if (parts.length < 3) return 0;
+    const y = parseInt(parts[0]) || 0;
+    const m = parseInt(parts[1]) || 0;
+    const d = parseInt(parts[2]) || 0;
+    return y * 10000 + m * 100 + d;
   }
 
   function renderCoverCard(song) {
@@ -260,7 +269,9 @@
       for (let i = 0; i < maxLen; i++) {
         const jp = i < jpLines.length ? escapeHTML(jpLines[i]) : "";
         const cn = i < cnLines.length ? escapeHTML(cnLines[i]) : "";
-        lyricsRows += `<div class="lyrics-row"><span class="lyrics-jp">${jp}</span><span class="lyrics-cn">${cn}</span></div>`;
+        const isEmpty = !jp.trim() && !cn.trim();
+        const rowClass = isEmpty ? 'lyrics-row lyrics-blank' : 'lyrics-row';
+        lyricsRows += `<div class="${rowClass}"><span class="lyrics-jp">${jp}</span><span class="lyrics-cn">${cn}</span></div>`;
       }
       rightHTML += `
         <div class="lyrics-block" id="lyricsBlock">

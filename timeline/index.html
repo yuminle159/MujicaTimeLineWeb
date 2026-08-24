@@ -8,13 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608232242">
+  <link rel="stylesheet" href="style.css?v=202608242358">
 </head>
 <body>
   <div class="timeline-page">
     <header class="page-header">
       <a href="../index.html" class="back-nav">&larr; 返回主页</a>
-      <h1>Ave Mujica TimeLine</h1>
+      <h1>TimeLine</h1>
       <p>Band &amp; Nonrico</p>
     </header>
 
@@ -22,6 +22,8 @@
     <div class="filter-bar" id="filterBar">
       <div class="filter-tags" id="filterTags"></div>
     </div>
+    <!-- 年份筛选器 -->
+    <div class="filter-bar year-filter-bar" id="yearFilterBar" style="padding-top:0;"></div>
 
     <div class="timeline-wrapper" id="timelineWrapper">
       <!-- 左侧月度刻度 -->
@@ -54,7 +56,7 @@
     <button class="tl-lightbox-arrow tl-lightbox-next">&#10095;</button>
   </div>
 
-  <script src="data.js?v=202608232242"></script>
+  <script src="data.js?v=202608242358"></script>
   <script>
 (function () {
   const PD = timelineConfig.pixelsPerDay;
@@ -97,7 +99,7 @@
   const allTicks = [];
   const yearLabels = [];
   function generateMonthTicks(mergedMonthMap) {
-    const sortedMonths = Object.keys(mergedMonthMap).sort();
+    const sortedMonths = Object.keys(mergedMonthMap).sort((a, b) => mergedMonthMap[a].minTop - mergedMonthMap[b].minTop);
     let lastYear = null;
     let prevMax = -Infinity;
 
@@ -224,6 +226,10 @@
           g.classList.add("hidden");
         }
       });
+    }
+    // 倒序时 tag 筛选后需要重新布局
+    if (sortReverse) {
+      relayoutTimeline();
     }
   }
 
@@ -540,6 +546,158 @@
       document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
     });
   });
+
+  // ==================== 排序切换 & 年份筛选 ====================
+  let sortReverse = false;
+  let activeYear = null;
+
+  // 收集所有年份
+  const allYears = [...new Set(
+    timelineData.map(e => parseDate(e.date).getFullYear())
+  )].sort((a, b) => a - b);
+
+  // 年份筛选按钮
+  const yearFilterBar = document.getElementById('yearFilterBar');
+  const yearFilterTags = document.createElement('div');
+  yearFilterTags.className = 'filter-tags';
+  yearFilterBar.appendChild(yearFilterTags);
+
+  const allYearBtn = document.createElement('button');
+  allYearBtn.className = 'filter-chip active';
+  allYearBtn.innerHTML = '<span class="diamond">&#9670;</span> ALL';
+  allYearBtn.addEventListener('click', () => {
+    activeYear = null;
+    yearFilterTags.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    allYearBtn.classList.add('active');
+    filterByYear();
+  });
+  yearFilterTags.appendChild(allYearBtn);
+
+  allYears.forEach(y => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-chip';
+    btn.textContent = String(y);
+    btn.addEventListener('click', () => {
+      activeYear = y;
+      yearFilterTags.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      filterByYear();
+    });
+    yearFilterTags.appendChild(btn);
+  });
+
+  // 排序按钮
+  const sortBtn = document.createElement('button');
+  sortBtn.className = 'sort-btn';
+  sortBtn.innerHTML = '<span>时间正序</span><span class="arrow">&#8593;</span>';
+  sortBtn.addEventListener('click', () => {
+    sortReverse = !sortReverse;
+    sortBtn.innerHTML = sortReverse ? '<span>时间倒序</span><span class="arrow">&#8595;</span>' : '<span>时间正序</span><span class="arrow">&#8593;</span>';
+    relayoutTimeline();
+  });
+  filterBar.appendChild(sortBtn);
+
+  // 初始统一布局：用 grouped layout 替代初始的 date-based layout，消除切换跳动
+  relayoutTimeline();
+
+  function relayoutTimeline() {
+    document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
+
+    const allGroups = [
+      ...Array.from(trackL.querySelectorAll('.event-group')),
+      ...Array.from(trackR.querySelectorAll('.event-group'))
+    ].filter(g => !g.classList.contains('hidden') && !g.classList.contains('year-hidden'));
+
+    const yearGroups = {};
+    allGroups.forEach(g => {
+      const d = parseDate(g.querySelector('.b-date').textContent);
+      const y = d.getFullYear();
+      if (!yearGroups[y]) yearGroups[y] = [];
+      yearGroups[y].push(g);
+    });
+
+    const years = Object.keys(yearGroups).map(Number).sort((a, b) => sortReverse ? b - a : a - b);
+
+    let currentTop = START_TOP;
+    const newMonthMap = {};
+
+    years.forEach(year => {
+      const groups = yearGroups[year];
+      groups.sort((a, b) => {
+        const da = parseDate(a.querySelector('.b-date').textContent);
+        const db = parseDate(b.querySelector('.b-date').textContent);
+        return sortReverse ? db - da : da - db;
+      });
+
+      currentTop += YEAR_LABEL_GAP;
+
+      groups.forEach(g => {
+        g.dataset.originalTop = currentTop;
+        g.style.top = currentTop + 'px';
+
+        const d = parseDate(g.querySelector('.b-date').textContent);
+        const mk = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+        const gh = g.offsetHeight;
+
+        if (!newMonthMap[mk]) newMonthMap[mk] = { minTop: Infinity, maxTop: -Infinity };
+        if (currentTop < newMonthMap[mk].minTop) newMonthMap[mk].minTop = currentTop;
+        if (currentTop + gh > newMonthMap[mk].maxTop) newMonthMap[mk].maxTop = currentTop + gh;
+
+        currentTop += gh + MIN_GAP;
+      });
+    });
+
+    ticksL.innerHTML = '';
+    ticksR.innerHTML = '';
+    generateMonthTicks(newMonthMap);
+
+    let maxH = 600;
+    [trackL, trackR].forEach(track => {
+      track.querySelectorAll(".event-group").forEach(g => {
+        if (g.classList.contains('hidden') || g.classList.contains('year-hidden')) return;
+        const b = g.offsetTop + g.offsetHeight;
+        if (b > maxH) maxH = b;
+      });
+    });
+    wrapper.style.minHeight = (maxH + 80) + "px";
+    ticksL.style.height = (maxH + 80) + "px";
+    ticksR.style.height = (maxH + 80) + "px";
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
+      });
+    });
+  }
+
+  function filterByYear() {
+    document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
+
+    const allGroups = [
+      ...Array.from(trackL.querySelectorAll('.event-group')),
+      ...Array.from(trackR.querySelectorAll('.event-group'))
+    ];
+
+    allGroups.forEach(g => {
+      const d = parseDate(g.querySelector('.b-date').textContent);
+      const y = d.getFullYear();
+      if (activeYear === null || y === activeYear) {
+        g.classList.remove('year-hidden');
+      } else {
+        g.classList.add('year-hidden');
+      }
+    });
+
+    // 先重新布局，再应用 tag 筛选
+    relayoutTimeline();
+    applyFilter();
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
+      });
+    });
+  }
 })();
   </script>
 </body>

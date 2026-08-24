@@ -6,6 +6,14 @@
   --bubble-max-width: clamp(360px, 36vw, 520px); /* 气泡最大宽度（响应式） */
   --md-primary: #cc2929;
   --md-on-surface-muted: #555;
+  --md-on-surface: #ddd;
+  --md-on-surface-variant: #999;
+  --md-outline-variant: rgba(255, 255, 255, 0.12);
+  --md-surface-container: rgba(255, 255, 255, 0.05);
+  --md-surface-container-high: rgba(255, 255, 255, 0.1);
+  --md-radius-full: 9999px;
+  --md-duration-short: 0.2s;
+  --md-easing-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
 body {
@@ -207,6 +215,36 @@ body {
 /* 筛选隐藏状态 */
 .event-group.hidden {
   display: none;
+}
+.event-group.year-hidden {
+  display: none;
+}
+
+/* 排序按钮 */
+.sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--md-radius-full);
+  background: var(--md-surface-container);
+  color: var(--md-on-surface-variant);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--md-duration-short) var(--md-easing-standard);
+  white-space: nowrap;
+  font-family: inherit;
+  margin-left: auto;
+}
+.sort-btn:hover {
+  border-color: var(--md-primary);
+  color: var(--md-on-surface);
+  background: var(--md-surface-container-high);
+}
+.sort-btn .arrow {
+  font-size: 10px;
 }
 
 /* ===== 事件行（连接线 + 气泡） ===== */

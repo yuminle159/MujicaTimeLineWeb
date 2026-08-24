@@ -675,6 +675,9 @@ body {
   line-height: 2;
   color: var(--md-on-surface-variant);
 }
+.lyrics-row.lyrics-blank {
+  min-height: 1.6em;
+}
 /* 歌词mode */
 .lyrics-block.clean-mode {
   position: fixed;
@@ -694,10 +697,15 @@ body {
   z-index: 2001;
 }
 .lyrics-block.clean-mode .lyrics-columns {
-  max-width: 800px;
-  width: 100%;
+  max-width: 1200px;
+  width: 90%;
   max-height: none;
   overflow: visible;
+}
+.lyrics-block.clean-mode .lyrics-header {
+  max-width: 1200px;
+  width: 90%;
+  text-align: left;
 }
 .lyrics-block.clean-mode .lyrics-jp,
 .lyrics-block.clean-mode .lyrics-cn {

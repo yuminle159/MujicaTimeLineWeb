@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.08.24",
+    "msg": "1.timeline新增倒序&按年份筛选 2.Songs更新素晴らしき世界 でも どこにもない場所 3.浏览器性能优化 4.Lycis 全面优化，更接近BD排版 5.Songs搜索启用，可使用花名",
+    "pinned": false
+  },
+  {
     "date": "2026.08.23",
     "msg": "1.新增ico 2.Songs更新Mas?uerade Rhapsody Re?uest、神さま、バカ、Ave Mujica 3.Gallery布局优化 4.Live UI优化 5.日常BUG维护",
     "pinned": false
