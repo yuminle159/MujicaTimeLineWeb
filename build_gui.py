@@ -32,10 +32,9 @@ MODULE_NAMES = {
 }
 
 
-def convert_images_to_webp(folder_path, quality=95, log_func=None, max_width=None, compress_method=4):
-    """将文件夹中的图片转为 WebP 格式
-    :param max_width: 如果设置，超出此宽度的图片等比缩小（None=不缩放）
-    :param compress_method: 0=fast, 6=slowest/best compression
+def convert_images_to_webp(folder_path, log_func=None, skip_existing_webp=True):
+    """将文件夹中的图片转为 WebP 格式并压缩（max_width=1920, quality=75, method=6）
+    :param skip_existing_webp: 如果为 True，跳过已存在同名 .webp 的文件
     """
     def log(msg):
         (log_func or print)(msg)
@@ -44,18 +43,20 @@ def convert_images_to_webp(folder_path, quality=95, log_func=None, max_width=Non
         log(f"  [跳过] 目录不存在: {folder_path}")
         return 0
 
-    supported_formats = ('.png', '.jpg', '.jpeg', '.webp')
+    supported_formats = ('.png', '.jpg', '.jpeg', '.webp', '.bmp', '.tiff', '.tif')
     converted = 0
     for filename in os.listdir(folder_path):
         if not filename.lower().endswith(supported_formats):
-            continue
-        # 跳过已经是 webp 且不压缩的情况（避免重复转换）
-        if filename.lower().endswith('.webp') and max_width is None and quality >= 90:
             continue
 
         file_path = os.path.join(folder_path, filename)
         name_without_ext = os.path.splitext(filename)[0]
         webp_path = os.path.join(folder_path, f"{name_without_ext}.webp")
+
+        # 跳过已存在 webp 的文件
+        if skip_existing_webp and os.path.exists(webp_path):
+            continue
+
         temp_path = webp_path + ".tmp"
         orig_size_kb = os.path.getsize(file_path) / 1024 if os.path.exists(file_path) else 0
 
@@ -65,12 +66,13 @@ def convert_images_to_webp(folder_path, quality=95, log_func=None, max_width=Non
                     img = img.convert('RGBA')
 
                 # 缩放
-                if max_width and img.width > max_width:
+                max_width = 1920
+                if img.width > max_width:
                     new_h = int(img.height * (max_width / img.width))
                     img = img.resize((max_width, new_h), Image.Resampling.LANCZOS)
                     log(f"    [缩放] {filename}: {img.width}x{img.height} -> {max_width}x{new_h}")
 
-                img.save(temp_path, 'webp', quality=quality, method=compress_method)
+                img.save(temp_path, 'webp', quality=75, method=6)
 
             new_size_kb = os.path.getsize(temp_path) / 1024
             os.replace(temp_path, webp_path)
@@ -102,25 +104,21 @@ def discover_sheets():
         return []
 
 
-def run_update(selected_modules, do_webp, log_func, compress_webp=False):
+def run_update(selected_modules, do_webp, log_func, skip_webp=True):
     """执行数据更新"""
     import importlib.util
 
     # 图片转 WebP
     if do_webp and HAS_PILLOW:
         log_func("=" * 50)
-        if compress_webp:
-            log_func("  图片转 WebP（压缩模式：max_width=1920, quality=75, method=6）")
-        else:
-            log_func("  图片转 WebP")
+        log_func("  图片转 WebP 并压缩（max_width=1920, quality=75, method=6）")
+        if skip_webp:
+            log_func("  跳过已存在的 WebP 文件")
         log_func("=" * 50)
         for folder_name in ["images", "icons"]:
             folder_path = os.path.join(PROJECT_DIR, folder_name)
             log_func(f"  [{folder_name}]")
-            if compress_webp:
-                count = convert_images_to_webp(folder_path, quality=75, max_width=1920, compress_method=6, log_func=log_func)
-            else:
-                count = convert_images_to_webp(folder_path, quality=95, log_func=log_func)
+            count = convert_images_to_webp(folder_path, log_func=log_func, skip_existing_webp=skip_webp)
             log_func(f"  共转换 {count} 张图片")
         log_func("[OK] 图片转 WebP - 完成\n")
 
@@ -260,13 +258,13 @@ class App:
         webp_var = tk.BooleanVar(value=False)
         self.webp_var = webp_var
 
-        compress_var = tk.BooleanVar(value=False)
-        self.compress_var = compress_var
+        skip_webp_var = tk.BooleanVar(value=True)
+        self.skip_webp_var = skip_webp_var
 
         if HAS_PILLOW:
             cb_webp = tk.Checkbutton(
                 root,
-                text="图片转 WebP（images + icons 目录）",
+                text="图片转 WebP 并压缩（images + icons 目录）",
                 variable=webp_var,
                 font=("Microsoft YaHei", 10),
                 fg="#ddd", bg="#0d0d0d",
@@ -276,17 +274,17 @@ class App:
             )
             cb_webp.pack(anchor="w", padx=24, pady=2)
 
-            cb_compress = tk.Checkbutton(
+            cb_skip = tk.Checkbutton(
                 root,
-                text="  压缩图片（max_width=1920, quality=75, method=6）",
-                variable=compress_var,
+                text="  跳过已存在的 WebP 文件",
+                variable=skip_webp_var,
                 font=("Microsoft YaHei", 9),
                 fg="#999", bg="#0d0d0d",
                 selectcolor="#0d0d0d",
                 activebackground="#0d0d0d",
                 activeforeground="#ff4d4d",
             )
-            cb_compress.pack(anchor="w", padx=24, pady=1)
+            cb_skip.pack(anchor="w", padx=24, pady=1)
         else:
             lbl_no_pil = tk.Label(
                 root,
@@ -344,7 +342,7 @@ class App:
     def build_selected(self):
         selected = [m["id"] for m in self.modules if self.vars[m["id"]].get()]
         do_webp = self.webp_var.get() if HAS_PILLOW else False
-        compress_webp = self.compress_var.get() if HAS_PILLOW else False
+        skip_webp = self.skip_webp_var.get() if HAS_PILLOW else True
 
         if not selected and not do_webp:
             messagebox.showwarning("未选择", "请至少选择一个模块或勾选图片转 WebP。")
@@ -354,7 +352,7 @@ class App:
         self.log("开始更新...\n")
 
         try:
-            run_update(selected, do_webp, self.log, compress_webp=compress_webp)
+            run_update(selected, do_webp, self.log, skip_webp=skip_webp)
         except Exception as e:
             self.log(f"[FAIL] 执行出错: {e}")
 
