@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608262339">
+  <link rel="stylesheet" href="style.css?v=202608270008">
 </head>
 <body>
   <div class="interview-page">
@@ -24,6 +24,7 @@
         <input type="text" id="searchInput" placeholder="搜索访谈人或标题...">
       </div>
       <span class="result-count" id="resultCount"></span>
+      <button class="sort-btn" id="interviewSortBtn"><span>时间正序</span><span class="arrow">&#8593;</span></button>
     </div>
 
     <!-- 卡片网格 -->
@@ -49,7 +50,7 @@
     <div class="cinematic-body" id="cBody"></div>
   </div>
 
-  <script src="data.js?v=202608262339"></script>
+  <script src="data.js?v=202608270008"></script>
   <script>
     // ==================== 简易 Markdown 渲染器 ====================
     function renderMarkdown(html) {
@@ -79,6 +80,7 @@
     const noResults = document.getElementById("noResults");
     const resultCount = document.getElementById("resultCount");
     let searchQuery = "";
+    let interviewSortReverse = false;
 
     function escapeHTML(str) {
       const div = document.createElement("div");
@@ -88,7 +90,12 @@
 
     function renderCards(data) {
       gallery.innerHTML = "";
-      const filtered = data.filter(item => {
+      // 按日期排列
+      const sorted = [...data].sort((a, b) => {
+        const cmp = (a.date || "").localeCompare(b.date || "");
+        return interviewSortReverse ? -cmp : cmp;
+      });
+      const filtered = sorted.filter(item => {
         if (!searchQuery) return true;
         const q = searchQuery.toLowerCase();
         return (item.title && item.title.toLowerCase().includes(q)) ||
@@ -124,6 +131,14 @@
     // ==================== 搜索 ====================
     document.getElementById("searchInput").addEventListener("input", function() {
       searchQuery = this.value.trim();
+      renderCards(interviewData);
+    });
+
+    // 排序按钮
+    const sortBtn = document.getElementById("interviewSortBtn");
+    sortBtn.addEventListener("click", () => {
+      interviewSortReverse = !interviewSortReverse;
+      sortBtn.innerHTML = interviewSortReverse ? '<span>时间倒序</span><span class="arrow">&#8595;</span>' : '<span>时间正序</span><span class="arrow">&#8593;</span>';
       renderCards(interviewData);
     });
 

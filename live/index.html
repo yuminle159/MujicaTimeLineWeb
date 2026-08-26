@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608262339">
+  <link rel="stylesheet" href="style.css?v=202608270008">
 </head>
 <body>
   <div class="live-page">
@@ -58,8 +58,8 @@
     <button class="kv-lightbox-arrow kv-lightbox-next" onclick="event.stopPropagation();moveKvLightbox(1)">&#10095;</button>
   </div>
 
-  <script src="../songs/data.js?v=202608262339"></script>
-  <script src="data.js?v=202608262339"></script>
+  <script src="../songs/data.js?v=202608270008"></script>
+  <script src="data.js?v=202608270008"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -70,7 +70,8 @@
 
   // 歌曲名→索引 查找表（用于 setlist 点击跳转）
   const songLookup = {};
-  if (typeof songsData !== "undefined") {
+  if (typeof livesData !== "undefined") {
+    livesData.sort((a, b) => (a.date || "").localeCompare(b.date || ""));
     songsData.forEach((s, i) => { if (s.name_jp) songLookup[s.name_jp] = i; });
   }
 
@@ -154,6 +155,7 @@
 
   // ===== 筛选 =====
   let activeLiveTag = null;
+  let liveSortReverse = false;
 
   function buildLiveFilter() {
     const bar = document.getElementById("liveFilterBar");
@@ -179,6 +181,17 @@
         renderGallery();
       });
     });
+
+    // 排序按钮
+    const sortBtn = document.createElement("button");
+    sortBtn.className = "sort-btn";
+    sortBtn.innerHTML = '<span>时间正序</span><span class="arrow">&#8593;</span>';
+    sortBtn.addEventListener("click", () => {
+      liveSortReverse = !liveSortReverse;
+      sortBtn.innerHTML = liveSortReverse ? '<span>时间倒序</span><span class="arrow">&#8595;</span>' : '<span>时间正序</span><span class="arrow">&#8593;</span>';
+      renderGallery();
+    });
+    bar.appendChild(sortBtn);
   }
 
   // ===== 渲染画廊 =====
@@ -193,6 +206,12 @@
       return;
     }
     noResults.style.display = "none";
+
+    // 按日期排列
+    filtered.sort((a, b) => {
+      const cmp = (a.date || "").localeCompare(b.date || "");
+      return liveSortReverse ? -cmp : cmp;
+    });
 
     filtered.forEach((live, i) => {
       // 使用原始索引以便打开抽屉

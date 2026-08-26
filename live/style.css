@@ -204,6 +204,33 @@ body {
   color: #ff4d4d;
 }
 
+/* 排序按钮 */
+.sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  background: #141414;
+  color: #999;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  white-space: nowrap;
+  font-family: inherit;
+  margin-left: auto;
+}
+.sort-btn:hover {
+  border-color: #ff4d4d;
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.06);
+}
+.sort-btn .arrow {
+  font-size: 10px;
+}
+
 /* ===== 抽屉遮罩 ===== */
 .drawer-overlay {
   position: fixed;

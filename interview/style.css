@@ -110,6 +110,33 @@ body {
   white-space: nowrap;
 }
 
+/* 排序按钮 */
+.sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--md-radius-full);
+  background: var(--md-surface-container);
+  color: var(--md-on-surface-variant);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--md-duration-short) var(--md-easing-standard);
+  white-space: nowrap;
+  font-family: inherit;
+  margin-left: auto;
+}
+.sort-btn:hover {
+  border-color: var(--md-primary);
+  color: var(--md-on-surface);
+  background: var(--md-surface-container-high);
+}
+.sort-btn .arrow {
+  font-size: 10px;
+}
+
 /* ===== 卡片网格 ===== */
 .gallery-container {
   padding: 0 60px 60px;
