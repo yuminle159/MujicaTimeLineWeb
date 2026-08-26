@@ -9,7 +9,7 @@ const timelineData = [
     description: "「初次登台」",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/0th.webp", caption: "0th Live 主视图" },
+      { type: "image", src: "../images/logo/0th.webp", caption: "0th Live 主视图" },
       { type: "link", url: "https://www.bilibili.com/video/BV1QsnXzBEWb", title: "在线观看" }
     ]
   },
@@ -20,7 +20,7 @@ const timelineData = [
     description: "「破坏一切」",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/1st live logo.webp", caption: "1st Live Logo" },
+      { type: "image", src: "../images/logo/1st live logo.webp", caption: "1st Live Logo" },
       { type: "image", src: "../images/1st live kv.webp", caption: "1st Live 主视图" },
       { type: "link", url: "https://www.bilibili.com/video/BV1XwFGzzEfn", title: "在线观看" }
     ]
@@ -316,7 +316,7 @@ const timelineData = [
     description: "「寻找着光」",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/2nd live logo.webp", caption: "2nd Live Logo" },
+      { type: "image", src: "../images/logo/2nd live logo.webp", caption: "2nd Live Logo" },
       { type: "image", src: "../images/2nd live kv.webp", caption: "2nd Live 主视图" },
       { type: "link", url: "https://www.bilibili.com/video/BV1nBoYYLE2C", title: "在线观看" }
     ]
@@ -328,7 +328,7 @@ const timelineData = [
     description: "「寻找着光」 本次演出无影像资源",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/2nd live 爱知.webp", caption: "2nd Live 爱知" }
+      { type: "image", src: "../images/logo/2nd live 爱知.webp", caption: "2nd Live 爱知" }
     ]
   },
   {
@@ -338,7 +338,7 @@ const timelineData = [
     description: "「真实」",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/3rd live logo.webp", caption: "3rd Live Logo" },
+      { type: "image", src: "../images/logo/3rd live logo.webp", caption: "3rd Live Logo" },
       { type: "image", src: "../images/3rd live kv.webp", caption: "3rd Live 主视图" },
       { type: "link", url: "https://www.bilibili.com/video/BV1owo9Y8EDX", title: "在线观看" }
     ]
@@ -474,7 +474,7 @@ const timelineData = [
     description: "「降临」",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/4th live logo.webp", caption: "4th Live Logo" },
+      { type: "image", src: "../images/logo/4th live logo.webp", caption: "4th Live Logo" },
       { type: "image", src: "../images/4th live kv.webp", caption: "4th Live 主视图" },
       { type: "link", url: "https://www.bilibili.com/video/BV1czEszBEWw", title: "在线观看" }
     ]

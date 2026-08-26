@@ -312,7 +312,7 @@ const songsData = [
     ],
     live_history: [
       { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950" },
-      { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950_2" },
+      { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950_2" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950_3" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950_4" },
@@ -353,7 +353,7 @@ const songsData = [
     ],
     live_history: [
       { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303" },
-      { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303_2" },
+      { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303_2" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303_3" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303_4" },
@@ -408,7 +408,7 @@ const songsData = [
     ],
     live_history: [
       { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758" },
-      { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758_2" },
+      { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758_2" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758_3" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758_4" },
