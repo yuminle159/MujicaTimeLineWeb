@@ -371,6 +371,56 @@ body {
   background-color: #cc2929; padding: 2px 6px; border-radius: 2px; letter-spacing: 1px;
 }
 
+/* 公告分页 */
+.archive-drawer .pagination-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 40px 24px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.archive-drawer .pagination-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #666;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 36px;
+  text-align: center;
+}
+.archive-drawer .pagination-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.archive-drawer .pagination-btn.active {
+  color: #fff;
+  border-color: #cc2929;
+  background: rgba(204, 41, 41, 0.08);
+}
+.archive-drawer .pagination-btn.arrow {
+  font-size: 14px;
+  padding: 6px 12px;
+}
+.archive-drawer .pagination-info {
+  color: #555;
+  font-size: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0 8px;
+}
+.archive-drawer .pagination-dots {
+  color: #555;
+  font-size: 13px;
+  padding: 0 4px;
+  letter-spacing: 2px;
+}
+
 /* ===== 响应式：[抽屉] ===== */
 @media (max-width: 480px) {
   .archive-drawer { width: 300px; }

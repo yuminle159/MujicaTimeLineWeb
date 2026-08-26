@@ -29,6 +29,7 @@ MODULE_NAMES = {
     "lives":             "演唱会（Live）",
     "timeline":          "时间线（Timeline）",
     "gallery_images":    "画廊（Gallery）",
+    "interview":         "访谈（Interview）",
 }
 
 
@@ -162,6 +163,9 @@ def run_update(selected_modules, do_webp, log_func, skip_webp=True):
                     elif mod_id == "gallery_images" and "gallery_images" in sheets:
                         n = generate_all.generate_gallery(wb)
                         log_func(f"  gallery/data.js - {n} 张图片")
+                    elif mod_id == "interview" and "interview" in sheets:
+                        n = generate_all.generate_interview(wb)
+                        log_func(f"  interview/data.js - {n} 篇访谈")
                 finally:
                     output = sys.stdout.getvalue()
                     sys.stdout = old_stdout

@@ -48,6 +48,7 @@ OUTPUTS = {
     "live":          os.path.join(ROOT, "live", "data.js"),
     "timeline":      os.path.join(ROOT, "timeline", "data.js"),
     "gallery":       os.path.join(ROOT, "gallery", "data.js"),
+    "interview":     os.path.join(ROOT, "interview", "data.js"),
 }
 
 # 旧 xlsx 文件路径（用于 --init 合并）
@@ -57,6 +58,7 @@ OLD_XLSX = {
     "live":           os.path.join(ROOT, "live", "data.xlsx"),
     "timeline":       os.path.join(ROOT, "timeline", "data.xlsx"),
     "gallery":        os.path.join(ROOT, "gallery", "data.xlsx"),
+    "interview":      os.path.join(ROOT, "interview", "data.xlsx"),
 }
 
 
@@ -516,6 +518,134 @@ def generate_gallery(wb):
     return len(images)
 
 
+# =========================== 6. 访谈 ===========================
+def render_md_to_html(md):
+    """预渲染 Markdown → HTML（保留 [original] 和 [cN] 标签供浏览器动态处理）"""
+    if not md:
+        return ""
+    html = md
+
+    # 1. 代码块保护
+    code_blocks = []
+    def save_code(m):
+        idx = len(code_blocks)
+        code_blocks.append(m.group(2).strip())
+        return f"<!--CODEBLOCK_{idx}-->"
+    html = re.sub(r'```\w*\n(.*?)```', save_code, html, flags=re.DOTALL)
+
+    # 2. 转义 HTML
+    html = html.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+    # 3. 还原代码块
+    def restore_code(m):
+        idx = int(m.group(1))
+        return f"<pre><code>{code_blocks[idx]}</code></pre>"
+    html = re.sub(r'<!--CODEBLOCK_(\d+)-->', restore_code, html)
+
+    # 保留 [original]...[/original] 和 [cN]...[/cN] 不处理，留给浏览器
+
+    # 4. 标题
+    html = re.sub(r'^### (.+)$', r'<h3>\1</h3>', html, flags=re.MULTILINE)
+    html = re.sub(r'^## (.+)$', r'<h2>\1</h2>', html, flags=re.MULTILINE)
+    html = re.sub(r'^# (.+)$', r'<h1>\1</h1>', html, flags=re.MULTILINE)
+
+    # 5. 粗体 / 斜体
+    html = re.sub(r'\*\*\*(.+?)\*\*\*', r'<strong><em>\1</em></strong>', html)
+    html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
+    html = re.sub(r'\*(.+?)\*', r'<em>\1</em>', html)
+
+    # 6. 图片
+    html = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', r'<img src="\2" alt="\1" loading="lazy">', html)
+
+    # 7. 链接
+    html = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank" rel="noopener">\1</a>', html)
+
+    # 8. 引用块
+    html = re.sub(r'^&gt; (.+)$', r'<blockquote><p>\1</p></blockquote>', html, flags=re.MULTILINE)
+
+    # 9. 横线
+    html = re.sub(r'^---$', r'<hr>', html, flags=re.MULTILINE)
+
+    # 10. 无序列表
+    html = re.sub(r'^[\-\*] (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
+    html = re.sub(r'((?:<li>.*</li>\n?)+)', r'<ul>\1</ul>', html)
+
+    # 11. 有序列表
+    html = re.sub(r'^\d+\. (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
+    def wrap_ol(m):
+        if '<ul>' in m.group(0):
+            return m.group(0)
+        return '<ol>' + m.group(0) + '</ol>'
+    html = re.sub(r'((?:<li>.*</li>\n?)+)', wrap_ol, html)
+
+    # 12. 段落
+    def para_handler(m):
+        extra = len(m.group(0)) - 2
+        if extra <= 0:
+            return '</p><p>'
+        return '</p>' + '<p>&nbsp;</p>' * extra + '<p>'
+    html = re.sub(r'\n\n+', para_handler, html)
+
+    # 单换行
+    html = html.replace('\n', '<br>')
+
+    # 包裹
+    html = '<p>' + html + '</p>'
+
+    # 清理
+    html = re.sub(r'<p></p>', '', html)
+    html = re.sub(r'<p>\s*</p>', '', html)
+
+    return html
+
+
+def generate_interview(wb):
+    raw = read_sheet(wb, "interview")
+    interviews = []
+    MC_DIR = os.path.join(ROOT, "_data", "mc")
+
+    for r in raw:
+        if not r.get("title"):
+            continue
+        md_path = r.get("md_path", "").strip()
+        md_content = ""
+        if md_path:
+            # md_path 可能是相对路径如 "mc/sample_interview.md"
+            full_path = os.path.join(ROOT, "_data", md_path.lstrip("/\\"))
+            if not os.path.exists(full_path):
+                # 尝试直接从 _data 目录找
+                full_path = os.path.join(DATA_DIR, md_path.lstrip("/\\"))
+            if os.path.isfile(full_path):
+                with open(full_path, "r", encoding="utf-8") as f:
+                    md_content = f.read()
+        interviews.append({
+            "poster": fix_path(r.get("poster", ""), "interview"),
+            "date": r.get("date", "").strip(),
+            "interviewee": r.get("interviewee", "").strip(),
+            "title": r.get("title", "").strip(),
+            "md_html": render_md_to_html(md_content)
+        })
+
+    lines = []
+    lines.append("// 访谈数据")
+    lines.append("// 由 generate_all.py 自动生成，请勿手动修改")
+    lines.append("")
+    lines.append("const interviewData = [")
+    for i, item in enumerate(interviews):
+        lines.append("  {")
+        lines.append(f'    poster: "{js_str(item["poster"])}",')
+        lines.append(f'    date: "{js_str(item["date"])}",')
+        lines.append(f'    interviewee: "{js_str(item["interviewee"])}",')
+        lines.append(f'    title: "{js_str(item["title"])}",')
+        lines.append(f'    md_html: "{js_str(item["md_html"])}"')
+        lines.append("  }" + ("," if i < len(interviews) - 1 else ""))
+    lines.append("];")
+
+    with open(OUTPUTS["interview"], "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    return len(interviews)
+
+
 # =========================== 初始化：合并旧 xlsx ===========================
 def init_merged_xlsx():
     """从旧的分散 xlsx 合并创建 _data/data.xlsx"""
@@ -531,6 +661,7 @@ def init_merged_xlsx():
         "live":              [("lives", "lives"), ("setlist", "setlist"), ("backstage", "backstage")],
         "gallery":           [("gallery_images", "images")],
         "timeline":          [("timeline", "时间轴数据")],
+        "interview":         [("interview", "interview")],
     }
 
     merged_count = 0
@@ -628,6 +759,7 @@ def inject_version(log_func=None):
         os.path.join(ROOT, "live", "index.html"),
         os.path.join(ROOT, "timeline", "index.html"),
         os.path.join(ROOT, "gallery", "index.html"),
+        os.path.join(ROOT, "interview", "index.html"),
     ]
     # 匹配所有本地 .css / .js / .svg 引用（跳过 https:// 外部链接）
     pattern = re.compile(
@@ -699,6 +831,12 @@ def main():
         n = generate_gallery(wb)
         results["画廊"] = f"{n} 张图片"
         print(f"  ✓ gallery/data.js — {n} 张图片")
+
+    # 访谈
+    if "interview" in sheets:
+        n = generate_interview(wb)
+        results["访谈"] = f"{n} 篇"
+        print(f"  ✓ interview/data.js — {n} 篇访谈")
 
     wb.close()
 

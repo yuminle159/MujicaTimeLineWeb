@@ -841,6 +841,11 @@ body {
 .mc-c3 { color: #335566; }
 .mc-c4 { color: #AA4477; }
 .mc-c5 { color: #7799CC; }
+.mc-c6 { color: #3388BB; }
+.mc-c7 { color: #881144; }
+.mc-c8 { color: #FF7788; }
+.mc-c9 { color: #FFEE55; }
+.mc-c10 { color: #9977CC; }
 /* MC 滚动条 */
 .mc-modal-container {
   scrollbar-width: thin;

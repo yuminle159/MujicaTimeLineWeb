@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico">
+  <title>Interview · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202608262339">
+</head>
+<body>
+  <div class="interview-page">
+    <header class="page-header">
+      <a href="../index.html" class="back-nav">&larr; 返回主页</a>
+      <h1>Interview</h1>
+    </header>
+
+    <!-- 工具栏 -->
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="searchInput" placeholder="搜索访谈人或标题...">
+      </div>
+      <span class="result-count" id="resultCount"></span>
+    </div>
+
+    <!-- 卡片网格 -->
+    <div class="gallery-container" id="gallery"></div>
+
+    <!-- 无结果 -->
+    <div class="no-results" id="noResults" style="display:none">没有找到匹配的访谈</div>
+  </div>
+
+  <!-- 全屏沉浸式浮层 -->
+  <div class="cinematic-overlay" id="cinematicOverlay">
+    <div class="cinematic-header">
+      <div class="cinematic-meta">
+        <span class="cinematic-date" id="cDate"></span>
+        <span class="cinematic-title" id="cTitle"></span>
+        <span class="cinematic-interviewee" id="cInterviewee"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="cinematic-original-btn" id="cOriginalBtn" title="切换原文显示">原文显示</button>
+        <button class="cinematic-close" id="cClose">&times;</button>
+      </div>
+    </div>
+    <div class="cinematic-body" id="cBody"></div>
+  </div>
+
+  <script src="data.js?v=202608262339"></script>
+  <script>
+    // ==================== 简易 Markdown 渲染器 ====================
+    function renderMarkdown(html) {
+      if (!html) return "";
+      // 原文标记 [original]...[/original]
+      html = html.replace(/\[original\]([\s\S]*?)\[\/original\]/g, '<span class="md-original">$1</span>');
+      // 自定义颜色 [c1]~[c10]（合并为单个正则）
+      html = html.replace(/\[c(\d+)\](.+?)\[\/c\1\]/g, '<span class="mc-c$1">$2</span>');
+      return html;
+    }
+
+    // ==================== 日期格式化 ====================
+    function formatDate(dateStr) {
+      if (!dateStr) return "";
+      // 去除时间部分
+      dateStr = dateStr.replace(/\s[\d:]+$/, "").trim();
+      // 标准化分隔符：2025年6月15日 / 2025-06-15 / 2025.06.15 → 2025/06/15
+      let m;
+      if ((m = dateStr.match(/(\d{4})[\/\-\.年](\d{1,2})[\/\-\.月](\d{1,2})[日]?/))) {
+        return m[1] + "/" + m[2].padStart(2, "0") + "/" + m[3].padStart(2, "0");
+      }
+      return dateStr;
+    }
+
+    // ==================== 渲染卡片 ====================
+    const gallery = document.getElementById("gallery");
+    const noResults = document.getElementById("noResults");
+    const resultCount = document.getElementById("resultCount");
+    let searchQuery = "";
+
+    function escapeHTML(str) {
+      const div = document.createElement("div");
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function renderCards(data) {
+      gallery.innerHTML = "";
+      const filtered = data.filter(item => {
+        if (!searchQuery) return true;
+        const q = searchQuery.toLowerCase();
+        return (item.title && item.title.toLowerCase().includes(q)) ||
+               (item.interviewee && item.interviewee.toLowerCase().includes(q));
+      });
+
+      resultCount.textContent = filtered.length + " 条结果";
+
+      if (filtered.length === 0) {
+        noResults.style.display = "block";
+      } else {
+        noResults.style.display = "none";
+      }
+
+      filtered.forEach((item, idx) => {
+        const card = document.createElement("div");
+        card.className = "interview-card";
+        card.innerHTML = `
+          <div class="card-image" onclick="openCinematic(${idx})">
+            ${item.poster ? `<img src="${escapeHTML(item.poster)}" alt="${escapeHTML(item.title)}" loading="lazy">` : '<div class="card-placeholder"></div>'}
+          </div>
+          <div class="card-info">
+            <div class="card-date">${formatDate(item.date)}</div>
+            <div class="card-title">${escapeHTML(item.title)}</div>
+            <div class="card-interviewee">${escapeHTML(item.interviewee)}</div>
+          </div>`;
+        // 存储原始索引用于打开浮层
+        card.setAttribute("data-orig-idx", data.indexOf(item));
+        gallery.appendChild(card);
+      });
+    }
+
+    // ==================== 搜索 ====================
+    document.getElementById("searchInput").addEventListener("input", function() {
+      searchQuery = this.value.trim();
+      renderCards(interviewData);
+    });
+
+    // ==================== 全屏浮层 ====================
+    const overlay = document.getElementById("cinematicOverlay");
+
+    window.openCinematic = function(idx) {
+      const item = interviewData[idx];
+      if (!item) return;
+
+      document.getElementById("cDate").textContent = formatDate(item.date);
+      document.getElementById("cTitle").textContent = item.title;
+      document.getElementById("cInterviewee").textContent = item.interviewee;
+
+      const body = document.getElementById("cBody");
+      if (item.md_html) {
+        body.innerHTML = '<div class="md-content">' + renderMarkdown(item.md_html) + '</div>';
+      } else {
+        body.innerHTML = '<div class="md-content"><p style="color:#555">暂无访谈内容</p></div>';
+      }
+
+      // 重置原文显示状态
+      const btn = document.getElementById("cOriginalBtn");
+      btn.textContent = "原文显示";
+      btn.classList.remove("hidden-original");
+      body.classList.remove("hide-original");
+
+      overlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+      body.scrollTop = 0;
+    };
+
+    // 原文显示切换
+    let showOriginal = true;
+    document.getElementById("cOriginalBtn").addEventListener("click", function() {
+      const body = document.getElementById("cBody");
+      // 找到视口顶部第一个可见的段落/标题作为锚点
+      const blocks = body.querySelectorAll("p, h1, h2, h3, li, blockquote");
+      let anchor = null;
+      let oldTop = 0;
+      for (let b of blocks) {
+        const rect = b.getBoundingClientRect();
+        if (rect.top >= -10 || rect.bottom > 0) {
+          anchor = b;
+          oldTop = rect.top;
+          break;
+        }
+      }
+
+      showOriginal = !showOriginal;
+      this.textContent = showOriginal ? "原文显示" : "隐藏原文";
+      if (showOriginal) {
+        this.classList.remove("hidden-original");
+        body.classList.remove("hide-original");
+      } else {
+        this.classList.add("hidden-original");
+        body.classList.add("hide-original");
+      }
+
+      // 精准偏移补偿：锚点元素距离屏幕顶部的物理像素保持不变
+      if (anchor) {
+        requestAnimationFrame(() => {
+          const newTop = anchor.getBoundingClientRect().top;
+          body.scrollBy(0, newTop - oldTop);
+        });
+      }
+    });
+
+    document.getElementById("cClose").addEventListener("click", () => {
+      overlay.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+
+    overlay.addEventListener("click", function(e) {
+      if (e.target === overlay) {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && overlay.classList.contains("active")) {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    });
+
+    // ==================== 初始化 ====================
+    renderCards(interviewData);
+  </script>
+</body>
+</html>

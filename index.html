@@ -7,13 +7,14 @@
   <title>唯鸡百科 · wijipedia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="announcements.js?v=202608261557" as="script">
-  <link rel="preload" href="songs/data.js?v=202608261557" as="script">
-  <link rel="preload" href="live/data.js?v=202608261557" as="script">
-  <link rel="preload" href="timeline/data.js?v=202608261557" as="script">
-  <link rel="preload" href="gallery/data.js?v=202608261557" as="script">
+  <link rel="preload" href="announcements.js?v=202608262339" as="script">
+  <link rel="preload" href="songs/data.js?v=202608262339" as="script">
+  <link rel="preload" href="live/data.js?v=202608262339" as="script">
+  <link rel="preload" href="timeline/data.js?v=202608262339" as="script">
+  <link rel="preload" href="gallery/data.js?v=202608262339" as="script">
+  <link rel="preload" href="interview/data.js?v=202608262339" as="script">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="nav-style.css?v=202608261557">
+  <link rel="stylesheet" href="nav-style.css?v=202608262339">
 </head>
 <body>
   <div class="silk-background">
@@ -137,7 +138,7 @@
     </a>
 
     <!-- 采访 -->
-    <a class="nav-card disabled" href="interview/index.html">
+    <a class="nav-card" href="interview/index.html">
       <svg class="sigil-icon" viewBox="0 0 100 100">
         <polyline class="sigil-door sigil-door-left" points="50,15 20,50 50,85" />
         <polyline class="sigil-door sigil-door-right" points="50,15 80,50 50,85" />
@@ -183,23 +184,25 @@
       <button class="close-drawer" id="closeDrawer">&times;</button>
     </div>
     <div class="drawer-content" id="drawerContent"></div>
+    <div class="pagination-bar" id="annPaginationBar"></div>
   </div>
 
   <footer class="nav-footer">
     Ave Mujica · Band &amp; Nonrico
   </footer>
 
-  <script src="announcements.js?v=202608261557"></script>
+  <script src="announcements.js?v=202608262339"></script>
   <script>
     // ==================== 后台预加载子页面数据 ====================
     // 在导航页加载完成后，主动下载并执行所有子页面的 data.js
     // 确保用户点击进入子页面时数据已在浏览器缓存和内存中，消除卡顿
     (function() {
       var dataFiles = [
-        'songs/data.js?v=202608232242',
-        'live/data.js?v=202608232242',
-        'timeline/data.js?v=202608232242',
-        'gallery/data.js?v=202608232242'
+        'songs/data.js?v=202608262026',
+        'live/data.js?v=202608262026',
+        'timeline/data.js?v=202608262026',
+        'gallery/data.js?v=202608262026',
+        'interview/data.js?v=202608262026'
       ];
       var loadNext = function(i) {
         if (i >= dataFiles.length) return;
@@ -248,6 +251,10 @@
     const drawerContent = document.getElementById('drawerContent');
 
     // 渲染抽屉内容
+    const ANN_PER_PAGE = 10;
+    let annCurrentPage = 1;
+    const allItems = [];
+
     window.ANNOUNCEMENTS.forEach(a => {
       const item = document.createElement('div');
       item.className = a.pinned ? 'log-item pinned-item' : 'log-item';
@@ -256,8 +263,49 @@
       } else {
         item.innerHTML = '<div class="log-date">[ ' + a.date + ' ]</div><div class="log-text">' + a.msg + '</div>';
       }
-      drawerContent.appendChild(item);
+      allItems.push(item);
     });
+
+    function renderAnnPage() {
+      const totalPages = Math.ceil(allItems.length / ANN_PER_PAGE) || 1;
+      if (annCurrentPage > totalPages) annCurrentPage = totalPages;
+      drawerContent.innerHTML = '';
+      const start = (annCurrentPage - 1) * ANN_PER_PAGE;
+      const end = start + ANN_PER_PAGE;
+      allItems.slice(start, end).forEach(item => drawerContent.appendChild(item));
+      renderAnnPagination(totalPages);
+    }
+
+    function renderAnnPagination(totalPages) {
+      const bar = document.getElementById('annPaginationBar');
+      if (totalPages <= 1) { bar.innerHTML = ''; return; }
+
+      let html = '';
+      html += '<button class="pagination-btn arrow"' + (annCurrentPage === 1 ? ' disabled' : '') + ' onclick="window._annGoPage(' + (annCurrentPage - 1) + ')">&#10094;</button>';
+
+      const maxVisible = 7;
+      let startPage = Math.max(1, annCurrentPage - Math.floor(maxVisible / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+      if (endPage - startPage < maxVisible - 1) startPage = Math.max(1, endPage - maxVisible + 1);
+
+      if (startPage > 1) {
+        html += '<button class="pagination-btn" onclick="window._annGoPage(1)">1</button>';
+        if (startPage > 2) html += '<span class="pagination-dots">...</span>';
+      }
+      for (let p = startPage; p <= endPage; p++) {
+        html += '<button class="pagination-btn' + (p === annCurrentPage ? ' active' : '') + '" onclick="window._annGoPage(' + p + ')">' + p + '</button>';
+      }
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) html += '<span class="pagination-dots">...</span>';
+        html += '<button class="pagination-btn" onclick="window._annGoPage(' + totalPages + ')">' + totalPages + '</button>';
+      }
+      html += '<button class="pagination-btn arrow"' + (annCurrentPage === totalPages ? ' disabled' : '') + ' onclick="window._annGoPage(' + (annCurrentPage + 1) + ')">&#10095;</button>';
+      html += '<span class="pagination-info">' + annCurrentPage + ' / ' + totalPages + '</span>';
+      bar.innerHTML = html;
+    }
+
+    window._annGoPage = function(page) { annCurrentPage = page; renderAnnPage(); };
+    renderAnnPage();
 
     trigger.addEventListener('click', () => {
       drawer.classList.add('open');

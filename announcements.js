@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.08.26",
+    "msg": "1.LIVE logo样式厕所 2.公告样式变更 3.interview开放&内容测试",
+    "pinned": false
+  },
+  {
     "date": "2026.08.25",
     "msg": "1.Songs更新Angles，元素专歌曲占位中 2.LIVE样式更新 3.日常BUG维护",
     "pinned": false
