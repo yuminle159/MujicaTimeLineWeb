@@ -597,8 +597,7 @@
         var cn = i < cnLines.length ? escapeHTML(cnLines[i]) : "";
         lyricsRows += '<div class="song-lyrics-row"><span class="song-lyrics-jp">' + jp + '</span><span class="song-lyrics-cn">' + cn + '</span></div>';
       }
-      rightHTML += '<div class="song-lyrics-block"><div class="song-lyrics-header"><div class="song-section-title" style="border:none;margin:0;padding:0;">Lyrics</div>' +
-        '<div class="song-lyrics-actions"><button class="song-lyrics-toggle" id="songLyricsToggle">歌词mode</button><button class="song-lyrics-copy" id="songLyricsCopy" title="一键复制全部歌词">&#128203; 复制</button></div></div>' +
+      rightHTML += '<div class="song-lyrics-block"><div class="song-lyrics-header"><div class="song-section-title" style="border:none;margin:0;padding:0;">Lyrics</div></div>' +
         '<div class="song-lyrics-columns">' + lyricsRows + '</div></div>';
     }
 
@@ -623,40 +622,6 @@
 
     songModalRight.innerHTML = rightHTML || '<div style="color:#555;text-align:center;padding:40px;">暂无更多信息</div>';
 
-    setTimeout(function() {
-      var toggle = document.getElementById("songLyricsToggle");
-      var lyricsBlock = songModalRight.querySelector(".song-lyrics-columns");
-      var copyBtn = document.getElementById("songLyricsCopy");
-      if (toggle && lyricsBlock) {
-        toggle.addEventListener("click", function(e) {
-          e.stopPropagation();
-          lyricsBlock.parentElement.classList.toggle("song-clean-mode");
-          toggle.textContent = lyricsBlock.parentElement.classList.contains("song-clean-mode") ? "退出Lyrics mode" : "歌词mode";
-        });
-      }
-      if (copyBtn && song) {
-        copyBtn.addEventListener("click", function(e) {
-          e.stopPropagation();
-          var jp = (song.lyrics_jp || "").replace(/\\n/g, "\n");
-          var cn = (song.lyrics_cn || "").replace(/\\n/g, "\n");
-          var all = "【" + (song.name_jp || song.name) + "】\n\n[JP]\n" + jp + "\n\n[CN]\n" + cn;
-          navigator.clipboard.writeText(all).then(function() {
-            copyBtn.textContent = "已复制!";
-            setTimeout(function() { copyBtn.textContent = "复制"; }, 1500);
-          }).catch(function() {
-            var ta = document.createElement("textarea");
-            ta.value = all;
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand("copy");
-            document.body.removeChild(ta);
-            copyBtn.textContent = "已复制!";
-            setTimeout(function() { copyBtn.textContent = "复制"; }, 1500);
-          });
-        });
-      }
-    }, 0);
-
     songModalOverlay.classList.add("open");
     cachedSongModalIndex = index;
   };
@@ -664,13 +629,10 @@
   function closeSongModal() {
     songModalOverlay.classList.remove("open");
     document.body.style.overflow = "";
-    // 恢复抽屉状态
     if (window._drawerWasActive) {
       drawerOverlay.classList.add("active");
       document.body.style.overflow = "hidden";
     }
-    var lb = songModalRight.querySelector(".song-lyrics-block");
-    if (lb) lb.classList.remove("song-clean-mode");
   }
 
   songModalClose.addEventListener("click", closeSongModal);
