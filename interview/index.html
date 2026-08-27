@@ -7,8 +7,8 @@
   <title>Interview · 唯鸡百科</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608271653">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202608272317">
 </head>
 <body>
   <div class="interview-page">
@@ -50,7 +50,7 @@
     <div class="cinematic-body" id="cBody"></div>
   </div>
 
-  <script src="data.js?v=202608271653"></script>
+  <script src="data.js?v=202608272317"></script>
   <script>
     // ==================== 简易 Markdown 渲染器 ====================
     function renderMarkdown(html) {
@@ -151,6 +151,7 @@
 
     // ==================== 全屏浮层 ====================
     const overlay = document.getElementById("cinematicOverlay");
+    const renderedCache = []; // 缓存已渲染的 HTML，避免重复计算
 
     window.openCinematic = function(idx) {
       const item = interviewData[idx];
@@ -162,7 +163,11 @@
 
       const body = document.getElementById("cBody");
       if (item.md_html) {
-        body.innerHTML = '<div class="md-content">' + renderMarkdown(item.md_html) + '</div>';
+        // 使用缓存，避免重复 renderMarkdown
+        if (!renderedCache[idx]) {
+          renderedCache[idx] = '<div class="md-content">' + renderMarkdown(item.md_html) + '</div>';
+        }
+        body.innerHTML = renderedCache[idx];
       } else {
         body.innerHTML = '<div class="md-content"><p style="color:#555">暂无访谈内容</p></div>';
       }
@@ -182,18 +187,28 @@
     let showOriginal = true;
     document.getElementById("cOriginalBtn").addEventListener("click", function() {
       const body = document.getElementById("cBody");
-      // 找到视口顶部第一个可见的段落/标题作为锚点
+      // 关闭浏览器原生滚动锚定，防止干扰
+      body.style.overflowAnchor = "none";
+
+      // 找到距离视口中心最近的段落/标题（最小粒度元素）
       const blocks = body.querySelectorAll("p, h1, h2, h3, li, blockquote");
       let anchor = null;
-      let oldTop = 0;
+      let minDist = Infinity;
+      const viewCenter = window.innerHeight / 2;
+
       for (let b of blocks) {
         const rect = b.getBoundingClientRect();
-        if (rect.top >= -10 || rect.bottom > 0) {
-          anchor = b;
-          oldTop = rect.top;
-          break;
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const elemCenter = rect.top + rect.height / 2;
+          const dist = Math.abs(viewCenter - elemCenter);
+          if (dist < minDist) {
+            minDist = dist;
+            anchor = b;
+          }
         }
       }
+
+      const oldTop = anchor ? anchor.getBoundingClientRect().top : 0;
 
       showOriginal = !showOriginal;
       this.textContent = showOriginal ? "原文显示" : "隐藏原文";
@@ -205,11 +220,12 @@
         body.classList.add("hide-original");
       }
 
-      // 精准偏移补偿：锚点元素距离屏幕顶部的物理像素保持不变
+      // 像素级滚轮补偿：锚点距离屏幕顶部不变
       if (anchor) {
         requestAnimationFrame(() => {
           const newTop = anchor.getBoundingClientRect().top;
           body.scrollBy(0, newTop - oldTop);
+          body.style.overflowAnchor = "auto";
         });
       }
     });
@@ -235,6 +251,25 @@
 
     // ==================== 初始化 ====================
     renderCards(interviewData);
+
+    // 后台预渲染所有访谈内容，消除首次点击延迟
+    if (window.requestIdleCallback) {
+      requestIdleCallback(() => {
+        interviewData.forEach((item, i) => {
+          if (item.md_html && !renderedCache[i]) {
+            renderedCache[i] = '<div class="md-content">' + renderMarkdown(item.md_html) + '</div>';
+          }
+        });
+      });
+    } else {
+      setTimeout(() => {
+        interviewData.forEach((item, i) => {
+          if (item.md_html && !renderedCache[i]) {
+            renderedCache[i] = '<div class="md-content">' + renderMarkdown(item.md_html) + '</div>';
+          }
+        });
+      }, 100);
+    }
   </script>
 </body>
 </html>

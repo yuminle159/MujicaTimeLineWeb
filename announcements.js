@@ -6,8 +6,13 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.08.27",
+    "msg": "1.interview内容测试完成 新增2024/10/02 Diggy-MO'访谈 2.LIVE Backstage图片展示功能测试：SUMMER SONIC 2026 OSAKA完成",
+    "pinned": false
+  },
+  {
     "date": "2026.08.26",
-    "msg": "1.LIVE logo样式厕所 2.公告样式变更 3.interview开放&内容测试",
+    "msg": "1.LIVE logo样式测试 2.公告样式变更 3.interview开放&内容测试",
     "pinned": false
   },
   {

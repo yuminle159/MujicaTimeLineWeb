@@ -420,8 +420,8 @@ body {
 /* ===== 抽屉内容（双栏） ===== */
 .drawer-content {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
   padding: 40px 48px;
   flex: 1;
   min-height: 0;
@@ -497,7 +497,7 @@ body {
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
-  width: 320px;
+  width: 220px;
   min-width: 0;
 }
 .highlight-badge {
@@ -574,9 +574,8 @@ body {
 
 /* ===== Backstage 照片 ===== */
 .photo-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  column-count: 2;
+  column-gap: 12px;
 }
 .photo-card {
   position: relative;
@@ -584,6 +583,8 @@ body {
   overflow: hidden;
   background: var(--md-surface);
   box-shadow: var(--md-elevation-1);
+  break-inside: avoid;
+  margin-bottom: 12px;
 }
 .photo-card img {
   width: 100%;
@@ -591,53 +592,48 @@ body {
   object-fit: cover;
   cursor: pointer;
 }
-.photo-overlay {
+/* 多图指示器 */
+.photo-card .multi-badge {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 28px 14px 14px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: all var(--md-duration-medium) var(--md-easing-standard);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  will-change: transform, opacity;
-}
-.photo-card:hover .photo-overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
-.photo-credit {
-  font-size: 13px;
-  color: var(--md-on-surface);
-}
-.photo-credit span {
-  display: block;
-  font-size: 11px;
-  color: var(--md-primary);
-  margin-bottom: 2px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-}
-.source-link {
-  color: #fff;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.18);
-  padding: 5px 10px;
-  border-radius: var(--md-radius-sm);
-  font-size: 11px;
-  transition: background var(--md-duration-short) var(--md-easing-standard);
-  white-space: nowrap;
-}
-.source-link:hover {
+  top: 8px;
+  right: 8px;
   background: var(--md-primary);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: "Space Grotesk", sans-serif;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  z-index: 2;
+  pointer-events: none;
+  letter-spacing: 0.5px;
 }
 
-/* ===== Backstage 轮播 ===== */
+/* credit 标签（左上角，不可选中，穿透点击） */
+.photo-card .credit-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 11px;
+  color: var(--md-primary);
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  max-width: calc(100% - 60px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== 统一滚动条 ===== */
 .photo-carousel {
   position: relative;
 }
@@ -723,6 +719,115 @@ body {
   object-fit: contain;
   border-radius: var(--md-radius-sm);
   box-shadow: var(--md-elevation-3);
+  cursor: pointer;
+}
+/* HUD 悬浮面板（毛玻璃铭牌） */
+.kv-lightbox-hud {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  padding: 0 40px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+.kv-lightbox-hud.hidden {
+  opacity: 0;
+}
+/* 左侧：红线毛玻璃铭牌 */
+.hud-info-block {
+  background: rgba(5, 5, 7, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-left: 2px solid var(--md-primary);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px 24px;
+  max-width: 45%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+.hud-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.hud-desc {
+  font-size: 12px;
+  color: #b3b3b3;
+  font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+/* 右侧：毛玻璃计数器 + 源链接 */
+.hud-right {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+.hud-source-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 5, 7, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  color: #ccc;
+  letter-spacing: 2px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.hud-source-btn:hover {
+  color: #fff;
+  border-color: var(--md-primary);
+  background: rgba(204, 41, 41, 0.15);
+}
+.hud-counter {
+  background: rgba(5, 5, 7, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: 'Space Grotesk', monospace;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.counter-label {
+  font-size: 10px;
+  color: var(--md-primary);
+  font-weight: bold;
+}
+.counter-num {
+  font-size: 13px;
+  color: #ccc;
+  letter-spacing: 2px;
+}
+@media (max-width: 768px) {
+  .hud-info-block { max-width: 80%; padding: 16px; }
+  .kv-lightbox-hud { bottom: 20px; padding: 0 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hud-counter { align-self: flex-end; }
 }
 .kv-lightbox-close {
   position: absolute;
@@ -776,21 +881,6 @@ body {
 .kv-lightbox-next {
   right: 24px;
 }
-.kv-lightbox-counter {
-  display: none;
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #ccc;
-  font-size: 14px;
-  font-family: "Space Grotesk", monospace, sans-serif;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 6px 16px;
-  border-radius: var(--md-radius-full);
-}
-
 /* ===== MC 弹窗 ===== */
 .mc-modal {
   display: none;
