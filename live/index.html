@@ -434,12 +434,19 @@
     }
     lb.classList.add("active");
     document.body.style.overflow = "hidden";
+    img.style.opacity = "0";
+    img.onload = () => { img.style.opacity = "1"; };
   };
   window.moveKvLightbox = function(direction) {
     if (!kvGroup) return;
     kvIndex = ((kvIndex + direction) % kvGroup.length + kvGroup.length) % kvGroup.length;
     const img = document.getElementById("kvLightboxImg");
-    img.src = kvGroup[kvIndex];
+    img.style.opacity = "0";
+    img.src = "";
+    requestAnimationFrame(() => {
+      img.src = kvGroup[kvIndex];
+      img.onload = () => { img.style.opacity = "1"; };
+    });
     updateKvHud(kvIndex);
   };
   window.closeKvLightbox = function() {

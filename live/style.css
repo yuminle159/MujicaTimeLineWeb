@@ -720,6 +720,8 @@ body {
   border-radius: var(--md-radius-sm);
   box-shadow: var(--md-elevation-3);
   cursor: pointer;
+  background: #000;
+  transition: opacity 0.15s ease;
 }
 /* HUD 悬浮面板（毛玻璃铭牌） */
 .kv-lightbox-hud {
