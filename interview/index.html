@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608272317">
+  <link rel="stylesheet" href="style.css?v=202608281551">
 </head>
 <body>
   <div class="interview-page">
@@ -50,25 +50,9 @@
     <div class="cinematic-body" id="cBody"></div>
   </div>
 
-  <script src="data.js?v=202608272317"></script>
+  <script src="data.js?v=202608281551"></script>
+  <script src="../js/renderMarkdown.js?v=202608281551"></script>
   <script>
-    // ==================== 简易 Markdown 渲染器 ====================
-    function renderMarkdown(html) {
-      if (!html) return "";
-      // 归一化：移除包裹 [original] / [/original] 的独立 <p> 标签
-      // （当 md 中 [original] 前后有空行时，render_md_to_html 会将其包入独立 <p>，
-      //   导致后续正则替换产生无效 HTML，使 .md-original 样式失效）
-      html = html.replace(/<p>\[original\]<\/p>/g, '[original]');
-      html = html.replace(/<p>\[\/original\]<\/p>/g, '[/original]');
-      // 原文标记 [original]...[/original]
-      html = html.replace(/\[original\]([\s\S]*?)\[\/original\]/g, '<span class="md-original">$1</span>');
-      // 自定义颜色 [c1]~[c10]（合并为单个正则）
-      html = html.replace(/\[c(\d+)\](.+?)\[\/c\1\]/g, '<span class="mc-c$1">$2</span>');
-      // 空行标签 [br]
-      html = html.replace(/\[br\]/g, '<br>');
-      return html;
-    }
-
     // ==================== 日期格式化 ====================
     function formatDate(dateStr) {
       if (!dateStr) return "";
@@ -269,6 +253,20 @@
           }
         });
       }, 100);
+    }
+
+    // 支持 URL hash 自动打开指定访谈
+    // 支持数字索引: #0, #1, #2 ...
+    // 支持标题: #弄和藤都子
+    if (location.hash) {
+      const raw = decodeURIComponent(location.hash.slice(1));
+      let idx = parseInt(raw, 10);
+      if (isNaN(idx)) {
+        idx = interviewData.findIndex(item => item.title === raw);
+      }
+      if (idx >= 0 && idx < interviewData.length) {
+        setTimeout(() => openCinematic(idx), 200);
+      }
     }
   </script>
 </body>

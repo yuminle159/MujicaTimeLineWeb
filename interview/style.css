@@ -314,9 +314,10 @@ body {
   -webkit-overflow-scrolling: touch;
   contain: strict;
 }
-.cinematic-body::-webkit-scrollbar { width: 3px; }
+.cinematic-body::-webkit-scrollbar { width: 6px; }
 .cinematic-body::-webkit-scrollbar-track { background: transparent; }
-.cinematic-body::-webkit-scrollbar-thumb { background: rgba(204, 41, 41, 0.4); border-radius: 2px; }
+.cinematic-body::-webkit-scrollbar-thumb { background: rgba(204, 41, 41, 0.4); border-radius: 3px; }
+.cinematic-body { scrollbar-width: auto; scrollbar-color: rgba(204, 41, 41, 0.4) transparent; }
 
 /* ===== MD 渲染样式 ===== */
 .md-content {
@@ -446,6 +447,8 @@ body {
 .mc-c8 { color: #FF7788; }
 .mc-c9 { color: #FFEE55; }
 .mc-c10 { color: #9977CC; }
+.mc-c11 { color: #77BBDD; }
+.mc-c12 { color: #cc2929; }
 
 /* ===== 响应式 ===== */
 @media (max-width: 1100px) {

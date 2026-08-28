@@ -111,6 +111,94 @@ def read_sheet(wb, sheet_name):
     return result
 
 
+def render_md_to_html(md):
+    """预渲染 Markdown → HTML（保留 [original] [cN] [br] [translation] 标签供浏览器动态处理）"""
+    if not md:
+        return ""
+    html = md
+
+    # 1. 代码块保护
+    code_blocks = []
+    def save_code(m):
+        idx = len(code_blocks)
+        code_blocks.append(m.group(2).strip())
+        return f"<!--CODEBLOCK_{idx}-->"
+    html = re.sub(r'```\w*\n(.*?)```', save_code, html, flags=re.DOTALL)
+
+    # 2. 转义 HTML
+    html = html.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+    # 3. 还原代码块
+    def restore_code(m):
+        idx = int(m.group(1))
+        return f"<pre><code>{code_blocks[idx]}</code></pre>"
+    html = re.sub(r'<!--CODEBLOCK_(\d+)-->', restore_code, html)
+
+    # 保留 [original] [cN] [br] [translation] 不处理，留给浏览器
+
+    # 4. 标题
+    html = re.sub(r'^### (.+)$', r'<h3>\1</h3>', html, flags=re.MULTILINE)
+    html = re.sub(r'^## (.+)$', r'<h2>\1</h2>', html, flags=re.MULTILINE)
+    html = re.sub(r'^# (.+)$', r'<h1>\1</h1>', html, flags=re.MULTILINE)
+
+    # 5. 粗体 / 斜体
+    html = re.sub(r'\*\*\*(.+?)\*\*\*', r'<strong><em>\1</em></strong>', html)
+    html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
+    html = re.sub(r'\*(.+?)\*', r'<em>\1</em>', html)
+
+    # 6. 图片
+    html = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', r'<img src="\2" alt="\1" loading="lazy">', html)
+
+    # 7. 链接
+    html = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank" rel="noopener">\1</a>', html)
+
+    # 8. 引用块
+    html = re.sub(r'^&gt; (.+)$', r'<blockquote><p>\1</p></blockquote>', html, flags=re.MULTILINE)
+
+    # 9. 横线
+    html = re.sub(r'^---$', r'<hr>', html, flags=re.MULTILINE)
+
+    # 10. 无序列表
+    html = re.sub(r'^[\-\*] (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
+    html = re.sub(r'((?:<li>.*</li>\n?)+)', r'<ul>\1</ul>', html)
+
+    # 11. 有序列表
+    html = re.sub(r'^\d+\. (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
+    def wrap_ol(m):
+        if '<ul>' in m.group(0):
+            return m.group(0)
+        return '<ol>' + m.group(0) + '</ol>'
+    html = re.sub(r'((?:<li>.*</li>\n?)+)', wrap_ol, html)
+
+    # 12. 段落
+    def para_handler(m):
+        extra = len(m.group(0)) - 2
+        if extra <= 0:
+            return '</p><p>'
+        return '</p>' + '<p>&nbsp;</p>' * extra + '<p>'
+    html = re.sub(r'\n\n+', para_handler, html)
+
+    # [br] 空行标签（在段落处理后、单换行前处理）
+    # 单换行包围时：\n[br]\n → <br><br>（消耗两个换行，输出两个 <br> = 一个空行）
+    # 双换行包围时（interview）：已被步骤 12 隔离在独立 <p> 中，[br] → <br> 即可
+    html = re.sub(r'\n\[br\]\n', '<br><br>', html)
+    html = re.sub(r'^\[br\]\n', '<br><br>', html)
+    html = re.sub(r'\n\[br\]$', '<br><br>', html)
+    html = html.replace('[br]', '<br>')  # 兜底：处理已被段落隔离的 [br]
+
+    # 单换行
+    html = html.replace('\n', '<br>')
+
+    # 包裹
+    html = '<p>' + html + '</p>'
+
+    # 清理
+    html = re.sub(r'<p></p>', '', html)
+    html = re.sub(r'<p>\s*</p>', '', html)
+
+    return html
+
+
 # =========================== 1. 公告 ===========================
 def generate_announcements(wb):
     raw = read_sheet(wb, "announcements")
@@ -305,7 +393,7 @@ def generate_live(wb):
                 md_path = os.path.join(MC_DIR, mc_file)
                 if os.path.isfile(md_path):
                     with open(md_path, "r", encoding="utf-8") as f:
-                        track["mc_content"] = f.read().strip()
+                        track["mc_content"] = render_md_to_html(f.read())
                     mc_count += 1
 
     lines = []
@@ -519,86 +607,6 @@ def generate_gallery(wb):
 
 
 # =========================== 6. 访谈 ===========================
-def render_md_to_html(md):
-    """预渲染 Markdown → HTML（保留 [original] 和 [cN] 标签供浏览器动态处理）"""
-    if not md:
-        return ""
-    html = md
-
-    # 1. 代码块保护
-    code_blocks = []
-    def save_code(m):
-        idx = len(code_blocks)
-        code_blocks.append(m.group(2).strip())
-        return f"<!--CODEBLOCK_{idx}-->"
-    html = re.sub(r'```\w*\n(.*?)```', save_code, html, flags=re.DOTALL)
-
-    # 2. 转义 HTML
-    html = html.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-
-    # 3. 还原代码块
-    def restore_code(m):
-        idx = int(m.group(1))
-        return f"<pre><code>{code_blocks[idx]}</code></pre>"
-    html = re.sub(r'<!--CODEBLOCK_(\d+)-->', restore_code, html)
-
-    # 保留 [original]...[/original] 和 [cN]...[/cN] 不处理，留给浏览器
-
-    # 4. 标题
-    html = re.sub(r'^### (.+)$', r'<h3>\1</h3>', html, flags=re.MULTILINE)
-    html = re.sub(r'^## (.+)$', r'<h2>\1</h2>', html, flags=re.MULTILINE)
-    html = re.sub(r'^# (.+)$', r'<h1>\1</h1>', html, flags=re.MULTILINE)
-
-    # 5. 粗体 / 斜体
-    html = re.sub(r'\*\*\*(.+?)\*\*\*', r'<strong><em>\1</em></strong>', html)
-    html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
-    html = re.sub(r'\*(.+?)\*', r'<em>\1</em>', html)
-
-    # 6. 图片
-    html = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', r'<img src="\2" alt="\1" loading="lazy">', html)
-
-    # 7. 链接
-    html = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank" rel="noopener">\1</a>', html)
-
-    # 8. 引用块
-    html = re.sub(r'^&gt; (.+)$', r'<blockquote><p>\1</p></blockquote>', html, flags=re.MULTILINE)
-
-    # 9. 横线
-    html = re.sub(r'^---$', r'<hr>', html, flags=re.MULTILINE)
-
-    # 10. 无序列表
-    html = re.sub(r'^[\-\*] (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
-    html = re.sub(r'((?:<li>.*</li>\n?)+)', r'<ul>\1</ul>', html)
-
-    # 11. 有序列表
-    html = re.sub(r'^\d+\. (.+)$', r'<li>\1</li>', html, flags=re.MULTILINE)
-    def wrap_ol(m):
-        if '<ul>' in m.group(0):
-            return m.group(0)
-        return '<ol>' + m.group(0) + '</ol>'
-    html = re.sub(r'((?:<li>.*</li>\n?)+)', wrap_ol, html)
-
-    # 12. 段落
-    def para_handler(m):
-        extra = len(m.group(0)) - 2
-        if extra <= 0:
-            return '</p><p>'
-        return '</p>' + '<p>&nbsp;</p>' * extra + '<p>'
-    html = re.sub(r'\n\n+', para_handler, html)
-
-    # 单换行
-    html = html.replace('\n', '<br>')
-
-    # 包裹
-    html = '<p>' + html + '</p>'
-
-    # 清理
-    html = re.sub(r'<p></p>', '', html)
-    html = re.sub(r'<p>\s*</p>', '', html)
-
-    return html
-
-
 def generate_interview(wb):
     raw = read_sheet(wb, "interview")
     interviews = []

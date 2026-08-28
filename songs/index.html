@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608272317">
+  <link rel="stylesheet" href="style.css?v=202608281551">
 </head>
 <body>
   <div class="songs-page">
@@ -46,7 +46,9 @@
     </div>
   </div>
 
-  <script src="data.js?v=202608272317"></script>
+  <script src="data.js?v=202608281551"></script>
+  <script src="../interview/data.js?v=202608281551"></script>
+  <script src="../js/renderMarkdown.js?v=202608281551"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -183,12 +185,15 @@
 
   function buildSourceLink(c) {
     if (!c.source) return '';
-    const isURL = /^https?:\/\//i.test(c.source);
+    const isURL = /^(https?:\/\/|[.\/])/i.test(c.source);
     if (isURL) {
       return `<div class="comment-source"><a href="${escapeHTML(c.source)}" target="_blank" rel="noopener">&#128279; 出处</a></div>`;
-    } else {
-      return `<div class="comment-source is-text">${escapeHTML(c.source)}</div>`;
     }
+    // 检查是否匹配 interview 标题 → 浮层打开
+    if (typeof interviewData !== 'undefined' && interviewData.some(item => item.title === c.source)) {
+      return `<div class="comment-source"><a href="javascript:void(0)" data-interview="${escapeHTML(c.source)}" class="interview-link" onclick="openInterviewCinematic(this.dataset.interview)">&#128279; 采访出处</a></div>`;
+    }
+    return `<div class="comment-source is-text">${escapeHTML(c.source)}</div>`;
   }
 
   window.switchComment = function(index) {
@@ -382,6 +387,112 @@
     if (idx >= 0) openModal(idx);
   }
 })();
+  </script>
+
+  <!-- 访谈沉浸式浮层（嵌入 songs 页面） -->
+  <div class="cinematic-overlay" id="cinematicOverlay">
+    <div class="cinematic-header">
+      <div class="cinematic-meta">
+        <span class="cinematic-date" id="cDate"></span>
+        <span class="cinematic-title" id="cTitle"></span>
+        <span class="cinematic-interviewee" id="cInterviewee"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="cinematic-original-btn" id="cOriginalBtn" title="切换原文显示">原文显示</button>
+        <button class="cinematic-close" id="cClose">&times;</button>
+      </div>
+    </div>
+    <div class="cinematic-body" id="cBody"></div>
+  </div>
+
+  <script>
+    // ==================== 访谈浮层逻辑 ====================
+    (function() {
+      const overlay = document.getElementById("cinematicOverlay");
+      const body = document.getElementById("cBody");
+      const renderedCache = [];
+
+      function formatDate(dateStr) {
+        if (!dateStr) return "";
+        dateStr = dateStr.replace(/\s[\d:]+$/, "").trim();
+        let m;
+        if ((m = dateStr.match(/(\d{4})[\/\-\.年](\d{1,2})[\/\-\.月](\d{1,2})[日]?/))) {
+          return m[1] + "/" + m[2].padStart(2, "0") + "/" + m[3].padStart(2, "0");
+        }
+        return dateStr;
+      }
+
+      window.openInterviewCinematic = function(title) {
+        const idx = interviewData.findIndex(item => item.title === title);
+        if (idx === -1) return;
+        const item = interviewData[idx];
+
+        document.getElementById("cDate").textContent = formatDate(item.date);
+        document.getElementById("cTitle").textContent = item.title;
+        document.getElementById("cInterviewee").textContent = item.interviewee;
+
+        if (!renderedCache[idx]) {
+          renderedCache[idx] = '<div class="md-content">' + renderMarkdown(item.md_html) + '</div>';
+        }
+        body.innerHTML = renderedCache[idx];
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+        body.scrollTop = 0;
+      };
+
+      // 原文显示切换
+      let showOriginal = true;
+      document.getElementById("cOriginalBtn").addEventListener("click", function() {
+        const blocks = body.querySelectorAll("p, h1, h2, h3, li, blockquote");
+        let anchor = null;
+        let minDist = Infinity;
+        const viewCenter = window.innerHeight / 2;
+        for (let b of blocks) {
+          const rect = b.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const dist = Math.abs(viewCenter - (rect.top + rect.height / 2));
+            if (dist < minDist) { minDist = dist; anchor = b; }
+          }
+        }
+        const oldTop = anchor ? anchor.getBoundingClientRect().top : 0;
+        showOriginal = !showOriginal;
+        this.textContent = showOriginal ? "原文显示" : "隐藏原文";
+        if (showOriginal) {
+          this.classList.remove("hidden-original");
+          body.classList.remove("hide-original");
+        } else {
+          this.classList.add("hidden-original");
+          body.classList.add("hide-original");
+        }
+        if (anchor) {
+          requestAnimationFrame(() => {
+            body.style.overflowAnchor = "none";
+            const newTop = anchor.getBoundingClientRect().top;
+            body.scrollBy(0, newTop - oldTop);
+            body.style.overflowAnchor = "auto";
+          });
+        }
+      });
+
+      document.getElementById("cClose").addEventListener("click", () => {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+
+      overlay.addEventListener("click", function(e) {
+        if (e.target === overlay) {
+          overlay.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      });
+
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && overlay.classList.contains("active")) {
+          overlay.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+      });
+    })();
   </script>
 </body>
 </html>

@@ -965,6 +965,17 @@ body {
 .mc-c8 { color: #FF7788; }
 .mc-c9 { color: #FFEE55; }
 .mc-c10 { color: #9977CC; }
+.mc-c11 { color: #77BBDD; }
+.mc-c12 { color: #cc2929; }
+/* 原文标记 */
+.mc-modal-body .md-original {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.7;
+  margin-top: 8px;
+  padding: 8px 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.06);
+}
 /* MC 滚动条 */
 .mc-modal-container {
   scrollbar-width: thin;
