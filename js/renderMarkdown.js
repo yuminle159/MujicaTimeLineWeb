@@ -25,7 +25,14 @@ function renderMarkdown(html, options) {
   html = html.replace(/<p>\[translation\]<\/p>/g, '[translation]');
 
   // 2. [original]...[/original] → 原文标记
-  html = html.replace(/\[original\]([\s\S]*?)\[\/original\]/g, '<span class="md-original">$1</span>');
+  //    跨段落时使用 <div> 包裹，避免 <span> 嵌套 <p> 产生无效 HTML
+  //    浏览器解析无效 HTML 时会进行不可预测的 DOM 重构，导致图片等后续内容被误包入 .md-original
+  html = html.replace(/\[original\]([\s\S]*?)\[\/original\]/g, function(match, content) {
+    if (/<p>|<\/p>/.test(content)) {
+      return '<div class="md-original">' + content + '</div>';
+    }
+    return '<span class="md-original">' + content + '</span>';
+  });
 
   // 3. [c1]~[c10] 自定义颜色
   html = html.replace(/\[c(\d+)\](.+?)\[\/c\1\]/g, '<span class="mc-c$1">$2</span>');

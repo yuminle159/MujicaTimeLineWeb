@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608281551">
+  <link rel="stylesheet" href="style.css?v=202608292352">
 </head>
 <body>
   <div class="interview-page">
@@ -50,8 +50,8 @@
     <div class="cinematic-body" id="cBody"></div>
   </div>
 
-  <script src="data.js?v=202608281551"></script>
-  <script src="../js/renderMarkdown.js?v=202608281551"></script>
+  <script src="data.js?v=202608292352"></script>
+  <script src="../js/renderMarkdown.js?v=202608292352"></script>
   <script>
     // ==================== 日期格式化 ====================
     function formatDate(dateStr) {
@@ -104,8 +104,12 @@
       filtered.forEach((item, idx) => {
         const card = document.createElement("div");
         card.className = "interview-card";
+        const origIdx = data.indexOf(item);
+        card.setAttribute("data-orig-idx", origIdx);
+        card.style.cursor = "pointer";
+        card.addEventListener("click", () => openCinematic(origIdx));
         card.innerHTML = `
-          <div class="card-image" onclick="openCinematic(${data.indexOf(item)})">
+          <div class="card-image">
             ${item.poster ? `<img src="${escapeHTML(item.poster)}" alt="${escapeHTML(item.title)}" loading="lazy">` : '<div class="card-placeholder"></div>'}
           </div>
           <div class="card-info">
@@ -113,8 +117,6 @@
             <div class="card-title">${escapeHTML(item.title)}</div>
             <div class="card-interviewee">${escapeHTML(item.interviewee)}</div>
           </div>`;
-        // 存储原始索引用于打开浮层
-        card.setAttribute("data-orig-idx", data.indexOf(item));
         gallery.appendChild(card);
       });
     }

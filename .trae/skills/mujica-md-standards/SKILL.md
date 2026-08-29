@@ -68,8 +68,44 @@ Doloris：
 | `live/index.html` | 加载共享 JS，调用 `renderMarkdown(mcContent, { mode: "mc" })` |
 | `interview/index.html` | 加载共享 JS，调用 `renderMarkdown(item.md_html)` |
 
+## 已知陷阱 / Known Pitfalls
+
+### ⚠️ `<span>` 不能包裹 `<p>` 标签（最严重 Bug）
+
+**根因**：当 `[original]` 和 `[/original]` 各自独占一行（前后有空行）时，Python 预渲染会产生：
+
+```html
+<p>[original]</p>        <!-- 归一化后变成裸 [original] -->
+<p>原文内容</p>
+<p>[/original]</p>       <!-- 归一化后变成裸 [/original] -->
+```
+
+JS 归一化步骤移除 `<p>` 包裹后，正则 `\[original\]([\s\S]*?)\[\/original\]` 匹配到的内容**包含 `<p>` 标签**。如果此时用 `<span>` 包裹：
+
+```html
+<span class="md-original"><p>原文内容</p></span>
+```
+
+**`<span>` 是内联元素，HTML 规范不允许它包含 `<p>` 块级元素。** 浏览器解析这种无效 HTML 时会进行不可预测的 DOM 重构，导致 `.md-original` 意外包裹后续的图片、段落等所有内容。
+
+**修复原则（必须遵守）**：当 `[original]` 或任何标签的匹配内容可能包含 `<p>` / `</p>` 时，**必须使用 `<div>` 而非 `<span>`**：
+
+```javascript
+html = html.replace(/\[original\]([\s\S]*?)\[\/original\]/g, function(match, content) {
+  if (/<p>|<\/p>/.test(content)) {
+    return '<div class="md-original">' + content + '</div>';  // ← 用 div！
+  }
+  return '<span class="md-original">' + content + '</span>';  // 纯内联内容才用 span
+});
+```
+
+**教训**：在 HTML 字符串上做正则替换时，永远要考虑替换后的 HTML 是否合法。`<span>` 不能包含任何块级元素（`<p>`, `<div>`, `<h1>`~`<h6>`, `<ul>`, `<ol>`, `<li>`, `<blockquote>` 等）。
+
+---
+
 ## 禁止事项
 
 - ❌ 不要在 MC 文件中使用 `---` 做中日分列，请使用 `[translation]`
 - ❌ 不要在渲染函数中各自定义颜色替换逻辑，全部通过 `js/renderMarkdown.js` 统一处理
 - ❌ 不要使用 `[c1]~[c12]` 以外的写法（必须用 `[/cN]` 闭合）
+- ❌ 绝对不要在正则替换中用 `<span>` 包裹可能包含 `<p>` 标签的内容，必须用 `<div>`

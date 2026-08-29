@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608281551">
+  <link rel="stylesheet" href="style.css?v=202608292352">
 </head>
 <body>
   <div class="gallery-page">
@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <script src="data.js?v=202608281551"></script>
+  <script src="data.js?v=202608292352"></script>
   <script>
     // ==================== 动态生成筛选器 ====================
     const catMap = {}; // { CATEGORY: Set of subtags }
@@ -199,7 +199,7 @@
       const overlay = document.createElement('div');
       overlay.className = 'item-overlay';
       overlay.innerHTML = `
-        <div class="item-date">${item.date}</div>
+        <div class="item-date">${formatDate(item.date)}</div>
         <div class="item-desc">${item.title}</div>
       `;
 
@@ -216,6 +216,19 @@
     // 初始分页
     paginate();
 
+    function formatDate(dateStr) {
+      if (!dateStr) return "";
+      var d = String(dateStr).replace(/[年月]/g, "/").replace(/[日]/g, "");
+      var parts = d.split(/[\/\-\.]/);
+      if (parts.length === 3) {
+        var y = parseInt(parts[0], 10);
+        var m = String(parseInt(parts[1], 10)).padStart(2, "0");
+        var day = String(parseInt(parts[2], 10)).padStart(2, "0");
+        return y + "/" + m + "/" + day;
+      }
+      return dateStr;
+    }
+
     // ==================== 灯箱 ====================
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -226,7 +239,7 @@
 
     function openLightbox(item) {
       lightboxImg.src = item.filename;
-      lightboxDate.textContent = item.date;
+      lightboxDate.textContent = formatDate(item.date);
       lightboxTitle.textContent = item.title;
       lightboxDesc.textContent = item.description || '';
       lightbox.classList.add('active');

@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.08.29",
+    "msg": "1.interview更新4篇 2.songs更新元素曲歌词 3.live summer sonic 2026 backstage更新完成 4.Bug处理",
+    "pinned": false
+  },
+  {
     "date": "2026.08.27",
     "msg": "1.interview内容测试完成 新增2024/10/02 Diggy-MO'访谈 2.LIVE Backstage图片展示功能测试：SUMMER SONIC 2026 OSAKA完成",
     "pinned": false
