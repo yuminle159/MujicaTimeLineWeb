@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608292352">
+  <link rel="stylesheet" href="style.css?v=202608301644">
 </head>
 <body>
   <div class="songs-page">
@@ -19,6 +19,15 @@
 
     <!-- 工具栏 -->
     <div class="toolbar">
+      <div class="filter-group">
+        <button class="main-tag" id="filterOriginal" data-type="Original">
+          <span class="diamond">◆</span> 仅显示原创
+        </button>
+        <button class="main-tag" id="filterCover" data-type="Cover">
+          <span class="diamond">◆</span> 仅显示翻唱
+        </button>
+      </div>
+      <div class="separator"></div>
       <div class="search-box">
         <span class="search-icon">&#128269;</span>
         <input type="text" id="searchInput" placeholder="搜索歌名...">
@@ -46,13 +55,38 @@
     </div>
   </div>
 
-  <script src="data.js?v=202608292352"></script>
-  <script src="../interview/data.js?v=202608292352"></script>
-  <script src="../js/renderMarkdown.js?v=202608292352"></script>
+  <script src="data.js?v=202608301644"></script>
+  <script src="../interview/data.js?v=202608301644"></script>
+  <script src="../js/renderMarkdown.js?v=202608301644"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
   let searchQuery = "";
+  let activeType = null;  // null | "Original" | "Cover"
+
+  // ===== 类型筛选按钮 =====
+  document.getElementById("filterOriginal").addEventListener("click", function() {
+    if (activeType === "Original") {
+      activeType = null;
+      this.classList.remove("active");
+    } else {
+      activeType = "Original";
+      this.classList.add("active");
+      document.getElementById("filterCover").classList.remove("active");
+    }
+    renderGallery();
+  });
+  document.getElementById("filterCover").addEventListener("click", function() {
+    if (activeType === "Cover") {
+      activeType = null;
+      this.classList.remove("active");
+    } else {
+      activeType = "Cover";
+      this.classList.add("active");
+      document.getElementById("filterOriginal").classList.remove("active");
+    }
+    renderGallery();
+  });
 
   // ===== 按年份分组 =====
   function groupByYear() {
@@ -72,9 +106,13 @@
   }
 
   function filterSongs(songs) {
-    if (!searchQuery) return songs;
+    let filtered = songs;
+    if (activeType) {
+      filtered = filtered.filter(s => s.type === activeType);
+    }
+    if (!searchQuery) return filtered;
     const q = searchQuery.toLowerCase();
-    return songs.filter(s => {
+    return filtered.filter(s => {
       return s.name.toLowerCase().includes(q) ||
              (s.name_jp && s.name_jp.toLowerCase().includes(q)) ||
              (s.search_keywords && s.search_keywords.toLowerCase().includes(q));
@@ -141,7 +179,7 @@
     const jp = song.name_jp ? `<span class="cover-song-name">${escapeHTML(song.name_jp)}</span>` : "";
     const cn = song.name ? `<span class="cover-song-name-cn">${escapeHTML(song.name)}</span>` : "";
     return `
-      <div class="cover-card" data-song-index="${songsData.indexOf(song)}" onclick="openModal(${songsData.indexOf(song)})">
+      <div class="cover-card type-${(song.type || '').toLowerCase()}" data-song-index="${songsData.indexOf(song)}" onclick="openModal(${songsData.indexOf(song)})">
         ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name_jp || song.name)}" loading="lazy">` : '<div class="cover-placeholder"></div>'}
         <div class="cover-overlay">
           ${jp}

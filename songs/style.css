@@ -74,6 +74,43 @@ body {
   padding: 0 60px 24px;
   flex-wrap: wrap;
 }
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.main-tag {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+  transition: color 0.3s;
+  padding: 0;
+}
+.main-tag:hover { color: #aaa; }
+.main-tag.active {
+  color: #fff;
+  font-weight: bold;
+}
+.diamond {
+  font-size: 12px;
+  color: #333;
+}
+.main-tag.active .diamond {
+  color: #ff4d4d;
+}
+.separator {
+  width: 1px;
+  height: 18px;
+  background-color: rgba(255, 255, 255, 0.12);
+  margin: 0 12px;
+}
 .search-box {
   display: flex;
   align-items: center;
@@ -183,7 +220,15 @@ body {
   background: var(--md-surface-container);
   transition: transform var(--md-duration-medium) var(--md-easing-emphasized),
               box-shadow var(--md-duration-medium) var(--md-easing-standard);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 16px rgba(255, 255, 255, 0.06), 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+/* 原创曲：淡淡暗金色边框+光晕 */
+.cover-card.type-original {
+  box-shadow: 0 0 0 1px rgba(180, 150, 80, 0.15), 0 0 16px rgba(180, 150, 80, 0.08), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+/* 翻唱曲：淡淡暗蓝色边框+光晕 */
+.cover-card.type-cover {
+  box-shadow: 0 0 0 1px rgba(80, 120, 180, 0.15), 0 0 16px rgba(80, 120, 180, 0.08), 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .cover-card:hover {
   transform: scale(1.04);
