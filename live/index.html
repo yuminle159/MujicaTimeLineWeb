@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608302233">
+  <link rel="stylesheet" href="style.css?v=202608302243">
 </head>
 <body>
   <div class="live-page">
@@ -53,10 +53,7 @@
   <div id="kvLightbox" class="kv-lightbox" onclick="closeKvLightbox()">
     <button class="kv-lightbox-close" onclick="closeKvLightbox()">&times;</button>
     <button class="kv-lightbox-arrow kv-lightbox-prev" onclick="event.stopPropagation();moveKvLightbox(-1)">&#10094;</button>
-    <div class="kv-lightbox-imgs" id="kvLightboxImgs" onclick="event.stopPropagation();toggleKvHud()">
-      <img id="kvLightboxImgA" src="" alt="">
-      <img id="kvLightboxImgB" src="" alt="">
-    </div>
+    <img id="kvLightboxImg" src="" alt="" onclick="event.stopPropagation();toggleKvHud()">
     <div class="kv-lightbox-hud" id="kvLightboxHud" onclick="event.stopPropagation()">
       <div class="hud-info-block">
         <div class="hud-title" id="hudTitle"></div>
@@ -73,9 +70,9 @@
     <button class="kv-lightbox-arrow kv-lightbox-next" onclick="event.stopPropagation();moveKvLightbox(1)">&#10095;</button>
   </div>
 
-  <script src="../songs/data.js?v=202608302233"></script>
-  <script src="data.js?v=202608302233"></script>
-  <script src="../js/renderMarkdown.js?v=202608302233"></script>
+  <script src="../songs/data.js?v=202608302243"></script>
+  <script src="data.js?v=202608302243"></script>
+  <script src="../js/renderMarkdown.js?v=202608302243"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -390,19 +387,10 @@
     kvSourceUrls = sourceUrls || [];
     kvSourceLabels = sourceLabels || [];
     const lb = document.getElementById("kvLightbox");
-    const imgA = document.getElementById("kvLightboxImgA");
-    const imgB = document.getElementById("kvLightboxImgB");
+    const img = document.getElementById("kvLightboxImg");
     const hud = document.getElementById("kvLightboxHud");
     const hudCounter = document.getElementById("hudCounter");
-    // 重置：imgA 显示，imgB 隐藏
-    kvImgToggle = false;
-    imgA.src = (kvGroup ? kvGroup[kvIndex] : src);
-    imgA.style.opacity = "0";
-    imgA.style.visibility = "visible";
-    imgB.style.opacity = "0";
-    imgB.style.visibility = "hidden";
-    imgB.src = "";
-    imgA.onload = () => { imgA.style.opacity = "1"; };
+    img.src = (kvGroup ? kvGroup[kvIndex] : src);
     hud.classList.remove("hidden");
     if (kvGroup) {
       updateKvHud(kvIndex);
@@ -415,22 +403,19 @@
     }
     lb.classList.add("active");
     document.body.style.overflow = "hidden";
+    img.style.opacity = "0";
+    img.onload = () => { img.style.opacity = "1"; };
   };
-  let kvImgToggle = false;
   window.moveKvLightbox = function(direction) {
     if (!kvGroup) return;
     kvIndex = ((kvIndex + direction) % kvGroup.length + kvGroup.length) % kvGroup.length;
-    kvImgToggle = !kvImgToggle;
-    const oldImg = document.getElementById(kvImgToggle ? "kvLightboxImgA" : "kvLightboxImgB");
-    const newImg = document.getElementById(kvImgToggle ? "kvLightboxImgB" : "kvLightboxImgA");
-    newImg.src = "";
-    newImg.style.opacity = "0";
-    newImg.style.visibility = "visible";
-    newImg.onload = () => {
-      newImg.style.opacity = "1";
-      oldImg.style.opacity = "0";
-    };
-    newImg.src = kvGroup[kvIndex];
+    const img = document.getElementById("kvLightboxImg");
+    img.style.opacity = "0";
+    img.src = "";
+    requestAnimationFrame(() => {
+      img.src = kvGroup[kvIndex];
+      img.onload = () => { img.style.opacity = "1"; };
+    });
     updateKvHud(kvIndex);
   };
   window.closeKvLightbox = function() {

@@ -745,12 +745,7 @@ body {
   opacity: 1;
   visibility: visible;
 }
-.kv-lightbox-imgs {
-  display: grid;
-  place-items: center;
-}
-.kv-lightbox-imgs img {
-  grid-area: 1 / 1;
+.kv-lightbox img {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
@@ -758,9 +753,7 @@ body {
   box-shadow: var(--md-elevation-3);
   cursor: pointer;
   background: #000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.15s ease;
 }
 /* HUD 悬浮面板（毛玻璃铭牌） */
 .kv-lightbox-hud {
