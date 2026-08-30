@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.08.30",
+    "msg": "1.songs全歌曲基础信息&performance更新完毕 2.timeline 弄李部分更新至2024.2 3.live新增跳转切片的功能 4.Bug修复",
+    "pinned": false
+  },
+  {
     "date": "2026.08.29",
     "msg": "1.interview更新4篇 2.songs更新元素曲歌词 3.live summer sonic 2026 backstage更新完成 4.Bug处理",
     "pinned": false

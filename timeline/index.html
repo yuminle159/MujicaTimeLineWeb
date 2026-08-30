@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608301644">
+  <link rel="stylesheet" href="style.css?v=202608302233">
 </head>
 <body>
   <div class="timeline-page">
@@ -56,7 +56,7 @@
     <button class="tl-lightbox-arrow tl-lightbox-next">&#10095;</button>
   </div>
 
-  <script src="data.js?v=202608301644"></script>
+  <script src="data.js?v=202608302233"></script>
   <script>
 (function () {
   const PD = timelineConfig.pixelsPerDay;
@@ -321,6 +321,7 @@
     const imageItems = mediaItems.filter(m => m.type === "image");
     const videoItems = mediaItems.filter(m => m.type === "video");
     const linkItems = mediaItems.filter(m => m.type === "link");
+    const hasBoth = imageItems.length > 0 && videoItems.length > 0;
 
     let mediaHTML = "";
 
@@ -328,14 +329,14 @@
     if (imageItems.length > 0) {
       if (imageItems.length === 1) {
         const img = imageItems[0];
-        mediaHTML += `<div class="tl-modal-img-carousel">
+        mediaHTML += `<div class="tl-modal-img-carousel${hasBoth ? ' tl-media-img' : ''}">
           <div class="tl-img-track">
             <img src="${img.src}" alt="${img.caption || ''}" class="active" onclick="openTlLightbox('${img.src}', ${JSON.stringify(imageItems.map(m => m.src)).replace(/"/g, '&quot;')}, 0)">
           </div>
           ${img.caption ? `<div class="tl-modal-img-cap">${img.caption.replace(/\n/g, "<br>")}</div>` : ""}
         </div>`;
       } else {
-        mediaHTML += '<div class="tl-modal-img-carousel" id="tlImgCarousel">';
+        mediaHTML += `<div class="tl-modal-img-carousel${hasBoth ? ' tl-media-img' : ''}" id="tlImgCarousel">`;
         mediaHTML += '<div class="tl-img-track">';
         imageItems.forEach((img, i) => {
           mediaHTML += `<img src="${img.src}" alt="${img.caption || ''}" class="${i === 0 ? 'active' : ''}" loading="lazy" data-index="${i}" onclick="openTlLightbox('${img.src}', ${JSON.stringify(imageItems.map(m => m.src)).replace(/"/g, '&quot;')}, ${i})">`;
@@ -355,9 +356,9 @@
     // 视频区域
     if (videoItems.length > 0) {
       if (videoItems.length === 1) {
-        mediaHTML += `<div class="tl-modal-video"><iframe src="${videoItems[0].src}" allowfullscreen></iframe></div>`;
+        mediaHTML += `<div class="tl-modal-video${hasBoth ? ' tl-media-video' : ''}"><iframe src="${videoItems[0].src}" allowfullscreen></iframe></div>`;
       } else {
-        mediaHTML += '<div class="tl-modal-video-carousel" id="tlVideoCarousel">';
+        mediaHTML += `<div class="tl-modal-video-carousel${hasBoth ? ' tl-media-video' : ''}" id="tlVideoCarousel">`;
         mediaHTML += '<div class="tl-video-track">';
         videoItems.forEach((v, i) => {
           mediaHTML += `<iframe data-src="${v.src}" class="tl-carousel-video${i === 0 ? ' active' : ''}" allowfullscreen data-index="${i}"></iframe>`;
@@ -380,18 +381,53 @@
       mediaHTML += '</div>';
     }
 
+    // 切换按钮（同时有图片和视频时显示）
+    let toggleHTML = "";
+    if (hasBoth) {
+      toggleHTML = `<div class="tl-modal-toggle">
+        <span class="tl-toggle-tab active" data-mode="image">Image</span>
+        <span class="tl-toggle-tab" data-mode="video">Video</span>
+      </div>`;
+    }
+
     tlModalBody.innerHTML = `
       <div class="tl-modal-title">${ev.title}</div>
-      <div class="tl-modal-date">${ev.date}</div>
+      <div class="tl-modal-header">
+        <div class="tl-modal-date">${ev.date}</div>
+        ${toggleHTML}
+      </div>
       <div class="tl-modal-desc">${(ev.description || "").replace(/\n/g, "<br>")}</div>
       ${mediaHTML}
     `;
 
-    // 启动视频轮播首帧
-    setTimeout(() => {
-      const firstVideo = tlModalBody.querySelector(".tl-carousel-video.active");
-      if (firstVideo && firstVideo.dataset.src) firstVideo.src = firstVideo.dataset.src;
-    }, 0);
+    // 绑定切换事件
+    if (hasBoth) {
+      tlModalBody.classList.add("media-mode-image");
+      tlModalBody.querySelectorAll(".tl-toggle-tab").forEach(tab => {
+        tab.addEventListener("click", function() {
+          const mode = this.dataset.mode;
+          tlModalBody.classList.remove("media-mode-image", "media-mode-video");
+          tlModalBody.classList.add("media-mode-" + mode);
+          tlModalBody.querySelectorAll(".tl-toggle-tab").forEach(t => t.classList.remove("active"));
+          this.classList.add("active");
+          // 切换到视频时延迟加载首帧
+          if (mode === "video") {
+            setTimeout(() => {
+              const firstVideo = tlModalBody.querySelector(".tl-carousel-video.active");
+              if (firstVideo && firstVideo.dataset.src) firstVideo.src = firstVideo.dataset.src;
+            }, 0);
+          }
+        });
+      });
+    }
+
+    // 启动视频轮播首帧（无切换按钮时直接加载）
+    if (!hasBoth) {
+      setTimeout(() => {
+        const firstVideo = tlModalBody.querySelector(".tl-carousel-video.active");
+        if (firstVideo && firstVideo.dataset.src) firstVideo.src = firstVideo.dataset.src;
+      }, 0);
+    }
 
     tlModalOverlay.classList.add("open");
   }

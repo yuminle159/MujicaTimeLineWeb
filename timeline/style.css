@@ -440,6 +440,13 @@ body {
 .tl-modal-body::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 77, 77, 0.25);
 }
+.tl-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
 .tl-modal-title {
   font-family: "Cinzel", serif;
   font-size: 22px;
@@ -454,7 +461,40 @@ body {
   font-size: 12px;
   color: #666;
   letter-spacing: 1px;
-  margin-bottom: 20px;
+}
+.tl-modal-toggle {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.tl-toggle-tab {
+  font-size: 11px;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--md-on-surface-variant, #888);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.tl-toggle-tab:hover {
+  color: var(--md-primary-hover, #ff4d4d);
+}
+.tl-toggle-tab.active {
+  color: var(--md-primary, #cc2929);
+  background: var(--md-primary-container, rgba(204, 41, 41, 0.1));
+  border-bottom-color: var(--md-primary, #cc2929);
+}
+/* 媒体模式切换 */
+.tl-modal-body.media-mode-image .tl-media-video,
+.tl-modal-body.media-mode-image .tl-modal-video-carousel {
+  display: none;
+}
+.tl-modal-body.media-mode-video .tl-media-img,
+.tl-modal-body.media-mode-video .tl-modal-img-carousel {
+  display: none;
 }
 .tl-modal-desc {
   font-size: 14px;

@@ -2,10 +2,10 @@
 
 
 a = Analysis(
-    ['D:/yumin/web/MujicaTimeLineWeb/build_gui.py'],
+    ['F:\\mujicatimelineweb\\build_gui.py'],
     pathex=[],
     binaries=[],
-    datas=[('D:/yumin/web/MujicaTimeLineWeb/generate_all.py', '.')],
+    datas=[('F:\\mujicatimelineweb\\generate_all.py', '.')],
     hiddenimports=['openpyxl', 'openpyxl.cell', 'openpyxl.worksheet', 'PIL', 'PIL.Image'],
     hookspath=[],
     hooksconfig={},

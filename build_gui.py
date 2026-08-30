@@ -136,7 +136,7 @@ def run_update(selected_modules, do_webp, log_func, skip_webp=True):
         try:
             import openpyxl
             xlsx_path = os.path.join(PROJECT_DIR, "_data", "data.xlsx")
-            wb = openpyxl.load_workbook(xlsx_path)
+            wb = openpyxl.load_workbook(xlsx_path, data_only=True)
             sheets = wb.sheetnames
 
             for mod_id in selected_modules:

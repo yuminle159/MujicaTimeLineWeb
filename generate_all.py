@@ -348,6 +348,7 @@ def generate_live(wb):
             "highlight_label": sr.get("highlight_label", ""),
             "highlight_text": sr.get("highlight_text", ""),
             "mc_file": sr.get("mc_file", ""),
+            "link": sr.get("link", ""),
         })
 
     # 合并 backstage
@@ -803,7 +804,7 @@ def main():
     print("=== 唯鸡百科 · 统一数据生成 ===")
     print(f"数据源: {XLSX_PATH}\n")
 
-    wb = openpyxl.load_workbook(XLSX_PATH)
+    wb = openpyxl.load_workbook(XLSX_PATH, data_only=True)
     sheets = wb.sheetnames
     print(f"Sheet 列表: {', '.join(sheets)}\n")
 

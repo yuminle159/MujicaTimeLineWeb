@@ -255,7 +255,7 @@ body {
   top: 0;
   right: -100%;
   width: 85vw;
-  max-width: 1300px;
+  max-width: 1360px;
   height: 100vh;
   background: var(--md-surface-container);
   box-shadow: var(--md-elevation-3);
@@ -525,6 +525,38 @@ body {
   min-width: 0;
 }
 
+/* ===== Setlist 眼睛图标（来源链接） ===== */
+.track-link-eye {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: color 0.2s var(--md-easing-standard),
+              transform 0.2s var(--md-easing-standard);
+  vertical-align: middle;
+}
+.track-link-eye:hover {
+  color: var(--md-primary);
+  transform: scale(1.2);
+  animation: eye-wobble 0.35s ease-in-out;
+}
+.track-link-eye .eye-almond {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.track-link-eye .eye-pupil {
+  fill: currentColor;
+}
+@keyframes eye-wobble {
+  0%, 100% { transform: scale(1.2) rotate(0deg); }
+  25% { transform: scale(1.2) rotate(3deg); }
+  75% { transform: scale(1.2) rotate(-3deg); }
+}
+
 /* ===== Highlight 气泡 ===== */
 .highlight-bubble {
   position: fixed;
@@ -713,7 +745,12 @@ body {
   opacity: 1;
   visibility: visible;
 }
-.kv-lightbox img {
+.kv-lightbox-imgs {
+  display: grid;
+  place-items: center;
+}
+.kv-lightbox-imgs img {
+  grid-area: 1 / 1;
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
@@ -721,7 +758,9 @@ body {
   box-shadow: var(--md-elevation-3);
   cursor: pointer;
   background: #000;
-  transition: opacity 0.15s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 /* HUD 悬浮面板（毛玻璃铭牌） */
 .kv-lightbox-hud {

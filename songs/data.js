@@ -34,7 +34,7 @@ const songsData = [
       { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_7" },
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
-      { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "" }
+      { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_8" }
     ]
   },
   {
@@ -107,7 +107,7 @@ const songsData = [
       { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
-      { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "" }
+      { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_7" }
     ]
   },
   {
@@ -180,7 +180,7 @@ const songsData = [
       { text: "——感觉还能通宵畅聊呢（笑）。那么，如果要选一首特别有感情的乐曲的话？\\n\n高尾：真的很难选……我可能会选「黒のバースデイ」。因为它是0th LIVE上第一首演奏的歌曲，演奏的时候会有一种瞬间回到那个时候的感觉。或者说，能让我找回初心。\\n\n米泽：我懂！有一种穿着黑袍的感觉。\\n\n渡濑：确实（笑）。对观众来说，如果要说Ave Mujica的代表曲可能会想到「Ave Mujica」，但对我们来说，「黒のバースデイ」才是真正开始的曲子。最早练习的也是这首歌。\\n\n佐佐木：而且，它也是一首仿佛在为 Mujica 的诞生送上祝福的歌曲。\\n", source: "https://www.lisani.jp/0000271996/2/?show_more=1", from: "全员" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932539" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932539" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932539_2" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47932539_3" },
@@ -228,7 +228,7 @@ const songsData = [
       { text: "——初华和祥子，换句话说也就是 Doloris 和 Oblivionis，在演唱会上也有很多像「双月 ~Deep Into The Forest~」和「Symbol III : ▽」这样成对出现的演出呢。\\n高尾：大家也都非常敏锐地感受到了呢。我每次在演唱会上都会想着“请期待动画！”（笑）\\n渡濑：初华从动画的先导预告片时期开始，被截取出来的台词就几乎全都和祥子有关呢。我想大家从那个阶段开始，应该就已经察觉到一些端倪了吧（笑）。", source: "https://www.lisani.jp/0000274367/4/?show_more=1", from: "渡濑结月&高尾奏音" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_2" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_3" },
@@ -262,7 +262,7 @@ const songsData = [
       { text: "高尾：（笑）。比如说，「Choir ‘S’ Choir」的话，就是想象着在草原上弹奏的感觉。我会在自己心里变换场景意象来演奏，所以刚才被你说中，吓了一跳。\\n\n佐佐木：我一直都感觉得到哦！\\n\n高尾：好厉害！我们心意相通了啊！\\n", source: "https://www.animatetimes.com/news/details.php?id=1711341820&p=3", from: "佐佐木李子&高尾奏音" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_2" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_3" },
@@ -311,7 +311,7 @@ const songsData = [
       { text: "——然后到了2025年，以TV动画『BanG Dream! Ave Mujica』的播出为开端，势不可挡的“Mujica之年”即将拉开帷幕。\\n\n高尾： 信息量实在是太大了，看一遍根本消化不完呢。我觉得哪怕是至今为止已经发行过的那些歌曲，在看了动画之后，大家对它们的理解和感受也会发生改变。就我个人而言，非常希望大家能在看完动画全篇之后，再去重新听一遍「神さま、バカ」。", source: "https://www.lisani.jp/0000271996/4/?show_more=1", from: "全员②" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950" },
       { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950_2" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934950_3" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
@@ -352,7 +352,7 @@ const songsData = [
       { text: "——包括至今为止录制过的歌曲，在录音指导的过程中，有没有哪些瞬间让您获得了新的感悟呢？\\n\n【佐佐木】 这或许和“感悟”有些不太一样，但「Mas?uerade Rhapsody Re?uest」的录音过程让我印象极深。这首歌在录制完毕、大家正在确认录音音轨的时候，我自己本来也觉得“我已经毫无保留地发挥到极致了”。但是，制作人当时向我提议：“要不要最后再试着唱一遍？”，而我最后榨干所有力气唱出的那个版本，最终被正式采用了。那一刻，我深切地感受到，“Ave Mujica 的乐曲竟然能如此拓宽我自身的可能性”、“说不定我还能突破更多极限呢……”", source: "Ave Mujica、以“不自我设限”的姿态，引领前往“未曾有过的世界”", from: "佐佐木李子" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303" },
       { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303_2" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303_3" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
@@ -407,7 +407,7 @@ const songsData = [
       { text: "加东： 斋藤P对 Ave Mujica 的音乐有什么看法呢？\\n\n斋藤： 从 Ave Mujica 的音乐中，我也感受到了一种“好的意义上的年代感”。如果要问那具体是什么，就是那首同名主打歌「Ave Mujica」里感觉到的，里面用的是哈蒙德电风琴的音色对吧？\\n\n松本： 是的，是风琴。\\n\n斋藤： 像我这种听着Deep Purple和Rainbow长大的人，就觉得那种“形式美”真的非常棒。而且「Stargazer」，Rainbow也有一首同名的曲子。另外，Ave Mujica 的吉他音色非常重，但副歌却很有老歌谣曲的味道。如果在编曲的调味上稍微走偏一点，就会变成像「コモエスタ赤坂」（*昭和经典老歌谣曲）那样的歌了。就像“♪ララララ～”这样（唱起「Ave Mujica」的副歌），那种宛如俄罗斯民谣或日本以前的歌谣曲的感觉，哀伤的旋律让人觉得非常怀念。但是，她们的演奏用的却是7弦吉他和5弦贝斯，弹得极其硬核凶猛，这种反差感真是绝妙。", source: "https://spice.eplus.jp/articles/330950", from: "ASL齐藤P&Ave Mujica松本P" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758" },
       { date: "2023/9/17", venue: "有明アリーナ", name: "Roselia「Farbe」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758_2" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47934758_3" },
       { date: "2024/3/9", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2024", has_video: false, video_url: "" },
@@ -1063,7 +1063,7 @@ const songsData = [
       { text: "ALI PROJECT 「小女神花铃」OP", source: "", from: "Originally by" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_2" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_3" },
       { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
@@ -1092,7 +1092,7 @@ const songsData = [
       { text: "Creepy Nuts「彻夜之歌」OP", source: "", from: "Originally by" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763_2" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763_3" },
       { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
@@ -1120,7 +1120,7 @@ const songsData = [
       { text: "angela「K」OP", source: "", from: "Originally by" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710" },
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710" },
       { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710_2" },
       { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710_3" },
       { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
@@ -1170,7 +1170,7 @@ const songsData = [
       { text: "Roselia「ONENESS」收录曲", source: "", from: "Originally by" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935835" }
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935835" }
     ]
   },
   {
@@ -1194,7 +1194,7 @@ const songsData = [
       { text: "Roselia「Safe and Sound」收录曲", source: "", from: "Originally by" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE 「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935862" }
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935862" }
     ]
   }
 ];
