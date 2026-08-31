@@ -8,9 +8,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202608302255">
+  <link rel="stylesheet" href="style.css?v=202608311641">
 </head>
 <body>
+  <!-- 星空背景（固定在视口后方，随滚动产生视差） -->
+  <div class="stardust-bg" aria-hidden="true">
+    <div class="stardust-layer" id="stars-base"></div>
+    <div class="stardust-layer" id="stars-mid"></div>
+    <div class="stardust-layer" id="stars-blink-slow"></div>
+    <div class="stardust-layer" id="stars-blink-fast"></div>
+    <!-- 少量大颗“尖头十字”亮星，带朦胧光晕 -->
+    <div class="stardust-sparkles" id="stardustSparkles"></div>
+  </div>
+
   <div class="timeline-page">
     <header class="page-header">
       <a href="../index.html" class="back-nav">&larr; 返回主页</a>
@@ -56,9 +66,61 @@
     <button class="tl-lightbox-arrow tl-lightbox-next">&#10095;</button>
   </div>
 
-  <script src="data.js?v=202608302255"></script>
+  <script src="data.js?v=202608311641"></script>
   <script>
 (function () {
+  // ===== 生成星空背景 =====
+  function generateStardust(elementId, count, colorPalette) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    const shadows = [];
+    for (let i = 0; i < count; i++) {
+      // 用 vw/vh 单位让星点在任何屏幕下都均匀分布，并一次性写入 box-shadow
+      const x = (Math.random() * 100).toFixed(2);
+      const y = (Math.random() * 100).toFixed(2);
+      const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+      shadows.push(x + "vw " + y + "vh " + color);
+    }
+    el.style.boxShadow = shadows.join(", ");
+  }
+
+  // 幽暗底色系：白、红、蓝（低透明度）
+  const stardustDim = [
+    "rgba(255, 255, 255, 0.12)",
+    "rgba(204, 41, 41, 0.15)",
+    "rgba(80, 120, 180, 0.15)"
+  ];
+  // 高亮呼吸色系：白、红、金、蓝（较高透明度）
+  const stardustBright = [
+    "rgba(255, 255, 255, 0.7)",
+    "rgba(230, 40, 40, 0.6)",
+    "rgba(200, 160, 60, 0.55)",
+    "rgba(120, 160, 220, 0.6)"
+  ];
+
+  generateStardust("stars-base", 160, stardustDim);
+  generateStardust("stars-mid", 90, stardustDim);
+  generateStardust("stars-blink-slow", 26, stardustBright);
+  generateStardust("stars-blink-fast", 50, stardustBright);
+
+  // 生成少量大颗“尖头十字”亮星（数量少，各自独立闪烁，几乎不占性能）
+  (function generateBigStars(count) {
+    const container = document.getElementById("stardustSparkles");
+    if (!container) return;
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement("span");
+      s.className = "big-star";
+      const size = (16 + Math.random() * 20).toFixed(1); // 16 ~ 36 px
+      s.style.left = (Math.random() * 100).toFixed(2) + "vw";
+      s.style.top = (Math.random() * 100).toFixed(2) + "vh";
+      s.style.width = size + "px";
+      s.style.height = size + "px";
+      s.style.animationDuration = (3.5 + Math.random() * 4).toFixed(2) + "s";
+      s.style.animationDelay = (Math.random() * 5).toFixed(2) + "s";
+      container.appendChild(s);
+    }
+  })(11);
+
   const PD = timelineConfig.pixelsPerDay;
   const START_TOP = 80;
 
@@ -317,6 +379,9 @@
     if (!ev) return;
     document.body.style.overflow = "hidden";
 
+    // 清除上一次模态框残留的 media-mode class，避免影响新内容
+    tlModalBody.classList.remove("media-mode-image", "media-mode-video");
+
     const mediaItems = ev.media || [];
     const imageItems = mediaItems.filter(m => m.type === "image");
     const videoItems = mediaItems.filter(m => m.type === "video");
@@ -356,7 +421,7 @@
     // 视频区域
     if (videoItems.length > 0) {
       if (videoItems.length === 1) {
-        mediaHTML += `<div class="tl-modal-video${hasBoth ? ' tl-media-video' : ''}"><iframe src="${videoItems[0].src}" allowfullscreen></iframe></div>`;
+        mediaHTML += `<div class="tl-modal-video${hasBoth ? ' tl-media-video' : ''}"><iframe ${hasBoth ? `data-src="${videoItems[0].src}"` : `src="${videoItems[0].src}"`} class="tl-single-video" allowfullscreen></iframe></div>`;
       } else {
         mediaHTML += `<div class="tl-modal-video-carousel${hasBoth ? ' tl-media-video' : ''}" id="tlVideoCarousel">`;
         mediaHTML += '<div class="tl-video-track">';
@@ -413,9 +478,12 @@
           // 切换到视频时延迟加载首帧
           if (mode === "video") {
             setTimeout(() => {
-              const firstVideo = tlModalBody.querySelector(".tl-carousel-video.active");
+              const firstVideo = tlModalBody.querySelector(".tl-carousel-video.active") || tlModalBody.querySelector(".tl-single-video[data-src]");
               if (firstVideo && firstVideo.dataset.src) firstVideo.src = firstVideo.dataset.src;
             }, 0);
+          } else {
+            // 切回图片时停止视频播放
+            tlModalBody.querySelectorAll("iframe").forEach(f => { f.src = ""; });
           }
         });
       });

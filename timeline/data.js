@@ -531,22 +531,27 @@ const timelineData = [
     date: "2024/2/14",
     title: "丰川祥子生日",
     category: "personal",
-    description: "两人为丰川祥子庆生",
+    description: "两人为丰川祥子庆生\n高尾奏音：2月14日是我在BanGDream 里配音的丰川祥子酱的生日哦…🎂🩵☕️\n我试着弹了一下祥子在BanGDream动画MyGO 第13集中弹的那首《月光》🎹\n祥子，生日快乐，祝你度过幸福的一年…",
     tag: "private",
     media: [
-      { type: "image", src: "../images/20240214-1.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1757772519036330156\nhttps://x.com/Kanon_Takao/status/1757419963822854213", title: "佐佐木李子 X链接" }
+      { type: "image", src: "../images/20240214-1.webp", caption: "佐佐木李子创作" },
+      { type: "image", src: "../images/galleryless/20240214-庆生推特2.webp", caption: "评论区回复" },
+      { type: "image", src: "../images/galleryless/20240214-庆生推特1.webp", caption: "评论区回复" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV19B421z7wg" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1757419963822854213", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1757772519036330156", title: "佐佐木李子 X链接" }
     ]
   },
   {
     date: "2024/2/20",
     title: "高尾奏音展示佐佐木李子拍摄的照片",
     category: "personal",
-    description: "",
+    description: "高尾奏音：李子亲给我拍了照片☺️💛🩵",
     tag: "private",
     media: [
       { type: "image", src: "../images/20240220-1.webp" },
       { type: "image", src: "../images/20240220-2.webp" },
+      { type: "image", src: "../images/galleryless/20240220-推特回复.webp", caption: "评论区回复" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1759884288571674932", title: "高尾奏音 X链接" }
     ]
   },
@@ -570,17 +575,21 @@ const timelineData = [
       { type: "image", src: "../images/20240220-13.webp" },
       { type: "image", src: "../images/20240220-14.webp" },
       { type: "image", src: "../images/20240220-15.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1759774884635578835\nhttps://x.com/sasakirico/status/1759790155303653693\nhttps://x.com/sasakirico/status/1759774896669028805\nhttps://x.com/Kanon_Takao/status/1759831952612552950", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1759774884635578835", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1759790155303653693", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1759774896669028805", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1759831952612552950", title: "高尾奏音 X链接②" }
     ]
   },
   {
     date: "2024/2/21",
     title: "佐佐木李子移籍Lantis",
     category: "personal",
-    description: "高尾奏音评论区祝贺",
+    description: "高尾奏音评论区祝贺\n佐佐木李子：很高兴向大家宣布，这一次，我已决定作为 Lantis 旗下艺人全新出发\n同时，我也将演唱TV动画『Rinkai！』的OP，这首名为「Windshifter」的单曲会在5月22日正式发行！\n请大家期待加速并迈出全新一步的佐佐木李子吧🌀✨",
     tag: "private",
     media: [
       { type: "image", src: "../images/20240221-1.webp" },
+      { type: "image", src: "../images/galleryless/20240221-推特回复.webp", caption: "评论区回复" },
       { type: "link", url: "https://x.com/sasakirico/status/1760255621709135958", title: "佐佐木李子 X链接" }
     ]
   },
@@ -603,28 +612,36 @@ const timelineData = [
       { type: "image", src: "../images/20240301-10.webp" },
       { type: "image", src: "../images/20240301-11.webp" },
       { type: "image", src: "../images/20240301-12.webp" },
-      { type: "image", src: "../images/20240301-13.webp" }
+      { type: "image", src: "../images/20240301-13.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1763394769789800652", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1763394274887127104", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1763416215102570705", title: "高尾奏音 X链接②" },
+      { type: "link", url: "https://x.com/sasakirico/status/1765293975756583262", title: "佐佐木李子 X链接②" }
     ]
   },
   {
     date: "2024/3/9",
     title: "MEGAVEGAS2024预热",
     category: "personal",
-    description: "高尾奏音展示双月样式美甲",
+    description: "高尾奏音展示双月样式美甲\n高尾奏音：Doloris和Oblivionis的\n双月…🌙🌙\n\nMEGAVEGAS2024 还请各位多多关照…🎹⚙🩵",
     tag: "private",
     media: [
       { type: "image", src: "../images/20240309-1.webp" },
-      { type: "link", url: "" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1766285230066036877", title: "高尾奏音 X链接" }
     ]
   },
   {
     date: "2024/3/23",
     title: "与米泽茜前往观看冈田梦以出演的舞台剧",
     category: "personal",
-    description: "",
+    description: "高尾奏音：李子亲也让我戴了她的猫耳帽子🐈笑",
     tag: "private",
     media: [
-      { type: "link", url: "https://x.com/sasakirico/status/1771485155535847621\nhttps://x.com/sasakirico/status/1771484194830454840\nhttps://x.com/Kanon_Takao/status/1771485716557582606\nhttps://x.com/Kanon_Takao/status/1771478111802024143", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1771485155535847621", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1771484194830454840", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1771485716557582606", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1771478111802024143", title: "高尾奏音 X链接②" },
+      { type: "image", src: "../images/20240323-12.webp" },
       { type: "image", src: "../images/20240323-1.webp" },
       { type: "image", src: "../images/20240323-2.webp" },
       { type: "image", src: "../images/20240323-3.webp" },
@@ -636,7 +653,6 @@ const timelineData = [
       { type: "image", src: "../images/20240323-9.webp" },
       { type: "image", src: "../images/20240323-10.webp" },
       { type: "image", src: "../images/20240323-11.webp" },
-      { type: "image", src: "../images/20240323-12.webp" },
       { type: "image", src: "../images/20240323-13.webp" },
       { type: "image", src: "../images/20240323-14.webp" }
     ]
@@ -649,6 +665,7 @@ const timelineData = [
     tag: "private",
     media: [
       { type: "image", src: "../images/20240427.webp" },
+      { type: "image", src: "../images/galleryless/20240427-推特回复.webp", caption: "评论区回复" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1784059325587358021", title: "高尾奏音 X链接" }
     ]
   },
@@ -656,9 +673,10 @@ const timelineData = [
     date: "2024/6/14",
     title: "「Symbol III : ▽」Release",
     category: "personal",
-    description: "高尾奏音：Ave Mujica新曲『Symbol III : ▽』\n配信開始です🌊\n以前、耳にしたことがある方もいらっしゃるかもしれません…。\n歌声とピアノが想いを語り合っているような曲。\n大好きです🌙🎹⚙\n佐佐木李子：Ave Mujica新曲 『Symbol III : ▽』\n繊細で壮大なピアノ。。一音でも取りこぼしたら歌えなくなります。緊張感の中、寄せては返す波のように想いを込めました。\n最初から最後のブレスまで、意味を持たせています。",
+    description: "高尾奏音：Ave Mujica新曲『Symbol III : ▽』\n正式发布啦🌊\n或许有的朋友之前就已经听过这首歌了也说不定…。\n这是一首仿佛歌声与钢琴在互相倾诉着彼此心意的曲子。\n我真的非常喜欢🌙🎹⚙\n佐佐木李子：Ave Mujica新曲 『Symbol III : ▽』\n细腻又宏大的钢琴声。。哪怕只是漏听一个音我都会无法歌唱。在这份紧张感之中，我如同潮起潮落的波浪一般，将心意倾注其中。\n从最开始到最后的每一声呼吸，我都赋予了它意义。",
     tag: "private",
     media: [
+      { type: "image", src: "../images/water.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1801636846470054306", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1801640962609058188", title: "佐佐木李子 X链接" }
     ]
@@ -667,9 +685,11 @@ const timelineData = [
     date: "2024/6/26",
     title: "三角初华生日",
     category: "personal",
-    description: "佐佐木李子发布绿袖子演唱视频庆生，高尾奏音推文互动",
+    description: "佐佐木李子发布绿袖子演唱视频庆生，高尾奏音推文互动\n佐佐木李子：6.26 Happy Birthday💛Misumi Uika\n今天是我在BanG Dream!里配音的三角初华酱的生日！生日快乐！！\n我试着唱了一下BanG Dream!动画 MyGO 第13集里 Doloris 唱的那首「Greensleeves」🎤",
     tag: "private",
     media: [
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1Fm42157Ea" },
+      { type: "image", src: "../images/galleryless/20240626-推特回复.webp" },
       { type: "link", url: "https://x.com/sasakirico/status/1805617245693133248", title: "佐佐木李子 X链接" }
     ]
   },
@@ -677,33 +697,35 @@ const timelineData = [
     date: "2024/7/8",
     title: "「Symbol III : ▽」首演纪念",
     category: "personal",
-    description: "高尾奏音：Symbol III : ▽… ありがとう🌊 ずっと隣で弾いていたい🎹🌙\n佐佐木李子：Symbol III : ▽ こちらこそありがとうだよ…!! ずっと隣で歌っていたい🎤🌙",
+    description: "高尾奏音：Symbol III : ▽… 非常感谢🌊想一直在你身边弹奏🎹🌙\n佐佐木李子：Symbol III : ▽ 我这边才是非常感谢…!! 想一直在你身边歌唱🎤🌙",
     tag: "private",
     media: [
       { type: "image", src: "../images/20240708-1.webp" },
       { type: "image", src: "../images/20240708-2.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1809981777471238336", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1809985723535425885", title: "X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1809985723535425885", title: "佐佐木李子 X链接" }
     ]
   },
   {
     date: "2024/8/13",
     title: "佐佐木李子评论高尾奏音早安推",
     category: "personal",
-    description: "",
+    description: "高尾奏音：早上弄＼( 'ω')／ﾍｰｲ\n困得头晕眼“花”🌻🌸🌷🌼🌹🌺（眠くてフラフラワー）",
     tag: "private",
     media: [
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1823128241030455369", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1823128241030455369", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/galleryless/20240813-推特回复.webp" }
     ]
   },
   {
     date: "2024/9/10",
     title: "高尾奏音生日",
     category: "personal",
-    description: "佐佐木李子：大好きなのんたん！お誕生日おめでとう❣️のんたんと一緒にいるだけでいつも25252828してしまうよ！これからもずっとそばにいたいな。。いるよー！\nよろしくね💐いつもありがとう!!\n高尾奏音：大好きなりこ！ありがとう❣️\nこちらこそ、りこのおかげでいつも2525しすぎて口角が天まで伸びそうだよ😌💫\nずっとそばにいて！！！！！！！！",
+    description: "佐佐木李子评论区互动\n高尾奏音：迎来了生日，我22岁啦✨\n因为一直以来都得到了大家满满的支持…\n正因为是22岁，这次轮到我来努力，希望能成为让大家都露出“NicoNico（nini谐音22）”笑容的存在☺️\n一直以来谢谢大家🍀今后也请多多关照🎀\n(我还换了新头像哦＼( 'ω')／)",
     tag: "private",
     media: [
       { type: "image", src: "../images/20240910.webp" },
+      { type: "image", src: "../images/galleryless/20240910-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1833158688686969340", title: "高尾奏音 X链接" }
     ]
   },
@@ -711,10 +733,28 @@ const timelineData = [
     date: "2024/10/3",
     title: "两人出演鷲崎健のヨルナイト×ヨルナイト节目",
     category: "personal",
-    description: "圣经诞生",
+    description: "圣经诞生，谈论了很多彼此之间深刻的内容，必看",
     tag: "private",
     media: [
-      { type: "image", src: "../images/20241003.webp" }
+      { type: "image", src: "../images/20241003-1.webp" },
+      { type: "image", src: "../images/20241003-2.webp" },
+      { type: "image", src: "../images/20241003-3.webp" },
+      { type: "image", src: "../images/galleryless/20241003-推特回复.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1Ak2DYgEp1" },
+      { type: "link", url: "https://x.com/sasakirico/status/1841759984289190293", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1841882696496374020", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1841883109715013984", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    date: "2024/10/4",
+    title: "迷上了烘焙的李子和奏音的互动",
+    category: "personal",
+    description: "佐佐木李子：第一次做的面包哦🥐\n要吃一个吗",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/galleryless/20241004-推特回复.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1842064880859541574", title: "佐佐木李子 X链接" }
     ]
   },
   {
