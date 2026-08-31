@@ -35,6 +35,7 @@ body {
   overflow: hidden;
   pointer-events: none;
   background: #080808;
+  contain: layout style paint;
 }
 
 /* 每一层都是一颗“种子”元素，星点全部用 box-shadow 绘制，仅一张合成层 */
@@ -43,11 +44,10 @@ body {
   border-radius: 50%;
   background: transparent;
   transform: translateZ(0);
-  will-change: transform, opacity;
   backface-visibility: hidden;
+  contain: layout style paint;
 }
 
-/* 伪元素克隆到视口下方，配合向下漂移实现无缝循环 */
 .stardust-layer::after {
   content: "";
   position: absolute;
@@ -91,7 +91,6 @@ body {
   width: 24px;
   height: 24px;
   transform: translateZ(0);
-  will-change: opacity;
   pointer-events: none;
   animation: stardust-twinkle 5s ease-in-out infinite alternate;
 }

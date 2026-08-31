@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.08.31",
+    "msg": "1.timeline弄李 ~2024 更新完成 2.BUG修复",
+    "pinned": false
+  },
+  {
     "date": "2026.08.30",
     "msg": "1.songs全歌曲基础信息&performance更新完毕 2.timeline 弄李部分更新至2024.2 3.live新增跳转切片的功能 4.Bug修复",
     "pinned": false

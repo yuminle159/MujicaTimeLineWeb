@@ -101,14 +101,15 @@ const timelineData = [
     media: [
       { type: "image", src: "../images/20230826-1.webp" },
       { type: "image", src: "../images/20230826-2.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1695354653582746087\nhttps://x.com/sasakirico/status/1695353330820899279", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1695354653582746087", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1695353330820899279", title: "佐佐木李子 X链接" }
     ]
   },
   {
     date: "2023/9/27",
     title: "弄李与共友林鼓子的三人蔷薇园之行",
     category: "personal",
-    description: "首次有记载的外出游玩",
+    description: "首次有记载的外出游玩\n佐佐木李子：和最喜欢的人们在玫瑰园度过了幸福的时光🌹\n高尾奏音・林鼓子・佐佐木李子组成的\nnoncocorico！\n高尾奏音：之前和林鼓子酱、佐佐木李子酱三个人一起去玫瑰园玩啦🌹✨\n玫瑰的世界实在太美了，超级感动＼( 'ω')／\nnoncocorico聚在一起，心里就会觉得暖洋洋的…🥰",
     tag: "private",
     media: [
       { type: "image", src: "../images/20230927-1.webp" },
@@ -118,14 +119,15 @@ const timelineData = [
       { type: "image", src: "../images/20230927-5.webp" },
       { type: "image", src: "../images/20230927-6.webp" },
       { type: "image", src: "../images/20230927-7.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1706878641228190181\nhttps://x.com/sasakirico/status/1706880332233105477", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1706880332233105477", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1706878641228190181", title: "高尾奏音 X链接" }
     ]
   },
   {
     date: "2023/10/31",
     title: "弄李与米泽茜一起喝万圣节下午茶",
     category: "personal",
-    description: "",
+    description: "佐佐木李子：Happy Halloween！\n前几天，我们去品尝了万圣节主题的“紫罗兰下午茶”🎃💜\n是和弄碳、也就是高尾奏音酱还有\n茜、也就是米泽茜酱一起去的☺︎\n我们一会儿像小孩子一样闹腾，一会儿又非常认真地聊着音乐。。Love.\n因为感觉意犹未尽没聊够，我们还在代代木公园散了会儿步哦！好想再一起出去玩啊～希望下次能5个人一起去‼︎\n高尾奏音：前阵子，我和佐佐木李子酱、米泽茜酱一起去喝了万圣节下午茶🎃🍬✨\n点心超级可爱呀～＼( 'ω')／\n之后我们三个人还一起去散了步哦～✌️\n希望下次AveMujica 全员能一起去…🥰⚙🌙",
     tag: "private",
     media: [
       { type: "image", src: "../images/20231031-1.webp" },
@@ -136,14 +138,15 @@ const timelineData = [
       { type: "image", src: "../images/20231031-6.webp" },
       { type: "image", src: "../images/20231031-7.webp" },
       { type: "image", src: "../images/20231031-8.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1719212653686788414\nhttps://x.com/sasakirico/status/1719213232551039198", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1719212653686788414", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1719213232551039198", title: "佐佐木李子 X链接" }
     ]
   },
   {
     date: "2023/11/3",
     title: "「青山祭 2023」学院祭观星",
     category: "personal",
-    description: "2024年ゆづるか活动后本人暴露，当时未公开\n2024.11.02的佐佐木李子：去年（即2023年）和奏音碳一起去看的，青学祭里理工宇宙科学研究部的星象仪观门票，到现在还一直珍藏着。。🌠",
+    description: "2024年ゆづるか活动后本人暴露，当时未公开\n2024.11.02的佐佐木李子：去年（即2023年）和奏音碳一起去看的，青学祭里理工宇宙科学研究部的星象仪馆门票，到现在还一直珍藏着。。🌠",
     tag: "private",
     media: [
       { type: "image", src: "../images/20241102-3.webp" },
@@ -169,10 +172,11 @@ const timelineData = [
     date: "2023/11/10",
     title: "高尾奏音为佐佐木李子生日庆生",
     category: "personal",
-    description: "高尾奏音X：李子亲🥰\n生日快乐〜🎂✨✨✨\n一直努力又温柔的李子，我超喜欢你🌙感谢我们的相遇…💛\n今后也请多关照！！\n愿你度过美好的一年( ˘͈ ᵕ ˘͈  )✨",
+    description: "佐佐木李子：11/10的今天，我迎来生日啦🎂\n一直以来非常感谢大家！！\n无论是唱歌、表演还是创作，我都会以“始终全力以赴”为座右铭！希望能给大家带来许多好消息！我想和大家共同分享着这份幸福，一起不断向前迈进✨\n今后也请多多关注李子亲哦☺︎\n大家发的生日祝福留言，我会去点赞的哦～！",
     tag: "private",
     media: [
       { type: "image", src: "../images/20231110.webp" },
+      { type: "image", src: "../images/galleryless/20231110-推特回复.webp" },
       { type: "link", url: "https://x.com/sasakirico/status/1722630161089355896", title: "佐佐木李子 X链接" }
     ]
   },
@@ -362,6 +366,25 @@ const timelineData = [
     ]
   },
   {
+    date: "2024/7/13",
+    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
+    category: "organization",
+    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/bml2024.webp" },
+      { type: "link", url: "", title: "Ave Mujica 在线观看" }
+    ]
+  },
+  {
+    date: "2024/7/14",
+    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
+    category: "organization",
+    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
+    tag: "fes",
+    media: []
+  },
+  {
     date: "2024/8/30",
     title: "Ave Mujica 出演 Animelo Summer Live 2024 -Stargazer-",
     category: "organization",
@@ -505,7 +528,7 @@ const timelineData = [
     description: "在全球范围内的10家电影院先行放送了动画第1集",
     tag: "anime",
     media: [
-      { type: "image", src: "../images/animemujica.webp" }
+      { type: "image", src: "../images/logo/animemujica.webp" }
     ]
   },
   {
@@ -761,9 +784,10 @@ const timelineData = [
     date: "2024/10/28",
     title: "高尾奏音展示佐佐木李子的赠送月光奏鸣曲项链",
     category: "personal",
-    description: "",
+    description: "李子送我的项链🎼🎹",
     tag: "private",
     media: [
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1850868105884602676", title: "高尾奏音 X链接" },
       { type: "image", src: "../images/20241028.webp" }
     ]
   },
@@ -771,24 +795,34 @@ const timelineData = [
     date: "2024/11/2",
     title: "青山祭探访ゆづるか活动",
     category: "personal",
-    description: "结束后两人观星",
+    description: "结束后两人观星\n高尾奏音：我和李子一起去看了在青学举办的ゆづるか第一次的学园祭活动哦~💙\n被她俩的聊天彻底治愈了，我和李子一直在台下边点头边看☺️笑\n之后大家还一起去逛了学园祭哦〜🏫✨\n看到大家都出现在校园里 真的好开心…！\n能和大家一起度过大学生活最后的学园祭，真是太开心啦💐",
     tag: "private",
     media: [
       { type: "image", src: "../images/20241102-1.webp" },
       { type: "image", src: "../images/20241102-2.webp" },
-      { type: "image", src: "../images/20241102-3.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1852674945127797152", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1852702392716026298", title: "X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1852702392716026298", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    date: "2024/11/2",
+    title: "青山祭探访ゆづるか活动",
+    category: "personal",
+    description: "结束后两人观星\n我和李子一起去看了在青学举办的ゆづるか第一次的学园祭活动哦~💙\n被她俩的聊天彻底治愈了，我和莉子一直在台下边点头边看☺️笑\n之后大家还一起去逛了学园祭哦〜🏫✨\n看到大家都出现在校园里 真的好开心…！\n能和大家一起度过大学生活最后的学园祭，真是太开心啦💐",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/galleryless/20241102-推特回复.webp" }
     ]
   },
   {
     date: "2024/11/10",
     title: "佐佐木李子生日",
     category: "personal",
-    description: "高尾奏音：りこお誕生日おめでとう🎂💛✨\n歌声もギターも人柄も、全部大好きだよ！！\nいつもありがとう🐈\nこれからもよろしくね！\n素敵な一年になる魔法かけた🧙‍🪄\n佐佐木李子：魔法うれしすぎ✨のんとの出逢いに感謝だよ!!末永く一緒にいよう❣️大好き!!",
+    description: "高尾奏音评论区互动\n佐佐木李子：HAPPY BIRTHDAY🎂\n•┈┈••✦☪︎✦••┈┈•\n2024.11.10\nSasaki Rico\n•┈┈••✦☪︎✦••┈┈•\n一直以来谢谢大家!!\n带着这份感激，今后我也会继续向前迈进！\n大家发的生日祝福，我会去点赞的哦☺︎",
     tag: "private",
     media: [
       { type: "image", src: "../images/20241110.webp" },
+      { type: "image", src: "../images/galleryless/20241110-推特回复.webp" },
       { type: "link", url: "https://x.com/sasakirico/status/1855264114874191874", title: "佐佐木李子 X链接" }
     ]
   },
@@ -796,7 +830,7 @@ const timelineData = [
     date: "2024/12/24",
     title: "高尾奏音展示两人圣诞风格照片",
     category: "personal",
-    description: "",
+    description: "高尾奏音：今天见到李子的瞬间，发现我俩都不约而同地穿了圣诞风穿搭，忍不住相视一笑🎅🏻🎄✨",
     tag: "private",
     media: [
       { type: "image", src: "../images/20241224.webp" },
@@ -807,22 +841,14 @@ const timelineData = [
     date: "2024/12/26",
     title: "出演バンドリ TV LIVE #245",
     category: "personal",
-    description: "",
+    description: "X评论区甜蜜互动中",
     tag: "business",
     media: [
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1dCuB6fEXQ" }
-    ]
-  },
-  {
-    date: "2024/12/26",
-    title: "出演バンドリ TV LIVE #245",
-    category: "personal",
-    description: "",
-    tag: "private",
-    media: [
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1dCuB6fEXQ" },
       { type: "image", src: "../images/20241226-1.webp" },
       { type: "image", src: "../images/20241226-2.webp" },
       { type: "image", src: "../images/20241226-3.webp" },
+      { type: "image", src: "../images/galleryless/20241226-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1872294019293995040", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1872291891200618639", title: "佐佐木李子 X链接" }
     ]
@@ -831,25 +857,15 @@ const timelineData = [
     date: "2024/12/29",
     title: "高尾奏音Ave Mujica2024年终总结",
     category: "personal",
-    description: "佐佐木李子：いつもありがとう🌙\nのん、祥ちゃん、オブリビオニス🩵\n来年もよろしくね！\n高尾奏音：りこ、初華、ドロリス、こちらこそ🕊🌠\n(あと、今年からのんって呼んでくれるの嬉しいんだ☺️)",
+    description: "评论区三位一体中\n高尾奏音：和AveMujica 大家的回忆2024📸🌙⚙\n感觉在这一年里，和大家一起大笑过、也一起哭过\n让我体会到了许多以前未曾知晓的情感🎹\n希望2025年，能成为 Mujica 展翅高飞的一年…🕊",
     tag: "private",
     media: [
+      { type: "image", src: "../images/galleryless/20241229-推特回复.webp" },
       { type: "image", src: "../images/20241229-1.webp" },
       { type: "image", src: "../images/20241229-2.webp" },
       { type: "image", src: "../images/20241229-3.webp" },
       { type: "image", src: "../images/20241229-4.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1873268990610685972", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    date: "2024/7/13 - 2024/7/14",
-    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
-    category: "organization",
-    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
-    tag: "fes",
-    media: [
-      { type: "image", src: "../images/bml2024.webp" },
-      { type: "link", url: "", title: "Ave Mujica 在线观看" }
     ]
   }
 ];
