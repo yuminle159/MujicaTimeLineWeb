@@ -94,13 +94,22 @@ const timelineData = [
   },
   {
     date: "2023/8/26",
-    title: "观看共友林鼓子参演音乐剧的「Neo Doll」",
+    title: "弄李观看共友林鼓子参演的音乐剧「Neo Doll」",
     category: "personal",
     description: "处于声优未公开的阶段，两人一同观看林鼓子参演音乐剧「Neo Doll」，首次SNS公开互动",
     tag: "private",
     media: [
       { type: "image", src: "../images/20230826-1.webp" },
-      { type: "image", src: "../images/20230826-2.webp" },
+      { type: "image", src: "../images/20230826-2.webp" }
+    ]
+  },
+  {
+    date: "2023/8/26",
+    title: "弄李观看共友林鼓子参演音乐剧的「Neo Doll」",
+    category: "personal",
+    description: "处于声优未公开的阶段，两人一同观看林鼓子参演音乐剧「Neo Doll」，首次SNS公开互动",
+    tag: "private",
+    media: [
       { type: "link", url: "https://x.com/Kanon_Takao/status/1695354653582746087", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1695353330820899279", title: "佐佐木李子 X链接" }
     ]
@@ -198,10 +207,11 @@ const timelineData = [
     date: "2023/11/27",
     title: "高尾奏音展示佐佐木李子赠送的家居服",
     category: "personal",
-    description: "佐佐木李子赠送给高尾奏音白色马尔济斯图案的家居服\n高尾奏音：这是我喜欢的家居服🐶\n这是李子亲给我的喔〜穿上它连心都暖呼呼的☺️🌙",
+    description: "佐佐木李子赠送给高尾奏音白色马尔济斯图案的家居服，引用回复\n高尾奏音：这是我喜欢的家居服🐶\n这是李子亲给我的喔〜穿上它连心都暖呼呼的☺️🌙",
     tag: "private",
     media: [
       { type: "image", src: "../images/20231127.webp" },
+      { type: "image", src: "../images/galleryless/20231127-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1729060860918964345", title: "高尾奏音 X链接" }
     ]
   },
@@ -276,7 +286,7 @@ const timelineData = [
   },
   {
     date: "2024/1/10",
-    title: "与共友林鼓子聚会",
+    title: "弄李与共友林鼓子聚会",
     category: "personal",
     description: "疑似活动内容为观看宝冢DVD\n佐佐木李子：noncocorico的拳头🤜👊🤛\n高尾奏音：前几天，和林鼓子酱还有佐佐木李子酱一起玩了☺️🪄\nnoncocorico聚在一起久违了！🌹\n今年也要加油哦～我们聊了这些✨\n超开心—！！！\n大家用手指做了个三角形！！！✌️✌️✌️笑",
     tag: "private",
@@ -533,7 +543,7 @@ const timelineData = [
   },
   {
     date: "2024/2/1",
-    title: "与林鼓子一同出演「バンドリ TV LIVE 2024」＃203",
+    title: "弄李与林鼓子一同出演「バンドリ TV LIVE 2024」＃203",
     category: "personal",
     description: "邦TV首次登场\n高尾奏音：「BanG Dream TV LIVE」＃203\n我作为丰川祥子 / Oblivionis 的役者出演了这期节目⚙️🌙\n和李子亲与鼓子亲在一起度过的幸福空间🪄\n和大家聊了关于Live的各种感想…🎹\nAveMujica 今后也请大家多多关照🩵\n特意试着穿了带有 Oblivionis 风格的衣服呢🕊\n佐佐木李子：『BanG Dream TV LIVE 2024』\n非常感谢大家的收看！\n也非常感谢弄碳和鼓子亲〜✨\n实在太开心了，感觉完全没聊够！！我们甚至都已经计划好了最近还要再聚一下哦☺︎\n能收到大家的来信和留言真的好开心！\n敬请期待接下来的MyGO和AveMujica ！",
     tag: "business",
@@ -618,7 +628,7 @@ const timelineData = [
   },
   {
     date: "2024/3/1",
-    title: "与共友林鼓子同游京都",
+    title: "弄李与共友林鼓子同游京都",
     category: "personal",
     description: "京都之旅",
     tag: "private",
@@ -782,13 +792,14 @@ const timelineData = [
   },
   {
     date: "2024/10/28",
-    title: "高尾奏音展示佐佐木李子的赠送月光奏鸣曲项链",
+    title: "高尾奏音展示佐佐木李子赠送的月光奏鸣曲项链",
     category: "personal",
-    description: "李子送我的项链🎼🎹",
+    description: "晒项链，李子转发互动\n高尾奏音：李子送我的项链🎼🎹",
     tag: "private",
     media: [
       { type: "link", url: "https://x.com/Kanon_Takao/status/1850868105884602676", title: "高尾奏音 X链接" },
-      { type: "image", src: "../images/20241028.webp" }
+      { type: "image", src: "../images/20241028.webp" },
+      { type: "image", src: "../images/galleryless/20241028-推特回复.webp" }
     ]
   },
   {

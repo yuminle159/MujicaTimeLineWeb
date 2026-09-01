@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.01",
+    "msg": "1.timeline弄李 ~2024 内容补充 2.新增interview",
+    "pinned": false
+  },
+  {
     "date": "2026.08.31",
     "msg": "1.timeline弄李 ~2024 更新完成 2.BUG修复",
     "pinned": false
