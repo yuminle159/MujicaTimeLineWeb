@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609021636">
+  <link rel="stylesheet" href="style.css?v=202609022337">
 </head>
 <body>
   <div class="interview-page">
@@ -50,8 +50,11 @@
     <div class="cinematic-body" id="cBody"></div>
   </div>
 
-  <script src="data.js?v=202609021636"></script>
-  <script src="../js/renderMarkdown.js?v=202609021636"></script>
+  <!-- 返回顶部按钮 -->
+  <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
+
+  <script src="data.js?v=202609022337"></script>
+  <script src="../js/renderMarkdown.js?v=202609022337"></script>
   <script>
     // ==================== 日期格式化 ====================
     function formatDate(dateStr) {
@@ -270,6 +273,53 @@
         setTimeout(() => openCinematic(idx), 200);
       }
     }
+
+    // ==================== 返回顶部按钮 ====================
+    const pageTopBtn = document.getElementById("pageTopBtn");
+    let ptLastScrollY = window.scrollY;
+
+    function getScrollContainer() {
+      const overlay = document.getElementById("cinematicOverlay");
+      if (overlay.classList.contains("active")) {
+        return { el: document.getElementById("cBody"), isWindow: false };
+      }
+      return { el: window, isWindow: true };
+    }
+
+    function getScrollTop(container) {
+      return container.isWindow ? window.scrollY : container.el.scrollTop;
+    }
+
+    function scrollToTop(container) {
+      if (container.isWindow) {
+        document.body.style.overflowAnchor = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        container.el.style.overflowAnchor = "none";
+        container.el.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      setTimeout(() => {
+        (container.isWindow ? document.body : container.el).style.overflowAnchor = "auto";
+      }, 1000);
+    }
+
+    document.addEventListener("scroll", function(e) {
+      const container = getScrollContainer();
+      const currentScrollY = getScrollTop(container);
+      // 浮层内滚动时也触发
+      if (currentScrollY < 800) {
+        pageTopBtn.classList.remove("show");
+      } else if (currentScrollY > ptLastScrollY) {
+        pageTopBtn.classList.remove("show");
+      } else {
+        pageTopBtn.classList.add("show");
+      }
+      ptLastScrollY = currentScrollY;
+    }, true);
+
+    pageTopBtn.addEventListener("click", () => {
+      scrollToTop(getScrollContainer());
+    });
   </script>
 </body>
 </html>

@@ -392,7 +392,7 @@ body {
   margin: 32px 0;
 }
 .md-content img {
-  max-width: 100%;
+  max-width: 66.67%;
   border-radius: var(--md-radius-md);
   margin: 16px 0;
   display: block;
@@ -472,4 +472,37 @@ body {
   .gallery-container { grid-template-columns: 1fr; padding: 0 16px 40px; }
   .cinematic-header { padding: 16px 16px 10px; }
   .cinematic-body { padding: 24px 16px 40px; }
+}
+
+/* ===== 返回顶部按钮 ===== */
+.page-top-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 9900;
+  background: rgba(5, 5, 7, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 2px solid #cc2929;
+  color: #888;
+  font-family: "Space Grotesk", "Cinzel", sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.page-top-btn.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.page-top-btn:hover {
+  background: rgba(204, 41, 41, 0.15);
+  border-color: rgba(204, 41, 41, 0.4);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(204, 41, 41, 0.2);
 }
