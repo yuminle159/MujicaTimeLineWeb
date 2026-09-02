@@ -881,7 +881,7 @@ const songsData = [
     search_keywords: "八芒星",
     appearances: ["Completeness", "Ave Música"],
     comments: [
-      { text: "这首曲子的主题是“马戏团”。 \\n\n在极其个人的想象中，我最先脑海中浮现的画面是：马戏团放射状的天花板仿佛将仰望者引向伯利恒之星。\\n\n我排除了圣诞节的含义，而是转向“八芒星（Octagram）”所具有的更加不可思议的奇妙感觉。\\n\n暗示性的advertising\\n\n用红色涂料画的大象、狮子、熊\\n\n戏剧、讽刺、幻术师、尘土、事件、死亡面具\\n\n此外，脑海中还浮现出古希腊剧场的象征——喜剧与悲剧的面具等，就像这样混杂在一起，接连不断地产生出无数的联想。\\n\n门后才是真正的life\\n\n法则、艺术、倒立窥视的天使\\n\n穿透穹顶直达星辰，台词之中并无戏剧，失误即是致命，抓紧不要被甩落\\n\n活着这件事本身的奴隶\\n\n最初，我在笔记本的备忘录里写下了类似这样的话。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'" }
+      { text: "这首曲子的主题是“马戏团”。 \\n\n在极其个人的想象中，我最先脑海中浮现的画面是：马戏团放射状的天花板仿佛将仰望者引向伯利恒之星。\\n\n我排除了圣诞节的含义，而是转向“八芒星（Octagram）”所具有的更加不可思议的奇妙感觉。\\n\n暗示性的advertising\\n\n用红色涂料画的大象、狮子、熊\\n\n戏剧、讽刺、幻术师、尘土、事件、死亡面具\\n\n此外，脑海中还浮现出古希腊剧场的象征——喜剧与悲剧的面具等，就像这样混杂在一起，接连不断地产生出无数的联想。\\n\n门后才是真正的life\\n\n法则、艺术、倒悬窥视的天使\\n\n穿透穹顶直达星辰，台词之中并无戏剧，失误即是致命，抓紧不要被甩落\\n\n活着这件事本身的奴隶\\n\n最初，我在笔记本的备忘录里写下了类似这样的话。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'" }
     ],
     live_history: [
       { date: "2025/4/26", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor", has_video: true, video_url: "https://www.acfun.cn/v/ac47931830" },
