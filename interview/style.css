@@ -462,6 +462,7 @@ body {
   .cinematic-body { padding: 28px 24px 48px; }
   .cinematic-title { font-size: 18px; }
   .md-content { font-size: 14px; }
+  .md-content img { max-width: 100%; }
   .md-content h1 { font-size: 22px; }
   .md-content h2 { font-size: 17px; }
 }

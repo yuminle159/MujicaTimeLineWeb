@@ -612,6 +612,14 @@ body {
   line-height: 1.85;
   font-style: italic;
 }
+.comment-date {
+  font-weight: 700;
+  color: var(--md-primary);
+  font-size: 12px;
+  margin-bottom: 8px;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
 .comment-source {
   margin-top: 8px;
   font-style: normal;
@@ -1162,6 +1170,7 @@ body {
   .cinematic-header { padding: 20px 24px 12px; }
   .cinematic-body { padding: 28px 24px 48px; }
   .cinematic-title { font-size: 18px; }
+  .md-content img { max-width: 100%; }
 }
 @media (max-width: 480px) {
   .cinematic-header { padding: 16px 16px 10px; }

@@ -240,7 +240,8 @@ def generate_songs(wb):
         comments_map.setdefault(sn, []).append({
             "text": cr.get("comment_text", ""),
             "source": cr.get("comment_source", ""),
-            "from": cr.get("comment_from", "")
+            "from": cr.get("comment_from", ""),
+            "date": normalize_date(cr.get("comment_date", ""))
         })
 
     # 合并 live_history
@@ -310,7 +311,7 @@ def generate_songs(wb):
             lines.append("    comments: [")
             for j, c in enumerate(song["comments"]):
                 comma = "," if j < len(song["comments"]) - 1 else ""
-                lines.append(f'      {{ text: "{js_str(c["text"])}", source: "{js_str(c["source"])}", from: "{js_str(c["from"])}" }}{comma}')
+                lines.append(f'      {{ text: "{js_str(c["text"])}", source: "{js_str(c["source"])}", from: "{js_str(c["from"])}", date: "{js_str(c.get("date", ""))}" }}{comma}')
             lines.append("    ],")
         else:
             lines.append("    comments: [],")

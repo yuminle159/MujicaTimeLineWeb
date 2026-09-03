@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609022337">
+  <link rel="stylesheet" href="style.css?v=202609040001">
 </head>
 <body>
   <div class="songs-page">
@@ -55,9 +55,9 @@
     </div>
   </div>
 
-  <script src="data.js?v=202609022337"></script>
-  <script src="../interview/data.js?v=202609022337"></script>
-  <script src="../js/renderMarkdown.js?v=202609022337"></script>
+  <script src="data.js?v=202609040001"></script>
+  <script src="../interview/data.js?v=202609040001"></script>
+  <script src="../js/renderMarkdown.js?v=202609040001"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -240,7 +240,8 @@
     const textEl = document.getElementById("commentaryText");
     const tabs = document.querySelectorAll(".comment-tab");
     if (textEl) {
-      textEl.innerHTML = escapeHTML(c.text).replace(/\\n/g, "<br>") + buildSourceLink(c);
+      let dateHTML = c.date ? '<div class="comment-date">' + escapeHTML(c.date) + '</div>' : '';
+      textEl.innerHTML = dateHTML + escapeHTML(c.text).replace(/\\n/g, "<br>") + buildSourceLink(c);
     }
     tabs.forEach((t, i) => t.classList.toggle("active", i === index));
   };
@@ -299,7 +300,7 @@
           ${tabsHTML}
         </div>
         <div class="commentary-body">
-          <div class="commentary-text" id="commentaryText">${escapeHTML(first.text).replace(/\\n/g, "<br>")}${buildSourceLink(first)}</div>
+          <div class="commentary-text" id="commentaryText">${first.date ? `<div class="comment-date">${escapeHTML(first.date)}</div>` : ""}${escapeHTML(first.text).replace(/\\n/g, "<br>")}${buildSourceLink(first)}</div>
         </div></div>`;
     }
 
@@ -518,12 +519,14 @@
       document.getElementById("cClose").addEventListener("click", () => {
         overlay.classList.remove("active");
         document.body.style.overflow = "";
+        pageTopBtn.classList.remove("show");
       });
 
       overlay.addEventListener("click", function(e) {
         if (e.target === overlay) {
           overlay.classList.remove("active");
           document.body.style.overflow = "";
+          pageTopBtn.classList.remove("show");
         }
       });
 
@@ -531,6 +534,7 @@
         if (e.key === "Escape" && overlay.classList.contains("active")) {
           overlay.classList.remove("active");
           document.body.style.overflow = "";
+          pageTopBtn.classList.remove("show");
         }
       });
 
@@ -564,15 +568,18 @@
 
       document.addEventListener("scroll", function(e) {
         const container = getScrollContainer();
-        const currentScrollY = getScrollTop(container);
-        if (currentScrollY < 800) {
-          pageTopBtn.classList.remove("show");
-        } else if (currentScrollY > ptLastScrollY) {
-          pageTopBtn.classList.remove("show");
-        } else {
-          pageTopBtn.classList.add("show");
+        // 仅在浮层激活时显示按钮
+        if (!container.isWindow) {
+          const currentScrollY = getScrollTop(container);
+          if (currentScrollY < 800) {
+            pageTopBtn.classList.remove("show");
+          } else if (currentScrollY > ptLastScrollY) {
+            pageTopBtn.classList.remove("show");
+          } else {
+            pageTopBtn.classList.add("show");
+          }
+          ptLastScrollY = currentScrollY;
         }
-        ptLastScrollY = currentScrollY;
       }, true);
 
       pageTopBtn.addEventListener("click", () => {

@@ -100,16 +100,7 @@ const timelineData = [
     tag: "private",
     media: [
       { type: "image", src: "../images/20230826-1.webp" },
-      { type: "image", src: "../images/20230826-2.webp" }
-    ]
-  },
-  {
-    date: "2023/8/26",
-    title: "弄李观看共友林鼓子参演音乐剧的「Neo Doll」",
-    category: "personal",
-    description: "处于声优未公开的阶段，两人一同观看林鼓子参演音乐剧「Neo Doll」，首次SNS公开互动",
-    tag: "private",
-    media: [
+      { type: "image", src: "../images/20230826-2.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1695354653582746087", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1695353330820899279", title: "佐佐木李子 X链接" }
     ]

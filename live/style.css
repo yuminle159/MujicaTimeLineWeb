@@ -1314,6 +1314,14 @@ body {
   line-height: 1.85;
   font-style: italic;
 }
+.song-comment-date {
+  font-weight: 700;
+  color: var(--md-primary);
+  font-size: 12px;
+  margin-bottom: 8px;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
 .song-comment-source {
   margin-top: 8px;
   font-style: normal;

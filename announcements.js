@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.03",
+    "msg": "bug修复",
+    "pinned": false
+  },
+  {
     "date": "2026.09.02",
     "msg": "1.interview新增230915前篇 2.interview、timeline、gallery增加返回最上按钮 3.interview图片大小限制，阅读效果优化",
     "pinned": false
