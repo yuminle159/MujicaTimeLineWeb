@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609040001">
+  <link rel="stylesheet" href="style.css?v=202609062217">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <div class="live-page">
@@ -70,9 +71,22 @@
     <button class="kv-lightbox-arrow kv-lightbox-next" onclick="event.stopPropagation();moveKvLightbox(1)">&#10095;</button>
   </div>
 
-  <script src="../songs/data.js?v=202609040001"></script>
-  <script src="data.js?v=202609040001"></script>
-  <script src="../js/renderMarkdown.js?v=202609040001"></script>
+  <!-- 数据统计浮窗 -->
+  <div id="statsOverlay" class="stats-overlay">
+    <div class="stats-container">
+      <div class="stats-header">
+        <h2>Live Statistics</h2>
+        <button class="stats-close" id="statsCloseBtn" onclick="closeStats()">&times;</button>
+      </div>
+      <div class="stats-body" id="statsBody">
+        <div class="stats-loading">Loading statistics...</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../songs/data.js?v=202609062217"></script>
+  <script src="data.js?v=202609062217"></script>
+  <script src="../js/renderMarkdown.js?v=202609062217"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -147,13 +161,22 @@
       });
     });
 
+    // 数据统计按钮（放在排序按钮左边，紧靠）
+    const statsBtn = document.createElement("button");
+    statsBtn.className = "sort-btn";
+    statsBtn.textContent = "数据统计";
+    statsBtn.style.marginRight = "6px";
+    statsBtn.addEventListener("click", openStats);
+    bar.appendChild(statsBtn);
+
     // 排序按钮
     const sortBtn = document.createElement("button");
     sortBtn.className = "sort-btn";
-    sortBtn.innerHTML = '<span>时间正序</span><span class="arrow">&#8593;</span>';
+    sortBtn.style.marginLeft = "0";
+    sortBtn.innerHTML = '<span>时间倒序</span>';
     sortBtn.addEventListener("click", () => {
       liveSortReverse = !liveSortReverse;
-      sortBtn.innerHTML = liveSortReverse ? '<span>时间倒序</span><span class="arrow">&#8595;</span>' : '<span>时间正序</span><span class="arrow">&#8593;</span>';
+      sortBtn.innerHTML = liveSortReverse ? '<span>时间正序</span>' : '<span>时间倒序</span>';
       renderGallery();
     });
     bar.appendChild(sortBtn);
@@ -184,7 +207,7 @@
       const card = document.createElement("article");
       card.className = "live-card";
       card.innerHTML = `
-        <div class="card-image" onclick="openDrawer(${origIdx})">
+        <div class="card-image${live.tag ? ' tag-' + live.tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '') : ''}" onclick="openDrawer(${origIdx})">
           ${live.poster ? `<img src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}" loading="lazy">` : '<div class="card-placeholder"></div>'}
         </div>
         <div class="card-info" onclick="openDrawer(${origIdx})">
@@ -198,13 +221,14 @@
 
   // ===== 打开抽屉 =====
   window.openDrawer = function(index) {
+    const live = livesData[index];
+    if (!live) return;
     if (cachedLiveIndex === index) {
       drawerOverlay.classList.add("active");
       document.body.style.overflow = "hidden";
+      history.replaceState(null, '', '#live=' + encodeURIComponent(live.name));
       return;
     }
-    const live = livesData[index];
-    if (!live) return;
     document.body.style.overflow = "hidden";
 
     // 曲目列表
@@ -309,6 +333,7 @@
 
     drawerOverlay.classList.add("active");
     cachedLiveIndex = index;
+    history.replaceState(null, '', '#live=' + encodeURIComponent(live.name));
 
     // 预加载当前抽屉所有 backstage 图片（缩略图已渲染，此处预加载灯箱大图）
     const groups = window._backstageGroups;
@@ -327,6 +352,7 @@
     if (event.target === drawerOverlay || event.target.classList.contains("close-btn")) {
       drawerOverlay.classList.remove("active");
       document.body.style.overflow = "";
+      history.replaceState(null, '', window.location.pathname + window.location.search);
     }
   };
 
@@ -345,6 +371,7 @@
       if (drawerOverlay.classList.contains("active")) {
         drawerOverlay.classList.remove("active");
         document.body.style.overflow = "";
+        history.replaceState(null, '', window.location.pathname + window.location.search);
       }
       if (document.getElementById("kvLightbox").classList.contains("active")) {
         closeKvLightbox();
@@ -391,12 +418,13 @@
     const hud = document.getElementById("kvLightboxHud");
     const hudCounter = document.getElementById("hudCounter");
     img.src = (kvGroup ? kvGroup[kvIndex] : src);
-    hud.classList.remove("hidden");
     if (kvGroup) {
+      hud.classList.remove("hidden");
       updateKvHud(kvIndex);
       hudCounter.style.display = "flex";
       document.querySelectorAll(".kv-lightbox-arrow").forEach(a => a.style.display = "flex");
     } else {
+      hud.classList.add("hidden");
       hudCounter.style.display = "none";
       document.getElementById("hudSourceBtn").style.display = "none";
       document.querySelectorAll(".kv-lightbox-arrow").forEach(a => a.style.display = "none");
@@ -426,6 +454,7 @@
     kvIndex = 0;
   };
   window.toggleKvHud = function() {
+    if (!kvGroup) return;
     const hud = document.getElementById("kvLightboxHud");
     hud.classList.toggle("hidden");
   };
@@ -612,6 +641,315 @@
 
   buildLiveFilter();
   renderGallery();
+
+  // 哈希自动打开：/live/index.html#live=LIVE_NAME
+  if (window.location.hash.startsWith('#live=')) {
+    const liveName = decodeURIComponent(window.location.hash.slice(6));
+    const idx = livesData.findIndex(l => l.name === liveName);
+    if (idx >= 0) setTimeout(function() { openDrawer(idx); }, 200);
+  }
+
+  // ==================== 数据统计 ====================
+  function openStats() {
+    const overlay = document.getElementById("statsOverlay");
+    const body = document.getElementById("statsBody");
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+    body.scrollTop = 0;
+    renderStats();
+  }
+
+  function closeStats() {
+    document.getElementById("statsOverlay").classList.remove("active");
+    document.body.style.overflow = "";
+  }
+  window.closeStats = closeStats;
+
+  document.getElementById("statsCloseBtn").addEventListener("click", closeStats);
+  document.getElementById("statsOverlay").addEventListener("click", function(e) {
+    if (e.target === this) closeStats();
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && document.getElementById("statsOverlay").classList.contains("active")) {
+      closeStats();
+    }
+  });
+
+  function renderStats() {
+    const body = document.getElementById("statsBody");
+    if (!livesData || !songsData) {
+      body.innerHTML = '<div class="stats-loading">No data available</div>';
+      return;
+    }
+
+    // ---- 计算所有统计 ----
+    const allTracks = []; // {title, date, liveName, num, isSong}
+    const songCount = {}; // title -> count
+    const songDates = {}; // title -> [dates]
+    const songLastDate = {}; // title -> last date
+    const openers = {}; // title -> count
+    const closers = {}; // title -> count
+    const combos = {}; // "A → B" -> count
+    const liveMonths = {}; // "YYYY-MM" -> count
+
+    const nonSongLabels = new Set(["intro", "interlude", "story movie", "opening", "ending", "encore", "mc", "talk"]);
+
+    function isSong(entry) {
+      if (!entry.num || !entry.num.match(/^M\d/)) return false;
+      const label = (entry.highlight_label || "").toLowerCase();
+      if (nonSongLabels.has(label)) return false;
+      const title = (entry.title || "").toLowerCase();
+      if (nonSongLabels.has(title)) return false;
+      return true;
+    }
+
+    // 歌曲名 → type 映射（用于排除 Cover）
+    const songTypeMap = {};
+    songsData.forEach(s => {
+      const name = s.name_jp || s.name;
+      if (name) songTypeMap[name] = (s.type || "").toLowerCase();
+    });
+
+    livesData.forEach(live => {
+      const tracks = live.setlist || [];
+      const date = live.date || "";
+      const liveName = live.name || "";
+
+      // 收集歌曲
+      const songTracks = tracks.filter(t => isSong(t));
+      songTracks.forEach(t => {
+        const title = t.title;
+        allTracks.push({ title, date, liveName, num: t.num });
+        songCount[title] = (songCount[title] || 0) + 1;
+        if (!songDates[title]) songDates[title] = [];
+        songDates[title].push(date);
+      });
+
+      // 开场曲（第一条 Mxx）
+      if (songTracks.length > 0) {
+        const opener = songTracks[0].title;
+        openers[opener] = (openers[opener] || 0) + 1;
+      }
+
+      // 结尾曲（最后一条 Mxx）
+      if (songTracks.length > 0) {
+        const closer = songTracks[songTracks.length - 1].title;
+        closers[closer] = (closers[closer] || 0) + 1;
+      }
+
+      // 连唱组合
+      for (let i = 0; i < songTracks.length - 1; i++) {
+        const key = songTracks[i].title + " → " + songTracks[i + 1].title;
+        combos[key] = (combos[key] || 0) + 1;
+      }
+
+      // 活跃度热力图
+      const m = date.match(/(\d{4})\/(\d{1,2})\/(\d{1,2})/);
+      if (m) {
+        const ym = m[1] + "-" + m[2].padStart(2, "0");
+        liveMonths[ym] = (liveMonths[ym] || 0) + 1;
+      }
+
+      // 歌曲最后演出日期
+      songTracks.forEach(t => {
+        songLastDate[t.title] = date;
+      });
+    });
+
+    // Top 10
+    const top10 = Object.entries(songCount)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+
+    // 开场 Top 5
+    const topOpeners = Object.entries(openers)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5);
+
+    // 结尾 Top 5
+    const topClosers = Object.entries(closers)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5);
+
+    // 连唱 Top 8
+    const topCombos = Object.entries(combos)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8);
+
+    // 已发行但从未演出
+    const playedTitles = new Set(Object.keys(songCount));
+    const neverPlayed = songsData.filter(s => {
+      const name = s.name_jp || s.name;
+      return name && !playedTitles.has(name);
+    });
+
+    // 距上次演出间隔最长（只考虑有演出记录的歌曲）
+    function parseDate(d) {
+      if (!d) return 0;
+      const m = d.match(/(\d{4})\/(\d{1,2})\/(\d{1,2})/);
+      return m ? new Date(parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[3])) : 0;
+    }
+
+    function computeGaps() {
+      const now = new Date();
+      return Object.entries(songLastDate)
+        .map(([title, lastDate]) => {
+          const type = songTypeMap[title];
+          if (type === "cover" || type === undefined) return null;
+          const d = parseDate(lastDate);
+          if (!d) return null;
+          const days = Math.floor((now - d) / (1000 * 60 * 60 * 24));
+          return { title, lastDate, days };
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.days - a.days)
+        .slice(0, 8);
+    }
+
+    // ---- 热力图数据 ----
+    const yearSet = new Set();
+    Object.keys(liveMonths).forEach(ym => {
+      const y = ym.split("-")[0];
+      yearSet.add(y);
+    });
+    const years = [...yearSet].sort();
+    const months = ["01","02","03","04","05","06","07","08","09","10","11","12"];
+    const maxCount = Math.max(1, ...Object.values(liveMonths));
+
+    // ---- 渲染 ----
+    function buildHTML() {
+      const gaps = computeGaps();
+      let html = "";
+
+      // Section 1: Top 10 柱状图
+      html += '<div class="stats-section">';
+      html += '<h3 class="stats-section-title">Most Played Songs</h3>';
+      html += '<div class="stats-chart-wrap"><canvas id="top10Chart"></canvas></div>';
+      html += '</div>';
+
+      // Section 2: 开场/结尾
+      html += '<div class="stats-section">';
+      html += '<h3 class="stats-section-title">Top Openers &amp; Closers</h3>';
+      html += '<div class="stats-row">';
+      html += '<div class="stats-col">';
+      html += '<h4 class="stats-subtitle">🎬 Most Frequent Openers</h4>';
+      html += '<ul class="stats-list">';
+      topOpeners.forEach(([title, count]) => {
+        html += '<li><span class="stats-song">' + title + '</span><span class="stats-count">' + count + '</span></li>';
+      });
+      html += '</ul></div>';
+      html += '<div class="stats-col">';
+      html += '<h4 class="stats-subtitle">🎭 Most Frequent Closers</h4>';
+      html += '<ul class="stats-list">';
+      topClosers.forEach(([title, count]) => {
+        html += '<li><span class="stats-song">' + title + '</span><span class="stats-count">' + count + '</span></li>';
+      });
+      html += '</ul></div>';
+      html += '</div></div>';
+
+      // Section 3: 遗珠 & 有生之年
+      html += '<div class="stats-section">';
+      html += '<h3 class="stats-section-title">Rarities &amp; Unplayed Tracks</h3>';
+      html += '<div class="stats-row">';
+      html += '<div class="stats-col">';
+      html += '<h4 class="stats-subtitle">⏳ Longest Gap Since Last Played</h4>';
+      html += '<ul class="stats-list">';
+      gaps.forEach(({ title, lastDate, days }) => {
+        html += '<li><span class="stats-song">' + title + '</span><span class="stats-count">' + days + ' days</span><span class="stats-date">' + lastDate + '</span></li>';
+      });
+      html += '</ul></div>';
+      html += '<div class="stats-col">';
+      html += '<h4 class="stats-subtitle">💎 Released but Never Played Live</h4>';
+      html += '<ul class="stats-list">';
+      if (neverPlayed.length > 0) {
+        neverPlayed.forEach(s => {
+          const name = s.name_jp || s.name;
+          html += '<li><span class="stats-song">' + name + '</span><span class="stats-date">' + (s.release_date || "") + '</span></li>';
+        });
+      } else {
+        html += '<li class="stats-empty">All songs have been performed ✓</li>';
+      }
+      html += '</ul></div>';
+      html += '</div></div>';
+
+      // Section 4: 连唱绑定
+      html += '<div class="stats-section">';
+      html += '<h3 class="stats-section-title">Frequent Combos</h3>';
+      html += '<ul class="stats-combo-list">';
+      topCombos.forEach(([combo, count]) => {
+        html += '<li><span class="combo-arrow">' + combo + '</span><span class="stats-count">' + count + '</span></li>';
+      });
+      html += '</ul></div>';
+
+      // Section 5: 活跃度热力图
+      html += '<div class="stats-section">';
+      html += '<h3 class="stats-section-title">Activity Heatmap</h3>';
+      html += '<div class="heatmap-wrap">';
+      html += '<div class="heatmap-grid">';
+      html += '<div class="heatmap-label-col"><span></span>';
+      months.forEach(m => {
+        html += '<span>' + m + '</span>';
+      });
+      html += '</div>';
+      years.forEach(y => {
+        html += '<div class="heatmap-row">';
+        html += '<span class="heatmap-year">' + y + '</span>';
+        months.forEach(m => {
+          const key = y + "-" + m;
+          const count = liveMonths[key] || 0;
+          const level = count === 0 ? 0 : Math.ceil((count / maxCount) * 4);
+          html += '<span class="heatmap-cell level-' + level + '" title="' + key + ": " + count + ' lives"></span>';
+        });
+        html += '</div>';
+      });
+      html += '</div>';
+      html += '<div class="heatmap-legend"><span class="heatmap-cell level-0"></span> 0 <span class="heatmap-cell level-1"></span> 1 <span class="heatmap-cell level-2"></span> 2 <span class="heatmap-cell level-3"></span> 3 <span class="heatmap-cell level-4"></span> ' + maxCount + '+</div>';
+      html += '</div></div>';
+
+      return html;
+    }
+
+    body.innerHTML = buildHTML();
+
+    // 绘制 Chart.js 柱状图
+    setTimeout(() => {
+      const ctx = document.getElementById("top10Chart");
+      if (!ctx) return;
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: top10.map(t => t[0]),
+          datasets: [{
+            label: "演出次数",
+            data: top10.map(t => t[1]),
+            backgroundColor: "rgba(204, 41, 41, 0.6)",
+            borderColor: "rgba(204, 41, 41, 0.9)",
+            borderWidth: 1,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              ticks: { color: "#888", stepSize: 1 },
+              grid: { color: "rgba(255,255,255,0.04)" }
+            },
+            y: {
+              ticks: { color: "#ccc", font: { size: 12 } },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }, 100);
+  }
 })();
   </script>
 </body>

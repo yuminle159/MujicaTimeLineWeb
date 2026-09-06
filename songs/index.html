@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609040001">
+  <link rel="stylesheet" href="style.css?v=202609062217">
 </head>
 <body>
   <div class="songs-page">
@@ -32,11 +32,10 @@
         <span class="search-icon">&#128269;</span>
         <input type="text" id="searchInput" placeholder="搜索歌名...">
       </div>
-      <button class="sort-btn" id="sortBtn">
-        <span id="sortLabel">时间正序</span>
-        <span class="arrow" id="sortArrow">&#8593;</span>
-      </button>
       <span class="result-count" id="resultCount"></span>
+      <button class="sort-btn" id="sortBtn">
+        <span id="sortLabel">时间倒序</span>
+      </button>
     </div>
 
     <!-- 画廊主体 -->
@@ -55,9 +54,9 @@
     </div>
   </div>
 
-  <script src="data.js?v=202609040001"></script>
-  <script src="../interview/data.js?v=202609040001"></script>
-  <script src="../js/renderMarkdown.js?v=202609040001"></script>
+  <script src="data.js?v=202609062217"></script>
+  <script src="../interview/data.js?v=202609062217"></script>
+  <script src="../js/renderMarkdown.js?v=202609062217"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -205,11 +204,9 @@
   // ===== 排序 =====
   const sortBtn = document.getElementById("sortBtn");
   const sortLabel = document.getElementById("sortLabel");
-  const sortArrow = document.getElementById("sortArrow");
   sortBtn.addEventListener("click", function() {
     sortAsc = !sortAsc;
-    sortLabel.textContent = sortAsc ? "时间正序" : "时间倒序";
-    sortArrow.innerHTML = sortAsc ? "&#8593;" : "&#8595;";
+    sortLabel.textContent = sortAsc ? "时间倒序" : "时间正序";
     renderGallery();
   });
 
@@ -247,14 +244,15 @@
   };
 
   window.openModal = function(index) {
+    const song = songsData[index];
+    if (!song) return;
     if (cachedSongIndex === index) {
       // 同一首歌，直接打开，不重建 DOM
       modalOverlay.classList.add("open");
       document.body.style.overflow = "hidden";
+      history.replaceState(null, '', '#song=' + encodeURIComponent(song.name_jp));
       return;
     }
-    const song = songsData[index];
-    if (!song) return;
     document.body.style.overflow = "hidden";
 
     // 左侧栏：中日文歌名上下排列（日文为主，红色加粗大字体）
@@ -400,6 +398,7 @@
 
     modalOverlay.classList.add("open");
     cachedSongIndex = index;
+    history.replaceState(null, '', '#song=' + encodeURIComponent(song.name_jp));
   };
 
   modalClose.addEventListener("click", closeModal);
@@ -415,6 +414,7 @@
     document.body.style.overflow = "";
     const lyricsBlock = document.getElementById("lyricsBlock");
     if (lyricsBlock) lyricsBlock.classList.remove("clean-mode");
+    history.replaceState(null, '', window.location.pathname + window.location.search);
   }
 
   renderGallery();

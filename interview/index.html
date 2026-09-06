@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609040001">
+  <link rel="stylesheet" href="style.css?v=202609062217">
 </head>
 <body>
   <div class="interview-page">
@@ -24,7 +24,7 @@
         <input type="text" id="searchInput" placeholder="搜索访谈人或标题...">
       </div>
       <span class="result-count" id="resultCount"></span>
-      <button class="sort-btn" id="interviewSortBtn"><span>时间正序</span><span class="arrow">&#8593;</span></button>
+      <button class="sort-btn" id="interviewSortBtn"><span>时间倒序</span></button>
     </div>
 
     <!-- 卡片网格 -->
@@ -53,8 +53,8 @@
   <!-- 返回顶部按钮 -->
   <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
 
-  <script src="data.js?v=202609040001"></script>
-  <script src="../js/renderMarkdown.js?v=202609040001"></script>
+  <script src="data.js?v=202609062217"></script>
+  <script src="../js/renderMarkdown.js?v=202609062217"></script>
   <script>
     // ==================== 日期格式化 ====================
     function formatDate(dateStr) {
@@ -134,7 +134,7 @@
     const sortBtn = document.getElementById("interviewSortBtn");
     sortBtn.addEventListener("click", () => {
       interviewSortReverse = !interviewSortReverse;
-      sortBtn.innerHTML = interviewSortReverse ? '<span>时间倒序</span><span class="arrow">&#8595;</span>' : '<span>时间正序</span><span class="arrow">&#8593;</span>';
+      sortBtn.innerHTML = interviewSortReverse ? '<span>时间正序</span>' : '<span>时间倒序</span>';
       renderCards(interviewData);
     });
 
@@ -163,13 +163,14 @@
 
       // 重置原文显示状态
       const btn = document.getElementById("cOriginalBtn");
-      btn.textContent = "原文显示";
+      btn.textContent = "隐藏原文";
       btn.classList.remove("hidden-original");
       body.classList.remove("hide-original");
 
       overlay.classList.add("active");
       document.body.style.overflow = "hidden";
       body.scrollTop = 0;
+      history.replaceState(null, '', '#' + encodeURIComponent(item.title));
     };
 
     // 原文显示切换
@@ -200,7 +201,7 @@
       const oldTop = anchor ? anchor.getBoundingClientRect().top : 0;
 
       showOriginal = !showOriginal;
-      this.textContent = showOriginal ? "原文显示" : "隐藏原文";
+      this.textContent = showOriginal ? "隐藏原文" : "原文显示";
       if (showOriginal) {
         this.classList.remove("hidden-original");
         body.classList.remove("hide-original");
@@ -219,23 +220,20 @@
       }
     });
 
-    document.getElementById("cClose").addEventListener("click", () => {
+    function closeCinematic() {
       overlay.classList.remove("active");
       document.body.style.overflow = "";
-    });
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+
+    document.getElementById("cClose").addEventListener("click", closeCinematic);
 
     overlay.addEventListener("click", function(e) {
-      if (e.target === overlay) {
-        overlay.classList.remove("active");
-        document.body.style.overflow = "";
-      }
+      if (e.target === overlay) closeCinematic();
     });
 
     document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape" && overlay.classList.contains("active")) {
-        overlay.classList.remove("active");
-        document.body.style.overflow = "";
-      }
+      if (e.key === "Escape" && overlay.classList.contains("active")) closeCinematic();
     });
 
     // ==================== 初始化 ====================

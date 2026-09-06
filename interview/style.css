@@ -170,11 +170,14 @@ body {
   border-radius: var(--md-radius-md);
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.3);
-  transition: box-shadow var(--md-duration-medium) var(--md-easing-standard);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: border-color var(--md-duration-medium) var(--md-easing-standard),
+              box-shadow var(--md-duration-medium) var(--md-easing-standard);
 }
 .interview-card:hover .card-image {
-  box-shadow: 0 0 0 1px rgba(255, 77, 77, 0.4), 0 12px 32px var(--md-primary-glow);
+  border-color: rgba(255, 77, 77, 0.4);
+  box-shadow: 0 0 48px rgba(255, 77, 77, 0.10), 0 0 80px rgba(255, 77, 77, 0.06), 0 12px 32px var(--md-primary-glow);
 }
 .card-image img {
   width: 100%;
