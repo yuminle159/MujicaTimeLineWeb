@@ -452,6 +452,7 @@ body {
 .mc-c10 { color: #9977CC; }
 .mc-c11 { color: #77BBDD; }
 .mc-c12 { color: #cc2929; }
+.mc-c13 { color: #3344AA; }
 
 /* ===== 响应式 ===== */
 @media (max-width: 1100px) {

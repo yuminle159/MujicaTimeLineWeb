@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609071730">
+  <link rel="stylesheet" href="style.css?v=202609072334">
 </head>
 <body>
   <div class="songs-page">
@@ -54,9 +54,9 @@
     </div>
   </div>
 
-  <script src="data.js?v=202609071730"></script>
-  <script src="../interview/data.js?v=202609071730"></script>
-  <script src="../js/renderMarkdown.js?v=202609071730"></script>
+  <script src="data.js?v=202609072334"></script>
+  <script src="../interview/data.js?v=202609072334"></script>
+  <script src="../js/renderMarkdown.js?v=202609072334"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -250,7 +250,7 @@
       // 同一首歌，直接打开，不重建 DOM
       modalOverlay.classList.add("open");
       document.body.style.overflow = "hidden";
-      history.replaceState(null, '', '#song=' + encodeURIComponent(song.name_jp));
+      history.replaceState(null, '', '#song=' + song.hash_id);
       return;
     }
     document.body.style.overflow = "hidden";
@@ -398,7 +398,7 @@
 
     modalOverlay.classList.add("open");
     cachedSongIndex = index;
-    history.replaceState(null, '', '#song=' + encodeURIComponent(song.name_jp));
+    history.replaceState(null, '', '#song=' + song.hash_id);
   };
 
   modalClose.addEventListener("click", closeModal);
@@ -419,10 +419,10 @@
 
   renderGallery();
 
-  // 哈希自动打开：/songs/index.html#song=SONG_NAME_JP
+  // 哈希自动打开：/songs/index.html#song=HASH_ID
   if (window.location.hash.startsWith("#song=")) {
-    const songName = decodeURIComponent(window.location.hash.slice(6));
-    const idx = songsData.findIndex(s => s.name_jp === songName);
+    const hashId = window.location.hash.slice(6);
+    const idx = songsData.findIndex(s => s.hash_id === hashId);
     if (idx >= 0) openModal(idx);
   }
 })();

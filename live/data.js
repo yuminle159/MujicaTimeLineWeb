@@ -4,6 +4,7 @@
 const livesData = [
   {
     name: "Ave Mujica 0th LIVE「Primo die in scaena」",
+    hash_id: "55U3JgpFudO",
     date: "2023/6/4",
     venue: "中野サンプラザホール",
     tag: "One Man Live",
@@ -16,6 +17,7 @@ const livesData = [
   },
   {
     name: "Roselia「Farbe」DAY2",
+    hash_id: "TggVuqCpHD7",
     date: "2023/9/17",
     venue: "有明アリーナ",
     tag: "BanG Dream!",
@@ -28,6 +30,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica 1st LIVE 「Perdere Omnia」",
+    hash_id: "bZbRdPnEto9",
     date: "2024/1/27",
     venue: "横須賀芸術劇場",
     tag: "One Man Live",
@@ -40,6 +43,7 @@ const livesData = [
   },
   {
     name: "MEGA VEGAS 2024",
+    hash_id: "5kd22JxNEBm",
     date: "2024/3/9",
     venue: "神戸ワールド記念ホール",
     tag: "Fes",
@@ -52,6 +56,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演",
+    hash_id: "pwKWf8XfWUh",
     date: "2024/6/8",
     venue: "神奈川県民ホール 大ホール",
     tag: "One Man Live",
@@ -64,6 +69,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演",
+    hash_id: "whlteE6TZyU",
     date: "2024/7/7",
     venue: "愛知県芸術劇場 大ホール",
     tag: "One Man Live",
@@ -76,6 +82,7 @@ const livesData = [
   },
   {
     name: "BILIBILI MACRO LINK 2024 DAY1",
+    hash_id: "KFsoVe6eUZD",
     date: "2024/7/13",
     venue: "国家会展中心（上海）虹馆EH",
     tag: "Fes",
@@ -88,6 +95,7 @@ const livesData = [
   },
   {
     name: "BILIBILI MACRO LINK 2024 DAY2",
+    hash_id: "UV4LeIl0gsu",
     date: "2024/7/14",
     venue: "国家会展中心（上海）虹馆EH",
     tag: "Fes",
@@ -100,6 +108,7 @@ const livesData = [
   },
   {
     name: "Animelo Summer Live 2024 -Stargazer-",
+    hash_id: "VH1QmNswE34",
     date: "2024/8/30",
     venue: "さいたまスーパーアリーナ",
     tag: "Fes",
@@ -112,6 +121,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica 3rd LIVE「Veritas」",
+    hash_id: "ouGBqqrLUX6",
     date: "2024/10/13",
     venue: "河口湖ステラシアター",
     tag: "One Man Live",
@@ -124,6 +134,7 @@ const livesData = [
   },
   {
     name: "ANIMAX MUSIX 2024 FALL",
+    hash_id: "EXt2Qqxs1hA",
     date: "2024/11/23",
     venue: "横浜アリーナ",
     tag: "Fes",
@@ -136,6 +147,7 @@ const livesData = [
   },
   {
     name: "Roselia「Stille Nacht, Rosen Nacht」",
+    hash_id: "CpeV3O2ZxLA",
     date: "2024/12/14",
     venue: "武蔵野の森総合スポーツプラザ",
     tag: "BanG Dream!",
@@ -148,6 +160,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica 4th LIVE「Adventus」",
+    hash_id: "XhSboBDdeqk",
     date: "2024/12/15",
     venue: "武蔵野の森総合スポーツプラザ",
     tag: "One Man Live",
@@ -160,6 +173,7 @@ const livesData = [
   },
   {
     name: "リスアニ!LIVE 2025 SATURDAY STAGE",
+    hash_id: "nYzdhO9k4Qt",
     date: "2025/1/25",
     venue: "日本武道館",
     tag: "Fes",
@@ -172,6 +186,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica「KiLLKiSS」購入者限定フリーライブ",
+    hash_id: "GAHzTYijlb4",
     date: "2025/2/2",
     venue: "KT Zepp Yokohama",
     tag: "One Man Live",
@@ -184,6 +199,7 @@ const livesData = [
   },
   {
     name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor",
+    hash_id: "yNNdfPu4f4B",
     date: "2025/4/26",
     venue: "Kアリーナ横浜",
     tag: "BanG Dream!",
@@ -196,6 +212,7 @@ const livesData = [
   },
   {
     name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin",
+    hash_id: "ZY6XWwgiPC7",
     date: "2025/4/27",
     venue: "Kアリーナ横浜",
     tag: "BanG Dream!",
@@ -203,11 +220,12 @@ const livesData = [
     kv: "../images/鸡狗1横k kv.webp",
     video_url: "https://www.acfun.cn/v/ac48829435",
     description: "「分歧路口，前路漫漫」横K场",
-    setlist: [],
+    setlist: [{"num": "", "title": "Intro", "highlight_label": "Monologues", "highlight_text": "预录念白", "mc_file": "", "link": ""}, {"num": "", "title": "Interlude", "highlight_label": "Anime", "highlight_text": "「BanG Dream! Ave Mujica」EP13", "mc_file": "", "link": ""}, {"num": "M01", "title": "Imprisoned XII", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931260_2"}, {"num": "M02", "title": "Ave Mujica", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47934815_2"}, {"num": "M03", "title": "顔", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931318_2"}, {"num": "M04", "title": "天球（そら）のMúsica", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932123_2"}, {"num": "", "title": "Interlude", "highlight_label": "Anime", "highlight_text": "「BanG Dream! Ave Mujica」EP13", "mc_file": "", "link": ""}, {"num": "M05", "title": "KiLLKiSS", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932379_6"}, {"num": "M06", "title": "Crucifix X", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932208_2"}, {"num": "M07", "title": "八芒星ダンス", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931830_2"}, {"num": "M08", "title": "Georgette Me, Georgette You", "highlight_label": "Highlight", "highlight_text": "A melo不进", "mc_file": "", "link": "https://www.acfun.cn/v/ac47924476_4"}, {"num": "", "title": "MC", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": ""}],
     backstage: []
   },
   {
     name: "JAPAN JAM 2025",
+    hash_id: "FjhiWd71PiS",
     date: "2025/5/5",
     venue: "千葉市蘇我スポーツ公園",
     tag: "Fes",
@@ -215,11 +233,12 @@ const livesData = [
     kv: "../images/japanjam2025 kv.webp",
     video_url: "https://www.bilibili.com/video/BV1pB3izpExm",
     description: "非全场",
-    setlist: [],
+    setlist: [{"num": "M01", "title": "KiLLKiSS", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M02", "title": "Symbol II : 🜁", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M03", "title": "Georgette Me, Georgette You", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M04", "title": "Mas?uerade Rhapsody Re?uest", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M05", "title": "Symbol I : 🜂", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931569_8"}],
     backstage: []
   },
   {
     name: "ANISAMA WORLD 2025 in MANILA",
+    hash_id: "4TL4Z9kaPRf",
     date: "2025/6/7",
     venue: "Smart Araneta Coliseum",
     tag: "Fes",
@@ -227,11 +246,12 @@ const livesData = [
     kv: "../images/asl2025manlia kv.webp",
     video_url: "",
     description: "",
-    setlist: [],
+    setlist: [{"num": "M01", "title": "Georgette Me, Georgette You", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M02", "title": "Ave Mujica", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M03", "title": "顔", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M04", "title": "KiLLKiSS", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}],
     backstage: []
   },
   {
     name: "BILIBILI MACRO LINK 2025 DAY2",
+    hash_id: "u8D164bh4Qj",
     date: "2025/7/12",
     venue: "国家会展中心（上海）虹馆EH",
     tag: "Fes",
@@ -239,11 +259,12 @@ const livesData = [
     kv: "../images/bml2025 kv.webp",
     video_url: "https://www.bilibili.com/video/BV1Ac8yzxERF",
     description: "非全场",
-    setlist: [],
+    setlist: [{"num": "M01", "title": "KiLLKiSS", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932379_7"}, {"num": "M02", "title": "顔", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M03", "title": "八芒星ダンス", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M04", "title": "Imprisoned XII", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}],
     backstage: []
   },
   {
     name: "BILIBILI MACRO LINK 2025 DAY3",
+    hash_id: "degh8ZwDaQA",
     date: "2025/7/13",
     venue: "国家会展中心（上海）虹馆EH",
     tag: "Fes",
@@ -251,11 +272,12 @@ const livesData = [
     kv: "../images/bml2025 kv.webp",
     video_url: "",
     description: "非全场",
-    setlist: [],
+    setlist: [{"num": "M01", "title": "KiLLKiSS", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M02", "title": "顔", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M03", "title": "八芒星ダンス", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M04", "title": "天球（そら）のMúsica", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}],
     backstage: []
   },
   {
     name: "Ave Mujica 5th LIVE「Nova Historia」DAY1",
+    hash_id: "Yo2h7VNdBuH",
     date: "2025/7/26",
     venue: "LaLa arena TOKYO-BAY",
     tag: "One Man Live",
@@ -263,11 +285,12 @@ const livesData = [
     kv: "../images/5th kv.webp",
     video_url: "https://www.bilibili.com/video/BV1w9q8BJEzM",
     description: "「新的历史」",
-    setlist: [],
+    setlist: [{"num": "M00", "title": "贝多芬「月光奏鸣曲」第一乐章", "highlight_label": "Solo", "highlight_text": "三角钢琴", "mc_file": "", "link": ""}, {"num": "M01", "title": "Crucifix X", "highlight_label": "Highlight", "highlight_text": "三角钢琴", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932208_3"}, {"num": "M02", "title": "Symbol II : 🜁", "highlight_label": "Highlight", "highlight_text": "三角钢琴", "mc_file": "", "link": "https://www.acfun.cn/v/ac47933063_6"}, {"num": "M03", "title": "DIVINE", "highlight_label": "Live debut", "highlight_text": "三角钢琴", "mc_file": "", "link": "https://www.acfun.cn/v/ac47930865"}, {"num": "M04", "title": "Ether", "highlight_label": "Highlight", "highlight_text": "三角钢琴", "mc_file": "", "link": "https://www.acfun.cn/v/ac47933636_4"}, {"num": "M05", "title": "Ave Mujica", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47934815_3"}, {"num": "M06", "title": "Choir 'S' Choir", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47935101_7"}, {"num": "M07", "title": "素晴らしき世界 でも どこにもない場所", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47933675_6"}, {"num": "M08", "title": "黒のバースデイ", "highlight_label": "Live Arrangement", "highlight_text": "结尾念白改编", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932539_7"}, {"num": "M09", "title": "Symbol IV : 🜃", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47934854_4"}, {"num": "", "title": "Piano Solo", "highlight_label": "Solo", "highlight_text": "肖邦练习曲Op.10改编", "mc_file": "", "link": ""}, {"num": "M10", "title": "Symbol III : 🜄", "highlight_label": "Live Arrangement", "highlight_text": "无弦乐，自由速度", "mc_file": "", "link": "https://www.acfun.cn/v/ac47930965_5"}, {"num": "M11", "title": "天球（そら）のMúsica", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932123_3"}, {"num": "M12", "title": "Imprisoned XII", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931260_3"}, {"num": "M13", "title": "Mas?uerade Rhapsody Re?uest", "highlight_label": "Live Arrangement", "highlight_text": "开场清唱", "mc_file": "", "link": "https://www.acfun.cn/v/ac47935303_9"}, {"num": "M14", "title": "八芒星ダンス", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931830_3"}, {"num": "M15", "title": "'S/' The Way", "highlight_label": "Unreleased Song", "highlight_text": "表记「？？？？？」", "mc_file": "", "link": "https://www.acfun.cn/v/ac47930836"}, {"num": "M16", "title": "顔", "highlight_label": "Live Arrangement", "highlight_text": "Doloris未演奏主音吉他", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931318_3"}, {"num": "M17", "title": "KiLLKiSS", "highlight_label": "Live Arrangement", "highlight_text": "intro cut 与「顔」构成Non-stop", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932379_8"}, {"num": "M18", "title": "Symbol I : 🜂", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931569_9"}],
     backstage: []
   },
   {
     name: "Ave Mujica 5th LIVE「Nova Historia」DAY2",
+    hash_id: "HK5tJ9ottPW",
     date: "2025/7/27",
     venue: "LaLa arena TOKYO-BAY",
     tag: "One Man Live",
@@ -275,11 +298,12 @@ const livesData = [
     kv: "../images/5th kv.webp",
     video_url: "https://www.bilibili.com/video/BV19Aus6SEqj",
     description: "「新的历史」",
-    setlist: [],
+    setlist: [{"num": "M00", "title": "贝多芬「月光奏鸣曲」第一乐章", "highlight_label": "Solo", "highlight_text": "三角钢琴", "mc_file": "", "link": ""}, {"num": "M01", "title": "Crucifix X", "highlight_label": "Highlight", "highlight_text": "三角钢琴", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932208_4"}, {"num": "M02", "title": "Symbol II : 🜁", "highlight_label": "Highlight", "highlight_text": "三角钢琴", "mc_file": "", "link": "https://www.acfun.cn/v/ac47933063_7"}, {"num": "M03", "title": "DIVINE", "highlight_label": "Highlight", "highlight_text": "三角钢琴", "mc_file": "", "link": "https://www.acfun.cn/v/ac47930865_2"}, {"num": "M04", "title": "Ether", "highlight_label": "Highlight", "highlight_text": "三角钢琴", "mc_file": "", "link": "https://www.acfun.cn/v/ac47933636_5"}, {"num": "M05", "title": "Ave Mujica", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47934815_4"}, {"num": "M06", "title": "Choir 'S' Choir", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47935101_8"}, {"num": "M07", "title": "素晴らしき世界 でも どこにもない場所", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47933675_7"}, {"num": "M08", "title": "黒のバースデイ", "highlight_label": "Live Arrangement", "highlight_text": "结尾念白改编", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932539_8"}, {"num": "M09", "title": "Symbol IV : 🜃", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47934854_5"}, {"num": "", "title": "Piano Solo", "highlight_label": "Solo", "highlight_text": "肖邦练习曲Op.10改编", "mc_file": "", "link": ""}, {"num": "M10", "title": "Symbol III : 🜄", "highlight_label": "Live Arrangement", "highlight_text": "无弦乐，自由速度，超长停止", "mc_file": "", "link": "https://www.acfun.cn/v/ac47930965_6"}, {"num": "M11", "title": "天球（そら）のMúsica", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932123_4"}, {"num": "M12", "title": "Imprisoned XII", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931260_4"}, {"num": "M13", "title": "Mas?uerade Rhapsody Re?uest", "highlight_label": "Live Arrangement", "highlight_text": "开场清唱", "mc_file": "", "link": "https://www.acfun.cn/v/ac47935303_10"}, {"num": "M14", "title": "八芒星ダンス", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931830_4"}, {"num": "M15", "title": "'S/' The Way", "highlight_label": "Highlight", "highlight_text": "表记「？？？？？」", "mc_file": "", "link": "https://www.acfun.cn/v/ac47930836_2"}, {"num": "M16", "title": "顔", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931318_4"}, {"num": "M17", "title": "KiLLKiSS", "highlight_label": "Live Arrangement", "highlight_text": "intro cut 与「顔」构成Non-stop", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932379_9"}, {"num": "M18", "title": "Symbol I : 🜂", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931569_10"}],
     backstage: []
   },
   {
     name: "SUMMER SONIC 2025 TOKYO",
+    hash_id: "HHUDwtdo0o9",
     date: "2025/8/16",
     venue: "ZOZOマリンスタジアム＆幕張メッセ",
     tag: "Fes",
@@ -287,11 +311,12 @@ const livesData = [
     kv: "../images/ss2025 kv.webp",
     video_url: "https://www.bilibili.com/video/BV1F9YYzwESD",
     description: "",
-    setlist: [],
+    setlist: [{"num": "", "title": "Piano Solo", "highlight_label": "Solo", "highlight_text": "拉威尔「悼念公主的帕凡舞曲」", "mc_file": "", "link": ""}, {"num": "M01", "title": "'S/' The Way", "highlight_label": "Highlight", "highlight_text": "表记「？？？？？」", "mc_file": "", "link": "https://www.acfun.cn/v/ac47930836_3"}, {"num": "M02", "title": "Symbol II : 🜁", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47933063_8"}, {"num": "M03", "title": "神さま、バカ", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47934950_8"}, {"num": "M04", "title": "顔", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931318_5"}, {"num": "M05", "title": "KiLLKiSS", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932379_10"}, {"num": "M06", "title": "Symbol I : 🜂", "highlight_label": "Highlight", "highlight_text": "主音吉他器材事故 Doloris救场处理", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931603"}],
     backstage: []
   },
   {
     name: "Animelo Summer Live 2025 “ThanXX!”",
+    hash_id: "BIA7gtRausC",
     date: "2025/8/30",
     venue: "さいたまスーパーアリーナ",
     tag: "Fes",
@@ -299,11 +324,12 @@ const livesData = [
     kv: "../images/asl2025 kv.webp",
     video_url: "https://www.acfun.cn/v/ac48796328",
     description: "",
-    setlist: [],
+    setlist: [{"num": "", "title": "Intro", "highlight_label": "Anime", "highlight_text": "「BanG Dream! Ave Mujica」EP13", "mc_file": "", "link": ""}, {"num": "M01", "title": "KiLLKiSS", "highlight_label": "Highlight", "highlight_text": "intro还原动画台词", "mc_file": "", "link": "https://www.acfun.cn/v/ac48055738"}, {"num": "M02", "title": "Crucifix X", "highlight_label": "Highlight", "highlight_text": "intro还原动画台词", "mc_file": "", "link": "https://www.acfun.cn/v/ac47932208_5"}, {"num": "M03", "title": "八芒星ダンス", "highlight_label": "Highlight", "highlight_text": "Ainme ver", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931830_5"}, {"num": "M04", "title": "顔", "highlight_label": "Highlight", "highlight_text": "intro改编 与观众互动", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931318_6"}, {"num": "M05", "title": "KINGS", "highlight_label": "COVER", "highlight_text": "Doloris from Ave Mujica with angela", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931710_4"}],
     backstage: []
   },
   {
     name: "rockin'on presents ROCK IN JAPAN FESTIVAL 2025",
+    hash_id: "PpX59bZxUv1",
     date: "2025/9/20",
     venue: "千葉市蘇我スポーツ公園",
     tag: "Fes",
@@ -311,11 +337,12 @@ const livesData = [
     kv: "../images/rockinjapan2025 kv.webp",
     video_url: "https://www.bilibili.com/video/BV1CZUfBtEWF",
     description: "",
-    setlist: [],
+    setlist: [{"num": "M01", "title": "DIVINE", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M02", "title": "八芒星ダンス", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}, {"num": "M03", "title": "'S/' The Way", "highlight_label": "Highlight", "highlight_text": "表记「？？？？？」", "mc_file": "", "link": "0"}, {"num": "M04", "title": "顔", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac47931318_7"}, {"num": "M05", "title": "KiLLKiSS", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "https://www.acfun.cn/v/ac48055738_2"}, {"num": "M06", "title": "Symbol I : 🜂", "highlight_label": "", "highlight_text": "", "mc_file": "", "link": "0"}],
     backstage: []
   },
   {
     name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor",
+    hash_id: "jfgTjcYZTf4",
     date: "2025/10/11",
     venue: "梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）",
     tag: "BanG Dream!",
@@ -328,6 +355,7 @@ const livesData = [
   },
   {
     name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin",
+    hash_id: "u7cOTddR25p",
     date: "2025/10/12",
     venue: "梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）",
     tag: "BanG Dream!",
@@ -340,6 +368,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演",
+    hash_id: "nCXrA7Gboon",
     date: "2025/12/14",
     venue: "東京国際フォーラム ホールA",
     tag: "One Man Live",
@@ -352,6 +381,7 @@ const livesData = [
   },
   {
     name: "ABEMA 日本アニメトレンド大賞 2025",
+    hash_id: "eA2fQEa9K5J",
     date: "2025/12/26",
     venue: "Studio",
     tag: "Fes",
@@ -364,6 +394,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演",
+    hash_id: "7JzNza1WvDh",
     date: "2026/1/15",
     venue: "グランキューブ大阪 メインホール",
     tag: "One Man Live",
@@ -376,6 +407,7 @@ const livesData = [
   },
   {
     name: "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」",
+    hash_id: "aVUA8584b3D",
     date: "2026/2/28",
     venue: "Kアリーナ横浜",
     tag: "BanG Dream!",
@@ -388,6 +420,7 @@ const livesData = [
   },
   {
     name: "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」",
+    hash_id: "gCQKj5kbxk3",
     date: "2026/3/1",
     venue: "Kアリーナ横浜",
     tag: "BanG Dream!",
@@ -400,6 +433,7 @@ const livesData = [
   },
   {
     name: "MEGA VEGAS 2026",
+    hash_id: "CzfNqgGp7u2",
     date: "2026/3/20",
     venue: "神戸ワールド記念ホール",
     tag: "Fes",
@@ -412,6 +446,7 @@ const livesData = [
   },
   {
     name: "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026",
+    hash_id: "5ABzW9qB3dO",
     date: "2026/4/4",
     venue: "KT Zepp Yokohama",
     tag: "Fes",
@@ -424,6 +459,7 @@ const livesData = [
   },
   {
     name: "BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」",
+    hash_id: "1FV5SUvHggy",
     date: "2026/4/11",
     venue: "台北・大佳河濱公園",
     tag: "BanG Dream!",
@@ -436,6 +472,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演",
+    hash_id: "SN8jSKTclRt",
     date: "2026/4/17",
     venue: "Zepp Fukuoka",
     tag: "One Man Live",
@@ -448,6 +485,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演",
+    hash_id: "je7GMFTN4JR",
     date: "2026/4/26",
     venue: "Zepp Namba",
     tag: "One Man Live",
@@ -460,6 +498,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演",
+    hash_id: "BRY81XgYdRL",
     date: "2026/5/1",
     venue: "Zepp Nagoya",
     tag: "One Man Live",
@@ -472,6 +511,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演",
+    hash_id: "tTZFJQohWCn",
     date: "2026/5/4",
     venue: "Zepp Haneda (TOKYO)",
     tag: "One Man Live",
@@ -484,6 +524,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1",
+    hash_id: "jW70ATvaZuV",
     date: "2026/6/19",
     venue: "SGC HALL ARIAKE",
     tag: "One Man Live",
@@ -496,6 +537,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2",
+    hash_id: "NTQrfXPOAaM",
     date: "2026/6/20",
     venue: "SGC HALL ARIAKE",
     tag: "One Man Live",
@@ -508,6 +550,7 @@ const livesData = [
   },
   {
     name: "BEAT AX -SUMMER EDITION 2026-",
+    hash_id: "Lrb1xakoKhU",
     date: "2026/7/12",
     venue: "Kアリーナ横浜",
     tag: "Fes",
@@ -520,6 +563,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1",
+    hash_id: "ZpjdS8wLLvC",
     date: "2026/8/8",
     venue: "國立體育大學綜合體育館（林口體育館）",
     tag: "One Man Live",
@@ -532,6 +576,7 @@ const livesData = [
   },
   {
     name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2",
+    hash_id: "rBpIqAXDMLv",
     date: "2026/8/9",
     venue: "國立體育大學綜合體育館（林口體育館）",
     tag: "One Man Live",
@@ -544,6 +589,7 @@ const livesData = [
   },
   {
     name: "SUMMER SONIC 2026 OSAKA",
+    hash_id: "PaLBMLHmpMR",
     date: "2026/8/14",
     venue: "万博記念公園",
     tag: "Fes",
@@ -556,6 +602,7 @@ const livesData = [
   },
   {
     name: "SUMMER SONIC 2026 TOKYO",
+    hash_id: "3nFOdwiBjfR",
     date: "2026/8/16",
     venue: "ZOZOマリンスタジアム＆幕張メッセ",
     tag: "Fes",

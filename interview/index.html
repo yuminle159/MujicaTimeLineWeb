@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609071730">
+  <link rel="stylesheet" href="style.css?v=202609072334">
 </head>
 <body>
   <div class="interview-page">
@@ -53,8 +53,8 @@
   <!-- 返回顶部按钮 -->
   <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
 
-  <script src="data.js?v=202609071730"></script>
-  <script src="../js/renderMarkdown.js?v=202609071730"></script>
+  <script src="data.js?v=202609072334"></script>
+  <script src="../js/renderMarkdown.js?v=202609072334"></script>
   <script>
     // ==================== 日期格式化 ====================
     function formatDate(dateStr) {
@@ -170,7 +170,7 @@
       overlay.classList.add("active");
       document.body.style.overflow = "hidden";
       body.scrollTop = 0;
-      history.replaceState(null, '', '#' + encodeURIComponent(item.title));
+      history.replaceState(null, '', '#' + item.hash_id);
     };
 
     // 原文显示切换
@@ -258,16 +258,11 @@
       }, 100);
     }
 
-    // 支持 URL hash 自动打开指定访谈
-    // 支持数字索引: #0, #1, #2 ...
-    // 支持标题: #弄和藤都子
+    // 支持 URL hash 自动打开指定访谈：#HASH_ID
     if (location.hash) {
-      const raw = decodeURIComponent(location.hash.slice(1));
-      let idx = parseInt(raw, 10);
-      if (isNaN(idx)) {
-        idx = interviewData.findIndex(item => item.title === raw);
-      }
-      if (idx >= 0 && idx < interviewData.length) {
+      const hashId = location.hash.slice(1);
+      const idx = interviewData.findIndex(item => item.hash_id === hashId);
+      if (idx >= 0) {
         setTimeout(() => openCinematic(idx), 200);
       }
     }

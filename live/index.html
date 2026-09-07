@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609071730">
+  <link rel="stylesheet" href="style.css?v=202609072334">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -84,9 +84,9 @@
     </div>
   </div>
 
-  <script src="../songs/data.js?v=202609071730"></script>
-  <script src="data.js?v=202609071730"></script>
-  <script src="../js/renderMarkdown.js?v=202609071730"></script>
+  <script src="../songs/data.js?v=202609072334"></script>
+  <script src="data.js?v=202609072334"></script>
+  <script src="../js/renderMarkdown.js?v=202609072334"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -226,7 +226,7 @@
     if (cachedLiveIndex === index) {
       drawerOverlay.classList.add("active");
       document.body.style.overflow = "hidden";
-      history.replaceState(null, '', '#live=' + encodeURIComponent(live.name));
+      history.replaceState(null, '', '#live=' + live.hash_id);
       return;
     }
     document.body.style.overflow = "hidden";
@@ -255,9 +255,9 @@
         const linkUrl = (track.link && track.link !== "0" && /^https?:\/\//i.test(track.link)) ? track.link : "";
         const eyeIcon = linkUrl ? `<svg class="track-link-eye" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" onclick="event.stopPropagation();window.open('${escapeHTML(linkUrl)}', '_blank')" title="查看来源"><path class="eye-almond" d="M16,24 Q24,17 32,24 Q24,31 16,24"/><circle class="eye-pupil" cx="24" cy="24" r="3"/></svg>` : "";
         setlistHTML += `<li class="setlist-item${clickable ? ' setlist-clickable' : ''}">
-          <div class="track-info" ${clickAttr}>
+          <div class="track-info">
             <span class="track-num">${num}</span>
-            <span class="track-title">${escapeHTML(track.title)}${clickable ? ' <span class="track-link-icon">↗</span>' : ''}</span>
+            <span class="track-title"${clickAttr}>${escapeHTML(track.title)}${clickable ? ' <span class="track-link-icon">↗</span>' : ''}</span>
             ${eyeIcon}
             <span class="track-highlight${labelClass}"${track.highlight_text ? ` data-tooltip="${escapeHTML(track.highlight_text).replace(/"/g, '&quot;').replace(/\\n/g, '&#10;')}"` : ""}>${track.highlight_label ? `<span class="highlight-badge">${escapeHTML(track.highlight_label)}</span>` : ""}${track.highlight_text ? `<span class="highlight-desc">${escapeHTML(track.highlight_text).replace(/\\n/g, "<br>")}</span>` : ""}</span>
           </div>
@@ -333,7 +333,7 @@
 
     drawerOverlay.classList.add("active");
     cachedLiveIndex = index;
-    history.replaceState(null, '', '#live=' + encodeURIComponent(live.name));
+    history.replaceState(null, '', '#live=' + live.hash_id);
 
     // 预加载当前抽屉所有 backstage 图片（缩略图已渲染，此处预加载灯箱大图）
     const groups = window._backstageGroups;
@@ -483,9 +483,6 @@
     if (!highlight) return;
     const tooltip = highlight.getAttribute("data-tooltip");
     if (!tooltip) return;
-    // 如果文本已显示全则不弹气泡
-    const desc = highlight.querySelector(".highlight-desc");
-    if (desc && desc.scrollWidth <= desc.clientWidth) return;
     clearTimeout(bubbleTimer);
     if (!bubbleEl) {
       bubbleEl = document.createElement("div");
@@ -504,8 +501,11 @@
     if (trackInfo && e.relatedTarget && trackInfo.contains(e.relatedTarget)) return;
     if (bubbleEl) {
       bubbleTimer = setTimeout(function() {
-        if (bubbleEl) bubbleEl.classList.remove("show");
-      }, 100);
+        if (!bubbleEl) return;
+        // 二次确认：鼠标是否真的离开了所有 highlight
+        const hovered = document.querySelector(".track-info:hover .track-highlight[data-tooltip]");
+        if (!hovered) bubbleEl.classList.remove("show");
+      }, 200);
     }
   });
 
@@ -642,10 +642,10 @@
   buildLiveFilter();
   renderGallery();
 
-  // 哈希自动打开：/live/index.html#live=LIVE_NAME
+  // 哈希自动打开：/live/index.html#live=HASH_ID
   if (window.location.hash.startsWith('#live=')) {
-    const liveName = decodeURIComponent(window.location.hash.slice(6));
-    const idx = livesData.findIndex(l => l.name === liveName);
+    const hashId = window.location.hash.slice(6);
+    const idx = livesData.findIndex(l => l.hash_id === hashId);
     if (idx >= 0) setTimeout(function() { openDrawer(idx); }, 200);
   }
 

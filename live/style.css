@@ -580,6 +580,7 @@ body {
   flex-shrink: 0;
 }
 .highlight-desc {
+  display: block;
   font-size: 12px;
   color: var(--md-on-surface-variant);
   line-height: 1.5;
@@ -1069,6 +1070,7 @@ body {
 .mc-c10 { color: #9977CC; }
 .mc-c11 { color: #77BBDD; }
 .mc-c12 { color: #cc2929; }
+.mc-c13 { color: #3344AA; }
 /* 原文标记 */
 .mc-modal-body .md-original {
   font-size: 13px;
@@ -1098,12 +1100,11 @@ body {
 }
 
 /* ===== 可点击 setlist 项 ===== */
-.setlist-clickable .track-info {
+.setlist-clickable .track-title {
   cursor: pointer;
-  transition: background var(--md-duration-short) var(--md-easing-standard);
 }
-.setlist-clickable .track-info:hover {
-  background: var(--md-primary-container);
+.setlist-clickable .track-title:hover {
+  color: var(--md-primary);
 }
 .track-link-icon {
   font-size: 11px;

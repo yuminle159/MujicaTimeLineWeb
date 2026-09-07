@@ -9,6 +9,7 @@
 import os
 import re
 import json
+import hashlib
 import sys
 from collections import OrderedDict
 from datetime import datetime
@@ -27,6 +28,72 @@ try:
 except ImportError:
     print("缺少 openpyxl 库，请运行: pip install openpyxl")
     sys.exit(1)
+
+def murmurhash3_128(key, seed=0):
+    """MurmurHash3 128-bit (x64) → 返回 128-bit 整数"""
+    data = key.encode('utf-8') if isinstance(key, str) else key
+    length = len(data)
+    c1 = 0x87c37b91114253d5
+    c2 = 0x4cf5ad432745937f
+    h1 = h2 = seed & 0xFFFFFFFFFFFFFFFF
+    nblocks = length // 16
+    for i in range(nblocks):
+        k1 = int.from_bytes(data[i*16:i*16+8], 'little')
+        k2 = int.from_bytes(data[i*16+8:i*16+16], 'little')
+        h1 ^= (fmix64(k1 * c1) * c2) & 0xFFFFFFFFFFFFFFFF
+        h1 = ((h1 << 27) | (h1 >> 37)) & 0xFFFFFFFFFFFFFFFF
+        h1 = (h1 + h2) & 0xFFFFFFFFFFFFFFFF
+        h1 = (h1 * 5 + 0x52dce729) & 0xFFFFFFFFFFFFFFFF
+        h2 ^= (fmix64(k2 * c2) * c1) & 0xFFFFFFFFFFFFFFFF
+        h2 = ((h2 << 31) | (h2 >> 33)) & 0xFFFFFFFFFFFFFFFF
+        h2 = (h2 + h1) & 0xFFFFFFFFFFFFFFFF
+        h2 = (h2 * 5 + 0x38495ab5) & 0xFFFFFFFFFFFFFFFF
+    tail = data[nblocks * 16:]
+    k1 = k2 = 0
+    if len(tail) >= 8:
+        k1 = int.from_bytes(tail[0:8], 'little')
+        if len(tail) > 8:
+            k2 = int.from_bytes(tail[8:], 'little')
+    elif len(tail) > 0:
+        k1 = int.from_bytes(tail, 'little')
+    if len(tail) >= 8:
+        h1 ^= (fmix64(k1 * c1) * c2) & 0xFFFFFFFFFFFFFFFF
+        if len(tail) > 8:
+            h2 ^= (fmix64(k2 * c2) * c1) & 0xFFFFFFFFFFFFFFFF
+    elif len(tail) > 0:
+        h1 ^= (fmix64(k1 * c1) * c2) & 0xFFFFFFFFFFFFFFFF
+    h1 ^= length
+    h2 ^= length
+    h1 = (h1 + h2) & 0xFFFFFFFFFFFFFFFF
+    h2 = (h2 + h1) & 0xFFFFFFFFFFFFFFFF
+    h1 = fmix64(h1)
+    h2 = fmix64(h2)
+    h1 = (h1 + h2) & 0xFFFFFFFFFFFFFFFF
+    h2 = (h2 + h1) & 0xFFFFFFFFFFFFFFFF
+    return (h1 << 64) | h2
+
+def fmix64(k):
+    k ^= k >> 33
+    k = (k * 0xff51afd7ed558ccd) & 0xFFFFFFFFFFFFFFFF
+    k ^= k >> 33
+    k = (k * 0xc4ceb9fe1a85ec53) & 0xFFFFFFFFFFFFFFFF
+    k ^= k >> 33
+    return k
+
+BASE62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+def hash_id(*parts):
+    """用 MurmurHash3 + Base62 生成 11 位唯一分享码"""
+    key = "|".join(str(p) for p in parts if p)
+    h = murmurhash3_128(key)
+    # 取 murmurhash 128-bit 做 Base62 编码，截取前 11 位
+    result = []
+    while h > 0 and len(result) < 11:
+        result.append(BASE62[h % 62])
+        h //= 62
+    while len(result) < 11:
+        result.append('0')
+    return ''.join(reversed(result))
 
 # =========================== 路径配置 ===========================
 if getattr(sys, 'frozen', False):
@@ -266,6 +333,7 @@ def generate_songs(wb):
         songs.append({
             "name": sn,
             "name_jp": s.get("song_name_jp", ""),
+            "hash_id": hash_id(sn, s.get("song_name_jp", ""), normalize_date(s.get("release_date", ""))),
             "album": s.get("album", ""),
             "album_year": s.get("album_year", ""),
             "release_date": normalize_date(s.get("release_date", "")),
@@ -293,6 +361,7 @@ def generate_songs(wb):
         lines.append("  {")
         lines.append(f'    name: "{js_str(song["name"])}",')
         lines.append(f'    name_jp: "{js_str(song["name_jp"])}",')
+        lines.append(f'    hash_id: "{js_str(song["hash_id"])}",')
         lines.append(f'    album: "{js_str(song["album"])}",')
         lines.append(f'    album_year: "{js_str(song["album_year"])}",')
         lines.append(f'    release_date: "{js_str(song["release_date"])}",')
@@ -374,6 +443,7 @@ def generate_live(wb):
             continue
         lives.append({
             "name": name,
+            "hash_id": hash_id(name, normalize_date(l.get("live_date", "")), l.get("live_venue", "")),
             "date": normalize_date(l.get("live_date", "")),
             "venue": l.get("live_venue", ""),
             "tag": l.get("live_tag", ""),
@@ -406,6 +476,7 @@ def generate_live(wb):
     for i, live in enumerate(lives):
         lines.append("  {")
         lines.append(f'    name: "{js_str(live["name"])}",')
+        lines.append(f'    hash_id: "{js_str(live["hash_id"])}",')
         lines.append(f'    date: "{js_str(live["date"])}",')
         lines.append(f'    venue: "{js_str(live["venue"])}",')
         lines.append(f'    tag: "{js_str(live["tag"])}",')
@@ -633,6 +704,7 @@ def generate_interview(wb):
             "date": r.get("date", "").strip(),
             "interviewee": r.get("interviewee", "").strip(),
             "title": r.get("title", "").strip(),
+            "hash_id": hash_id(r.get("title", "").strip(), r.get("interviewee", "").strip(), r.get("date", "").strip()),
             "md_html": render_md_to_html(md_content)
         })
 
@@ -647,6 +719,7 @@ def generate_interview(wb):
         lines.append(f'    date: "{js_str(item["date"])}",')
         lines.append(f'    interviewee: "{js_str(item["interviewee"])}",')
         lines.append(f'    title: "{js_str(item["title"])}",')
+        lines.append(f'    hash_id: "{js_str(item["hash_id"])}",')
         lines.append(f'    md_html: "{js_str(item["md_html"])}"')
         lines.append("  }" + ("," if i < len(interviews) - 1 else ""))
     lines.append("];")

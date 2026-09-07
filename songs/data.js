@@ -5,6 +5,7 @@ const songsData = [
   {
     name: "Georgette Me, Georgette You",
     name_jp: "Georgette Me, Georgette You",
+    hash_id: "g2LwpyA5VV6",
     album: "『BanG Dream! Ave Mujica』#1～#3 电影院先行上映",
     album_year: "2024",
     release_date: "2024/12/27",
@@ -40,6 +41,7 @@ const songsData = [
   {
     name: "Symbol III : Water",
     name_jp: "Symbol III : 🜄",
+    hash_id: "VqWmmjSEUDE",
     album: "Digital Single",
     album_year: "2024",
     release_date: "2024/6/15",
@@ -72,6 +74,7 @@ const songsData = [
   {
     name: "Sophie",
     name_jp: "Sophie",
+    hash_id: "qCkB7hfjMwz",
     album: "3rd Single 「'S/' The Way / Sophie」",
     album_year: "2025",
     release_date: "2025/12/10",
@@ -113,6 +116,7 @@ const songsData = [
   {
     name: "The Whole Blue World",
     name_jp: "The Whole Blue World",
+    hash_id: "m8wqmJXCAMX",
     album: "Best Album「Ave Música」",
     album_year: "2026",
     release_date: "2026/6/17",
@@ -135,6 +139,7 @@ const songsData = [
   {
     name: "in your blue eyes",
     name_jp: "碧い瞳の中に",
+    hash_id: "NBxd6EllAIr",
     album: "Digital Single",
     album_year: "2025",
     release_date: "2025/9/4",
@@ -161,6 +166,7 @@ const songsData = [
   {
     name: "Black Birthday",
     name_jp: "黒のバースデイ",
+    hash_id: "ggXANsHGOwf",
     album: "Digital Single",
     album_year: "2023",
     release_date: "2023/4/10",
@@ -210,6 +216,7 @@ const songsData = [
   {
     name: "Two Moons",
     name_jp: "ふたつの月 ~Deep Into The Forest~",
+    hash_id: "PKANtSHaDMP",
     album: "Digital Single",
     album_year: "2023",
     release_date: "2023/4/16",
@@ -242,6 +249,7 @@ const songsData = [
   {
     name: "Choir 'S' Choir",
     name_jp: "Choir 'S' Choir",
+    hash_id: "x5Da9rGYqFn",
     album: "Digital Single",
     album_year: "2023",
     release_date: "2023/4/23",
@@ -289,6 +297,7 @@ const songsData = [
   {
     name: "Memento Mori",
     name_jp: "神さま、バカ",
+    hash_id: "MlfAbekCuzk",
     album: "Digital Single",
     album_year: "2023",
     release_date: "2023/5/7",
@@ -333,6 +342,7 @@ const songsData = [
   {
     name: "Mas?uerade Rhapsody Re?uest",
     name_jp: "Mas?uerade Rhapsody Re?uest",
+    hash_id: "ygD7oXIOiiI",
     album: "Digital Single",
     album_year: "2023",
     release_date: "2023/5/21",
@@ -386,6 +396,7 @@ const songsData = [
   {
     name: "Ave Mujica",
     name_jp: "Ave Mujica",
+    hash_id: "OKcNICpWhru",
     album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
     album_year: "2023",
     release_date: "2023/6/4",
@@ -441,6 +452,7 @@ const songsData = [
   {
     name: "Utopia",
     name_jp: "素晴らしき世界 でも どこにもない場所",
+    hash_id: "hDO89gBUDsA",
     album: "Digital Single",
     album_year: "2023",
     release_date: "2023/12/30",
@@ -481,6 +493,7 @@ const songsData = [
   {
     name: "Angles",
     name_jp: "Angles",
+    hash_id: "o9sYlph4Hv5",
     album: "Digital Single",
     album_year: "2024",
     release_date: "2024/1/7",
@@ -519,6 +532,7 @@ const songsData = [
   {
     name: "Symbol I : Fire",
     name_jp: "Symbol I : 🜂",
+    hash_id: "XRw6rSdEm73",
     album: "Digital Single",
     album_year: "2024",
     release_date: "2024/4/7",
@@ -573,6 +587,7 @@ const songsData = [
   {
     name: "Symbol II : Air",
     name_jp: "Symbol II : 🜁",
+    hash_id: "Bre1fMP4Qzr",
     album: "Digital Single",
     album_year: "2024",
     release_date: "2024/5/18",
@@ -623,6 +638,7 @@ const songsData = [
   {
     name: "Symbol IV : Earth",
     name_jp: "Symbol IV : 🜃",
+    hash_id: "BHwj4JvQrJL",
     album: "Digital Single",
     album_year: "2024",
     release_date: "2024/7/8",
@@ -661,6 +677,7 @@ const songsData = [
   {
     name: "Ether",
     name_jp: "Ether",
+    hash_id: "MwmeWsIFsKd",
     album: "Digital Single",
     album_year: "2024",
     release_date: "2024/8/30",
@@ -691,6 +708,7 @@ const songsData = [
   {
     name: "DIVINE",
     name_jp: "DIVINE",
+    hash_id: "Yg4Gnpj6mW3",
     album: "游戏『PROGRESS ORDERS』OP Moive公开",
     album_year: "2025",
     release_date: "2025/1/17",
@@ -729,6 +747,7 @@ const songsData = [
   {
     name: "KiLLKiSS",
     name_jp: "KiLLKiSS",
+    hash_id: "TlIS1QK8jXa",
     album: "Ave Mujica 4th LIVE「Adventus」现场表演",
     album_year: "2024",
     release_date: "2024/12/15",
@@ -788,6 +807,7 @@ const songsData = [
   {
     name: "Imprisoned XII",
     name_jp: "Imprisoned XII",
+    hash_id: "7eSWmR3YWGn",
     album: "『BanG Dream! Ave Mujica』#10 插入曲",
     album_year: "2025",
     release_date: "2025/3/6",
@@ -825,6 +845,7 @@ const songsData = [
   {
     name: "Crucifix X",
     name_jp: "Crucifix X",
+    hash_id: "uKi0624MMjg",
     album: "『BanG Dream! Ave Mujica』#10 插入曲",
     album_year: "2025",
     release_date: "2025/3/6",
@@ -866,6 +887,7 @@ const songsData = [
   {
     name: "Octagram Dance",
     name_jp: "八芒星ダンス",
+    hash_id: "AvyPCOtyeRO",
     album: "『BanG Dream! Ave Mujica』#13 插入曲",
     album_year: "2025",
     release_date: "2025/3/27",
@@ -915,6 +937,7 @@ const songsData = [
   {
     name: "Alter Ego",
     name_jp: "顔",
+    hash_id: "iscoz8RZ2TB",
     album: "『BanG Dream! Ave Mujica』#13 插入曲",
     album_year: "2025",
     release_date: "2025/3/27",
@@ -969,6 +992,7 @@ const songsData = [
   {
     name: "Musica Caelestis",
     name_jp: "天球（そら）のMúsica",
+    hash_id: "ZD2T9yOaJvZ",
     album: "『BanG Dream! Ave Mujica』#13 插入曲",
     album_year: "2025",
     release_date: "2025/3/27",
@@ -1005,6 +1029,7 @@ const songsData = [
   {
     name: "'S/' The Way",
     name_jp: "'S/' The Way",
+    hash_id: "APtsp8s9Doz",
     album: "Ave Mujica 5th LIVE「Nova Historia」DAY1 现场表演",
     album_year: "2025",
     release_date: "2025/7/26",
@@ -1045,6 +1070,7 @@ const songsData = [
   {
     name: "Ankoku Tengoku",
     name_jp: "暗黒天国",
+    hash_id: "nmSa8KPUdfO",
     album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
     album_year: "2023",
     release_date: "2023/6/4",
@@ -1074,6 +1100,7 @@ const songsData = [
   {
     name: "Daten",
     name_jp: "堕天",
+    hash_id: "8Hn1scGGfDX",
     album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
     album_year: "2023",
     release_date: "2023/6/4",
@@ -1102,6 +1129,7 @@ const songsData = [
   {
     name: "KINGS",
     name_jp: "KINGS",
+    hash_id: "q6I9nuH3YjF",
     album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
     album_year: "2023",
     release_date: "2023/6/4",
@@ -1130,6 +1158,7 @@ const songsData = [
   {
     name: "A Cruel Angel's Thesis",
     name_jp: "残酷な天使のテーゼ",
+    hash_id: "PdDZryXc0Gq",
     album: "Digital Single",
     album_year: "2026",
     release_date: "2026/8/22",
@@ -1152,6 +1181,7 @@ const songsData = [
   {
     name: "Determination Symphony",
     name_jp: "Determination Symphony",
+    hash_id: "1lsJ34P8u5i",
     album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
     album_year: "2023",
     release_date: "2023/6/4",
@@ -1176,6 +1206,7 @@ const songsData = [
   {
     name: "PASSIONATE ANTHEM",
     name_jp: "PASSIONATE ANTHEM",
+    hash_id: "cAYWygj93eN",
     album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
     album_year: "2023",
     release_date: "2023/6/4",

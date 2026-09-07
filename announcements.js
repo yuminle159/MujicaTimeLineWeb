@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.07",
+    "msg": "1.Bug修复 2.live setlist更新至上海鸡狗2 3.interview更新2023/09/15访谈后篇 4.分享链接优化",
+    "pinned": false
+  },
+  {
     "date": "2026.09.06",
     "msg": "1.Bug修复 2.songs&lives更新 3.交互优化 4.每首歌/访谈/live提供标识码，分享时可准确定位 5.lives新增数据分析模块",
     "pinned": false
