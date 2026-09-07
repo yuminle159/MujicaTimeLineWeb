@@ -533,6 +533,7 @@ body {
 .track-info {
   display: flex;
   align-items: center;
+  min-height: 64px;
   padding: 10px 14px;
   border-radius: var(--md-radius-sm);
   transition: background var(--md-duration-short) var(--md-easing-standard);
@@ -663,6 +664,11 @@ body {
   border: 1px solid rgba(162, 90, 255, 0.25);
 }
 .highlight-live-arrangement .highlight-badge {
+  background: rgba(250, 140, 22, 0.12);
+  color: #fa8c16;
+  border: 1px solid rgba(250, 140, 22, 0.25);
+}
+.highlight-solo .highlight-badge {
   background: rgba(82, 196, 26, 0.12);
   color: #52c41a;
   border: 1px solid rgba(82, 196, 26, 0.25);
