@@ -116,6 +116,7 @@ OUTPUTS = {
     "timeline":      os.path.join(ROOT, "timeline", "data.js"),
     "gallery":       os.path.join(ROOT, "gallery", "data.js"),
     "interview":     os.path.join(ROOT, "interview", "data.js"),
+    "discography":   os.path.join(ROOT, "discography", "data.js"),
 }
 
 # 旧 xlsx 文件路径（用于 --init 合并）
@@ -731,6 +732,106 @@ def generate_interview(wb):
     return len(interviews)
 
 
+# =========================== 7. 唱片目录 ===========================
+def split_list(raw, separator=","):
+    """将 Excel 中以逗号分隔的单元格转换为列表，忽略空项。"""
+    return [item.strip() for item in (raw or "").split(separator) if item.strip()]
+
+
+def excel_bool(raw):
+    """解析 Excel 中便于手工填写的布尔值。"""
+    return str(raw or "").strip().lower() in ("1", "true", "yes", "y", "是", "有")
+
+
+def generate_discography(wb):
+    """将发行作品、版本和内容三张关联表合并为页面所需的嵌套数据。"""
+    releases_raw = read_sheet(wb, "discography_releases")
+    editions_raw = read_sheet(wb, "discography_editions")
+    contents_raw = read_sheet(wb, "discography_contents")
+
+    editions_by_release = {}
+    for row in editions_raw:
+        release_id = row.get("release_id", "").strip()
+        name = row.get("edition_name", "").strip()
+        if not release_id or not name:
+            continue
+        editions_by_release.setdefault(release_id, []).append({
+            "name": name,
+            "type": row.get("edition_type", ""),
+            "catalog_no": row.get("catalog_no", ""),
+            "price": row.get("price", ""),
+            "cover": fix_path(row.get("cover", ""), "discography"),
+            "format": row.get("format", ""),
+            "distribution": row.get("distribution", ""),
+            "limited": row.get("limited", ""),
+            "bonus": split_list(row.get("bonus", ""), "|"),
+            "features": {
+                "cd": excel_bool(row.get("includes_cd", "")),
+                "bluray": excel_bool(row.get("includes_bluray", "")),
+                "box": excel_bool(row.get("includes_box", "")),
+                "goods": excel_bool(row.get("includes_goods", ""))
+            }
+        })
+
+    contents_by_release = {}
+    contents_by_edition = {}
+    for row in contents_raw:
+        release_id = row.get("release_id", "").strip()
+        if not release_id:
+            continue
+        item = {
+            "disc_no": row.get("disc_no", ""),
+            "disc_type": row.get("disc_type", ""),
+            "track_no": row.get("track_no", ""),
+            "song_name": row.get("song_name", ""),
+            "content_title": row.get("content_title", ""),
+            "duration": row.get("duration", ""),
+            "note": row.get("note", "")
+        }
+        edition_name = row.get("edition_name", "").strip()
+        if edition_name:
+            contents_by_edition.setdefault((release_id, edition_name), []).append(item)
+        else:
+            contents_by_release.setdefault(release_id, []).append(item)
+
+    releases = []
+    for row in releases_raw:
+        release_id = row.get("release_id", "").strip()
+        if not release_id:
+            continue
+        editions = editions_by_release.get(release_id, [])
+        for edition in editions:
+            edition["contents"] = contents_by_edition.get((release_id, edition["name"]), [])
+        releases.append({
+            "id": release_id,
+            "hash_id": hash_id(row.get("title", ""), row.get("title_jp", ""), normalize_date(row.get("release_date", ""))),
+            "title": row.get("title", ""),
+            "title_jp": row.get("title_jp", ""),
+            "release_date": normalize_date(row.get("release_date", "")),
+            "type": row.get("type", ""),
+            "formats": split_list(row.get("formats", "")),
+            "label": row.get("label", ""),
+            "description": row.get("description", ""),
+            "cover": fix_path(row.get("cover", ""), "discography"),
+            "search_keywords": row.get("search_keywords", ""),
+            "chart": {
+                "first_week": row.get("chart_first_week", ""),
+                "peak": row.get("chart_peak", ""),
+                "weeks": row.get("chart_weeks", ""),
+                "total": row.get("chart_total", ""),
+                "source": row.get("chart_source", "")
+            },
+            "contents": contents_by_release.get(release_id, []),
+            "editions": editions
+        })
+
+    js = "// 唱片目录数据\n// 由 generate_all.py 自动生成，请勿手动修改。\n\n"
+    js += "const discographyData = " + json.dumps(releases, ensure_ascii=False, indent=2) + ";\n"
+    with open(OUTPUTS["discography"], "w", encoding="utf-8") as f:
+        f.write(js)
+    return len(releases)
+
+
 # =========================== 初始化：合并旧 xlsx ===========================
 def init_merged_xlsx():
     """从旧的分散 xlsx 合并创建 _data/data.xlsx"""
@@ -845,6 +946,7 @@ def inject_version(log_func=None):
         os.path.join(ROOT, "timeline", "index.html"),
         os.path.join(ROOT, "gallery", "index.html"),
         os.path.join(ROOT, "interview", "index.html"),
+        os.path.join(ROOT, "discography", "index.html"),
     ]
     # 匹配所有本地 .css / .js / .svg 引用（跳过 https:// 外部链接）
     pattern = re.compile(
@@ -922,6 +1024,12 @@ def main():
         n = generate_interview(wb)
         results["访谈"] = f"{n} 篇"
         print(f"  ✓ interview/data.js — {n} 篇访谈")
+
+    # 唱片目录（三张关联表缺一不可）
+    if "discography_releases" in sheets:
+        n = generate_discography(wb)
+        results["唱片目录"] = f"{n} 张发行作品"
+        print(f"  ✓ discography/data.js — {n} 张发行作品")
 
     wb.close()
 

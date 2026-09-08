@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609081844">
+  <link rel="stylesheet" href="style.css?v=202609082359">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609082359">
 </head>
 <body>
   <div class="live-page">
@@ -29,15 +30,6 @@
     <div class="drawer" onclick="event.stopPropagation()">
       <button class="close-btn" onclick="closeDrawer(event)">&times;</button>
       <div class="drawer-body" id="drawerBody"></div>
-    </div>
-  </div>
-
-  <!-- Song 详情模态框（嵌入，用于 setlist 点击） -->
-  <div class="song-modal-overlay" id="songModalOverlay">
-    <div class="song-modal-container" id="songModalContainer">
-      <button class="song-modal-close" id="songModalClose">&times;</button>
-      <div class="song-modal-left" id="songModalLeft"></div>
-      <div class="song-modal-right" id="songModalRight"></div>
     </div>
   </div>
 
@@ -99,9 +91,10 @@
     </div>
   </div>
 
-  <script src="../songs/data.js?v=202609081844"></script>
-  <script src="data.js?v=202609081844"></script>
-  <script src="../js/renderMarkdown.js?v=202609081844"></script>
+  <script src="../songs/data.js?v=202609082359"></script>
+  <script src="data.js?v=202609082359"></script>
+  <script src="../js/renderMarkdown.js?v=202609082359"></script>
+  <script src="../js/song-modal.js?v=202609082359"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -379,8 +372,8 @@
         closeMcModal();
         return;
       }
-      if (songModalOverlay.classList.contains("open")) {
-        closeSongModal();
+      if (SongModal.isOpen()) {
+        SongModal.close();
         return;
       }
       if (drawerOverlay.classList.contains("active")) {
@@ -524,135 +517,24 @@
     }
   });
 
-  // ===== Song 详情模态框（嵌入） =====
-  const songModalOverlay = document.getElementById("songModalOverlay");
-  const songModalLeft = document.getElementById("songModalLeft");
-  const songModalRight = document.getElementById("songModalRight");
-  const songModalClose = document.getElementById("songModalClose");
-  let cachedSongModalIndex = -1;
-  let songModalComments = null;
-
-  function songModalStripTime(dateStr) {
-    return dateStr ? dateStr.replace(/\s[\d:]+$/, "").trim() : "";
-  }
-
-  window.switchSongComment = function(index) {
-    if (!songModalComments || index < 0 || index >= songModalComments.length) return;
-    const c = songModalComments[index];
-    const textEl = document.getElementById("songCommentaryText");
-    const tabs = document.querySelectorAll(".song-comment-tab");
-    if (textEl) {
-      var dateHTML = c.date ? '<div class="song-comment-date">' + escapeHTML(c.date) + '</div>' : '';
-      textEl.innerHTML = dateHTML + escapeHTML(c.text).replace(/\\n/g, "<br>") + (c.source ? (function() {
-        const isURL = /^https?:\/\//i.test(c.source);
-        if (isURL) {
-          return '<div class="song-comment-source"><a href="' + escapeHTML(c.source) + '" target="_blank" rel="noopener">&#128279; 出处</a></div>';
-        } else {
-          return '<div class="song-comment-source is-text">' + escapeHTML(c.source) + '</div>';
-        }
-      })() : "");
-    }
-    tabs.forEach((t, i) => t.classList.toggle("active", i === index));
-  };
-
   window.openSongModal = function(index) {
-    // 临时隐藏抽屉，避免 Chrome 中 backdrop-filter 穿透大 GPU 层导致滚动卡顿
-    window._drawerWasActive = drawerOverlay.classList.contains("active");
-    if (window._drawerWasActive) {
-      drawerOverlay.classList.remove("active");
-    }
-    if (cachedSongModalIndex === index) {
-      songModalOverlay.classList.add("open");
-      document.body.style.overflow = "hidden";
-      return;
-    }
-    const song = songsData[index];
-    if (!song) return;
-    document.body.style.overflow = "hidden";
-
-    const cnTitle = song.name ? '<div class="song-modal-title-cn">' + escapeHTML(song.name) + '</div>' : "";
-    songModalLeft.innerHTML = '' +
-      (song.cover ? '<img class="song-modal-cover" src="' + escapeHTML(song.cover) + '" alt="' + escapeHTML(song.name_jp || song.name) + '">' : "") +
-      '<div class="song-modal-title">' + escapeHTML(song.name_jp || song.name) + '</div>' +
-      cnTitle +
-      (song.type ? '<span class="song-modal-type">' + escapeHTML(song.type) + '</span>' : "") +
-      '<div class="song-modal-meta">' +
-        (song.release_date ? '<div><span class="song-meta-label">发行日期</span> <span class="song-meta-value">' + escapeHTML(song.release_date) + '</span></div>' : "") +
-        (song.album ? '<div><span class="song-meta-label">首发形式</span> <span class="song-meta-value">' + escapeHTML(song.album) + '</span></div>' : "") +
-        (song.lyricist ? '<div><span class="song-meta-label">作词</span> <span class="song-meta-value">' + escapeHTML(song.lyricist) + '</span></div>' : "") +
-        (song.composer ? '<div><span class="song-meta-label">作曲</span> <span class="song-meta-value">' + escapeHTML(song.composer) + '</span></div>' : "") +
-        (song.arranger ? '<div><span class="song-meta-label">编曲</span> <span class="song-meta-value">' + escapeHTML(song.arranger) + '</span></div>' : "") +
-        (song.first_stage ? '<div><span class="song-meta-label">首次登台</span> <span class="song-meta-value">' + escapeHTML(song.first_stage) + '</span></div>' : "") +
-        (song.mv_url ? '<div><span class="song-meta-label">MV链接</span> <a class="song-meta-link" href="' + escapeHTML(song.mv_url) + '" target="_blank" rel="noopener">观看 MV &#8599;</a></div>' : "") +
-        (song.appearances && song.appearances.length ? '<div style="margin-top:12px;"><span class="song-meta-label">收录CD</span><div class="song-appearances-list">' + song.appearances.map(function(a) { return '<span class="song-cd-item"><span class="song-cd-icon"></span><span>' + escapeHTML(a) + '</span></span>'; }).join("") + '</div></div>' : "") +
-      '</div>';
-
-    let rightHTML = "";
-    if (song.comments && song.comments.length) {
-      songModalComments = song.comments;
-      let tabsHTML = '<span class="song-comment-tabs">';
-      song.comments.forEach(function(c, i) {
-        tabsHTML += '<span class="song-comment-tab' + (i === 0 ? ' active' : '') + '" onclick="event.stopPropagation();switchSongComment(' + i + ')">' + escapeHTML(c.from || 'Comment ' + (i + 1)) + '</span>';
-      });
-      tabsHTML += '</span>';
-      var first = song.comments[0];
-      rightHTML += '<div class="song-commentary-block">' +
-        '<div class="song-commentary-header"><div class="song-section-title">Comment</div>' + tabsHTML + '</div>' +
-        '<div class="song-commentary-body"><div class="song-commentary-text" id="songCommentaryText">' + (first.date ? '<div class="song-comment-date">' + escapeHTML(first.date) + '</div>' : '') + escapeHTML(first.text).replace(/\\n/g, "<br>") + '</div></div></div>';
-    }
-
-    if (song.lyrics_jp || song.lyrics_cn) {
-      var jpLines = (song.lyrics_jp || "").split("\\n");
-      var cnLines = (song.lyrics_cn || "").split("\\n");
-      var maxLen = Math.max(jpLines.length, cnLines.length);
-      var lyricsRows = "";
-      for (var i = 0; i < maxLen; i++) {
-        var jp = i < jpLines.length ? escapeHTML(jpLines[i]) : "";
-        var cn = i < cnLines.length ? escapeHTML(cnLines[i]) : "";
-        lyricsRows += '<div class="song-lyrics-row"><span class="song-lyrics-jp">' + jp + '</span><span class="song-lyrics-cn">' + cn + '</span></div>';
+    let restoreDrawer = false;
+    SongModal.open(index, {
+      songs: songsData,
+      beforeOpen: function() {
+        restoreDrawer = drawerOverlay.classList.contains("active");
+        if (restoreDrawer) drawerOverlay.classList.remove("active");
+      },
+      afterClose: function() {
+        if (restoreDrawer) {
+          drawerOverlay.classList.add("active");
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
       }
-      rightHTML += '<div class="song-lyrics-block"><div class="song-lyrics-header"><div class="song-section-title" style="border:none;margin:0;padding:0;">Lyrics</div></div>' +
-        '<div class="song-lyrics-columns">' + lyricsRows + '</div></div>';
-    }
-
-    if (song.live_history && song.live_history.length) {
-      var lh = song.live_history;
-      var sorted = [].concat(lh).sort(function(a, b) { return (a.date || "").localeCompare(b.date || ""); });
-      var firstDate = songModalStripTime(sorted[0] && sorted[0].date || "");
-      var lastDate = songModalStripTime(sorted[sorted.length - 1] && sorted[sorted.length - 1].date || "");
-      var stats = firstDate + ' ~ ' + lastDate + '，共演奏 ' + lh.length + ' 次';
-      rightHTML += '<div class="live-block"><div class="live-header"><div class="section-title" style="border:none;margin:0;padding:0;">Performance History</div>' +
-        '<div class="live-stats">' + escapeHTML(stats) + '</div></div><div class="live-timeline"><div class="live-timeline-inner">' +
-        lh.map(function(l) {
-          return '<div class="live-node ' + (l.has_video ? 'has-video' : 'no-video') + '">' +
-            '<div class="live-date">' + escapeHTML(songModalStripTime(l.date)) + '</div>' +
-            (l.has_video && l.video_url
-              ? '<a class="live-name" href="' + escapeHTML(l.video_url) + '" target="_blank" rel="noopener">' + escapeHTML(l.name) + '</a>'
-              : '<span class="live-name">' + escapeHTML(l.name) + '</span>') +
-            (l.venue ? '<div class="live-venue">' + escapeHTML(l.venue) + '</div>' : "") +
-          '</div>';
-        }).join("") + '</div></div></div>';
-    }
-
-    songModalRight.innerHTML = rightHTML || '<div style="color:#555;text-align:center;padding:40px;">暂无更多信息</div>';
-
-    songModalOverlay.classList.add("open");
-    cachedSongModalIndex = index;
+    });
   };
-
-  function closeSongModal() {
-    songModalOverlay.classList.remove("open");
-    document.body.style.overflow = "";
-    if (window._drawerWasActive) {
-      drawerOverlay.classList.add("active");
-      document.body.style.overflow = "hidden";
-    }
-  }
-
-  songModalClose.addEventListener("click", closeSongModal);
-  songModalOverlay.addEventListener("click", function(e) {
-    if (e.target === songModalOverlay) closeSongModal();
-  });
 
   buildLiveFilter();
   renderGallery();

@@ -9,13 +9,17 @@ description: "唯鸡百科跨页面内容同步规则。当修改 live 的歌曲
 
 ---
 
-## 1. Live Setlist → Songs 灯箱
+## 1. Songs 详情灯箱（共享组件）
 
-**位置**：`live/index.html`，点击 setlist 曲目弹出歌曲详情灯箱
+**使用位置**：`songs/index.html`、`live/index.html`、`discography/index.html`
 
-**来源**：`songs/index.html` 的歌曲灯箱（modal-overlay / modal-container）
+**唯一来源**：
+- `js/song-modal.js` — HTML 结构、数据渲染、打开/关闭和 Escape 逻辑
+- `css/song-modal.css` — 全部灯箱样式与响应式规则
 
-**同步要求**：修改 `songs/index.html` 中歌曲灯箱的 HTML 结构、CSS 样式、JS 逻辑时，必须同步修改 `live/index.html` 中对应的灯箱代码。
+三个页面只保留调用适配：Songs 允许组件维护 `#song=`；Live 和 Discography 打开组件时不得覆盖各自的 `#live=`、`#discography=`。
+
+**同步要求**：修改歌曲灯箱时只修改共享组件，并检查三个调用入口。不要重新复制灯箱 HTML、CSS 或 JS 到页面文件。
 
 ---
 
@@ -41,6 +45,6 @@ description: "唯鸡百科跨页面内容同步规则。当修改 live 的歌曲
 
 ## 同步原则
 
-- **除非用户明确说不需要同步**，否则修改一处必须同步到另一处
-- 同步时保持 HTML 结构、CSS 规则、JS 逻辑完全一致
+- **除非用户明确说不需要同步**，否则修改共享组件后必须检查全部调用页面
+- Songs 灯箱的 HTML、CSS 和 JS 必须保留单一来源，不得在调用页创建副本
 - 注意变量作用域：`songs/index.html` 的访谈浮层 JS 在独立 IIFE 中，变量名可复用但不能冲突

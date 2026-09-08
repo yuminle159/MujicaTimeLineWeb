@@ -84,6 +84,13 @@ body {
 .nav-card:hover .sigil-wave-2 { transform: scale(1.3); opacity: 0.5; }
 .nav-card:hover .sigil-wave-3 { transform: scale(1.5); opacity: 0; }
 
+/* --- Discography: 唱针掠过唱片纹路 --- */
+.sigil-discography { overflow: visible; }
+.sigil-groove, .sigil-needle { transition: opacity 0.35s ease; }
+.nav-card:hover .sigil-discography { animation: spinDisc 3.4s linear infinite; transform-origin: center; }
+.nav-card:hover .sigil-needle { opacity: 0.35; }
+@keyframes spinDisc { 100% { transform: rotate(360deg); } }
+
 /* --- Live: 日食/芒星呼吸 --- */
 .nav-card:hover .sigil-eclipse-rays {
   transform-origin: center;

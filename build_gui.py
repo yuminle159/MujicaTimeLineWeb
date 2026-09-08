@@ -30,6 +30,7 @@ MODULE_NAMES = {
     "timeline":          "时间线（Timeline）",
     "gallery_images":    "画廊（Gallery）",
     "interview":         "访谈（Interview）",
+    "discography_releases": "唱片目录（Discography）",
 }
 
 
@@ -166,6 +167,9 @@ def run_update(selected_modules, do_webp, log_func, skip_webp=True):
                     elif mod_id == "interview" and "interview" in sheets:
                         n = generate_all.generate_interview(wb)
                         log_func(f"  interview/data.js - {n} 篇访谈")
+                    elif mod_id == "discography_releases" and "discography_releases" in sheets:
+                        n = generate_all.generate_discography(wb)
+                        log_func(f"  discography/data.js - {n} 张发行作品")
                 finally:
                     output = sys.stdout.getvalue()
                     sys.stdout = old_stdout
