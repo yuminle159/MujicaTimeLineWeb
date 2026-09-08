@@ -451,6 +451,7 @@ def generate_live(wb):
             "kv": fix_path(l.get("kv", ""), "live"),
             "video_url": l.get("video_url", ""),
             "description": l.get("description", ""),
+            "for_short": l.get("for short", ""),
             "setlist": setlist_map.get(name, []),
             "backstage": backstage_map.get(name, [])
         })
@@ -484,6 +485,7 @@ def generate_live(wb):
         lines.append(f'    kv: "{js_str(live["kv"])}",')
         lines.append(f'    video_url: "{js_str(live["video_url"])}",')
         lines.append(f'    description: "{js_str(live["description"])}",')
+        lines.append(f'    for_short: "{js_str(live["for_short"])}",')
         lines.append(f'    setlist: {json.dumps(live["setlist"], ensure_ascii=False)},')
         lines.append(f'    backstage: {json.dumps(live["backstage"], ensure_ascii=False)}')
         lines.append("  }" + ("," if i < len(lives) - 1 else ""))

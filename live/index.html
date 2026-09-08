@@ -7,9 +7,8 @@
   <title>Live · 唯鸡百科</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609072334">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202609081844">
 </head>
 <body>
   <div class="live-page">
@@ -71,22 +70,38 @@
     <button class="kv-lightbox-arrow kv-lightbox-next" onclick="event.stopPropagation();moveKvLightbox(1)">&#10095;</button>
   </div>
 
-  <!-- 数据统计浮窗 -->
+  <!-- 数据统计浮窗（全屏） -->
   <div id="statsOverlay" class="stats-overlay">
-    <div class="stats-container">
-      <div class="stats-header">
+    <div class="stats-header">
+      <div class="stats-title-block">
+        <div class="stats-file-id">FILE // LIVE_STATISTICS</div>
         <h2>Live Statistics</h2>
-        <button class="stats-close" id="statsCloseBtn" onclick="closeStats()">&times;</button>
+        <div class="stats-subtitle">PERFORMANCE RECORDS &amp; SETLIST ANALYSIS</div>
       </div>
-      <div class="stats-body" id="statsBody">
-        <div class="stats-loading">Loading statistics...</div>
+      <button class="stats-close" id="statsCloseBtn" onclick="closeStats()">&times;</button>
+    </div>
+    <div class="stats-control-deck">
+      <div class="stats-filters" id="statsScopes">
+        <button class="stats-chip active" data-scope="all">ALL</button>
+        <button class="stats-chip" data-scope="one-man">ONE MAN</button>
+        <button class="stats-chip" data-scope="fes">FES</button>
+        <button class="stats-chip" data-scope="bandori">BANG DREAM!</button>
       </div>
+      <div class="stats-tabs" id="statsTabs">
+        <button class="stats-tab active" data-view="overview">OVERVIEW</button>
+        <button class="stats-tab" data-view="evolution">SETLIST EVOLUTION</button>
+        <button class="stats-tab" data-view="compare">LIVE COMPARISON</button>
+        <button class="stats-tab" data-view="repertoire">REPERTOIRE STATUS</button>
+      </div>
+    </div>
+    <div class="stats-body" id="statsBody">
+      <div class="stats-loading">Loading statistics...</div>
     </div>
   </div>
 
-  <script src="../songs/data.js?v=202609072334"></script>
-  <script src="data.js?v=202609072334"></script>
-  <script src="../js/renderMarkdown.js?v=202609072334"></script>
+  <script src="../songs/data.js?v=202609081844"></script>
+  <script src="data.js?v=202609081844"></script>
+  <script src="../js/renderMarkdown.js?v=202609081844"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -649,306 +664,578 @@
     if (idx >= 0) setTimeout(function() { openDrawer(idx); }, 200);
   }
 
-  // ==================== 数据统计 ====================
-  function openStats() {
-    const overlay = document.getElementById("statsOverlay");
-    const body = document.getElementById("statsBody");
-    overlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-    body.scrollTop = 0;
-    renderStats();
+// ==================== 数据统计 ====================
+  // 全屏沉浸式统计浮窗（参考 interview 的 cinematic-overlay + Live Statistics 交互原型）
+
+  function statsScopeOf(live) {
+    const t = (live.tag || "").toLowerCase();
+    if (t.indexOf("one man") >= 0) return "one-man";
+    if (t.indexOf("fes") >= 0) return "fes";
+    if (t.indexOf("bang dream") >= 0 || t.indexOf("bandori") >= 0 || t.indexOf("mygo") >= 0) return "bandori";
+    return "other";
   }
 
+  function statsNormId(s) { return (s || "").replace(/\s+/g, ""); }
+
+  const STATS_SONG_BY_KEY = {};
+  if (typeof songsData !== "undefined") {
+    songsData.forEach(s => { if (s.name_jp) STATS_SONG_BY_KEY[statsNormId(s.name_jp)] = s; });
+  }
+  function statsSongMeta(title) { return STATS_SONG_BY_KEY[statsNormId(title)] || null; }
+
+  function statsIsSong(e) { return !!(e && e.num && /^M\d/.test(e.num)); }
+
+  // 统计只计算原创曲：排除翻唱曲、以及未收录进歌曲库（songs）的曲子（如 Greensleeves）
+  function statsIsOriginal(s) { return !!(s && (s.type || "").toLowerCase() !== "cover"); }
+  function statsIsCountedSong(e) {
+    if (!statsIsSong(e)) return false;
+    const meta = statsSongMeta(e.title);
+    return !!(meta && statsIsOriginal(meta));
+  }
+
+  function statsStampToDate(s) {
+    const y = Math.floor(s / 10000), m = Math.floor((s % 10000) / 100), d = s % 100;
+    return new Date(y, m - 1, d);
+  }
+  function statsStampDisplay(s, sep) {
+    if (!s) return "—";
+    const y = Math.floor(s / 10000), m = Math.floor((s % 10000) / 100), d = s % 100;
+    const ss = sep || "/";
+    return y + ss + String(m).padStart(2, "0") + ss + String(d).padStart(2, "0");
+  }
+  function statsDayDiff(a, b) {
+    const da = (typeof a === "number") ? statsStampToDate(a) : a;
+    const db = (typeof b === "number") ? statsStampToDate(b) : b;
+    return Math.round((db - da) / 86400000);
+  }
+  function statsTodayStamp() {
+    const d = new Date();
+    return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  }
+  function statsMonthKey(dateStr) {
+    const m = (dateStr || "").match(/(\d{4})[\/\-](\d{1,2})/);
+    return m ? m[1] + "-" + m[2].padStart(2, "0") : "";
+  }
+  function statsAttr(s) {
+    return escapeHTML(s).replace(/"/g, "&quot;").replace(/\n/g, "&#10;");
+  }
+  function statsShortName(name) {
+    if (!name) return "";
+    const n = name.replace(/^Ave Mujica\s*/i, "").trim();
+    return n || name;
+  }
+
+  const STATS_DORMANT_DAYS = 365;
+
+  // 全局 LIVE DEBUT（每首唯一）：以 setlist 的 highlight_label 标记 "Live debut" 为准，跨全部 Live
+  const STATS_DEBUT = {};
+  if (typeof livesData !== "undefined") {
+    livesData.forEach(live => {
+      const s = parseDateStamp(live.date);
+      statsSongEntries(live).forEach(e => {
+        if (e.isDebut) STATS_DEBUT[e.songId] = { stamp: s, date: live.date, liveName: live.name, live: live };
+      });
+    });
+  }
+
+  let statsScope = "all";
+  let statsView = "overview";
+  let statsCompareA = null;
+  let statsCompareB = null;
+
+  function statsScopedLives() {
+    if (statsScope === "all") return livesData.slice();
+    return livesData.filter(l => statsScopeOf(l) === statsScope);
+  }
+
+  function statsCompleteSetlist(live) {
+    const d = (live.description || "").toLowerCase();
+    return !(d.indexOf("非全场") >= 0 || d.indexOf("opening act") >= 0);
+  }
+
+  function statsSongEntries(live) {
+    const entries = (live.setlist || []).filter(statsIsCountedSong);
+    return entries.map((e, i) => {
+      const meta = statsSongMeta(e.title);
+      const title = meta ? meta.name_jp : (e.title || "").trim();
+      return {
+        title: title,
+        songId: statsNormId(title),
+        position: i + 1,
+        isOpener: i === 0,
+        isCloser: i === entries.length - 1,
+        isDebut: /debut|unreleased/i.test(e.highlight_label || ""),
+        meta: meta
+      };
+    });
+  }
+
+  function computeStats() {
+    const scoped = statsScopedLives().slice().sort((a, b) => parseDateStamp(a.date) - parseDateStamp(b.date));
+    const complete = scoped.filter(statsCompleteSetlist);
+    const months = {};
+    const songMap = {};
+    const liveSongs = [];
+
+    scoped.forEach(live => {
+      const mk = statsMonthKey(live.date);
+      if (mk) months[mk] = (months[mk] || 0) + 1;
+    });
+
+    complete.forEach(live => {
+      const entries = statsSongEntries(live);
+      const stamp = parseDateStamp(live.date);
+      liveSongs.push({ live: live, entries: entries, stamp: stamp });
+      entries.forEach(e => {
+        let sm = songMap[e.songId];
+        if (!sm) {
+          sm = { songId: e.songId, title: e.title, meta: e.meta, count: 0, firstStamp: stamp, firstDate: live.date, firstLiveName: live.name,
+                 lastStamp: stamp, lastDate: live.date, opener: 0, closer: 0, stamps: [] };
+          songMap[e.songId] = sm;
+        }
+        sm.count++;
+        if (e.isOpener) sm.opener++;
+        if (e.isCloser) sm.closer++;
+        if (stamp < sm.firstStamp) { sm.firstStamp = stamp; sm.firstDate = live.date; sm.firstLiveName = live.name; }
+        if (stamp > sm.lastStamp) { sm.lastStamp = stamp; sm.lastDate = live.date; }
+        sm.stamps.push(stamp);
+      });
+    });
+
+    const songList = Object.keys(songMap).map(k => songMap[k]);
+    songList.forEach(sm => {
+      sm.stamps.sort((a, b) => a - b);
+      const d = STATS_DEBUT[sm.songId];
+      sm.debutStamp = d ? d.stamp : sm.firstStamp;
+    });
+
+    const combos = {};
+    complete.forEach(live => {
+      const entries = statsSongEntries(live);
+      for (let i = 0; i < entries.length - 1; i++) {
+        const key = entries[i].title + " → " + entries[i + 1].title;
+        combos[key] = (combos[key] || 0) + 1;
+      }
+    });
+
+    return { scoped: scoped, complete: complete, songMap: songMap, songList: songList, liveSongs: liveSongs, combos: combos, months: months };
+  }
+
+  function statsCountSort(a, b) {
+    if (b.count !== a.count) return b.count - a.count;
+    if (b.lastStamp !== a.lastStamp) return b.lastStamp - a.lastStamp;
+    if (a.firstStamp !== b.firstStamp) return a.firstStamp - b.firstStamp;
+    return a.songId < b.songId ? -1 : (a.songId > b.songId ? 1 : 0);
+  }
+
+  // ===== 打开 / 关闭 =====
+  function openStats() {
+    const overlay = document.getElementById("statsOverlay");
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+    document.getElementById("statsBody").scrollTop = 0;
+    renderStats();
+  }
   function closeStats() {
     document.getElementById("statsOverlay").classList.remove("active");
     document.body.style.overflow = "";
   }
   window.closeStats = closeStats;
+  window.openStats = openStats;
 
   document.getElementById("statsCloseBtn").addEventListener("click", closeStats);
   document.getElementById("statsOverlay").addEventListener("click", function(e) {
     if (e.target === this) closeStats();
   });
-
   document.addEventListener("keydown", function(e) {
     if (e.key === "Escape" && document.getElementById("statsOverlay").classList.contains("active")) {
       closeStats();
     }
   });
 
+  (function wireStatsControls() {
+    const scopes = document.querySelectorAll("#statsScopes .stats-chip");
+    scopes.forEach(chip => chip.addEventListener("click", function() {
+      scopes.forEach(c => c.classList.remove("active"));
+      this.classList.add("active");
+      statsScope = this.getAttribute("data-scope");
+      statsCompareA = null;
+      statsCompareB = null;
+      renderStats();
+    }));
+    const tabs = document.querySelectorAll("#statsTabs .stats-tab");
+    tabs.forEach(tab => tab.addEventListener("click", function() {
+      tabs.forEach(t => t.classList.remove("active"));
+      this.classList.add("active");
+      statsView = this.getAttribute("data-view");
+      document.querySelectorAll("#statsBody .stats-view").forEach(v => {
+        v.classList.toggle("active", v.id === "view-" + statsView);
+      });
+      document.getElementById("statsBody").scrollTop = 0;
+    }));
+  })();
+
+  // ===== 渲染入口 =====
   function renderStats() {
     const body = document.getElementById("statsBody");
-    if (!livesData || !songsData) {
+    if (typeof livesData === "undefined" || typeof songsData === "undefined") {
       body.innerHTML = '<div class="stats-loading">No data available</div>';
       return;
     }
+    const S = computeStats();
+    body.innerHTML =
+      '<div class="stats-view active" id="view-overview">' + renderOverview(S) + '</div>' +
+      '<div class="stats-view" id="view-evolution">' + renderEvolution(S) + '</div>' +
+      '<div class="stats-view" id="view-compare">' + renderCompare(S) + '</div>' +
+      '<div class="stats-view" id="view-repertoire">' + renderRepertoire(S) + '</div>';
+    document.querySelectorAll("#statsBody .stats-view").forEach(v => {
+      v.classList.toggle("active", v.id === "view-" + statsView);
+    });
+    wireCompare(S);
+  }
 
-    // ---- 计算所有统计 ----
-    const allTracks = []; // {title, date, liveName, num, isSong}
-    const songCount = {}; // title -> count
-    const songDates = {}; // title -> [dates]
-    const songLastDate = {}; // title -> last date
-    const openers = {}; // title -> count
-    const closers = {}; // title -> count
-    const combos = {}; // "A → B" -> count
-    const liveMonths = {}; // "YYYY-MM" -> count
+  // ==================== OVERVIEW ====================
+  function renderOverview(S) {
+    const dateStart = S.scoped.length ? parseDateStamp(S.scoped[0].date) : 0;
+    const dateEnd = S.scoped.length ? parseDateStamp(S.scoped[S.scoped.length - 1].date) : 0;
+    const dateRange = dateStart ? (statsStampDisplay(dateStart, "/") + " — " + statsStampDisplay(dateEnd, "/")) : "—";
 
-    const nonSongLabels = new Set(["intro", "interlude", "story movie", "opening", "ending", "encore", "mc", "talk"]);
+    const mostPlayed = S.songList.slice().sort(statsCountSort)[0];
 
-    function isSong(entry) {
-      if (!entry.num || !entry.num.match(/^M\d/)) return false;
-      const label = (entry.highlight_label || "").toLowerCase();
-      if (nonSongLabels.has(label)) return false;
-      const title = (entry.title || "").toLowerCase();
-      if (nonSongLabels.has(title)) return false;
-      return true;
+    let longestLive = null, longestLen = 0;
+    S.liveSongs.forEach(ls => { if (ls.entries.length > longestLen) { longestLen = ls.entries.length; longestLive = ls; } });
+
+    const activeRepertoire = S.songList.length;
+
+    let html = '<div class="metric-grid">' +
+      '<article class="metric"><div class="metric-label">Recorded Lives</div><div class="metric-value red">' + S.scoped.length + '</div><div class="metric-note">' + dateRange + '</div></article>' +
+      '<article class="metric"><div class="metric-label">Most Performed</div><div class="metric-value metric-value--title">' + (mostPlayed ? escapeHTML(mostPlayed.title) : "—") + '</div><div class="metric-note">全档案演出次数最多的歌曲</div></article>' +
+      '<article class="metric"><div class="metric-label">Longest Setlist</div><div class="metric-value">' + longestLen + '</div><div class="metric-note">单场曲目最多的演出</div></article>' +
+      '<article class="metric"><div class="metric-label">Active Repertoire</div><div class="metric-value">' + activeRepertoire + '</div><div class="metric-note">当前演出曲库中的原创曲目</div></article>' +
+      '</div>';
+
+    // Live Records
+    const records = [];
+    if (longestLive) records.push({ idx: "REC // 01", title: statsShortName(longestLive.live.name), note: "LONGEST SETLIST · " + longestLen + " TRACKS" });
+    const debutCount = {};
+    Object.keys(STATS_DEBUT).forEach(songId => {
+      const d = STATS_DEBUT[songId];
+      if (statsScope !== "all" && statsScopeOf(d.live) !== statsScope) return;
+      const key = d.liveName || d.date;
+      debutCount[key] = (debutCount[key] || 0) + 1;
+    });
+    let debutLiveName = "", debutMax = 0;
+    Object.keys(debutCount).forEach(n => { if (debutCount[n] > debutMax) { debutMax = debutCount[n]; debutLiveName = n; } });
+    if (debutMax > 0) records.push({ idx: "REC // 02", title: statsShortName(debutLiveName), note: "MOST LIVE DEBUTS · " + debutMax + " TRACKS" });
+    let dormSong = null, dormDays = -1;
+    S.songList.forEach(sm => {
+      for (let i = 1; i < sm.stamps.length; i++) {
+        const gap = statsDayDiff(sm.stamps[i - 1], sm.stamps[i]);
+        if (gap > dormDays) { dormDays = gap; dormSong = sm; }
+      }
+    });
+    if (dormSong && dormDays >= 0) records.push({ idx: "REC // 03", title: dormSong.title, note: "LONGEST DORMANCY · " + dormDays + " DAYS" });
+    let shiftMax = -1, shiftLive = null;
+    for (let i = 1; i < S.liveSongs.length; i++) {
+      const a = new Set(S.liveSongs[i - 1].entries.map(e => e.songId));
+      const b = new Set(S.liveSongs[i].entries.map(e => e.songId));
+      let common = 0;
+      a.forEach(x => { if (b.has(x)) common++; });
+      const uni = new Set([...a, ...b]);
+      const dist = uni.size ? (1 - common / uni.size) : 0;
+      if (dist > shiftMax) { shiftMax = dist; shiftLive = S.liveSongs[i].live; }
+    }
+    if (shiftLive) records.push({ idx: "REC // 04", title: statsShortName(shiftLive.name), note: "LARGEST SETLIST SHIFT · " + Math.round(shiftMax * 100) + "%" });
+
+    if (records.length) {
+      html += '<section class="section">' +
+        '<div class="section-head"><div><div class="kicker">ARCHIVE RECORDS</div><h2>Live Records</h2></div><div class="section-note">演出级纪录集中置顶；筛选演出类型后，纪录和下方数据同步更新。</div></div>' +
+        '<div class="records">' + records.map(r =>
+          '<article class="record"><div class="record-index">' + r.idx + '</div><strong>' + escapeHTML(r.title) + '</strong><span>' + escapeHTML(r.note) + '</span></article>'
+        ).join("") + '</div></section>';
     }
 
-    // 歌曲名 → type 映射（用于排除 Cover）
-    const songTypeMap = {};
-    songsData.forEach(s => {
-      const name = s.name_jp || s.name;
-      if (name) songTypeMap[name] = (s.type || "").toLowerCase();
-    });
+    // Most Played Songs
+    const topSongs = S.songList.slice().sort(statsCountSort).slice(0, 10);
+    const maxCount = topSongs.length ? topSongs[0].count : 1;
+    html += '<div class="two-col">';
+    html += '<section class="section"><div class="section-head"><div><div class="kicker">TRACK FREQUENCY</div><h2>Most Played Songs</h2></div></div><div class="bars">' +
+      topSongs.map(sm => '<div class="bar-row"><div class="bar-name" title="' + statsAttr(sm.title) + '">' + escapeHTML(sm.title) + '</div><div class="bar-track"><div class="bar-fill" style="width:' + Math.round(sm.count / maxCount * 100) + '%"></div></div><div class="bar-count">' + sm.count + '</div></div>').join("") +
+      '</div></section>';
 
-    livesData.forEach(live => {
-      const tracks = live.setlist || [];
-      const date = live.date || "";
-      const liveName = live.name || "";
+    // Openers & Closers
+    const topOpeners = S.songList.slice().filter(x => x.opener > 0).sort((a, b) => b.opener - a.opener || statsCountSort(a, b)).slice(0, 5);
+    const topClosers = S.songList.slice().filter(x => x.closer > 0).sort((a, b) => b.closer - a.closer || statsCountSort(a, b)).slice(0, 5);
+    const openerItems = topOpeners.length ? topOpeners.map(x => '<li><span>' + escapeHTML(x.title) + '</span><span class="count">' + x.opener + '</span></li>').join("") : '<li class="stats-empty-note">NO DATA</li>';
+    const closerItems = topClosers.length ? topClosers.map(x => '<li><span>' + escapeHTML(x.title) + '</span><span class="count">' + x.closer + '</span></li>').join("") : '<li class="stats-empty-note">NO DATA</li>';
+    html += '<section class="section"><div class="section-head"><div><div class="kicker">POSITION FREQUENCY</div><h2>Openers &amp; Closers</h2></div></div><div class="split-list">' +
+      '<div><h3>[ OPENER ]</h3><ul class="data-list">' + openerItems + '</ul></div>' +
+      '<div><h3>[ CLOSER ]</h3><ul class="data-list">' + closerItems + '</ul></div>' +
+      '</div></section>';
+    html += '</div>';
 
-      // 收集歌曲
-      const songTracks = tracks.filter(t => isSong(t));
-      songTracks.forEach(t => {
-        const title = t.title;
-        allTracks.push({ title, date, liveName, num: t.num });
-        songCount[title] = (songCount[title] || 0) + 1;
-        if (!songDates[title]) songDates[title] = [];
-        songDates[title].push(date);
-      });
+    // Frequent Combos
+    const topCombos = Object.entries(S.combos).sort((a, b) => b[1] - a[1]).slice(0, 8);
+    html += '<section class="section"><div class="section-head"><div><div class="kicker">SEQUENCE PATTERNS</div><h2>Frequent Combos</h2></div><div class="section-note">相邻出现次数最多的歌曲组合，用于观察固定衔接和 Setlist 编排习惯。</div></div>' +
+      (topCombos.length ? '<ul class="data-list">' + topCombos.map(c => '<li><span>' + escapeHTML(c[0].split(" → ")[0]) + ' <b class="combo-arrow">→</b> ' + escapeHTML(c[0].split(" → ")[1]) + '</span><span class="count">' + c[1] + '</span></li>').join("") + '</ul>' : '<p class="stats-empty-note">NO DATA</p>') +
+      '</section>';
 
-      // 开场曲（第一条 Mxx）
-      if (songTracks.length > 0) {
-        const opener = songTracks[0].title;
-        openers[opener] = (openers[opener] || 0) + 1;
-      }
+    // Activity Heatmap
+    html += renderHeatmap(S);
 
-      // 结尾曲（最后一条 Mxx）
-      if (songTracks.length > 0) {
-        const closer = songTracks[songTracks.length - 1].title;
-        closers[closer] = (closers[closer] || 0) + 1;
-      }
+    return html;
+  }
 
-      // 连唱组合
-      for (let i = 0; i < songTracks.length - 1; i++) {
-        const key = songTracks[i].title + " → " + songTracks[i + 1].title;
-        combos[key] = (combos[key] || 0) + 1;
-      }
-
-      // 活跃度热力图
-      const m = date.match(/(\d{4})\/(\d{1,2})\/(\d{1,2})/);
-      if (m) {
-        const ym = m[1] + "-" + m[2].padStart(2, "0");
-        liveMonths[ym] = (liveMonths[ym] || 0) + 1;
-      }
-
-      // 歌曲最后演出日期
-      songTracks.forEach(t => {
-        songLastDate[t.title] = date;
+  function renderHeatmap(S) {
+    const STATS_MONTHS = ["01","02","03","04","05","06","07","08","09","10","11","12"];
+    const years = {};
+    Object.keys(S.months).forEach(mk => { years[mk.slice(0, 4)] = true; });
+    const yearList = Object.keys(years).sort();
+    let cells = '<span></span>' + STATS_MONTHS.map(m => '<span class="label">' + m + '</span>').join("");
+    yearList.forEach(y => {
+      cells += '<span class="year">' + y + '</span>';
+      STATS_MONTHS.forEach(m => {
+        const c = S.months[y + "-" + m] || 0;
+        const lvl = c === 0 ? 0 : (c === 1 ? 1 : (c === 2 ? 2 : (c === 3 ? 3 : 4)));
+        cells += '<span class="heat l' + lvl + '" title="' + y + "." + m + " · " + c + ' LIVE' + (c === 1 ? "" : "S") + '"></span>';
       });
     });
+    return '<section class="section"><div class="section-head"><div><div class="kicker">ACTIVITY BY MONTH</div><h2>Activity Heatmap</h2></div><div class="section-note">颜色表达当月演出次数；悬停格子显示数值。</div></div>' +
+      '<div class="heatmap-wrap"><div class="heatmap">' + cells + '</div></div></section>';
+  }
 
-    // Top 10
-    const top10 = Object.entries(songCount)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 10);
-
-    // 开场 Top 5
-    const topOpeners = Object.entries(openers)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 5);
-
-    // 结尾 Top 5
-    const topClosers = Object.entries(closers)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 5);
-
-    // 连唱 Top 8
-    const topCombos = Object.entries(combos)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 8);
-
-    // 已发行但从未演出
-    const playedTitles = new Set(Object.keys(songCount));
-    const neverPlayed = songsData.filter(s => {
-      const name = s.name_jp || s.name;
-      return name && !playedTitles.has(name);
+  // ==================== EVOLUTION ====================
+  function renderEvolution(S) {
+    const cols = S.liveSongs;
+    const rows = S.songList.slice().sort(function(a, b) {
+      if (a.debutStamp !== b.debutStamp) return a.debutStamp - b.debutStamp;
+      const ra = (a.meta && a.meta.release_date) ? parseDateStamp(a.meta.release_date) : 0;
+      const rb = (b.meta && b.meta.release_date) ? parseDateStamp(b.meta.release_date) : 0;
+      if (ra !== rb) return (ra || 99999999) - (rb || 99999999);
+      return a.songId < b.songId ? -1 : (a.songId > b.songId ? 1 : 0);
     });
 
-    // 距上次演出间隔最长（只考虑有演出记录的歌曲）
-    function parseDate(d) {
-      if (!d) return 0;
-      const m = d.match(/(\d{4})\/(\d{1,2})\/(\d{1,2})/);
-      return m ? new Date(parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[3])) : 0;
+    if (!cols.length) {
+      return '<section class="section"><div class="section-head"><div><div class="kicker">SETLIST CHRONOLOGY</div><h2>Setlist Evolution</h2></div></div><p class="stats-empty-note">当前范围无可用于矩阵的完整 Setlist 数据。</p></section>';
     }
 
-    function computeGaps() {
-      const now = new Date();
-      return Object.entries(songLastDate)
-        .map(([title, lastDate]) => {
-          const type = songTypeMap[title];
-          if (type === "cover" || type === undefined) return null;
-          const d = parseDate(lastDate);
-          if (!d) return null;
-          const days = Math.floor((now - d) / (1000 * 60 * 60 * 24));
-          return { title, lastDate, days };
-        })
-        .filter(Boolean)
-        .sort((a, b) => b.days - a.days)
-        .slice(0, 8);
-    }
-
-    // ---- 热力图数据 ----
-    const yearSet = new Set();
-    Object.keys(liveMonths).forEach(ym => {
-      const y = ym.split("-")[0];
-      yearSet.add(y);
+    let head = '<thead><tr><th>SONG / LIVE</th>';
+    cols.forEach(ls => {
+      head += '<th title="' + statsAttr(ls.live.name + " · " + statsStampDisplay(ls.stamp, "/")) + '">' + statsAttr(ls.live.for_short || statsShortName(ls.live.name)) + '</th>';
     });
-    const years = [...yearSet].sort();
-    const months = ["01","02","03","04","05","06","07","08","09","10","11","12"];
-    const maxCount = Math.max(1, ...Object.values(liveMonths));
+    head += '</tr></thead>';
 
-    // ---- 渲染 ----
-    function buildHTML() {
-      const gaps = computeGaps();
-      let html = "";
-
-      // Section 1: Top 10 柱状图
-      html += '<div class="stats-section">';
-      html += '<h3 class="stats-section-title">Most Played Songs</h3>';
-      html += '<div class="stats-chart-wrap"><canvas id="top10Chart"></canvas></div>';
-      html += '</div>';
-
-      // Section 2: 开场/结尾
-      html += '<div class="stats-section">';
-      html += '<h3 class="stats-section-title">Top Openers &amp; Closers</h3>';
-      html += '<div class="stats-row">';
-      html += '<div class="stats-col">';
-      html += '<h4 class="stats-subtitle">🎬 Most Frequent Openers</h4>';
-      html += '<ul class="stats-list">';
-      topOpeners.forEach(([title, count]) => {
-        html += '<li><span class="stats-song">' + title + '</span><span class="stats-count">' + count + '</span></li>';
+    let tbody = '<tbody>';
+    rows.forEach(song => {
+      tbody += '<tr><td title="' + statsAttr(song.title) + '">' + escapeHTML(song.title) + '</td>';
+      cols.forEach(ls => {
+        const entry = ls.entries.find(e => e.songId === song.songId);
+        if (!entry) { tbody += '<td></td>'; return; }
+        const debut = ls.stamp === song.debutStamp;
+        const cls = (debut ? 'debut' : 'played') + (entry.isOpener ? ' opener' : '') + (entry.isCloser ? ' closer' : '');
+        const label = debut ? 'D' : String(entry.position);
+        const tip = ls.live.name + " · " + statsStampDisplay(ls.stamp, "/") + "\n" + song.title + "\n" + (debut ? 'LIVE DEBUT' : ('POSITION ' + entry.position)) + (entry.isOpener ? ' · OPENER' : '') + (entry.isCloser ? ' · CLOSER' : '');
+        tbody += '<td class="' + cls + '" title="' + statsAttr(tip) + '">' + label + '</td>';
       });
-      html += '</ul></div>';
-      html += '<div class="stats-col">';
-      html += '<h4 class="stats-subtitle">🎭 Most Frequent Closers</h4>';
-      html += '<ul class="stats-list">';
-      topClosers.forEach(([title, count]) => {
-        html += '<li><span class="stats-song">' + title + '</span><span class="stats-count">' + count + '</span></li>';
-      });
-      html += '</ul></div>';
-      html += '</div></div>';
+      tbody += '</tr>';
+    });
+    tbody += '</tbody>';
 
-      // Section 3: 遗珠 & 有生之年
-      html += '<div class="stats-section">';
-      html += '<h3 class="stats-section-title">Rarities &amp; Unplayed Tracks</h3>';
-      html += '<div class="stats-row">';
-      html += '<div class="stats-col">';
-      html += '<h4 class="stats-subtitle">⏳ Longest Gap Since Last Played</h4>';
-      html += '<ul class="stats-list">';
-      gaps.forEach(({ title, lastDate, days }) => {
-        html += '<li><span class="stats-song">' + title + '</span><span class="stats-count">' + days + ' days</span><span class="stats-date">' + lastDate + '</span></li>';
-      });
-      html += '</ul></div>';
-      html += '<div class="stats-col">';
-      html += '<h4 class="stats-subtitle">💎 Released but Never Played Live</h4>';
-      html += '<ul class="stats-list">';
-      if (neverPlayed.length > 0) {
-        neverPlayed.forEach(s => {
-          const name = s.name_jp || s.name;
-          html += '<li><span class="stats-song">' + name + '</span><span class="stats-date">' + (s.release_date || "") + '</span></li>';
-        });
-      } else {
-        html += '<li class="stats-empty">All songs have been performed ✓</li>';
-      }
-      html += '</ul></div>';
-      html += '</div></div>';
+    return '<section class="section">' +
+      '<div class="section-head"><div><div class="kicker">SETLIST CHRONOLOGY</div><h2>Setlist Evolution</h2></div><div class="section-note">横轴为演出，纵轴为歌曲。D 为首次演奏，红色斜纹为开场曲，白色斜纹为收尾曲。</div></div>' +
+      '<div class="matrix-tools"><div class="legend"><span><b>D</b> LIVE DEBUT</span><span><b class="swt swt-open"></b> OPENER</span><span><b class="swt swt-close"></b> CLOSER</span><span><b>01—</b> SETLIST POSITION</span></div><div class="stats-file-id">' + rows.length + ' TRACKS × ' + cols.length + ' LIVES</div></div>' +
+      '<div class="matrix-scroll"><table class="matrix">' + head + tbody + '</table></div>' +
+      '</section>';
+  }
 
-      // Section 4: 连唱绑定
-      html += '<div class="stats-section">';
-      html += '<h3 class="stats-section-title">Frequent Combos</h3>';
-      html += '<ul class="stats-combo-list">';
-      topCombos.forEach(([combo, count]) => {
-        html += '<li><span class="combo-arrow">' + combo + '</span><span class="stats-count">' + count + '</span></li>';
-      });
-      html += '</ul></div>';
-
-      // Section 5: 活跃度热力图
-      html += '<div class="stats-section">';
-      html += '<h3 class="stats-section-title">Activity Heatmap</h3>';
-      html += '<div class="heatmap-wrap">';
-      html += '<div class="heatmap-grid">';
-      html += '<div class="heatmap-label-col"><span></span>';
-      months.forEach(m => {
-        html += '<span>' + m + '</span>';
-      });
-      html += '</div>';
-      years.forEach(y => {
-        html += '<div class="heatmap-row">';
-        html += '<span class="heatmap-year">' + y + '</span>';
-        months.forEach(m => {
-          const key = y + "-" + m;
-          const count = liveMonths[key] || 0;
-          const level = count === 0 ? 0 : Math.ceil((count / maxCount) * 4);
-          html += '<span class="heatmap-cell level-' + level + '" title="' + key + ": " + count + ' lives"></span>';
-        });
-        html += '</div>';
-      });
-      html += '</div>';
-      html += '<div class="heatmap-legend"><span class="heatmap-cell level-0"></span> 0 <span class="heatmap-cell level-1"></span> 1 <span class="heatmap-cell level-2"></span> 2 <span class="heatmap-cell level-3"></span> 3 <span class="heatmap-cell level-4"></span> ' + maxCount + '+</div>';
-      html += '</div></div>';
-
-      return html;
+  // ==================== COMPARE ====================
+  function renderCompare(S) {
+    if (!S.liveSongs.length) {
+      return '<section class="section"><div class="section-head"><div><div class="kicker">PAIR ANALYSIS</div><h2>Live Comparison</h2></div></div><p class="stats-empty-note">当前范围无可用于对比的完整 Setlist 数据。</p></section>';
     }
+    const opts = S.liveSongs.map((ls, i) => '<option value="' + i + '">' + escapeHTML(statsStampDisplay(ls.stamp, "/") + " · " + statsShortName(ls.live.name) + (ls.live.venue ? " · " + ls.live.venue : "")) + '</option>').join("");
+    return '<section class="section">' +
+      '<div class="section-head"><div><div class="kicker">PAIR ANALYSIS</div><h2>Live Comparison</h2></div><div class="section-note">适合比较双日公演、巡演不同地区，以及专场与音乐节版本的差异。</div></div>' +
+      '<div class="select-row"><label>Archive A<select id="statsSelectA">' + opts + '</select></label><div class="versus">VS</div><label>Archive B<select id="statsSelectB">' + opts + '</select></label></div>' +
+      '<div class="comparison-metrics">' +
+      '<div class="mini-metric"><b id="statsSim">—</b><span>SETLIST SIMILARITY</span></div>' +
+      '<div class="mini-metric"><b id="statsCommon">—</b><span>COMMON TRACKS</span></div>' +
+      '<div class="mini-metric"><b id="statsOnlyACount">—</b><span>ARCHIVE A ONLY</span></div>' +
+      '<div class="mini-metric"><b id="statsOnlyBCount">—</b><span>ARCHIVE B ONLY</span></div>' +
+      '</div>' +
+      '<div class="compare-columns"><div class="compare-col"><h3>[ A ONLY ]</h3><ul id="statsOnlyA"></ul></div><div class="compare-col common"><h3>[ SHARED REPERTOIRE ]</h3><ul id="statsShared"></ul></div><div class="compare-col"><h3>[ B ONLY ]</h3><ul id="statsOnlyB"></ul></div></div>' +
+      '</section>';
+  }
 
-    body.innerHTML = buildHTML();
+  function wireCompare(S) {
+    const selA = document.getElementById("statsSelectA");
+    const selB = document.getElementById("statsSelectB");
+    if (!selA || !selB) return;
+    if (statsCompareA === null || statsCompareA >= S.liveSongs.length) statsCompareA = 0;
+    if (statsCompareB === null || statsCompareB >= S.liveSongs.length) statsCompareB = S.liveSongs.length >= 2 ? S.liveSongs.length - 1 : 0;
+    if (statsCompareA === statsCompareB && S.liveSongs.length >= 2) statsCompareB = 1;
+    selA.value = String(statsCompareA);
+    selB.value = String(statsCompareB);
+    const update = function() {
+      statsCompareA = parseInt(selA.value, 10);
+      statsCompareB = parseInt(selB.value, 10);
+      updateCompare(S);
+    };
+    selA.addEventListener("change", update);
+    selB.addEventListener("change", update);
+    updateCompare(S);
+  }
 
-    // 绘制 Chart.js 柱状图
-    setTimeout(() => {
-      const ctx = document.getElementById("top10Chart");
-      if (!ctx) return;
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: top10.map(t => t[0]),
-          datasets: [{
-            label: "演出次数",
-            data: top10.map(t => t[1]),
-            backgroundColor: "rgba(204, 41, 41, 0.6)",
-            borderColor: "rgba(204, 41, 41, 0.9)",
-            borderWidth: 1,
-            borderRadius: 4
-          }]
-        },
-        options: {
-          indexAxis: "y",
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            x: {
-              ticks: { color: "#888", stepSize: 1 },
-              grid: { color: "rgba(255,255,255,0.04)" }
-            },
-            y: {
-              ticks: { color: "#ccc", font: { size: 12 } },
-              grid: { display: false }
-            }
-          }
+  function updateCompare(S) {
+    const A = S.liveSongs[statsCompareA];
+    const B = S.liveSongs[statsCompareB];
+    if (!A || !B) return;
+    const aEntries = A.entries, bEntries = B.entries;
+    const bSet = new Set(bEntries.map(e => e.songId));
+    const aSet = new Set(aEntries.map(e => e.songId));
+    const common = [], onlyA = [], onlyB = [];
+    const seenCommon = new Set();
+    aEntries.forEach(e => {
+      if (bSet.has(e.songId)) {
+        if (!seenCommon.has(e.songId)) {
+          seenCommon.add(e.songId);
+          const bEntry = bEntries.find(x => x.songId === e.songId);
+          common.push({ title: e.title, aPos: e.position, bPos: bEntry ? bEntry.position : 0 });
         }
-      });
-    }, 100);
+      } else if (!onlyA.some(x => x.title === e.title)) {
+        onlyA.push({ title: e.title });
+      }
+    });
+    bEntries.forEach(e => {
+      if (!aSet.has(e.songId) && !onlyB.some(x => x.title === e.title)) onlyB.push({ title: e.title });
+    });
+    const union = new Set([...aSet, ...bSet]);
+    const similarity = union.size ? Math.round(common.length / union.size * 100) : 0;
+    document.getElementById("statsSim").textContent = similarity + "%";
+    document.getElementById("statsCommon").textContent = common.length;
+    document.getElementById("statsOnlyACount").textContent = onlyA.length;
+    document.getElementById("statsOnlyBCount").textContent = onlyB.length;
+    const pad = n => String(n).padStart(2, "0");
+    document.getElementById("statsOnlyA").innerHTML = onlyA.length ? onlyA.map(x => '<li>' + escapeHTML(x.title) + '</li>').join("") : '<li>NO EXCLUSIVE TRACKS</li>';
+    document.getElementById("statsShared").innerHTML = common.length ? common.map(x => '<li><span>' + escapeHTML(x.title) + '</span><small>A:' + pad(x.aPos) + ' / B:' + pad(x.bPos) + '</small></li>').join("") : '<li>NO SHARED TRACKS</li>';
+    document.getElementById("statsOnlyB").innerHTML = onlyB.length ? onlyB.map(x => '<li>' + escapeHTML(x.title) + '</li>').join("") : '<li>NO EXCLUSIVE TRACKS</li>';
+  }
+
+  // ==================== REPERTOIRE ====================
+  function computeStreaks(S) {
+    const result = [];
+    S.songList.forEach(sm => {
+      const seq = S.liveSongs.map(ls => ls.entries.some(e => e.songId === sm.songId));
+      let longest = 0, cur = 0;
+      seq.forEach(v => { if (v) { cur++; if (cur > longest) longest = cur; } else { cur = 0; } });
+      let current = 0;
+      for (let i = seq.length - 1; i >= 0; i--) { if (seq[i]) current++; else break; }
+      const total = seq.filter(Boolean).length;
+      result.push({ song: sm, seq: seq, longest: longest, current: current, total: total });
+    });
+    return result;
+  }
+
+  function renderRepertoire(S) {
+    const today = statsTodayStamp();
+    const playedIds = new Set(S.songList.map(x => x.songId));
+    const unplayed = songsData.filter(s => {
+      const rs = s.release_date ? parseDateStamp(s.release_date) : 0;
+      return statsIsOriginal(s) && rs > 0 && rs <= today && s.name_jp && !playedIds.has(statsNormId(s.name_jp));
+    }).sort((a, b) => parseDateStamp(a.release_date) - parseDateStamp(b.release_date));
+
+    const dormant = S.songList.filter(sm => statsDayDiff(sm.lastStamp, today) >= STATS_DORMANT_DAYS)
+      .slice().sort((a, b) => a.lastStamp - b.lastStamp);
+
+    const streaks = computeStreaks(S).filter(x => x.total > 0)
+      .sort((a, b) => b.current - a.current || b.longest - a.longest || b.total - a.total);
+
+    let gapSum = 0, gapCnt = 0;
+    S.songList.forEach(sm => {
+      const rs = sm.meta && sm.meta.release_date ? parseDateStamp(sm.meta.release_date) : 0;
+      if (rs > 0) { gapSum += statsDayDiff(rs, sm.debutStamp); gapCnt++; }
+    });
+    const avgGap = gapCnt ? Math.round(gapSum / gapCnt) : null;
+
+    const longestCurrent = streaks.length ? streaks[0] : null;
+
+    let html = '<div class="comparison-metrics" style="margin-top:20px">' +
+      '<div class="mini-metric"><b>' + unplayed.length + '</b><span>UNPLAYED TRACKS</span></div>' +
+      '<div class="mini-metric"><b>' + dormant.length + '</b><span>DORMANT TRACKS</span></div>' +
+      '<div class="mini-metric"><b>' + (longestCurrent ? longestCurrent.current + " LIVE" : "0") + '</b><span>LONGEST CURRENT STREAK</span></div>' +
+      '<div class="mini-metric"><b>' + (avgGap === null ? "—" : avgGap + "d") + '</b><span>AVERAGE DEBUT GAP</span></div>' +
+      '</div>';
+
+    // Release → Live Debut
+    html += '<section class="section"><div class="section-head"><div><div class="kicker">RELEASE / PERFORMANCE GAP</div><h2>Release → LIVE DEBUT</h2></div><div class="section-note">从初次公布到首次登台的间隔时间</div></div><div class="matrix-scroll"><table class="debut-table">' +
+      '<thead><tr><th>SONG</th><th>RELEASE</th><th>LIVE DEBUT</th><th>GAP</th><th>RELATIVE POSITION</th></tr></thead><tbody>';
+
+    const debutSorted = songsData.filter(statsIsOriginal).sort((a, b) => {
+      const ra = a.release_date ? parseDateStamp(a.release_date) : 0;
+      const rb = b.release_date ? parseDateStamp(b.release_date) : 0;
+      if (ra !== rb) return (ra || 99999999) - (rb || 99999999);
+      return (a.name_jp || "") < (b.name_jp || "") ? -1 : 1;
+    });
+
+    debutSorted.forEach(s => {
+      const rs = s.release_date ? parseDateStamp(s.release_date) : 0;
+      const d = STATS_DEBUT[statsNormId(s.name_jp)];
+      const debutStamp = d ? d.stamp : null;
+      let gap = null, delta = "", cls = "";
+      if (!rs) { delta = "RELEASE DATE UNKNOWN"; cls = "never"; }
+      else if (!debutStamp) { delta = "NOT PERFORMED"; cls = "never"; }
+      else {
+        gap = statsDayDiff(rs, debutStamp);
+        if (gap < 0) { delta = gap + " DAYS · LIVE FIRST"; cls = "early"; }
+        else if (gap === 0) { delta = "SAME DAY"; }
+        else { delta = "+" + gap + " DAYS"; }
+      }
+      // 时间轴
+      let left = 48, width = 0;
+      if (gap !== null) {
+        const scale = 8;
+        width = Math.min(48, Math.max(2, Math.abs(gap) / scale));
+        if (gap < 0) left = Math.max(0, 48 - width);
+        else left = 48;
+      }
+      const fillStyle = gap === null ? "" : ('left:' + left + '%;width:' + width + '%');
+      html += '<tr><td>' + escapeHTML(s.name_jp) + '</td><td>' + (rs ? escapeHTML(statsStampDisplay(rs, "/")) : "—") + '</td>' +
+        '<td>' + (debutStamp ? escapeHTML(statsStampDisplay(debutStamp, "/")) : "—") + '</td>' +
+        '<td class="delta ' + cls + '">' + escapeHTML(delta) + '</td>' +
+        '<td class="timeline-cell"><div class="time-track"><span class="time-fill" style="' + fillStyle + '"></span></div></td></tr>';
+    });
+    html += '</tbody></table></div></section>';
+
+    // Rarities & Unplayed
+    const dormantItems = dormant.length ? dormant.map(sm => {
+      const days = statsDayDiff(sm.lastStamp, today);
+      return '<li><span>' + escapeHTML(sm.title) + '<small>LAST · ' + escapeHTML(statsStampDisplay(sm.lastStamp, "/")) + '</small></span><span class="count">' + days + 'd</span></li>';
+    }).join("") : '<li class="stats-empty-note">NO DORMANT TRACKS</li>';
+    const unplayedItems = unplayed.length ? unplayed.map(s => '<li><span>' + escapeHTML(s.name_jp) + '<small>RELEASE · ' + escapeHTML(statsStampDisplay(parseDateStamp(s.release_date), "/")) + '</small></span></li>').join("") : '<li class="stats-empty-note">NO UNPLAYED TRACKS</li>';
+    html += '<section class="section"><div class="section-head"><div><div class="kicker">RARE &amp; ABSENT</div><h2>Rarities &amp; Unplayed Tracks</h2></div><div class="section-note">从尚未登台到长期休眠，集中查看目前不属于常规演出曲库的歌曲。</div></div>' +
+      '<div class="split-list"><div><h3>[ DORMANT ]</h3><ul class="data-list">' + dormantItems + '</ul></div><div><h3>[ UNPLAYED ]</h3><ul class="data-list">' + unplayedItems + '</ul></div></div></section>';
+
+    // Song Streaks
+    const streakList = streaks.slice(0, 16);
+    let streakHTML = "";
+    if (!streakList.length) {
+      streakHTML = '<p class="stats-empty-note">当前范围无可用于 Streak 统计的完整 Setlist 数据。</p>';
+    } else {
+      streakHTML = '<div class="streak-list">' + streakList.map(st => {
+        const trackStyle = 'style="grid-template-columns:repeat(' + st.seq.length + ',1fr)"';
+        const cells = st.seq.map((v, i) => {
+          let c = "";
+          if (v) c = (st.current > 0 && i >= st.seq.length - st.current) ? 'hot' : 'on';
+          const ls = S.liveSongs[i];
+          const tip = (ls ? (ls.live.name + " · " + statsStampDisplay(ls.stamp, "/")) : "") + (v ? " · 演奏" : " · 未演奏");
+          return '<i class="' + c + '" title="' + statsAttr(tip) + '"></i>';
+        }).join("");
+        return '<div class="streak-row"><div class="streak-name">' + escapeHTML(st.song.title) + '</div><div class="streak-number">CUR <b>' + st.current + '</b> · MAX <b>' + st.longest + '</b></div><div class="streak-track" ' + trackStyle + '>' + cells + '</div></div>';
+      }).join("") + '</div>';
+    }
+    html += '<section class="section"><div class="section-head"><div><div class="kicker">CONSECUTIVE APPEARANCES</div><h2>Song Streaks</h2></div><div class="section-note">每格代表一场完整演出。暗红为演奏，亮红为当前连续纪录，空格为缺席。</div></div>' + streakHTML + '</section>';
+
+    return html;
   }
 })();
   </script>
