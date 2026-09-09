@@ -66,7 +66,7 @@ Doloris：
 | `generate_all.py` → `render_md_to_html()` | Python 端预渲染，保留自定义标签 |
 | `js/renderMarkdown.js` | 浏览器端统一处理自定义标签 |
 | `live/index.html` | 加载共享 JS，调用 `renderMarkdown(mcContent, { mode: "mc" })` |
-| `interview/index.html` | 加载共享 JS，调用 `renderMarkdown(item.md_html)` |
+| `js/interview-overlay.js` | Interview 共享浮层调用 `renderMarkdown(item.md_html)` |
 
 ## 已知陷阱 / Known Pitfalls
 

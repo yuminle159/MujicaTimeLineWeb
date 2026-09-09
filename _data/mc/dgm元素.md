@@ -118,6 +118,7 @@
 
 [/original]
 
+[br]
 ![采访图片1](../images/galleryless/dgm元素采访图1.webp)
 
 *Ave Mujica*
@@ -398,6 +399,7 @@
 
 [/original]
 
+[br]
 ![采访图片2](../images/galleryless/dgm元素采访图2.webp)
 
 *录音时使用的「Symbol III」的歌词资料。上面写着Diggy-MO’提出的换气点的方案*

@@ -1,4 +1,20 @@
+.shared-song-modal-overlay,
+.shared-song-modal-overlay *,
+.shared-song-modal-overlay *::before,
+.shared-song-modal-overlay *::after {
+  box-sizing: border-box;
+}
+
 .shared-song-modal-overlay {
+  --md-surface: #0d0d0d;
+  --md-surface-container: #141414;
+  --md-outline: #2a2a2a;
+  --md-outline-variant: #1a1a1a;
+  --md-on-surface: #ddd;
+  --md-on-surface-variant: #999;
+  --md-on-surface-muted: #555;
+  --md-primary: #cc2929;
+  --md-radius-lg: 16px;
   position: fixed;
   inset: 0;
   z-index: 3000;
@@ -9,10 +25,12 @@
   background: rgba(0, 0, 0, 0.88);
   opacity: 0;
   visibility: hidden;
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .shared-song-modal-overlay.open { opacity: 1; visibility: visible; }
-.cinematic-overlay.active { z-index: 4000; }
 .shared-song-modal {
   position: relative;
   display: flex;

@@ -1029,7 +1029,13 @@ body {
   line-height: 1.8;
 }
 .mc-modal-body p {
-  margin: 0 0 1em;
+  margin: 0;
+}
+/* 手动空行：[br] 是唯一允许产生视觉空行的标记 */
+.mc-modal-body .manual-br {
+  display: block;
+  height: 1.8em; /* 回退：等于 .mc-modal-body line-height */
+  height: 1lh;   /* 一个行高 = 一个空行 */
 }
 .mc-modal-body ul {
   margin: 0 0 1em;

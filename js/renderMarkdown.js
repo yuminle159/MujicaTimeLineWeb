@@ -24,6 +24,12 @@ function renderMarkdown(html, options) {
   html = html.replace(/<p>\[\/original\]<\/p>/g, '[/original]');
   html = html.replace(/<p>\[translation\]<\/p>/g, '[translation]');
 
+  // 归一化：去除 [/original] 前后的行分隔 <br>
+  // （当 [/original] 标签与相邻内容/图片之间只有单换行时，Python 预渲染会把该换行转成 <br>，
+  //   但这不是 [br] 空行语义，需移除，避免图片等内容上方出现意外空行）
+  html = html.replace(/<br>\[\/original\]/g, '[/original]');
+  html = html.replace(/\[\/original\]<br>/g, '[/original]');
+
   // 2. [original]...[/original] → 原文标记
   //    跨段落时使用 <div> 包裹，避免 <span> 嵌套 <p> 产生无效 HTML
   //    浏览器解析无效 HTML 时会进行不可预测的 DOM 重构，导致图片等后续内容被误包入 .md-original

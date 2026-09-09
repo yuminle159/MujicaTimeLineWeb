@@ -238,31 +238,45 @@ def render_md_to_html(md):
         return '<ol>' + m.group(0) + '</ol>'
     html = re.sub(r'((?:<li>.*</li>\n?)+)', wrap_ol, html)
 
-    # 12. 段落
+    # 12. [br] 空行标签 → 唯一占位符（在段落处理前替换）
+    #     吞掉其前后紧邻的换行，使 [br] 自成一个"手动空行"单元，
+    #     避免这些换行在后续被转成 <br> 而与 [br] 叠加产生多层间距。
+    #     必须放在标题/列表/引用等块级处理后，避免占位符与块级标签粘连。
+    html = re.sub(r'\n*\[br\]\n*', '__CUSTOM_BR__', html)
+
+    # 13. 段落：普通空行仅作为段落边界，不再插入 <p>&nbsp;</p> 等视觉空行
     def para_handler(m):
-        extra = len(m.group(0)) - 2
-        if extra <= 0:
-            return '</p><p>'
-        return '</p>' + '<p>&nbsp;</p>' * extra + '<p>'
+        return '</p><p>'
     html = re.sub(r'\n\n+', para_handler, html)
 
-    # [br] 空行标签（在段落处理后、单换行前处理）
-    # 单换行包围时：\n[br]\n → <br><br>（消耗两个换行，输出两个 <br> = 一个空行）
-    # 双换行包围时（interview）：已被步骤 12 隔离在独立 <p> 中，[br] → <br> 即可
-    html = re.sub(r'\n\[br\]\n', '<br><br>', html)
-    html = re.sub(r'^\[br\]\n', '<br><br>', html)
-    html = re.sub(r'\n\[br\]$', '<br><br>', html)
-    html = html.replace('[br]', '<br>')  # 兜底：处理已被段落隔离的 [br]
-
-    # 单换行
+    # 14. 单换行 → 软换行（普通换行，不产生视觉空行）
     html = html.replace('\n', '<br>')
 
-    # 包裹
+    # 15. 包裹
     html = '<p>' + html + '</p>'
 
-    # 清理
-    html = re.sub(r'<p></p>', '', html)
+    # 16. 清理空段落与无意义的空白结构
     html = re.sub(r'<p>\s*</p>', '', html)
+    html = re.sub(r'<p>(?:<br\s*/?>\s*)+</p>', '', html)
+
+    # 17. 占位符 → 手动空行（唯一允许产生视觉空行的元素）
+    html = html.replace('__CUSTOM_BR__', '<div class="manual-br"></div>')
+
+    # 18. 移除紧邻块级元素的 <br>
+    #     块级元素（标题/图片/列表/引用/代码块/横线等）自身已提供垂直换行，
+    #     单换行被转成 <br> 后紧邻它们会产生多余空行，需移除。
+    _block_open = r'<(?:h[1-6]|ul|ol|li|blockquote|pre|hr|img)[^>]*/?>'
+    _block_close = r'</(?:h[1-6]|ul|ol|li|blockquote|pre)>'
+    html = re.sub(r'(?:' + _block_open + r'|' + _block_close + r')\s*<br>',
+                  lambda m: m.group(0).replace('<br>', ''), html)
+    html = re.sub(r'<br>\s*(?:' + _block_open + r')',
+                  lambda m: m.group(0).replace('<br>', ''), html)
+
+    # 19. 移除自定义标签（[original] [/original] [translation]）前后由单换行产生的 <br>
+    #     这些标签是结构性标记（块级），前后的软换行 <br> 是多余的，会产生视觉空行。
+    for _token in ('[original]', '[/original]', '[translation]'):
+        html = html.replace('<br>' + _token, _token)
+        html = html.replace(_token + '<br>', _token)
 
     return html
 

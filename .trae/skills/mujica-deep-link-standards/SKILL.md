@@ -1,6 +1,6 @@
 ---
 name: "mujica-deep-link-standards"
-description: "唯鸡百科子页面的可分享深链接与跨页面详情灯箱规范。创建或修改可打开详情的页面、分享 URL 或复用 Songs 灯箱时使用。"
+description: "唯鸡百科子页面的可分享深链接与跨页面详情组件规范。创建或修改可打开详情的页面、分享 URL，或复用 Songs、Live、Discography 等详情组件时使用。"
 ---
 
 # 唯鸡百科：深链接与可复用详情灯箱
@@ -42,3 +42,48 @@ Excel 的 `release_id`、`song_name`、演出名称等字段用于关联工作�
 - 每个使用页只提供灯箱挂载节点，并调用同一个公开函数。
 
 修改灯箱时只改共享 JS/CSS，并检查三个页面的调用适配；不要再把灯箱复制回页面文件。
+
+## Interview 浮层跨页面复用
+
+Interview 浮层同样是共享组件，Interview 独立页以及 SongModal 内的“采访出处”统一调用同一份实现：
+
+- `js/interview-overlay.js`：创建浮层 DOM，负责 Markdown 渲染缓存、原文切换、图片灯箱、Page Top、打开/关闭和 Escape；
+- `css/interview-overlay.css`：浮层及其图片灯箱的全部样式；
+- `interview/page.js`：只负责 Interview 页面卡片、搜索、排序和深链接初始化，不得包含浮层实现；
+- 使用 SongModal 的 Songs、Live、Discography 页面必须加载 `interview/data.js`、`renderMarkdown.js` 和 InterviewOverlay 共享 JS/CSS，使“采访出处”行为在所有入口一致。
+
+Interview 独立页打开浮层时维护 `#<hash_id>`；从 SongModal 嵌套打开时必须使用 `manageHash: false`，保留底层的 `#song=`、`#live=` 或 `#discography=`。关闭嵌套 Interview 后，底层 SongModal 保持打开，Escape 一次只关闭最上层。
+
+## 共享组件的样式隔离（强制）
+
+“共享组件”必须保证从不同页面打开时得到相同的 DOM、行为和最终视觉，不能只是让多个页面各自维护一套看起来相近的实现。
+
+- 组件的 DOM 只能由共享 JS 创建或由唯一共享模板提供；调用页面不得复制组件 HTML。
+- 组件的全部视觉规则只能放在共享 CSS；调用页面不得保留或新增该组件的旧版、页面专用或补丁式 CSS。
+- 所有组件选择器必须使用独立命名空间，例如 `.shared-song-*`，避免 `.modal`、`.overlay`、`.live-node` 等通用类名受到宿主页面影响。
+- 共享 CSS 必须自带组件所需的颜色变量、字体、尺寸和其他设计 token，并把它们定义在组件根节点上。不要依赖调用页面的 `:root` 变量或 fallback 来凑出相同外观。
+- 共享 CSS 必须在组件边界内统一盒模型，包括伪元素：
+
+```css
+.shared-song-modal-overlay,
+.shared-song-modal-overlay *,
+.shared-song-modal-overlay *::before,
+.shared-song-modal-overlay *::after {
+  box-sizing: border-box;
+}
+```
+
+调用页面只负责加载共享 JS/CSS、提供数据，并调用公开 API。除明确设计的配置项外，宿主页面不应改变组件样式。
+
+### 已踩坑：伪元素继承了不同的页面环境
+
+Performance History 的圆点由 `.shared-song-live-node::before` 生成。Songs 页面原本对 `*::before` 设置了 `border-box`，Discography 只对 `*` 设置了 `border-box`，导致同一条 `width: 8px; border: 2px` 在两个页面计算出不同尺寸。
+
+修复必须放在共享 CSS 的组件边界内，不能通过给 Discography、Live 等调用页分别补变量或覆盖样式来解决。否则以后新增调用页面时还会再次出现差异。
+
+### 修改与验证
+
+- 修改共享 CSS 后，同步更新所有调用页的缓存版本参数。
+- 至少检查 Songs、Live、Discography 三个 SongModal 入口，以及 Interview 独立页的桌面端和移动端表现。
+- 重点比较伪元素、滚动区域、字体、断点、`z-index` 和 `body` 滚动锁定。
+- 若不同入口表现不一致，先检查宿主页面的全局 reset、继承属性和 CSS 变量；最终修复仍应收敛到共享组件内部。

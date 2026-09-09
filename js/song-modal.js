@@ -1,4 +1,4 @@
-(function () {
+(function (global) {
   "use strict";
 
   let overlay;
@@ -43,10 +43,7 @@
     if (/^(https?:\/\/|[.\/])/i.test(comment.source)) {
       return '<div class="shared-song-source"><a href="' + escapeHTML(comment.source) + '" target="_blank" rel="noopener">&#128279; 出处</a></div>';
     }
-    const interviews = typeof interviewData !== "undefined"
-      ? interviewData
-      : (Array.isArray(window.interviewData) ? window.interviewData : []);
-    if (interviews.some(function (item) { return item.title === comment.source; })) {
+    if (global.InterviewOverlay && global.InterviewOverlay.hasTitle(comment.source)) {
       return '<div class="shared-song-source"><button type="button" data-song-interview="' + escapeHTML(comment.source) + '">&#128279; 采访出处</button></div>';
     }
     return '<div class="shared-song-source is-text">' + escapeHTML(comment.source) + '</div>';
@@ -70,8 +67,8 @@
       return;
     }
     const interview = event.target.closest("[data-song-interview]");
-    if (interview && typeof window.openInterviewCinematic === "function") {
-      window.openInterviewCinematic(interview.dataset.songInterview);
+    if (interview && global.InterviewOverlay) {
+      global.InterviewOverlay.openByTitle(interview.dataset.songInterview, { manageHash: false });
     }
   }
 
@@ -190,17 +187,17 @@
     currentComments = [];
     currentOptions = {};
     if (typeof options.afterClose === "function") options.afterClose();
-    else document.body.style.overflow = document.querySelector(".drawer-overlay.active, #modalOverlay.open, .cinematic-overlay.active") ? "hidden" : "";
+    else document.body.style.overflow = document.querySelector(".drawer-overlay.active, #modalOverlay.open") ? "hidden" : "";
   }
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && overlay && overlay.classList.contains("open")) {
-      if (document.querySelector(".cinematic-overlay.active, .mc-modal.active, #kvLightbox.active")) return;
+      if ((global.InterviewOverlay && global.InterviewOverlay.isOpen()) || document.querySelector(".mc-modal.active, #kvLightbox.active")) return;
       event.preventDefault();
       event.stopImmediatePropagation();
       close();
     }
   }, true);
 
-  window.SongModal = { open: open, close: close, isOpen: function () { return !!(overlay && overlay.classList.contains("open")); } };
-})();
+  global.SongModal = { open: open, close: close, isOpen: function () { return !!(overlay && overlay.classList.contains("open")); } };
+})(window);
