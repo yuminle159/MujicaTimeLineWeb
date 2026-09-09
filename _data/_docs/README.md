@@ -504,6 +504,34 @@ const YEAR_LABEL_GAP = 60; // 年份标签与月份刻度的间距（px）
 
 ---
 
+## Discography 榜单字段
+
+`discography_releases` 使用以下四个榜单字段，生成后显示在详情页的 `SALES` 区域：
+
+| Excel 字段 | 页面标签 | 含义 |
+|---|---|---|
+| `chart_first_day_rank` | `FIRST-DAY RANK` | 首日排名 |
+| `chart_first_week_sales` | `FIRST-WEEK SALES` | 首周销量 |
+| `chart_first_week_rank` | `FIRST-WEEK RANK` | 首周排名 |
+| `chart_total_sales` | `TOTAL SALES` | 累计销量 |
+
+`chart_source` 仍用于显示数据来源或发售状态备注，例如 `Coming Soon`。
+
+`discography_editions.cover_gallery` 可填写同一版本的多张封面或 Case 图片，使用 `|` 分隔。第一张作为默认图，详情灯箱中通过左右箭头切换；留空时继续使用单张 `cover`。
+
+### `discography_bonus_contents`（特典 CD）
+
+特典 CD 不属于某一个版本，按发行物单独归档。每行代表一首收录曲；同一 `bonus_id` 的第一行图片会作为该特典的汇总盘面图展示在 Discography 详情最底部。
+
+| 字段 | 含义 |
+|---|---|
+| `release_id` | 对应的发行物 ID |
+| `bonus_id` | 特典 CD ID，用于区分多个特典 |
+| `disc_name` | 盘面名称 |
+| `track_no` | 曲目编号 |
+| `song_name` | 收录曲名称 |
+| `note` | 备注 |
+
 ## 部署
 
 本项目是纯静态网站，可部署到任何静态托管服务：

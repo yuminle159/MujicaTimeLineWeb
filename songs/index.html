@@ -8,9 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609091740">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609091740">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609091800">
+  <link rel="stylesheet" href="style.css?v=202609100023">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609100023">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609100023">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609100023">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609100023">
 </head>
 <body>
   <div class="songs-page">
@@ -47,11 +49,16 @@
     <div class="no-results" id="noResults" style="display:none">没有找到匹配的歌曲</div>
   </div>
 
-  <script src="data.js?v=202609091740"></script>
-  <script src="../interview/data.js?v=202609091740"></script>
-  <script src="../js/renderMarkdown.js?v=202609091740"></script>
-  <script src="../js/interview-overlay.js?v=202609091801"></script>
-  <script src="../js/song-modal.js?v=202609091800"></script>
+  <script src="data.js?v=202609100023"></script>
+  <script src="../discography/data.js?v=202609100023"></script>
+  <script src="../live/data.js?v=202609100023"></script>
+  <script src="../interview/data.js?v=202609100023"></script>
+  <script src="../js/renderMarkdown.js?v=202609100023"></script>
+  <script src="../js/overlay-manager.js?v=202609100023"></script>
+  <script src="../js/interview-overlay.js?v=202609100023"></script>
+  <script src="../js/song-modal.js?v=202609100023"></script>
+  <script src="../js/live-drawer.js?v=202609100023"></script>
+  <script src="../js/discography-modal.js?v=202609100023"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -206,7 +213,7 @@
   });
 
   window.openModal = function(index) {
-    SongModal.open(index, { songs: songsData, updateHash: true });
+    SongModal.open(index, { songs: songsData, discography: discographyData, lives: livesData, updateHash: true });
   };
 
   renderGallery();

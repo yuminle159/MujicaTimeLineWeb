@@ -8,9 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609091740">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609091740">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609091800">
+  <link rel="stylesheet" href="style.css?v=202609100023">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609100023">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609100023">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609100023">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609100023">
 </head>
 <body>
   <main class="discography-page">
@@ -35,58 +37,32 @@
     <div id="noResults" class="no-results" hidden>没有找到匹配的发行作品</div>
   </main>
 
-  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
-    <article class="modal-container" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
-      <button class="modal-close" id="modalClose" aria-label="关闭">&times;</button>
-      <div class="modal-body">
-        <section class="detail-hero">
-          <div class="detail-cover"><img id="detailCover" alt=""><div id="coverFallback" class="cover-fallback"></div></div>
-          <div class="detail-summary">
-            <div class="detail-type" id="detailType"></div>
-            <h2 id="detailTitle"></h2>
-            <div class="detail-title-jp" id="detailTitleJp"></div>
-            <div class="detail-date" id="detailDate"></div>
-            <p id="detailDescription" class="detail-description"></p>
-            <dl class="metadata"><div><dt>LABEL</dt><dd id="detailLabel"></dd></div><div><dt>FORMAT</dt><dd id="detailFormats"></dd></div><div><dt>EDITIONS</dt><dd id="detailEditions"></dd></div></dl>
-          </div>
-        </section>
-        <section class="detail-section">
-          <div class="section-heading"><span>PHYSICAL CONFIGURATION</span><h3>Versions</h3></div>
-          <div class="edition-tabs" id="editionTabs"></div>
-          <dl class="edition-meta" id="editionMeta"></dl>
-        </section>
-        <section class="detail-section">
-          <div class="section-heading"><span>EDITION DIFFERENCES</span><h3>Edition Matrix</h3></div>
-          <div class="matrix-scroll"><table class="edition-matrix" id="editionMatrix"></table></div>
-        </section>
-        <section class="detail-section">
-          <div class="section-heading"><span>RECORDED CONTENTS</span><h3>Contents</h3></div>
-          <div class="contents-grid" id="contentsGrid"></div>
-        </section>
-        <section class="detail-section">
-          <div class="section-heading"><span>PACKAGE / PERFORMANCE</span><h3>Bonus &amp; Chart</h3></div>
-          <div class="bottom-grid">
-            <article class="bonus-panel"><h4>[ INCLUDED ITEMS ]</h4><ul class="bonus-list" id="bonusList"></ul></article>
-            <article class="chart-panel"><h4>[ ORICON ESTIMATED SALES ]</h4><div class="chart-grid" id="chartGrid"></div><p class="chart-source" id="chartSource"></p></article>
-          </div>
-        </section>
-      </div>
-    </article>
-  </div>
-
-  <script src="data.js?v=202609091740"></script>
-  <script src="../songs/data.js?v=202609091740"></script>
-  <script src="../interview/data.js?v=202609091740"></script>
-  <script src="../js/renderMarkdown.js?v=202609091740"></script>
-  <script src="../js/interview-overlay.js?v=202609091801"></script>
-  <script src="../js/song-modal.js?v=202609091800"></script>
+  <script src="data.js?v=202609100023"></script>
+  <script src="../songs/data.js?v=202609100023"></script>
+  <script src="../live/data.js?v=202609100023"></script>
+  <script src="../interview/data.js?v=202609100023"></script>
+  <script src="../js/renderMarkdown.js?v=202609100023"></script>
+  <script src="../js/overlay-manager.js?v=202609100023"></script>
+  <script src="../js/interview-overlay.js?v=202609100023"></script>
+  <script src="../js/song-modal.js?v=202609100023"></script>
+  <script src="../js/live-drawer.js?v=202609100023"></script>
+  <script src="../js/discography-modal.js?v=202609100023"></script>
   <script>
   (() => {
-    let activeFilter = 'all'; let query = ''; let activeRelease = null; let activeEdition = 0;
+    let activeFilter = 'all'; let query = '';
     const archive = document.getElementById('archive');
     const escapeHTML = value => { const el = document.createElement('div'); el.textContent = value || ''; return el.innerHTML; };
     const yearOf = date => (date || '').slice(0, 4) || '未分类';
     const parseDate = date => Number((date || '').replace(/\D/g, '').slice(0, 8)) || 0;
+    const releaseTimestamp = date => {
+      const match = String(date || '').match(/(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/);
+      if (!match) return NaN;
+      return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3])).getTime();
+    };
+    const isComingSoon = release => {
+      const timestamp = releaseTimestamp(release.release_date);
+      return Number.isFinite(timestamp) && timestamp > Date.now();
+    };
     const matches = release => {
       const haystack = [release.title, release.title_jp, release.type, release.search_keywords].join(' ').toLowerCase();
       const normalizedFilter = activeFilter.replace(/[^a-z0-9]/g, '');
@@ -106,55 +82,23 @@
       if (!covers.length && release.cover) covers.push(release.cover);
       const coverStack = covers.map((cover, index) => `<span class="cover-stack-card" style="--i:${index}"><img src="${escapeHTML(cover)}" alt="" loading="lazy"></span>`).join('') || '<div class="cover-fallback">NO ARTWORK</div>';
       const catalog = release.editions.map(edition => edition.catalog_no).filter(Boolean).join(' / ');
-      const rank = (release.chart || {}).peak || '—';
-      return `<button class="release-row" data-release-id="${escapeHTML(release.id)}"><div class="row-cover">${coverStack}${covers.length > 1 ? `<span class="cover-count">${covers.length} COVERS</span>` : ''}</div><div class="row-main"><div class="row-type">${escapeHTML(release.type)}</div><h2>${escapeHTML(release.title)}</h2>${release.title_jp && release.title_jp !== release.title ? `<p>${escapeHTML(release.title_jp)}</p>` : ''}<div class="row-date">${escapeHTML(release.release_date)}</div><div class="release-tags"><span>${release.editions.length} EDITION${release.editions.length === 1 ? '' : 'S'}</span>${release.formats.map(format => `<span class="media">${escapeHTML(format)}</span>`).join('')}</div></div><aside class="row-aside"><div class="catalog">${escapeHTML(catalog)}</div><div class="chart-rank"><small>ORICON WEEKLY</small>${escapeHTML(rank)}</div><div class="open-mark">OPEN ↗</div></aside></button>`;
+      const rank = (release.chart || {}).first_week_rank || '—';
+      const comingSoon = isComingSoon(release);
+      const mainTitle = release.title_jp || release.title;
+      const secondaryTitle = release.title && release.title !== mainTitle ? release.title : '';
+      const prompt = '<div class="coming-prompt" aria-hidden="true"><strong>COMING SOON</strong><span>请关注官方发售并支持购买</span></div>';
+      return `<button class="release-row${comingSoon ? ' is-coming-soon' : ''}" data-release-id="${escapeHTML(release.id)}"${comingSoon ? ' aria-label="Coming soon. Please support the official release."' : ''}>${comingSoon ? '<span class="coming-ribbon" aria-hidden="true">COMING SOON</span>' : ''}<div class="row-cover">${coverStack}${covers.length > 1 ? `<span class="cover-count">${covers.length} COVERS</span>` : ''}</div><div class="row-main"><div class="row-type">${escapeHTML(release.type)}</div><h2>${escapeHTML(mainTitle)}</h2>${secondaryTitle ? `<p>${escapeHTML(secondaryTitle)}</p>` : ''}<div class="row-date">${escapeHTML(release.release_date)}</div><div class="release-tags"><span>${release.editions.length} EDITION${release.editions.length === 1 ? '' : 'S'}</span>${release.formats.map(format => `<span class="media">${escapeHTML(format)}</span>`).join('')}</div></div><aside class="row-aside">${comingSoon ? prompt : ''}<div class="catalog">${escapeHTML(catalog)}</div><div class="chart-rank"><small>ORICON WEEKLY</small>${escapeHTML(rank)}</div><div class="open-mark">OPEN ↗</div></aside></button>`;
     }
     function openRelease(id) {
-      activeRelease = discographyData.find(item => item.id === id); activeEdition = 0; if (!activeRelease) return;
-      document.getElementById('detailType').textContent = activeRelease.type;
-      document.getElementById('detailTitle').textContent = activeRelease.title;
-      document.getElementById('detailTitleJp').textContent = activeRelease.title_jp || '';
-      document.getElementById('detailDate').textContent = activeRelease.release_date;
-      document.getElementById('detailDescription').textContent = activeRelease.description || '';
-      document.getElementById('detailLabel').textContent = activeRelease.label || '—';
-      document.getElementById('detailFormats').textContent = activeRelease.formats.join(' / ') || '—';
-      document.getElementById('detailEditions').textContent = activeRelease.editions.length || '—';
-      document.getElementById('editionTabs').innerHTML = activeRelease.editions.map((edition, index) => `<button class="edition-tab" data-edition="${index}"><img src="${escapeHTML(edition.cover || activeRelease.cover)}" alt="" loading="lazy"><span><small>VERSION ${String(index + 1).padStart(2, '0')}</small>${escapeHTML(edition.name)}<em>${escapeHTML(edition.catalog_no)}</em></span></button>`).join('') || '<p class="empty-detail">暂无版本资料</p>';
-      document.querySelectorAll('[data-edition]').forEach(button => button.addEventListener('click', () => { activeEdition = Number(button.dataset.edition); renderEdition(); }));
-      renderEdition(); document.getElementById('modalOverlay').classList.add('open'); document.getElementById('modalOverlay').setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
-      renderChart();
-      history.replaceState(null, '', `#discography=${encodeURIComponent(activeRelease.hash_id)}`);
+      DiscographyModal.open(id, {
+        discography: discographyData,
+        songs: songsData,
+        lives: livesData,
+        updateHash: true
+      });
     }
-    function renderEdition() {
-      const edition = activeRelease.editions[activeEdition] || {}; const cover = edition.cover || activeRelease.cover || '';
-      document.querySelectorAll('[data-edition]').forEach((button, index) => button.classList.toggle('active', index === activeEdition));
-      const image = document.getElementById('detailCover'); image.src = cover; image.alt = `${activeRelease.title} ${edition.name || ''}`; image.style.display = cover ? 'block' : 'none'; document.getElementById('coverFallback').textContent = activeRelease.title;
-      document.getElementById('editionMeta').innerHTML = [['CATALOG NO.', edition.catalog_no], ['PRICE', edition.price], ['FORMAT', edition.format], ['DISTRIBUTION', edition.distribution], ['LIMITATION', edition.limited]].filter(([,value]) => value).map(([label,value]) => `<div><dt>${label}</dt><dd>${escapeHTML(value)}</dd></div>`).join('');
-      document.getElementById('bonusList').innerHTML = (edition.bonus || []).map(item => `<li>${escapeHTML(item)}</li>`).join('');
-      renderContents([...(activeRelease.contents || []), ...(edition.contents || [])]);
-      renderMatrix();
-    }
-    function renderMatrix() {
-      const rows = [['MUSIC CD','cd'], ['BLU-RAY VIDEO','bluray'], ['SPECIAL BOX','box'], ['EXCLUSIVE GOODS','goods']];
-      document.getElementById('editionMatrix').innerHTML = `<thead><tr><th>CONTENT</th>${activeRelease.editions.map((edition,index) => `<th class="${index === activeEdition ? 'selected' : ''}">${escapeHTML(edition.name)}</th>`).join('')}</tr></thead><tbody>${rows.map(([label,key]) => `<tr><td>${label}</td>${activeRelease.editions.map((edition,index) => `<td class="${edition.features && edition.features[key] ? 'yes' : 'no'} ${index === activeEdition ? 'selected' : ''}">${edition.features && edition.features[key] ? '●' : '—'}</td>`).join('')}</tr>`).join('')}</tbody>`;
-    }
-    function renderChart() {
-      const chart = activeRelease.chart || {};
-      const values = [['FIRST WEEK',chart.first_week], ['PEAK',chart.peak], ['CHARTED',chart.weeks], ['TOTAL',chart.total]];
-      document.getElementById('chartGrid').innerHTML = values.map(([label,value]) => `<div><b>${escapeHTML(value || '—')}</b><span>${label}</span></div>`).join('');
-      document.getElementById('chartSource').textContent = chart.source || '暂无公开榜单数据';
-    }
-    function renderContents(items) {
-      const groups = items.reduce((map, item) => { const key = `${item.disc_no || '01'}|${item.disc_type || 'CONTENTS'}`; (map[key] ||= []).push(item); return map; }, {});
-      document.getElementById('contentsGrid').innerHTML = Object.entries(groups).map(([key, rows]) => { const [disc, type] = key.split('|'); return `<article class="disc-panel"><header>DISC ${escapeHTML(disc)} <span>${escapeHTML(type)}</span></header><ol>${rows.map(row => { const songIndex = typeof songsData === 'undefined' ? -1 : songsData.findIndex(item => item.name === row.song_name || item.name_jp === row.song_name); const title = row.song_name || row.content_title; return `<li><b>${escapeHTML(row.track_no || '')}</b>${songIndex >= 0 ? `<button class="disc-song-link" type="button" data-song-index="${songIndex}">${escapeHTML(title)}</button>` : `<span>${escapeHTML(title)}</span>`}${row.duration ? `<em>${escapeHTML(row.duration)}</em>` : ''}${row.note ? `<small>${escapeHTML(row.note)}</small>` : ''}</li>`; }).join('')}</ol></article>`; }).join('') || '<p class="empty-detail">暂无收录内容</p>';
-      document.querySelectorAll('[data-song-index]').forEach(button => button.addEventListener('click', () => SongModal.open(Number(button.dataset.songIndex), { songs: songsData })));
-    }
-    function closeModal() { SongModal.close(); document.getElementById('modalOverlay').classList.remove('open'); document.getElementById('modalOverlay').setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; history.replaceState(null, '', window.location.pathname + window.location.search); }
     document.getElementById('filterGroup').addEventListener('click', event => { const button = event.target.closest('[data-filter]'); if (!button) return; activeFilter = button.dataset.filter; document.querySelectorAll('[data-filter]').forEach(item => item.classList.toggle('active', item === button)); renderArchive(); });
     document.getElementById('searchInput').addEventListener('input', event => { query = event.target.value.trim().toLowerCase(); renderArchive(); });
-    document.getElementById('modalClose').addEventListener('click', closeModal);
-    document.getElementById('modalOverlay').addEventListener('click', event => { if (event.target.id === 'modalOverlay') closeModal(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('open')) closeModal(); });
     renderArchive();
     const sharedRelease = location.hash.startsWith('#discography=') ? decodeURIComponent(location.hash.slice(13)) : '';
     if (sharedRelease) { const release = discographyData.find(item => item.hash_id === sharedRelease); if (release) openRelease(release.id); }

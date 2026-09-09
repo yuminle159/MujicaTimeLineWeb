@@ -758,10 +758,11 @@ def excel_bool(raw):
 
 
 def generate_discography(wb):
-    """将发行作品、版本和内容三张关联表合并为页面所需的嵌套数据。"""
+    """将发行作品、版本、内容和特典内容表合并为页面所需的嵌套数据。"""
     releases_raw = read_sheet(wb, "discography_releases")
     editions_raw = read_sheet(wb, "discography_editions")
     contents_raw = read_sheet(wb, "discography_contents")
+    bonus_contents_raw = read_sheet(wb, "discography_bonus_contents")
 
     editions_by_release = {}
     for row in editions_raw:
@@ -775,6 +776,7 @@ def generate_discography(wb):
             "catalog_no": row.get("catalog_no", ""),
             "price": row.get("price", ""),
             "cover": fix_path(row.get("cover", ""), "discography"),
+            "cover_gallery": [fix_path(path, "discography") for path in split_list(row.get("cover_gallery", ""), "|")],
             "format": row.get("format", ""),
             "distribution": row.get("distribution", ""),
             "limited": row.get("limited", ""),
@@ -808,6 +810,20 @@ def generate_discography(wb):
         else:
             contents_by_release.setdefault(release_id, []).append(item)
 
+    bonus_contents_by_release = {}
+    for row in bonus_contents_raw:
+        release_id = row.get("release_id", "").strip()
+        if not release_id:
+            continue
+        bonus_id = row.get("bonus_id", "").strip() or row.get("disc_name", "").strip() or "bonus"
+        bonus_contents_by_release.setdefault(release_id, []).append({
+            "bonus_id": bonus_id,
+            "disc_name": row.get("disc_name", ""),
+            "track_no": row.get("track_no", ""),
+            "song_name": row.get("song_name", ""),
+            "note": row.get("note", "")
+        })
+
     releases = []
     for row in releases_raw:
         release_id = row.get("release_id", "").strip()
@@ -829,13 +845,14 @@ def generate_discography(wb):
             "cover": fix_path(row.get("cover", ""), "discography"),
             "search_keywords": row.get("search_keywords", ""),
             "chart": {
-                "first_week": row.get("chart_first_week", ""),
-                "peak": row.get("chart_peak", ""),
-                "weeks": row.get("chart_weeks", ""),
-                "total": row.get("chart_total", ""),
+                "first_day_rank": row.get("chart_first_day_rank", ""),
+                "first_week_sales": row.get("chart_first_week_sales", ""),
+                "first_week_rank": row.get("chart_first_week_rank", ""),
+                "total_sales": row.get("chart_total_sales", ""),
                 "source": row.get("chart_source", "")
             },
             "contents": contents_by_release.get(release_id, []),
+            "bonus_contents": bonus_contents_by_release.get(release_id, []),
             "editions": editions
         })
 
@@ -1039,7 +1056,7 @@ def main():
         results["访谈"] = f"{n} 篇"
         print(f"  ✓ interview/data.js — {n} 篇访谈")
 
-    # 唱片目录（三张关联表缺一不可）
+    # 唱片目录（发行物、版本、内容和特典内容表）
     if "discography_releases" in sheets:
         n = generate_discography(wb)
         results["唱片目录"] = f"{n} 张发行作品"

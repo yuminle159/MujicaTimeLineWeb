@@ -1,0 +1,173 @@
+.shared-discography-modal-overlay {
+  --disc-surface: #0d0d0d;
+  --disc-panel: #141414;
+  --disc-text: #ddd;
+  --disc-muted: #999;
+  --disc-dim: #555;
+  --disc-primary: #cc2929;
+  --disc-line: rgba(255,255,255,.1);
+  --disc-ease: cubic-bezier(.2,0,0,1);
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: rgba(0,0,0,.74);
+  color: var(--disc-text);
+  font-family: "Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s var(--disc-ease);
+}
+.shared-discography-modal-overlay,
+.shared-discography-modal-overlay *,
+.shared-discography-modal-overlay *::before,
+.shared-discography-modal-overlay *::after { box-sizing: border-box; }
+.shared-discography-modal-overlay.open { opacity: 1; pointer-events: auto; }
+.shared-discography-modal {
+  position: relative;
+  width: min(1080px,100%);
+  max-height: calc(100vh - 44px);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,77,77,.12) transparent;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 12px;
+  background: #101010;
+  box-shadow: 0 24px 80px rgba(0,0,0,.65);
+  transform: translateY(14px);
+  transition: transform .35s var(--disc-ease);
+}
+.shared-discography-modal::-webkit-scrollbar { width: 4px; }
+.shared-discography-modal::-webkit-scrollbar-track { background: transparent; }
+.shared-discography-modal::-webkit-scrollbar-thumb { background: rgba(255,77,77,.12); border-radius: 2px; }
+.shared-discography-modal::-webkit-scrollbar-thumb:hover { background: rgba(255,77,77,.25); }
+.shared-discography-modal-overlay.open .shared-discography-modal { transform: translateY(0); }
+.shared-discography-close {
+  position: sticky;
+  top: 12px;
+  float: right;
+  z-index: 3;
+  margin: 12px 14px 0 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--disc-line);
+  border-radius: 50%;
+  background: rgba(13,13,13,.88);
+  color: #999;
+  cursor: pointer;
+  font-size: 26px;
+  line-height: 1;
+  transition: color .2s,border-color .2s;
+}
+.shared-discography-close:hover { color: #fff; border-color: var(--disc-primary); }
+.shared-discography-body { clear: both; padding: 18px 42px 42px; }
+.shared-discography-detail-hero { display: grid; grid-template-columns: minmax(220px,360px) 1fr; gap: 42px; align-items: center; }
+.shared-discography-detail-cover { position: relative; }
+.shared-discography-cover-viewport { position: relative; aspect-ratio: 1; overflow: hidden; border: 1px solid var(--disc-line); background: #0b0b0b; box-shadow: 12px 16px 32px rgba(0,0,0,.45); }
+.shared-discography-detail-cover img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain; }
+.shared-discography-detail-cover img.is-switching { animation: shared-discography-cover-fade .22s ease; }
+.shared-discography-cover-controls { display: flex; justify-content: space-between; align-items: center; height: 38px; padding: 4px 2px 0; }
+.shared-discography-cover-nav { width: 32px; height: 28px; border: 0; background: none; color: var(--disc-primary); font: 24px/24px Arial,sans-serif; opacity: .82; cursor: pointer; transition: opacity .2s,color .2s; }
+.shared-discography-cover-nav:hover { border-color: var(--disc-primary); color: #fff; opacity: 1; }
+.shared-discography-cover-nav.prev { text-align: left; }
+.shared-discography-cover-nav.next { text-align: right; }
+.shared-discography-cover-nav[hidden] { display: none; }
+@keyframes shared-discography-cover-fade { from { opacity: .35; } to { opacity: 1; } }
+.shared-discography-cover-fallback { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; padding: 20px; color: #666; text-align: center; font: 12px "Space Grotesk",sans-serif; letter-spacing: 1px; background: radial-gradient(circle at 50% 35%,#281416,#111); }
+.shared-discography-detail-type,
+.shared-discography-section-heading span { color: var(--disc-primary); font: 10px "Space Grotesk",sans-serif; letter-spacing: 2px; }
+.shared-discography-detail-summary h2 { margin: 14px 0 6px; color: var(--disc-text); font: 700 clamp(28px,4vw,46px)/1.1 "Cinzel","Noto Sans SC",serif; }
+.shared-discography-detail-title { color: var(--disc-muted); font-size: 15px; }
+.shared-discography-detail-date { margin-top: 16px; color: var(--disc-primary); font: 12px "Space Grotesk",sans-serif; letter-spacing: 1.5px; }
+.shared-discography-detail-description { color: #aaa; line-height: 1.8; }
+.shared-discography-metadata,
+.shared-discography-edition-meta { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin: 24px 0 0; border-top: 1px solid var(--disc-line); }
+.shared-discography-metadata div,
+.shared-discography-edition-meta div { padding: 13px 12px 0 0; }
+.shared-discography-metadata dt,
+.shared-discography-edition-meta dt { color: var(--disc-dim); font: 9px "Space Grotesk",sans-serif; letter-spacing: 1px; }
+.shared-discography-metadata dd,
+.shared-discography-edition-meta dd { margin: 6px 0 0; color: #ccc; font-size: 12px; }
+.shared-discography-detail-section { margin-top: 42px; padding-top: 24px; border-top: 1px solid var(--disc-line); }
+.shared-discography-section-heading { margin-bottom: 18px; }
+.shared-discography-section-heading h3 { margin: 6px 0 0; color: var(--disc-text); font: 700 22px "Cinzel",serif; letter-spacing: 3px; }
+.shared-discography-edition-tabs { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 10px; }
+.shared-discography-edition-tab { display: grid; grid-template-columns: 58px 1fr; gap: 11px; align-items: center; padding: 8px; border: 1px solid var(--disc-line); background: var(--disc-panel); color: #aaa; cursor: pointer; text-align: left; transition: border-color .2s,background .2s; }
+.shared-discography-edition-tab:hover,
+.shared-discography-edition-tab.active { border-color: var(--disc-primary); background: rgba(204,41,41,.08); color: #fff; }
+.shared-discography-edition-tab img { width: 58px; height: 58px; object-fit: contain; background: #0d0d0d; }
+.shared-discography-edition-tab small,
+.shared-discography-edition-tab em { display: block; color: var(--disc-dim); font: 9px "Space Grotesk",sans-serif; letter-spacing: 1px; font-style: normal; }
+.shared-discography-edition-tab span { font-size: 12px; }
+.shared-discography-edition-tab em { margin-top: 5px; }
+.shared-discography-edition-meta { grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); }
+.shared-discography-bonus-list { margin: 16px 0 0; padding: 0; list-style: none; }
+.shared-discography-bonus-list li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); color: #bbb; font-size: 13px; }
+.shared-discography-bonus-list li::before { content: "\25C6"; margin-right: 9px; color: var(--disc-primary); font-size: 8px; }
+.shared-discography-contents-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 14px; }
+.shared-discography-disc-panel { border: 1px solid var(--disc-line); background: var(--disc-panel); }
+.shared-discography-disc-panel header { display: flex; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--disc-line); font: 12px "Space Grotesk",sans-serif; letter-spacing: 1px; }
+.shared-discography-disc-panel header span { color: var(--disc-primary); font-size: 10px; }
+.shared-discography-disc-panel ol { margin: 0; padding: 0; list-style: none; }
+.shared-discography-disc-panel li { display: grid; grid-template-columns: 34px 1fr auto; gap: 8px; align-items: center; padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 13px; }
+.shared-discography-disc-panel li:last-child { border-bottom: 0; }
+.shared-discography-disc-panel b { color: var(--disc-primary); font: 10px "Space Grotesk",sans-serif; }
+.shared-discography-content-link { border: 0; padding: 0; background: none; color: #d6d6d6; cursor: pointer; text-align: left; font: inherit; }
+.shared-discography-content-link:hover { color: #ff8080; }
+.shared-discography-disc-panel em { color: var(--disc-dim); font: 10px "Space Grotesk",sans-serif; font-style: normal; }
+.shared-discography-disc-panel small { grid-column: 2/-1; color: var(--disc-muted); font-size: 11px; }
+.shared-discography-matrix-scroll { overflow-x: auto; }
+.shared-discography-edition-matrix { width: 100%; min-width: 680px; table-layout: fixed; border-collapse: collapse; }
+.shared-discography-edition-matrix th,
+.shared-discography-edition-matrix td { padding: 13px 15px; border: 1px solid var(--disc-line); text-align: center; font: 11px "Space Grotesk",sans-serif; }
+.shared-discography-edition-matrix th:first-child,
+.shared-discography-edition-matrix td:first-child { width: 25%; }
+.shared-discography-edition-matrix th { color: var(--disc-dim); font-size: 9px; letter-spacing: 1px; background: #0c0c0c; }
+.shared-discography-edition-matrix th:first-child,
+.shared-discography-edition-matrix td:first-child { text-align: left; }
+.shared-discography-edition-matrix .yes { color: #ff4d4d; font-size: 7px; }
+.shared-discography-edition-matrix .no { color: #353535; }
+.shared-discography-edition-matrix .selected { background: rgba(204,41,41,.09); }
+.shared-discography-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.shared-discography-bonus-panel,
+.shared-discography-chart-panel { padding: 20px; border: 1px solid var(--disc-line); background: var(--disc-panel); }
+.shared-discography-bottom-grid h4 { margin: 0 0 14px; color: #aaa; font: 700 12px "Cinzel",sans-serif; letter-spacing: 1px; }
+.shared-discography-chart-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--disc-line); }
+.shared-discography-chart-grid div { padding: 14px; background: #0b0b0b; }
+.shared-discography-chart-grid b { display: block; color: #ff4d4d; font: 500 24px "Cinzel",serif; }
+.shared-discography-chart-grid span { display: block; margin-top: 7px; color: var(--disc-dim); font: 8px "Space Grotesk",sans-serif; letter-spacing: 1px; }
+.shared-discography-chart-source { margin: 14px 0 0; color: var(--disc-dim); font: 9px/1.6 "Space Grotesk",sans-serif; letter-spacing: .7px; }
+.shared-discography-bonus-content-section[hidden] { display: none; }
+.shared-discography-bonus-content-card { padding: 8px 18px; border: 1px solid var(--disc-line); background: var(--disc-panel); }
+.shared-discography-bonus-content-body { min-width: 0; }
+.shared-discography-bonus-track { display: grid; grid-template-columns: minmax(150px, .38fr) 34px 1fr; gap: 10px; align-items: center; min-height: 42px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); color: #d6d6d6; font-size: 13px; }
+.shared-discography-bonus-track:last-child { border-bottom: 0; }
+.shared-discography-bonus-track strong { color: #aaa; font: 700 12px "Cinzel",serif; letter-spacing: .3px; }
+.shared-discography-bonus-track b { color: var(--disc-primary); font: 10px "Space Grotesk",sans-serif; }
+.shared-discography-bonus-track-name { color: #d6d6d6; font: inherit; }
+.shared-discography-bonus-track small { grid-column: 3; color: var(--disc-muted); font-size: 11px; }
+.shared-discography-empty { padding: 60px; color: var(--disc-muted); text-align: center; }
+
+@media (max-width: 900px) {
+  .shared-discography-detail-hero { grid-template-columns: 240px 1fr; gap: 26px; }
+  .shared-discography-bottom-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .shared-discography-body { padding: 14px 24px 30px; }
+}
+@media (max-width: 560px) {
+  .shared-discography-modal-overlay { padding: 0; }
+  .shared-discography-modal { width: 100%; max-height: 100vh; height: 100vh; border-radius: 0; }
+  .shared-discography-body { padding: 12px 18px 30px; }
+  .shared-discography-detail-hero { grid-template-columns: 1fr; }
+  .shared-discography-detail-cover { max-width: 280px; margin: auto; width: 100%; }
+  .shared-discography-metadata { grid-template-columns: 1fr; }
+  .shared-discography-detail-section { margin-top: 28px; }
+  .shared-discography-edition-tabs { grid-template-columns: 1fr; }
+  .shared-discography-contents-grid { grid-template-columns: 1fr; }
+  .shared-discography-bonus-track { grid-template-columns: minmax(105px, .5fr) 30px 1fr; gap: 7px; }
+  .shared-discography-chart-grid { grid-template-columns: 1fr 1fr; }
+}

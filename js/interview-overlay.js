@@ -10,6 +10,7 @@
   let manageHashByDefault = false;
   let includePageScroll = false;
   let activeManageHash = false;
+  let activeItem = null;
   let previousBodyOverflow = "";
   let showOriginal = true;
   let lightboxGroup = null;
@@ -149,31 +150,72 @@
     if (!item) return false;
 
     ensureMounted();
-    if (!overlay.classList.contains("active")) previousBodyOverflow = document.body.style.overflow;
-    activeManageHash = typeof options.manageHash === "boolean" ? options.manageHash : manageHashByDefault;
+    const manageHash = typeof options.manageHash === "boolean" ? options.manageHash : manageHashByDefault;
+    let savedShowOriginal = true;
+    let savedScrollTop = 0;
 
-    dateEl.textContent = formatDate(item.date);
-    titleEl.textContent = item.title || "";
-    intervieweeEl.textContent = item.interviewee || "";
-    body.innerHTML = renderedContent(item, index);
-    bindInterviewImages();
-
-    showOriginal = true;
-    originalButton.textContent = "隐藏原文";
-    originalButton.classList.remove("hidden-original");
-    body.classList.remove("hide-original");
-    body.style.overflowAnchor = "auto";
-    body.scrollTop = 0;
-    lastScrollY = 0;
-    pageTopButton.classList.remove("show");
-
-    overlay.classList.add("active");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-
-    if (activeManageHash && item.hash_id) {
-      history.replaceState(null, "", "#" + encodeURIComponent(item.hash_id));
+    function activate() {
+      activeItem = item;
+      activeManageHash = manageHash;
+      dateEl.textContent = formatDate(item.date);
+      titleEl.textContent = item.title || "";
+      intervieweeEl.textContent = item.interviewee || "";
+      body.innerHTML = renderedContent(item, index);
+      bindInterviewImages();
+      showOriginal = savedShowOriginal;
+      originalButton.textContent = showOriginal ? "隐藏原文" : "原文显示";
+      originalButton.classList.toggle("hidden-original", !showOriginal);
+      body.classList.toggle("hide-original", !showOriginal);
+      body.style.overflowAnchor = "auto";
+      body.scrollTop = savedScrollTop;
+      lastScrollY = savedScrollTop;
+      pageTopButton.classList.remove("show");
+      overlay.classList.add("active");
+      overlay.setAttribute("aria-hidden", "false");
     }
+
+    if (global.OverlayManager) {
+      return global.OverlayManager.open({
+        type: "interview",
+        id: item.hash_id || item.title,
+        hash: "#" + encodeURIComponent(item.hash_id),
+        manageHash: manageHash,
+        activate: activate,
+        capture: function () {
+          if (activeItem !== item) return;
+          savedShowOriginal = showOriginal;
+          savedScrollTop = body.scrollTop;
+        },
+        deactivate: function () {
+          closeLightbox();
+          overlay.classList.remove("active");
+          overlay.setAttribute("aria-hidden", "true");
+          pageTopButton.classList.remove("show");
+        },
+        getElement: function () { return overlay; },
+        setLayer: function (layer) {
+          overlay.style.zIndex = String(layer);
+          pageTopButton.style.zIndex = String(layer + 100);
+          lightbox.style.zIndex = String(layer + 200);
+        },
+        setInteractive: function (interactive) {
+          if (interactive) return;
+          closeLightbox();
+          pageTopButton.classList.remove("show");
+        },
+        onRemove: function () {
+          if (activeItem === item) {
+            activeItem = null;
+            activeManageHash = false;
+          }
+        }
+      });
+    }
+
+    if (!overlay.classList.contains("active")) previousBodyOverflow = document.body.style.overflow;
+    activate();
+    document.body.style.overflow = "hidden";
+    if (manageHash && item.hash_id) history.replaceState(null, "", "#" + encodeURIComponent(item.hash_id));
     return true;
   }
 
@@ -195,6 +237,10 @@
 
   function close() {
     if (!overlay || !overlay.classList.contains("active")) return;
+    if (global.OverlayManager && activeItem) {
+      global.OverlayManager.close("interview", activeItem.hash_id || activeItem.title);
+      return;
+    }
     closeLightbox();
     overlay.classList.remove("active");
     overlay.setAttribute("aria-hidden", "true");
@@ -333,6 +379,8 @@
   }
 
   function handleKeydown(event) {
+    if (global.OverlayManager && overlay && overlay.classList.contains("active") &&
+        !global.OverlayManager.isTop("interview", activeItem && (activeItem.hash_id || activeItem.title))) return;
     if (event.key === "Escape" && lightbox && lightbox.classList.contains("active")) {
       event.preventDefault();
       event.stopImmediatePropagation();

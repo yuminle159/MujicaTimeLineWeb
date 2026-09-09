@@ -69,14 +69,29 @@
     const interview = event.target.closest("[data-song-interview]");
     if (interview && global.InterviewOverlay) {
       global.InterviewOverlay.openByTitle(interview.dataset.songInterview, { manageHash: false });
+      return;
+    }
+    const discography = event.target.closest("[data-song-discography]");
+    if (discography && global.DiscographyModal) {
+      global.DiscographyModal.open(Number(discography.dataset.songDiscography), {
+        discography: currentOptions.discography || [],
+        songs: currentOptions.songs || [],
+        lives: currentOptions.lives || [],
+        updateHash: false
+      });
     }
   }
 
   function renderLeft(song) {
     const cnTitle = song.name ? '<div class="shared-song-title-cn">' + escapeHTML(song.name) + '</div>' : "";
+    const discographyData = currentOptions.discography || [];
     const appearances = song.appearances && song.appearances.length
       ? '<div class="shared-song-appearances"><span class="shared-song-meta-label">收录CD</span>' + song.appearances.map(function (item) {
-        return '<span class="shared-song-cd"><i aria-hidden="true"></i>' + escapeHTML(item) + '</span>';
+        const discographyIndex = global.DiscographyModal ? global.DiscographyModal.findByTitle(item, discographyData) : -1;
+        const content = '<i aria-hidden="true"></i>' + escapeHTML(item);
+        return discographyIndex >= 0
+          ? '<button class="shared-song-cd is-link" type="button" data-song-discography="' + discographyIndex + '">' + content + '</button>'
+          : '<span class="shared-song-cd">' + content + '</span>';
       }).join("") + '</div>'
       : "";
     left.innerHTML = (song.cover ? '<img class="shared-song-cover" src="' + escapeHTML(song.cover) + '" alt="' + escapeHTML(song.name_jp || song.name) + '">' : "") +
@@ -158,25 +173,62 @@
 
   function open(indexOrSong, options) {
     ensureMarkup();
-    currentOptions = options || {};
-    const data = currentOptions.songs || window.songsData || [];
+    const settings = options || {};
+    const data = settings.songs || window.songsData || [];
     const song = typeof indexOrSong === "number" ? data[indexOrSong] : indexOrSong;
     if (!song) return false;
-    if (typeof currentOptions.beforeOpen === "function") currentOptions.beforeOpen(song);
-    currentSong = song;
-    renderLeft(song);
-    right.innerHTML = renderComments(song) + renderLyrics(song) + renderHistory(song) || '<div class="shared-song-empty">暂无更多信息</div>';
-    wireActions();
-    right.scrollTop = 0;
-    overlay.classList.add("open");
-    overlay.setAttribute("aria-hidden", "false");
+    if (typeof settings.beforeOpen === "function") settings.beforeOpen(song);
+    let savedScrollTop = 0;
+
+    function activate() {
+      currentOptions = settings;
+      currentSong = song;
+      renderLeft(song);
+      right.innerHTML = renderComments(song) + renderLyrics(song) + renderHistory(song) || '<div class="shared-song-empty">暂无更多信息</div>';
+      wireActions();
+      right.scrollTop = savedScrollTop;
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+    }
+
+    if (global.OverlayManager) {
+      return global.OverlayManager.open({
+        type: "song",
+        id: song.hash_id || song.name_jp || song.name,
+        hash: "#song=" + encodeURIComponent(song.hash_id),
+        manageHash: !!settings.updateHash,
+        activate: activate,
+        capture: function () {
+          if (currentSong === song) savedScrollTop = right.scrollTop;
+        },
+        deactivate: function () {
+          overlay.classList.remove("open");
+          overlay.setAttribute("aria-hidden", "true");
+        },
+        getElement: function () { return overlay; },
+        onRemove: function () {
+          if (currentSong === song) {
+            currentSong = null;
+            currentComments = [];
+            currentOptions = {};
+          }
+          if (typeof settings.afterClose === "function") settings.afterClose();
+        }
+      });
+    }
+
+    activate();
     document.body.style.overflow = "hidden";
-    if (currentOptions.updateHash) history.replaceState(null, "", "#song=" + encodeURIComponent(song.hash_id));
+    if (settings.updateHash) history.replaceState(null, "", "#song=" + encodeURIComponent(song.hash_id));
     return true;
   }
 
   function close() {
     if (!overlay || !overlay.classList.contains("open")) return;
+    if (global.OverlayManager && currentSong) {
+      global.OverlayManager.close("song", currentSong.hash_id || currentSong.name_jp || currentSong.name);
+      return;
+    }
     const options = currentOptions;
     const lyrics = overlay.querySelector(".shared-song-lyrics.clean-mode");
     if (lyrics) lyrics.classList.remove("clean-mode");
@@ -187,12 +239,13 @@
     currentComments = [];
     currentOptions = {};
     if (typeof options.afterClose === "function") options.afterClose();
-    else document.body.style.overflow = document.querySelector(".drawer-overlay.active, #modalOverlay.open") ? "hidden" : "";
+    else document.body.style.overflow = document.querySelector(".shared-live-drawer-overlay.shared-live-active, .shared-discography-modal-overlay.open") ? "hidden" : "";
   }
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && overlay && overlay.classList.contains("open")) {
-      if ((global.InterviewOverlay && global.InterviewOverlay.isOpen()) || document.querySelector(".mc-modal.active, #kvLightbox.active")) return;
+      if (global.OverlayManager && !global.OverlayManager.isTop("song", currentSong && (currentSong.hash_id || currentSong.name_jp || currentSong.name))) return;
+      if (!global.OverlayManager && ((global.InterviewOverlay && global.InterviewOverlay.isOpen()) || (global.LiveDrawer && global.LiveDrawer.isAuxiliaryOpen()))) return;
       event.preventDefault();
       event.stopImmediatePropagation();
       close();

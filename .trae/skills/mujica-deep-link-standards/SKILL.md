@@ -23,6 +23,21 @@ description: "唯鸡百科子页面的可分享深链接与跨页面详情组件
 - 页面加载时，先检查所属前缀，再按 `hash_id` 找到数据并打开详情。
 - 一次只让最上层详情处理 Escape；嵌套灯箱关闭后，底层灯箱保持打开状态。
 
+## 共享交互窗口栈（强制）
+
+Songs、Live、Discography、Interview 的共享交互窗口必须加载并接入 `js/overlay-manager.js`，不得再由组件通过 `beforeOpen`、`afterClose` 或手动隐藏/恢复 class 来管理彼此的生命周期。
+
+- 栈节点身份统一为 `<type>:<hash_id>`，其中 `type` 只能是 `song`、`live`、`discography`、`interview`；数组下标只用于查找数据，不能作为节点身份。
+- URL 哈希只由从当前 index 页面直接打开的第一层交互窗口决定。第一层关闭前，后续嵌套窗口不得修改或清除该哈希。
+- OverlayManager 以栈是否为空作为第一层的最终判断；组件传入的 `updateHash` / `manageHash` 只保留调用语义，不能覆盖这一规则。
+- 第一层仍沿用既有格式：Songs 为 `#song=<hash_id>`、Live 为 `#live=<hash_id>`、Discography 为 `#discography=<hash_id>`、Interview 为 `#<hash_id>`。
+- 最大栈深度固定为 4。第 5 层打开请求替换当前第 4 层，第一层深链接和下面三层保持不变。
+- 请求打开已存在的同一节点时，不创建新节点；移除该节点上方的窗口并直接切换到已有节点。
+- 同类型不同节点允许进入栈；共享组件恢复时必须按保存的数据重新渲染，并恢复关键滚动位置或选项状态。
+- 只有栈顶窗口可交互并处理 Escape；底层窗口保持显示状态但必须设置 `inert` 和 `aria-hidden="true"`。
+- `body` 滚动锁定、动态 `z-index`、第一层哈希写入与清除统一由 OverlayManager 负责。
+- Live 的 MC、KV/Backstage 图片灯箱以及 Interview 的图片灯箱属于组件内部辅助层，不计入四层共享窗口栈，并且必须先于所属主窗口响应 Escape。
+
 ## Excel 关联键与分享键
 
 Excel 的 `release_id`、`song_name`、演出名称等字段用于关联工作表和维护数据。它们不是公开 URL 标识。新增实体需要：
@@ -52,7 +67,29 @@ Interview 浮层同样是共享组件，Interview 独立页以及 SongModal 内�
 - `interview/page.js`：只负责 Interview 页面卡片、搜索、排序和深链接初始化，不得包含浮层实现；
 - 使用 SongModal 的 Songs、Live、Discography 页面必须加载 `interview/data.js`、`renderMarkdown.js` 和 InterviewOverlay 共享 JS/CSS，使“采访出处”行为在所有入口一致。
 
-Interview 独立页打开浮层时维护 `#<hash_id>`；从 SongModal 嵌套打开时必须使用 `manageHash: false`，保留底层的 `#song=`、`#live=` 或 `#discography=`。关闭嵌套 Interview 后，底层 SongModal 保持打开，Escape 一次只关闭最上层。
+Interview 独立页打开浮层时使用 `manageHash: true` 注册为第一层；从 SongModal 嵌套打开时使用 `manageHash: false`。实际哈希写入、保留与清除由 OverlayManager 根据第一层节点统一处理。
+
+## Live 抽屉跨页面复用
+
+Live 详情抽屉由 Live 与 Discography 页面统一调用同一份共享实现：
+
+- `js/live-drawer.js`：唯一创建抽屉、MC 浮层和 KV/Backstage 灯箱 DOM，负责 Setlist、歌曲跳转、图片轮播、打开/关闭与 Escape；
+- `css/live-drawer.css`：抽屉及其附属浮层的全部样式，统一使用 `.shared-live-*` 命名空间；
+- `live/index.html`：只负责 Live 卡片、筛选、统计与 `#live=<hash_id>` 初始化，通过 `LiveDrawer.open()` 打开详情；
+- Discography 的 `content_title` 若可匹配 Live 名称，则渲染为 Live 入口，通过 `LiveDrawer.findByTitle()` / `LiveDrawer.open()` 打开同一抽屉。
+
+Live 独立页调用时使用 `updateHash: true` 注册为第一层；从其他共享窗口嵌套打开时使用 `updateHash: false`。组件不得自行隐藏或恢复 Discography/Song 等父窗口。
+
+## Discography 灯箱跨页面复用
+
+Discography 详情灯箱由 Discography 页面以及 SongModal 的“收录CD”入口统一调用：
+
+- `js/discography-modal.js`：唯一创建唱片详情 DOM，负责版本切换、版本矩阵、收录内容、榜单、歌曲/Live 跳转、打开/关闭与 Escape；
+- `css/discography-modal.css`：详情灯箱全部样式，统一使用 `.shared-discography-*` 命名空间；
+- `discography/index.html`：只负责唱片档案列表、筛选、搜索和 `#discography=<hash_id>` 初始化，通过 `DiscographyModal.open()` 打开详情；
+- SongModal 的 `appearances` 条目通过 `DiscographyModal.findByTitle()` 匹配 `discographyData[].title`；匹配成功才显示为按钮，未入库条目保持静态文本。
+
+Discography 独立页调用时使用 `updateHash: true` 注册为第一层；从 SongModal 等共享窗口嵌套打开时使用 `updateHash: false`。父窗口恢复和层级关系统一交给 OverlayManager。
 
 ## 共享组件的样式隔离（强制）
 

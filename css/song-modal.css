@@ -87,7 +87,9 @@
 .shared-song-meta-label { margin-right: 5px; color: var(--md-on-surface-muted, #666); font-weight: 500; }
 .shared-song-meta a { color: var(--md-primary, #cc2929); text-decoration: none; }
 .shared-song-appearances { margin-top: 12px; }
-.shared-song-cd { display: flex; align-items: center; gap: 6px; color: #999; font-size: 11px; }
+.shared-song-cd { display: flex; width: 100%; align-items: center; gap: 6px; padding: 0; border: 0; background: none; color: #999; font: inherit; font-size: 11px; text-align: left; }
+.shared-song-cd.is-link { cursor: pointer; transition: color .2s ease; }
+.shared-song-cd.is-link:hover { color: var(--md-primary, #cc2929); }
 .shared-song-cd i { position: relative; width: 16px; height: 16px; flex: 0 0 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%,#3a3a3a,#1a1a1a 60%,#0d0d0d); }
 .shared-song-cd i::after { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: #080808; }
 .shared-song-modal-right { flex: 1; max-height: 90vh; min-width: 0; padding: 40px 36px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,77,77,.12) transparent; }
