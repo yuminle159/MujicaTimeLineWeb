@@ -86,10 +86,39 @@ body {
 
 /* --- Discography: 唱针掠过唱片纹路 --- */
 .sigil-discography { overflow: visible; }
-.sigil-groove, .sigil-needle { transition: opacity 0.35s ease; }
-.nav-card:hover .sigil-discography { animation: spinDisc 3.4s linear infinite; transform-origin: center; }
-.nav-card:hover .sigil-needle { opacity: 0.35; }
-@keyframes spinDisc { 100% { transform: rotate(360deg); } }
+.sigil-mint-frame,
+.sigil-mint-ring,
+.sigil-mint-mark,
+.sigil-gold-core,
+.sigil-gold-point {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.32s ease,
+              stroke 0.32s ease,
+              fill 0.32s ease;
+}
+.sigil-mint-frame { opacity: 0; transform: scale(0.78); }
+.sigil-mint-ring-outer { stroke-dasharray: 3 5; opacity: 0.86; }
+.sigil-mint-ring-inner { opacity: 0.42; }
+.sigil-mint-mark { opacity: 0.7; }
+.sigil-gold-core { fill: transparent; }
+.sigil-gold-point { fill: transparent; stroke-width: 1.5; }
+
+.nav-card:hover .sigil-mint-frame { transform: scale(1); opacity: 0.9; }
+.nav-card:hover .sigil-mint-ring-outer { transform: scale(0.78); opacity: 0.65; }
+.nav-card:hover .sigil-mint-ring-inner { transform: scale(0.84); opacity: 0.78; }
+.nav-card:hover .sigil-mint-mark { opacity: 1; transform: scale(0.84); }
+.nav-card:hover .sigil-gold-core { fill: rgba(211, 172, 76, 0.18); stroke: #c9a64f; }
+.nav-card:hover .sigil-gold-point { fill: #e4c56b; stroke: #e4c56b; transform: scale(1.4); filter: drop-shadow(0 0 5px rgba(228, 197, 107, 0.85)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sigil-mint-frame,
+  .sigil-mint-ring,
+  .sigil-mint-mark,
+  .sigil-gold-core,
+  .sigil-gold-point { transition: none; }
+}
 
 /* --- Live: 日食/芒星呼吸 --- */
 .nav-card:hover .sigil-eclipse-rays {

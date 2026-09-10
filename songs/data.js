@@ -3,167 +3,6 @@
 
 const songsData = [
   {
-    name: "Georgette Me, Georgette You",
-    name_jp: "Georgette Me, Georgette You",
-    hash_id: "g2LwpyA5VV6",
-    album: "『BanG Dream! Ave Mujica』#1～#3 电影院先行上映",
-    album_year: "2024",
-    release_date: "2024/12/27",
-    cover: "../images/GMGY.webp",
-    type: "Original",
-    lyricist: "Diggy-MO'",
-    composer: "松坂康司（SUPA LOVE）",
-    arranger: "松坂康司（SUPA LOVE）",
-    first_stage: "リスアニ!LIVE 2025 SATURDAY STAGE",
-    mv_url: "https://www.bilibili.com/bangumi/play/ep1365126",
-    lyrics_jp: "白銀の糸を伝い 想い 手繰り寄せてた\\nその果てで妊る月 抱きしめたなら\\n \\n待っているの 太陽から夜が堕ちてくるのを\\nねぇ その果てで満たしてよ 届く気がするの\\n \\nもつれたまま 踊る Georgette Me, Georgette You まわる\\n痛むほどに ほら 煌めくドレスを纏いながら\\n \\neverlastin’ ever.. darlin’ ever, ever.. 締め付けて again\\neverlastin’ ever.. 離れぬように ever, ever, ever..\\n\\n\\n\\n縛るものはなに？ それは 誰かの遠い祈り\\nああ 最初から知っていたわ 許されないこと\\n \\n愛せぬまま 踊る Georgette Me, Georgette You is that true?\\nあなたが触れたわ この傷口に\\n\\n\\n\\nもつれたまま 踊る Georgette Me, Georgette You まわる\\nこのまま このままでいさせて\\n\\n\\n\\n愛せぬまま 踊る Georgette Me, Georgette You is that true?\\n痛みは光ね 煌めくドレスを纏いながら\\n \\neverlastin’ ever.. darlin’ ever, ever.. 締め付けて again\\neverlastin’ ever.. 離れぬように ever, ever, ever..",
-    lyrics_cn: "沿着白银的丝线 将思念牵至身边\\n在那尽头所孕育的月 若能将它拥入怀中\\n \\n等待着 夜晚从太阳坠落\\n啊 在那尽头将我满足 思绪仿佛能够传达\\n \\n缠绵不清 翩翩起舞 Georgette Me, Georgette You 旋转不停\\n越是痛苦不已 看啊 身缠礼服愈加闪耀\\n \\n直到永远…亲爱的 永远永远…再次将你我紧缚\\n直到永远…为了永不分离 永远 永远 永远…\\n\\n\\n\\n束缚我们的是什么？是某人遥远的祈祷\\n啊啊 最初我便知晓 这是不被允许之事\\n \\n无法相爱 翩翩起舞 Georgette Me, Georgette You 这是否真实？\\n是你触碰到了啊 这处伤口\\n\\n\\n\\n缠绵不清 翩翩起舞 Georgette Me, Georgette You 旋转不停\\n就这样 就让我们一直这样下去\\n\\n\\n\\n无法相爱 翩翩起舞 Georgette Me, Georgette You 这便是真实？\\n痛苦是光明呢 看啊 身缠礼服闪耀至此\\n \\n直到永远…亲爱的 永远 永远…再次将你我紧缚\\n直到永远…为了永不分离 永远 永远 永远…",
-    search_keywords: "GMGY,ed，缠你缠我",
-    appearances: ["KiLLKiSS", "Completeness", "Ave Música"],
-    comments: [
-      { text: "我一边想着，如果能将被戏剧化的情感故事比作白银色的乔其纱（Georgette）来表现就好了，一边写下了这首歌。\\n\n此外，关于频频登场的“月”，以及其所比喻的对象，我也希望能在各种各样的乐曲中运用它，带来不同的想象。\\n\n在这首歌里，我尤其像描绘一幅美丽的画作那样，一字一句地精心编织。\\n\n“拒绝之事” “接纳之事” \\n\n人，在“人生的旋转舞台”上不停地扮演着自己。有时甚至会活成并非自己的另一个人。\\n\n我也希望能够表达出这样一种内涵：“在内心的某个地方，我们都知道存在着一种无法控制的、引导着我们的命运。”\\n\n真的非常不可思议，人总是同时兼容着相互矛盾的事物。\\n\n重要的是“微妙”这一点。也就是说，“细腻到令人害怕”。 \\n\n作为与以往作品的共同项，我在第二段歌词中也加入了隐约让人联想到宗教背景的语句。\\n\n随之而来的转折点。\\n\n在人生的各种意义上，都可以认为在“丧失”之后，才是“真正的开始”。 \\n\n「あなたが触れたわ　この傷口に」\\n\n“是你触碰到了啊 这处伤口” \\n\n如果将其理解为：各种各样的事情逐渐变得明晰，在不断蔓延的悲伤中逐渐懂得人生。那么，那重重交织闪耀着的光芒同时既是痛苦，而黑暗的深邃则让那光芒绽放出更加耀眼的光彩。\\n\n这是一首纯粹执着于“语言描写”的歌曲。\\n\n此外，这首歌在构建与动画不同的“独立性”过程中，也采用了这样一种形式：既表现人拼命延续生命的美，又同时带有可以解读为恋爱中关系性表达的一面。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
-    ],
-    live_history: [
-      { date: "2025/1/25", venue: "日本武道館", name: "リスアニ!LIVE 2025 SATURDAY STAGE", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476" },
-      { date: "2025/2/2", venue: "KT Zepp Yokohama", name: "Ave Mujica「KiLLKiSS」購入者限定フリーライブ", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_2" },
-      { date: "2025/4/26", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_3" },
-      { date: "2025/4/27", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_4" },
-      { date: "2025/5/5", venue: "千葉市蘇我スポーツ公園", name: "JAPAN JAM 2025", has_video: false, video_url: "" },
-      { date: "2025/6/7", venue: "Smart Araneta Coliseum", name: "ANISAMA WORLD 2025 in MANILA", has_video: false, video_url: "" },
-      { date: "2025/10/11", venue: "梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_5" },
-      { date: "2025/10/12", venue: "梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_6" },
-      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_7" },
-      { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
-      { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
-      { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_8" }
-    ]
-  },
-  {
-    name: "Symbol III : Water",
-    name_jp: "Symbol III : 🜄",
-    hash_id: "VqWmmjSEUDE",
-    album: "Digital Single",
-    album_year: "2024",
-    release_date: "2024/6/15",
-    cover: "../images/water.webp",
-    type: "Original",
-    lyricist: "Diggy-MO'",
-    composer: "トミタカズキ(SUPA LOVE) • Diggy-MO'",
-    arranger: "トミタカズキ(SUPA LOVE)",
-    first_stage: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演",
-    mv_url: "https://www.bilibili.com/video/BV17w4m1Y7kf/",
-    lyrics_jp: "月を詠む 海のリズム\\n私は ‘最初に降り立った者’\\n流れ出す このプログラム\\n引き合う魂 魂の歌が\\n\\n叫ぶの 欲望を 命の緊張を高めてゆくわ\\n\\n寄せる 寄せる 寄せる波 私の性の中で\\n馳せる 馳せる 馳せる夢 微かな音を抱きしめて\\n揺れる 揺れる 揺れる愛 あなた対極にいて その炎と重なって\\nいま ‘大宇宙(おおぞら)’になる\\n\\n\\n\\n可哀想に おいでなさい\\nついには影を手放したのね\\n古い本は焼き払われ\\n時代が通り過ぎてゆく\\n\\nいまでも 幸せなその’死’の訪れをただ祈りながら\\n\\n寄せる 寄せる 寄せる波 すべてを 嗚呼 受け入れて\\n馳せる 馳せる 馳せる夢 何もかもを失って\\n揺れる 揺れる 揺れる愛 遠く近く あなたの炎が舞い上がる\\n世界は白くなる\\n\\n\\n\\n導くように\\n小さな磁気を帯びて煌めいている場所がある\\nそう 私はかつて最初に降り立った者\\nこの白き世界に\\n\\n寄せる 寄せる 寄せる波 ‘生’の中で\\n馳せる 馳せる 馳せる夢 微かな音を抱きしめて\\n揺れる 揺れる 揺れる愛 ああ その命(ほのお)と重なって\\nいま ‘大空’になる",
-    lyrics_cn: "吟咏月色 海之节奏\\n我是“最初降临之人”\\n既定的程式运作流转\\n彼此吸引的灵魂 灵魂之歌\\n\\n呐喊的欲望 绷紧生命的琴弦\\n\\n翻涌 翻涌 波浪层层涌来 在我的天性中激荡\\n疾驰 疾驰 梦想奔向远方 怀抱微弱的余音\\n摇曳 摇曳 爱情动摇不定 与身处对极的你 同那火焰重叠在一起\\n此刻 化作广阔天空\\n\\n\\n\\n真是可怜 过来吧\\n终于舍弃了影子呢\\n旧书被焚毁\\n一个时代渐渐远去\\n\\n直到如今 仍只祈祷着幸福的死亡降临\\n\\n翻涌 翻涌 波浪层层涌来 啊啊 将所有尽数接纳\\n疾驰 疾驰 梦想奔向远方 纵然失去一切\\n摇曳 摇曳 爱情动摇不定 似近似远 你的火焰飞扬而起\\n世界变得一片纯白\\n\\n\\n\\n仿佛命运指引一般\\n有处地方带微弱的磁场 闪烁光芒\\n没错 我是最初降临于此之人\\n在这纯白的世界\\n\\n翻涌 翻涌 波浪层层涌来 在生命之中\\n疾驰 疾驰 梦想奔向远方 怀抱微弱的回响\\n摇曳 摇曳 爱情动摇不定 啊啊 与生命之火交融\\n此刻 化作无垠宇宙",
-    search_keywords: "元素水，窝塔，元素三，3",
-    appearances: ["ELEMENTS"],
-    comments: [
-      { text: "我在副歌的乐句中加入了“波浪”这一意象，它也是司掌水的精灵“温蒂妮”的语源。\n将“月亮”与“地球”相对比，以超然达观的视角进行了唯美的刻画，同时，也是因为我想要描绘出一个具有官能美的世界观。\\n\n我刻意引入了处于对立面的阳性特质“火”，以此来反衬阴性特质“水”的神秘，使其更为深邃、宏大。\\n\n内容上，\\n\n最初我构建了一个从“月之使者降临此大地”开始的故事。\\n\n我将这个“月之使者”设定成了，比如高维度的存在，掌管着阴性宫位～，诸如此类的感觉。\\n\n对于高次元的存在而言，人类的历史不过是转瞬即逝的一瞬。\\n\n于是，她俯视着这个地上——即三维的“Human Race”（人类种族），并将自己曾经历过的那些故事，如同追溯种种回忆一般，由她本人作为“讲述者”亲自道来，我是这样设定的。\\n\n此外，歌词中也包含了很多跨越时代前后的复合元素，例如我运用了克里姆特“爱欲与死亡共存”这种偏近代的艺术概念，或者也融入了塔罗牌牌组所展现的那种联想空间。\n通过探索这些不同主题的组合，或许能进一步升华为Ave Mujica式的格调，那便是我的期望。\\n\n我特意放入“欲望”、“紧张”、或者是“大宇宙”这样直白露骨的词汇，也是出于这一目的。\\n\n阴性特质将阳性特质包容进去，形成一种宏大的感觉。\\n\n在表达“两性交融”这一直接含义的同时，另一方面，我也将宗教的根源作为多层面的概念融入其中。\\n\n阳性宫位之火的“△”与阴性宫位之水的“▽”重合，就会变成“六芒星”的符号，而这正意味着“大宇宙”，因此在第一段副歌中，我试图表达这种宇宙的完满性因果与秩序。\\n\n而在最后的部分，我的期望是，最终不去描绘那种“大宇宙”般不可估量的宏大事物，而是珍重地描绘活在此刻“生命”中的“最微小的世界”。为了让听众能感受到这一点，我在结尾处忽然将视角拉回，只是从地上仰望这片“天空”。于是，支线故事包含着“生命赞歌”的含义，而我这首歌想要表达的本质依旧是“爱之歌”。", source: "Ave Mujica Sound Producer Diggy-MO'访谈 & Elements概念解析", from: "Diggy-MO'", date: "2024/10/2" }
-    ],
-    live_history: [
-      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
-      { date: "2024/10/13", venue: "河口湖ステラシアター", name: "Ave Mujica 3rd LIVE「Veritas」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965" },
-      { date: "2024/12/14", venue: "武蔵野の森総合スポーツプラザ", name: "Roselia「Stille Nacht, Rosen Nacht」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_2" },
-      { date: "2024/12/15", venue: "武蔵野の森総合スポーツプラザ", name: "Ave Mujica 4th LIVE「Adventus」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_3" },
-      { date: "2025/2/2", venue: "KT Zepp Yokohama", name: "Ave Mujica「KiLLKiSS」購入者限定フリーライブ", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_4" },
-      { date: "2025/7/26", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_5" },
-      { date: "2025/7/27", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_6" },
-      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_7" },
-      { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" }
-    ]
-  },
-  {
-    name: "Sophie",
-    name_jp: "Sophie",
-    hash_id: "qCkB7hfjMwz",
-    album: "3rd Single 「'S/' The Way / Sophie」",
-    album_year: "2025",
-    release_date: "2025/12/10",
-    cover: "../images/slash特装.webp",
-    type: "Original",
-    lyricist: "Diggy-MO'",
-    composer: "Diggy-MO' • ÐIK",
-    arranger: "Diggy-MO' • ÐIK",
-    first_stage: "Ave Mujica 6th LIVE 「Ulterius Procedere」东京公演",
-    mv_url: "https://www.bilibili.com/video/BV1UR2DB6ErR",
-    lyrics_jp: "太陽は山羊座へ向かう\\nいま 天（そら）は黒い海で 嗚呼 満たされて\\nそう わたしのこころ 悲鳴は神に届かぬと憂いて\\n運命（さだめ）嘆いて\\n\\nまた カーテシーがあなたの欲情を掻き立てる\\n‘美徳’ とこの魂 何処へ\\n\\n誘って 誘って 誘って 誘って 嘲笑って こんなわたしを辱めて\\nもうヤダって ヤダって 嫌だって だからやめて ほんとヤダ...\\n絶望のハイライト 揺れる死神の影\\n\\n\\n\\nhow bizarre\\n腐敗したハイエロファント\\n至上の愉悦を覚え わたしから掠め取ってゆく\\n純潔は壊され\\n\\n\\n\\nmaterial, material, material, how bizarre\\nmaterial, material,.. この ‘不幸’ を呪って\\n\\n\\n\\n誘って 誘って 誘って 誘って 嘲笑って こんなわたしを辱めて\\nもうヤダって ヤダって 嫌だって だからやめて ほんとヤダ...\\nほんとヤダ... ほんとヤダ... ほんとヤダ...\\n\\n儚い夢に取り憑かれているのかしら\\nそう この世で ‘美徳’ など 報いられないの\\n欺かれ続け 嗚咽と涙に 嗚呼 咽ぶばかりで\\n嫌だって... ほんとヤダ...\\nこんなことならいっそ...\\n絶望のハイライト 揺れる死神の影\\n",
-    lyrics_cn: "太阳向摩羯座西沉\\n啊 此刻 天空被漆黑的海洋填满\\n是的 我的心 忧虑着悲鸣无法传达给神明\\n哀叹着命运\\n\\n又一次 屈膝礼在挑起你的情欲\\n‘美德’和这灵魂 将去往何处\\n\\n引诱我 引诱我 引诱我 引诱我 嘲笑我 羞辱这样的我\\n不想再这样下去 不想 不要 所以请不要 真的好讨厌…\\n绝望的高光高潮 摇曳的死神之影\\n\\n\\n\\nhow bizarre\\n腐败的神启者\\n感受这至高的欢愉 从我身上掠夺而去\\n纯洁被破坏\\n\\n\\n\\nmaterial, material, material, how bizarre\\nmaterial, material,..诅咒这份‘不幸’\\n\\n\\n\\n引诱我 引诱我 引诱我 引诱我 嘲笑我 羞辱这样的我\\n不想再这样下去 不想 不要 所以请不要 真的好讨厌…\\n真的好讨厌… 真的好讨厌… 真的好讨厌…\\n\\n莫非是被虚妄的梦附身了吗？\\n是的 在这个世上 ‘美德’之类是没有回报的\\n持续被欺骗 在呜咽和泪水之中 啊 唯有哽咽\\n不要…真的好讨厌…\\n既然如此 不如干脆…\\n绝望的高光高潮 摇曳的死神之影",
-    search_keywords: "索菲，鬼叫，苏菲",
-    appearances: ["'S/' The Way / Sophie"],
-    comments: [
-      { text: "——「Sophie」是基于怎样的概念开始制作的？\\n我想到了“唯物主义”这个概念，所以一边以萨德侯爵的《美德的不幸》为母题（Motif），一边将其投射到Ave Mujica的世界观中。我也引入了情色主义（Eroticism）的要素，截取了原本的人性得到释放、赤裸裸的残酷瞬间。另外，作为暗线主题，我还追溯时代，复合地融合了将诺斯替主义（Gnosticism）的宇宙观、神话及宗教背景等。\\n——具体是以怎样的意象进行拓展的呢？\\n我认为如果做一些诸如价值观或道德观念瓦解这种彻底崩塌的意象，能够引发出她们与以往不同的魅力。我将其比作现代社会的构图，在不损品格的前提下，引入处于极限边缘的表现形式并使其具象化。其实对我来说，这并不是什么罕见的切入点，但我认为，向一般的音乐受众展示这种表现形式的普遍性，也是一个重要的机会。我将猎奇、无神论等脑海中的意象进行各种组合，以此煽动那种生猛感。\\n——钢琴的音色非常优美，请问使用的是什么？如果是软件音源的话请告诉我们音色名称。\\n是NATIVE INSTRUMENTS Kontakt的Alicia's Keys。因为挂了几个效果器，所以可能听起来和原本的音色相去甚远。\\n——关于弦乐编曲，是从编制开始构建的吗？\\n这首歌的编制是以四重奏来组建的。不出所料这部分也是和人声主旋律以及其他乐器的合奏同步制作的。感觉就像是将脑海中听到的旋律和复调（Counter）乐句，在各自通道上用MIDI写成乐谱。因为这个乐队也有钢琴，所以需要一边弹钢琴一边将所有内容包含在内进行编曲。\\n——具体的作业是如何进行的呢？\\n基本上是先在四重奏的各个通道上制作相互交织的乐句。有时也会像常规手法那样，先在一个通道上把音源设为弦乐整体的组合，一边先决定大概的轮廓，也有这样的情况。在具体区分制作时，虽然令人印象深刻的乐句主要由第一小提琴担任的情况很多，但在一些细小的声部或段落中，当然也有很多情况会让大提琴或中提琴来承担这一角色。这方面我也在仔细斟酌合奏中交织乐句的机能美。我的目标是既能让主唱突显出来，又能留下“弦乐和钢琴很帅气的曲子”这一印象的、行之有效的精心制作。\\n——请教一下使用的音源和效果器。\\n音源选择了VIENNA SYMPHONIC LIBRARY。在通过编程还原弦乐时，我会仔细选择表情控制、音量写入以及演奏法，来打磨细腻的表现。在效果处理方面，通常管弦乐等的弦乐不会加太多压缩，但在流行乐的情况下，我会使用磁带系的效果器，在不破坏抑扬顿挫的程度内微量增加并进行处理。\\n——感觉面向结尾的高潮部分紧紧抓住了人心。你是如何考量并构建这种展开的呢？\\n无论创作什么歌曲，我都都会下功夫维持紧张感。我认为这也算是某种关于如何捕捉“意外性”的部分。在这首歌里，因为我认为特别是必须要将紧迫感一直煽动到最后，所以一边计算着主唱人声最终到达的表现境界，一边在最后的一个大段落里整个引入机关，构建出令人提心吊胆的结构。", source: "Sound ＆ Recording 2026.02", from: "Diggy-MO'", date: "2026/2/1" },
-      { text: "──「Sophie」真的是一首只有佐佐木小姐才能驾驭的曲子……总而言之，我感到非常震惊。是一首极其厉害的歌。\\n佐佐木：我也从来没有唱过这样的歌。必须全身心投入，以至于在演唱过程中甚至像是失去了记忆，不彻底沉浸进去就唱不出来。当时已经完全进入了心流状态……该怎么形容呢，感觉脑细胞在被逐渐破坏，血管都快要爆裂了一样。根本无法用普通的方式去演唱。\\n\n──「Sophie」的歌词我最初拜读的时候也受到了极大的冲击，甚至有点不知道该如何去形容。\\n佐佐木：真的呢。这是一首只有 Ave Mujica 才能做到的曲子吧。能够被委以重任演唱这样的歌我感到很荣幸，而且乐器部分的编排也非常厉害。一般来说，这种曲子是不会突然让给别人唱的。所以，这也激发了我们“大干一场吧！”的斗志。我非常开心。\\n\n──刚拿到这首曲子的时候，您最直观的想法是什么？\\n佐佐木：首先我觉得“这根本不是在唱歌”。这是呐喊……灵魂的尖叫。但是，我想把这种“尖叫”一直贯彻到最后。毕竟这首曲子传达的就是这样的东西。我在参考Demo的同时，也想唱出自己心中描绘的「Sophie」，所以里面也有我完全改变了原本唱法的部分。比如第2段主歌之后的尖叫。我觉得这里应该可以自由发挥，所以就没有和大家商量直接尝试了一次，结果就被采用了。\\n\n──是〈material, material,〉那一段对吧。令人印象非常深刻。\\n佐佐木：那一段我听都想问“这到底是谁在唱啊”……我的记忆就是缺失到了那种程度。唱歌的时候，我好像在用力抓挠自己的身体，回家的路上觉得身上疼，一看才惊讶地发现满是抓痕。我当时就想，“原来被歌曲附身演唱就是这种感觉啊”（苦笑）。\\n\n──甚至连这个小插曲都跟这首曲子无比契合呢。我很迷茫，不知道应该怎么说才好，像是被袭击了，但又仿佛是被引诱了……\\n佐佐木：是啊。感觉像是在歌唱某种“完全没有道理可言之事”，但也可以理解为在“享受这种不公”。比如那句“真的好讨厌”（ほんとヤダ），到底是不是真的在抗拒呢。\\n\n──确实是这样。在不断重复〈真的好讨厌〉的过程中，语气和情感也发生了变化，这点也引人深思。\\n佐佐木：感觉就像是把那种真实的“动摇”原封不动地塞了进去。我觉得在最后选用的音轨里，也有制作团队刻意保留下来的粗糙、未经修饰的部分。我非常喜欢最后一段副歌里的高音，那里的狂野的爆发力非常棒，还有“引诱我”（誘って）那句稍微残留的换气声，也刻意按原样保留了下来。甚至连叹息声、呜咽声也都原封不动地保留了，希望大家在听的时候也能去享受这些细节。", source: "https://www.animatetimes.com/news/details.php?id=1765333295&p=3", from: "佐佐木李子", date: "2025/12/11" }
-    ],
-    live_history: [
-      { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972" },
-      { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
-      { date: "2026/2/28", venue: "Kアリーナ横浜", name: "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_2" },
-      { date: "2026/3/1", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_3" },
-      { date: "2026/3/20", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2026", has_video: false, video_url: "" },
-      { date: "2026/4/4", venue: "KT Zepp Yokohama", name: "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_4" },
-      { date: "2026/4/11", venue: "台北・大佳河濱公園", name: "BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」", has_video: false, video_url: "" },
-      { date: "2026/4/17", venue: "Zepp Fukuoka", name: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演", has_video: false, video_url: "" },
-      { date: "2026/4/26", venue: "Zepp Namba", name: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演", has_video: false, video_url: "" },
-      { date: "2026/5/1", venue: "Zepp Nagoya", name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演", has_video: false, video_url: "" },
-      { date: "2026/5/4", venue: "Zepp Haneda (TOKYO)", name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演", has_video: false, video_url: "" },
-      { date: "2026/6/19", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_5" },
-      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_6" },
-      { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
-      { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
-      { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
-      { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_7" }
-    ]
-  },
-  {
-    name: "The Whole Blue World",
-    name_jp: "The Whole Blue World",
-    hash_id: "m8wqmJXCAMX",
-    album: "Best Album「Ave Música」",
-    album_year: "2026",
-    release_date: "2026/6/17",
-    cover: "../images/精选通常.webp",
-    type: "Original",
-    lyricist: "Diggy-MO'",
-    composer: "Diggy-MO' • 植木建象(SPAWN Inc.)",
-    arranger: "Diggy-MO'",
-    first_stage: "Coming Soon…",
-    mv_url: "https://www.bilibili.com/video/BV18LjB6eEYm",
-    lyrics_jp: "風よ 空よ 海よ 隙間に滑り込め\\n星よ 時代（とき）よ 真実（ひかり）よ 眼差しの奥で\\n\\n燃えゆく命 駆け抜ける短さに\\n嘲う世界 闇を暴け\\n\\nBlue, Blue, Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくら晒されて\\n震える夜を越え いま儚く消えた声\\n\\n\\n\\n何故に 何故に こんなに届かない 苛立ち\\n足りない 足りない 言葉じゃ こんなんじゃ感じない\\n\\nyour head up... stand up...\\n神のいないこの天（そら）\\n\\nBlue,Blue,Blue World So Cruel World\\n立ち向かってゆく ぼくら約束の果て\\n美しい夜を越え さあ\\n\\n確かなもの探していた 打ちひしがれて\\n運命を切り拓け\\n受け入れられないものを変えてゆけると\\n信じたいのに…信じたいのに…\\n信じていたのに\\n\\n\\n\\nclose to you\\nただ終わりへと向かってゆくだけのその哀しみに\\n震える君を抱きしめ\\n\\n追いかける\\nBlue,Blue,Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくらそのままで\\n震える夜を越え 嗚呼\\nいま",
-    lyrics_cn: "风儿 天空 大海 滑入缝隙之中\\n星辰 时代 真相 在那眼神深处\\n\\n持续燃烧的生命 如疾驰般短暂\\n在这嘲笑一切的世界上 暴露黑暗吧\\n\\nBlue, Blue, Blue World The Whole Blue World\\n逐渐粉碎凋零的梦境 让我们无所遁形\\n穿越颤抖的黑夜 此刻 声音幻影般消失\\n\\n\\n\\n为何 为何 如此地无法传达 这焦躁与不安\\n不够 不够 仅凭语言 无法让我感受到\\n\\nyour head up... stand up...\\n神明不在的、这片天空\\n\\nBlue, Blue, Blue World So Cruel World\\n我们挺身面对 向我们约定的尽头\\n穿越美丽的黑夜 来吧\\n\\n即便心力交瘁 我仍在寻找确定之物\\n为了开拓命运\\n为了改变无法接受的事情\\n想要相信…想要相信…\\n曾经相信\\n\\n\\n\\nclose to you\\n在那份只是逐渐走向终结的哀伤中\\n抱紧颤抖的你\\n\\n追逐\\nBlue, Blue, Blue World The Whole Blue World\\n逐渐粉碎凋零的梦境 我们就这样\\n穿越颤抖的黑夜 啊啊\\n如今",
-    search_keywords: "蓝世界，姨妈",
-    appearances: ["Ave Música"],
-    comments: [
-      { text: "——刚才也提到过，作为新曲的「The Whole Blue World」是一首连接了 Ave Mujica 过去与未来的歌曲。 \\n佐佐木：是的呢。我觉得 Ave Mujica 给人一种孤高的印象。但是这首歌，感觉像是在歌颂共同坠落的美。看歌词的话，有很多像是“残酷的世界中”、“无法传达的焦躁”、“渐渐粉碎的梦境”、“感受到痛苦”之类的词汇。但在其中，依然有一种“想要切实地触碰你”的感觉。我觉得这部分的氛围和以前稍微有些不同。 歌词中出现了“我们”（僕ら）这个词，也让我印象非常深刻。应该说是一种选择一起受伤害的细腻感吗，其中也还有“明明想要去相信”的纠结和动摇的部分，我非常喜欢。带着这种动摇仍要继续前进的感觉，我觉得非常有 Ave Mujica 的风格。我是绷紧了神经，全神贯注地去演唱这首歌的。\\n冈田：我有个单纯的疑问，在录音的时候，你不会“哇——”地一下情绪失控吗？（笑）\\n 佐佐木：虽然不会“哇——”地叫出来（笑），但确实有一种自己正在坠入黑暗的感觉。在之前的采访中我也提到过，在唱「Sophie」的时候，回过神来发现手上全是伤痕，我应该是下意识地用力攥紧了手，在“真的好讨厌”“真的好讨厌”（ほんとヤダ）那里。就是这样，贴近着歌词的情感去演唱的。 这首歌也是，感觉像是让内心静静地沸腾起来。我会一边想象着那种包含着心中的焦躁、痛苦和软弱，却依然要继续前行的感觉，一边去演唱。\\n——「The Whole Blue World」里的“Blue World”，让人既能感受到清澈的蓝，也能感受到那种仿佛要深深沉沦下去的蓝。\\n佐佐木：确实，感觉它不仅仅是一个普通的蓝色世界。在其中既能感觉到充满透明感的蓝，也能感觉到深邃的蓝。非常有Ave Mujica的风格。我觉得Ave Mujica不仅仅是有攻击性，那种细腻而优雅的部分也是 Ave Mujica 的一部分。我认为这首歌是一首能够同时体会到这两面的歌曲。\\n\n冈田：真是一种不可思议的平衡呢。和声也录制了非常多的版本。Ave Mujica的歌曲，都是由 Diggy-MO' 先生来录制Demo的。听到Diggy-MO'先生的演唱，我们也能明确地明白“这首歌想要呈现出怎样的感觉”。而且，我能听出来李子亲并没有完全仿照，而是很好地将其升华为Doloris的风格来演唱。这点每次都让我很感动。其他的歌曲中，强调沉重感的曲子比较多，但这首歌相对来说，让我感受到了深沉感。\\n\n佐佐木：我确实是有意识地在表现这种深沉感！而且，也刻意去表现了那种带着冰冷感的蓝。并不是粗暴地去击打，而是那种优美地夺走你呼吸的感觉，你能体会到这一层我真的很高兴。 \\n冈田：太棒了！", source: "https://www.animatetimes.com/news/details.php?id=1781597468&p=2", from: "佐佐木李子&冈田梦以", date: "" }
-    ],
-    live_history: []
-  },
-  {
-    name: "in your blue eyes",
-    name_jp: "碧い瞳の中に",
-    hash_id: "NBxd6EllAIr",
-    album: "Digital Single",
-    album_year: "2025",
-    release_date: "2025/9/4",
-    cover: "../images/蓝眼睛.webp",
-    type: "Original",
-    lyricist: "Diggy-MO'",
-    composer: "松坂康司(SUPA LOVE) • Diggy-MO'",
-    arranger: "松坂康司 (SUPA LOVE) • Diggy-MO'",
-    first_stage: "Ave Mujica 6th LIVE 「Ulterius Procedere」东京公演",
-    mv_url: "https://www.bilibili.com/video/BV13Ma2zjEMA",
-    lyrics_jp: "虜になっていた 光 うつらうつら\\n幻を見ていた 儚い夢の中\\n\\nこの天（そら）の狭間に彷徨（さまよ）って 堕ちてゆく\\n[気づいて 気づいて このままじゃいけない]\\nそうね 知っているわ\\n\\nwake up wake up babe don't fear\\n君の碧い瞳の中に ああ わたしはいたい\\nwake up wake up babe さあ いま\\nもういちど 自分を越えて 越えて\\n信じて\\n\\n\\n\\n聖なる人も皆 生きる罪深さに苛まれ\\nやがて伝説は ただの土に\\n\\nこの愛のあとにも また忘却が続くのかしら\\n\\n[お願い お願い ねぇ 戻ってきて]\\nこのぬくもり 失えない\\n\\nwake up wake up babe don't fear\\n君の碧い瞳が やさしく微笑む未来\\nwake up wake up babe さあ いま\\n奏でるの 世界を ともに描いて\\n\\nwake up wake up babe don't fear\\n君の碧い瞳の中に ああ わたしはいたい\\nwake up wake up babe さあ いま\\nもういちど 自分を越えて 越えて\\n信じて",
-    lyrics_cn: "曾深陷其中 光芒朦朦胧胧\\n曾见到模糊的幻想 在转瞬即逝的梦中\\n\\n在天空的狭缝中彷徨徘徊 逐渐坠落\\n[请察觉到 请察觉到 不能这样下去了]\\n是啊 我早已明白\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n我愿长存于你空灵美丽的眼眸之中\\n醒来吧 醒来吧 亲爱的 就是现在\\n再一次 去超越自我 超越吧\\n请相信吧\\n\\n\\n\\n纵使是圣洁之人 也会为生命的罪孽深受煎熬\\n而那传说 终将化作尘土\\n\\n这份爱之后 是否仍唯有忘却相随\\n\\n[求求你 求求你 呐 回到我身边吧]\\n不能失去这份温暖\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n你空灵美丽的眼眸中温柔微笑的未来\\n醒来吧 醒来吧 亲爱的 就是现在\\n奏响由我们共同描绘的世界\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n我愿长存于你空灵美丽的眼眸之中\\n醒来吧 醒来吧 亲爱的 就是现在\\n再一次 去超越自我 超越吧\\n请相信吧",
-    search_keywords: "碧瞳，蓝眼睛",
-    appearances: ["Ave Música"],
-    comments: [
-      { text: "明日方舟 Side Story 「无忧梦呓」 联动曲", source: "", from: "Tie-up", date: "" }
-    ],
-    live_history: [
-      { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac48116014" },
-      { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
-      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac48116014_2" }
-    ]
-  },
-  {
     name: "Black Birthday",
     name_jp: "黒のバースデイ",
     hash_id: "ggXANsHGOwf",
@@ -450,6 +289,144 @@ const songsData = [
     ]
   },
   {
+    name: "Ankoku Tengoku",
+    name_jp: "暗黒天国",
+    hash_id: "nmSa8KPUdfO",
+    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
+    album_year: "2023",
+    release_date: "2023/6/4",
+    cover: "../images/暗黑天国.webp",
+    type: "Cover",
+    lyricist: "宝野アリカ",
+    composer: "片倉三起也",
+    arranger: "UYKADO",
+    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+    mv_url: "",
+    lyrics_jp: "Darling 目を開けて \\nこの世の悪の巣窟で 啄まれる心を頂戴\\n逃げもできぬ 幽閉の蒼白の王子よ\\nわたしが女神\\nバタフライの羽も 天使の唾液も\\nあなたをまだ見ぬ極楽へ 連れ出せはしない\\n腐りかけた自由 垢に塗れた愛\\n煉獄の焔でzeroから済世しましょう\\n不夜の空に黒いダリア\\n失する妄想 堕ちる現実\\nもがけ蟻ジゴク\\nDarling 声上げて このいま刺し違えるほど\\n大事なものが欲ししのなら 祈りは果てて\\n牢獄で昇天の姫君 あなたが魔王\\n怒りの拳も嘆きの傷も跡形もなく\\n熔けて消えて散って泡沫\\nすべては密猟区 埋もれた罠に ハメられるのなら\\n粉々に砕いてほしいわ\\n死に至らぬ病 心臓には毒薬\\n冒されながらも生きる日々 祝福されたし\\n眼蓋の奥 赤いザクロ\\n恋する右脳 臆する左脳\\nつぶせ針の山\\nHoney 抱きしめて\\n素肌の絹の光沢で 恍惚しちゃう時間を頂戴\\nカラダは裂けて 天国で再会の片割れ\\nふたりは半神\\n至極の善と魅惑の奈落\\n約束の地は 何所か其所か夢かうつつか\\nサアドウゾ 此処イラデ 絶頂ヲ迎エマショウ\\nDarling 目を開けて\\nこの世の悪の巣窟を 蝕めない心を頂戴\\n逃げもしない 幽閉の蒼白の王子よ\\nわたしが女神\\nDarling 声上げて このいま刺し違えるほど\\n大事なものが欲しいのなら 祈りは果てて\\n牢獄で昇天の姫君 あなたが魔王\\n組まれた指と懺悔の首と贖う罪は\\n何か何れか嘘か真か",
+    lyrics_cn: "亲爱的 睁开眼睛吧 \\n在这世间邪恶的巢穴中 让我取走你那被啄食的心灵\\n无法逃离 被幽禁的苍白王子啊\\n我就是女神\\n蝴蝶的翅膀 天使的唾液\\n都不会把你带往 未曾见过的极乐世界\\n腐朽的自由 被污垢涂盖的爱\\n就用炼狱之焰 从零开始拯救这世间吧\\n不眠的天空中 黑色的大丽花\\n丧失的妄想 堕落的现实 \\n挣扎吧 犹如无法摆脱的蚁狱\\n亲爱的 放声呼喊吧 在这个要同归于尽的当下\\n假若你渴望珍贵之物 祈祷便是尽头\\n牢狱中升天的公主 你才是魔王\\n愤怒的拳头 哀叹的伤痕 终将无迹可寻\\n熔化 消散 化作泡沫\\n一切都是非法狩猎场 要是被落入深埋的陷阱中\\n那就请将我彻底粉碎吧\\n无法致死的疾病 对心脏不过是毒药\\n虽然被侵袭但仍存活的日子 要受到祝福吗\\n眼睑深处 红色的石榴 \\n恋爱的右脑 胆怯的左脑 \\n压碎它吧 犹如针山之刑\\n亲爱的 紧紧相拥吧\\n用光滑如绸缎的肌肤 赐予我沉醉的时光\\n身躯即便被撕裂 仍在天国中与另一半重逢\\n我们互为半神\\n至高无上的善 与魅惑的深渊\\n约定之地究竟在哪 是梦境还是现实\\n那么请吧 就在此处 迎来绝顶的快感\\n亲爱的 睁开眼睛吧\\n在这世间邪恶的巢穴中 让我吞噬你那无法侵蚀的心灵\\n无法逃离 被幽禁的苍白王子啊\\n我就是女神\\n亲爱的 放声呼喊吧 在这个要同归于尽的当下\\n假若你渴望珍贵之物 祈祷便是尽头\\n牢狱中升天的公主 你才是魔王\\n紧扣的指尖 忏悔的头颅 所赎的罪孽\\n究竟是什么 是谎言还是事实",
+    search_keywords: "暗黑天国",
+    appearances: ["「バンドリ！カバーコレクション Extra Volume」"],
+    comments: [
+      { text: "ALI PROJECT 「小女神花铃」OP", source: "", from: "Originally by", date: "" }
+    ],
+    live_history: [
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937" },
+      { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_2" },
+      { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_3" },
+      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
+      { date: "2024/10/13", venue: "河口湖ステラシアター", name: "Ave Mujica 3rd LIVE「Veritas」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_4" },
+      { date: "2024/11/23", venue: "横浜アリーナ", name: "ANIMAX MUSIX 2024 FALL", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_5" }
+    ]
+  },
+  {
+    name: "Daten",
+    name_jp: "堕天",
+    hash_id: "8Hn1scGGfDX",
+    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
+    album_year: "2023",
+    release_date: "2023/6/4",
+    cover: "../images/堕天.webp",
+    type: "Cover",
+    lyricist: "R-指定",
+    composer: "DJ松永",
+    arranger: "UYKADO",
+    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+    mv_url: "",
+    lyrics_jp: "あの日林檎の木の下共犯で 踏み越えてみた境界線\\nすぐにblack out「あ お怒りで」\\n追い立てられてこんな次元へ\\n俺とした事が 俺如きですら\\n俺に限っていや まさかね\\n君のせいにした\\n秘密を手にした\\nイチジクの葉が右左\\nあっという間 目が醒める かと思えば空に落ちて行く\\nなんというか やめられぬ\\nもうひと齧りagain\\nFallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling\\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも\\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってくyeah \\nそこじゃ何から何までごった煮で \\n鬼も仏もおんなじ目 \\n全てshut out どうかしてる?\\n俺らハナから大真面目\\nふりほどいて来た うしろ指ですら\\nむしろ追い風さ まだ足んねぇ\\n蛇に睨まれた 歴史の徒花\\nエデンにはまだ「空室あり」\\nあっという間 染められる かと思えば熱が醒めていく\\nちょっと待ってその前に\\nもうひと雫 again\\nFallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling\\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも \\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってくyeah\\nAgain fallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling \\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも \\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってく\\nこの血が冷めないうちに 飲み干して\\n眩暈するほど気取って\\n取り留めない出会いに色付けて\\nこの目が醒めないうちに 憑り込んで\\n狭い空ごと突き抜けてfalling\\n蜜の味二人ハマってくyeah",
+    lyrics_cn: "那一天在苹果树下 你我作为共犯 跨越了那条边界线\\n随即失去意识“啊 生气了呢”\\n被驱逐到这片次元\\n我在做什么啊 就连像我这样\\n只对我一人 不对 不会吧喂\\n都怪你\\n掌握了秘密\\n无花果叶左右颠倒\\n一转眼间 才刚刚苏醒 便即将坠入空中\\n怎样形容呢 让人欲罢不能\\n那就再咬一口 again\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落\\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋 yeah \\n那里将任意一切都炖成大杂烩\\n恶鬼与神佛皆为同样的眼神 \\n将一切拒之门外 你是疯了吗？\\n可我们从来就是一本正经\\n甩开枷锁吧 就连身后的指责\\n反倒让我们乘风而行 还远远不够\\n毒蛇虎视眈眈 历史徒有其表\\n伊甸园仍有“空房间”\\n转眼之间 脸才被染得通红 热情又即刻冷却殆尽\\n请等一下 在此之前\\n再给一滴甘霖 again\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落\\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋 yeah\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落 \\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋\\n趁血液尚未冷却 一饮而尽\\n装腔作势至头晕目眩\\n为不得要领的相逢染上色彩\\n趁意识尚未苏醒 互为依凭\\n连带狭小的天空 穿透云霄falling\\n两人一同沉浸于甜蜜的滋味yeah",
+    search_keywords: "",
+    appearances: ["「バンドリ！カバーコレクション Extra Volume」"],
+    comments: [
+      { text: "Creepy Nuts「彻夜之歌」OP", source: "", from: "Originally by", date: "" }
+    ],
+    live_history: [
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763" },
+      { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763_2" },
+      { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763_3" },
+      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
+      { date: "2024/10/13", venue: "河口湖ステラシアター", name: "Ave Mujica 3rd LIVE「Veritas」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763_4" }
+    ]
+  },
+  {
+    name: "KINGS",
+    name_jp: "KINGS",
+    hash_id: "q6I9nuH3YjF",
+    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
+    album_year: "2023",
+    release_date: "2023/6/4",
+    cover: "../images/kings.webp",
+    type: "Cover",
+    lyricist: "atsuko",
+    composer: "atsuko • KATSU",
+    arranger: "UYKADO",
+    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+    mv_url: "",
+    lyrics_jp: "Worries slowly come and kiss\\nTell me what's your name\\nまた惹かれ合っては 比べ合う事でけなして\\n何度夜が巡ろうとも 真っ暗闇のどっかで\\n欠けた自分のpieceだったら\\nSearch and kiss and destroy\\nBig bang\\n野蛮な情熱 冷静な衝突\\n血を見るまで容赦はしないの? \\nBig bang\\n確かめたい 繋がっていたい 本当は恐いの?\\n未完成な愛をぐっと振りかざして\\n分かりたい分からない 分からず屋\\n相反する正義に集う輩さ\\n一瞬の安らぎに寄り添って\\n似てると言われる程 気になって仕方なくなる\\n目をそらしたら負けさ 未来はあやふやで\\n過去は二度と変えられないと\\n知っているさ\\nSearch and kiss and destroy \\nBig wave \\n歪んだ衝動 歯痒い残響\\nゆさぶってんの? 逃げたりはしない\\nBig wave\\n競い合っていたい 高ぶっていたい 本当は恐いの?\\n不格好な愛さえ歴史の中じゃ 瞬き以下の瞬刻だろう\\n舐め合う為の傷なんて無いさ\\nプライドがあっち側で笑ってる \\nWorries slowly come and kiss \\nTell me what's your name \\nWorries slowly come and kiss \\nSearch and kiss and destroy \\nBig bang\\n野蛮な情熱 冷静な衝突\\n血を見るまで容赦はしないの? \\nBig bang\\n確かめたい 繋がっていたい 本当は恐いの?\\n未完成な愛をぐっと振りかざして\\n分かりたい分からない 分からず屋\\n相反する正義に集う輩さ\\n一瞬の安らぎに寄り添って \\nCan I feel can you feel\\nLife is a moment\\n惰性を打破して抱きしめたい\\n舐め合う為の傷なんて無いさ\\nプライドがあっち側で笑ってる",
+    lyrics_cn: "忧虑缓缓而至 轻轻吻上\\n告诉我 你的名字是什么\\n彼此再次相互吸引 却又因互相比较而暗自贬低\\n无论要经历多少长夜 黑暗都会存在于某处\\n假若缺失自己的碎片\\n那就去搜寻 去亲吻 去毁坏\\n大爆炸\\n野蛮的热情 冷静的冲突 \\n直至见血之前 都不会宽恕对方丝毫吗？\\n大爆炸\\n渴望得到确认 渴望得到羁绊 其实是出于恐惧吗？\\n标榜着尚未完成的爱\\n渴望理解 却未曾理解 不曾明白的人\\n聚集在相反正义之下的人们啊\\n依偎在一瞬的安宁之中\\n越是被人说相似 越是在意得耿耿于怀\\n移开视线便会败北 未来暧昧不清\\n而过去无法再度改变\\n我明明早已深知\\n那就去搜寻 去亲吻 去毁坏\\n掀起巨浪\\n扭曲的冲动 令人焦躁的余韵\\n是要让人动摇吗？我绝不会逃避的\\n掀起巨浪\\n渴望着竞争 渴望着兴奋 其实是出于恐惧吗？\\n再笨拙的爱在历史的洪流中 不过是转瞬即逝的刹那吧\\n伤痕并不是为了互相舔舐而存在\\n否则自尊心会那一边冷冷嘲笑\\n忧虑缓缓而至 轻轻吻上\\n告诉我 你的名字是什么\\n忧虑缓缓而至 轻轻吻上\\n去搜寻 去亲吻 去毁坏\\n大爆炸\\n野蛮的热情 冷静的冲突 \\n直至见血之前 都不会宽恕对方丝毫吗？\\n大爆炸\\n渴望得到确认 渴望得到羁绊 其实是出于恐惧吗？\\n标榜着尚未完成的爱\\n渴望理解 却未曾理解 不曾明白的人\\n聚集在相反正义之下的人们啊\\n依偎在一瞬的安宁之中\\n我可感觉到 你可感觉到吗\\n生命只是一瞬\\n希望打破惰性 紧紧相拥\\n伤痕并不是为了互相舔舐而存在\\n否则自尊心会那一边冷冷嘲笑",
+    search_keywords: "",
+    appearances: ["「バンドリ！カバーコレクション Extra Volume」"],
+    comments: [
+      { text: "angela「K」OP", source: "", from: "Originally by", date: "" }
+    ],
+    live_history: [
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710" },
+      { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710_2" },
+      { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710_3" },
+      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
+      { date: "2025/8/30", venue: "さいたまスーパーアリーナ", name: "Animelo Summer Live 2025 “ThanXX!”", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710_4" }
+    ]
+  },
+  {
+    name: "Determination Symphony",
+    name_jp: "Determination Symphony",
+    hash_id: "1lsJ34P8u5i",
+    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
+    album_year: "2023",
+    release_date: "2023/6/4",
+    cover: "../images/logo/DS.webp",
+    type: "Cover",
+    lyricist: "織田あすか(Elements Garden)",
+    composer: "藤永龍太郎(Elements Garden)",
+    arranger: "藤永龍太郎(Elements Garden)",
+    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+    mv_url: "",
+    lyrics_jp: "潤んだ予感はbye now\\n滴る痛みの中　雨色に染まって\\n大きく開(ひら)いたdistance\\nいつの間にか落ちてゆくわ…冷たさに\\n滲んだ【スコア】探す【答え】\\n降り止まない苦しみに差し出された\\n微笑みの【微笑みの】Umbrella【Umbrella】\\nus…包み込んで　合わさるprecious\\n【Where there is a will, there is a way.】\\n【Where there is a will…】\\nBring it on down\\n決意の調べ【hang in there】\\n勇気の祈りを音色に載せて【get over】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【響け】貴方の横で\\n今はまだ無理でも\\n【向き合う定めよ】【\\nワタシハ　ヤメナイ\\n蜃気楼のようでfleeting\\n淀んだ景色が行く　伏し目がちになって\\n静けさ返ってはdistance\\n声も届かずに散りだす　はらはらと\\n水面に映る美しき縁(えにし)は\\n【the naked truth】\\n誇りを　今に取り戻すわ\\nBring it on down\\n使命の調べ【set you free】\\n折れないリビドー音色に載せて【till the end】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【光れ】貴方の横で\\n此れで終わりじゃない\\n【奇跡はなくとも】\\nワタシハ　カナデル\\nセカイデ　ヒトツノ　タイセツナヒト\\nツナゲ　ココロ　フカク\\nツナゲ　ユメヲ　シナヤカニ…\\n涙の【スコア】映る【答え】\\n降りしきった悲しみを迎えたのは\\n微笑みの【微笑みの】Umbrella【Umbrella】\\nus…見守るように　優しくhold\non\\n【Where there is a will, there is a way.】\\n【Where there is a will…】\\nBring it on down\\n決意の調べ【hang in there】\\n勇気の祈りを音色に載せて【get over】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【響け】貴方の横で\\n今はまだ無理でも\\n【向き合う定めよ】\\nワタシヨ　ツキススメ…！",
+    lyrics_cn: "暗中预感着会在此刻别离\\n那份不停的痛苦　把雨水的颜色尽染\\n逐渐拉开的那份距离\\n不知不觉间开始落下的雨啊…如此寒冷\\n铭记于心的【乐谱】寻找着【回答】\\n向无尽的痛苦之雨中递来的是\\n浮现微笑的【浮现微笑的】雨伞【雨伞】\\n将我们…相互包裹　合而为一的珍贵之物\\n【只要心中所向，道路就在前方。】\\n【有志者事竟成…】\\n随心所欲 将其击溃\\n下定决心的旋律【坚持下去】\\n将勇气的祈愿附在音色之中【将其克服】\\n用那约定相连的指尖弹起\\n不知不觉【奏响吧】就在你身旁奏响的\\n即使是还无法实现\\n面对于你的命运啊】\\n我也绝对　不会放弃\\n像海市蜃楼一般 转瞬即逝\\n模糊的景色散去　低头是空无一物\\n静止不动的那份距离\\n在话语也传达不到的地方开始 簌簌地落下\\n水面上倒映出的美好的缘分\\n【浮现的真实】\\n将骄傲　于此时去取回吧\\n不再被束缚 将其击溃\\n怀有使命的旋律【重夺自由】\\n将不屈的本能附在音色之中【直至终结】\\n用那约定相连的指尖弹起\\n不知不觉【闪耀吧】就在你身旁闪耀的\\n这还不是结束之时\\n【即使没有什么奇迹】\\n我也仍会　将其奏响\\n世界上的　唯有一个　无比而珍贵的人\\n相连吧　将心灵　紧紧地\\n相连吧　将梦想　用那份温柔…\\n泪水的【乐谱】映出着【回答】\\n在无尽的悲伤之雨中迎接着的\\n浮现微笑的【浮现微笑的】雨伞【雨伞】\\n将我们…守护一般　用那温柔让我们向前\\n【只要心中所向，道路就在前方。】\\n【有志者事竟成…】\\n随心所欲 将其击溃\\n下定决心的旋律【坚持下去】\\n将勇气的祈愿附在音色之中【将其克服】\\n用那约定相连的指尖弹起\\n不知不觉【奏响吧】就在你身旁奏响的\\n即使是还无法实现\\n【面对于你的命运啊】\\n我自己啊　继续前行吧…！",
+    search_keywords: "决心交响曲，roselia",
+    appearances: [],
+    comments: [
+      { text: "Roselia「ONENESS」收录曲", source: "", from: "Originally by", date: "" }
+    ],
+    live_history: [
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935835" }
+    ]
+  },
+  {
+    name: "PASSIONATE ANTHEM",
+    name_jp: "PASSIONATE ANTHEM",
+    hash_id: "cAYWygj93eN",
+    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
+    album_year: "2023",
+    release_date: "2023/6/4",
+    cover: "../images/logo/pa.webp",
+    type: "Cover",
+    lyricist: "織田あすか(Elements Garden)",
+    composer: "藤永龍太郎(Elements Garden)",
+    arranger: "藤永龍太郎(Elements Garden)",
+    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
+    mv_url: "",
+    lyrics_jp: "(We went all out to win)\\nPassionate Gaze\\n(We went all out to win)\\nPassionate Voice\\n(We went all out to win)\\nPassionate Soul\\n(We went all out to win)\\n眼差しは　唯ひたすらに愚直さを込めて\\n魂と本能をくすぐっていった\\n新たな挑戦が　本物へと近づく…\\nどんなステージだって　微笑みをあげるわ\\n(Breaking out)逆鱗に触れた先に落ちた\\n(Breaking out)産声が激しくぶつかり合う宴\\n競い咲くように　命の Anthem　嗚らして\\n磨き上げてゆく　それぞれのダイヤを胸に抱き\\n自らの音を　信じているからと　高らかに\\n妥協はしない　譲らない　決して揺るがないものは\\n誇りある　この想い\\n(We went all out to win)\\nPassionate Song\\n(We went all out to win)\\nRush!\\n声と声　重ね合って\\n目覚めてゆく細胞はAmazing\\nChallenge\\nその姿は　正に異端児\\nRush!\\nFreed\\n盤上に開く夢へのGate\\nかかって来なさい、勝てると思うのならば\\n(Living on)互いのセオリー響き合わせて\\n(Living on)目覚ましく現れた熱情が光る\\n常に燃え尽きることなく　心を動かして\\n言の葉の世界が煌びやかに　ひらり舞い踊る\\n授かったものを　輝かしく育ててゆくまで\\n崩れはしない　倒れない　決して壊れないものは\\n誇りある　この絆\\n私たちの最果ては何処なのか\\n己の中を追い求め走り出す\\nこの正解を手に入れるまでは\\nAre you\nready?　…容赦しない\\n競い咲くように　命の Anthem　嗚らして\\n磨き上げてゆく　それぞれのダイヤを胸に抱き\\n自らの音を　信じているからと　高らかに\\n妥協はしない　譲らない　決して揺るがないものは\\n誇りある　仲間たち\\n(We went all out to win)\\nPassionate Gaze\\n(We went all out to win)\\nPassionate Voice\\n(We went all out to win)\\nPassionate Soul\\n(We went all out to win)",
+    lyrics_cn: "我们为了赢而拼尽全力\\n激情的凝视\\n我们为了赢而拼尽全力\\n激情的声音\\n我们为了赢而拼尽全力\\n激情的灵魂\\n我们为了赢而拼尽全力\\n凝视的目光直直刺入愚昧的正直\\n灵魂和本能一直蓄势待发\\n新的挑战离真实之物近在咫尺\\n无论走上怎样的舞台 我们都会献以微笑\\n（爆发吧）在触碰到逆鳞之前他们就已四散而逃\\n（爆发吧）这是初生之啼哭激烈碰撞的盛宴\\n这竞相绽放的生命之颂歌被奏响了\\n把每个人的宝石一点点地擦亮 在胸前抱紧\\n因为尽力相信 自己的声音才越发高昂\\n不妥协 不退让 决不动摇的东西\\n就是这值得骄傲的意志\\n我们为了赢而拼尽全力\\n激情的乐曲\\n我们为了赢而拼尽全力\\n冲刺吧！\\n每个人的声音重合放大\\n正在觉醒的细胞可谓惊奇\\n超越突破极限的挑战\\n这般姿态简直就是异端之子\\n冲刺吧！\\n这成长的双翼不受束缚\\n通往梦想的门自由敞开\\n全都放马过来吧 如果觉得能赢过我们的话\\n（以此为生）让彼此的信条交织奏鸣\\n（以此为生）这闪光的热情震撼登场\\n这永不熄灭的心跳动起来了\\n这由言语组成的世界光辉灿烂地起舞了\\n在所有领悟到的东西全部可以尽情闪耀之前\\n不会崩塌 不会被击倒 绝对无法被破坏的\\n就是这值得为之自豪的羁绊\\n我们的终点到底在何处\\n为追求自己的内在而开始奔跑\\n在把这正解得到手之前\\n你准备好了吗？不会有一点宽容\\n这竞相绽放的生命之颂歌被奏响了\\n把每个人的宝石一点点地擦亮 在胸前抱紧\\n因为尽力相信 自己的声音才越发高昂\\n不妥协 不退让 决不动摇的东西\\n就是值得为之自豪的朋友们\\n我们为了赢而拼尽全力\\n激情的凝视\\n我们为了赢而拼尽全力\\n激情的声音\\n我们为了赢而拼尽全力\\n激情的灵魂\\n我们为了赢而拼尽全力",
+    search_keywords: "roselia",
+    appearances: [],
+    comments: [
+      { text: "Roselia「Safe and Sound」收录曲", source: "", from: "Originally by", date: "" }
+    ],
+    live_history: [
+      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935862" }
+    ]
+  },
+  {
     name: "Utopia",
     name_jp: "素晴らしき世界 でも どこにもない場所",
     hash_id: "hDO89gBUDsA",
@@ -636,6 +613,39 @@ const songsData = [
     ]
   },
   {
+    name: "Symbol III : Water",
+    name_jp: "Symbol III : 🜄",
+    hash_id: "VqWmmjSEUDE",
+    album: "Digital Single",
+    album_year: "2024",
+    release_date: "2024/6/15",
+    cover: "../images/water.webp",
+    type: "Original",
+    lyricist: "Diggy-MO'",
+    composer: "トミタカズキ(SUPA LOVE) • Diggy-MO'",
+    arranger: "トミタカズキ(SUPA LOVE)",
+    first_stage: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演",
+    mv_url: "https://www.bilibili.com/video/BV17w4m1Y7kf/",
+    lyrics_jp: "月を詠む 海のリズム\\n私は ‘最初に降り立った者’\\n流れ出す このプログラム\\n引き合う魂 魂の歌が\\n\\n叫ぶの 欲望を 命の緊張を高めてゆくわ\\n\\n寄せる 寄せる 寄せる波 私の性の中で\\n馳せる 馳せる 馳せる夢 微かな音を抱きしめて\\n揺れる 揺れる 揺れる愛 あなた対極にいて その炎と重なって\\nいま ‘大宇宙(おおぞら)’になる\\n\\n\\n\\n可哀想に おいでなさい\\nついには影を手放したのね\\n古い本は焼き払われ\\n時代が通り過ぎてゆく\\n\\nいまでも 幸せなその’死’の訪れをただ祈りながら\\n\\n寄せる 寄せる 寄せる波 すべてを 嗚呼 受け入れて\\n馳せる 馳せる 馳せる夢 何もかもを失って\\n揺れる 揺れる 揺れる愛 遠く近く あなたの炎が舞い上がる\\n世界は白くなる\\n\\n\\n\\n導くように\\n小さな磁気を帯びて煌めいている場所がある\\nそう 私はかつて最初に降り立った者\\nこの白き世界に\\n\\n寄せる 寄せる 寄せる波 ‘生’の中で\\n馳せる 馳せる 馳せる夢 微かな音を抱きしめて\\n揺れる 揺れる 揺れる愛 ああ その命(ほのお)と重なって\\nいま ‘大空’になる",
+    lyrics_cn: "吟咏月色 海之节奏\\n我是“最初降临之人”\\n既定的程式运作流转\\n彼此吸引的灵魂 灵魂之歌\\n\\n呐喊的欲望 绷紧生命的琴弦\\n\\n翻涌 翻涌 波浪层层涌来 在我的天性中激荡\\n疾驰 疾驰 梦想奔向远方 怀抱微弱的余音\\n摇曳 摇曳 爱情动摇不定 与身处对极的你 同那火焰重叠在一起\\n此刻 化作广阔天空\\n\\n\\n\\n真是可怜 过来吧\\n终于舍弃了影子呢\\n旧书被焚毁\\n一个时代渐渐远去\\n\\n直到如今 仍只祈祷着幸福的死亡降临\\n\\n翻涌 翻涌 波浪层层涌来 啊啊 将所有尽数接纳\\n疾驰 疾驰 梦想奔向远方 纵然失去一切\\n摇曳 摇曳 爱情动摇不定 似近似远 你的火焰飞扬而起\\n世界变得一片纯白\\n\\n\\n\\n仿佛命运指引一般\\n有处地方带微弱的磁场 闪烁光芒\\n没错 我是最初降临于此之人\\n在这纯白的世界\\n\\n翻涌 翻涌 波浪层层涌来 在生命之中\\n疾驰 疾驰 梦想奔向远方 怀抱微弱的回响\\n摇曳 摇曳 爱情动摇不定 啊啊 与生命之火交融\\n此刻 化作无垠宇宙",
+    search_keywords: "元素水，窝塔，元素三，3",
+    appearances: ["ELEMENTS"],
+    comments: [
+      { text: "我在副歌的乐句中加入了“波浪”这一意象，它也是司掌水的精灵“温蒂妮”的语源。\n将“月亮”与“地球”相对比，以超然达观的视角进行了唯美的刻画，同时，也是因为我想要描绘出一个具有官能美的世界观。\\n\n我刻意引入了处于对立面的阳性特质“火”，以此来反衬阴性特质“水”的神秘，使其更为深邃、宏大。\\n\n内容上，\\n\n最初我构建了一个从“月之使者降临此大地”开始的故事。\\n\n我将这个“月之使者”设定成了，比如高维度的存在，掌管着阴性宫位～，诸如此类的感觉。\\n\n对于高次元的存在而言，人类的历史不过是转瞬即逝的一瞬。\\n\n于是，她俯视着这个地上——即三维的“Human Race”（人类种族），并将自己曾经历过的那些故事，如同追溯种种回忆一般，由她本人作为“讲述者”亲自道来，我是这样设定的。\\n\n此外，歌词中也包含了很多跨越时代前后的复合元素，例如我运用了克里姆特“爱欲与死亡共存”这种偏近代的艺术概念，或者也融入了塔罗牌牌组所展现的那种联想空间。\n通过探索这些不同主题的组合，或许能进一步升华为Ave Mujica式的格调，那便是我的期望。\\n\n我特意放入“欲望”、“紧张”、或者是“大宇宙”这样直白露骨的词汇，也是出于这一目的。\\n\n阴性特质将阳性特质包容进去，形成一种宏大的感觉。\\n\n在表达“两性交融”这一直接含义的同时，另一方面，我也将宗教的根源作为多层面的概念融入其中。\\n\n阳性宫位之火的“△”与阴性宫位之水的“▽”重合，就会变成“六芒星”的符号，而这正意味着“大宇宙”，因此在第一段副歌中，我试图表达这种宇宙的完满性因果与秩序。\\n\n而在最后的部分，我的期望是，最终不去描绘那种“大宇宙”般不可估量的宏大事物，而是珍重地描绘活在此刻“生命”中的“最微小的世界”。为了让听众能感受到这一点，我在结尾处忽然将视角拉回，只是从地上仰望这片“天空”。于是，支线故事包含着“生命赞歌”的含义，而我这首歌想要表达的本质依旧是“爱之歌”。", source: "Ave Mujica Sound Producer Diggy-MO'访谈 & Elements概念解析", from: "Diggy-MO'", date: "2024/10/2" }
+    ],
+    live_history: [
+      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
+      { date: "2024/10/13", venue: "河口湖ステラシアター", name: "Ave Mujica 3rd LIVE「Veritas」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965" },
+      { date: "2024/12/14", venue: "武蔵野の森総合スポーツプラザ", name: "Roselia「Stille Nacht, Rosen Nacht」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_2" },
+      { date: "2024/12/15", venue: "武蔵野の森総合スポーツプラザ", name: "Ave Mujica 4th LIVE「Adventus」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_3" },
+      { date: "2025/2/2", venue: "KT Zepp Yokohama", name: "Ave Mujica「KiLLKiSS」購入者限定フリーライブ", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_4" },
+      { date: "2025/7/26", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_5" },
+      { date: "2025/7/27", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_6" },
+      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930965_7" },
+      { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" }
+    ]
+  },
+  {
     name: "Symbol IV : Earth",
     name_jp: "Symbol IV : 🜃",
     hash_id: "BHwj4JvQrJL",
@@ -706,45 +716,6 @@ const songsData = [
     ]
   },
   {
-    name: "DIVINE",
-    name_jp: "DIVINE",
-    hash_id: "Yg4Gnpj6mW3",
-    album: "游戏『PROGRESS ORDERS』OP Moive公开",
-    album_year: "2025",
-    release_date: "2025/1/17",
-    cover: "../images/DIVINE.webp",
-    type: "Original",
-    lyricist: "Diggy-MO'",
-    composer: "高橋涼 (SUPA LOVE) • Diggy-MO'",
-    arranger: "高橋涼 (SUPA LOVE)",
-    first_stage: "Ave Mujica 5th LIVE「Nova Historia」DAY1",
-    mv_url: "https://www.bilibili.com/video/BV1EvcdenE9h",
-    lyrics_jp: "",
-    lyrics_cn: "",
-    search_keywords: "迪歪，神圣",
-    appearances: ["Ave Música"],
-    comments: [
-      { text: "游戏『PROGRESS ORDERS』OP", source: "", from: "Tie-up", date: "" }
-    ],
-    live_history: [
-      { date: "2025/7/26", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865" },
-      { date: "2025/7/27", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_2" },
-      { date: "2025/9/20", venue: "千葉市蘇我スポーツ公園", name: "rockin'on presents ROCK IN JAPAN FESTIVAL 2025", has_video: false, video_url: "" },
-      { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_3" },
-      { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
-      { date: "2026/3/1", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_4" },
-      { date: "2026/4/17", venue: "Zepp Fukuoka", name: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演", has_video: false, video_url: "" },
-      { date: "2026/4/26", venue: "Zepp Namba", name: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演", has_video: false, video_url: "" },
-      { date: "2026/5/1", venue: "Zepp Nagoya", name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演", has_video: false, video_url: "" },
-      { date: "2026/5/4", venue: "Zepp Haneda (TOKYO)", name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演", has_video: false, video_url: "" },
-      { date: "2026/6/19", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_5" },
-      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_6" },
-      { date: "2026/7/12", venue: "Kアリーナ横浜", name: "BEAT AX -SUMMER EDITION 2026-", has_video: false, video_url: "" },
-      { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
-      { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" }
-    ]
-  },
-  {
     name: "KiLLKiSS",
     name_jp: "KiLLKiSS",
     hash_id: "TlIS1QK8jXa",
@@ -802,6 +773,81 @@ const songsData = [
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
       { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48751334_3" }
+    ]
+  },
+  {
+    name: "Georgette Me, Georgette You",
+    name_jp: "Georgette Me, Georgette You",
+    hash_id: "g2LwpyA5VV6",
+    album: "『BanG Dream! Ave Mujica』#1～#3 电影院先行上映",
+    album_year: "2024",
+    release_date: "2024/12/27",
+    cover: "../images/GMGY.webp",
+    type: "Original",
+    lyricist: "Diggy-MO'",
+    composer: "松坂康司（SUPA LOVE）",
+    arranger: "松坂康司（SUPA LOVE）",
+    first_stage: "リスアニ!LIVE 2025 SATURDAY STAGE",
+    mv_url: "https://www.bilibili.com/bangumi/play/ep1365126",
+    lyrics_jp: "白銀の糸を伝い 想い 手繰り寄せてた\\nその果てで妊る月 抱きしめたなら\\n \\n待っているの 太陽から夜が堕ちてくるのを\\nねぇ その果てで満たしてよ 届く気がするの\\n \\nもつれたまま 踊る Georgette Me, Georgette You まわる\\n痛むほどに ほら 煌めくドレスを纏いながら\\n \\neverlastin’ ever.. darlin’ ever, ever.. 締め付けて again\\neverlastin’ ever.. 離れぬように ever, ever, ever..\\n\\n\\n\\n縛るものはなに？ それは 誰かの遠い祈り\\nああ 最初から知っていたわ 許されないこと\\n \\n愛せぬまま 踊る Georgette Me, Georgette You is that true?\\nあなたが触れたわ この傷口に\\n\\n\\n\\nもつれたまま 踊る Georgette Me, Georgette You まわる\\nこのまま このままでいさせて\\n\\n\\n\\n愛せぬまま 踊る Georgette Me, Georgette You is that true?\\n痛みは光ね 煌めくドレスを纏いながら\\n \\neverlastin’ ever.. darlin’ ever, ever.. 締め付けて again\\neverlastin’ ever.. 離れぬように ever, ever, ever..",
+    lyrics_cn: "沿着白银的丝线 将思念牵至身边\\n在那尽头所孕育的月 若能将它拥入怀中\\n \\n等待着 夜晚从太阳坠落\\n啊 在那尽头将我满足 思绪仿佛能够传达\\n \\n缠绵不清 翩翩起舞 Georgette Me, Georgette You 旋转不停\\n越是痛苦不已 看啊 身缠礼服愈加闪耀\\n \\n直到永远…亲爱的 永远永远…再次将你我紧缚\\n直到永远…为了永不分离 永远 永远 永远…\\n\\n\\n\\n束缚我们的是什么？是某人遥远的祈祷\\n啊啊 最初我便知晓 这是不被允许之事\\n \\n无法相爱 翩翩起舞 Georgette Me, Georgette You 这是否真实？\\n是你触碰到了啊 这处伤口\\n\\n\\n\\n缠绵不清 翩翩起舞 Georgette Me, Georgette You 旋转不停\\n就这样 就让我们一直这样下去\\n\\n\\n\\n无法相爱 翩翩起舞 Georgette Me, Georgette You 这便是真实？\\n痛苦是光明呢 看啊 身缠礼服闪耀至此\\n \\n直到永远…亲爱的 永远 永远…再次将你我紧缚\\n直到永远…为了永不分离 永远 永远 永远…",
+    search_keywords: "GMGY,ed，缠你缠我",
+    appearances: ["KiLLKiSS", "Completeness", "Ave Música"],
+    comments: [
+      { text: "我一边想着，如果能将被戏剧化的情感故事比作白银色的乔其纱（Georgette）来表现就好了，一边写下了这首歌。\\n\n此外，关于频频登场的“月”，以及其所比喻的对象，我也希望能在各种各样的乐曲中运用它，带来不同的想象。\\n\n在这首歌里，我尤其像描绘一幅美丽的画作那样，一字一句地精心编织。\\n\n“拒绝之事” “接纳之事” \\n\n人，在“人生的旋转舞台”上不停地扮演着自己。有时甚至会活成并非自己的另一个人。\\n\n我也希望能够表达出这样一种内涵：“在内心的某个地方，我们都知道存在着一种无法控制的、引导着我们的命运。”\\n\n真的非常不可思议，人总是同时兼容着相互矛盾的事物。\\n\n重要的是“微妙”这一点。也就是说，“细腻到令人害怕”。 \\n\n作为与以往作品的共同项，我在第二段歌词中也加入了隐约让人联想到宗教背景的语句。\\n\n随之而来的转折点。\\n\n在人生的各种意义上，都可以认为在“丧失”之后，才是“真正的开始”。 \\n\n「あなたが触れたわ　この傷口に」\\n\n“是你触碰到了啊 这处伤口” \\n\n如果将其理解为：各种各样的事情逐渐变得明晰，在不断蔓延的悲伤中逐渐懂得人生。那么，那重重交织闪耀着的光芒同时既是痛苦，而黑暗的深邃则让那光芒绽放出更加耀眼的光彩。\\n\n这是一首纯粹执着于“语言描写”的歌曲。\\n\n此外，这首歌在构建与动画不同的“独立性”过程中，也采用了这样一种形式：既表现人拼命延续生命的美，又同时带有可以解读为恋爱中关系性表达的一面。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
+    ],
+    live_history: [
+      { date: "2025/1/25", venue: "日本武道館", name: "リスアニ!LIVE 2025 SATURDAY STAGE", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476" },
+      { date: "2025/2/2", venue: "KT Zepp Yokohama", name: "Ave Mujica「KiLLKiSS」購入者限定フリーライブ", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_2" },
+      { date: "2025/4/26", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_3" },
+      { date: "2025/4/27", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_4" },
+      { date: "2025/5/5", venue: "千葉市蘇我スポーツ公園", name: "JAPAN JAM 2025", has_video: false, video_url: "" },
+      { date: "2025/6/7", venue: "Smart Araneta Coliseum", name: "ANISAMA WORLD 2025 in MANILA", has_video: false, video_url: "" },
+      { date: "2025/10/11", venue: "梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_5" },
+      { date: "2025/10/12", venue: "梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）", name: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_6" },
+      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_7" },
+      { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
+      { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
+      { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_8" }
+    ]
+  },
+  {
+    name: "DIVINE",
+    name_jp: "DIVINE",
+    hash_id: "Yg4Gnpj6mW3",
+    album: "游戏『PROGRESS ORDERS』OP Moive公开",
+    album_year: "2025",
+    release_date: "2025/1/17",
+    cover: "../images/DIVINE.webp",
+    type: "Original",
+    lyricist: "Diggy-MO'",
+    composer: "高橋涼 (SUPA LOVE) • Diggy-MO'",
+    arranger: "高橋涼 (SUPA LOVE)",
+    first_stage: "Ave Mujica 5th LIVE「Nova Historia」DAY1",
+    mv_url: "https://www.bilibili.com/video/BV1EvcdenE9h",
+    lyrics_jp: "",
+    lyrics_cn: "",
+    search_keywords: "迪歪，神圣",
+    appearances: ["Ave Música"],
+    comments: [
+      { text: "游戏『PROGRESS ORDERS』OP", source: "", from: "Tie-up", date: "" }
+    ],
+    live_history: [
+      { date: "2025/7/26", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865" },
+      { date: "2025/7/27", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_2" },
+      { date: "2025/9/20", venue: "千葉市蘇我スポーツ公園", name: "rockin'on presents ROCK IN JAPAN FESTIVAL 2025", has_video: false, video_url: "" },
+      { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_3" },
+      { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
+      { date: "2026/3/1", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_4" },
+      { date: "2026/4/17", venue: "Zepp Fukuoka", name: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演", has_video: false, video_url: "" },
+      { date: "2026/4/26", venue: "Zepp Namba", name: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演", has_video: false, video_url: "" },
+      { date: "2026/5/1", venue: "Zepp Nagoya", name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演", has_video: false, video_url: "" },
+      { date: "2026/5/4", venue: "Zepp Haneda (TOKYO)", name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演", has_video: false, video_url: "" },
+      { date: "2026/6/19", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_5" },
+      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_6" },
+      { date: "2026/7/12", venue: "Kアリーナ横浜", name: "BEAT AX -SUMMER EDITION 2026-", has_video: false, video_url: "" },
+      { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
+      { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" }
     ]
   },
   {
@@ -1068,92 +1114,96 @@ const songsData = [
     ]
   },
   {
-    name: "Ankoku Tengoku",
-    name_jp: "暗黒天国",
-    hash_id: "nmSa8KPUdfO",
-    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
-    album_year: "2023",
-    release_date: "2023/6/4",
-    cover: "../images/暗黑天国.webp",
-    type: "Cover",
-    lyricist: "宝野アリカ",
-    composer: "片倉三起也",
-    arranger: "UYKADO",
-    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
-    mv_url: "",
-    lyrics_jp: "Darling 目を開けて \\nこの世の悪の巣窟で 啄まれる心を頂戴\\n逃げもできぬ 幽閉の蒼白の王子よ\\nわたしが女神\\nバタフライの羽も 天使の唾液も\\nあなたをまだ見ぬ極楽へ 連れ出せはしない\\n腐りかけた自由 垢に塗れた愛\\n煉獄の焔でzeroから済世しましょう\\n不夜の空に黒いダリア\\n失する妄想 堕ちる現実\\nもがけ蟻ジゴク\\nDarling 声上げて このいま刺し違えるほど\\n大事なものが欲ししのなら 祈りは果てて\\n牢獄で昇天の姫君 あなたが魔王\\n怒りの拳も嘆きの傷も跡形もなく\\n熔けて消えて散って泡沫\\nすべては密猟区 埋もれた罠に ハメられるのなら\\n粉々に砕いてほしいわ\\n死に至らぬ病 心臓には毒薬\\n冒されながらも生きる日々 祝福されたし\\n眼蓋の奥 赤いザクロ\\n恋する右脳 臆する左脳\\nつぶせ針の山\\nHoney 抱きしめて\\n素肌の絹の光沢で 恍惚しちゃう時間を頂戴\\nカラダは裂けて 天国で再会の片割れ\\nふたりは半神\\n至極の善と魅惑の奈落\\n約束の地は 何所か其所か夢かうつつか\\nサアドウゾ 此処イラデ 絶頂ヲ迎エマショウ\\nDarling 目を開けて\\nこの世の悪の巣窟を 蝕めない心を頂戴\\n逃げもしない 幽閉の蒼白の王子よ\\nわたしが女神\\nDarling 声上げて このいま刺し違えるほど\\n大事なものが欲しいのなら 祈りは果てて\\n牢獄で昇天の姫君 あなたが魔王\\n組まれた指と懺悔の首と贖う罪は\\n何か何れか嘘か真か",
-    lyrics_cn: "亲爱的 睁开眼睛吧 \\n在这世间邪恶的巢穴中 让我取走你那被啄食的心灵\\n无法逃离 被幽禁的苍白王子啊\\n我就是女神\\n蝴蝶的翅膀 天使的唾液\\n都不会把你带往 未曾见过的极乐世界\\n腐朽的自由 被污垢涂盖的爱\\n就用炼狱之焰 从零开始拯救这世间吧\\n不眠的天空中 黑色的大丽花\\n丧失的妄想 堕落的现实 \\n挣扎吧 犹如无法摆脱的蚁狱\\n亲爱的 放声呼喊吧 在这个要同归于尽的当下\\n假若你渴望珍贵之物 祈祷便是尽头\\n牢狱中升天的公主 你才是魔王\\n愤怒的拳头 哀叹的伤痕 终将无迹可寻\\n熔化 消散 化作泡沫\\n一切都是非法狩猎场 要是被落入深埋的陷阱中\\n那就请将我彻底粉碎吧\\n无法致死的疾病 对心脏不过是毒药\\n虽然被侵袭但仍存活的日子 要受到祝福吗\\n眼睑深处 红色的石榴 \\n恋爱的右脑 胆怯的左脑 \\n压碎它吧 犹如针山之刑\\n亲爱的 紧紧相拥吧\\n用光滑如绸缎的肌肤 赐予我沉醉的时光\\n身躯即便被撕裂 仍在天国中与另一半重逢\\n我们互为半神\\n至高无上的善 与魅惑的深渊\\n约定之地究竟在哪 是梦境还是现实\\n那么请吧 就在此处 迎来绝顶的快感\\n亲爱的 睁开眼睛吧\\n在这世间邪恶的巢穴中 让我吞噬你那无法侵蚀的心灵\\n无法逃离 被幽禁的苍白王子啊\\n我就是女神\\n亲爱的 放声呼喊吧 在这个要同归于尽的当下\\n假若你渴望珍贵之物 祈祷便是尽头\\n牢狱中升天的公主 你才是魔王\\n紧扣的指尖 忏悔的头颅 所赎的罪孽\\n究竟是什么 是谎言还是事实",
-    search_keywords: "暗黑天国",
-    appearances: ["「バンドリ！カバーコレクション Extra Volume」"],
+    name: "in your blue eyes",
+    name_jp: "碧い瞳の中に",
+    hash_id: "NBxd6EllAIr",
+    album: "Digital Single",
+    album_year: "2025",
+    release_date: "2025/9/4",
+    cover: "../images/蓝眼睛.webp",
+    type: "Original",
+    lyricist: "Diggy-MO'",
+    composer: "松坂康司(SUPA LOVE) • Diggy-MO'",
+    arranger: "松坂康司 (SUPA LOVE) • Diggy-MO'",
+    first_stage: "Ave Mujica 6th LIVE 「Ulterius Procedere」东京公演",
+    mv_url: "https://www.bilibili.com/video/BV13Ma2zjEMA",
+    lyrics_jp: "虜になっていた 光 うつらうつら\\n幻を見ていた 儚い夢の中\\n\\nこの天（そら）の狭間に彷徨（さまよ）って 堕ちてゆく\\n[気づいて 気づいて このままじゃいけない]\\nそうね 知っているわ\\n\\nwake up wake up babe don't fear\\n君の碧い瞳の中に ああ わたしはいたい\\nwake up wake up babe さあ いま\\nもういちど 自分を越えて 越えて\\n信じて\\n\\n\\n\\n聖なる人も皆 生きる罪深さに苛まれ\\nやがて伝説は ただの土に\\n\\nこの愛のあとにも また忘却が続くのかしら\\n\\n[お願い お願い ねぇ 戻ってきて]\\nこのぬくもり 失えない\\n\\nwake up wake up babe don't fear\\n君の碧い瞳が やさしく微笑む未来\\nwake up wake up babe さあ いま\\n奏でるの 世界を ともに描いて\\n\\nwake up wake up babe don't fear\\n君の碧い瞳の中に ああ わたしはいたい\\nwake up wake up babe さあ いま\\nもういちど 自分を越えて 越えて\\n信じて",
+    lyrics_cn: "曾深陷其中 光芒朦朦胧胧\\n曾见到模糊的幻想 在转瞬即逝的梦中\\n\\n在天空的狭缝中彷徨徘徊 逐渐坠落\\n[请察觉到 请察觉到 不能这样下去了]\\n是啊 我早已明白\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n我愿长存于你空灵美丽的眼眸之中\\n醒来吧 醒来吧 亲爱的 就是现在\\n再一次 去超越自我 超越吧\\n请相信吧\\n\\n\\n\\n纵使是圣洁之人 也会为生命的罪孽深受煎熬\\n而那传说 终将化作尘土\\n\\n这份爱之后 是否仍唯有忘却相随\\n\\n[求求你 求求你 呐 回到我身边吧]\\n不能失去这份温暖\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n你空灵美丽的眼眸中温柔微笑的未来\\n醒来吧 醒来吧 亲爱的 就是现在\\n奏响由我们共同描绘的世界\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n我愿长存于你空灵美丽的眼眸之中\\n醒来吧 醒来吧 亲爱的 就是现在\\n再一次 去超越自我 超越吧\\n请相信吧",
+    search_keywords: "碧瞳，蓝眼睛",
+    appearances: ["Ave Música"],
     comments: [
-      { text: "ALI PROJECT 「小女神花铃」OP", source: "", from: "Originally by", date: "" }
+      { text: "明日方舟 Side Story 「无忧梦呓」 联动曲", source: "", from: "Tie-up", date: "" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937" },
-      { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_2" },
-      { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_3" },
-      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
-      { date: "2024/10/13", venue: "河口湖ステラシアター", name: "Ave Mujica 3rd LIVE「Veritas」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_4" },
-      { date: "2024/11/23", venue: "横浜アリーナ", name: "ANIMAX MUSIX 2024 FALL", has_video: true, video_url: "https://www.acfun.cn/v/ac47932937_5" }
+      { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac48116014" },
+      { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
+      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac48116014_2" }
     ]
   },
   {
-    name: "Daten",
-    name_jp: "堕天",
-    hash_id: "8Hn1scGGfDX",
-    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
-    album_year: "2023",
-    release_date: "2023/6/4",
-    cover: "../images/堕天.webp",
-    type: "Cover",
-    lyricist: "R-指定",
-    composer: "DJ松永",
-    arranger: "UYKADO",
-    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
-    mv_url: "",
-    lyrics_jp: "あの日林檎の木の下共犯で 踏み越えてみた境界線\\nすぐにblack out「あ お怒りで」\\n追い立てられてこんな次元へ\\n俺とした事が 俺如きですら\\n俺に限っていや まさかね\\n君のせいにした\\n秘密を手にした\\nイチジクの葉が右左\\nあっという間 目が醒める かと思えば空に落ちて行く\\nなんというか やめられぬ\\nもうひと齧りagain\\nFallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling\\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも\\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってくyeah \\nそこじゃ何から何までごった煮で \\n鬼も仏もおんなじ目 \\n全てshut out どうかしてる?\\n俺らハナから大真面目\\nふりほどいて来た うしろ指ですら\\nむしろ追い風さ まだ足んねぇ\\n蛇に睨まれた 歴史の徒花\\nエデンにはまだ「空室あり」\\nあっという間 染められる かと思えば熱が醒めていく\\nちょっと待ってその前に\\nもうひと雫 again\\nFallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling\\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも \\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってくyeah\\nAgain fallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling \\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも \\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってく\\nこの血が冷めないうちに 飲み干して\\n眩暈するほど気取って\\n取り留めない出会いに色付けて\\nこの目が醒めないうちに 憑り込んで\\n狭い空ごと突き抜けてfalling\\n蜜の味二人ハマってくyeah",
-    lyrics_cn: "那一天在苹果树下 你我作为共犯 跨越了那条边界线\\n随即失去意识“啊 生气了呢”\\n被驱逐到这片次元\\n我在做什么啊 就连像我这样\\n只对我一人 不对 不会吧喂\\n都怪你\\n掌握了秘密\\n无花果叶左右颠倒\\n一转眼间 才刚刚苏醒 便即将坠入空中\\n怎样形容呢 让人欲罢不能\\n那就再咬一口 again\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落\\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋 yeah \\n那里将任意一切都炖成大杂烩\\n恶鬼与神佛皆为同样的眼神 \\n将一切拒之门外 你是疯了吗？\\n可我们从来就是一本正经\\n甩开枷锁吧 就连身后的指责\\n反倒让我们乘风而行 还远远不够\\n毒蛇虎视眈眈 历史徒有其表\\n伊甸园仍有“空房间”\\n转眼之间 脸才被染得通红 热情又即刻冷却殆尽\\n请等一下 在此之前\\n再给一滴甘霖 again\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落\\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋 yeah\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落 \\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋\\n趁血液尚未冷却 一饮而尽\\n装腔作势至头晕目眩\\n为不得要领的相逢染上色彩\\n趁意识尚未苏醒 互为依凭\\n连带狭小的天空 穿透云霄falling\\n两人一同沉浸于甜蜜的滋味yeah",
-    search_keywords: "",
-    appearances: ["「バンドリ！カバーコレクション Extra Volume」"],
+    name: "Sophie",
+    name_jp: "Sophie",
+    hash_id: "qCkB7hfjMwz",
+    album: "3rd Single 「'S/' The Way / Sophie」",
+    album_year: "2025",
+    release_date: "2025/12/10",
+    cover: "../images/slash特装.webp",
+    type: "Original",
+    lyricist: "Diggy-MO'",
+    composer: "Diggy-MO' • ÐIK",
+    arranger: "Diggy-MO' • ÐIK",
+    first_stage: "Ave Mujica 6th LIVE 「Ulterius Procedere」东京公演",
+    mv_url: "https://www.bilibili.com/video/BV1UR2DB6ErR",
+    lyrics_jp: "太陽は山羊座へ向かう\\nいま 天（そら）は黒い海で 嗚呼 満たされて\\nそう わたしのこころ 悲鳴は神に届かぬと憂いて\\n運命（さだめ）嘆いて\\n\\nまた カーテシーがあなたの欲情を掻き立てる\\n‘美徳’ とこの魂 何処へ\\n\\n誘って 誘って 誘って 誘って 嘲笑って こんなわたしを辱めて\\nもうヤダって ヤダって 嫌だって だからやめて ほんとヤダ...\\n絶望のハイライト 揺れる死神の影\\n\\n\\n\\nhow bizarre\\n腐敗したハイエロファント\\n至上の愉悦を覚え わたしから掠め取ってゆく\\n純潔は壊され\\n\\n\\n\\nmaterial, material, material, how bizarre\\nmaterial, material,.. この ‘不幸’ を呪って\\n\\n\\n\\n誘って 誘って 誘って 誘って 嘲笑って こんなわたしを辱めて\\nもうヤダって ヤダって 嫌だって だからやめて ほんとヤダ...\\nほんとヤダ... ほんとヤダ... ほんとヤダ...\\n\\n儚い夢に取り憑かれているのかしら\\nそう この世で ‘美徳’ など 報いられないの\\n欺かれ続け 嗚咽と涙に 嗚呼 咽ぶばかりで\\n嫌だって... ほんとヤダ...\\nこんなことならいっそ...\\n絶望のハイライト 揺れる死神の影\\n",
+    lyrics_cn: "太阳向摩羯座西沉\\n啊 此刻 天空被漆黑的海洋填满\\n是的 我的心 忧虑着悲鸣无法传达给神明\\n哀叹着命运\\n\\n又一次 屈膝礼在挑起你的情欲\\n‘美德’和这灵魂 将去往何处\\n\\n引诱我 引诱我 引诱我 引诱我 嘲笑我 羞辱这样的我\\n不想再这样下去 不想 不要 所以请不要 真的好讨厌…\\n绝望的高光高潮 摇曳的死神之影\\n\\n\\n\\nhow bizarre\\n腐败的神启者\\n感受这至高的欢愉 从我身上掠夺而去\\n纯洁被破坏\\n\\n\\n\\nmaterial, material, material, how bizarre\\nmaterial, material,..诅咒这份‘不幸’\\n\\n\\n\\n引诱我 引诱我 引诱我 引诱我 嘲笑我 羞辱这样的我\\n不想再这样下去 不想 不要 所以请不要 真的好讨厌…\\n真的好讨厌… 真的好讨厌… 真的好讨厌…\\n\\n莫非是被虚妄的梦附身了吗？\\n是的 在这个世上 ‘美德’之类是没有回报的\\n持续被欺骗 在呜咽和泪水之中 啊 唯有哽咽\\n不要…真的好讨厌…\\n既然如此 不如干脆…\\n绝望的高光高潮 摇曳的死神之影",
+    search_keywords: "索菲，鬼叫，苏菲",
+    appearances: ["'S/' The Way / Sophie"],
     comments: [
-      { text: "Creepy Nuts「彻夜之歌」OP", source: "", from: "Originally by", date: "" }
+      { text: "——「Sophie」是基于怎样的概念开始制作的？\\n我想到了“唯物主义”这个概念，所以一边以萨德侯爵的《美德的不幸》为母题（Motif），一边将其投射到Ave Mujica的世界观中。我也引入了情色主义（Eroticism）的要素，截取了原本的人性得到释放、赤裸裸的残酷瞬间。另外，作为暗线主题，我还追溯时代，复合地融合了将诺斯替主义（Gnosticism）的宇宙观、神话及宗教背景等。\\n——具体是以怎样的意象进行拓展的呢？\\n我认为如果做一些诸如价值观或道德观念瓦解这种彻底崩塌的意象，能够引发出她们与以往不同的魅力。我将其比作现代社会的构图，在不损品格的前提下，引入处于极限边缘的表现形式并使其具象化。其实对我来说，这并不是什么罕见的切入点，但我认为，向一般的音乐受众展示这种表现形式的普遍性，也是一个重要的机会。我将猎奇、无神论等脑海中的意象进行各种组合，以此煽动那种生猛感。\\n——钢琴的音色非常优美，请问使用的是什么？如果是软件音源的话请告诉我们音色名称。\\n是NATIVE INSTRUMENTS Kontakt的Alicia's Keys。因为挂了几个效果器，所以可能听起来和原本的音色相去甚远。\\n——关于弦乐编曲，是从编制开始构建的吗？\\n这首歌的编制是以四重奏来组建的。不出所料这部分也是和人声主旋律以及其他乐器的合奏同步制作的。感觉就像是将脑海中听到的旋律和复调（Counter）乐句，在各自通道上用MIDI写成乐谱。因为这个乐队也有钢琴，所以需要一边弹钢琴一边将所有内容包含在内进行编曲。\\n——具体的作业是如何进行的呢？\\n基本上是先在四重奏的各个通道上制作相互交织的乐句。有时也会像常规手法那样，先在一个通道上把音源设为弦乐整体的组合，一边先决定大概的轮廓，也有这样的情况。在具体区分制作时，虽然令人印象深刻的乐句主要由第一小提琴担任的情况很多，但在一些细小的声部或段落中，当然也有很多情况会让大提琴或中提琴来承担这一角色。这方面我也在仔细斟酌合奏中交织乐句的机能美。我的目标是既能让主唱突显出来，又能留下“弦乐和钢琴很帅气的曲子”这一印象的、行之有效的精心制作。\\n——请教一下使用的音源和效果器。\\n音源选择了VIENNA SYMPHONIC LIBRARY。在通过编程还原弦乐时，我会仔细选择表情控制、音量写入以及演奏法，来打磨细腻的表现。在效果处理方面，通常管弦乐等的弦乐不会加太多压缩，但在流行乐的情况下，我会使用磁带系的效果器，在不破坏抑扬顿挫的程度内微量增加并进行处理。\\n——感觉面向结尾的高潮部分紧紧抓住了人心。你是如何考量并构建这种展开的呢？\\n无论创作什么歌曲，我都都会下功夫维持紧张感。我认为这也算是某种关于如何捕捉“意外性”的部分。在这首歌里，因为我认为特别是必须要将紧迫感一直煽动到最后，所以一边计算着主唱人声最终到达的表现境界，一边在最后的一个大段落里整个引入机关，构建出令人提心吊胆的结构。", source: "Sound ＆ Recording 2026.02", from: "Diggy-MO'", date: "2026/2/1" },
+      { text: "──「Sophie」真的是一首只有佐佐木小姐才能驾驭的曲子……总而言之，我感到非常震惊。是一首极其厉害的歌。\\n佐佐木：我也从来没有唱过这样的歌。必须全身心投入，以至于在演唱过程中甚至像是失去了记忆，不彻底沉浸进去就唱不出来。当时已经完全进入了心流状态……该怎么形容呢，感觉脑细胞在被逐渐破坏，血管都快要爆裂了一样。根本无法用普通的方式去演唱。\\n\n──「Sophie」的歌词我最初拜读的时候也受到了极大的冲击，甚至有点不知道该如何去形容。\\n佐佐木：真的呢。这是一首只有 Ave Mujica 才能做到的曲子吧。能够被委以重任演唱这样的歌我感到很荣幸，而且乐器部分的编排也非常厉害。一般来说，这种曲子是不会突然让给别人唱的。所以，这也激发了我们“大干一场吧！”的斗志。我非常开心。\\n\n──刚拿到这首曲子的时候，您最直观的想法是什么？\\n佐佐木：首先我觉得“这根本不是在唱歌”。这是呐喊……灵魂的尖叫。但是，我想把这种“尖叫”一直贯彻到最后。毕竟这首曲子传达的就是这样的东西。我在参考Demo的同时，也想唱出自己心中描绘的「Sophie」，所以里面也有我完全改变了原本唱法的部分。比如第2段主歌之后的尖叫。我觉得这里应该可以自由发挥，所以就没有和大家商量直接尝试了一次，结果就被采用了。\\n\n──是〈material, material,〉那一段对吧。令人印象非常深刻。\\n佐佐木：那一段我听都想问“这到底是谁在唱啊”……我的记忆就是缺失到了那种程度。唱歌的时候，我好像在用力抓挠自己的身体，回家的路上觉得身上疼，一看才惊讶地发现满是抓痕。我当时就想，“原来被歌曲附身演唱就是这种感觉啊”（苦笑）。\\n\n──甚至连这个小插曲都跟这首曲子无比契合呢。我很迷茫，不知道应该怎么说才好，像是被袭击了，但又仿佛是被引诱了……\\n佐佐木：是啊。感觉像是在歌唱某种“完全没有道理可言之事”，但也可以理解为在“享受这种不公”。比如那句“真的好讨厌”（ほんとヤダ），到底是不是真的在抗拒呢。\\n\n──确实是这样。在不断重复〈真的好讨厌〉的过程中，语气和情感也发生了变化，这点也引人深思。\\n佐佐木：感觉就像是把那种真实的“动摇”原封不动地塞了进去。我觉得在最后选用的音轨里，也有制作团队刻意保留下来的粗糙、未经修饰的部分。我非常喜欢最后一段副歌里的高音，那里的狂野的爆发力非常棒，还有“引诱我”（誘って）那句稍微残留的换气声，也刻意按原样保留了下来。甚至连叹息声、呜咽声也都原封不动地保留了，希望大家在听的时候也能去享受这些细节。", source: "https://www.animatetimes.com/news/details.php?id=1765333295&p=3", from: "佐佐木李子", date: "2025/12/11" }
     ],
     live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763" },
-      { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763_2" },
-      { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763_3" },
-      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
-      { date: "2024/10/13", venue: "河口湖ステラシアター", name: "Ave Mujica 3rd LIVE「Veritas」", has_video: true, video_url: "https://www.acfun.cn/v/ac47932763_4" }
+      { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972" },
+      { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
+      { date: "2026/2/28", venue: "Kアリーナ横浜", name: "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_2" },
+      { date: "2026/3/1", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_3" },
+      { date: "2026/3/20", venue: "神戸ワールド記念ホール", name: "MEGA VEGAS 2026", has_video: false, video_url: "" },
+      { date: "2026/4/4", venue: "KT Zepp Yokohama", name: "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_4" },
+      { date: "2026/4/11", venue: "台北・大佳河濱公園", name: "BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」", has_video: false, video_url: "" },
+      { date: "2026/4/17", venue: "Zepp Fukuoka", name: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演", has_video: false, video_url: "" },
+      { date: "2026/4/26", venue: "Zepp Namba", name: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演", has_video: false, video_url: "" },
+      { date: "2026/5/1", venue: "Zepp Nagoya", name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演", has_video: false, video_url: "" },
+      { date: "2026/5/4", venue: "Zepp Haneda (TOKYO)", name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演", has_video: false, video_url: "" },
+      { date: "2026/6/19", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_5" },
+      { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_6" },
+      { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
+      { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
+      { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
+      { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_7" }
     ]
   },
   {
-    name: "KINGS",
-    name_jp: "KINGS",
-    hash_id: "q6I9nuH3YjF",
-    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
-    album_year: "2023",
-    release_date: "2023/6/4",
-    cover: "../images/kings.webp",
-    type: "Cover",
-    lyricist: "atsuko",
-    composer: "atsuko • KATSU",
-    arranger: "UYKADO",
-    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
-    mv_url: "",
-    lyrics_jp: "Worries slowly come and kiss\\nTell me what's your name\\nまた惹かれ合っては 比べ合う事でけなして\\n何度夜が巡ろうとも 真っ暗闇のどっかで\\n欠けた自分のpieceだったら\\nSearch and kiss and destroy\\nBig bang\\n野蛮な情熱 冷静な衝突\\n血を見るまで容赦はしないの? \\nBig bang\\n確かめたい 繋がっていたい 本当は恐いの?\\n未完成な愛をぐっと振りかざして\\n分かりたい分からない 分からず屋\\n相反する正義に集う輩さ\\n一瞬の安らぎに寄り添って\\n似てると言われる程 気になって仕方なくなる\\n目をそらしたら負けさ 未来はあやふやで\\n過去は二度と変えられないと\\n知っているさ\\nSearch and kiss and destroy \\nBig wave \\n歪んだ衝動 歯痒い残響\\nゆさぶってんの? 逃げたりはしない\\nBig wave\\n競い合っていたい 高ぶっていたい 本当は恐いの?\\n不格好な愛さえ歴史の中じゃ 瞬き以下の瞬刻だろう\\n舐め合う為の傷なんて無いさ\\nプライドがあっち側で笑ってる \\nWorries slowly come and kiss \\nTell me what's your name \\nWorries slowly come and kiss \\nSearch and kiss and destroy \\nBig bang\\n野蛮な情熱 冷静な衝突\\n血を見るまで容赦はしないの? \\nBig bang\\n確かめたい 繋がっていたい 本当は恐いの?\\n未完成な愛をぐっと振りかざして\\n分かりたい分からない 分からず屋\\n相反する正義に集う輩さ\\n一瞬の安らぎに寄り添って \\nCan I feel can you feel\\nLife is a moment\\n惰性を打破して抱きしめたい\\n舐め合う為の傷なんて無いさ\\nプライドがあっち側で笑ってる",
-    lyrics_cn: "忧虑缓缓而至 轻轻吻上\\n告诉我 你的名字是什么\\n彼此再次相互吸引 却又因互相比较而暗自贬低\\n无论要经历多少长夜 黑暗都会存在于某处\\n假若缺失自己的碎片\\n那就去搜寻 去亲吻 去毁坏\\n大爆炸\\n野蛮的热情 冷静的冲突 \\n直至见血之前 都不会宽恕对方丝毫吗？\\n大爆炸\\n渴望得到确认 渴望得到羁绊 其实是出于恐惧吗？\\n标榜着尚未完成的爱\\n渴望理解 却未曾理解 不曾明白的人\\n聚集在相反正义之下的人们啊\\n依偎在一瞬的安宁之中\\n越是被人说相似 越是在意得耿耿于怀\\n移开视线便会败北 未来暧昧不清\\n而过去无法再度改变\\n我明明早已深知\\n那就去搜寻 去亲吻 去毁坏\\n掀起巨浪\\n扭曲的冲动 令人焦躁的余韵\\n是要让人动摇吗？我绝不会逃避的\\n掀起巨浪\\n渴望着竞争 渴望着兴奋 其实是出于恐惧吗？\\n再笨拙的爱在历史的洪流中 不过是转瞬即逝的刹那吧\\n伤痕并不是为了互相舔舐而存在\\n否则自尊心会那一边冷冷嘲笑\\n忧虑缓缓而至 轻轻吻上\\n告诉我 你的名字是什么\\n忧虑缓缓而至 轻轻吻上\\n去搜寻 去亲吻 去毁坏\\n大爆炸\\n野蛮的热情 冷静的冲突 \\n直至见血之前 都不会宽恕对方丝毫吗？\\n大爆炸\\n渴望得到确认 渴望得到羁绊 其实是出于恐惧吗？\\n标榜着尚未完成的爱\\n渴望理解 却未曾理解 不曾明白的人\\n聚集在相反正义之下的人们啊\\n依偎在一瞬的安宁之中\\n我可感觉到 你可感觉到吗\\n生命只是一瞬\\n希望打破惰性 紧紧相拥\\n伤痕并不是为了互相舔舐而存在\\n否则自尊心会那一边冷冷嘲笑",
-    search_keywords: "",
-    appearances: ["「バンドリ！カバーコレクション Extra Volume」"],
+    name: "The Whole Blue World",
+    name_jp: "The Whole Blue World",
+    hash_id: "m8wqmJXCAMX",
+    album: "Best Album「Ave Música」",
+    album_year: "2026",
+    release_date: "2026/6/17",
+    cover: "../images/精选通常.webp",
+    type: "Original",
+    lyricist: "Diggy-MO'",
+    composer: "Diggy-MO' • 植木建象(SPAWN Inc.)",
+    arranger: "Diggy-MO'",
+    first_stage: "Coming Soon…",
+    mv_url: "https://www.bilibili.com/video/BV18LjB6eEYm",
+    lyrics_jp: "風よ 空よ 海よ 隙間に滑り込め\\n星よ 時代（とき）よ 真実（ひかり）よ 眼差しの奥で\\n\\n燃えゆく命 駆け抜ける短さに\\n嘲う世界 闇を暴け\\n\\nBlue, Blue, Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくら晒されて\\n震える夜を越え いま儚く消えた声\\n\\n\\n\\n何故に 何故に こんなに届かない 苛立ち\\n足りない 足りない 言葉じゃ こんなんじゃ感じない\\n\\nyour head up... stand up...\\n神のいないこの天（そら）\\n\\nBlue,Blue,Blue World So Cruel World\\n立ち向かってゆく ぼくら約束の果て\\n美しい夜を越え さあ\\n\\n確かなもの探していた 打ちひしがれて\\n運命を切り拓け\\n受け入れられないものを変えてゆけると\\n信じたいのに…信じたいのに…\\n信じていたのに\\n\\n\\n\\nclose to you\\nただ終わりへと向かってゆくだけのその哀しみに\\n震える君を抱きしめ\\n\\n追いかける\\nBlue,Blue,Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくらそのままで\\n震える夜を越え 嗚呼\\nいま",
+    lyrics_cn: "风儿 天空 大海 滑入缝隙之中\\n星辰 时代 真相 在那眼神深处\\n\\n持续燃烧的生命 如疾驰般短暂\\n在这嘲笑一切的世界上 暴露黑暗吧\\n\\nBlue, Blue, Blue World The Whole Blue World\\n逐渐粉碎凋零的梦境 让我们无所遁形\\n穿越颤抖的黑夜 此刻 声音幻影般消失\\n\\n\\n\\n为何 为何 如此地无法传达 这焦躁与不安\\n不够 不够 仅凭语言 无法让我感受到\\n\\nyour head up... stand up...\\n神明不在的、这片天空\\n\\nBlue, Blue, Blue World So Cruel World\\n我们挺身面对 向我们约定的尽头\\n穿越美丽的黑夜 来吧\\n\\n即便心力交瘁 我仍在寻找确定之物\\n为了开拓命运\\n为了改变无法接受的事情\\n想要相信…想要相信…\\n曾经相信\\n\\n\\n\\nclose to you\\n在那份只是逐渐走向终结的哀伤中\\n抱紧颤抖的你\\n\\n追逐\\nBlue, Blue, Blue World The Whole Blue World\\n逐渐粉碎凋零的梦境 我们就这样\\n穿越颤抖的黑夜 啊啊\\n如今",
+    search_keywords: "蓝世界，姨妈",
+    appearances: ["Ave Música"],
     comments: [
-      { text: "angela「K」OP", source: "", from: "Originally by", date: "" }
+      { text: "——刚才也提到过，作为新曲的「The Whole Blue World」是一首连接了 Ave Mujica 过去与未来的歌曲。 \\n佐佐木：是的呢。我觉得 Ave Mujica 给人一种孤高的印象。但是这首歌，感觉像是在歌颂共同坠落的美。看歌词的话，有很多像是“残酷的世界中”、“无法传达的焦躁”、“渐渐粉碎的梦境”、“感受到痛苦”之类的词汇。但在其中，依然有一种“想要切实地触碰你”的感觉。我觉得这部分的氛围和以前稍微有些不同。 歌词中出现了“我们”（僕ら）这个词，也让我印象非常深刻。应该说是一种选择一起受伤害的细腻感吗，其中也还有“明明想要去相信”的纠结和动摇的部分，我非常喜欢。带着这种动摇仍要继续前进的感觉，我觉得非常有 Ave Mujica 的风格。我是绷紧了神经，全神贯注地去演唱这首歌的。\\n冈田：我有个单纯的疑问，在录音的时候，你不会“哇——”地一下情绪失控吗？（笑）\\n 佐佐木：虽然不会“哇——”地叫出来（笑），但确实有一种自己正在坠入黑暗的感觉。在之前的采访中我也提到过，在唱「Sophie」的时候，回过神来发现手上全是伤痕，我应该是下意识地用力攥紧了手，在“真的好讨厌”“真的好讨厌”（ほんとヤダ）那里。就是这样，贴近着歌词的情感去演唱的。 这首歌也是，感觉像是让内心静静地沸腾起来。我会一边想象着那种包含着心中的焦躁、痛苦和软弱，却依然要继续前行的感觉，一边去演唱。\\n——「The Whole Blue World」里的“Blue World”，让人既能感受到清澈的蓝，也能感受到那种仿佛要深深沉沦下去的蓝。\\n佐佐木：确实，感觉它不仅仅是一个普通的蓝色世界。在其中既能感觉到充满透明感的蓝，也能感觉到深邃的蓝。非常有Ave Mujica的风格。我觉得Ave Mujica不仅仅是有攻击性，那种细腻而优雅的部分也是 Ave Mujica 的一部分。我认为这首歌是一首能够同时体会到这两面的歌曲。\\n\n冈田：真是一种不可思议的平衡呢。和声也录制了非常多的版本。Ave Mujica的歌曲，都是由 Diggy-MO' 先生来录制Demo的。听到Diggy-MO'先生的演唱，我们也能明确地明白“这首歌想要呈现出怎样的感觉”。而且，我能听出来李子亲并没有完全仿照，而是很好地将其升华为Doloris的风格来演唱。这点每次都让我很感动。其他的歌曲中，强调沉重感的曲子比较多，但这首歌相对来说，让我感受到了深沉感。\\n\n佐佐木：我确实是有意识地在表现这种深沉感！而且，也刻意去表现了那种带着冰冷感的蓝。并不是粗暴地去击打，而是那种优美地夺走你呼吸的感觉，你能体会到这一层我真的很高兴。 \\n冈田：太棒了！", source: "https://www.animatetimes.com/news/details.php?id=1781597468&p=2", from: "佐佐木李子&冈田梦以", date: "" }
     ],
-    live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710" },
-      { date: "2024/1/27", venue: "横須賀芸術劇場", name: "Ave Mujica 1st LIVE 「Perdere Omnia」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710_2" },
-      { date: "2024/6/8", venue: "神奈川県民ホール 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710_3" },
-      { date: "2024/7/7", venue: "愛知県芸術劇場 大ホール", name: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演", has_video: false, video_url: "" },
-      { date: "2025/8/30", venue: "さいたまスーパーアリーナ", name: "Animelo Summer Live 2025 “ThanXX!”", has_video: true, video_url: "https://www.acfun.cn/v/ac47931710_4" }
-    ]
+    live_history: []
   },
   {
     name: "A Cruel Angel's Thesis",
@@ -1177,55 +1227,5 @@ const songsData = [
       { text: "高桥样子「新世纪福音战士」OP", source: "", from: "Originally by", date: "" }
     ],
     live_history: []
-  },
-  {
-    name: "Determination Symphony",
-    name_jp: "Determination Symphony",
-    hash_id: "1lsJ34P8u5i",
-    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
-    album_year: "2023",
-    release_date: "2023/6/4",
-    cover: "../images/logo/DS.webp",
-    type: "Cover",
-    lyricist: "織田あすか(Elements Garden)",
-    composer: "藤永龍太郎(Elements Garden)",
-    arranger: "藤永龍太郎(Elements Garden)",
-    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
-    mv_url: "",
-    lyrics_jp: "潤んだ予感はbye now\\n滴る痛みの中　雨色に染まって\\n大きく開(ひら)いたdistance\\nいつの間にか落ちてゆくわ…冷たさに\\n滲んだ【スコア】探す【答え】\\n降り止まない苦しみに差し出された\\n微笑みの【微笑みの】Umbrella【Umbrella】\\nus…包み込んで　合わさるprecious\\n【Where there is a will, there is a way.】\\n【Where there is a will…】\\nBring it on down\\n決意の調べ【hang in there】\\n勇気の祈りを音色に載せて【get over】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【響け】貴方の横で\\n今はまだ無理でも\\n【向き合う定めよ】【\\nワタシハ　ヤメナイ\\n蜃気楼のようでfleeting\\n淀んだ景色が行く　伏し目がちになって\\n静けさ返ってはdistance\\n声も届かずに散りだす　はらはらと\\n水面に映る美しき縁(えにし)は\\n【the naked truth】\\n誇りを　今に取り戻すわ\\nBring it on down\\n使命の調べ【set you free】\\n折れないリビドー音色に載せて【till the end】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【光れ】貴方の横で\\n此れで終わりじゃない\\n【奇跡はなくとも】\\nワタシハ　カナデル\\nセカイデ　ヒトツノ　タイセツナヒト\\nツナゲ　ココロ　フカク\\nツナゲ　ユメヲ　シナヤカニ…\\n涙の【スコア】映る【答え】\\n降りしきった悲しみを迎えたのは\\n微笑みの【微笑みの】Umbrella【Umbrella】\\nus…見守るように　優しくhold\non\\n【Where there is a will, there is a way.】\\n【Where there is a will…】\\nBring it on down\\n決意の調べ【hang in there】\\n勇気の祈りを音色に載せて【get over】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【響け】貴方の横で\\n今はまだ無理でも\\n【向き合う定めよ】\\nワタシヨ　ツキススメ…！",
-    lyrics_cn: "暗中预感着会在此刻别离\\n那份不停的痛苦　把雨水的颜色尽染\\n逐渐拉开的那份距离\\n不知不觉间开始落下的雨啊…如此寒冷\\n铭记于心的【乐谱】寻找着【回答】\\n向无尽的痛苦之雨中递来的是\\n浮现微笑的【浮现微笑的】雨伞【雨伞】\\n将我们…相互包裹　合而为一的珍贵之物\\n【只要心中所向，道路就在前方。】\\n【有志者事竟成…】\\n随心所欲 将其击溃\\n下定决心的旋律【坚持下去】\\n将勇气的祈愿附在音色之中【将其克服】\\n用那约定相连的指尖弹起\\n不知不觉【奏响吧】就在你身旁奏响的\\n即使是还无法实现\\n面对于你的命运啊】\\n我也绝对　不会放弃\\n像海市蜃楼一般 转瞬即逝\\n模糊的景色散去　低头是空无一物\\n静止不动的那份距离\\n在话语也传达不到的地方开始 簌簌地落下\\n水面上倒映出的美好的缘分\\n【浮现的真实】\\n将骄傲　于此时去取回吧\\n不再被束缚 将其击溃\\n怀有使命的旋律【重夺自由】\\n将不屈的本能附在音色之中【直至终结】\\n用那约定相连的指尖弹起\\n不知不觉【闪耀吧】就在你身旁闪耀的\\n这还不是结束之时\\n【即使没有什么奇迹】\\n我也仍会　将其奏响\\n世界上的　唯有一个　无比而珍贵的人\\n相连吧　将心灵　紧紧地\\n相连吧　将梦想　用那份温柔…\\n泪水的【乐谱】映出着【回答】\\n在无尽的悲伤之雨中迎接着的\\n浮现微笑的【浮现微笑的】雨伞【雨伞】\\n将我们…守护一般　用那温柔让我们向前\\n【只要心中所向，道路就在前方。】\\n【有志者事竟成…】\\n随心所欲 将其击溃\\n下定决心的旋律【坚持下去】\\n将勇气的祈愿附在音色之中【将其克服】\\n用那约定相连的指尖弹起\\n不知不觉【奏响吧】就在你身旁奏响的\\n即使是还无法实现\\n【面对于你的命运啊】\\n我自己啊　继续前行吧…！",
-    search_keywords: "决心交响曲，roselia",
-    appearances: [],
-    comments: [
-      { text: "Roselia「ONENESS」收录曲", source: "", from: "Originally by", date: "" }
-    ],
-    live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935835" }
-    ]
-  },
-  {
-    name: "PASSIONATE ANTHEM",
-    name_jp: "PASSIONATE ANTHEM",
-    hash_id: "cAYWygj93eN",
-    album: "Ave Mujica 0th LIVE 「Primo die in scaena」现场表演",
-    album_year: "2023",
-    release_date: "2023/6/4",
-    cover: "../images/logo/pa.webp",
-    type: "Cover",
-    lyricist: "織田あすか(Elements Garden)",
-    composer: "藤永龍太郎(Elements Garden)",
-    arranger: "藤永龍太郎(Elements Garden)",
-    first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
-    mv_url: "",
-    lyrics_jp: "(We went all out to win)\\nPassionate Gaze\\n(We went all out to win)\\nPassionate Voice\\n(We went all out to win)\\nPassionate Soul\\n(We went all out to win)\\n眼差しは　唯ひたすらに愚直さを込めて\\n魂と本能をくすぐっていった\\n新たな挑戦が　本物へと近づく…\\nどんなステージだって　微笑みをあげるわ\\n(Breaking out)逆鱗に触れた先に落ちた\\n(Breaking out)産声が激しくぶつかり合う宴\\n競い咲くように　命の Anthem　嗚らして\\n磨き上げてゆく　それぞれのダイヤを胸に抱き\\n自らの音を　信じているからと　高らかに\\n妥協はしない　譲らない　決して揺るがないものは\\n誇りある　この想い\\n(We went all out to win)\\nPassionate Song\\n(We went all out to win)\\nRush!\\n声と声　重ね合って\\n目覚めてゆく細胞はAmazing\\nChallenge\\nその姿は　正に異端児\\nRush!\\nFreed\\n盤上に開く夢へのGate\\nかかって来なさい、勝てると思うのならば\\n(Living on)互いのセオリー響き合わせて\\n(Living on)目覚ましく現れた熱情が光る\\n常に燃え尽きることなく　心を動かして\\n言の葉の世界が煌びやかに　ひらり舞い踊る\\n授かったものを　輝かしく育ててゆくまで\\n崩れはしない　倒れない　決して壊れないものは\\n誇りある　この絆\\n私たちの最果ては何処なのか\\n己の中を追い求め走り出す\\nこの正解を手に入れるまでは\\nAre you\nready?　…容赦しない\\n競い咲くように　命の Anthem　嗚らして\\n磨き上げてゆく　それぞれのダイヤを胸に抱き\\n自らの音を　信じているからと　高らかに\\n妥協はしない　譲らない　決して揺るがないものは\\n誇りある　仲間たち\\n(We went all out to win)\\nPassionate Gaze\\n(We went all out to win)\\nPassionate Voice\\n(We went all out to win)\\nPassionate Soul\\n(We went all out to win)",
-    lyrics_cn: "我们为了赢而拼尽全力\\n激情的凝视\\n我们为了赢而拼尽全力\\n激情的声音\\n我们为了赢而拼尽全力\\n激情的灵魂\\n我们为了赢而拼尽全力\\n凝视的目光直直刺入愚昧的正直\\n灵魂和本能一直蓄势待发\\n新的挑战离真实之物近在咫尺\\n无论走上怎样的舞台 我们都会献以微笑\\n（爆发吧）在触碰到逆鳞之前他们就已四散而逃\\n（爆发吧）这是初生之啼哭激烈碰撞的盛宴\\n这竞相绽放的生命之颂歌被奏响了\\n把每个人的宝石一点点地擦亮 在胸前抱紧\\n因为尽力相信 自己的声音才越发高昂\\n不妥协 不退让 决不动摇的东西\\n就是这值得骄傲的意志\\n我们为了赢而拼尽全力\\n激情的乐曲\\n我们为了赢而拼尽全力\\n冲刺吧！\\n每个人的声音重合放大\\n正在觉醒的细胞可谓惊奇\\n超越突破极限的挑战\\n这般姿态简直就是异端之子\\n冲刺吧！\\n这成长的双翼不受束缚\\n通往梦想的门自由敞开\\n全都放马过来吧 如果觉得能赢过我们的话\\n（以此为生）让彼此的信条交织奏鸣\\n（以此为生）这闪光的热情震撼登场\\n这永不熄灭的心跳动起来了\\n这由言语组成的世界光辉灿烂地起舞了\\n在所有领悟到的东西全部可以尽情闪耀之前\\n不会崩塌 不会被击倒 绝对无法被破坏的\\n就是这值得为之自豪的羁绊\\n我们的终点到底在何处\\n为追求自己的内在而开始奔跑\\n在把这正解得到手之前\\n你准备好了吗？不会有一点宽容\\n这竞相绽放的生命之颂歌被奏响了\\n把每个人的宝石一点点地擦亮 在胸前抱紧\\n因为尽力相信 自己的声音才越发高昂\\n不妥协 不退让 决不动摇的东西\\n就是值得为之自豪的朋友们\\n我们为了赢而拼尽全力\\n激情的凝视\\n我们为了赢而拼尽全力\\n激情的声音\\n我们为了赢而拼尽全力\\n激情的灵魂\\n我们为了赢而拼尽全力",
-    search_keywords: "roselia",
-    appearances: [],
-    comments: [
-      { text: "Roselia「Safe and Sound」收录曲", source: "", from: "Originally by", date: "" }
-    ],
-    live_history: [
-      { date: "2023/6/4", venue: "中野サンプラザホール", name: "Ave Mujica 0th LIVE「Primo die in scaena」", has_video: true, video_url: "https://www.acfun.cn/v/ac47935862" }
-    ]
   }
 ];

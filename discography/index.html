@@ -7,12 +7,12 @@
   <title>Discography · 唯鸡百科</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609100023">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609100023">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609100023">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609100023">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609100023">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202609101816">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609101816">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609101816">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609101816">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609101816">
 </head>
 <body>
   <main class="discography-page">
@@ -25,9 +25,10 @@
     <div class="toolbar" aria-label="唱片筛选">
       <div class="filter-group" id="filterGroup">
         <button class="main-tag active" data-filter="all"><span class="diamond">◆</span>全部</button>
-        <button class="main-tag" data-filter="single"><span class="diamond">◆</span>Single</button>
-        <button class="main-tag" data-filter="album"><span class="diamond">◆</span>Album</button>
-        <button class="main-tag" data-filter="bluray"><span class="diamond">◆</span>Blu-ray</button>
+        <button class="main-tag" data-filter="cd"><span class="diamond">◆</span>CD</button>
+        <button class="main-tag" data-filter="blu-ray"><span class="diamond">◆</span>Blu-ray</button>
+        <button class="main-tag" data-filter="lp"><span class="diamond">◆</span>LP</button>
+        <button class="main-tag" data-filter="others"><span class="diamond">◆</span>Others</button>
       </div>
       <div class="search-box"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="搜索作品名称…"></div>
       <span class="result-count" id="resultCount"></span>
@@ -37,16 +38,16 @@
     <div id="noResults" class="no-results" hidden>没有找到匹配的发行作品</div>
   </main>
 
-  <script src="data.js?v=202609100023"></script>
-  <script src="../songs/data.js?v=202609100023"></script>
-  <script src="../live/data.js?v=202609100023"></script>
-  <script src="../interview/data.js?v=202609100023"></script>
-  <script src="../js/renderMarkdown.js?v=202609100023"></script>
-  <script src="../js/overlay-manager.js?v=202609100023"></script>
-  <script src="../js/interview-overlay.js?v=202609100023"></script>
-  <script src="../js/song-modal.js?v=202609100023"></script>
-  <script src="../js/live-drawer.js?v=202609100023"></script>
-  <script src="../js/discography-modal.js?v=202609100023"></script>
+  <script src="data.js?v=202609101816"></script>
+  <script src="../songs/data.js?v=202609101816"></script>
+  <script src="../live/data.js?v=202609101816"></script>
+  <script src="../interview/data.js?v=202609101816"></script>
+  <script src="../js/renderMarkdown.js?v=202609101816"></script>
+  <script src="../js/overlay-manager.js?v=202609101816"></script>
+  <script src="../js/interview-overlay.js?v=202609101816"></script>
+  <script src="../js/song-modal.js?v=202609101816"></script>
+  <script src="../js/live-drawer.js?v=202609101816"></script>
+  <script src="../js/discography-modal.js?v=202609101816"></script>
   <script>
   (() => {
     let activeFilter = 'all'; let query = '';
@@ -63,10 +64,20 @@
       const timestamp = releaseTimestamp(release.release_date);
       return Number.isFinite(timestamp) && timestamp > Date.now();
     };
+    const isReleaseToday = release => {
+      const match = String(release.release_date || '').match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/);
+      if (!match) return false;
+      const today = new Date();
+      return Number(match[1]) === today.getFullYear() && Number(match[2]) === today.getMonth() + 1 && Number(match[3]) === today.getDate();
+    };
+    const releaseType = release => String(release.type || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const isCDRelease = release => /single|album/.test(releaseType(release));
+    const isBluRayRelease = release => releaseType(release) === 'bluray';
+    const isLPRelease = release => releaseType(release) === 'lp';
+    const isOtherRelease = release => !isCDRelease(release) && !isBluRayRelease(release) && !isLPRelease(release);
     const matches = release => {
       const haystack = [release.title, release.title_jp, release.type, release.search_keywords].join(' ').toLowerCase();
-      const normalizedFilter = activeFilter.replace(/[^a-z0-9]/g, '');
-      const formatMatch = activeFilter === 'all' || (release.type || '').toLowerCase().replace(/[^a-z0-9]/g, '').includes(normalizedFilter) || (release.formats || []).some(f => f.toLowerCase().replace(/[^a-z0-9]/g, '').includes(normalizedFilter));
+      const formatMatch = activeFilter === 'all' || (activeFilter === 'cd' && isCDRelease(release)) || (activeFilter === 'blu-ray' && isBluRayRelease(release)) || (activeFilter === 'lp' && isLPRelease(release)) || (activeFilter === 'others' && isOtherRelease(release));
       return formatMatch && (!query || haystack.includes(query));
     };
     function renderArchive() {
@@ -75,19 +86,35 @@
       document.getElementById('noResults').hidden = visible.length > 0;
       const groups = visible.reduce((map, release) => { (map[yearOf(release.release_date)] ||= []).push(release); return map; }, {});
       archive.innerHTML = Object.keys(groups).sort((a,b) => b.localeCompare(a)).map(year => `<section class="year-section"><div class="year-divider"><span>${year}</span></div><div class="release-grid">${groups[year].map(renderCard).join('')}</div></section>`).join('');
+      const releaseById = new Map(visible.map(release => [String(release.id), release]));
+      archive.querySelectorAll('.release-row').forEach(card => {
+        const release = releaseById.get(String(card.dataset.releaseId));
+        if (!release || !isReleaseToday(release) || isComingSoon(release)) return;
+        card.classList.add('is-release-today');
+        card.setAttribute('aria-label', `Released today: ${release.release_date}`);
+        const ribbon = document.createElement('span');
+        ribbon.className = 'coming-ribbon today-ribbon'; ribbon.setAttribute('aria-hidden', 'true'); ribbon.textContent = 'Today!';
+        card.prepend(ribbon);
+        const prompt = document.createElement('div');
+        prompt.className = 'today-prompt'; prompt.setAttribute('aria-hidden', 'true');
+        prompt.innerHTML = `<strong>RELEASE DATE</strong><span>${escapeHTML(release.release_date)}</span>`;
+        card.querySelector('.row-aside').prepend(prompt);
+      });
       archive.querySelectorAll('[data-release-id]').forEach(card => card.addEventListener('click', () => openRelease(card.dataset.releaseId)));
     }
     function renderCard(release) {
-      const covers = release.editions.map(edition => edition.cover).filter(Boolean).slice(0, 3);
-      if (!covers.length && release.cover) covers.push(release.cover);
+      const editionCovers = release.editions.map(edition => edition.cover).filter(Boolean);
+      const covers = [release.cover, ...editionCovers.filter(cover => cover !== release.cover)].filter(Boolean).slice(0, 3);
       const coverStack = covers.map((cover, index) => `<span class="cover-stack-card" style="--i:${index}"><img src="${escapeHTML(cover)}" alt="" loading="lazy"></span>`).join('') || '<div class="cover-fallback">NO ARTWORK</div>';
       const catalog = release.editions.map(edition => edition.catalog_no).filter(Boolean).join(' / ');
-      const rank = (release.chart || {}).first_week_rank || '—';
+      const chart = release.chart || {};
+      const rank = chart.first_week_rank || '—';
+      const firstWeekSales = chart.first_week_sales || '—';
       const comingSoon = isComingSoon(release);
       const mainTitle = release.title_jp || release.title;
       const secondaryTitle = release.title && release.title !== mainTitle ? release.title : '';
       const prompt = '<div class="coming-prompt" aria-hidden="true"><strong>COMING SOON</strong><span>请关注官方发售并支持购买</span></div>';
-      return `<button class="release-row${comingSoon ? ' is-coming-soon' : ''}" data-release-id="${escapeHTML(release.id)}"${comingSoon ? ' aria-label="Coming soon. Please support the official release."' : ''}>${comingSoon ? '<span class="coming-ribbon" aria-hidden="true">COMING SOON</span>' : ''}<div class="row-cover">${coverStack}${covers.length > 1 ? `<span class="cover-count">${covers.length} COVERS</span>` : ''}</div><div class="row-main"><div class="row-type">${escapeHTML(release.type)}</div><h2>${escapeHTML(mainTitle)}</h2>${secondaryTitle ? `<p>${escapeHTML(secondaryTitle)}</p>` : ''}<div class="row-date">${escapeHTML(release.release_date)}</div><div class="release-tags"><span>${release.editions.length} EDITION${release.editions.length === 1 ? '' : 'S'}</span>${release.formats.map(format => `<span class="media">${escapeHTML(format)}</span>`).join('')}</div></div><aside class="row-aside">${comingSoon ? prompt : ''}<div class="catalog">${escapeHTML(catalog)}</div><div class="chart-rank"><small>ORICON WEEKLY</small>${escapeHTML(rank)}</div><div class="open-mark">OPEN ↗</div></aside></button>`;
+      return `<button class="release-row${comingSoon ? ' is-coming-soon' : ''}" data-release-id="${escapeHTML(release.id)}"${comingSoon ? ' aria-label="Coming soon. Please support the official release."' : ''}>${comingSoon ? '<span class="coming-ribbon" aria-hidden="true">COMING SOON</span>' : ''}<div class="row-cover">${coverStack}${covers.length > 1 ? `<span class="cover-count">${covers.length} COVERS</span>` : ''}</div><div class="row-main"><div class="row-type">${escapeHTML(release.type)}</div><h2>${escapeHTML(mainTitle)}</h2>${secondaryTitle ? `<p>${escapeHTML(secondaryTitle)}</p>` : ''}<div class="row-date">${escapeHTML(release.release_date)}</div><div class="release-tags"><span>${release.editions.length} EDITION${release.editions.length === 1 ? '' : 'S'}</span>${release.formats.map(format => `<span class="media">${escapeHTML(format)}</span>`).join('')}</div></div><aside class="row-aside">${comingSoon ? prompt : ''}<div class="catalog">${escapeHTML(catalog)}</div><div class="chart-rank"><small>ORICON WEEKLY</small><span class="chart-summary">${escapeHTML(rank)} - ${escapeHTML(firstWeekSales)}</span></div><div class="open-mark">OPEN ↗</div></aside></button>`;
     }
     function openRelease(id) {
       DiscographyModal.open(id, {

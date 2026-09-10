@@ -7,15 +7,15 @@
   <title>唯鸡百科 · wijipedia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="announcements.js?v=202609100023" as="script">
-  <link rel="preload" href="songs/data.js?v=202609100023" as="script">
-  <link rel="preload" href="live/data.js?v=202609100023" as="script">
-  <link rel="preload" href="timeline/data.js?v=202609100023" as="script">
-  <link rel="preload" href="gallery/data.js?v=202609100023" as="script">
-  <link rel="preload" href="interview/data.js?v=202609100023" as="script">
-  <link rel="preload" href="discography/data.js?v=202609100023" as="script">
+  <link rel="preload" href="announcements.js?v=202609101816" as="script">
+  <link rel="preload" href="songs/data.js?v=202609101816" as="script">
+  <link rel="preload" href="live/data.js?v=202609101816" as="script">
+  <link rel="preload" href="timeline/data.js?v=202609101816" as="script">
+  <link rel="preload" href="gallery/data.js?v=202609101816" as="script">
+  <link rel="preload" href="interview/data.js?v=202609101816" as="script">
+  <link rel="preload" href="discography/data.js?v=202609101816" as="script">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="nav-style.css?v=202609100023">
+  <link rel="stylesheet" href="nav-style.css?v=202609101816">
 </head>
 <body>
   <div class="silk-background">
@@ -125,12 +125,12 @@
     <!-- 唱片目录 -->
     <a class="nav-card" href="discography/index.html">
       <svg class="sigil-icon sigil-discography" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="34" />
-        <circle cx="50" cy="50" r="10" />
-        <path class="sigil-groove sigil-groove-one" d="M50 24a26 26 0 0 1 25 31" />
-        <path class="sigil-groove sigil-groove-two" d="M50 17a33 33 0 0 0-31 23" />
-        <path class="sigil-needle" d="M78 20 61 43" />
-        <circle cx="79" cy="19" r="3" />
+        <polygon class="sigil-mint-frame" points="50,10 90,50 50,90 10,50" />
+        <circle class="sigil-mint-ring sigil-mint-ring-outer" cx="50" cy="50" r="34" />
+        <circle class="sigil-mint-ring sigil-mint-ring-inner" cx="50" cy="50" r="25" />
+        <path class="sigil-mint-mark" d="M50 16v7M84 50h-7M50 84v-7M16 50h7" />
+        <circle class="sigil-gold-core" cx="50" cy="50" r="9" />
+        <circle class="sigil-gold-point" cx="50" cy="50" r="2.5" />
       </svg>
       <span class="card-title">DISCOGRAPHY</span>
       <span class="card-desc">唱片目录</span>
@@ -206,7 +206,7 @@
     Ave Mujica · Band &amp; Nonrico
   </footer>
 
-  <script src="announcements.js?v=202609100023"></script>
+  <script src="announcements.js?v=202609101816"></script>
   <script>
     // ==================== 后台预加载子页面数据 ====================
     // 在导航页加载完成后，主动下载并执行所有子页面的 data.js

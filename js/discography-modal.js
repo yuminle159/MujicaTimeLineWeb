@@ -36,7 +36,7 @@
           '<article class="shared-discography-bonus-panel"><h4>[ INCLUDED ITEMS ]</h4><ul class="shared-discography-bonus-list"></ul></article>' +
           '<article class="shared-discography-chart-panel"><h4>[ SALES ]</h4><div class="shared-discography-chart-grid"></div><p class="shared-discography-chart-source"></p></article>' +
         '</div></section>' +
-        '<section class="shared-discography-detail-section shared-discography-bonus-content-section"><div class="shared-discography-section-heading"><span>PURCHASE BONUS</span><h3>Bonus CD</h3></div><div class="shared-discography-bonus-content-list"></div></section>' +
+        '<section class="shared-discography-detail-section shared-discography-bonus-content-section"><div class="shared-discography-section-heading"><span>PURCHASE BONUS</span><h3>Important Bonus</h3></div><div class="shared-discography-bonus-content-list"></div></section>' +
       '</div></article>';
     document.body.appendChild(overlay);
     overlay.querySelector(".shared-discography-close").addEventListener("click", close);
@@ -182,8 +182,31 @@
           return '<div class="shared-discography-bonus-track"><strong>' + escapeHTML(discName) + '</strong><b>' + escapeHTML(row.track_no || "") + '</b><span class="shared-discography-bonus-track-name">' + escapeHTML(row.song_name || "") + '</span>' + (row.note ? '<small>' + escapeHTML(row.note) + '</small>' : '') + '</div>';
         }).join("");
       }).join("");
-      return '<article class="shared-discography-bonus-content-card"><div class="shared-discography-bonus-content-body">' + trackHTML + '</div></article>';
+      return '<article class="shared-discography-bonus-content-card"><header class="shared-discography-bonus-id"><span>BONUS NAME</span><strong>' + escapeHTML(key) + '</strong></header><div class="shared-discography-bonus-content-body">' + trackHTML + '</div></article>';
     }).join("");
+  }
+
+  function durationParts(value) {
+    var parts = String(value || "").trim().split(":").map(Number);
+    if (parts.some(function (part) { return !Number.isFinite(part); })) return null;
+    if (parts.length === 3 && parts[2] === 0) return [parts[0], parts[1]];
+    if (parts.length === 3 && parts[0] === 0) return [parts[1], parts[2]];
+    if (parts.length === 2) return [parts[0], parts[1]];
+    return null;
+  }
+
+  function formatDuration(value) {
+    var parts = durationParts(value);
+    if (!parts) return String(value || "");
+    return String(Math.max(0, Math.floor(parts[0]))) + ":" + String(Math.max(0, Math.floor(parts[1]))).padStart(2, "0");
+  }
+
+  function totalDuration(items) {
+    var total = items.reduce(function (sum, item) {
+      var parts = durationParts(item.duration);
+      return parts ? sum + parts[0] * 60 + parts[1] : sum;
+    }, 0);
+    return total ? formatDuration(Math.floor(total / 60) + ":" + (total % 60)) : "—";
   }
 
   function renderContents(items) {
@@ -196,15 +219,18 @@
     const lives = currentOptions.lives || global.livesData || [];
     overlay.querySelector(".shared-discography-contents-grid").innerHTML = Object.keys(groups).map(function (key) {
       const parts = key.split("|");
-      return '<article class="shared-discography-disc-panel"><header>DISC ' + escapeHTML(parts[0]) + ' <span>' + escapeHTML(parts[1]) + '</span></header><ol>' + groups[key].map(function (row) {
+      var rows = groups[key];
+      var isBluRayDisc = String(parts[1] || "").toLowerCase().replace(/[^a-z0-9]/g, "") === "bluray";
+      var discLengthHTML = isBluRayDisc ? "" : '<div class="shared-discography-disc-length"><span>Disc length</span><strong>' + escapeHTML(totalDuration(rows)) + '</strong></div>';
+      return '<div class="shared-discography-disc-block"><article class="shared-discography-disc-panel"><header>DISC ' + escapeHTML(parts[0]) + ' <span>' + escapeHTML(parts[1]) + '</span></header><ol>' + rows.map(function (row) {
         const songIndex = songs.findIndex(function (item) { return item.name === row.song_name || item.name_jp === row.song_name; });
         const liveIndex = !row.song_name && row.content_title && global.LiveDrawer ? global.LiveDrawer.findByTitle(row.content_title, lives) : -1;
         const title = row.song_name || row.content_title;
         let titleHTML = '<span>' + escapeHTML(title) + '</span>';
         if (songIndex >= 0) titleHTML = '<button class="shared-discography-content-link" type="button" data-discography-song="' + songIndex + '">' + escapeHTML(title) + '</button>';
         else if (liveIndex >= 0) titleHTML = '<button class="shared-discography-content-link" type="button" data-discography-live="' + liveIndex + '">' + escapeHTML(title) + '</button>';
-        return '<li><b>' + escapeHTML(row.track_no || "") + '</b>' + titleHTML + (row.duration ? '<em>' + escapeHTML(row.duration) + '</em>' : '') + (row.note ? '<small>' + escapeHTML(row.note) + '</small>' : '') + '</li>';
-      }).join("") + '</ol></article>';
+        return '<li><b>' + escapeHTML(row.track_no || "") + '</b>' + titleHTML + (row.duration ? '<em>' + escapeHTML(formatDuration(row.duration)) + '</em>' : '') + (row.note ? '<small>' + escapeHTML(row.note) + '</small>' : '') + '</li>';
+      }).join("") + '</ol></article>' + discLengthHTML + '</div>';
     }).join("") || '<p class="shared-discography-empty">暂无收录内容</p>';
   }
 
