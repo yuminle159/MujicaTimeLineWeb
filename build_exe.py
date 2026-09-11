@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 将 build_gui.py 打包为单个自包含的 wijipedia_数据更新工具.exe
-需要安装: pip install pyinstaller openpyxl Pillow
+需要安装: pip install pyinstaller openpyxl Pillow sudachipy sudachidict_small jieba
 """
 
 import subprocess
@@ -27,6 +27,9 @@ cmd = [
     "--hidden-import", "openpyxl.worksheet",
     "--hidden-import", "PIL",
     "--hidden-import", "PIL.Image",
+    "--collect-all", "sudachipy",
+    "--collect-all", "sudachidict_small",
+    "--collect-all", "jieba",
     "--clean",
     script
 ]

@@ -948,3 +948,251 @@ body {
   }
 }
 
+/* ===== Lyrics Atlas ===== */
+.lyrics-atlas-trigger {
+  position: relative;
+  padding: 8px 0 8px 11px;
+  border: 0;
+  border-left: 2px solid var(--md-primary);
+  background: transparent;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  font: 600 12px/1 "Cinzel", serif;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transition: color var(--md-duration-short) var(--md-easing-standard), text-shadow var(--md-duration-short) var(--md-easing-standard);
+}
+.lyrics-atlas-trigger:hover {
+  color: #f0eded;
+  text-shadow: 0 0 12px rgba(255, 77, 77, 0.35);
+}
+.lyrics-atlas-overlay {
+  position: fixed;
+  z-index: 2200;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(3, 3, 4, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s var(--md-easing-standard), visibility 0.28s var(--md-easing-standard);
+}
+.lyrics-atlas-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.lyrics-atlas-panel {
+  width: min(1160px, 100%);
+  max-height: min(800px, calc(100vh - 48px));
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(98, 27, 32, 0.13), transparent 33%), #09090a;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.72);
+  scrollbar-color: rgba(255, 77, 77, 0.32) transparent;
+}
+.lyrics-atlas-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 38px 22px;
+  border-bottom: 1px solid var(--md-outline-variant);
+}
+.lyrics-atlas-file,
+.lyrics-atlas-kicker,
+.lyrics-atlas-count,
+.lyrics-atlas-scope,
+.lyrics-atlas-detail-label,
+.lyrics-atlas-detail-meta {
+  font-family: "Space Grotesk", monospace, sans-serif;
+  letter-spacing: 0.1em;
+}
+.lyrics-atlas-file { color: var(--md-primary); font-size: 10px; font-weight: 600; }
+.lyrics-atlas-header h2 {
+  margin: 7px 0 4px;
+  color: #e8e2e1;
+  font: 700 clamp(25px, 3vw, 36px)/1 "Cinzel", serif;
+  letter-spacing: 0.06em;
+}
+.lyrics-atlas-header p {
+  margin: 0;
+  color: var(--md-on-surface-muted);
+  font: 11px/1.5 "Space Grotesk", monospace, sans-serif;
+  letter-spacing: 0.11em;
+}
+.lyrics-atlas-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--md-outline);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  font-size: 21px;
+  line-height: 1;
+  transition: color var(--md-duration-short) var(--md-easing-standard), border-color var(--md-duration-short) var(--md-easing-standard);
+}
+.lyrics-atlas-close:hover { color: #fff; border-color: var(--md-primary); }
+.lyrics-atlas-deck {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 58px;
+  padding: 0 38px;
+  border-bottom: 1px solid var(--md-outline-variant);
+}
+.lyrics-atlas-tabs { display: flex; align-self: stretch; gap: 26px; }
+.lyrics-atlas-tabs button {
+  position: relative;
+  border: 0;
+  background: transparent;
+  color: var(--md-on-surface-muted);
+  cursor: pointer;
+  font: 600 13px/1 "Noto Sans SC", sans-serif;
+  letter-spacing: 0.08em;
+  transition: color var(--md-duration-short) var(--md-easing-standard);
+}
+.lyrics-atlas-tabs button::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--md-primary);
+  transform: scaleX(0);
+  transition: transform var(--md-duration-short) var(--md-easing-standard);
+}
+.lyrics-atlas-tabs button:hover { color: #ddd; }
+.lyrics-atlas-tabs button.active { color: #f0eeee; }
+.lyrics-atlas-tabs button.active::after { transform: scaleX(1); }
+.lyrics-atlas-scope { color: #6b6767; font-size: 10px; }
+.lyrics-atlas-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 285px;
+  min-height: 490px;
+}
+.lyrics-atlas-field { min-width: 0; padding: 30px 38px 38px; }
+.lyrics-atlas-field-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.lyrics-atlas-kicker { color: var(--md-primary); font-size: 11px; font-weight: 600; }
+.lyrics-atlas-count { color: #656163; font-size: 10px; white-space: nowrap; }
+.lyrics-atlas-cloud {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 440px;
+}
+.lyrics-atlas-dom-cloud {
+  position: relative;
+  z-index: 0;
+  display: block;
+  max-width: 100%;
+}
+.lyrics-atlas-dom-cloud [data-word] { cursor: pointer; }
+.lyrics-atlas-dom-cloud.is-intro-running [data-word] { cursor: wait; pointer-events: none; }
+.lyrics-atlas-dom-cloud .lyrics-atlas-term {
+  opacity: 0;
+  animation: lyrics-atlas-term-enter 0.48s ease-out var(--word-intro-delay, 0ms) forwards;
+}
+@keyframes lyrics-atlas-term-enter {
+  from { opacity: 0; filter: blur(3px); }
+  to { opacity: 1; filter: blur(0); }
+}
+.lyrics-atlas-word {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 3px 1px;
+  border: 0;
+  background: transparent;
+  color: rgba(215, 209, 207, 0.55);
+  cursor: pointer;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: var(--word-size);
+  font-weight: 500;
+  line-height: 1.12;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.75);
+  transition: color var(--md-duration-short) var(--md-easing-standard), transform var(--md-duration-short) var(--md-easing-standard), text-shadow var(--md-duration-short) var(--md-easing-standard);
+}
+.lyrics-atlas-overlay[data-language="jp"] .lyrics-atlas-word { font-family: "Noto Serif JP", "Yu Mincho", serif; }
+.lyrics-atlas-word:nth-child(3n) { color: rgba(232, 226, 224, 0.72); }
+.lyrics-atlas-word:nth-child(5n) { color: rgba(185, 177, 176, 0.62); }
+.lyrics-atlas-word small {
+  margin-top: 0.15em;
+  color: rgba(255, 255, 255, 0.2);
+  font: 9px/1 "Space Grotesk", monospace, sans-serif;
+  opacity: 0;
+  transition: opacity var(--md-duration-short) var(--md-easing-standard);
+}
+.lyrics-atlas-word:hover {
+  color: #f4efed;
+  transform: translate(-50%, -50%) scale(1.04);
+  text-shadow: 0 0 18px rgba(255, 77, 77, 0.42);
+}
+.lyrics-atlas-word.active { color: var(--md-primary-hover); text-shadow: 0 0 22px rgba(255, 77, 77, 0.58); }
+.lyrics-atlas-word:hover small,
+.lyrics-atlas-word.active small { opacity: 1; color: var(--md-primary-hover); }
+.lyrics-atlas-empty { color: var(--md-on-surface-muted); font: 12px "Space Grotesk", monospace, sans-serif; }
+.lyrics-atlas-detail {
+  display: flex;
+  flex-direction: column;
+  padding: 31px 26px;
+  border-left: 1px solid var(--md-outline-variant);
+  background: rgba(0, 0, 0, 0.13);
+}
+.lyrics-atlas-detail-empty { margin: auto 0; color: #777274; text-align: center; }
+.lyrics-atlas-detail-empty span { color: #aaa4a3; font: 600 11px "Space Grotesk", monospace, sans-serif; letter-spacing: 0.13em; }
+.lyrics-atlas-detail-empty p { margin: 12px 0 0; font-size: 12px; line-height: 1.8; }
+.lyrics-atlas-detail-word {
+  overflow-wrap: anywhere;
+  color: #f0e8e7;
+  font: 600 30px/1.25 "Noto Serif SC", "Songti SC", serif;
+}
+.lyrics-atlas-overlay[data-language="jp"] .lyrics-atlas-detail-word { font-family: "Noto Serif JP", "Yu Mincho", serif; }
+.lyrics-atlas-detail-meta { margin-top: 10px; color: var(--md-primary-hover); font-size: 10px; }
+.lyrics-atlas-detail-rule { width: 30px; height: 2px; margin: 24px 0 17px; background: var(--md-primary); }
+.lyrics-atlas-detail-label { margin-bottom: 10px; color: #777173; font-size: 10px; }
+.lyrics-atlas-song-list { display: flex; flex-direction: column; gap: 4px; }
+.lyrics-atlas-song-list button {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  color: #bcb6b5;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--md-duration-short) var(--md-easing-standard), padding-left var(--md-duration-short) var(--md-easing-standard);
+}
+.lyrics-atlas-song-list button:hover { padding-left: 5px; color: #f0e6e5; }
+.lyrics-atlas-song-list span { overflow: hidden; font-size: 12px; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
+.lyrics-atlas-song-list small { flex: none; color: var(--md-primary-hover); font: 10px "Space Grotesk", monospace, sans-serif; }
+
+@media (max-width: 768px) {
+  .lyrics-atlas-trigger { align-self: flex-end; margin-top: 4px; }
+  .lyrics-atlas-overlay { padding: 0; }
+  .lyrics-atlas-panel { max-height: 100vh; min-height: 100vh; border: 0; }
+  .lyrics-atlas-header { padding: 26px 22px 20px; }
+  .lyrics-atlas-deck { padding: 0 22px; }
+  .lyrics-atlas-content { grid-template-columns: 1fr; }
+  .lyrics-atlas-field { padding: 26px 22px; }
+  .lyrics-atlas-cloud { min-height: 360px; }
+  .lyrics-atlas-detail { min-height: 210px; padding: 24px 22px; border-top: 1px solid var(--md-outline-variant); border-left: 0; }
+  .lyrics-atlas-detail-empty { margin: auto; }
+}
+

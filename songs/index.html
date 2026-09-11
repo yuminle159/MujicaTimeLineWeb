@@ -7,12 +7,12 @@
   <title>Songs · 唯鸡百科</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609101816">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609101816">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609101816">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609101816">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609101816">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202609111830">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609111537">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609111537">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609111537">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609111537">
 </head>
 <body>
   <div class="songs-page">
@@ -37,6 +37,7 @@
         <input type="text" id="searchInput" placeholder="搜索歌名...">
       </div>
       <span class="result-count" id="resultCount"></span>
+      <button class="lyrics-atlas-trigger" id="lyricsAtlasTrigger" type="button">Lyrics Atlas</button>
       <button class="sort-btn" id="sortBtn">
         <span id="sortLabel">时间倒序</span>
       </button>
@@ -49,16 +50,17 @@
     <div class="no-results" id="noResults" style="display:none">没有找到匹配的歌曲</div>
   </div>
 
-  <script src="data.js?v=202609101816"></script>
-  <script src="../discography/data.js?v=202609101816"></script>
-  <script src="../live/data.js?v=202609101816"></script>
-  <script src="../interview/data.js?v=202609101816"></script>
-  <script src="../js/renderMarkdown.js?v=202609101816"></script>
-  <script src="../js/overlay-manager.js?v=202609101816"></script>
-  <script src="../js/interview-overlay.js?v=202609101816"></script>
-  <script src="../js/song-modal.js?v=202609101816"></script>
-  <script src="../js/live-drawer.js?v=202609101816"></script>
-  <script src="../js/discography-modal.js?v=202609101816"></script>
+  <script src="data.js?v=202609111537"></script>
+  <script src="../discography/data.js?v=202609111537"></script>
+  <script src="../live/data.js?v=202609111537"></script>
+  <script src="../interview/data.js?v=202609111537"></script>
+  <script src="../js/renderMarkdown.js?v=202609111537"></script>
+  <script src="../js/overlay-manager.js?v=202609111537"></script>
+  <script src="../js/interview-overlay.js?v=202609111537"></script>
+  <script src="../js/song-modal.js?v=202609111537"></script>
+  <script src="../js/live-drawer.js?v=202609111537"></script>
+  <script src="../js/discography-modal.js?v=202609111537"></script>
+  <script src="lyrics-atlas-data.js?v=202609111650"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -226,6 +228,8 @@
   }
 })();
   </script>
+  <script src="vendor/wordcloud2.js?v=202609111800"></script>
+  <script src="lyrics-atlas.js?v=202609111890"></script>
 
 
 </body>

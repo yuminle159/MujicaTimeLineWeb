@@ -6,6 +6,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.11",
+    "msg": "1.lives新增数据分析模块优化 2.新增discography子页面，收集实体光盘信息 3.interview新增多篇原文&扫图 4.共享组件重构",
+    "pinned": false
+  },
+  {
     "date": "2026.09.07",
     "msg": "1.Bug修复 2.live setlist更新至上海鸡狗2 3.interview更新2023/09/15访谈后篇 4.分享链接优化",
     "pinned": false

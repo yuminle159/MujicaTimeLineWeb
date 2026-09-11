@@ -46,6 +46,7 @@
       card.innerHTML =
         '<div class="card-image">' +
           (item.poster ? '<img src="' + escapeHTML(item.poster) + '" alt="' + escapeHTML(item.title) + '" loading="lazy">' : '<div class="card-placeholder"></div>') +
+          (String(item.if_translated || "").toLowerCase() === "yes" ? '<span class="interview-status">CN</span>' : '') +
         '</div>' +
         '<div class="card-info">' +
           '<div class="card-date">' + formatDate(item.date) + '</div>' +

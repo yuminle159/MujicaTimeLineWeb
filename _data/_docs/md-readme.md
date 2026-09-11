@@ -153,6 +153,7 @@ Interview MD 文件放在 `_data/mc/` 目录下。
 | date        | 访谈日期                 | `2025/06/15`                |
 | interviewee | 对谈人                  | `佐佐木李子 × 渡濑结月`              |
 | title       | 访谈标题                 | `Ave Mujica 声优访谈`           |
+| if_translated | 是否已翻译（`yes` / `no`） | `yes`                         |
 | md_path     | MD 文件路径（相对于 `_data`） | `mc/sample_interview.md`    |
 
 ### 5.3 原文标记

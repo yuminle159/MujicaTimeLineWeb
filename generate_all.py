@@ -29,6 +29,33 @@ except ImportError:
     print("缺少 openpyxl 库，请运行: pip install openpyxl")
     sys.exit(1)
 
+try:
+    from sudachipy import Dictionary, SplitMode
+    import jieba.posseg as jieba_posseg
+    HAS_LEXICON_NLP = True
+except ImportError:
+    HAS_LEXICON_NLP = False
+
+# 词性过滤后仍会剩下一些“语法上是实词、主题上却没有辨识度”的泛词。
+# 这份基础表是默认清洗层；后续可再通过 Excel 维护项目专属的保留/排除词。
+LEXICON_DEFAULT_STOP_WORDS = {
+    "jp": {
+        "いる", "ある", "する", "なる", "ない", "そう", "もう", "まだ", "まま",
+        "もの", "こと", "よう", "ため", "中", "今", "今日", "全部", "あっぷ"
+    },
+    "cn": {
+        "是", "会", "来", "去", "请", "成为", "让", "要", "想", "能", "可以",
+        "没有", "不会", "已经", "还是", "只是", "如果", "因为", "所以", "这个", "那个"
+    },
+    "en": {
+        "a", "an", "the", "and", "or", "but", "so", "to", "of", "in", "on", "at", "for",
+        "from", "with", "by", "up", "down", "out", "off", "you", "me", "my", "your", "we",
+        "our", "it", "its", "be", "am", "is", "are", "was", "were", "do", "does", "did",
+        "gonna", "wanna", "yeah", "ya", "oh", "ah", "woah", "hey", "ever", "nyou", "daa",
+        "yes", "know", "want", "la"
+    }
+}
+
 def murmurhash3_128(key, seed=0):
     """MurmurHash3 128-bit (x64) → 返回 128-bit 整数"""
     data = key.encode('utf-8') if isinstance(key, str) else key
@@ -112,6 +139,7 @@ XLSX_PATH = os.path.join(DATA_DIR, "data.xlsx")
 OUTPUTS = {
     "announcements": os.path.join(ROOT, "announcements.js"),
     "songs":         os.path.join(ROOT, "songs", "data.js"),
+    "lyrics_atlas":  os.path.join(ROOT, "songs", "lyrics-atlas-data.js"),
     "live":          os.path.join(ROOT, "live", "data.js"),
     "timeline":      os.path.join(ROOT, "timeline", "data.js"),
     "gallery":       os.path.join(ROOT, "gallery", "data.js"),
@@ -308,6 +336,93 @@ def generate_announcements(wb):
 
 
 # =========================== 2. 歌曲 ===========================
+def require_lexicon_nlp():
+    if not HAS_LEXICON_NLP:
+        raise RuntimeError(
+            "歌词词云缺少分词依赖，请运行: "
+            "pip install sudachipy sudachidict_small jieba"
+        )
+
+
+def lyrics_clean_text(text):
+    return re.sub(r"[（(][^）)]*[）)]", " ", text or "")
+
+
+def japanese_lexicon_tokens(text, tokenizer):
+    """保留日语实词，并用词典形合并动词、形容词的活用。"""
+    keep_pos = {"名詞", "動詞", "形容詞", "副詞"}
+    tokens = []
+    for morpheme in tokenizer.tokenize(lyrics_clean_text(text), SplitMode.C):
+        pos = morpheme.part_of_speech()
+        if not pos or pos[0] not in keep_pos:
+            continue
+        # 代词在歌词中频率很高，但对主题词云的辨识度有限。
+        if len(pos) > 1 and pos[1] == "代名詞":
+            continue
+        word = morpheme.dictionary_form() or morpheme.surface()
+        if word in ("*", "", None) or re.fullmatch(r"[\W_]+", word):
+            continue
+        if len(word) == 1 and re.fullmatch(r"[A-Za-z]", word):
+            continue
+        normalized = word.lower() if re.fullmatch(r"[A-Za-z]+", word) else word
+        if normalized in LEXICON_DEFAULT_STOP_WORDS["jp"] or normalized in LEXICON_DEFAULT_STOP_WORDS["en"]:
+            continue
+        tokens.append(normalized)
+    return tokens
+
+
+def chinese_lexicon_tokens(text):
+    """保留中文实词和专有名词，过滤结构助词、语气词、代词等。"""
+    keep_prefixes = ("n", "v", "a")
+    keep_exact = {"eng", "nz", "vn", "an", "j"}
+    tokens = []
+    for pair in jieba_posseg.cut(lyrics_clean_text(text)):
+        word = pair.word.strip()
+        flag = pair.flag or ""
+        if not word or not (flag.startswith(keep_prefixes) or flag in keep_exact):
+            continue
+        if re.fullmatch(r"[\W_]+", word) or (len(word) == 1 and re.fullmatch(r"[A-Za-z]", word)):
+            continue
+        normalized = word.lower() if re.fullmatch(r"[A-Za-z]+", word) else word
+        if normalized in LEXICON_DEFAULT_STOP_WORDS["cn"] or normalized in LEXICON_DEFAULT_STOP_WORDS["en"]:
+            continue
+        tokens.append(normalized)
+    return tokens
+
+
+def generate_lyrics_atlas_data(songs):
+    """为 Lyrics Atlas 预计算仅原创曲目的、已按词性过滤的词频。"""
+    require_lexicon_nlp()
+    japanese_tokenizer = Dictionary(dict="small").create()
+    result = {"jp": {"track_count": 0, "terms": {}}, "cn": {"track_count": 0, "terms": {}}}
+
+    for song in songs:
+        if song.get("type") != "Original":
+            continue
+        for language, lyric_key in (("jp", "lyrics_jp"), ("cn", "lyrics_cn")):
+            lyrics = song.get(lyric_key, "").strip()
+            if not lyrics:
+                continue
+            result[language]["track_count"] += 1
+            tokens = japanese_lexicon_tokens(lyrics, japanese_tokenizer) if language == "jp" else chinese_lexicon_tokens(lyrics)
+            for word in tokens:
+                item = result[language]["terms"].setdefault(word, {"word": word, "count": 0, "songs": {}})
+                item["count"] += 1
+                item["songs"][song["hash_id"]] = item["songs"].get(song["hash_id"], 0) + 1
+
+    data = {}
+    for language in ("jp", "cn"):
+        terms = list(result[language]["terms"].values())
+        terms.sort(key=lambda item: (-item["count"], -len(item["songs"]), item["word"]))
+        data[language] = {"track_count": result[language]["track_count"], "terms": terms}
+
+    js = "// Lyrics Atlas 词频数据（自动生成，请勿手动修改）\n"
+    js += "window.LYRICS_ATLAS_DATA = " + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n"
+    with open(OUTPUTS["lyrics_atlas"], "w", encoding="utf-8") as f:
+        f.write(js)
+    return {language: len(data[language]["terms"]) for language in ("jp", "cn")}
+
+
 def generate_songs(wb):
     songs_raw = read_sheet(wb, "songs")
     comments_raw = read_sheet(wb, "song_comments")
@@ -412,6 +527,7 @@ def generate_songs(wb):
 
     with open(OUTPUTS["songs"], "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
+    generate_lyrics_atlas_data(songs)
     return len(songs)
 
 
@@ -705,6 +821,10 @@ def generate_interview(wb):
     for r in raw:
         if not r.get("title"):
             continue
+        if_translated = str(r.get("if_translated", "no") or "no").strip().lower()
+        if if_translated not in ("yes", "no"):
+            print(f"  ⚠ interview: {r.get('title', '')} 的 if_translated 值无效，按 no 处理")
+            if_translated = "no"
         md_path = r.get("md_path", "").strip()
         md_content = ""
         if md_path:
@@ -721,6 +841,7 @@ def generate_interview(wb):
             "date": r.get("date", "").strip(),
             "interviewee": r.get("interviewee", "").strip(),
             "title": r.get("title", "").strip(),
+            "if_translated": if_translated,
             "hash_id": hash_id(r.get("title", "").strip(), r.get("interviewee", "").strip(), r.get("date", "").strip()),
             "md_html": render_md_to_html(md_content)
         })
@@ -736,6 +857,7 @@ def generate_interview(wb):
         lines.append(f'    date: "{js_str(item["date"])}",')
         lines.append(f'    interviewee: "{js_str(item["interviewee"])}",')
         lines.append(f'    title: "{js_str(item["title"])}",')
+        lines.append(f'    if_translated: "{js_str(item["if_translated"])}",')
         lines.append(f'    hash_id: "{js_str(item["hash_id"])}",')
         lines.append(f'    md_html: "{js_str(item["md_html"])}"')
         lines.append("  }" + ("," if i < len(interviews) - 1 else ""))

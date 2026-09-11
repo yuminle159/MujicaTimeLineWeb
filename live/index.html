@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609101816">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609101816">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609101816">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609101816">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609101816">
+  <link rel="stylesheet" href="style.css?v=202609111710">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609111537">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609111537">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609111537">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609111537">
 </head>
 <body>
   <div class="live-page">
@@ -57,16 +57,16 @@
     </div>
   </div>
 
-  <script src="../songs/data.js?v=202609101816"></script>
-  <script src="../discography/data.js?v=202609101816"></script>
-  <script src="../interview/data.js?v=202609101816"></script>
-  <script src="data.js?v=202609101816"></script>
-  <script src="../js/renderMarkdown.js?v=202609101816"></script>
-  <script src="../js/overlay-manager.js?v=202609101816"></script>
-  <script src="../js/interview-overlay.js?v=202609101816"></script>
-  <script src="../js/song-modal.js?v=202609101816"></script>
-  <script src="../js/live-drawer.js?v=202609101816"></script>
-  <script src="../js/discography-modal.js?v=202609101816"></script>
+  <script src="../songs/data.js?v=202609111537"></script>
+  <script src="../discography/data.js?v=202609111537"></script>
+  <script src="../interview/data.js?v=202609111537"></script>
+  <script src="data.js?v=202609111537"></script>
+  <script src="../js/renderMarkdown.js?v=202609111537"></script>
+  <script src="../js/overlay-manager.js?v=202609111537"></script>
+  <script src="../js/interview-overlay.js?v=202609111537"></script>
+  <script src="../js/song-modal.js?v=202609111537"></script>
+  <script src="../js/live-drawer.js?v=202609111537"></script>
+  <script src="../js/discography-modal.js?v=202609111537"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -123,11 +123,9 @@
 
     // 数据统计按钮（放在排序按钮左边，紧靠）
     const statsBtn = document.createElement("button");
-    statsBtn.className = "sort-btn";
-    statsBtn.textContent = "数据统计";
-    statsBtn.style.marginRight = "6px";
+    statsBtn.className = "live-stats-trigger";
+    statsBtn.textContent = "Live Statistics";
     statsBtn.addEventListener("click", openStats);
-    bar.appendChild(statsBtn);
 
     // 排序按钮
     const sortBtn = document.createElement("button");
@@ -139,7 +137,10 @@
       sortBtn.innerHTML = liveSortReverse ? '<span>时间正序</span>' : '<span>时间倒序</span>';
       renderGallery();
     });
-    bar.appendChild(sortBtn);
+    const filterActions = document.createElement("div");
+    filterActions.className = "filter-actions";
+    filterActions.append(statsBtn, sortBtn);
+    bar.appendChild(filterActions);
   }
 
   // ===== 渲染画廊 =====
@@ -583,7 +584,7 @@
     if (!S.liveSongs.length) {
       return '<section class="section"><div class="section-head"><div><div class="kicker">PAIR ANALYSIS</div><h2>Live Comparison</h2></div></div><p class="stats-empty-note">当前范围无可用于对比的完整 Setlist 数据。</p></section>';
     }
-    const opts = S.liveSongs.map((ls, i) => '<option value="' + i + '">' + escapeHTML(statsStampDisplay(ls.stamp, "/") + " · " + statsShortName(ls.live.name) + (ls.live.venue ? " · " + ls.live.venue : "")) + '</option>').join("");
+    const opts = S.liveSongs.map((ls, i) => '<option value="' + i + '">' + escapeHTML(statsStampDisplay(ls.stamp, "/") + " · " + statsShortName(ls.live.name)) + '</option>').join("");
     return '<section class="section">' +
       '<div class="section-head"><div><div class="kicker">PAIR ANALYSIS</div><h2>Live Comparison</h2></div><div class="section-note">适合比较双日公演、巡演不同地区，以及专场与音乐节版本的差异。</div></div>' +
       '<div class="select-row"><label>Archive A<select id="statsSelectA">' + opts + '</select></label><div class="versus">VS</div><label>Archive B<select id="statsSelectB">' + opts + '</select></label></div>' +
@@ -606,14 +607,35 @@
     if (statsCompareA === statsCompareB && S.liveSongs.length >= 2) statsCompareB = 1;
     selA.value = String(statsCompareA);
     selB.value = String(statsCompareB);
+    syncCompareAnchor(selB);
     const update = function() {
       statsCompareA = parseInt(selA.value, 10);
       statsCompareB = parseInt(selB.value, 10);
+      syncCompareAnchor(selB);
       updateCompare(S);
     };
     selA.addEventListener("change", update);
     selB.addEventListener("change", update);
+    selB.addEventListener("focus", function() { syncCompareAnchor(selB); });
+    selB.addEventListener("mousedown", function() { syncCompareAnchor(selB); });
     updateCompare(S);
+  }
+
+  function syncCompareAnchor(selB) {
+    if (!selB) return;
+    Array.from(selB.options).forEach(function(option, index) {
+      const baseLabel = option.getAttribute("data-base-label") || option.textContent.replace(/^↳ A · /, "");
+      option.setAttribute("data-base-label", baseLabel);
+      const isAnchor = index === statsCompareA;
+      option.textContent = isAnchor ? "↳ A · " + baseLabel : baseLabel;
+      option.classList.toggle("stats-compare-anchor", isAnchor);
+    });
+    const anchor = selB.options[statsCompareA];
+    if (anchor && typeof anchor.scrollIntoView === "function") {
+      requestAnimationFrame(function() {
+        anchor.scrollIntoView({ block: "center", inline: "nearest" });
+      });
+    }
   }
 
   function updateCompare(S) {

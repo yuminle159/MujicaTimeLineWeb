@@ -229,6 +229,13 @@ body {
   margin-bottom: 32px;
   scrollbar-width: none;
 }
+.filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
 .filter-bar::-webkit-scrollbar { display: none; }
 .filter-bar .filter-group {
   display: flex;
@@ -780,10 +787,34 @@ body {
   margin-top: 2px;
 }
 
+/* ===== Live Statistics 入口 ===== */
+.live-stats-trigger {
+  position: relative;
+  padding: 8px 0 8px 11px;
+  border: 0;
+  border-left: 2px solid var(--md-primary);
+  background: transparent;
+  color: var(--md-on-surface-variant);
+  cursor: pointer;
+  font: 600 12px/1 "Cinzel", serif;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.live-stats-trigger:hover {
+  color: #f0eded;
+  text-shadow: 0 0 12px rgba(255, 77, 77, 0.35);
+}
+
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
   .page-header { padding: 32px 24px 16px; }
   .filter-bar { padding: 0 24px; }
+  .filter-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
   .gallery-container {
     padding: 0 24px 40px;
     grid-template-columns: 1fr;
@@ -1017,6 +1048,8 @@ body {
 .select-row { display: grid; grid-template-columns: 1fr 44px 1fr; align-items: end; gap: 16px; margin-bottom: 22px; }
 .select-row label { display: block; color: var(--stats-dim); font: 11px/1.4 var(--stats-serif); letter-spacing: 0.05em; }
 .select-row select { width: 100%; margin-top: 9px; padding: 12px 42px 12px 13px; color: var(--stats-text); border: 1px solid var(--stats-line); background: #0b0c0d; font: 13px/1.3 var(--stats-mono); }
+.select-row select option.stats-compare-anchor { color: #fff; background: rgba(126, 28, 36, 0.72); font-weight: 700; }
+.select-row label:last-of-type select { border-color: rgba(156, 44, 51, 0.5); box-shadow: inset 0 0 18px rgba(126, 28, 36, 0.08); }
 .versus { color: var(--stats-red); font: 16px/43px var(--stats-serif); text-align: center; }
 .comparison-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; margin-bottom: 18px; }
 .mini-metric { padding: 15px; border: 1px solid var(--stats-line); background: #0a0b0c; }
