@@ -39,6 +39,24 @@
 
 每个子页面有独立的 `data.xlsx` 和 `generate_data.py`，互不干扰。
 
+### 首页 Something New
+
+首页精选内容由 `_data/data.xlsx` 中的 `something_new` 工作表维护。每行只填写四列：
+
+| content_type | content_ref | update_date | show |
+| --- | --- | --- | --- |
+| song | 对应 `songs.song_name` | 2026/9/12 | yes |
+| live | 对应 `lives.live_name` | 2026/9/12 | yes |
+| interview | 对应 `interview.title` | 2026/9/12 | yes |
+| discography | 对应 `discography_releases.release_id` | 2026/9/12 | yes |
+
+- `content_type` 只能填写 `song`、`live`、`interview` 或 `discography`。
+- `content_ref` 必须与对应来源表中的可读名称完全一致；此功能不使用 `hash_id`。
+- `update_date` 决定首页排序，也决定已经看过的内容在改日期后是否重新标记为 NEW。
+- 只有 `show=yes` 的行会展示；标题、封面、副信息和目标组件链接均由生成器自动补齐。
+- Song 使用 `cover`，Interview 使用 `poster`，Live 优先使用 `kv`、缺失时使用 `poster`，Discography 使用发行物的 `cover`。
+- 如果名称不存在或重复，生成器会报告具体行号并跳过该条，避免打开错误内容。
+
 ---
 
 ## 时间线 (Timeline)
@@ -604,3 +622,49 @@ Ctrl+F5 强制刷新浏览器，避免缓存旧版 CSS/JS。
 ### Q：Excel 中换行在网页中不显示？
 
 已支持。在 Excel 单元格中按 Alt+Enter 换行，网页中会自动转为换行显示。如果仍有问题，运行 `python generate_data.py` 重新生成数据。
+
+---
+
+## 前端维护陷阱：事件委托的 `closest()` 命中祖先状态属性
+
+Lyrics Atlas 的外层使用 `data-language="jp|cn"` 保存当前语言，同时语言页签按钮也使用了同名属性。若在整个 Atlas 上做事件委托并写成：
+
+```javascript
+const tab = event.target.closest("[data-language]");
+```
+
+`closest()` 不只检查点击目标，也会沿祖先向上查找。因此 Atlas 内任意词语或曲名被点击时，都会命中带 `data-language` 的外层，误执行语言切换逻辑中的 `state.word = ""` 和 `render()`。
+
+这个错误会同时表现为：
+
+- 开场动画结束后第一次点击词语，WordCloud2 突然重新排布、产生闪烁。
+- 选词后点击歌曲，打开歌曲灯箱前选词已被清空；关闭灯箱后右侧恢复为 `SELECT A WORD`。
+- 每次普通交互都会额外调用 WordCloud2。它会清空词云容器并重新生成绝对定位节点，因此视觉上像随机重排。
+
+委托选择器必须限定在真正的控件容器内：
+
+```javascript
+const tab = event.target.closest(".lyrics-atlas-tabs button[data-language]");
+```
+
+维护规则：不要让“组件状态属性”和“子控件动作属性”共用一个无范围的委托选择器。使用 `closest()` 时，应把控件容器、元素类型和动作属性一起写入选择器；新增交互后至少回归测试一次“选词 → 歌曲 A → 关闭 → 歌曲 B → 关闭”，并确认选词、高亮、右侧列表及词云节点位置均保持不变。
+
+---
+
+## Lyrics Atlas：词云权重
+
+词云不直接使用总出现次数 `count` 排序或决定字号。单曲中大量重复的词仍应显眼，但不应压过跨多首原创曲反复出现的意象。
+
+对每个词，按每首歌的出现次数 `countInSong` 计算：
+
+```javascript
+score = Σ log1p(countInSong) + 0.35 * log1p(trackCount)
+```
+
+- `Σ log1p(countInSong)`：同一首歌内的重复会继续加分，但边际收益递减。
+- `0.35 * log1p(trackCount)`：给予跨歌曲覆盖面额外奖励。
+- `score` 只用于词云排序和字号；右侧详情的总次数、每首歌的 `×次数` 仍使用原始 `count`。
+- 每个语言页签显示加权分数最高的 50 个词；日文词云字号额外乘以 `1.12`，补偿日文衬线字的视觉尺寸。
+- 打开 Atlas 或切换日文/中文页签时播放词云渐入动画；仅因窗口尺寸变化而重新布局时不播放。
+
+如需调节倾向，修改 `songs/lyrics-atlas.js` 中的 `coverageWeight`：`0.2` 更保留单曲反复，`0.5` 更强调跨歌曲意象。

@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609111710">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609111537">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609111537">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609111537">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609111537">
+  <link rel="stylesheet" href="style.css?v=202609122252">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609122252">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609122252">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609122252">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609122252">
 </head>
 <body>
   <div class="live-page">
@@ -57,16 +57,16 @@
     </div>
   </div>
 
-  <script src="../songs/data.js?v=202609111537"></script>
-  <script src="../discography/data.js?v=202609111537"></script>
-  <script src="../interview/data.js?v=202609111537"></script>
-  <script src="data.js?v=202609111537"></script>
-  <script src="../js/renderMarkdown.js?v=202609111537"></script>
-  <script src="../js/overlay-manager.js?v=202609111537"></script>
-  <script src="../js/interview-overlay.js?v=202609111537"></script>
-  <script src="../js/song-modal.js?v=202609111537"></script>
-  <script src="../js/live-drawer.js?v=202609111537"></script>
-  <script src="../js/discography-modal.js?v=202609111537"></script>
+  <script src="../songs/data.js?v=202609122252"></script>
+  <script src="../discography/data.js?v=202609122252"></script>
+  <script src="../interview/data.js?v=202609122252"></script>
+  <script src="data.js?v=202609122252"></script>
+  <script src="../js/renderMarkdown.js?v=202609122252"></script>
+  <script src="../js/overlay-manager.js?v=202609122252"></script>
+  <script src="../js/interview-overlay.js?v=202609122252"></script>
+  <script src="../js/song-modal.js?v=202609122252"></script>
+  <script src="../js/live-drawer.js?v=202609122252"></script>
+  <script src="../js/discography-modal.js?v=202609122252"></script>
   <script>
 (function() {
   const gallery = document.getElementById("gallery");
@@ -188,8 +188,20 @@
   buildLiveFilter();
   renderGallery();
 
+  // Something New 入口：使用可读的 live_name 定位，并直接打开 Live Drawer。
+  const directLiveName = new URLSearchParams(window.location.search).get("live");
+  if (directLiveName) {
+    const directIdx = livesData.findIndex(l => l.name === directLiveName);
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.searchParams.delete("live");
+    history.replaceState(null, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+    if (directIdx >= 0) {
+      LiveDrawer.open(directIdx, { lives: livesData, songs: songsData, discography: discographyData, updateHash: false });
+    }
+  }
+
   // 哈希自动打开：/live/index.html#live=HASH_ID
-  if (window.location.hash.startsWith('#live=')) {
+  if (!directLiveName && window.location.hash.startsWith('#live=')) {
     const hashId = decodeURIComponent(window.location.hash.slice(6));
     const idx = livesData.findIndex(l => l.hash_id === hashId);
     if (idx >= 0) setTimeout(function() { openDrawer(idx); }, 200);

@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609111537">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609111537">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609111537">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609111537">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609111537">
+  <link rel="stylesheet" href="style.css?v=202609122252">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609122252">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609122252">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609122252">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609122252">
 </head>
 <body>
   <main class="discography-page">
@@ -38,16 +38,16 @@
     <div id="noResults" class="no-results" hidden>没有找到匹配的发行作品</div>
   </main>
 
-  <script src="data.js?v=202609111537"></script>
-  <script src="../songs/data.js?v=202609111537"></script>
-  <script src="../live/data.js?v=202609111537"></script>
-  <script src="../interview/data.js?v=202609111537"></script>
-  <script src="../js/renderMarkdown.js?v=202609111537"></script>
-  <script src="../js/overlay-manager.js?v=202609111537"></script>
-  <script src="../js/interview-overlay.js?v=202609111537"></script>
-  <script src="../js/song-modal.js?v=202609111537"></script>
-  <script src="../js/live-drawer.js?v=202609111537"></script>
-  <script src="../js/discography-modal.js?v=202609111537"></script>
+  <script src="data.js?v=202609122252"></script>
+  <script src="../songs/data.js?v=202609122252"></script>
+  <script src="../live/data.js?v=202609122252"></script>
+  <script src="../interview/data.js?v=202609122252"></script>
+  <script src="../js/renderMarkdown.js?v=202609122252"></script>
+  <script src="../js/overlay-manager.js?v=202609122252"></script>
+  <script src="../js/interview-overlay.js?v=202609122252"></script>
+  <script src="../js/song-modal.js?v=202609122252"></script>
+  <script src="../js/live-drawer.js?v=202609122252"></script>
+  <script src="../js/discography-modal.js?v=202609122252"></script>
   <script>
   (() => {
     let activeFilter = 'all'; let query = '';
@@ -116,19 +116,28 @@
       const prompt = '<div class="coming-prompt" aria-hidden="true"><strong>COMING SOON</strong><span>请关注官方发售并支持购买</span></div>';
       return `<button class="release-row${comingSoon ? ' is-coming-soon' : ''}" data-release-id="${escapeHTML(release.id)}"${comingSoon ? ' aria-label="Coming soon. Please support the official release."' : ''}>${comingSoon ? '<span class="coming-ribbon" aria-hidden="true">COMING SOON</span>' : ''}<div class="row-cover">${coverStack}${covers.length > 1 ? `<span class="cover-count">${covers.length} COVERS</span>` : ''}</div><div class="row-main"><div class="row-type">${escapeHTML(release.type)}</div><h2>${escapeHTML(mainTitle)}</h2>${secondaryTitle ? `<p>${escapeHTML(secondaryTitle)}</p>` : ''}<div class="row-date">${escapeHTML(release.release_date)}</div><div class="release-tags"><span>${release.editions.length} EDITION${release.editions.length === 1 ? '' : 'S'}</span>${release.formats.map(format => `<span class="media">${escapeHTML(format)}</span>`).join('')}</div></div><aside class="row-aside">${comingSoon ? prompt : ''}<div class="catalog">${escapeHTML(catalog)}</div><div class="chart-rank"><small>ORICON WEEKLY</small><span class="chart-summary">${escapeHTML(rank)} - ${escapeHTML(firstWeekSales)}</span></div><div class="open-mark">OPEN ↗</div></aside></button>`;
     }
-    function openRelease(id) {
+    function openRelease(id, updateHash = true) {
       DiscographyModal.open(id, {
         discography: discographyData,
         songs: songsData,
         lives: livesData,
-        updateHash: true
+        updateHash
       });
     }
     document.getElementById('filterGroup').addEventListener('click', event => { const button = event.target.closest('[data-filter]'); if (!button) return; activeFilter = button.dataset.filter; document.querySelectorAll('[data-filter]').forEach(item => item.classList.toggle('active', item === button)); renderArchive(); });
     document.getElementById('searchInput').addEventListener('input', event => { query = event.target.value.trim().toLowerCase(); renderArchive(); });
     renderArchive();
+    // Something New entry: use the stable, readable release_id rather than hash_id.
+    const directReleaseId = new URLSearchParams(location.search).get('release');
+    if (directReleaseId) {
+      const release = discographyData.find(item => item.id === directReleaseId);
+      const cleanUrl = new URL(location.href);
+      cleanUrl.searchParams.delete('release');
+      history.replaceState(null, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+      if (release) openRelease(release.id, false);
+    }
     const sharedRelease = location.hash.startsWith('#discography=') ? decodeURIComponent(location.hash.slice(13)) : '';
-    if (sharedRelease) { const release = discographyData.find(item => item.hash_id === sharedRelease); if (release) openRelease(release.id); }
+    if (!directReleaseId && sharedRelease) { const release = discographyData.find(item => item.hash_id === sharedRelease); if (release) openRelease(release.id); }
   })();
   </script>
 </body>

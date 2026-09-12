@@ -72,7 +72,17 @@
   renderCards(interviewData);
   InterviewOverlay.preRender(interviewData);
 
-  if (window.location.hash) {
+  // Something New 入口：使用可读的 title 定位，并直接打开采访组件。
+  const directInterviewTitle = new URLSearchParams(window.location.search).get("interview");
+  if (directInterviewTitle) {
+    const directIndex = interviewData.findIndex(function (item) { return item.title === directInterviewTitle; });
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.searchParams.delete("interview");
+    history.replaceState(null, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+    if (directIndex >= 0) InterviewOverlay.open(directIndex, { manageHash: false });
+  }
+
+  if (!directInterviewTitle && window.location.hash) {
     let hashId = window.location.hash.slice(1);
     try { hashId = decodeURIComponent(hashId); } catch (error) { hashId = ""; }
     if (hashId && !/^(song|live|discography)=/.test(hashId)) {

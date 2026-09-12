@@ -8,10 +8,32 @@
 import subprocess
 import sys
 import os
+import importlib.util
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 script = os.path.join(ROOT, "build_gui.py")
 output_name = "wijipedia_数据更新工具"
+
+# PyInstaller 的 --collect-all 在目标包未安装时只发出警告，仍会产出一个
+# 运行时才报错的 exe。打包前显式检查，避免生成不完整产物。
+required_modules = {
+    "PyInstaller": "pyinstaller",
+    "openpyxl": "openpyxl",
+    "PIL": "Pillow",
+    "sudachipy": "sudachipy",
+    "sudachidict_small": "sudachidict_small",
+    "jieba": "jieba",
+}
+missing_packages = [
+    package_name
+    for module_name, package_name in required_modules.items()
+    if importlib.util.find_spec(module_name) is None
+]
+if missing_packages:
+    print("无法打包：当前 Python 缺少依赖：" + ", ".join(missing_packages))
+    print("请先运行：")
+    print(f'  "{sys.executable}" -m pip install ' + " ".join(missing_packages))
+    sys.exit(1)
 
 cmd = [
     sys.executable, "-m", "PyInstaller",

@@ -13,6 +13,7 @@ import hashlib
 import sys
 from collections import OrderedDict
 from datetime import datetime
+from urllib.parse import quote
 
 # 修复 Windows 控制台编码（windowed exe 无控制台则跳过）
 if sys.platform == "win32" and sys.stdout is not None:
@@ -138,6 +139,7 @@ XLSX_PATH = os.path.join(DATA_DIR, "data.xlsx")
 # 输出文件路径
 OUTPUTS = {
     "announcements": os.path.join(ROOT, "announcements.js"),
+    "something_new": os.path.join(ROOT, "something-new.js"),
     "songs":         os.path.join(ROOT, "songs", "data.js"),
     "lyrics_atlas":  os.path.join(ROOT, "songs", "lyrics-atlas-data.js"),
     "live":          os.path.join(ROOT, "live", "data.js"),
@@ -333,6 +335,127 @@ def generate_announcements(wb):
     with open(OUTPUTS["announcements"], "w", encoding="utf-8") as f:
         f.write(js)
     return len(data)
+
+
+# =========================== 1.5 首页精选更新 ===========================
+def root_asset_path(path):
+    """将子页面使用的 ../images 路径转换为首页可用路径。"""
+    path = (path or "").strip().replace("\\", "/")
+    while path.startswith("../"):
+        path = path[3:]
+    if path.startswith("./"):
+        path = path[2:]
+    return path
+
+
+def something_new_date_key(value):
+    """为常见 Excel 日期文本生成可靠的倒序排序键。"""
+    match = re.match(r"^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})", value or "")
+    if not match:
+        return (0, 0, 0)
+    parts = tuple(int(part) for part in match.groups())
+    try:
+        datetime(*parts)
+    except ValueError:
+        return (0, 0, 0)
+    return parts
+
+
+def generate_something_new(wb):
+    """把人工选择的内容引用解析为首页卡片数据，不使用 hash_id。"""
+    raw = read_sheet(wb, "something_new")
+    source_rows = {
+        "song": (read_sheet(wb, "songs"), "song_name"),
+        "live": (read_sheet(wb, "lives"), "live_name"),
+        "interview": (read_sheet(wb, "interview"), "title"),
+        "discography": (read_sheet(wb, "discography_releases"), "release_id"),
+    }
+    indexes = {}
+    duplicates = {}
+
+    for content_type, (rows, key_name) in source_rows.items():
+        index = {}
+        duplicate_keys = set()
+        for row in rows:
+            key = row.get(key_name, "").strip()
+            if not key:
+                continue
+            if key in index:
+                duplicate_keys.add(key)
+            else:
+                index[key] = row
+        indexes[content_type] = index
+        duplicates[content_type] = duplicate_keys
+
+    items = []
+    seen_entries = set()
+    truthy = ("1", "true", "yes", "y", "是", "有")
+    for row_number, row in enumerate(raw, start=2):
+        if str(row.get("show", "")).strip().lower() not in truthy:
+            continue
+        content_type = row.get("content_type", "").strip().lower()
+        content_ref = row.get("content_ref", "").strip()
+        update_date = normalize_date(row.get("update_date", "").strip())
+
+        if content_type not in source_rows:
+            print(f"  ⚠ something_new 第 {row_number} 行: 无效的 content_type '{content_type}'")
+            continue
+        if not content_ref:
+            print(f"  ⚠ something_new 第 {row_number} 行: content_ref 为空")
+            continue
+        if something_new_date_key(update_date) == (0, 0, 0):
+            print(f"  ⚠ something_new 第 {row_number} 行: update_date 无法识别 '{update_date}'")
+            continue
+        if content_ref in duplicates[content_type]:
+            print(f"  ⚠ something_new 第 {row_number} 行: {content_type} 名称重复，无法唯一关联 '{content_ref}'")
+            continue
+        source = indexes[content_type].get(content_ref)
+        if not source:
+            print(f"  ⚠ something_new 第 {row_number} 行: 找不到 {content_type} '{content_ref}'")
+            continue
+        entry_key = (content_type, content_ref, update_date)
+        if entry_key in seen_entries:
+            print(f"  ⚠ something_new 第 {row_number} 行: 重复条目 '{content_ref}'")
+            continue
+        seen_entries.add(entry_key)
+
+        if content_type == "song":
+            title = source.get("song_name_jp", "").strip() or content_ref
+            meta = [source.get("album", "").strip(), source.get("album_year", "").strip()]
+            image = source.get("cover", "")
+            href = "songs/index.html?song=" + quote(content_ref, safe="")
+        elif content_type == "live":
+            title = content_ref
+            meta = [normalize_date(source.get("live_date", "")), source.get("live_venue", "").strip()]
+            image = source.get("kv", "").strip() or source.get("poster", "")
+            href = "live/index.html?live=" + quote(content_ref, safe="")
+        elif content_type == "discography":
+            title = source.get("title_jp", "").strip() or source.get("title", "").strip() or content_ref
+            meta = [source.get("type", "").strip(), normalize_date(source.get("release_date", ""))]
+            image = source.get("cover", "")
+            href = "discography/index.html?release=" + quote(content_ref, safe="")
+        else:
+            title = content_ref
+            meta = [source.get("interviewee", "").strip(), normalize_date(source.get("date", ""))]
+            image = source.get("poster", "")
+            href = "interview/index.html?interview=" + quote(content_ref, safe="")
+
+        items.append({
+            "type": content_type,
+            "ref": content_ref,
+            "update_date": update_date,
+            "title": title,
+            "subtitle": " · ".join(part for part in meta if part),
+            "image": root_asset_path(image),
+            "href": href,
+        })
+
+    items.sort(key=lambda item: something_new_date_key(item["update_date"]), reverse=True)
+    js = "// 首页 Something New 数据（自动生成，请勿手动修改）\n"
+    js += "window.SOMETHING_NEW = " + json.dumps(items, ensure_ascii=False, indent=2) + ";\n"
+    with open(OUTPUTS["something_new"], "w", encoding="utf-8") as file:
+        file.write(js)
+    return len(items)
 
 
 # =========================== 2. 歌曲 ===========================
@@ -1021,6 +1144,11 @@ def init_merged_xlsx():
                 print(f"  [OK] {module_key}/{src_name} -> {new_sheet_name}")
         old_wb.close()
 
+    if "something_new" not in wb.sheetnames:
+        ws_new = wb.create_sheet("something_new")
+        ws_new.append(["content_type", "content_ref", "update_date", "show"])
+        print("  [OK] 创建 something_new 模板表")
+
     wb.save(XLSX_PATH)
     print(f"\n合并完成！{merged_count} 个 Sheet 已写入 {XLSX_PATH}")
     return merged_count
@@ -1146,6 +1274,12 @@ def main():
         n = generate_announcements(wb)
         results["公告"] = f"{n} 条"
         print(f"  ✓ announcements.js — {n} 条公告")
+
+    # 首页精选内容
+    if "something_new" in sheets:
+        n = generate_something_new(wb)
+        results["首页精选"] = f"{n} 条"
+        print(f"  ✓ something-new.js — {n} 条精选内容")
 
     # 歌曲
     if "songs" in sheets:

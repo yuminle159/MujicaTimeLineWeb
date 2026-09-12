@@ -8,9 +8,9 @@
   let corpus = null;
   let overlay = null;
   let cloudObserver = null;
-  let hasPlayedAtlasIntro = false;
   let atlasIntroLocked = false;
   let introUnlockTimer = null;
+  const coverageWeight = 0.35;
 
   function escapeHTML(value) {
     const element = document.createElement("div");
@@ -25,26 +25,40 @@
       const data = source[language] || {};
       result.songs[language] = data.track_count || 0;
       (data.terms || []).forEach(function (item) {
-        result[language].set(item.word, { word: item.word, count: item.count, songs: new Map(Object.entries(item.songs || {})) });
+        const songs = new Map(Object.entries(item.songs || {}));
+        result[language].set(item.word, {
+          word: item.word,
+          count: item.count,
+          songs: songs,
+          score: wordCloudScore(songs)
+        });
       });
     });
     return result;
   }
 
+  function wordCloudScore(songs) {
+    const saturatedCount = Array.from(songs.values()).reduce(function (total, count) {
+      return total + Math.log1p(Number(count) || 0);
+    }, 0);
+    return saturatedCount + coverageWeight * Math.log1p(songs.size);
+  }
+
   function entriesFor(language) {
     const entries = Array.from(corpus[language].values()).sort(function (a, b) {
-      return b.count - a.count || b.songs.size - a.songs.size || a.word.localeCompare(b.word);
+      return b.score - a.score || b.count - a.count || b.songs.size - a.songs.size || a.word.localeCompare(b.word);
     });
     const repeated = entries.filter(function (entry) { return entry.count >= 2; });
-    return (repeated.length >= 24 ? repeated : entries).slice(0, 44);
+    return (repeated.length >= 24 ? repeated : entries).slice(0, 50);
   }
 
   function wordSize(entry, entries) {
-    const top = entries[0] ? entries[0].count : 1;
-    const bottom = entries[entries.length - 1] ? entries[entries.length - 1].count : 1;
-    const range = Math.log(top) - Math.log(bottom);
-    const ratio = range ? (Math.log(entry.count) - Math.log(bottom)) / range : 0.5;
-    return Math.round(17 + ratio * 35);
+    const top = entries[0] ? entries[0].score : 1;
+    const bottom = entries[entries.length - 1] ? entries[entries.length - 1].score : 1;
+    const range = top - bottom;
+    const ratio = range ? (entry.score - bottom) / range : 0.5;
+    const fontSize = 17 + ratio * 35;
+    return Math.round(fontSize * (state.language === "jp" ? 1.12 : 1));
   }
 
   function render(options) {
@@ -67,7 +81,7 @@
     overlay.querySelector(".lyrics-atlas-count").textContent = lyricCount + " ORIGINAL TRACKS · " + entries.length + " TERMS";
     if (!keepCloud) {
       overlay.querySelector(".lyrics-atlas-cloud").innerHTML = entries.length ? '<div class="lyrics-atlas-dom-cloud" aria-label="Lyrics word cloud"></div>' : '<p class="lyrics-atlas-empty">NO LYRIC DATA</p>';
-      layoutWordCloud();
+      layoutWordCloud({ animate: true });
     } else {
       syncWordSelection();
     }
@@ -109,7 +123,7 @@
       }).join("") + '</div>';
   }
 
-  function layoutWordCloud() {
+  function layoutWordCloud(options) {
     const cloud = overlay.querySelector(".lyrics-atlas-cloud");
     const wordHost = cloud.querySelector(".lyrics-atlas-dom-cloud");
     const entries = entriesFor(state.language);
@@ -122,8 +136,10 @@
     window.WordCloud.stop();
     wordHost.innerHTML = "";
     if (cloudObserver) cloudObserver.disconnect();
-    const shouldAnimate = !hasPlayedAtlasIntro;
-    hasPlayedAtlasIntro = true;
+    const shouldAnimate = !!(options && options.animate);
+    if (introUnlockTimer) window.clearTimeout(introUnlockTimer);
+    introUnlockTimer = null;
+    if (!shouldAnimate) atlasIntroLocked = false;
     let introAnimationDone = !shouldAnimate;
     let cloudLayoutDone = false;
     let unlockQueued = false;
@@ -144,7 +160,6 @@
     if (shouldAnimate) {
       atlasIntroLocked = true;
       wordHost.classList.add("is-intro-running");
-      if (introUnlockTimer) window.clearTimeout(introUnlockTimer);
       introUnlockTimer = window.setTimeout(function () {
         introAnimationDone = true;
         finishIntroWhenReady();
@@ -169,14 +184,14 @@
     }, { once: true });
     window.WordCloud(wordHost, {
       list: entries.map(function (entry) {
-        return { word: entry.word, weight: entry.count, attributes: { "data-word": entry.word, role: "button", tabindex: "0" } };
+        return { word: entry.word, weight: entry.score, attributes: { "data-word": entry.word, role: "button", tabindex: "0" } };
       }),
       fontFamily: state.language === "jp" ? '"Noto Serif JP", "Yu Mincho", serif' : '"Noto Serif SC", "Songti SC", serif',
       fontWeight: 500,
       color: function (word, count, fontSize, distance) {
         return distance < 0.28 ? "rgba(236, 230, 228, 0.86)" : "rgba(196, 188, 187, 0.66)";
       },
-      weightFactor: function (count) { return wordSize({ count: count }, entries); },
+      weightFactor: function (score) { return wordSize({ score: score }, entries); },
       minSize: 12,
       gridSize: 16,
       backgroundColor: "transparent",
@@ -221,7 +236,7 @@
           return;
         }
         if (atlasIntroLocked) return;
-        const tab = event.target.closest("[data-language]");
+        const tab = event.target.closest(".lyrics-atlas-tabs button[data-language]");
         if (tab) { state.language = tab.dataset.language; state.word = ""; render(); }
         const word = event.target.closest("[data-word]");
         if (word) selectWord(word.dataset.word);
@@ -248,7 +263,7 @@
 
   trigger.addEventListener("click", open);
   window.addEventListener("resize", function () {
-    if (overlay && overlay.classList.contains("active")) layoutWordCloud();
+    if (overlay && overlay.classList.contains("active")) layoutWordCloud({ animate: false });
   });
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && overlay && overlay.classList.contains("active")) close();

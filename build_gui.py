@@ -25,6 +25,7 @@ else:
 # 模块名称映射
 MODULE_NAMES = {
     "announcements":     "公告",
+    "something_new":     "首页精选（Something New）",
     "songs":             "歌曲（Songs）",
     "lives":             "演唱会（Live）",
     "timeline":          "时间线（Timeline）",
@@ -34,9 +35,9 @@ MODULE_NAMES = {
 }
 
 
-def convert_images_to_webp(folder_path, log_func=None, skip_existing_webp=True):
+def convert_images_to_webp(folder_path, log_func=None):
     """将文件夹中的图片转为 WebP 格式并压缩（max_width=1920, quality=75, method=6）
-    :param skip_existing_webp: 如果为 True，跳过已存在同名 .webp 的文件
+    已存在同名 .webp 的文件始终跳过，避免重复转换和覆盖已有图片。
     """
     def log(msg):
         (log_func or print)(msg)
@@ -50,13 +51,15 @@ def convert_images_to_webp(folder_path, log_func=None, skip_existing_webp=True):
     for filename in os.listdir(folder_path):
         if not filename.lower().endswith(supported_formats):
             continue
+        if filename.lower().endswith('.webp'):
+            continue
 
         file_path = os.path.join(folder_path, filename)
         name_without_ext = os.path.splitext(filename)[0]
         webp_path = os.path.join(folder_path, f"{name_without_ext}.webp")
 
         # 跳过已存在 webp 的文件
-        if skip_existing_webp and os.path.exists(webp_path):
+        if os.path.abspath(file_path) != os.path.abspath(webp_path) and os.path.exists(webp_path):
             continue
 
         temp_path = webp_path + ".tmp"
@@ -106,7 +109,7 @@ def discover_sheets():
         return []
 
 
-def run_update(selected_modules, do_webp, log_func, skip_webp=True):
+def run_update(selected_modules, do_webp, log_func):
     """执行数据更新"""
     import importlib.util
 
@@ -114,13 +117,12 @@ def run_update(selected_modules, do_webp, log_func, skip_webp=True):
     if do_webp and HAS_PILLOW:
         log_func("=" * 50)
         log_func("  图片转 WebP 并压缩（max_width=1920, quality=75, method=6）")
-        if skip_webp:
-            log_func("  跳过已存在的 WebP 文件")
+        log_func("  已存在的 WebP 文件会自动跳过")
         log_func("=" * 50)
         for folder_name in ["images", "icons"]:
             folder_path = os.path.join(PROJECT_DIR, folder_name)
             log_func(f"  [{folder_name}]")
-            count = convert_images_to_webp(folder_path, log_func=log_func, skip_existing_webp=skip_webp)
+            count = convert_images_to_webp(folder_path, log_func=log_func)
             log_func(f"  共转换 {count} 张图片")
         log_func("[OK] 图片转 WebP - 完成\n")
 
@@ -151,6 +153,9 @@ def run_update(selected_modules, do_webp, log_func, skip_webp=True):
                     if mod_id == "announcements" and "announcements" in sheets:
                         n = generate_all.generate_announcements(wb)
                         log_func(f"  announcements.js - {n} 条公告")
+                    elif mod_id == "something_new" and "something_new" in sheets:
+                        n = generate_all.generate_something_new(wb)
+                        log_func(f"  something-new.js - {n} 条精选内容")
                     elif mod_id == "songs" and "songs" in sheets:
                         n = generate_all.generate_songs(wb)
                         log_func(f"  songs/data.js - {n} 首歌曲")
@@ -194,7 +199,8 @@ class App:
     def __init__(self, root):
         self.root = root
         root.title(" wijipedia 数据更新工具")
-        root.geometry("560x600")
+        root.geometry("760x720")
+        root.minsize(680, 560)
         root.resizable(True, True)
         root.configure(bg="#0d0d0d")
 
@@ -207,170 +213,107 @@ class App:
         header.pack(pady=(16, 4))
 
         sub = tk.Label(
-            root, text="选择要更新的模块，点击下方按钮执行",
+            root, text="选择一个操作开始，更新过程和结果会显示在下方日志中",
             font=("Microsoft YaHei", 9),
             fg="#666", bg="#0d0d0d",
         )
         sub.pack(pady=(0, 12))
 
-        # 模块选择区域
+        # 数据源状态
         self.modules = discover_sheets()
-        self.vars = {}
+        data_status = "已读取 data.xlsx" if self.modules else "未找到 _data/data.xlsx"
+        tk.Label(root, text=data_status, font=("Microsoft YaHei", 9),
+                 fg="#777" if self.modules else "#ff8080", bg="#0d0d0d").pack(pady=(0, 8))
 
-        frame = tk.Frame(root, bg="#0d0d0d")
-        frame.pack(fill="x", padx=24)
-
-        if not self.modules:
-            tk.Label(frame, text="未找到 _data/data.xlsx", fg="#999", bg="#0d0d0d",
-                     font=("Microsoft YaHei", 10)).pack()
-        else:
-            for m in self.modules:
-                var = tk.BooleanVar(value=True)
-                self.vars[m["id"]] = var
-                cb = tk.Checkbutton(
-                    frame,
-                    text=m["label"],
-                    variable=var,
-                    font=("Microsoft YaHei", 10),
-                    fg="#ddd", bg="#0d0d0d",
-                    selectcolor="#0d0d0d",
-                    activebackground="#0d0d0d",
-                    activeforeground="#ff4d4d",
-                )
-                cb.pack(anchor="w", pady=2)
-
-            # 全选 / 取消
-            btn_frame = tk.Frame(root, bg="#0d0d0d")
-            btn_frame.pack(pady=(8, 0))
-
-            btn_all = tk.Button(
-                btn_frame, text="全选", command=self.select_all,
-                font=("Microsoft YaHei", 9), fg="#ddd", bg="#1a1a1a",
-                relief="flat", padx=12, pady=4, cursor="hand2",
-                activebackground="#2a2a2a", activeforeground="#fff",
-            )
-            btn_all.pack(side="left", padx=4)
-
-            btn_none = tk.Button(
-                btn_frame, text="取消全选", command=self.deselect_all,
-                font=("Microsoft YaHei", 9), fg="#ddd", bg="#1a1a1a",
-                relief="flat", padx=12, pady=4, cursor="hand2",
-                activebackground="#2a2a2a", activeforeground="#fff",
-            )
-            btn_none.pack(side="left", padx=4)
-
-        # 图片转 WebP 选项
-        sep = tk.Frame(root, bg="#2a2a2a", height=1)
-        sep.pack(fill="x", padx=24, pady=(12, 8))
-
-        webp_var = tk.BooleanVar(value=False)
-        self.webp_var = webp_var
-
-        skip_webp_var = tk.BooleanVar(value=True)
-        self.skip_webp_var = skip_webp_var
-
-        if HAS_PILLOW:
-            cb_webp = tk.Checkbutton(
-                root,
-                text="图片转 WebP 并压缩（images + icons 目录）",
-                variable=webp_var,
-                font=("Microsoft YaHei", 10),
-                fg="#ddd", bg="#0d0d0d",
-                selectcolor="#0d0d0d",
-                activebackground="#0d0d0d",
-                activeforeground="#ff4d4d",
-            )
-            cb_webp.pack(anchor="w", padx=24, pady=2)
-
-            cb_skip = tk.Checkbutton(
-                root,
-                text="  跳过已存在的 WebP 文件",
-                variable=skip_webp_var,
-                font=("Microsoft YaHei", 9),
-                fg="#999", bg="#0d0d0d",
-                selectcolor="#0d0d0d",
-                activebackground="#0d0d0d",
-                activeforeground="#ff4d4d",
-            )
-            cb_skip.pack(anchor="w", padx=24, pady=1)
-        else:
-            lbl_no_pil = tk.Label(
-                root,
-                text="图片转 WebP（需要安装 Pillow: pip install Pillow）",
-                font=("Microsoft YaHei", 9),
-                fg="#555", bg="#0d0d0d",
-            )
-            lbl_no_pil.pack(anchor="w", padx=24, pady=2)
-
-        # 执行按钮
+        # 三个固定主操作
         btn_frame_actions = tk.Frame(root, bg="#0d0d0d")
-        btn_frame_actions.pack(pady=(12, 4))
+        btn_frame_actions.pack(fill="x", padx=24, pady=(4, 16))
 
         btn_build = tk.Button(
-            btn_frame_actions, text="开始更新", command=self.build_selected,
+            btn_frame_actions, text="更新所有 data", command=self.update_all_data,
             font=("Microsoft YaHei", 11, "bold"),
             fg="#fff", bg="#ff4d4d",
             relief="flat", padx=24, pady=8, cursor="hand2",
             activebackground="#ff8080", activeforeground="#fff",
         )
-        btn_build.pack(side="left", padx=4)
+        btn_build.pack(side="left", expand=True, fill="x", padx=(0, 5))
+
+        btn_webp = tk.Button(
+            btn_frame_actions, text="把图片转为 WebP", command=self.convert_webp,
+            font=("Microsoft YaHei", 10), fg="#ddd", bg="#1a1a1a",
+            relief="flat", padx=16, pady=8, cursor="hand2",
+            activebackground="#2a2a2a", activeforeground="#fff",
+        )
+        btn_webp.pack(side="left", expand=True, fill="x", padx=5)
 
         btn_scan = tk.Button(
-            btn_frame_actions, text="一键更新所有画廊图片", command=self.scan_gallery,
+            btn_frame_actions, text="一键把所有图片写入画廊", command=self.scan_gallery,
             font=("Microsoft YaHei", 10),
             fg="#ddd", bg="#1a1a1a",
             relief="flat", padx=16, pady=8, cursor="hand2",
             activebackground="#2a2a2a", activeforeground="#fff",
         )
-        btn_scan.pack(side="left", padx=4)
+        btn_scan.pack(side="left", expand=True, fill="x", padx=(5, 0))
 
         # 输出日志
+        log_frame = tk.Frame(root, bg="#0d0d0d")
+        log_frame.pack(fill="both", expand=True, padx=24, pady=(0, 16))
+        tk.Label(log_frame, text="运行日志", anchor="w", font=("Microsoft YaHei", 9),
+                 fg="#999", bg="#0d0d0d").pack(fill="x", pady=(0, 5))
+        output_frame = tk.Frame(log_frame, bg="#141414")
+        output_frame.pack(fill="both", expand=True)
+        scrollbar = tk.Scrollbar(output_frame, relief="flat")
+        scrollbar.pack(side="right", fill="y")
         self.output = tk.Text(
-            root, height=12, font=("Consolas", 9),
+            output_frame, height=20, font=("Consolas", 9),
             bg="#141414", fg="#aaa",
             relief="flat", padx=10, pady=8,
             highlightthickness=1, highlightcolor="#2a2a2a", highlightbackground="#2a2a2a",
+            yscrollcommand=scrollbar.set,
         )
-        self.output.pack(fill="both", expand=True, padx=24, pady=(0, 16))
+        self.output.pack(side="left", fill="both", expand=True)
+        scrollbar.config(command=self.output.yview)
         self.output.insert("end", "就绪。\n")
-
-    def select_all(self):
-        for v in self.vars.values():
-            v.set(True)
-
-    def deselect_all(self):
-        for v in self.vars.values():
-            v.set(False)
 
     def log(self, msg):
         self.output.insert("end", msg + "\n")
         self.output.see("end")
         self.root.update()
 
-    def build_selected(self):
-        selected = [m["id"] for m in self.modules if self.vars[m["id"]].get()]
-        do_webp = self.webp_var.get() if HAS_PILLOW else False
-        skip_webp = self.skip_webp_var.get() if HAS_PILLOW else True
-
-        if not selected and not do_webp:
-            messagebox.showwarning("未选择", "请至少选择一个模块或勾选图片转 WebP。")
-            return
-
+    def _start_log(self, title):
         self.output.delete("1.0", "end")
-        self.log("开始更新...\n")
+        self.log(title + "\n")
+
+    def update_all_data(self):
+        if not self.modules:
+            messagebox.showwarning("无法更新", "未找到 _data/data.xlsx 或可用数据分页。")
+            return
+        self._start_log("开始更新所有 data...\n")
 
         try:
-            run_update(selected, do_webp, self.log, skip_webp=skip_webp)
+            run_update([m["id"] for m in self.modules], False, self.log)
         except Exception as e:
             self.log(f"[FAIL] 执行出错: {e}")
 
         self.log("=" * 50)
-        self.log("  更新完毕！请刷新浏览器查看变化。")
+        self.log("  所有 data 更新完毕！请刷新浏览器查看变化。")
+        self.log("=" * 50)
+
+    def convert_webp(self):
+        if not HAS_PILLOW:
+            messagebox.showwarning("无法转换", "缺少 Pillow，请先安装 Pillow。")
+            return
+        self._start_log("开始把图片转为 WebP...\n")
+        try:
+            run_update([], True, self.log)
+        except Exception as e:
+            self.log(f"[FAIL] 执行出错: {e}")
+        self.log("=" * 50)
+        self.log("  WebP 转换完毕。")
         self.log("=" * 50)
 
     def scan_gallery(self):
-        self.output.delete("1.0", "end")
-        self.log("开始扫描 images/ 文件夹...\n")
+        self._start_log("开始把所有图片写入画廊...\n")
         try:
             sys.path.insert(0, BASE_DIR)
             import generate_all
@@ -379,7 +322,7 @@ class App:
                 self.log("=" * 50)
                 if n > 0:
                     self.log(f"  新增 {n} 张图片，已写入 gallery_images sheet。")
-                    self.log("  请点击「开始更新」来生成新的 gallery/data.js。")
+                    self.log("  接下来请点击「更新所有 data」来生成新的 gallery/data.js。")
                 else:
                     self.log("  无新增图片。")
                 self.log("=" * 50)
@@ -390,6 +333,20 @@ class App:
 
 
 def main():
+    if "--smoke-test-nlp" in sys.argv:
+        sys.path.insert(0, BASE_DIR)
+        try:
+            import generate_all
+            generate_all.require_lexicon_nlp()
+            tokenizer = generate_all.Dictionary(dict="small").create()
+            if not generate_all.japanese_lexicon_tokens("月明かりの世界を歩く", tokenizer):
+                raise RuntimeError("日文分词未返回结果")
+            if not generate_all.chinese_lexicon_tokens("月光照亮世界"):
+                raise RuntimeError("中文分词未返回结果")
+        finally:
+            sys.path.remove(BASE_DIR)
+        return
+
     root = tk.Tk()
     App(root)
     root.mainloop()

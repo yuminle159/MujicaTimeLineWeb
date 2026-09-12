@@ -1,12 +1,23 @@
 # -*- mode: python ; coding: utf-8 -*-
+from PyInstaller.utils.hooks import collect_all
+
+datas = [('F:\\mujicatimelineweb\\generate_all.py', '.')]
+binaries = []
+hiddenimports = ['openpyxl', 'openpyxl.cell', 'openpyxl.worksheet', 'PIL', 'PIL.Image']
+tmp_ret = collect_all('sudachipy')
+datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
+tmp_ret = collect_all('sudachidict_small')
+datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
+tmp_ret = collect_all('jieba')
+datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 
 a = Analysis(
-    ['D:/yumin/web/MujicaTimeLineWeb/build_gui.py'],
+    ['F:\\mujicatimelineweb\\build_gui.py'],
     pathex=[],
-    binaries=[],
-    datas=[('D:/yumin/web/MujicaTimeLineWeb/generate_all.py', '.')],
-    hiddenimports=['openpyxl', 'openpyxl.cell', 'openpyxl.worksheet', 'PIL', 'PIL.Image'],
+    binaries=binaries,
+    datas=datas,
+    hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609111830">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609111537">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609111537">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609111537">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609111537">
+  <link rel="stylesheet" href="style.css?v=202609122252">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609122252">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609122252">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609122252">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609122252">
 </head>
 <body>
   <div class="songs-page">
@@ -50,17 +50,17 @@
     <div class="no-results" id="noResults" style="display:none">没有找到匹配的歌曲</div>
   </div>
 
-  <script src="data.js?v=202609111537"></script>
-  <script src="../discography/data.js?v=202609111537"></script>
-  <script src="../live/data.js?v=202609111537"></script>
-  <script src="../interview/data.js?v=202609111537"></script>
-  <script src="../js/renderMarkdown.js?v=202609111537"></script>
-  <script src="../js/overlay-manager.js?v=202609111537"></script>
-  <script src="../js/interview-overlay.js?v=202609111537"></script>
-  <script src="../js/song-modal.js?v=202609111537"></script>
-  <script src="../js/live-drawer.js?v=202609111537"></script>
-  <script src="../js/discography-modal.js?v=202609111537"></script>
-  <script src="lyrics-atlas-data.js?v=202609111650"></script>
+  <script src="data.js?v=202609122252"></script>
+  <script src="../discography/data.js?v=202609122252"></script>
+  <script src="../live/data.js?v=202609122252"></script>
+  <script src="../interview/data.js?v=202609122252"></script>
+  <script src="../js/renderMarkdown.js?v=202609122252"></script>
+  <script src="../js/overlay-manager.js?v=202609122252"></script>
+  <script src="../js/interview-overlay.js?v=202609122252"></script>
+  <script src="../js/song-modal.js?v=202609122252"></script>
+  <script src="../js/live-drawer.js?v=202609122252"></script>
+  <script src="../js/discography-modal.js?v=202609122252"></script>
+  <script src="lyrics-atlas-data.js?v=202609122252"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
@@ -220,16 +220,28 @@
 
   renderGallery();
 
+  // Something New 入口：使用可读的 song_name 定位，并直接打开歌曲组件。
+  const directSongName = new URLSearchParams(window.location.search).get("song");
+  if (directSongName) {
+    const directIdx = songsData.findIndex(s => s.name === directSongName);
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.searchParams.delete("song");
+    history.replaceState(null, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+    if (directIdx >= 0) {
+      SongModal.open(directIdx, { songs: songsData, discography: discographyData, lives: livesData, updateHash: false });
+    }
+  }
+
   // 哈希自动打开：/songs/index.html#song=HASH_ID
-  if (window.location.hash.startsWith("#song=")) {
+  if (!directSongName && window.location.hash.startsWith("#song=")) {
     const hashId = window.location.hash.slice(6);
     const idx = songsData.findIndex(s => s.hash_id === hashId);
     if (idx >= 0) openModal(idx);
   }
 })();
   </script>
-  <script src="vendor/wordcloud2.js?v=202609111800"></script>
-  <script src="lyrics-atlas.js?v=202609111890"></script>
+  <script src="vendor/wordcloud2.js?v=202609122252"></script>
+  <script src="lyrics-atlas.js?v=202609122252"></script>
 
 
 </body>

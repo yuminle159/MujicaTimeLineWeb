@@ -7,15 +7,10 @@
   <title>唯鸡百科 · wijipedia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="announcements.js?v=202609111537" as="script">
-  <link rel="preload" href="songs/data.js?v=202609111537" as="script">
-  <link rel="preload" href="live/data.js?v=202609111537" as="script">
-  <link rel="preload" href="timeline/data.js?v=202609111537" as="script">
-  <link rel="preload" href="gallery/data.js?v=202609111537" as="script">
-  <link rel="preload" href="interview/data.js?v=202609111537" as="script">
-  <link rel="preload" href="discography/data.js?v=202609111537" as="script">
+  <link rel="preload" href="announcements.js?v=202609122252" as="script">
+  <link rel="preload" href="something-new.js?v=202609122252" as="script">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="nav-style.css?v=202609111537">
+  <link rel="stylesheet" href="nav-style.css?v=202609122252">
 </head>
 <body>
   <div class="silk-background">
@@ -63,14 +58,14 @@
             filter: url(#sharp-emboss);
           }
           @keyframes breathe-gray {
-            0% { transform: translate(-2px, -1px) scale(1); filter: blur(2px); opacity: 0.3; }
-            50% { transform: translate(-8px, -2px) scale(1.02); filter: blur(4px); opacity: 0.6; }
-            100% { transform: translate(-2px, -1px) scale(1); filter: blur(2px); opacity: 0.3; }
+            0% { transform: translate(-2px, -1px) scale(1); opacity: 0.22; }
+            50% { transform: translate(-7px, -2px) scale(1.015); opacity: 0.48; }
+            100% { transform: translate(-2px, -1px) scale(1); opacity: 0.22; }
           }
           @keyframes breathe-dark {
-            0% { transform: translate(2px, 1px) scale(1); filter: blur(2px); opacity: 0.4; }
-            50% { transform: translate(6px, 3px) scale(1.03); filter: blur(6px); opacity: 0.8; }
-            100% { transform: translate(2px, 1px) scale(1); filter: blur(2px); opacity: 0.4; }
+            0% { transform: translate(2px, 1px) scale(1); opacity: 0.3; }
+            50% { transform: translate(6px, 3px) scale(1.02); opacity: 0.65; }
+            100% { transform: translate(2px, 1px) scale(1); opacity: 0.3; }
           }
         </style>
         <linearGradient id="crimson-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -180,6 +175,14 @@
     </a>
   </nav>
 
+  <!-- ================= 首页精选更新入口 ================= -->
+  <button class="something-new-trigger" id="somethingNewTrigger" type="button" aria-controls="somethingNewDrawer" aria-expanded="false" hidden>
+    <span class="something-new-signal" aria-hidden="true"></span>
+    <span class="something-new-trigger-label">SOMETHING NEW</span>
+    <span class="something-new-trigger-count" id="somethingNewCount" aria-live="polite"></span>
+    <span class="something-new-trigger-arrow" aria-hidden="true">&#8594;</span>
+  </button>
+
   <!-- ================= 公告栏 ================= -->
   <div class="archive-transmission" id="drawerTrigger">
     <span class="transmission-label">LATEST DECRYPTION</span>
@@ -202,41 +205,23 @@
     <div class="pagination-bar" id="annPaginationBar"></div>
   </div>
 
+  <!-- ================= Something New 抽屉 ================= -->
+  <aside class="archive-drawer something-new-drawer" id="somethingNewDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-title">SOMETHING_NEW // 最新收录</span>
+      <button class="close-drawer" id="closeSomethingNew" type="button" aria-label="关闭 Something New">&times;</button>
+    </div>
+    <div class="drawer-content something-new-drawer-content" id="somethingNewContent"></div>
+  </aside>
+
   <footer class="nav-footer">
     Ave Mujica · Band &amp; Nonrico
   </footer>
 
-  <script src="announcements.js?v=202609111537"></script>
+  <script src="something-new.js?v=202609122252"></script>
+  <script src="js/home-updates.js?v=202609122252"></script>
+  <script src="announcements.js?v=202609122252"></script>
   <script>
-    // ==================== 后台预加载子页面数据 ====================
-    // 在导航页加载完成后，主动下载并执行所有子页面的 data.js
-    // 确保用户点击进入子页面时数据已在浏览器缓存和内存中，消除卡顿
-    (function() {
-      var dataFiles = [
-        'songs/data.js?v=202608262026',
-        'live/data.js?v=202608262026',
-        'timeline/data.js?v=202608262026',
-        'gallery/data.js?v=202608262026',
-        'interview/data.js?v=202608262026',
-        'discography/data.js?v=202608262026'
-      ];
-      var loadNext = function(i) {
-        if (i >= dataFiles.length) return;
-        var s = document.createElement('script');
-        s.src = dataFiles[i];
-        s.async = false;
-        s.onload = function() { loadNext(i + 1); };
-        s.onerror = function() { loadNext(i + 1); };
-        document.head.appendChild(s);
-      };
-      // 等页面完全就绪后再开始加载，避免阻塞首屏渲染
-      if (document.readyState === 'complete') {
-        loadNext(0);
-      } else {
-        window.addEventListener('load', function() { loadNext(0); });
-      }
-    })();
-
     // ==================== 公告轮播 ====================
     let annIdx = 0;
     const annText = document.getElementById('transmission-text');
