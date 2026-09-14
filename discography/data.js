@@ -78,7 +78,8 @@ const discographyData = [
           "特制BOX",
           "2027春Oml最速先行抽选券",
           "角色卡片",
-          "先着购入活动特典CD"
+          "先着购入活动特典CD",
+          "店铺限定特典Goods"
         ],
         "features": {
           "cd": true,
@@ -282,9 +283,9 @@ const discographyData = [
   },
   {
     "id": "横k鸡狗2bd",
-    "hash_id": "x8DTOKURifz",
+    "hash_id": "ytwmh2wAI72",
     "title": "MyGO!!!!!×Ave Mujica Two Men Live「“moment / memory”」Blu-ray",
-    "title_jp": "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」Blu-ray",
+    "title_jp": "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」",
     "release_date": "2026/9/30",
     "type": "Blu-ray",
     "formats": [
@@ -1384,7 +1385,7 @@ const discographyData = [
     ],
     "label": "Bushiroad Music",
     "description": "首张专辑 收录了包括OP & ED在内的TV动画「BanG Dream! Ave Mujica」所有插入歌，共计7曲",
-    "cover": "",
+    "cover": "../images/完满通常.webp",
     "search_keywords": "完满 动画",
     "chart": {
       "first_day_rank": "—",
@@ -1758,6 +1759,787 @@ const discographyData = [
             "song_name": "天球（そら）のMúsica",
             "content_title": "",
             "duration": "04:39:00",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "鸡动画bd上卷",
+    "hash_id": "NY9MsJv2VE6",
+    "title": "TV动画「BanG Dream! Ave Mujica」Blu-ray上卷",
+    "title_jp": "TVアニメ「BanG Dream! Ave Mujica」Blu-ray 上巻",
+    "release_date": "2025/5/28",
+    "type": "Blu-ray",
+    "formats": [
+      "CD",
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "收录了TV动画「BanG Dream! Ave Mujica」#1~#7。附带的CD为OST，收录了剧中BGM。",
+    "cover": "../images/mjc动画bd上卷.webp",
+    "search_keywords": "动画bd",
+    "chart": {
+      "first_day_rank": "—",
+      "first_week_sales": "3700",
+      "first_week_rank": "#6",
+      "total_sales": "3836",
+      "source": "ORICON WEEKLY ALBUM RANKING 截至2025.7"
+    },
+    "contents": [],
+    "bonus_contents": [
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "sumimi 特典CD",
+        "track_no": "Track 01",
+        "song_name": "Here, the world!",
+        "note": ""
+      },
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "sumimi 特典CD",
+        "track_no": "Track 02",
+        "song_name": "Sweet Escape",
+        "note": ""
+      },
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "sumimi 特典CD",
+        "track_no": "Track 03",
+        "song_name": "Here, the world! -instrumental-",
+        "note": ""
+      },
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "sumimi 特典CD",
+        "track_no": "Track 04",
+        "song_name": "Sweet Escape -instrumental-",
+        "note": ""
+      },
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "特制收纳BOX",
+        "track_no": "SANZIGEN 新绘插画",
+        "song_name": "付Ave Mujica成员复制签名",
+        "note": ""
+      }
+    ],
+    "editions": [
+      {
+        "name": "通常盤",
+        "type": "通常盘",
+        "catalog_no": "BRMM-10924",
+        "price": "19800",
+        "cover": "../images/mjc动画bd上卷.webp",
+        "cover_gallery": [],
+        "format": "CD + Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "特制小册子",
+          "特制贴纸套装",
+          "2026年Talk Event最速先行抽选券",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "TV动画「BanG Dream! Ave Mujica」#1~#7",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "无字幕OP（NCOP）",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "03",
+            "song_name": "",
+            "content_title": "动画开播前特别节目「Ave Mujica: Ante Masquerade」再剪辑版 前篇",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "BanG Dream! Ave Mujica Original Soundtrack Disc 1",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Imprisoned XII -instrumental-",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "Crucifix X -instrumental-",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "鸡动画bd下卷",
+    "hash_id": "vPOGHTHQlqG",
+    "title": "TV动画「BanG Dream! Ave Mujica」Blu-ray下卷",
+    "title_jp": "TVアニメ「BanG Dream! Ave Mujica」Blu-ray 下巻",
+    "release_date": "2025/5/28",
+    "type": "Blu-ray",
+    "formats": [
+      "CD",
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "收录了TV动画「BanG Dream! Ave Mujica」#8~#13。附带的CD为OST，收录了剧中BGM。",
+    "cover": "../images/mjc动画bd下卷.webp",
+    "search_keywords": "动画bd",
+    "chart": {
+      "first_day_rank": "—",
+      "first_week_sales": "3695",
+      "first_week_rank": "#7",
+      "total_sales": "3826",
+      "source": "ORICON WEEKLY ALBUM RANKING 截至2025.7"
+    },
+    "contents": [],
+    "bonus_contents": [
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "sumimi 特典CD",
+        "track_no": "Track 01",
+        "song_name": "Here, the world!",
+        "note": ""
+      },
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "sumimi 特典CD",
+        "track_no": "Track 02",
+        "song_name": "Sweet Escape",
+        "note": ""
+      },
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "sumimi 特典CD",
+        "track_no": "Track 03",
+        "song_name": "Here, the world! -instrumental-",
+        "note": ""
+      },
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "sumimi 特典CD",
+        "track_no": "Track 04",
+        "song_name": "Sweet Escape -instrumental-",
+        "note": ""
+      },
+      {
+        "bonus_id": "上下卷同时购入特典",
+        "disc_name": "特制收纳BOX",
+        "track_no": "SANZIGEN 新绘插画",
+        "song_name": "付Ave Mujica成员复制签名",
+        "note": ""
+      }
+    ],
+    "editions": [
+      {
+        "name": "通常盤",
+        "type": "通常盘",
+        "catalog_no": "BRMM-10925",
+        "price": "19800",
+        "cover": "../images/mjc动画bd下卷.webp",
+        "cover_gallery": [],
+        "format": "CD + Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "特制小册子",
+          "特制贴纸套装",
+          "2026年Talk Event最速先行抽选券",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "TV动画「BanG Dream! Ave Mujica」#8~#13",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "无字幕ED（NCED）",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "03",
+            "song_name": "",
+            "content_title": "动画开播前特别节目「Ave Mujica: Ante Masquerade」再剪辑版 后篇",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "BanG Dream! Ave Mujica Original Soundtrack Disc 2",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "八芒星ダンス -instrumental-",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "顔 -instrumental-",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "天球(そら)のMúsica -instrumental-",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "横k鸡狗1bd",
+    "hash_id": "UTJ9BOGCLxX",
+    "title": "MyGO!!!!!×Ave Mujica 合同Live「わかれ道の、その先へ」Blu-ray",
+    "title_jp": "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」Blu-ray",
+    "release_date": "2025/11/12",
+    "type": "Blu-ray",
+    "formats": [
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "收录2025年4月26日·27日在Kアリーナ横浜举办的MyGO!!!!!×Ave Mujica 合同Live「わかれ道の、その先へ」的映像",
+    "cover": "../images/横k鸡狗1bd完全版.webp",
+    "search_keywords": "横k 鸡狗1 bd",
+    "chart": {
+      "first_day_rank": "",
+      "first_week_sales": "16787",
+      "first_week_rank": "#1",
+      "total_sales": "16,787+",
+      "source": "ORICON WEEKLY ALBUM RANKING Combined sales of DAY1 + DAY2 editions."
+    },
+    "contents": [],
+    "bonus_contents": [],
+    "editions": [
+      {
+        "name": "完全生産限定版",
+        "type": "限定盘",
+        "catalog_no": "BRMM-10970",
+        "price": "26400",
+        "cover": "../images/横k鸡狗1bd完全版.webp",
+        "cover_gallery": [],
+        "format": "CD + Blu-ray + Goods",
+        "distribution": "一般流通",
+        "limited": "数量限定",
+        "bonus": [
+          "特制BOX",
+          "Back Stage Comment映像收录Blu-ray",
+          "八音盒改编CD",
+          "LIVE写真册",
+          "特制主视觉图色纸4张",
+          "MyGO!!!!!×Ave Mujica Two Men Live最速先行抽选券*2",
+          "封面贴纸1张(DAY1 ver.全1种)",
+          "封面贴纸1张(DAY2 ver.全1种)",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": true,
+          "goods": true
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "03",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "Back Stage Comment映像收录Blu-ray",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "壱雫空(Music Box ver.)",
+            "content_title": "",
+            "duration": "05:31:00",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "KiLLKiSS(Music Box ver.)",
+            "content_title": "",
+            "duration": "04:56:00",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "聿日箋秋(Music Box ver.)",
+            "content_title": "",
+            "duration": "06:32:00",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "Georgette Me, Georgette You(Music Box ver.)",
+            "content_title": "",
+            "duration": "05:06:00",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "name": "DAY1 : Petrichor",
+        "type": "DAY1",
+        "catalog_no": "BRMM-10971",
+        "price": "8800",
+        "cover": "../images/横k鸡狗1bdd1.webp",
+        "cover_gallery": [],
+        "format": "Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "MyGO!!!!!×Ave Mujica Two Men Live最速先行抽选券*1",
+          "封面贴纸1张(DAY1 ver.全1种)"
+        ],
+        "features": {
+          "cd": false,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "name": "DAY2 : Geosmin",
+        "type": "DAY2",
+        "catalog_no": "BRMM-10972",
+        "price": "8800",
+        "cover": "../images/横k鸡狗2bdd2.webp",
+        "cover_gallery": [],
+        "format": "Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "MyGO!!!!!×Ave Mujica Two Men Live最速先行抽选券*1",
+          "封面贴纸1张(DAY2 ver.全1种)"
+        ],
+        "features": {
+          "cd": false,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3rd single",
+    "hash_id": "5isAGdc5A3t",
+    "title": "‘S/’ The Way / Sophie",
+    "title_jp": "‘S/’ The Way / Sophie",
+    "release_date": "2025/12/10",
+    "type": "Single",
+    "formats": [
+      "CD",
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "收录了TV动画「卡片战斗!! 先导者 Divinez DELUXE 决胜篇」#11 ED「‘S/’ The Way」与完全新曲「Sophie」",
+    "cover": "../images/slash通常&限定.webp",
+    "search_keywords": "3rd 索菲 打牌",
+    "chart": {
+      "first_day_rank": "#6",
+      "first_week_sales": "19531",
+      "first_week_rank": "#4",
+      "total_sales": "35678",
+      "source": "ORICON WEEKLY ALBUM RANKING 截至2026.9"
+    },
+    "contents": [],
+    "bonus_contents": [
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Doloris ver.",
+        "track_no": "01",
+        "song_name": "Imprisoned XII (Nova Historia ver.)",
+        "note": ""
+      },
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Mortis ver.",
+        "track_no": "01",
+        "song_name": "八芒星ダンス (Nova Historia ver.)",
+        "note": ""
+      },
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Timoris ver.",
+        "track_no": "01",
+        "song_name": "顔 (Nova Historia ver.)",
+        "note": ""
+      },
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Amoris ver.",
+        "track_no": "01",
+        "song_name": "天球(そら)のMúsica (Nova Historia ver.)",
+        "note": ""
+      },
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Oblivionis ver.",
+        "track_no": "01",
+        "song_name": "Crucifix X (Nova Historia ver.)",
+        "note": ""
+      }
+    ],
+    "editions": [
+      {
+        "name": "数量限定生産特装盤",
+        "type": "特装盘",
+        "catalog_no": "BRMM-10999",
+        "price": "17050",
+        "cover": "../images/slash特装.webp",
+        "cover_gallery": [],
+        "format": "CD + Blu-ray + Goods",
+        "distribution": "一般流通",
+        "limited": "数量限定",
+        "bonus": [
+          "亚克力画板1个（共1款）",
+          "特制BOX",
+          "2026年Ave Mujica LIVE TOUR 最速先行抽选券",
+          "角色卡片1张（全5种）",
+          "「卡片战斗!! 先导者」PR 卡 1 张（共 1 种）",
+          "先着购入活动特典CD",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": true,
+          "goods": true
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "'S/' The Way",
+            "content_title": "",
+            "duration": "03:47:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Sophie",
+            "content_title": "",
+            "duration": "03:18:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "'S/' The Way -instrumental-",
+            "content_title": "",
+            "duration": "03:47:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "Sophie -instrumental-",
+            "content_title": "",
+            "duration": "03:18:00",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "Ave Mujica 5th LIVE「Nova Historia」DAY1",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "Ave Mujica 5th LIVE「Nova Historia」DAY2",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "03",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "Ave Mujica 5th LIVE「Nova Historia」DAY1 - 定点录像",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "03",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "Ave Mujica 5th LIVE「Nova Historia」DAY2 - 定点录像",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "name": "Blu-ray付生産限定盤",
+        "type": "限定盘",
+        "catalog_no": "BRMM-11000",
+        "price": "11000",
+        "cover": "../images/slash通常&限定.webp",
+        "cover_gallery": [],
+        "format": "CD + Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "2026年Ave Mujica LIVE TOUR 最速先行抽选券",
+          "角色卡片1张（全5种）",
+          "「卡片战斗!! 先导者」PR 卡 1 张（共 1 种）",
+          "先着购入活动特典CD",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "'S/' The Way",
+            "content_title": "",
+            "duration": "03:47:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Sophie",
+            "content_title": "",
+            "duration": "03:18:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "'S/' The Way -instrumental-",
+            "content_title": "",
+            "duration": "03:47:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "Sophie -instrumental-",
+            "content_title": "",
+            "duration": "03:18:00",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "Ave Mujica 5th LIVE「Nova Historia」DAY1",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "Ave Mujica 5th LIVE「Nova Historia」DAY2",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "name": "通常盤",
+        "type": "通常盘",
+        "catalog_no": "BRMM-11001",
+        "price": "1650",
+        "cover": "../images/slash通常&限定.webp",
+        "cover_gallery": [],
+        "format": "CD",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "2026年Ave Mujica LIVE TOUR 最速先行抽选券",
+          "角色卡片1张（全5种）",
+          "「卡片战斗!! 先导者」PR 卡 1 张（共 1 种）",
+          "先着购入活动特典CD",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": false,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "'S/' The Way",
+            "content_title": "",
+            "duration": "03:47:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Sophie",
+            "content_title": "",
+            "duration": "03:18:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "'S/' The Way -instrumental-",
+            "content_title": "",
+            "duration": "03:47:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "Sophie -instrumental-",
+            "content_title": "",
+            "duration": "03:18:00",
             "note": ""
           }
         ]

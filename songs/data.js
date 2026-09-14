@@ -825,8 +825,8 @@ const songsData = [
     arranger: "高橋涼 (SUPA LOVE)",
     first_stage: "Ave Mujica 5th LIVE「Nova Historia」DAY1",
     mv_url: "https://www.bilibili.com/video/BV1EvcdenE9h",
-    lyrics_jp: "",
-    lyrics_cn: "",
+    lyrics_jp: "さやめく光は 夢見る悪魔か\\n遠き予言者なのか\\n仕掛けられたアレゴリーが動き出したこの宙（そら）\\nエレメンタル覗くのは\\n \\n天球の Blue World そこに生きる者 \\n冒険者よ 共にゆこう さあ いざ\\n \\nその眼が捕える その眼が創る その眼が愛する 時代（とき）よ\\n謎めくは運命（さだめ） いま 変えてゆくのさ\\n \\nDIVINE DIVINE 闇夜を貫く眩い Vision（未来）へ\\n輝ける新たな真実を描いて\\n \\n \\n \\nささやかなことから始まる破滅が\\n人を悲哀へと\\n狂おしいほど疲れ切った魂を蝕むあからさまな現実よ\\n \\n境目の Cruel World そこに生きる者\\nなにもかもが正しくなくてもいい\\n \\nその瞳に惹かれる その瞳に歌う その瞳に見つめる 君よ\\n同じ悲しみに いま 寄り添いたい\\n \\nDIVINE DIVINE震える想い 張り裂けそうで\\nああ 忘れないで 本当の心だけ抱きしめて\\n \\n \\n \\nDIVINE, so DIVINE\\n \\n \\n \\n歴史の狭間 揺れる世界で 寂しさが人を繋ぐのかもしれない\\nぬくもりの中で また 汚れた\\n生きてゆくため そう そのために 理由が 答えが 欲しいのか 何故\\n嗚呼 蒼き熱情よ\\nならば ならば 教えてくれ\\n \\n \\n \\nその眼が捕える その眼が創る その眼が愛する 時代（とき）よ\\n謎めくは運命（さだめ） いま 変えてゆくのさ\\n \\nDIVINE DIVINE闇夜を貫く眩い Vision（未来）へ\\n輝ける新たな真実を描いて",
+    lyrics_cn: "沙沙低语的光芒 是做梦的恶魔吗\\n还是遥远的预言者呢\\n这片天空中 被布置好的寓言开始运转\\n窥视着元素的是\\n \\n天球之上的 Blue World 生活于其中的人们\\n冒险者啊 一起前行吧 来吧 出发\\n \\n那双眼所捕捉 那双眼所创造 那双眼所爱的 时代啊\\n神秘莫测的正是命运 此刻 逐渐改变\\n \\nDIVINE DIVINE 向着那贯穿暗夜的耀眼 Vision（未来）\\n描绘那闪耀的崭新真实\\n \\n \\n \\n从微不足道之事开始的毁灭\\n将人引向悲哀\\n侵蚀着疲惫得近乎疯狂的灵魂的赤裸裸的现实啊\\n \\n边界上的 Cruel World 生活于其中的人们\\n一切即便都不正确也无妨\\n \\n被那双眼吸引 向那双眼歌唱 凝望那双眼的 你啊\\n想要在此刻 依偎于同样的悲伤\\n \\nDIVINE DIVINE 颤抖的思念几近迸裂\\n啊 请不要忘记 只拥抱那颗真正的心\\n \\n \\n \\nDIVINE, so DIVINE\\n \\n \\n \\n在历史的夹缝中 摇荡的世界里 也许是寂寞将人们相连\\n在温暖之中 又染上了污秽\\n为了活下去 是的 正因如此 才想要理由 想要答案吗 为何\\n啊啊 苍蓝的热情啊\\n那么 那么 请告诉我\\n \\n \\n \\n那双眼所捕捉 那双眼所创造 那双眼所爱的 时代啊\\n命运正是神秘莫测 此刻 逐渐改变\\n \\nDIVINE DIVINE 向着那贯穿暗夜的耀眼 Vision（未来）\\n描绘那闪耀的崭新真实",
     search_keywords: "迪歪，神圣",
     appearances: ["Ave Música"],
     comments: [
@@ -1086,8 +1086,8 @@ const songsData = [
     arranger: "Diggy-MO' • 木下龍平(SUPA LOVE)",
     first_stage: "Ave Mujica 5th LIVE「Nova Historia」DAY1",
     mv_url: "https://www.bilibili.com/video/BV1LmmLBpEAs",
-    lyrics_jp: "",
-    lyrics_cn: "",
+    lyrics_jp: "心を乱さないで　ねぇ　ロゼ\\nxs and os\nmystic terrorist　を宿して\\n世界を呑み込んで　変わる夢の色\\nほくそ笑むカードが映し出すの\\n未来へ\\n \\nYes,\nS-L-A-S-H,  'S/' The Way\\nYes,\nS-L-A-S-H,  'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H,  'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H,  'S/' The Way\\n \\nうそみたいなほんとを見せてあげるわ　いま　いま\\nそう　いま\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\nさあ　手にしたいんだ　new [new], new sky\\n塗り替えてく　[cool], cool, get up\\n求める強さは\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n満たされてく　あの月のように\\nねぇ　知ってるでしょ\\n \\n \\n \\n裂けた天（そら）　ほら　また堕とされて\\n誰が為 踊る夜の　mas?uerade\\n欲しいの　欲しいわね　ああ　望むまま\\nあなたがヴェールを剥がしてゆく\\n震えて\\n \\nYes,\nS-L-A-S-H,  'S/' The Way\\n \\n時折り　正しさなんて退屈だわ\\nもうこれ以上 もてあまさないで\\n異様な熱情\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\n研ぎ澄ます　i do [do], do me right\\n見つめている　[lu], lu, live up\\n輝く刹那は\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n目醒めてゆく\\n世界が少しだけ　静かになる\\n \\n \\n \\nそういま \nnow the time\\n \\n'S/'\nEcstasy Burn i challenge you\\n手にしたいんだ　new [new], new sky\\n塗り替えてく　[cool], cool, get up\\n求める強さは\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n満たされてく　あの月のように\\n目醒めて　'S/'\\n世界が止まって　いま　わたしのものになる\\n \\n \\n \\nYes,\nS-L-A-S-H, 'S/' The Way\\nYes,\nS-L-A-S-H, 'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H, 'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H, 'S/' The Way\\nThe Way",
+    lyrics_cn: "不要扰乱我心 呐 Rosé\\n怀有xs and os mystic terrorist\\n吞噬世界 变换的梦之色\\n暗自窃笑的卡片映照出的\\n向着未来\\n \\nYes,\nS-L-A-S-H,  'S/' The Way\\nYes,\nS-L-A-S-H,  'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H,  'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H,  'S/' The Way\\n \\n让你看看谎言般的真实吧 现在 现在\\n是的 就现在\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\n来吧 我想要得到 new [new], new sky\\n重新描绘 [cool], cool, get up\\n所追求的强大\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n逐渐盈满 仿佛那轮月亮\\n呐 你知道的吧\\n \\n \\n \\n裂开的天空 看 再次被击落\\n为谁起舞的夜之mas？uerade\\n是想要的吧 任凭所愿\\n你逐渐揭开面纱\\n颤抖吧\\n \\nYes,\nS-L-A-S-H, 'S/' The Way\\n \\n时而觉得 所谓正确真是无趣\\n别再让它无处安放\\n这异样的热情\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\n磨得锐利 i do [do], do me right\\n凝视着 [lu], lu, live up\\n闪耀的刹那\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n逐渐醒来\\n世界变得安静了少许\\n \\n \\n \\n是的 就现在 now the time\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\n我想要得到 new [new], new sky\\n重新描绘 [cool], cool, get up\\n所追求的强大\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n逐渐盈满 仿佛那轮月亮\\n醒来吧 'S/'\\n世界停转 此刻 归我所有\\n \\n \\n \\nYes,\nS-L-A-S-H, 'S/' The Way\\nYes,\nS-L-A-S-H, 'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H, 'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H, 'S/' The Way\\nThe Way",
     search_keywords: "收收味，s the way",
     appearances: ["'S/' The Way / Sophie"],
     comments: [
@@ -1196,8 +1196,8 @@ const songsData = [
     arranger: "Diggy-MO'",
     first_stage: "Coming Soon…",
     mv_url: "https://www.bilibili.com/video/BV18LjB6eEYm",
-    lyrics_jp: "風よ 空よ 海よ 隙間に滑り込め\\n星よ 時代（とき）よ 真実（ひかり）よ 眼差しの奥で\\n\\n燃えゆく命 駆け抜ける短さに\\n嘲う世界 闇を暴け\\n\\nBlue, Blue, Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくら晒されて\\n震える夜を越え いま儚く消えた声\\n\\n\\n\\n何故に 何故に こんなに届かない 苛立ち\\n足りない 足りない 言葉じゃ こんなんじゃ感じない\\n\\nyour head up... stand up...\\n神のいないこの天（そら）\\n\\nBlue,Blue,Blue World So Cruel World\\n立ち向かってゆく ぼくら約束の果て\\n美しい夜を越え さあ\\n\\n確かなもの探していた 打ちひしがれて\\n運命を切り拓け\\n受け入れられないものを変えてゆけると\\n信じたいのに…信じたいのに…\\n信じていたのに\\n\\n\\n\\nclose to you\\nただ終わりへと向かってゆくだけのその哀しみに\\n震える君を抱きしめ\\n\\n追いかける\\nBlue,Blue,Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくらそのままで\\n震える夜を越え 嗚呼\\nいま",
-    lyrics_cn: "风儿 天空 大海 滑入缝隙之中\\n星辰 时代 真相 在那眼神深处\\n\\n持续燃烧的生命 如疾驰般短暂\\n在这嘲笑一切的世界上 暴露黑暗吧\\n\\nBlue, Blue, Blue World The Whole Blue World\\n逐渐粉碎凋零的梦境 让我们无所遁形\\n穿越颤抖的黑夜 此刻 声音幻影般消失\\n\\n\\n\\n为何 为何 如此地无法传达 这焦躁与不安\\n不够 不够 仅凭语言 无法让我感受到\\n\\nyour head up... stand up...\\n神明不在的、这片天空\\n\\nBlue, Blue, Blue World So Cruel World\\n我们挺身面对 向我们约定的尽头\\n穿越美丽的黑夜 来吧\\n\\n即便心力交瘁 我仍在寻找确定之物\\n为了开拓命运\\n为了改变无法接受的事情\\n想要相信…想要相信…\\n曾经相信\\n\\n\\n\\nclose to you\\n在那份只是逐渐走向终结的哀伤中\\n抱紧颤抖的你\\n\\n追逐\\nBlue, Blue, Blue World The Whole Blue World\\n逐渐粉碎凋零的梦境 我们就这样\\n穿越颤抖的黑夜 啊啊\\n如今",
+    lyrics_jp: "風よ 空よ 海よ 隙間に滑り込め\\n星よ 時代（とき）よ 真実（ひかり）よ\n眼差しの奥で\\n \\n燃えゆく命 駆け抜ける短さに\\n嘲う世界 闇を暴け\\n \\nBlue, Blue, Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくら晒されて\\n震える夜を越え いま儚く消えた声\\n \\n \\n \\n何故に 何故に こんなに届かない\n苛立ち\\n足りない 足りない 言葉じゃ\nこんなんじゃ感じない\\n \\nyour head up... stand up...\\n神のいないこの天（そら）\\n \\nBlue,Blue,Blue World So Cruel World\\n立ち向かってゆく ぼくら約束の果て\\n美しい夜を越え さあ\\n \\n \\n \\n確かなもの探していた 打ちひしがれて\\n運命を切り拓け\\n受け入れられないものを変えてゆけると\\n信じたいのに…信じたいのに…\\n信じていたのに\\n \\n \\n \\nclose to\nyou\\nただ終わりへと向かってゆくだけのその哀しみに\\n震える君を抱きしめ\\n \\n追いかける\\nBlue,Blue,Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくらそのままで\\n震える夜を越え 嗚呼\\nいま",
+    lyrics_cn: "风啊 天空啊 大海啊 滑入缝隙之中吧\\n星啊 时光啊 真实（光）啊 在眼神深处\\n \\n持续燃烧的生命 在飞驰而过的短暂中\\n嗤笑着的世界 揭露黑暗吧\\n \\nBlue, Blue, Blue World The Whole Blue World\\n逐渐破碎的梦 我们暴露其中\\n越过颤抖的夜 此刻虚幻消失的声音\\n \\n \\n \\n为何 为何 如此无法传达 焦躁\\n不够 不够 仅凭语言 这样根本感受不到\\n \\nyour head up... stand up...\\n没有神明的这片天空\\n \\nBlue, Blue, Blue World So Cruel World\\n挺身面对 向我们约定的尽头\\n穿越美丽的黑夜 来吧\\n \\n \\n \\n寻找着确切之物 却深受打击\\n开辟命运吧\\n相信能改变无法接受之事\\n明明想要相信…明明想要相信…\\n明明曾经相信\\n \\n \\n \\nclose to\nyou\\n在那份只是逐渐走向终结的哀伤中\\n抱紧颤抖的你\\n \\n追逐\\nBlue, Blue, Blue World The Whole Blue World\\n逐渐破碎的梦 我们就这样 \\n越过颤抖的夜晚 啊啊\\n此刻",
     search_keywords: "蓝世界，姨妈",
     appearances: ["Ave Música"],
     comments: [
@@ -1248,6 +1248,29 @@ const songsData = [
     appearances: [],
     comments: [
       { text: "GEMN「【推しの子】」第2期 OP", source: "", from: "Originally by", date: "" }
+    ],
+    live_history: []
+  },
+  {
+    name: "A Song Of Romance",
+    name_jp: "A Song Of Romance",
+    hash_id: "lM9g1g0VGCA",
+    album: "Digital Single",
+    album_year: "2026",
+    release_date: "2026/9/14",
+    cover: "../images/神名限定cover.webp",
+    type: "Original",
+    lyricist: "Diggy-MO'",
+    composer: "Diggy-MO’ • ÐIK",
+    arranger: "Diggy-MO’",
+    first_stage: "Coming Soon…",
+    mv_url: "",
+    lyrics_jp: "ざわめく海  哀しい幻\\n堕ちるように昇ってゆく愛  still burnin’\\n鮮やかな闇を描くこの天(そら)に\\nまた わたしの吐息を許すのなら\\n巡り巡る星よ\\n時代(とき)の波間に来て\\n生まれ変わって もういちど\\nさあ わたしの傷口にキスをして\\nloneliness, loneliness,  baby, let me hear you\\nso, let me hear you sing ‘A Song Of Romance’\\nloneliness,  baby, let me hear you\\nplease, let me hear you sing ‘A Song Of Romance’\\nキスをして  さあ 癒して  キスをして\\n甦れば\\n真実に近づけると believe\\nまた自由に 自由になれると  still dreamin’\\n追憶の君を辿れば わたしも同じなの\\n理解(わか)ってあげられたはずなのに\\n揺れる揺れる星を\\nそっと 抱き寄せて\\n孤独をただ分け合うように\\nそうね きっとみんな寂しいのね\\nwho am i…\\noh, who am i…\\nalienation, emptiness,\\nfrom despair to where…\\nhappiness, loneliness,\\nbeyond,  beyond,\\n巡り巡る星よ\\n時代(とき)の波間に来て\\n生まれ変わって もういちど\\n君に出逢えたなら\\n傷だらけの星を\\nそっと 抱き寄せて\\n孤独をただ分け合うように\\n赤裸々に\\n…sing ‘A Song Of Romance’\\nloneliness,  baby, let me hear you\\nplease, let me hear you sing ‘A Song Of Romance’",
+    lyrics_cn: "喧嚣翻涌的海 悲伤的幻影\\n如坠落般不断升腾的爱 still burnin’\\n描绘鲜明黑暗的这片天空中\\n若能再次容许我的呼吸\\n轮回运转的星啊\\n来到时光的波涛间\\n重获新生 再一次\\n来吧 亲吻我的伤口\\nloneliness, loneliness, baby, let me hear you\\nso, let me hear you sing ‘A Song Of Romance’\\nloneliness, baby, let me hear you\\nplease, let me hear you sing ‘A Song Of Romance’\\n亲吻我 来吧 治愈我 亲吻我\\n若能复苏\\n就能接近真实 believe\\n就能再次自由 变得自由 still dreamin’\\n追寻记忆中的你 我也是一样啊\\n明明本应能理解你\\n将那摇曳不定的星\\n轻轻地拥入怀中\\n仿佛只是在彼此分担孤独\\n是啊 想必大家都很寂寞\\nwho am i…\\noh, who am i…\\nalienation, emptiness,\\nfrom despair to where…\\nhappiness, loneliness,\\nbeyond, beyond,\\n轮回运转的星啊\\n来到时光的波涛间\\n重获新生 再一次\\n若能与你相遇\\n将那伤痕累累的星\\n轻轻地拥入怀中\\n仿佛只是在彼此分担孤独\\n无遮无掩地\\n…sing ‘A Song Of Romance’\\nloneliness, baby, let me hear you\\nplease, let me hear you sing ‘A Song Of Romance’",
+    search_keywords: "浪漫，电影",
+    appearances: [],
+    comments: [
+      { text: "电影「BanG Dream! Ave Mujica prima aurora」插入歌", source: "", from: "Remark", date: "" }
     ],
     live_history: []
   }

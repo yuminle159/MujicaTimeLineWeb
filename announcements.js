@@ -6,6 +6,16 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.14",
+    "msg": "内容更新请见Something New推送，本板块记录公告&功能更新",
+    "pinned": true
+  },
+  {
+    "date": "2026.09.14",
+    "msg": "1.Live数据分析内容优化 2.Songs词云内容优化",
+    "pinned": false
+  },
+  {
     "date": "2026.09.11",
     "msg": "1.lives新增数据分析模块优化 2.新增discography子页面，收集实体光盘信息 3.interview新增多篇原文&扫图 4.共享组件重构",
     "pinned": false
