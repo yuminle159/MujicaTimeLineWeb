@@ -118,7 +118,7 @@
       '<div class="shared-song-comment-body"><div class="shared-song-comment-text">' + commentHTML(currentComments[0]) + '</div></div></section>';
   }
 
-  function renderLyrics(song) {
+  function renderLyrics(song, expandForMissingHistory) {
     if (!song.lyrics_jp && !song.lyrics_cn) return "";
     const jp = (song.lyrics_jp || "").split("\\n");
     const cn = (song.lyrics_cn || "").split("\\n");
@@ -127,7 +127,7 @@
       const empty = !(jp[index] || "").trim() && !(cn[index] || "").trim();
       rows.push('<div class="shared-song-lyrics-row' + (empty ? ' is-empty' : '') + '"><span>' + escapeHTML(jp[index] || "") + '</span><span>' + escapeHTML(cn[index] || "") + '</span></div>');
     }
-    return '<section class="shared-song-section shared-song-lyrics"><div class="shared-song-section-head"><h3>Lyrics</h3><div class="shared-song-lyrics-actions"><button type="button" data-song-action="lyrics-mode">Lyrics Mode</button><button type="button" data-song-action="copy">&#128203; 复制</button></div></div><div class="shared-song-lyrics-columns">' + rows.join("") + '</div></section>';
+    return '<section class="shared-song-section shared-song-lyrics' + (expandForMissingHistory ? ' is-expanded' : '') + '"><div class="shared-song-section-head"><h3>Lyrics</h3><div class="shared-song-lyrics-actions"><button type="button" data-song-action="lyrics-mode">Lyrics Mode</button><button type="button" data-song-action="copy">&#128203; 复制</button></div></div><div class="shared-song-lyrics-columns">' + rows.join("") + '</div></section>';
   }
 
   function renderHistory(song) {
@@ -184,7 +184,8 @@
       currentOptions = settings;
       currentSong = song;
       renderLeft(song);
-      right.innerHTML = renderComments(song) + renderLyrics(song) + renderHistory(song) || '<div class="shared-song-empty">暂无更多信息</div>';
+      const hasLiveHistory = !!(song.live_history && song.live_history.length);
+      right.innerHTML = renderComments(song) + renderLyrics(song, !hasLiveHistory) + renderHistory(song) || '<div class="shared-song-empty">暂无更多信息</div>';
       wireActions();
       right.scrollTop = savedScrollTop;
       overlay.classList.add("open");

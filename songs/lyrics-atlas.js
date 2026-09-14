@@ -4,13 +4,15 @@
   const trigger = document.getElementById("lyricsAtlasTrigger");
   if (!trigger || typeof songsData === "undefined") return;
 
-  const state = { language: "jp", word: "" };
+  const state = { language: "jp", word: "", detailView: "summary", sourcePage: 0 };
   let corpus = null;
   let overlay = null;
   let cloudObserver = null;
   let atlasIntroLocked = false;
   let introUnlockTimer = null;
   const coverageWeight = 0.35;
+  const sourcePreviewCount = 5;
+  const sourcePageSize = 10;
 
   function escapeHTML(value) {
     const element = document.createElement("div");
@@ -30,6 +32,7 @@
           word: item.word,
           count: item.count,
           songs: songs,
+          variants: new Map(Object.entries(item.variants || {})),
           score: wordCloudScore(songs)
         });
       });
@@ -61,6 +64,44 @@
     return Math.round(fontSize * (state.language === "jp" ? 1.12 : 1));
   }
 
+  function sourcesFor(active) {
+    return Array.from(active.songs.entries()).map(function (pair) {
+      const song = songsData.find(function (item) { return item.hash_id === pair[0]; });
+      return song ? { song: song, count: pair[1] } : null;
+    }).filter(Boolean).sort(function (a, b) { return b.count - a.count; });
+  }
+
+  function sourceButtonHTML(item) {
+    return '<button type="button" data-song="' + escapeHTML(item.song.hash_id) + '"><span>' + escapeHTML(item.song.name_jp || item.song.name) + '</span><small>&#215;' + item.count + '</small></button>';
+  }
+
+  function detailHTML(active) {
+    const sources = sourcesFor(active);
+    if (state.detailView === "index") return sourceIndexHTML(active, sources);
+    const variants = Array.from(active.variants.entries()).sort(function (a, b) { return b[1] - a[1] || a[0].localeCompare(b[0]); });
+    const showVariants = variants.length > 1 || (variants[0] && variants[0][0] !== active.word);
+    const variantHTML = showVariants
+      ? '<div class="lyrics-atlas-detail-label lyrics-atlas-variant-label">ACTUAL TERMS</div><div class="lyrics-atlas-variant-list">' + variants.map(function (item) {
+        return '<span><b>' + escapeHTML(item[0]) + '</b><small>×' + item[1] + '</small></span>';
+      }).join("") + '</div>'
+      : '';
+    const preview = sources.slice(0, sourcePreviewCount);
+    const viewAll = sources.length > sourcePreviewCount
+      ? '<button type="button" class="lyrics-atlas-view-all" data-atlas-action="show-index">VIEW ALL ' + sources.length + ' TRACKS <span>&rarr;</span></button>'
+      : '';
+    return '<div class="lyrics-atlas-detail-word">' + escapeHTML(active.word) + '</div><div class="lyrics-atlas-detail-meta">' + active.count + ' OCCURRENCES &middot; ' + active.songs.size + ' TRACKS</div>' + variantHTML + '<div class="lyrics-atlas-detail-rule"></div><div class="lyrics-atlas-detail-label">SONG INDEX</div><div class="lyrics-atlas-song-list">' + preview.map(sourceButtonHTML).join("") + '</div>' + viewAll;
+  }
+
+  function sourceIndexHTML(active, sources) {
+    const pageCount = Math.ceil(sources.length / sourcePageSize);
+    const page = Math.min(Math.max(state.sourcePage, 0), pageCount - 1);
+    const pageSources = sources.slice(page * sourcePageSize, (page + 1) * sourcePageSize);
+    const paging = pageCount > 1
+      ? '<div class="lyrics-atlas-source-pagination"><button type="button" data-atlas-action="previous-page"' + (page === 0 ? ' disabled' : '') + '>&larr;</button><span>' + (page + 1) + ' / ' + pageCount + '</span><button type="button" data-atlas-action="next-page"' + (page === pageCount - 1 ? ' disabled' : '') + '>&rarr;</button></div>'
+      : '';
+    return '<button type="button" class="lyrics-atlas-detail-back" data-atlas-action="show-summary">&larr; ' + escapeHTML(active.word) + '</button><div class="lyrics-atlas-detail-label lyrics-atlas-source-title">COMPLETE SONG INDEX</div><div class="lyrics-atlas-detail-meta">' + sources.length + ' TRACKS</div><div class="lyrics-atlas-song-list lyrics-atlas-song-grid">' + pageSources.map(sourceButtonHTML).join("") + '</div>' + paging;
+  }
+
   function render(options) {
     const keepCloud = options && options.keepCloud;
     const language = state.language;
@@ -69,10 +110,6 @@
     const active = entries.find(function (entry) { return entry.word === state.word; }) || null;
     const lyricCount = corpus.songs[language];
     overlay.dataset.language = language;
-    const sources = active ? Array.from(active.songs.entries()).map(function (pair) {
-      const song = songsData.find(function (item) { return item.hash_id === pair[0]; });
-      return song ? { song: song, count: pair[1] } : null;
-    }).filter(Boolean).sort(function (a, b) { return b.count - a.count; }).slice(0, 8) : [];
 
     overlay.querySelector(".lyrics-atlas-tabs").innerHTML =
       '<button type="button" data-language="jp" class="' + (language === "jp" ? 'active' : '') + '">日本語</button>' +
@@ -86,9 +123,7 @@
       syncWordSelection();
     }
     overlay.querySelector(".lyrics-atlas-detail").innerHTML = active
-      ? '<div class="lyrics-atlas-detail-word">' + escapeHTML(active.word) + '</div><div class="lyrics-atlas-detail-meta">' + active.count + ' OCCURRENCES · ' + active.songs.size + ' TRACKS</div><div class="lyrics-atlas-detail-rule"></div><div class="lyrics-atlas-detail-label">SONG INDEX</div><div class="lyrics-atlas-song-list">' + sources.map(function (item) {
-          return '<button type="button" data-song="' + escapeHTML(item.song.hash_id) + '"><span>' + escapeHTML(item.song.name_jp || item.song.name) + '</span><small>×' + item.count + '</small></button>';
-        }).join("") + '</div>'
+      ? detailHTML(active)
       : '<div class="lyrics-atlas-detail-empty"><span>SELECT A WORD</span><p>查看词频和它出现过的原创曲目。</p></div>';
   }
 
@@ -106,6 +141,8 @@
   function selectWord(word) {
     if (atlasIntroLocked) return;
     state.word = word;
+    state.detailView = "summary";
+    state.sourcePage = 0;
     syncWordSelection();
     renderSelectedWordDetail();
   }
@@ -113,14 +150,7 @@
   function renderSelectedWordDetail() {
     const active = entriesFor(state.language).find(function (entry) { return entry.word === state.word; }) || null;
     if (!active) return;
-    const sources = Array.from(active.songs.entries()).map(function (pair) {
-      const song = songsData.find(function (item) { return item.hash_id === pair[0]; });
-      return song ? { song: song, count: pair[1] } : null;
-    }).filter(Boolean).sort(function (a, b) { return b.count - a.count; }).slice(0, 8);
-    overlay.querySelector(".lyrics-atlas-detail").innerHTML =
-      '<div class="lyrics-atlas-detail-word">' + escapeHTML(active.word) + '</div><div class="lyrics-atlas-detail-meta">' + active.count + ' OCCURRENCES · ' + active.songs.size + ' TRACKS</div><div class="lyrics-atlas-detail-rule"></div><div class="lyrics-atlas-detail-label">SONG INDEX</div><div class="lyrics-atlas-song-list">' + sources.map(function (item) {
-        return '<button type="button" data-song="' + escapeHTML(item.song.hash_id) + '"><span>' + escapeHTML(item.song.name_jp || item.song.name) + '</span><small>×' + item.count + '</small></button>';
-      }).join("") + '</div>';
+    overlay.querySelector(".lyrics-atlas-detail").innerHTML = detailHTML(active);
   }
 
   function layoutWordCloud(options) {
@@ -237,7 +267,16 @@
         }
         if (atlasIntroLocked) return;
         const tab = event.target.closest(".lyrics-atlas-tabs button[data-language]");
-        if (tab) { state.language = tab.dataset.language; state.word = ""; render(); }
+        if (tab) { state.language = tab.dataset.language; state.word = ""; state.detailView = "summary"; state.sourcePage = 0; render(); }
+        const action = event.target.closest("[data-atlas-action]");
+        if (action) {
+          if (action.dataset.atlasAction === "show-index") { state.detailView = "index"; state.sourcePage = 0; }
+          if (action.dataset.atlasAction === "show-summary") state.detailView = "summary";
+          if (action.dataset.atlasAction === "previous-page") state.sourcePage -= 1;
+          if (action.dataset.atlasAction === "next-page") state.sourcePage += 1;
+          renderSelectedWordDetail();
+          return;
+        }
         const word = event.target.closest("[data-word]");
         if (word) selectWord(word.dataset.word);
         const songButton = event.target.closest("[data-song]");

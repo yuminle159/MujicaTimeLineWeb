@@ -468,10 +468,12 @@ def require_lexicon_nlp():
 
 
 def lyrics_clean_text(text):
-    return re.sub(r"[（(][^）)]*[）)]", " ", text or "")
+    # 歌词表使用字面量 "\\n" 保存换行；先还原它，避免其中的 n 与下一词粘连。
+    text = (text or "").replace("\\n", "\n")
+    return re.sub(r"[（(][^）)]*[）)]", " ", text)
 
 
-def japanese_lexicon_tokens(text, tokenizer):
+def japanese_lexicon_tokens(text, tokenizer, furigana_rules=None):
     """保留日语实词，并用词典形合并动词、形容词的活用。"""
     keep_pos = {"名詞", "動詞", "形容詞", "副詞"}
     tokens = []
@@ -491,6 +493,19 @@ def japanese_lexicon_tokens(text, tokenizer):
         if normalized in LEXICON_DEFAULT_STOP_WORDS["jp"] or normalized in LEXICON_DEFAULT_STOP_WORDS["en"]:
             continue
         tokens.append(normalized)
+
+    # 注音规则在分词后替换为专用标记。这样「宇宙（そら）」和
+    # 「大宇宙（おおぞら）」即使分词结果都含「宇宙」，仍能保留不同读音。
+    for rule in furigana_rules or []:
+        annotated_text = (text or "").replace("\\n", "\n").replace("(", "（").replace(")", "）")
+        occurrence_count = annotated_text.count(rule["actual"])
+        for _ in range(occurrence_count):
+            source_parts = rule["source_parts"]
+            for index in range(len(tokens) - len(source_parts) + 1):
+                if tokens[index:index + len(source_parts)] == source_parts:
+                    del tokens[index:index + len(source_parts)]
+                    break
+            tokens.append(rule["marker"])
     return tokens
 
 
@@ -513,7 +528,110 @@ def chinese_lexicon_tokens(text):
     return tokens
 
 
-def generate_lyrics_atlas_data(songs):
+def normalize_lexicon_rule_term(value):
+    """标准化规则与分词的匹配键，但保留 display 的原始写法。"""
+    term = str(value or "").strip()
+    return term.lower() if term.isascii() else term
+
+
+def parse_lyrics_atlas_rules(wb, japanese_tokenizer=None):
+    """读取 lyrics_atlas_rules sheet。
+
+    列：function、jp/cn、terms、display。
+    执行顺序为 combine -> exclude -> similar；同一词的后续 similar 规则会覆盖前者。
+    """
+    rules = {
+        language: {"similar": {}, "combine": [], "exclude": set()}
+        for language in ("jp", "cn")
+    }
+    for row in read_sheet(wb, "lyrics_atlas_rules"):
+        action = row.get("function", "").strip().lower()
+        languages = [value.strip().lower() for value in re.split(r"[|,\\s]+", row.get("jp/cn", "")) if value.strip().lower() in rules]
+        terms_text = row.get("terms", "").strip()
+        display = row.get("display", "").strip()
+        if action not in ("similar", "combine", "exclude") or not languages or not terms_text:
+            continue
+
+        if action == "combine":
+            # 注音规则写作「宇宙（そら）」：以正文的分词结果匹配，
+            # display 使用读音，ACTUAL TERMS 保留带注音的原文。
+            annotation = re.fullmatch(r"(.+?)[（(]([^（）()]+)[）)]", terms_text)
+            if annotation and languages == ["jp"] and japanese_tokenizer:
+                base, reading = annotation.groups()
+                parts = japanese_lexicon_tokens(base, japanese_tokenizer)
+                if not parts:
+                    continue
+                source_parts = [normalize_lexicon_rule_term(part) for part in parts]
+                rules["jp"]["combine"].append({
+                    "parts": [f"__furigana_{len(rules['jp']['combine'])}__"],
+                    "source_parts": source_parts,
+                    "marker": f"__furigana_{len(rules['jp']['combine'])}__",
+                    "display": display or reading,
+                    "actual": terms_text,
+                })
+                continue
+
+            parts = [normalize_lexicon_rule_term(part) for part in terms_text.split() if part.strip()]
+            if len(parts) < 2:
+                continue
+            for language in languages:
+                rules[language]["combine"].append({
+                    "parts": parts,
+                    "display": display or terms_text,
+                })
+            continue
+
+        terms = [normalize_lexicon_rule_term(term) for term in terms_text.split("|") if term.strip()]
+        for language in languages:
+            if action == "similar":
+                target = display or terms[0]
+                for term in terms:
+                    rules[language]["similar"][term] = target
+            else:
+                rules[language]["exclude"].update(terms)
+
+    for language in rules:
+        rules[language]["combine"].sort(key=lambda rule: len(rule["parts"]), reverse=True)
+    return rules
+
+
+def apply_lyrics_atlas_rules(tokens, rules):
+    """返回 (展示词, 实际词形)，以便同义词归并后仍可显示词形明细。"""
+    combined = []
+    index = 0
+    while index < len(tokens):
+        match = next(
+            (rule for rule in rules["combine"]
+             if len(tokens) - index >= len(rule["parts"])
+             and [normalize_lexicon_rule_term(token) for token in tokens[index:index + len(rule["parts"])]] == rule["parts"]),
+            None,
+        )
+        if match:
+            actual = match.get("actual") or " ".join(tokens[index:index + len(match["parts"])])
+            combined.append((match["display"], actual))
+            index += len(match["parts"])
+        else:
+            combined.append((tokens[index], tokens[index]))
+            index += 1
+
+    # combine 后先按合并出的词和原始词形排除；不要让 similar 的目标词影响
+    # 排除判断，这样规则的处理顺序始终是 combine -> exclude -> similar。
+    filtered = []
+    for word, actual in combined:
+        normalized_word = normalize_lexicon_rule_term(word)
+        normalized_actual = normalize_lexicon_rule_term(actual)
+        if normalized_actual in rules["exclude"] or normalized_word in rules["exclude"]:
+            continue
+        filtered.append((word, actual))
+
+    result = []
+    for word, actual in filtered:
+        display = rules["similar"].get(normalize_lexicon_rule_term(word), word)
+        result.append((display, actual))
+    return result
+
+
+def generate_lyrics_atlas_data(songs, lexicon_rules):
     """为 Lyrics Atlas 预计算仅原创曲目的、已按词性过滤的词频。"""
     require_lexicon_nlp()
     japanese_tokenizer = Dictionary(dict="small").create()
@@ -527,11 +645,14 @@ def generate_lyrics_atlas_data(songs):
             if not lyrics:
                 continue
             result[language]["track_count"] += 1
-            tokens = japanese_lexicon_tokens(lyrics, japanese_tokenizer) if language == "jp" else chinese_lexicon_tokens(lyrics)
-            for word in tokens:
-                item = result[language]["terms"].setdefault(word, {"word": word, "count": 0, "songs": {}})
+            tokens = (japanese_lexicon_tokens(lyrics, japanese_tokenizer,
+                                               [rule for rule in lexicon_rules["jp"]["combine"] if rule.get("actual")])
+                      if language == "jp" else chinese_lexicon_tokens(lyrics))
+            for word, actual in apply_lyrics_atlas_rules(tokens, lexicon_rules[language]):
+                item = result[language]["terms"].setdefault(word, {"word": word, "count": 0, "songs": {}, "variants": {}})
                 item["count"] += 1
                 item["songs"][song["hash_id"]] = item["songs"].get(song["hash_id"], 0) + 1
+                item["variants"][actual] = item["variants"].get(actual, 0) + 1
 
     data = {}
     for language in ("jp", "cn"):
@@ -550,6 +671,9 @@ def generate_songs(wb):
     songs_raw = read_sheet(wb, "songs")
     comments_raw = read_sheet(wb, "song_comments")
     live_raw = read_sheet(wb, "song_live_history")
+    require_lexicon_nlp()
+    japanese_tokenizer = Dictionary(dict="small").create()
+    lexicon_rules = parse_lyrics_atlas_rules(wb, japanese_tokenizer)
 
     # 合并 comments
     comments_map = {}
@@ -650,7 +774,7 @@ def generate_songs(wb):
 
     with open(OUTPUTS["songs"], "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
-    generate_lyrics_atlas_data(songs)
+    generate_lyrics_atlas_data(songs, lexicon_rules)
     return len(songs)
 
 

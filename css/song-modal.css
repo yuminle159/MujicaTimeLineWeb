@@ -80,7 +80,7 @@
   scrollbar-color: rgba(255,77,77,.12) transparent;
 }
 .shared-song-cover { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 24px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
-.shared-song-title { margin-bottom: 4px; color: var(--md-primary, #cc2929); font: 800 24px/1.25 "Cinzel","Noto Sans SC",serif; letter-spacing: 1.5px; text-align: center; }
+.shared-song-title { margin-bottom: 4px; color: var(--md-primary, #cc2929); font: 800 24px/1.25 "Cinzel","Noto Serif JP","Noto Serif SC",serif; letter-spacing: 1.5px; text-align: center; }
 .shared-song-title-cn { margin-bottom: 12px; color: var(--md-on-surface-variant, #999); font-size: 15px; text-align: center; }
 .shared-song-type { margin-bottom: 24px; padding: 4px 14px; border: 1px solid var(--md-primary, #cc2929); border-radius: 20px; color: var(--md-primary, #cc2929); font-size: 11px; font-weight: 600; }
 .shared-song-meta { width: 100%; color: var(--md-on-surface, #d1d1d1); font-size: 12px; line-height: 2.2; }
@@ -113,6 +113,8 @@
 .shared-song-source a,.shared-song-source button { padding: 0; border: 0; background: none; color: #ff8080; font-size: 11px; font-weight: 600; text-decoration: none; cursor: pointer; }
 .shared-song-source.is-text { color: var(--md-on-surface-muted, #666); font-size: 11px; }
 .shared-song-lyrics-columns { max-height: 220px; padding-right: 8px; overflow-y: auto; }
+/* When there is no performance-history section, give its space to the lyrics list. */
+.shared-song-lyrics.is-expanded .shared-song-lyrics-columns { max-height: 560px; }
 .shared-song-lyrics-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 2px 0; }
 .shared-song-lyrics-row span { color: var(--md-on-surface, #d1d1d1); font-size: 13px; line-height: 2; }
 .shared-song-lyrics-row span + span { color: var(--md-on-surface-variant, #999); }

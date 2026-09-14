@@ -109,97 +109,134 @@ def discover_sheets():
         return []
 
 
+class CapturedOperationError(Exception):
+    def __init__(self, cause, output):
+        super().__init__(str(cause))
+        self.cause = cause
+        self.output = output
+
+
+def capture_output(operation):
+    """捕获生成器的附加输出，避免默认日志被依赖库的内部信息淹没。"""
+    old_stdout, old_stderr = sys.stdout, sys.stderr
+    stream = io.StringIO()
+    sys.stdout = stream
+    sys.stderr = stream
+    try:
+        return operation(), stream.getvalue().strip()
+    except Exception as exc:
+        raise CapturedOperationError(exc, stream.getvalue().strip()) from exc
+    finally:
+        sys.stdout, sys.stderr = old_stdout, old_stderr
+
+
 def run_update(selected_modules, do_webp, log_func):
-    """执行数据更新"""
-    import importlib.util
+    """执行更新并返回可供界面汇总的结构化结果。"""
+    result = {"success": [], "skipped": [], "failed": [], "details": []}
 
-    # 图片转 WebP
-    if do_webp and HAS_PILLOW:
-        log_func("=" * 50)
-        log_func("  图片转 WebP 并压缩（max_width=1920, quality=75, method=6）")
-        log_func("  已存在的 WebP 文件会自动跳过")
-        log_func("=" * 50)
-        for folder_name in ["images", "icons"]:
-            folder_path = os.path.join(PROJECT_DIR, folder_name)
-            log_func(f"  [{folder_name}]")
-            count = convert_images_to_webp(folder_path, log_func=log_func)
-            log_func(f"  共转换 {count} 张图片")
-        log_func("[OK] 图片转 WebP - 完成\n")
+    def add_detail(title, output):
+        if output.strip():
+            result["details"].append((title, output.strip()))
 
-    # 数据更新
-    if selected_modules:
-        gen_path = os.path.join(BASE_DIR, "generate_all.py")
-        if not os.path.exists(gen_path):
-            log_func("[FAIL] 找不到 generate_all.py")
-            return
-
-        # 动态导入 generate_all
-        sys.path.insert(0, BASE_DIR)
-        import generate_all
-        try:
-            import openpyxl
-            xlsx_path = os.path.join(PROJECT_DIR, "_data", "data.xlsx")
-            wb = openpyxl.load_workbook(xlsx_path, data_only=True)
-            sheets = wb.sheetnames
-
-            for mod_id in selected_modules:
-                log_func("=" * 50)
-                log_func(f"  更新 {MODULE_NAMES.get(mod_id, mod_id)}")
-                log_func("=" * 50)
-
-                old_stdout = sys.stdout
-                sys.stdout = io.StringIO()
+    if do_webp:
+        if not HAS_PILLOW:
+            result["failed"].append(("图片转 WebP", "缺少 Pillow 依赖"))
+            log_func("[FAIL] 图片转 WebP：缺少 Pillow 依赖")
+        else:
+            for folder_name in ["images", "icons"]:
+                details = []
                 try:
+                    count = convert_images_to_webp(
+                        os.path.join(PROJECT_DIR, folder_name), log_func=details.append
+                    )
+                    add_detail(f"图片转 WebP / {folder_name}", "\n".join(details))
+                    result["success"].append((f"图片转 WebP / {folder_name}", f"转换 {count} 张"))
+                    log_func(f"[OK] 图片转 WebP / {folder_name}：转换 {count} 张")
+                except Exception as exc:
+                    result["failed"].append((f"图片转 WebP / {folder_name}", str(exc)))
+                    log_func(f"[FAIL] 图片转 WebP / {folder_name}：{exc}")
+
+    if not selected_modules:
+        return result
+
+    gen_path = os.path.join(BASE_DIR, "generate_all.py")
+    if not os.path.exists(gen_path):
+        result["failed"].append(("数据生成器", "找不到 generate_all.py"))
+        log_func("[FAIL] 数据生成器：找不到 generate_all.py")
+        return result
+
+    sys.path.insert(0, BASE_DIR)
+    try:
+        import generate_all
+        import openpyxl
+        xlsx_path = os.path.join(PROJECT_DIR, "_data", "data.xlsx")
+        try:
+            wb = openpyxl.load_workbook(xlsx_path, data_only=True)
+        except Exception as exc:
+            result["failed"].append(("读取 data.xlsx", str(exc)))
+            log_func(f"[FAIL] 读取 data.xlsx：{exc}")
+            return result
+
+        try:
+            sheets = wb.sheetnames
+            for mod_id in selected_modules:
+                label = MODULE_NAMES.get(mod_id, mod_id)
+
+                def generate_module():
                     if mod_id == "announcements" and "announcements" in sheets:
-                        n = generate_all.generate_announcements(wb)
-                        log_func(f"  announcements.js - {n} 条公告")
-                    elif mod_id == "something_new" and "something_new" in sheets:
-                        n = generate_all.generate_something_new(wb)
-                        log_func(f"  something-new.js - {n} 条精选内容")
-                    elif mod_id == "songs" and "songs" in sheets:
-                        n = generate_all.generate_songs(wb)
-                        log_func(f"  songs/data.js - {n} 首歌曲")
-                    elif mod_id == "lives" and "lives" in sheets:
-                        n, mc = generate_all.generate_live(wb)
-                        extra = f" ({mc} MC)" if mc else ""
-                        log_func(f"  live/data.js - {n} 场演唱会{extra}")
-                    elif mod_id == "timeline" and "timeline" in sheets:
-                        n = generate_all.generate_timeline(wb)
-                        log_func(f"  timeline/data.js - {n} 条事件")
-                    elif mod_id == "gallery_images" and "gallery_images" in sheets:
-                        n = generate_all.generate_gallery(wb)
-                        log_func(f"  gallery/data.js - {n} 张图片")
-                    elif mod_id == "interview" and "interview" in sheets:
-                        n = generate_all.generate_interview(wb)
-                        log_func(f"  interview/data.js - {n} 篇访谈")
-                    elif mod_id == "discography_releases" and "discography_releases" in sheets:
-                        n = generate_all.generate_discography(wb)
-                        log_func(f"  discography/data.js - {n} 张发行作品")
-                finally:
-                    output = sys.stdout.getvalue()
-                    sys.stdout = old_stdout
-                    if output.strip():
-                        log_func(output.strip())
+                        return f"announcements.js · {generate_all.generate_announcements(wb)} 条公告"
+                    if mod_id == "something_new" and "something_new" in sheets:
+                        return f"something-new.js · {generate_all.generate_something_new(wb)} 条精选内容"
+                    if mod_id == "songs" and "songs" in sheets:
+                        return f"songs/data.js · {generate_all.generate_songs(wb)} 首歌曲"
+                    if mod_id == "lives" and "lives" in sheets:
+                        count, mc = generate_all.generate_live(wb)
+                        return f"live/data.js · {count} 场演唱会" + (f" · {mc} 个 MC" if mc else "")
+                    if mod_id == "timeline" and "timeline" in sheets:
+                        return f"timeline/data.js · {generate_all.generate_timeline(wb)} 条事件"
+                    if mod_id == "gallery_images" and "gallery_images" in sheets:
+                        return f"gallery/data.js · {generate_all.generate_gallery(wb)} 张图片"
+                    if mod_id == "interview" and "interview" in sheets:
+                        return f"interview/data.js · {generate_all.generate_interview(wb)} 篇访谈"
+                    if mod_id == "discography_releases" and "discography_releases" in sheets:
+                        return f"discography/data.js · {generate_all.generate_discography(wb)} 张发行作品"
+                    return None
 
-                log_func(f"[OK] {MODULE_NAMES.get(mod_id, mod_id)} - 更新完成")
+                try:
+                    summary, output = capture_output(generate_module)
+                    add_detail(label, output)
+                    if summary is None:
+                        result["skipped"].append((label, "缺少对应 sheet"))
+                        log_func(f"[SKIP] {label}：缺少对应 sheet")
+                    else:
+                        result["success"].append((label, summary))
+                        log_func(f"[OK] {label}：{summary}")
+                except CapturedOperationError as exc:
+                    add_detail(label, exc.output)
+                    result["failed"].append((label, str(exc.cause)))
+                    log_func(f"[FAIL] {label}：{exc.cause}")
 
-            wb.close()
-
-            # 注入版本号
-            log_func("=" * 50)
-            v = generate_all.inject_version(log_func=log_func)
-            log_func(f"  版本号: {v}")
-            log_func("[OK] 版本号注入 - 完成")
-
+            try:
+                version, output = capture_output(lambda: generate_all.inject_version())
+                add_detail("版本号注入", output)
+                result["success"].append(("版本号注入", f"v={version}"))
+                log_func(f"[OK] 版本号注入：v={version}")
+            except Exception as exc:
+                result["failed"].append(("版本号注入", str(exc)))
+                log_func(f"[FAIL] 版本号注入：{exc}")
         finally:
-            sys.path.remove(BASE_DIR)
+            wb.close()
+    finally:
+        sys.path.remove(BASE_DIR)
+
+    return result
 
 
 class App:
     def __init__(self, root):
         self.root = root
         root.title(" wijipedia 数据更新工具")
-        root.geometry("760x720")
+        root.geometry("760x760")
         root.minsize(680, 560)
         root.resizable(True, True)
         root.configure(bg="#0d0d0d")
@@ -255,6 +292,24 @@ class App:
         )
         btn_scan.pack(side="left", expand=True, fill="x", padx=(5, 0))
 
+        # 运行状态与折叠的详细日志
+        status_frame = tk.Frame(root, bg="#141414", highlightthickness=1, highlightbackground="#2a2a2a")
+        status_frame.pack(fill="x", padx=24, pady=(0, 12))
+        self.status_var = tk.StringVar(value="就绪 · 等待开始更新")
+        self.status_label = tk.Label(
+            status_frame, textvariable=self.status_var, anchor="w",
+            font=("Microsoft YaHei", 9, "bold"), fg="#aaa", bg="#141414", padx=12, pady=8,
+        )
+        self.status_label.pack(side="left", fill="x", expand=True)
+        self.detail_button = tk.Button(
+            status_frame, text="查看详细日志", command=self.show_details,
+            font=("Microsoft YaHei", 8), fg="#aaa", bg="#202020", relief="flat",
+            padx=10, pady=4, state="disabled", cursor="hand2",
+            activebackground="#2a2a2a", activeforeground="#fff",
+        )
+        self.detail_button.pack(side="right", padx=6, pady=4)
+        self.last_result = None
+
         # 输出日志
         log_frame = tk.Frame(root, bg="#0d0d0d")
         log_frame.pack(fill="both", expand=True, padx=24, pady=(0, 16))
@@ -273,16 +328,60 @@ class App:
         )
         self.output.pack(side="left", fill="both", expand=True)
         scrollbar.config(command=self.output.yview)
+        self.output.tag_configure("success", foreground="#8fcf8f")
+        self.output.tag_configure("warning", foreground="#e8c778")
+        self.output.tag_configure("error", foreground="#ff8080")
+        self.output.tag_configure("detail", foreground="#777")
         self.output.insert("end", "就绪。\n")
 
-    def log(self, msg):
-        self.output.insert("end", msg + "\n")
+    def log(self, msg, tag=None):
+        if tag is None:
+            tag = "success" if msg.startswith("[OK]") else "error" if msg.startswith("[FAIL]") else "warning" if msg.startswith("[SKIP]") else None
+        self.output.insert("end", msg + "\n", tag)
         self.output.see("end")
         self.root.update()
 
     def _start_log(self, title):
         self.output.delete("1.0", "end")
+        self.last_result = None
+        self.detail_button.config(text="查看详细日志", state="disabled")
+        self.status_var.set("正在运行…")
+        self.status_label.config(fg="#e8c778")
         self.log(title + "\n")
+
+    def finish_run(self, result, success_message):
+        self.last_result = result
+        success_count = len(result["success"])
+        skipped_count = len(result["skipped"])
+        failed_count = len(result["failed"])
+        self.log("=" * 50, "detail")
+        if result["details"]:
+            self.detail_button.config(state="normal")
+            self.log(f"[INFO] 已折叠 {len(result['details'])} 组附加日志，可点击右上角「查看详细日志」。", "detail")
+        if failed_count:
+            self.status_var.set(f"更新未完成 · 成功 {success_count} · 失败 {failed_count}")
+            self.status_label.config(fg="#ff8080")
+            self.log(f"[FAIL] 更新未完成：成功 {success_count} 项，失败 {failed_count} 项。", "error")
+            for label, reason in result["failed"]:
+                self.log(f"  - {label}：{reason}", "error")
+        else:
+            self.status_var.set(f"更新成功 · 已完成 {success_count} 项" + (f" · 跳过 {skipped_count} 项" if skipped_count else ""))
+            self.status_label.config(fg="#8fcf8f")
+            self.log(f"[OK] {success_message}（共 {success_count} 项）", "success")
+        if skipped_count:
+            for label, reason in result["skipped"]:
+                self.log(f"  - {label}：{reason}", "warning")
+        self.log("=" * 50, "detail")
+
+    def show_details(self):
+        if not self.last_result or not self.last_result["details"]:
+            return
+        self.log("\n----- 详细日志 -----", "detail")
+        for title, output in self.last_result["details"]:
+            self.log(f"[{title}]", "detail")
+            for line in output.splitlines():
+                self.log("  " + line, "detail")
+        self.detail_button.config(text="已显示详细日志", state="disabled")
 
     def update_all_data(self):
         if not self.modules:
@@ -291,13 +390,10 @@ class App:
         self._start_log("开始更新所有 data...\n")
 
         try:
-            run_update([m["id"] for m in self.modules], False, self.log)
+            result = run_update([m["id"] for m in self.modules], False, self.log)
         except Exception as e:
-            self.log(f"[FAIL] 执行出错: {e}")
-
-        self.log("=" * 50)
-        self.log("  所有 data 更新完毕！请刷新浏览器查看变化。")
-        self.log("=" * 50)
+            result = {"success": [], "skipped": [], "failed": [("更新程序", str(e))], "details": []}
+        self.finish_run(result, "所有 data 已更新，请刷新浏览器查看变化。")
 
     def convert_webp(self):
         if not HAS_PILLOW:
@@ -305,12 +401,10 @@ class App:
             return
         self._start_log("开始把图片转为 WebP...\n")
         try:
-            run_update([], True, self.log)
+            result = run_update([], True, self.log)
         except Exception as e:
-            self.log(f"[FAIL] 执行出错: {e}")
-        self.log("=" * 50)
-        self.log("  WebP 转换完毕。")
-        self.log("=" * 50)
+            result = {"success": [], "skipped": [], "failed": [("图片转 WebP", str(e))], "details": []}
+        self.finish_run(result, "WebP 转换已完成。")
 
     def scan_gallery(self):
         self._start_log("开始把所有图片写入画廊...\n")
@@ -334,6 +428,10 @@ class App:
 
 def main():
     if "--smoke-test-nlp" in sys.argv:
+        test_root = tk.Tk()
+        test_root.withdraw()
+        test_root.update_idletasks()
+        test_root.destroy()
         sys.path.insert(0, BASE_DIR)
         try:
             import generate_all
