@@ -1,8 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 
-datas = [('D:/yumin/web/MujicaTimeLineWeb/generate_all.py', '.'), ('C:/Users/yumin/AppData/Local/Programs/Python/Python313/Lib/tkinter', 'tkinter'), ('C:/Users/yumin/AppData/Local/Programs/Python/Python313/tcl/tcl8.6', 'tcl/tcl8.6'), ('C:/Users/yumin/AppData/Local/Programs/Python/Python313/tcl/tk8.6', 'tcl/tk8.6')]
-binaries = [('C:/Users/yumin/AppData/Local/Programs/Python/Python313/DLLs/_tkinter.pyd', '.'), ('C:/Users/yumin/AppData/Local/Programs/Python/Python313/DLLs/tcl86t.dll', '.'), ('C:/Users/yumin/AppData/Local/Programs/Python/Python313/DLLs/tk86t.dll', '.')]
+datas = [('F:\\mujicatimelineweb\\generate_all.py', '.'), ('C:\\Users\\YUMIN\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\tkinter', 'tkinter'), ('C:\\Users\\YUMIN\\AppData\\Local\\Python\\pythoncore-3.14-64\\tcl\\tcl8.6', '_tcl_data'), ('C:\\Users\\YUMIN\\AppData\\Local\\Python\\pythoncore-3.14-64\\tcl\\tk8.6', '_tk_data')]
+binaries = [('C:\\Users\\YUMIN\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\_tkinter.pyd', '.'), ('C:\\Users\\YUMIN\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\tcl86t.dll', '.'), ('C:\\Users\\YUMIN\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs\\tk86t.dll', '.')]
 hiddenimports = ['openpyxl', 'openpyxl.cell', 'openpyxl.worksheet', 'PIL', 'PIL.Image', 'tkinter', 'tkinter.ttk', '_tkinter']
 tmp_ret = collect_all('sudachipy')
 datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
@@ -13,14 +13,14 @@ datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 
 a = Analysis(
-    ['D:/yumin/web/MujicaTimeLineWeb/build_gui.py'],
+    ['F:\\mujicatimelineweb\\build_gui.py'],
     pathex=[],
     binaries=binaries,
     datas=datas,
     hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},
-    runtime_hooks=['D:/yumin/web/MujicaTimeLineWeb/tk_runtime_hook.py'],
+    runtime_hooks=['F:\\mujicatimelineweb\\tk_runtime_hook.py'],
     excludes=[],
     noarchive=False,
     optimize=0,

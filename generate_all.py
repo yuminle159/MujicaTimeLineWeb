@@ -779,10 +779,35 @@ def generate_songs(wb):
 
 
 # =========================== 3. 演唱会 ===========================
+def build_setlist_link_index(wb):
+    """在生成时完成原 G/H 列的查找；同名记录沿用 XLOOKUP 的第一条。"""
+    song_names = {}
+    songs = read_sheet(wb, "songs")
+    # 原 G 列按日文名查找；同时允许直接填写 song_name。
+    for song in songs:
+        name = song.get("song_name", "")
+        jp = song.get("song_name_jp", "")
+        if name and jp:
+            song_names.setdefault(jp.casefold(), name)
+    for song in songs:
+        name = song.get("song_name", "")
+        if name:
+            song_names.setdefault(name.casefold(), name)
+
+    links = {}
+    for row in read_sheet(wb, "song_live_history"):
+        live = row.get("live_name", "")
+        song = row.get("song_name", "")
+        if live and song:
+            links.setdefault((live.casefold(), song.casefold()), row.get("video_url", ""))
+    return song_names, links
+
+
 def generate_live(wb):
     lives_raw = read_sheet(wb, "lives")
     setlist_raw = read_sheet(wb, "setlist")
     backstage_raw = read_sheet(wb, "backstage")
+    song_names, history_links = build_setlist_link_index(wb)
 
     # 合并 setlist
     setlist_map = {}
@@ -790,13 +815,17 @@ def generate_live(wb):
         sn = sr.get("live_name", "")
         if not sn:
             continue
+        title = sr.get("track_title", "")
+        song_name = song_names.get(title.casefold(), title)
+        link = (sr.get("manual_link", "") or sr.get("link", "")
+                or history_links.get((sn.casefold(), song_name.casefold()), ""))
         setlist_map.setdefault(sn, []).append({
             "num": sr.get("track_num", ""),
             "title": sr.get("track_title", ""),
             "highlight_label": sr.get("highlight_label", ""),
             "highlight_text": sr.get("highlight_text", ""),
             "mc_file": sr.get("mc_file", ""),
-            "link": sr.get("link", ""),
+            "link": link,
         })
 
     # 合并 backstage

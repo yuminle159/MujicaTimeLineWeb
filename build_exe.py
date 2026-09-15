@@ -73,8 +73,8 @@ cmd = [
     "--add-binary", f"{TK_FILES['tk86t.dll']}{os.pathsep}.",
     # Tcl 初始化失败时，PyInstaller 会错误地排除 tkinter；作为源码数据显式打入包中。
     "--add-data", f"{TK_FILES['tkinter']}{os.pathsep}tkinter",
-    "--add-data", f"{TK_FILES['tcl8.6']}{os.pathsep}tcl/tcl8.6",
-    "--add-data", f"{TK_FILES['tk8.6']}{os.pathsep}tcl/tk8.6",
+    "--add-data", f"{TK_FILES['tcl8.6']}{os.pathsep}_tcl_data",
+    "--add-data", f"{TK_FILES['tk8.6']}{os.pathsep}_tk_data",
     "--collect-all", "sudachipy",
     "--collect-all", "sudachidict_small",
     "--collect-all", "jieba",

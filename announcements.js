@@ -12,7 +12,7 @@ window.ANNOUNCEMENTS = [
   },
   {
     "date": "2026.09.15",
-    "msg": "1.Live失效的观看链接修复",
+    "msg": "1.Live失效的观看链接修复 2.优化setlist曲目与song_live_history对应逻辑",
     "pinned": false
   },
   {

@@ -5,6 +5,9 @@
 import os
 import sys
 import io
+import logging
+# Reapply the extended Tcl paths after PyInstaller's standard runtime hook.
+import tk_runtime_hook
 import tkinter as tk
 from tkinter import ttk, messagebox
 
@@ -120,6 +123,24 @@ def capture_output(operation):
     """捕获生成器的附加输出，避免默认日志被依赖库的内部信息淹没。"""
     old_stdout, old_stderr = sys.stdout, sys.stderr
     stream = io.StringIO()
+    # 库可能在导入时已将日志绑定到 windowed exe 的空 stderr。
+    # 重定向 sys.stderr 不会更新这些现有处理器，需临时同步其输出流。
+    redirected_handlers = []
+    loggers = [logging.getLogger()] + [
+        logger for logger in list(logging.Logger.manager.loggerDict.values())
+        if isinstance(logger, logging.Logger)
+    ]
+    seen_handlers = set()
+    for logger in loggers:
+        for handler in logger.handlers:
+            if (id(handler) not in seen_handlers
+                    and isinstance(handler, logging.StreamHandler)
+                    and not isinstance(handler, logging.FileHandler)
+                    and (handler.stream is None or handler.stream is old_stdout
+                         or handler.stream is old_stderr)):
+                seen_handlers.add(id(handler))
+                redirected_handlers.append((handler, handler.stream))
+                handler.setStream(stream)
     sys.stdout = stream
     sys.stderr = stream
     try:
@@ -127,6 +148,8 @@ def capture_output(operation):
     except Exception as exc:
         raise CapturedOperationError(exc, stream.getvalue().strip()) from exc
     finally:
+        for handler, previous_stream in redirected_handlers:
+            handler.setStream(previous_stream)
         sys.stdout, sys.stderr = old_stdout, old_stderr
 
 
@@ -427,6 +450,28 @@ class App:
 
 
 def main():
+    if "--smoke-test-update" in sys.argv:
+        import json
+        import tempfile
+        import generate_all
+        # 验证实际更新流程，但把生成文件和版本注入放到临时目录。
+        with tempfile.TemporaryDirectory() as test_dir:
+            generate_all.ROOT = test_dir
+            generate_all.OUTPUTS = {
+                key: os.path.join(test_dir, os.path.relpath(path, PROJECT_DIR))
+                for key, path in generate_all.OUTPUTS.items()
+            }
+            for path in generate_all.OUTPUTS.values():
+                os.makedirs(os.path.dirname(path), exist_ok=True)
+            result = run_update([m["id"] for m in discover_sheets()], False, lambda msg: None)
+            if result["failed"] or len(result["success"]) != 9:
+                raise RuntimeError(json.dumps(result, ensure_ascii=False))
+            if any("--- Logging error ---" in output or "Traceback (most recent call last)" in output
+                   for _, output in result["details"]):
+                raise RuntimeError(json.dumps(result, ensure_ascii=False))
+            with open(os.path.join(PROJECT_DIR, "exe-update-test.log"), "w", encoding="utf-8") as log:
+                log.write(json.dumps(result, ensure_ascii=False, indent=2))
+        return
     if "--smoke-test-nlp" in sys.argv:
         test_root = tk.Tk()
         test_root.withdraw()
@@ -451,4 +496,17 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if "--smoke-test-nlp" in sys.argv or "--smoke-test-update" in sys.argv:
+        import traceback
+        log_path = os.path.join(PROJECT_DIR, "exe-update-test.log" if "--smoke-test-update" in sys.argv else "exe-smoke-test.log")
+        try:
+            main()
+        except Exception:
+            with open(log_path, "w", encoding="utf-8") as log:
+                log.write(traceback.format_exc())
+            sys.exit(1)
+        if "--smoke-test-nlp" in sys.argv:
+            with open(log_path, "w", encoding="utf-8") as log:
+                log.write("OK: Tk and NLP smoke test passed.\n")
+    else:
+        main()

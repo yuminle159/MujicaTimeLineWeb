@@ -358,6 +358,10 @@ const TAG_ICONS = {
 | `track_title` | 是 | 歌曲名 |
 | `highlight_label` | 否 | 高亮标签（如 `Live Highlight`） |
 | `highlight_text` | 否 | 高亮说明 |
+| `mc_file` | 否 | MC Markdown 文件路径（相对于 `_data`） |
+| `manual_link` | 否 | 手动链接，优先于自动匹配；留空时由生成器自动查找 |
+
+生成器会将 `track_title` 按 `songs.song_name_jp` 转换为 `song_name`（也支持直接填写 `song_name`），再按演出名和曲名匹配 `song_live_history.live_name`、`song_live_history.song_name`，使用对应的 `video_url`。重复记录使用第一条；找不到或链接为空时不显示链接。原 setlist 的 `songname`、`link` 公式列无需保留，自动匹配结果直接写入 `live/data.js`，不会写回 Excel。编辑后保存并关闭 Excel，再运行新版 `wijipedia_数据更新工具.exe` 的「更新所有 data」。
 
 > **序号填写注意**：`track_num` 支持自定义（如 `01`, `M0`, `SE`, `-` 等），也可以留空（显示两个空格占位符，保持与歌名对齐）。
 

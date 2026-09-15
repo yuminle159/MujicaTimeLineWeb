@@ -16,5 +16,5 @@ if getattr(sys, "frozen", False):
             return "//?/" + path.replace("\\", "/")
         return path
 
-    os.environ["TCL_LIBRARY"] = tcl_path("tcl", "tcl8.6")
-    os.environ["TK_LIBRARY"] = tcl_path("tcl", "tk8.6")
+    os.environ["TCL_LIBRARY"] = tcl_path("_tcl_data")
+    os.environ["TK_LIBRARY"] = tcl_path("_tk_data")
