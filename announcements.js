@@ -11,6 +11,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.15",
+    "msg": "1.Live失效的观看链接修复",
+    "pinned": false
+  },
+  {
     "date": "2026.09.14",
     "msg": "1.Live数据分析内容优化 2.Songs词云内容优化",
     "pinned": false

@@ -724,13 +724,6 @@ const galleryData = [
     description: ""
   },
   {
-    filename: "../images/精选BD.webp",
-    title: "",
-    date: "",
-    tags: {},
-    description: ""
-  },
-  {
     filename: "../images/精选特装.webp",
     title: "",
     date: "",

@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609142330">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609142330">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609142330">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609142330">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609142330">
+  <link rel="stylesheet" href="style.css?v=202609151845">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609151845">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609151845">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609151845">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609151845">
 </head>
 <body>
   <main class="discography-page">
@@ -38,16 +38,16 @@
     <div id="noResults" class="no-results" hidden>没有找到匹配的发行作品</div>
   </main>
 
-  <script src="data.js?v=202609142330"></script>
-  <script src="../songs/data.js?v=202609142330"></script>
-  <script src="../live/data.js?v=202609142330"></script>
-  <script src="../interview/data.js?v=202609142330"></script>
-  <script src="../js/renderMarkdown.js?v=202609142330"></script>
-  <script src="../js/overlay-manager.js?v=202609142330"></script>
-  <script src="../js/interview-overlay.js?v=202609142330"></script>
-  <script src="../js/song-modal.js?v=202609142330"></script>
-  <script src="../js/live-drawer.js?v=202609142330"></script>
-  <script src="../js/discography-modal.js?v=202609142330"></script>
+  <script src="data.js?v=202609151845"></script>
+  <script src="../songs/data.js?v=202609151845"></script>
+  <script src="../live/data.js?v=202609151845"></script>
+  <script src="../interview/data.js?v=202609151845"></script>
+  <script src="../js/renderMarkdown.js?v=202609151845"></script>
+  <script src="../js/overlay-manager.js?v=202609151845"></script>
+  <script src="../js/interview-overlay.js?v=202609151845"></script>
+  <script src="../js/song-modal.js?v=202609151845"></script>
+  <script src="../js/live-drawer.js?v=202609151845"></script>
+  <script src="../js/discography-modal.js?v=202609151845"></script>
   <script>
   (() => {
     let activeFilter = 'all'; let query = '';
@@ -110,11 +110,12 @@
       const chart = release.chart || {};
       const rank = chart.first_week_rank || '—';
       const firstWeekSales = chart.first_week_sales || '—';
+      const firstWeekSalesIsNoData = /^no data$/i.test(String(firstWeekSales).trim());
       const comingSoon = isComingSoon(release);
       const mainTitle = release.title_jp || release.title;
       const secondaryTitle = release.title && release.title !== mainTitle ? release.title : '';
       const prompt = '<div class="coming-prompt" aria-hidden="true"><strong>COMING SOON</strong><span>请关注官方发售并支持购买</span></div>';
-      return `<button class="release-row${comingSoon ? ' is-coming-soon' : ''}" data-release-id="${escapeHTML(release.id)}"${comingSoon ? ' aria-label="Coming soon. Please support the official release."' : ''}>${comingSoon ? '<span class="coming-ribbon" aria-hidden="true">COMING SOON</span>' : ''}<div class="row-cover">${coverStack}${covers.length > 1 ? `<span class="cover-count">${covers.length} COVERS</span>` : ''}</div><div class="row-main"><div class="row-type">${escapeHTML(release.type)}</div><h2>${escapeHTML(mainTitle)}</h2>${secondaryTitle ? `<p>${escapeHTML(secondaryTitle)}</p>` : ''}<div class="row-date">${escapeHTML(release.release_date)}</div><div class="release-tags"><span>${release.editions.length} EDITION${release.editions.length === 1 ? '' : 'S'}</span>${release.formats.map(format => `<span class="media">${escapeHTML(format)}</span>`).join('')}</div></div><aside class="row-aside">${comingSoon ? prompt : ''}<div class="catalog">${escapeHTML(catalog)}</div><div class="chart-rank"><small>ORICON WEEKLY</small><span class="chart-summary">${escapeHTML(rank)} - ${escapeHTML(firstWeekSales)}</span></div><div class="open-mark">OPEN ↗</div></aside></button>`;
+      return `<button class="release-row${comingSoon ? ' is-coming-soon' : ''}" data-release-id="${escapeHTML(release.id)}"${comingSoon ? ' aria-label="Coming soon. Please support the official release."' : ''}>${comingSoon ? '<span class="coming-ribbon" aria-hidden="true">COMING SOON</span>' : ''}<div class="row-cover">${coverStack}${covers.length > 1 ? `<span class="cover-count">${covers.length} COVERS</span>` : ''}</div><div class="row-main"><div class="row-type">${escapeHTML(release.type)}</div><h2>${escapeHTML(mainTitle)}</h2>${secondaryTitle ? `<p>${escapeHTML(secondaryTitle)}</p>` : ''}<div class="row-date">${escapeHTML(release.release_date)}</div><div class="release-tags"><span>${release.editions.length} EDITION${release.editions.length === 1 ? '' : 'S'}</span>${release.formats.map(format => `<span class="media">${escapeHTML(format)}</span>`).join('')}</div></div><aside class="row-aside">${comingSoon ? prompt : ''}<div class="catalog">${escapeHTML(catalog)}</div><div class="chart-rank"><small>ORICON WEEKLY</small><span class="chart-summary">${escapeHTML(rank)} - <span class="chart-sales${firstWeekSalesIsNoData ? ' is-no-data' : ''}">${escapeHTML(firstWeekSales)}</span></span></div><div class="open-mark">OPEN ↗</div></aside></button>`;
     }
     function openRelease(id, updateHash = true) {
       DiscographyModal.open(id, {

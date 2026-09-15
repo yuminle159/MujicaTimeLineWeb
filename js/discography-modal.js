@@ -110,7 +110,7 @@
     overlay.querySelectorAll("[data-discography-cover-nav]").forEach(function (button) {
       button.hidden = covers.length < 2;
     });
-    overlay.querySelector(".shared-discography-cover-fallback").textContent = activeRelease.title || "";
+    overlay.querySelector(".shared-discography-cover-fallback").textContent = "";
     overlay.querySelector(".shared-discography-edition-meta").innerHTML = metadataHTML([
       ["CATALOG NO.", edition.catalog_no], ["PRICE", edition.price], ["FORMAT", edition.format],
       ["DISTRIBUTION", edition.distribution], ["LIMITATION", edition.limited]

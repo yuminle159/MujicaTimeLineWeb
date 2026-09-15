@@ -2313,6 +2313,7 @@ const discographyData = [
         "distribution": "一般流通",
         "limited": "数量限定",
         "bonus": [
+          "Ave Mujica 5th LIVE「Nova Historia」DAY1/DAY2 全景定点映像收录Blu-ray",
           "亚克力画板1个（共1款）",
           "特制BOX",
           "2026年Ave Mujica LIVE TOUR 最速先行抽选券",
@@ -2540,6 +2541,788 @@ const discographyData = [
             "song_name": "Sophie -instrumental-",
             "content_title": "",
             "duration": "03:18:00",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "完满黑胶",
+    "hash_id": "LBrEMbo05P7",
+    "title": "Completeness【完全生产限定盘／黑胶唱片】",
+    "title_jp": "Completeness【完全生産限定盤／アナログ盤】",
+    "release_date": "2026/5/20",
+    "type": "LP",
+    "formats": [
+      "CD"
+    ],
+    "label": "Bushiroad Music",
+    "description": "首张黑胶 作为「Completeness」发售一周年的纪念 对首张专辑进行了黑胶唱片化",
+    "cover": "../images/完满通常.webp",
+    "search_keywords": "黑胶 完满",
+    "chart": {
+      "first_day_rank": "—",
+      "first_week_sales": "898",
+      "first_week_rank": "#29",
+      "total_sales": "1016",
+      "source": "ORICON WEEKLY ALBUM RANKING 截至2026.9"
+    },
+    "contents": [],
+    "bonus_contents": [],
+    "editions": [
+      {
+        "name": "完全生産限定盤／アナログ盤",
+        "type": "黑胶唱片",
+        "catalog_no": "BRMM-11030",
+        "price": "4950",
+        "cover": "../images/完满通常.webp",
+        "cover_gallery": [],
+        "format": "LP",
+        "distribution": "预约生产",
+        "limited": "预约生产",
+        "bonus": [],
+        "features": {
+          "cd": true,
+          "bluray": false,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "KiLLKiSS",
+            "content_title": "",
+            "duration": "03:28:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Georgette Me, Georgette You",
+            "content_title": "",
+            "duration": "03:54:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "Imprisoned XII",
+            "content_title": "",
+            "duration": "03:08:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "Crucifix X",
+            "content_title": "",
+            "duration": "05:00:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "05",
+            "song_name": "八芒星ダンス",
+            "content_title": "",
+            "duration": "03:49:00",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "顔",
+            "content_title": "",
+            "duration": "04:02:00",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "天球（そら）のMúsica",
+            "content_title": "",
+            "duration": "04:39:00",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "梅奔鸡狗1",
+    "hash_id": "C7w9syxQJQN",
+    "title": "MyGO!!!!!×Ave Mujica 合同Live「分歧路口，前途漫漫」上海追加公演 Blu-ray",
+    "title_jp": "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 Blu-ray",
+    "release_date": "2026/5/27",
+    "type": "Blu-ray",
+    "formats": [
+      "CD",
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "收录2025年10月11日·12日在梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）举办的MyGO!!!!!×Ave Mujica 合同Live「分歧路口，前途漫漫」上海追加公演的映像",
+    "cover": "../images/梅奔鸡狗1bdbox.webp",
+    "search_keywords": "鸡狗1 梅奔 bd",
+    "chart": {
+      "first_day_rank": "—",
+      "first_week_sales": "No Data",
+      "first_week_rank": "—",
+      "total_sales": "No Data",
+      "source": "ORICON WEEKLY ALBUM RANKING"
+    },
+    "contents": [],
+    "bonus_contents": [],
+    "editions": [
+      {
+        "name": "完全生産限定版",
+        "type": "限定盘",
+        "catalog_no": "BRMM-11029",
+        "price": "26400",
+        "cover": "../images/梅奔鸡狗1bdbox.webp",
+        "cover_gallery": [
+          "../images/梅奔鸡狗1bdd1.webp",
+          "../images/梅奔鸡狗1bdd2.webp",
+          "../images/梅奔鸡狗1bdbox.webp"
+        ],
+        "format": "CD + Blu-ray + Goods",
+        "distribution": "一般流通",
+        "limited": "数量限定",
+        "bonus": [
+          "特制BOX",
+          "八音盒改编CD",
+          "LIVE写真册",
+          "特制主视觉图色纸2张",
+          "特制亚克力画板1个（共1款）",
+          "替换封面",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": true,
+          "goods": true
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "03",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "春日影(Music Box ver.)",
+            "content_title": "",
+            "duration": "05:25:00",
+            "note": ""
+          },
+          {
+            "disc_no": "03",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Here, the world!(Music Box ver.)",
+            "content_title": "",
+            "duration": "05:27:00",
+            "note": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "精选",
+    "hash_id": "GES4NHtevUf",
+    "title": "Ave Música",
+    "title_jp": "Ave Música",
+    "release_date": "2026/6/17",
+    "type": "Best Album",
+    "formats": [
+      "CD",
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "首张精选集 收录全15首歌曲的Best Album，其中包含1首完全新曲",
+    "cover": "../images/精选通常.webp",
+    "search_keywords": "精选",
+    "chart": {
+      "first_day_rank": "#2",
+      "first_week_sales": "13863",
+      "first_week_rank": "#4",
+      "total_sales": "19140",
+      "source": "ORICON WEEKLY ALBUM RANKING 截至2026.9"
+    },
+    "contents": [],
+    "bonus_contents": [
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Doloris ver.",
+        "track_no": "01",
+        "song_name": "Sophie(Ulterius Procedere ver.)",
+        "note": ""
+      },
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Mortis ver.",
+        "track_no": "01",
+        "song_name": "KiLLKiSS(Ulterius Procedere ver.)",
+        "note": ""
+      },
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Timoris ver.",
+        "track_no": "01",
+        "song_name": "'S/' The Way(Ulterius Procedere ver.)",
+        "note": ""
+      },
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Amoris ver.",
+        "track_no": "01",
+        "song_name": "Mas?uerade Rhapsody Re?uest (Ulterius Procedere ver.)",
+        "note": ""
+      },
+      {
+        "bonus_id": "先着活动&店铺限定特典CD",
+        "disc_name": "Oblivionis ver.",
+        "track_no": "01",
+        "song_name": "黒のバースデイ(Ulterius Procedere ver.)",
+        "note": ""
+      }
+    ],
+    "editions": [
+      {
+        "name": "数量限定生産特装盤",
+        "type": "特装盘",
+        "catalog_no": "BRMM-11046",
+        "price": "15400",
+        "cover": "../images/精选特装.webp",
+        "cover_gallery": [],
+        "format": "CD + Blu-ray + Goods",
+        "distribution": "一般流通",
+        "limited": "数量限定",
+        "bonus": [
+          "Ave Mujica 6th LIVE「Ulterius Procedere」东京公演 全景定点映像收录",
+          "亚克力挂件5款Set",
+          "布料海报1张（全1种）",
+          "特制BOX",
+          "2026秋Oml最速先行抽选券",
+          "角色卡片1张（全5种+隐藏烫金角色签名5种）",
+          "先着购入活动特典CD",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": true,
+          "goods": true
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "KiLLKiSS",
+            "content_title": "",
+            "duration": "03:29:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Symbol I : 🜂",
+            "content_title": "",
+            "duration": "05:14:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "The Whole Blue World",
+            "content_title": "",
+            "duration": "04:20:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "顔",
+            "content_title": "",
+            "duration": "04:03:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "05",
+            "song_name": "Georgette Me, Georgette You",
+            "content_title": "",
+            "duration": "03:54:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "06",
+            "song_name": "Symbol II : 🜁",
+            "content_title": "",
+            "duration": "03:35:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "07",
+            "song_name": "DIVINE",
+            "content_title": "",
+            "duration": "04:19:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "08",
+            "song_name": "碧い瞳の中に",
+            "content_title": "",
+            "duration": "03:43:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "09",
+            "song_name": "黒のバースデイ",
+            "content_title": "",
+            "duration": "03:46:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "10",
+            "song_name": "八芒星ダンス",
+            "content_title": "",
+            "duration": "03:50:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "11",
+            "song_name": "素晴らしき世界 でも どこにもない場所",
+            "content_title": "",
+            "duration": "04:30:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "12",
+            "song_name": "Choir 'S' Choir",
+            "content_title": "",
+            "duration": "04:39:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "13",
+            "song_name": "天球（そら）のMúsica",
+            "content_title": "",
+            "duration": "04:40:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "14",
+            "song_name": "Imprisoned XII",
+            "content_title": "",
+            "duration": "03:09:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "15",
+            "song_name": "Ether",
+            "content_title": "",
+            "duration": "04:47:00",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演 - 定点录像",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "name": "Blu-ray付生産限定盤",
+        "type": "限定盘",
+        "catalog_no": "BRMM-11047",
+        "price": "9900",
+        "cover": "../images/精选限定.webp",
+        "cover_gallery": [
+          "../images/精选限定封套.webp",
+          "../images/精选限定.webp"
+        ],
+        "format": "CD + Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "特制三面包覆封套盒",
+          "2026秋Oml最速先行抽选券",
+          "角色卡片1张（全5种+隐藏烫金角色签名5种）",
+          "先着购入活动特典CD",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "KiLLKiSS",
+            "content_title": "",
+            "duration": "03:29:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Symbol I : 🜂",
+            "content_title": "",
+            "duration": "05:14:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "The Whole Blue World",
+            "content_title": "",
+            "duration": "04:20:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "顔",
+            "content_title": "",
+            "duration": "04:03:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "05",
+            "song_name": "Georgette Me, Georgette You",
+            "content_title": "",
+            "duration": "03:54:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "06",
+            "song_name": "Symbol II : 🜁",
+            "content_title": "",
+            "duration": "03:35:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "07",
+            "song_name": "DIVINE",
+            "content_title": "",
+            "duration": "04:19:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "08",
+            "song_name": "碧い瞳の中に",
+            "content_title": "",
+            "duration": "03:43:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "09",
+            "song_name": "黒のバースデイ",
+            "content_title": "",
+            "duration": "03:46:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "10",
+            "song_name": "八芒星ダンス",
+            "content_title": "",
+            "duration": "03:50:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "11",
+            "song_name": "素晴らしき世界 でも どこにもない場所",
+            "content_title": "",
+            "duration": "04:30:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "12",
+            "song_name": "Choir 'S' Choir",
+            "content_title": "",
+            "duration": "04:39:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "13",
+            "song_name": "天球（そら）のMúsica",
+            "content_title": "",
+            "duration": "04:40:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "14",
+            "song_name": "Imprisoned XII",
+            "content_title": "",
+            "duration": "03:09:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "15",
+            "song_name": "Ether",
+            "content_title": "",
+            "duration": "04:47:00",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "name": "通常盤",
+        "type": "通常盘",
+        "catalog_no": "BRMM-11048",
+        "price": "3850",
+        "cover": "../images/精选通常.webp",
+        "cover_gallery": [],
+        "format": "CD",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "2026秋Oml最速先行抽选券",
+          "角色卡片1张（全5种+隐藏烫金角色签名5种）",
+          "先着购入活动特典CD",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": false,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "KiLLKiSS",
+            "content_title": "",
+            "duration": "03:29:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Symbol I : 🜂",
+            "content_title": "",
+            "duration": "05:14:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "The Whole Blue World",
+            "content_title": "",
+            "duration": "04:20:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "顔",
+            "content_title": "",
+            "duration": "04:03:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "05",
+            "song_name": "Georgette Me, Georgette You",
+            "content_title": "",
+            "duration": "03:54:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "06",
+            "song_name": "Symbol II : 🜁",
+            "content_title": "",
+            "duration": "03:35:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "07",
+            "song_name": "DIVINE",
+            "content_title": "",
+            "duration": "04:19:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "08",
+            "song_name": "碧い瞳の中に",
+            "content_title": "",
+            "duration": "03:43:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "09",
+            "song_name": "黒のバースデイ",
+            "content_title": "",
+            "duration": "03:46:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "10",
+            "song_name": "八芒星ダンス",
+            "content_title": "",
+            "duration": "03:50:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "11",
+            "song_name": "素晴らしき世界 でも どこにもない場所",
+            "content_title": "",
+            "duration": "04:30:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "12",
+            "song_name": "Choir 'S' Choir",
+            "content_title": "",
+            "duration": "04:39:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "13",
+            "song_name": "天球（そら）のMúsica",
+            "content_title": "",
+            "duration": "04:40:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "14",
+            "song_name": "Imprisoned XII",
+            "content_title": "",
+            "duration": "03:09:00",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "CD",
+            "track_no": "15",
+            "song_name": "Ether",
+            "content_title": "",
+            "duration": "04:47:00",
             "note": ""
           }
         ]
