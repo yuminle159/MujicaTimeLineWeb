@@ -30,22 +30,22 @@
 
 所有 MD 文件（MC 和 Interview）均支持 12 种自定义颜色：
 
-| 编号  | 色值      | 效果         | 写法                   |
-| --- | ------- | ---------- | -------------------- |
-| c1  | #BB9955 | Doloris    | `[c1]金色文字[/c1]`      |
-| c2  | #779977 | Mortis     | `[c2]绿色文字[/c2]`      |
-| c3  | #335566 | Timorsi    | `[c3]深蓝文字[/c3]`      |
-| c4  | #AA4477 | Amoris     | `[c4]紫红文字[/c4]`      |
-| c5  | #7799CC | Oblivionis | `[c5]浅蓝文字[/c5]`      |
-| c6  | #3388BB | MyGO蓝      | `[c6]MyGO蓝文字[/c6]`   |
-| c7  | #881144 | Mujica红    | `[c7]Mujica红文字[/c7]` |
-| c8  | #FF7788 | 梦限大粉       | `[c8]梦限大粉文字[/c8]`    |
-| c9  | #FFEE55 | 阿拉蕾        | `[c9]阿拉蕾文字[/c9]`     |
-| c10 | #9977CC | 藤都子        | `[c10]藤都子文字[/c10]`   |
-| c11 | #77BBDD | 高松灯        | `[c11]浅天蓝文字[/c11]`   |
-| c12 | #cc2929 | 鲜红         | `[c12]深红文字[/c12]`    |
-
-用法示例：
+| 编号  | 色值      | 效果         | 写法                     |
+| --- | ------- | ---------- | ---------------------- |
+| c1  | #BB9955 | Doloris    | `[c1]金色文字[/c1]`        |
+| c2  | #779977 | Mortis     | `[c2]绿色文字[/c2]`        |
+| c3  | #335566 | Timorsi    | `[c3]深蓝文字[/c3]`        |
+| c4  | #AA4477 | Amoris     | `[c4]紫红文字[/c4]`        |
+| c5  | #7799CC | Oblivionis | `[c5]浅蓝文字[/c5]`        |
+| c6  | #3388BB | MyGO蓝      | `[c6]MyGO蓝文字[/c6]`     |
+| c7  | #881144 | Mujica红    | `[c7]Mujica红文字[/c7]`   |
+| c8  | #FF7788 | 梦限大粉       | `[c8]梦限大粉文字[/c8]`      |
+| c9  | #FFEE55 | 阿拉蕾        | `[c9]阿拉蕾文字[/c9]`       |
+| c10 | #9977CC | 藤都子        | `[c10]藤都子文字[/c10]`     |
+| c11 | #77BBDD | 高松灯        | `[c11]浅天蓝文字[/c11]`     |
+| c12 | #cc2929 | 鲜红         | `[c12]深红文字[/c12]`      |
+| c13 | #3344AA | roselia    | `[c13]roselia文字[/c13]` |
+| c14 | #77DD77 | 要乐奈        | `[c14]要乐奈文字[/c14]`     |
 
 ```markdown
 Doloris: [c1]「私は…私を見つけるために」[/c1]
@@ -54,19 +54,26 @@ Mortis: [c4]「仮面の下に隠した、本当の自分を」[/c4]
 
 ### 新增/修改颜色
 
-如需新增颜色（如 `[c13]`），需要修改以下 3 个文件：
+颜色样式现在由拆分后的组件管理。先选一个未占用的编号，例如 `c14`，再把同一个编号的样式加到需要显示它的组件 CSS 中：
 
-**1. CSS**（`live/style.css` 和 `interview/style.css`）
+| 使用位置           | 修改文件                        | 选择器                                 |
+| -------------- | --------------------------- | ----------------------------------- |
+| Live 的 MC 弹窗   | `css/live-drawer.css`       | `.shared-live-mc-modal .mc-c14`     |
+| Interview 访谈浮层 | `css/interview-overlay.css` | `.shared-interview-overlay .mc-c14` |
 
-在两处各添加一行：
+例如两处都需要橙色时，分别在现有 `.mc-cN` 规则旁添加：
 
 ```css
-.mc-c13 { color: #FF8800; }
+/* css/live-drawer.css */
+.shared-live-mc-modal .mc-c14 { color: #FF8800; }
+
+/* css/interview-overlay.css */
+.shared-interview-overlay .mc-c14 { color: #FF8800; }
 ```
 
-**2. JS 渲染器**（`js/renderMarkdown.js`）
+然后在对应的 MD 文件中写 `[c14]橙色文字[/c14]`。只在一个组件中使用，就只需修改那个组件的 CSS；修改已有颜色时，按相同方法更改对应 `.mc-cN` 的色值。`c13` 目前已在 `css/live-drawer.css` 中定义为 `#3344AA`，但 `css/interview-overlay.css` 中没有：若想让 Interview 也使用这个编号，需在后者补上 `.shared-interview-overlay .mc-c13`，并按需要设置色值。
 
-无需修改。渲染器使用动态正则 `\[c(\d+)\](.+?)\[\/c\1\]`，自动匹配任意 `[cN]...[/cN]` 标签，只需 CSS 有对应的 `.mc-cN` 类即可生效。
+`js/renderMarkdown.js` 无需修改。它会将任意成对的 `[cN]...[/cN]` 转成 `.mc-cN`；没有对应 CSS 规则时，文字不会呈现预期颜色。更新 MD 内容后按第六节的流程重新生成数据；只改 CSS 时刷新页面即可查看效果。
 
 ---
 
@@ -86,10 +93,10 @@ function renderMarkdown(html, options)
 
 **各页面引用方式：**
 
-| 页面           | 引入位置                          | 调用方式                                        |
-| ------------ | ----------------------------- | ------------------------------------------- |
-| Live MC 弹窗   | `live/index.html` 第 75 行      | `renderMarkdown(mcContent, { mode: 'mc' })` |
-| Interview 浮层 | `interview/index.html` 第 54 行 | `renderMarkdown(item.md_html)`              |
+| 页面           | 引入位置                                                      | 调用方式                                        |
+| ------------ | --------------------------------------------------------- | ------------------------------------------- |
+| Live MC 弹窗   | `js/live-drawer.js`，样式在 `css/live-drawer.css`             | `renderMarkdown(mcContent, { mode: 'mc' })` |
+| Interview 浮层 | `js/interview-overlay.js`，样式在 `css/interview-overlay.css` | `renderMarkdown(item.md_html)`              |
 
 **颜色标签处理**使用动态正则 `\[c(\d+)\](.+?)\[\/c\1\]`，自动匹配任意 `[cN]...[/cN]`，新增颜色只需添加 CSS 类，无需修改 JS。
 
@@ -147,14 +154,14 @@ Interview MD 文件放在 `_data/mc/` 目录下。
 
 在 `data.xlsx` 的 **interview** sheet 中填写：
 
-| 列名          | 说明                   | 示例                          |
-| ----------- | -------------------- | --------------------------- |
-| poster      | 海报图路径                | `../images/20231031-5.webp` |
-| date        | 访谈日期                 | `2025/06/15`                |
-| interviewee | 对谈人                  | `佐佐木李子 × 渡濑结月`              |
-| title       | 访谈标题                 | `Ave Mujica 声优访谈`           |
-| if_translated | 是否已翻译（`yes` / `no`） | `yes`                         |
-| md_path     | MD 文件路径（相对于 `_data`） | `mc/sample_interview.md`    |
+| 列名            | 说明                   | 示例                          |
+| ------------- | -------------------- | --------------------------- |
+| poster        | 海报图路径                | `../images/20231031-5.webp` |
+| date          | 访谈日期                 | `2025/06/15`                |
+| interviewee   | 对谈人                  | `佐佐木李子 × 渡濑结月`              |
+| title         | 访谈标题                 | `Ave Mujica 声优访谈`           |
+| if_translated | 是否已翻译（`yes` / `no`）  | `yes`                       |
+| md_path       | MD 文件路径（相对于 `_data`） | `mc/sample_interview.md`    |
 
 ### 5.3 原文标记
 
