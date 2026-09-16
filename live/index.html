@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609160018">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609160018">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609160018">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609160018">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609160018">
+  <link rel="stylesheet" href="style.css?v=202609161709">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609161709">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609161709">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609161709">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609161709">
 </head>
 <body>
   <div class="live-page">
@@ -57,18 +57,19 @@
     </div>
   </div>
 
-  <script src="../songs/data.js?v=202609160018"></script>
-  <script src="../discography/data.js?v=202609160018"></script>
-  <script src="../interview/data.js?v=202609160018"></script>
-  <script src="data.js?v=202609160018"></script>
-  <script src="../js/renderMarkdown.js?v=202609160018"></script>
-  <script src="../js/overlay-manager.js?v=202609160018"></script>
-  <script src="../js/interview-overlay.js?v=202609160018"></script>
-  <script src="../js/song-modal.js?v=202609160018"></script>
-  <script src="../js/live-drawer.js?v=202609160018"></script>
-  <script src="../js/discography-modal.js?v=202609160018"></script>
+  <script src="../songs/data.js?v=202609161709"></script>
+  <script src="../discography/data.js?v=202609161709"></script>
+  <script src="../interview/data.js?v=202609161709"></script>
+  <script src="data.js?v=202609161709"></script>
+  <script src="../js/renderMarkdown.js?v=202609161709"></script>
+  <script src="../js/overlay-manager.js?v=202609161709"></script>
+  <script src="../js/interview-overlay.js?v=202609161709"></script>
+  <script src="../js/song-modal.js?v=202609161709"></script>
+  <script src="../js/live-drawer.js?v=202609161709"></script>
+  <script src="../js/discography-modal.js?v=202609161709"></script>
   <script>
 (function() {
+  InterviewOverlay.configure({ includePageScroll: true });
   const gallery = document.getElementById("gallery");
   const noResults = document.getElementById("noResults");
   if (typeof livesData !== "undefined") {
@@ -268,8 +269,6 @@
     return n || name;
   }
 
-  const STATS_DORMANT_DAYS = 365;
-
   // 全局 LIVE DEBUT（每首唯一）：以 setlist 的 highlight_label 标记 "Live debut" 为准，跨全部 Live
   const STATS_DEBUT = {};
   if (typeof livesData !== "undefined") {
@@ -291,11 +290,6 @@
     return livesData.filter(l => statsScopeOf(l) === statsScope);
   }
 
-  function statsCompleteSetlist(live) {
-    const d = (live.description || "").toLowerCase();
-    return !(d.indexOf("非全场") >= 0 || d.indexOf("opening act") >= 0);
-  }
-
   function statsSongEntries(live) {
     const entries = (live.setlist || []).filter(statsIsCountedSong);
     return entries.map((e, i) => {
@@ -315,7 +309,8 @@
 
   function computeStats() {
     const scoped = statsScopedLives().slice().sort((a, b) => parseDateStamp(a.date) - parseDateStamp(b.date));
-    const complete = scoped.filter(statsCompleteSetlist);
+    // description 仅描述演出或现存影像，不代表 Setlist 是否完整，禁止据此排除统计。
+    const analyzedLives = scoped;
     const months = {};
     const songMap = {};
     const liveSongs = [];
@@ -325,7 +320,7 @@
       if (mk) months[mk] = (months[mk] || 0) + 1;
     });
 
-    complete.forEach(live => {
+    analyzedLives.forEach(live => {
       const entries = statsSongEntries(live);
       const stamp = parseDateStamp(live.date);
       liveSongs.push({ live: live, entries: entries, stamp: stamp });
@@ -353,7 +348,7 @@
     });
 
     const combos = {};
-    complete.forEach(live => {
+    analyzedLives.forEach(live => {
       const entries = statsSongEntries(live);
       for (let i = 0; i < entries.length - 1; i++) {
         const key = entries[i].title + " → " + entries[i + 1].title;
@@ -361,7 +356,7 @@
       }
     });
 
-    return { scoped: scoped, complete: complete, songMap: songMap, songList: songList, liveSongs: liveSongs, combos: combos, months: months };
+    return { scoped: scoped, songMap: songMap, songList: songList, liveSongs: liveSongs, combos: combos, months: months };
   }
 
   function statsCountSort(a, b) {
@@ -559,7 +554,7 @@
     });
 
     if (!cols.length) {
-      return '<section class="section"><div class="section-head"><div><div class="kicker">SETLIST CHRONOLOGY</div><h2>Setlist Evolution</h2></div></div><p class="stats-empty-note">当前范围无可用于矩阵的完整 Setlist 数据。</p></section>';
+      return '<section class="section"><div class="section-head"><div><div class="kicker">SETLIST CHRONOLOGY</div><h2>Setlist Evolution</h2></div></div><p class="stats-empty-note">当前范围无可用于矩阵的 Setlist 数据。</p></section>';
     }
 
     let head = '<thead><tr><th>SONG / LIVE</th>';
@@ -572,12 +567,17 @@
     rows.forEach(song => {
       tbody += '<tr><td title="' + statsAttr(song.title) + '">' + escapeHTML(song.title) + '</td>';
       cols.forEach(ls => {
-        const entry = ls.entries.find(e => e.songId === song.songId);
-        if (!entry) { tbody += '<td></td>'; return; }
+        const entries = ls.entries.filter(e => e.songId === song.songId);
+        if (!entries.length) { tbody += '<td></td>'; return; }
         const debut = ls.stamp === song.debutStamp;
-        const cls = (debut ? 'debut' : 'played') + (entry.isOpener ? ' opener' : '') + (entry.isCloser ? ' closer' : '');
-        const label = debut ? 'D' : String(entry.position);
-        const tip = ls.live.name + " · " + statsStampDisplay(ls.stamp, "/") + "\n" + song.title + "\n" + (debut ? 'LIVE DEBUT' : ('POSITION ' + entry.position)) + (entry.isOpener ? ' · OPENER' : '') + (entry.isCloser ? ' · CLOSER' : '');
+        const isOpener = entries.some(e => e.isOpener);
+        const isCloser = entries.some(e => e.isCloser);
+        const repeated = entries.length > 1;
+        const positions = entries.map(e => e.position);
+        const cls = (debut ? 'debut' : 'played') + (isOpener ? ' opener' : '') + (isCloser ? ' closer' : '') + (repeated ? ' repeated' : '');
+        const label = debut ? (repeated ? 'D×' + entries.length : 'D') : positions.join('/');
+        const positionLabel = repeated ? ('POSITIONS ' + positions.join(' / ') + ' · PLAYED ' + entries.length + '×') : ('POSITION ' + positions[0]);
+        const tip = ls.live.name + " · " + statsStampDisplay(ls.stamp, "/") + "\n" + song.title + "\n" + (debut ? 'LIVE DEBUT · ' : '') + positionLabel + (isOpener ? ' · OPENER' : '') + (isCloser ? ' · CLOSER' : '');
         tbody += '<td class="' + cls + '" title="' + statsAttr(tip) + '">' + label + '</td>';
       });
       tbody += '</tr>';
@@ -585,8 +585,8 @@
     tbody += '</tbody>';
 
     return '<section class="section">' +
-      '<div class="section-head"><div><div class="kicker">SETLIST CHRONOLOGY</div><h2>Setlist Evolution</h2></div><div class="section-note">横轴为演出，纵轴为歌曲。D 为首次演奏，红色斜纹为开场曲，白色斜纹为收尾曲。</div></div>' +
-      '<div class="matrix-tools"><div class="legend"><span><b>D</b> LIVE DEBUT</span><span><b class="swt swt-open"></b> OPENER</span><span><b class="swt swt-close"></b> CLOSER</span><span><b>01—</b> SETLIST POSITION</span></div><div class="stats-file-id">' + rows.length + ' TRACKS × ' + cols.length + ' LIVES</div></div>' +
+      '<div class="section-head"><div><div class="kicker">SETLIST CHRONOLOGY</div><h2>Setlist Evolution</h2></div><div class="section-note">横轴为演出，纵轴为歌曲。D 为首次演奏，红色斜纹为开场曲，白色斜纹为收尾曲；同场重复演奏以 1/13 形式列出全部位置。</div></div>' +
+      '<div class="matrix-tools"><div class="legend"><span><b>D</b> LIVE DEBUT</span><span><b class="swt swt-open"></b> OPENER</span><span><b class="swt swt-close"></b> CLOSER</span><span><b>01—</b> SETLIST POSITION</span><span><b>1/13</b> REPEATED</span></div><div class="stats-file-id">' + rows.length + ' TRACKS × ' + cols.length + ' LIVES</div></div>' +
       '<div class="matrix-scroll"><table class="matrix">' + head + tbody + '</table></div>' +
       '</section>';
   }
@@ -594,7 +594,7 @@
   // ==================== COMPARE ====================
   function renderCompare(S) {
     if (!S.liveSongs.length) {
-      return '<section class="section"><div class="section-head"><div><div class="kicker">PAIR ANALYSIS</div><h2>Live Comparison</h2></div></div><p class="stats-empty-note">当前范围无可用于对比的完整 Setlist 数据。</p></section>';
+      return '<section class="section"><div class="section-head"><div><div class="kicker">PAIR ANALYSIS</div><h2>Live Comparison</h2></div></div><p class="stats-empty-note">当前范围无可用于对比的 Setlist 数据。</p></section>';
     }
     const opts = S.liveSongs.map((ls, i) => '<option value="' + i + '">' + escapeHTML(statsStampDisplay(ls.stamp, "/") + " · " + statsShortName(ls.live.name)) + '</option>').join("");
     return '<section class="section">' +
@@ -708,8 +708,10 @@
       return statsIsOriginal(s) && rs > 0 && rs <= today && s.name_jp && !playedIds.has(statsNormId(s.name_jp));
     }).sort((a, b) => parseDateStamp(a.release_date) - parseDateStamp(b.release_date));
 
-    const dormant = S.songList.filter(sm => statsDayDiff(sm.lastStamp, today) >= STATS_DORMANT_DAYS)
-      .slice().sort((a, b) => a.lastStamp - b.lastStamp);
+    // 始终展示距离最后一次演出最久的 5 首；不设置休眠天数门槛。
+    const dormant = S.songList.slice()
+      .sort((a, b) => a.lastStamp - b.lastStamp)
+      .slice(0, 5);
 
     const streaks = computeStreaks(S).filter(x => x.total > 0)
       .sort((a, b) => b.current - a.current || b.longest - a.longest || b.total - a.total);
@@ -725,7 +727,7 @@
 
     let html = '<div class="comparison-metrics" style="margin-top:20px">' +
       '<div class="mini-metric"><b>' + unplayed.length + '</b><span>UNPLAYED TRACKS</span></div>' +
-      '<div class="mini-metric"><b>' + dormant.length + '</b><span>DORMANT TRACKS</span></div>' +
+      '<div class="mini-metric"><b>' + dormant.length + '</b><span>TOP DORMANT TRACKS</span></div>' +
       '<div class="mini-metric"><b>' + (longestCurrent ? longestCurrent.current + " LIVE" : "0") + '</b><span>LONGEST CURRENT STREAK</span></div>' +
       '<div class="mini-metric"><b>' + (avgGap === null ? "—" : avgGap + "d") + '</b><span>AVERAGE DEBUT GAP</span></div>' +
       '</div>';
@@ -776,14 +778,14 @@
       return '<li><span>' + escapeHTML(sm.title) + '<small>LAST · ' + escapeHTML(statsStampDisplay(sm.lastStamp, "/")) + '</small></span><span class="count">' + days + 'd</span></li>';
     }).join("") : '<li class="stats-empty-note">NO DORMANT TRACKS</li>';
     const unplayedItems = unplayed.length ? unplayed.map(s => '<li><span>' + escapeHTML(s.name_jp) + '<small>RELEASE · ' + escapeHTML(statsStampDisplay(parseDateStamp(s.release_date), "/")) + '</small></span></li>').join("") : '<li class="stats-empty-note">NO UNPLAYED TRACKS</li>';
-    html += '<section class="section"><div class="section-head"><div><div class="kicker">RARE &amp; ABSENT</div><h2>Rarities &amp; Unplayed Tracks</h2></div><div class="section-note">从尚未登台到长期休眠，集中查看目前不属于常规演出曲库的歌曲。</div></div>' +
-      '<div class="split-list"><div><h3>[ DORMANT ]</h3><ul class="data-list">' + dormantItems + '</ul></div><div><h3>[ UNPLAYED ]</h3><ul class="data-list">' + unplayedItems + '</ul></div></div></section>';
+    html += '<section class="section"><div class="section-head"><div><div class="kicker">RARE &amp; ABSENT</div><h2>Rarities &amp; Unplayed Tracks</h2></div><div class="section-note">左侧固定展示距离最后一次演出最久的 5 首；右侧展示尚未登台的歌曲。</div></div>' +
+      '<div class="split-list"><div><h3>[ TOP 5 DORMANT ]</h3><ul class="data-list">' + dormantItems + '</ul></div><div><h3>[ UNPLAYED ]</h3><ul class="data-list">' + unplayedItems + '</ul></div></div></section>';
 
     // Song Streaks
     const streakList = streaks.slice(0, 16);
     let streakHTML = "";
     if (!streakList.length) {
-      streakHTML = '<p class="stats-empty-note">当前范围无可用于 Streak 统计的完整 Setlist 数据。</p>';
+      streakHTML = '<p class="stats-empty-note">当前范围无可用于 Streak 统计的 Setlist 数据。</p>';
     } else {
       streakHTML = '<div class="streak-list">' + streakList.map(st => {
         const trackStyle = 'style="grid-template-columns:repeat(' + st.seq.length + ',1fr)"';

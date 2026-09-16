@@ -136,7 +136,7 @@
   function setlistHTML(live, liveIndex) {
     if (!live.setlist || !live.setlist.length) return "";
     const songLookup = buildSongLookup(currentOptions.songs || global.songsData || []);
-    return '<div class="shared-live-col-setlist"><h3 class="shared-live-section-title">Setlist</h3><ul class="shared-live-setlist-list">' +
+    return '<div class="shared-live-col-setlist shared-live-mobile-active" id="sharedLiveSetlistPanel" data-live-panel="setlist" role="tabpanel" aria-labelledby="sharedLiveSetlistTab"><h3 class="shared-live-section-title">Setlist</h3><ul class="shared-live-setlist-list">' +
       live.setlist.map(function (track, trackIndex) {
         const songIndex = track.title !== "Interlude" ? songLookup[track.title] : undefined;
         const hasMc = !!track.mc_content;
@@ -161,7 +161,7 @@
   function backstageHTML(live) {
     photoGroups = groupBackstage(live.backstage);
     if (!photoGroups.length) return "";
-    return '<div class="shared-live-col-gallery"><h3 class="shared-live-section-title">Backstage</h3><div class="shared-live-photo-grid">' +
+    return '<div class="shared-live-col-gallery" id="sharedLiveBackstagePanel" data-live-panel="backstage" role="tabpanel" aria-labelledby="sharedLiveBackstageTab"><h3 class="shared-live-section-title">Backstage</h3><div class="shared-live-photo-grid">' +
       photoGroups.map(function (group, groupIndex) {
         const firstPhoto = group.photos[0];
         const multiBadge = group.photos.length > 1 ? '<span class="shared-live-multi-badge">+' + (group.photos.length - 1) + '</span>' : "";
@@ -173,6 +173,9 @@
   function render(live, liveIndex) {
     const setlist = setlistHTML(live, liveIndex);
     const backstage = backstageHTML(live);
+    const mobileTabs = setlist && backstage
+      ? '<div class="shared-live-mobile-tabs" role="tablist" aria-label="Live 内容"><button class="shared-live-mobile-tab is-active" id="sharedLiveSetlistTab" type="button" role="tab" aria-controls="sharedLiveSetlistPanel" aria-selected="true" data-live-panel-tab="setlist">Setlist</button><button class="shared-live-mobile-tab" id="sharedLiveBackstageTab" type="button" role="tab" aria-controls="sharedLiveBackstagePanel" aria-selected="false" data-live-panel-tab="backstage">Backstage</button></div>'
+      : '';
     drawerBody.innerHTML = '<div class="shared-live-drawer-hero">' +
       (live.kv ? '<button class="shared-live-hero-poster-button" type="button" data-live-hero-image><img class="shared-live-hero-poster" src="' + escapeHTML(live.kv) + '" alt="' + escapeHTML(live.name) + '"></button>' : (live.poster ? '<img class="shared-live-hero-poster" src="' + escapeHTML(live.poster) + '" alt="' + escapeHTML(live.name) + '">' : '')) +
       '<div class="shared-live-hero-info"><div class="shared-live-hero-date">' + stripTime(escapeHTML(live.date)) + '</div>' +
@@ -182,11 +185,28 @@
           (live.video_url ? '<a href="' + escapeHTML(live.video_url) + '" class="shared-live-btn-play" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>WATCH ARCHIVE</a>' : '<span class="shared-live-btn-unrecorded"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>UNRECORDED</span>') +
           (live.description ? '<span class="shared-live-hero-desc">' + escapeHTML(live.description) + '</span>' : '') +
         '</div></div></div>' +
-      '<div class="shared-live-drawer-content">' + setlist + backstage + '</div>';
+      '<div class="shared-live-drawer-content' + (mobileTabs ? ' shared-live-has-tabs' : '') + '">' + mobileTabs + setlist + backstage + '</div>';
     renderedLive = live;
   }
 
   function handleDrawerClick(event) {
+    const panelTab = event.target.closest("[data-live-panel-tab]");
+    if (panelTab) {
+      const panelName = panelTab.dataset.livePanelTab;
+      overlay.querySelectorAll("[data-live-panel-tab]").forEach(function (tab) {
+        const active = tab === panelTab;
+        tab.classList.toggle("is-active", active);
+        tab.setAttribute("aria-selected", String(active));
+      });
+      overlay.querySelectorAll("[data-live-panel]").forEach(function (panel) {
+        panel.classList.toggle("shared-live-mobile-active", panel.dataset.livePanel === panelName);
+      });
+      const tabs = overlay.querySelector(".shared-live-mobile-tabs");
+      if (tabs && global.matchMedia && global.matchMedia("(max-width: 768px)").matches) {
+        drawerBody.scrollTop = tabs.offsetTop;
+      }
+      return;
+    }
     const song = event.target.closest("[data-live-song-index]");
     if (song) {
       openSong(Number(song.dataset.liveSongIndex));

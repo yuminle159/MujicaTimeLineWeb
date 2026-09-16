@@ -241,6 +241,7 @@
   min-height: 0;
   overflow: hidden;
 }
+.shared-live-mobile-tabs { display: none; }
 .shared-live-col-setlist,
 .shared-live-col-gallery {
   overflow-y: auto;
@@ -884,19 +885,34 @@
   .shared-live-drawer {
     width: 100vw;
     max-width: none;
+    height: 100vh;
+    height: 100dvh;
   }
+  .shared-live-drawer-body { height: 100%; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .shared-live-close-btn { position: fixed; top: max(12px, env(safe-area-inset-top)); right: max(12px, env(safe-area-inset-right)); background: rgba(20,20,20,.9); box-shadow: 0 4px 16px rgba(0,0,0,.35); }
   .shared-live-drawer-hero {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 56px 28px 28px;
+    align-items: center;
+    gap: 18px;
+    padding: max(64px, calc(env(safe-area-inset-top) + 52px)) max(20px, env(safe-area-inset-right)) 24px max(20px, env(safe-area-inset-left));
   }
-  .shared-live-hero-poster { width: 140px; height: 200px; }
-  .shared-live-hero-title { font-size: 26px; }
+  .shared-live-hero-poster { width: 92px; height: 128px; }
+  .shared-live-hero-info { min-width: 0; }
+  .shared-live-hero-title { font-size: clamp(20px, 6vw, 26px); overflow-wrap: anywhere; }
+  .shared-live-hero-meta-row { margin-bottom: 12px; font-size: 13px; }
+  .shared-live-hero-action-row { align-items: flex-start; gap: 10px; margin-top: 12px; }
+  .shared-live-hero-desc { flex-basis: 100%; }
   .shared-live-drawer-content {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 28px;
+    display: block;
+    min-height: auto;
+    padding: 0 max(20px, env(safe-area-inset-right)) max(32px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+    overflow: visible;
   }
+  .shared-live-mobile-tabs { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 0 -20px 24px; padding: 12px 20px; border-bottom: 1px solid var(--md-outline); background: rgba(20,20,20,.94); backdrop-filter: blur(12px); }
+  .shared-live-mobile-tab { min-height: 42px; border: 1px solid transparent; border-radius: var(--md-radius-full); background: transparent; color: var(--md-on-surface-variant); font: 700 12px "Cinzel",serif; letter-spacing: 1px; cursor: pointer; }
+  .shared-live-mobile-tab.is-active { border-color: rgba(255,77,77,.3); background: var(--md-primary-container); color: var(--md-primary); }
+  .shared-live-col-setlist,.shared-live-col-gallery { display: block; max-height: none; padding-right: 0; overflow: visible; }
+  .shared-live-has-tabs .shared-live-col-setlist,.shared-live-has-tabs .shared-live-col-gallery { display: none; }
+  .shared-live-col-setlist.shared-live-mobile-active,.shared-live-col-gallery.shared-live-mobile-active { display: block; }
 }
 
 

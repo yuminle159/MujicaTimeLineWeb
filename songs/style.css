@@ -66,6 +66,54 @@ body {
   letter-spacing: 6px;
 }
 
+/* ===== 新曲首发 ===== */
+.new-release-spotlight { position: relative; margin: 4px 60px 30px; }
+.new-release-spotlight[hidden] { display: none; }
+.new-release-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(260px, 30vw, 390px);
+  width: 100%;
+  min-height: 254px;
+  padding: 34px 44px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 91, 91, 0.3);
+  border-radius: var(--md-radius-lg);
+  background: linear-gradient(118deg, #171011 0%, #0e0d0e 53%, #080808 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.025), 0 18px 46px rgba(0,0,0,.4), 0 0 42px rgba(178, 23, 31, .11);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: transform var(--md-duration-medium) var(--md-easing-emphasized), border-color var(--md-duration-medium) var(--md-easing-standard), box-shadow var(--md-duration-medium) var(--md-easing-standard);
+}
+.new-release-card::before { position: absolute; z-index: -1; inset: 0; content: ""; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.018) 3px 4px); mix-blend-mode: screen; opacity: .38; pointer-events: none; }
+.new-release-card::after { position: absolute; z-index: -1; top: -55%; left: 40%; width: 62%; aspect-ratio: 1; content: ""; border-radius: 50%; background: radial-gradient(circle, rgba(197,42,45,.23), rgba(135,12,18,.06) 36%, transparent 70%); filter: blur(4px); animation: new-release-pulse 5s ease-in-out infinite; pointer-events: none; }
+.new-release-card:hover { border-color: rgba(255, 112, 112, .6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 24px 60px rgba(0,0,0,.52), 0 0 56px rgba(198, 30, 37, .2); transform: translateY(-3px); }
+.new-release-card:focus-visible { outline: 2px solid #ff8f8f; outline-offset: 4px; }
+.new-release-visual { position: absolute; z-index: -2; inset: 0 0 0 auto; width: 51%; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 37%); mask-image: linear-gradient(to right, transparent 0%, #000 37%); }
+.new-release-visual::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, #0e0d0e 0%, rgba(14,13,14,.58) 38%, rgba(0,0,0,.14) 100%); }
+.new-release-visual img,.new-release-visual-placeholder { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(1.08) brightness(.64); transform: scale(1.045); transition: filter var(--md-duration-medium) var(--md-easing-standard), transform .7s var(--md-easing-emphasized); }
+.new-release-visual-placeholder { background: radial-gradient(circle at 65% 35%, #522124, #111 68%); }
+.new-release-card:hover .new-release-visual img { filter: saturate(.92) contrast(1.04) brightness(.78); transform: scale(1.09); }
+.new-release-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; max-width: min(720px, 86%); }
+.new-release-kicker,.new-release-open,.new-release-seal { font-family: "Space Grotesk", monospace, sans-serif; letter-spacing: .15em; }
+.new-release-kicker { display: inline-flex; align-items: center; gap: 9px; color: #e15b5e; font-size: 11px; font-weight: 600; }
+.new-release-kicker i { width: 7px; height: 7px; border-radius: 50%; background: #f44d50; box-shadow: 0 0 0 0 rgba(255,77,80,.65); animation: new-release-signal 2s ease-out infinite; }
+.new-release-title { margin-top: 15px; color: #f0e8e8; font: 700 clamp(28px, 4vw, 47px)/1.08 "Cinzel", "Noto Serif JP", serif; letter-spacing: .045em; overflow-wrap: anywhere; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+.new-release-subtitle { margin-top: 8px; color: rgba(235,224,224,.63); font-size: 14px; letter-spacing: .08em; }
+.new-release-open { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; color: #e77e80; font-size: 11px; font-weight: 600; transition: color var(--md-duration-short) var(--md-easing-standard), gap var(--md-duration-short) var(--md-easing-standard); }
+.new-release-open b { font-size: 16px; font-weight: 400; line-height: .6; }
+.new-release-card:hover .new-release-open { gap: 15px; color: #ffc1c1; }
+.new-release-seal { position: absolute; z-index: 1; top: 27px; right: 28px; display: grid; width: 58px; height: 58px; place-items: center; border: 1px solid rgba(255,206,206,.55); border-radius: 50%; color: rgba(255,229,229,.85); font-size: 9px; font-weight: 600; line-height: 1.35; text-align: center; transform: rotate(12deg); }
+.new-release-pager { position: absolute; right: 31px; bottom: 28px; color: rgba(255,225,225,.58); font: 600 10px/1 "Space Grotesk", monospace, sans-serif; letter-spacing: .15em; }
+.new-release-card.is-rotating { animation: new-release-fade-in .62s ease-out; }
+.new-release-card.is-leaving { animation: new-release-fade-out .42s ease-in forwards; pointer-events: none; }
+@keyframes new-release-pulse { 0%,100% { opacity: .65; transform: scale(.95); } 50% { opacity: 1; transform: scale(1.08); } }
+@keyframes new-release-signal { 0% { box-shadow: 0 0 0 0 rgba(255,77,80,.6); } 70%,100% { box-shadow: 0 0 0 9px rgba(255,77,80,0); } }
+@keyframes new-release-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes new-release-fade-out { from { opacity: 1; } to { opacity: 0; } }
+
 /* ===== 工具栏 ===== */
 .toolbar {
   display: flex;
@@ -248,6 +296,22 @@ body {
 .cover-card:hover img {
   filter: brightness(0.3) blur(2px);
 }
+.cover-new-badge,.cover-countdown-badge {
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  left: 9px;
+  padding: 4px 7px;
+  border: 1px solid rgba(255,180,180,.62);
+  border-radius: 3px;
+  background: rgba(114,15,19,.86);
+  box-shadow: 0 2px 10px rgba(0,0,0,.45);
+  color: #fff1f1;
+  font: 700 9px/1 "Space Grotesk", monospace, sans-serif;
+  letter-spacing: .11em;
+  white-space: nowrap;
+}
+.cover-countdown-badge { border-color: rgba(215, 205, 184, .48); background: rgba(38, 35, 30, .9); color: #f3ead8; letter-spacing: .03em; }
 .cover-card .cover-overlay {
   position: absolute;
   inset: 0;
@@ -307,6 +371,30 @@ body {
 .cover-info-icon .eye-pupil {
   fill: currentColor;
 }
+
+/* ===== 意图感应式返回顶部 ===== */
+.songs-page-top-btn {
+  position: fixed;
+  z-index: 9900;
+  right: 40px;
+  bottom: 40px;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 2px solid var(--md-primary);
+  border-radius: 4px;
+  background: rgba(5, 5, 7, 0.85);
+  color: #888;
+  cursor: pointer;
+  font: 11px "Space Grotesk", "Cinzel", sans-serif;
+  letter-spacing: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity .4s cubic-bezier(.19, 1, .22, 1), transform .4s cubic-bezier(.19, 1, .22, 1), background var(--md-duration-short), border-color var(--md-duration-short), color var(--md-duration-short), box-shadow var(--md-duration-short);
+}
+.songs-page-top-btn.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.songs-page-top-btn:hover { border-color: rgba(204, 41, 41, .4); background: rgba(204, 41, 41, .15); color: #fff; box-shadow: 0 4px 15px rgba(204, 41, 41, .2); }
+.songs-page-top-btn:focus-visible { outline: 2px solid #ff8f8f; outline-offset: 3px; }
 @keyframes hexagram-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -879,6 +967,14 @@ body {
     padding-left: 24px;
     padding-right: 24px;
   }
+  .new-release-spotlight { margin: 0 24px 26px; }
+  .new-release-card { min-height: 236px; padding: 28px; grid-template-columns: 1fr; }
+  .new-release-visual { width: 72%; }
+  .new-release-content { max-width: 88%; }
+  .new-release-title { font-size: clamp(25px, 7.6vw, 39px); }
+  .new-release-seal { top: 18px; right: 18px; width: 51px; height: 51px; font-size: 8px; }
+  .new-release-pager { right: 20px; bottom: 20px; }
+  .songs-page-top-btn { right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); }
   .page-header h1 {
     font-size: 22px;
     letter-spacing: 1px;
@@ -940,6 +1036,16 @@ body {
     padding-left: 16px;
     padding-right: 16px;
   }
+  .new-release-spotlight { margin-right: 16px; margin-left: 16px; }
+  .new-release-card { min-height: 230px; padding: 25px 20px; }
+  .new-release-visual { width: 88%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 48%); mask-image: linear-gradient(to right, transparent 0%, #000 48%); }
+  .new-release-content { max-width: 90%; }
+  .new-release-kicker { font-size: 9px; letter-spacing: .11em; }
+  .new-release-subtitle { max-width: 80%; font-size: 12px; }
+  .new-release-open { margin-top: 21px; font-size: 10px; }
+  .new-release-seal { display: none; }
+  .new-release-pager { right: 18px; bottom: 18px; }
+  .songs-page-top-btn { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); padding: 9px 15px; font-size: 10px; }
   .cover-grid {
     grid-template-columns: repeat(2, 1fr);
   }

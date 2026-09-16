@@ -345,7 +345,7 @@ const TAG_ICONS = {
 | `poster` | 否 | 海报图片路径（用于画廊卡片缩略图） | `../images/0th.png` |
 | `kv` | 否 | KV 主视觉图片路径（用于详情页，点击放大） | `../images/1st_live_kv.jpg` |
 | `video_url` | 否 | 影像链接（留空则显示灰色 UNRECORDED） | `https://www.bilibili.com/video/...` |
-| `description` | 否 | 简介（显示在按钮右侧） | `「初次登台」` |
+| `description` | 否 | 简介（显示在按钮右侧）；仅供展示，不参与 Setlist 或 Live 统计筛选 | `「初次登台」` |
 
 > **KV 与 Poster 的区别**：`poster` 用于画廊卡片缩略图，`kv` 用于详情页左上角主视觉图。两者可设为不同图片。点击 KV 可放大查看全图。
 

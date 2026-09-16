@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609160018">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609160018">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609160018">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609160018">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609160018">
+  <link rel="stylesheet" href="style.css?v=202609161709">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609161709">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609161709">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609161709">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609161709">
 </head>
 <body>
   <div class="songs-page">
@@ -20,6 +20,8 @@
       <a href="../index.html" class="back-nav">&larr; 返回主页</a>
       <h1>Songs</h1>
     </header>
+
+    <section class="new-release-spotlight" id="newReleaseSpotlight" aria-label="新曲发布" hidden></section>
 
     <!-- 工具栏 -->
     <div class="toolbar">
@@ -48,24 +50,29 @@
 
     <!-- 无结果 -->
     <div class="no-results" id="noResults" style="display:none">没有找到匹配的歌曲</div>
+
+    <button class="songs-page-top-btn" id="songsPageTopBtn" type="button" aria-label="返回页面顶部">↑ Page Top</button>
   </div>
 
-  <script src="data.js?v=202609160018"></script>
-  <script src="../discography/data.js?v=202609160018"></script>
-  <script src="../live/data.js?v=202609160018"></script>
-  <script src="../interview/data.js?v=202609160018"></script>
-  <script src="../js/renderMarkdown.js?v=202609160018"></script>
-  <script src="../js/overlay-manager.js?v=202609160018"></script>
-  <script src="../js/interview-overlay.js?v=202609160018"></script>
-  <script src="../js/song-modal.js?v=202609160018"></script>
-  <script src="../js/live-drawer.js?v=202609160018"></script>
-  <script src="../js/discography-modal.js?v=202609160018"></script>
-  <script src="lyrics-atlas-data.js?v=202609160018"></script>
+  <script src="data.js?v=202609161709"></script>
+  <script src="../discography/data.js?v=202609161709"></script>
+  <script src="../live/data.js?v=202609161709"></script>
+  <script src="../interview/data.js?v=202609161709"></script>
+  <script src="../js/renderMarkdown.js?v=202609161709"></script>
+  <script src="../js/overlay-manager.js?v=202609161709"></script>
+  <script src="../js/interview-overlay.js?v=202609161709"></script>
+  <script src="../js/song-modal.js?v=202609161709"></script>
+  <script src="../js/live-drawer.js?v=202609161709"></script>
+  <script src="../js/discography-modal.js?v=202609161709"></script>
+  <script src="lyrics-atlas-data.js?v=202609161709"></script>
   <script>
 (function() {
   let sortAsc = true;  // 默认：时间正序（旧→新）
   let searchQuery = "";
   let activeType = null;  // null | "Original" | "Cover"
+  const NEW_RELEASE_WINDOW_DAYS = 14;
+  let newReleaseRotationTimer;
+  let newReleaseTransitionTimer;
 
   // ===== 类型筛选按钮 =====
   document.getElementById("filterOriginal").addEventListener("click", function() {
@@ -125,6 +132,102 @@
   const gallery = document.getElementById("gallery");
   const noResults = document.getElementById("noResults");
   const resultCount = document.getElementById("resultCount");
+  const newReleaseSpotlight = document.getElementById("newReleaseSpotlight");
+
+  function releaseTimestamp(dateStr) {
+    const match = String(dateStr || "").match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/);
+    return match ? Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])) : 0;
+  }
+
+  function todayTimestamp() {
+    const today = new Date();
+    return Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+  }
+
+  function isNewRelease(song) {
+    const releasedAt = releaseTimestamp(song.release_date);
+    const age = todayTimestamp() - releasedAt;
+    return releasedAt && age >= 0 && age <= NEW_RELEASE_WINDOW_DAYS * 86400000;
+  }
+
+  function daysUntilRelease(song) {
+    const releasedAt = releaseTimestamp(song.release_date);
+    const days = Math.ceil((releasedAt - todayTimestamp()) / 86400000);
+    return releasedAt && days > 0 ? days : null;
+  }
+
+  function renderReleaseSpotlightCard(releases, activeIndex) {
+    const newRelease = releases[activeIndex];
+    const index = songsData.indexOf(newRelease);
+    const pager = releases.length > 1
+      ? `<span class="new-release-pager" aria-hidden="true">${String(activeIndex + 1).padStart(2, "0")} / ${String(releases.length).padStart(2, "0")}</span>`
+      : "";
+    newReleaseSpotlight.innerHTML = `
+      <button class="new-release-card is-rotating" type="button" data-song-index="${index}" aria-label="查看新曲 ${escapeHTML(newRelease.name_jp || newRelease.name)} 的详情">
+        <span class="new-release-visual" aria-hidden="true">
+          ${newRelease.cover ? `<img src="${escapeHTML(newRelease.cover)}" alt="">` : '<span class="new-release-visual-placeholder"></span>'}
+        </span>
+        <span class="new-release-content">
+          <span class="new-release-kicker"><i></i> NEW RELEASE // ${escapeHTML(stripTime(newRelease.release_date))}</span>
+          <strong class="new-release-title">${escapeHTML(newRelease.name_jp || newRelease.name)}</strong>
+          ${newRelease.name ? `<span class="new-release-subtitle">${escapeHTML(newRelease.name)}</span>` : ""}
+          <span class="new-release-open">EXPLORE SONG <b aria-hidden="true">↗</b></span>
+        </span>
+        <span class="new-release-seal" aria-hidden="true">NEW<br>SONG</span>
+        ${pager}
+      </button>`;
+  }
+
+  function renderNewReleaseSpotlight() {
+    const releases = songsData
+      .filter(isNewRelease)
+      .sort((a, b) => releaseTimestamp(b.release_date) - releaseTimestamp(a.release_date));
+    window.clearInterval(newReleaseRotationTimer);
+    window.clearTimeout(newReleaseTransitionTimer);
+    if (!releases.length) {
+      newReleaseSpotlight.hidden = true;
+      newReleaseSpotlight.innerHTML = "";
+      newReleaseSpotlight.onmouseenter = null;
+      newReleaseSpotlight.onmouseleave = null;
+      return;
+    }
+
+    newReleaseSpotlight.hidden = false;
+    let activeIndex = 0;
+    renderReleaseSpotlightCard(releases, activeIndex);
+    function rotateRelease() {
+      const card = newReleaseSpotlight.querySelector(".new-release-card");
+      const showNext = function() {
+        activeIndex = (activeIndex + 1) % releases.length;
+        renderReleaseSpotlightCard(releases, activeIndex);
+        newReleaseTransitionTimer = undefined;
+      };
+      if (!card) {
+        showNext();
+        return;
+      }
+      card.classList.add("is-leaving");
+      newReleaseTransitionTimer = window.setTimeout(showNext, 420);
+    }
+    function pauseReleaseRotation() {
+      window.clearInterval(newReleaseRotationTimer);
+      window.clearTimeout(newReleaseTransitionTimer);
+      newReleaseSpotlight.querySelector(".new-release-card")?.classList.remove("is-leaving");
+    }
+    function resumeReleaseRotation() {
+      if (releases.length < 2) return;
+      window.clearInterval(newReleaseRotationTimer);
+      newReleaseRotationTimer = window.setInterval(rotateRelease, 3000);
+    }
+    if (releases.length > 1) {
+      newReleaseSpotlight.onmouseenter = pauseReleaseRotation;
+      newReleaseSpotlight.onmouseleave = resumeReleaseRotation;
+      resumeReleaseRotation();
+    } else {
+      newReleaseSpotlight.onmouseenter = null;
+      newReleaseSpotlight.onmouseleave = null;
+    }
+  }
 
   function renderGallery() {
     gallery.innerHTML = "";
@@ -181,9 +284,14 @@
     const coverSrc = song.cover || "";
     const jp = song.name_jp ? `<span class="cover-song-name">${escapeHTML(song.name_jp)}</span>` : "";
     const cn = song.name ? `<span class="cover-song-name-cn">${escapeHTML(song.name)}</span>` : "";
+    const countdownDays = daysUntilRelease(song);
+    const releaseBadge = isNewRelease(song)
+      ? '<span class="cover-new-badge">NEW</span>'
+      : (countdownDays ? `<span class="cover-countdown-badge">${countdownDays} 天后</span>` : "");
     return `
       <div class="cover-card type-${(song.type || '').toLowerCase()}" data-song-index="${songsData.indexOf(song)}" onclick="openModal(${songsData.indexOf(song)})">
         ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name_jp || song.name)}" loading="lazy">` : '<div class="cover-placeholder"></div>'}
+        ${releaseBadge}
         <div class="cover-overlay">
           ${jp}
           ${cn}
@@ -218,6 +326,30 @@
     SongModal.open(index, { songs: songsData, discography: discographyData, lives: livesData, updateHash: true });
   };
 
+  newReleaseSpotlight.addEventListener("click", function(event) {
+    const card = event.target.closest("[data-song-index]");
+    if (card) openModal(Number(card.dataset.songIndex));
+  });
+
+  // 仅在浏览者回看内容时提示返回顶部，避免向下浏览时遮挡画面。
+  const songsPageTopBtn = document.getElementById("songsPageTopBtn");
+  let songsPageTopLastScrollY = window.scrollY;
+  window.addEventListener("scroll", function() {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY < 800 || currentScrollY > songsPageTopLastScrollY) {
+      songsPageTopBtn.classList.remove("show");
+    } else {
+      songsPageTopBtn.classList.add("show");
+    }
+    songsPageTopLastScrollY = currentScrollY;
+  }, { passive: true });
+  songsPageTopBtn.addEventListener("click", function() {
+    document.body.style.overflowAnchor = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.setTimeout(function() { document.body.style.overflowAnchor = "auto"; }, 1000);
+  });
+
+  renderNewReleaseSpotlight();
   renderGallery();
 
   // Something New 入口：使用可读的 song_name 定位，并直接打开歌曲组件。
@@ -240,8 +372,8 @@
   }
 })();
   </script>
-  <script src="vendor/wordcloud2.js?v=202609160018"></script>
-  <script src="lyrics-atlas.js?v=202609160018"></script>
+  <script src="vendor/wordcloud2.js?v=202609161709"></script>
+  <script src="lyrics-atlas.js?v=202609161709"></script>
 
 
 </body>

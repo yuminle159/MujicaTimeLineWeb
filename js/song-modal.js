@@ -55,6 +55,15 @@
   }
 
   function handleModalClick(event) {
+    const metaToggle = event.target.closest("[data-song-meta-toggle]");
+    if (metaToggle) {
+      const meta = overlay.querySelector(".shared-song-meta");
+      if (!meta) return;
+      const expanded = meta.classList.toggle("is-expanded");
+      metaToggle.setAttribute("aria-expanded", String(expanded));
+      metaToggle.textContent = expanded ? "收起详细信息" : "展开详细信息";
+      return;
+    }
     const tab = event.target.closest("[data-song-comment]");
     if (tab) {
       const index = Number(tab.dataset.songComment);
@@ -97,7 +106,8 @@
     left.innerHTML = (song.cover ? '<img class="shared-song-cover" src="' + escapeHTML(song.cover) + '" alt="' + escapeHTML(song.name_jp || song.name) + '">' : "") +
       '<div class="shared-song-title" id="sharedSongModalTitle">' + escapeHTML(song.name_jp || song.name) + '</div>' + cnTitle +
       (song.type ? '<span class="shared-song-type">' + escapeHTML(song.type) + '</span>' : "") +
-      '<div class="shared-song-meta">' +
+      '<button class="shared-song-meta-toggle" type="button" data-song-meta-toggle aria-expanded="false" aria-controls="sharedSongMeta">展开详细信息</button>' +
+      '<div class="shared-song-meta" id="sharedSongMeta">' +
       (song.release_date ? '<div><span class="shared-song-meta-label">发行日期</span><span>' + escapeHTML(song.release_date) + '</span></div>' : "") +
       (song.album ? '<div><span class="shared-song-meta-label">首发形式</span><span>' + escapeHTML(song.album) + '</span></div>' : "") +
       (song.lyricist ? '<div><span class="shared-song-meta-label">作词</span><span>' + escapeHTML(song.lyricist) + '</span></div>' : "") +
@@ -127,14 +137,13 @@
       const empty = !(jp[index] || "").trim() && !(cn[index] || "").trim();
       rows.push('<div class="shared-song-lyrics-row' + (empty ? ' is-empty' : '') + '"><span>' + escapeHTML(jp[index] || "") + '</span><span>' + escapeHTML(cn[index] || "") + '</span></div>');
     }
-    return '<section class="shared-song-section shared-song-lyrics' + (expandForMissingHistory ? ' is-expanded' : '') + '"><div class="shared-song-section-head"><h3>Lyrics</h3><div class="shared-song-lyrics-actions"><button type="button" data-song-action="lyrics-mode">Lyrics Mode</button><button type="button" data-song-action="copy">&#128203; 复制</button></div></div><div class="shared-song-lyrics-columns">' + rows.join("") + '</div></section>';
+    return '<section class="shared-song-section shared-song-lyrics' + (expandForMissingHistory ? ' is-expanded' : '') + '"><div class="shared-song-section-head"><h3>Lyrics</h3><div class="shared-song-lyrics-actions"><button class="shared-song-mode-button" type="button" data-song-action="lyrics-mode" aria-pressed="false">Lyrics Mode</button><button type="button" data-song-action="copy">&#128203; 复制</button></div></div><div class="shared-song-lyrics-columns">' + rows.join("") + '</div></section>';
   }
 
   function renderHistory(song) {
     if (!song.live_history || !song.live_history.length) return "";
     const history = song.live_history.slice().sort(function (a, b) { return (a.date || "").localeCompare(b.date || ""); });
-    const stats = stripTime(history[0].date) + ' ~ ' + stripTime(history[history.length - 1].date) + '，共演奏 ' + history.length + ' 次';
-    return '<section class="shared-song-section"><div class="shared-song-section-head"><h3>Performance History</h3><small>' + escapeHTML(stats) + '</small></div><div class="shared-song-live-list">' + history.map(function (item) {
+    return '<section class="shared-song-section shared-song-history"><div class="shared-song-section-head"><h3>Performance History</h3><div class="shared-song-lyrics-actions shared-song-history-actions"><button class="shared-song-mode-button" type="button" data-song-action="live-mode" aria-pressed="false">Live Mode</button></div></div><div class="shared-song-live-list">' + history.map(function (item) {
       const name = item.has_video && item.video_url
         ? '<a class="shared-song-live-name" href="' + escapeHTML(item.video_url) + '" target="_blank" rel="noopener">' + escapeHTML(item.name) + '</a>'
         : '<span class="shared-song-live-name">' + escapeHTML(item.name) + '</span>';
@@ -143,14 +152,33 @@
   }
 
   function wireActions() {
-    const lyrics = overlay.querySelector(".shared-song-lyrics");
-    const mode = overlay.querySelector('[data-song-action="lyrics-mode"]');
+    const lyricsMode = overlay.querySelector('[data-song-action="lyrics-mode"]');
+    const liveMode = overlay.querySelector('[data-song-action="live-mode"]');
     const copy = overlay.querySelector('[data-song-action="copy"]');
-    if (mode && lyrics) {
-      mode.addEventListener("click", function () {
-        lyrics.classList.toggle("clean-mode");
-        mode.textContent = lyrics.classList.contains("clean-mode") ? "退出 Lyrics Mode" : "Lyrics Mode";
-      });
+    function toggleFocusMode(mode) {
+      const modeClass = mode === "lyrics" ? "lyrics-focus-mode" : "live-focus-mode";
+      const enabled = !right.classList.contains(modeClass);
+      right.classList.remove("lyrics-focus-mode", "live-focus-mode");
+      if (enabled) {
+        lockFocusModeHeight();
+        right.classList.add(modeClass);
+      } else resetFocusModeHeight();
+      if (lyricsMode) {
+        const active = enabled && mode === "lyrics";
+        lyricsMode.setAttribute("aria-pressed", String(active));
+        lyricsMode.textContent = active ? "退出 Lyrics Mode" : "Lyrics Mode";
+      }
+      if (liveMode) {
+        const active = enabled && mode === "live";
+        liveMode.setAttribute("aria-pressed", String(active));
+        liveMode.textContent = active ? "退出 Live Mode" : "Live Mode";
+      }
+    }
+    if (lyricsMode) {
+      lyricsMode.addEventListener("click", function () { toggleFocusMode("lyrics"); });
+    }
+    if (liveMode) {
+      liveMode.addEventListener("click", function () { toggleFocusMode("live"); });
     }
     if (copy) {
       copy.addEventListener("click", function () {
@@ -160,6 +188,28 @@
         else { fallbackCopy(text); done(); }
       });
     }
+  }
+
+  function detailScroller() {
+    if (global.matchMedia && global.matchMedia("(max-width: 768px)").matches) {
+      return overlay.querySelector(".shared-song-modal");
+    }
+    return right;
+  }
+
+  function lockFocusModeHeight() {
+    if (global.matchMedia && global.matchMedia("(max-width: 768px)").matches) return;
+    const modal = overlay && overlay.querySelector(".shared-song-modal");
+    if (!modal || modal.dataset.songFocusHeight) return;
+    modal.style.height = Math.round(modal.getBoundingClientRect().height) + "px";
+    modal.dataset.songFocusHeight = "locked";
+  }
+
+  function resetFocusModeHeight() {
+    const modal = overlay && overlay.querySelector(".shared-song-modal");
+    if (!modal) return;
+    modal.style.removeProperty("height");
+    delete modal.dataset.songFocusHeight;
   }
 
   function fallbackCopy(text) {
@@ -185,9 +235,11 @@
       currentSong = song;
       renderLeft(song);
       const hasLiveHistory = !!(song.live_history && song.live_history.length);
+      right.classList.remove("lyrics-focus-mode", "live-focus-mode");
+      resetFocusModeHeight();
       right.innerHTML = renderComments(song) + renderLyrics(song, !hasLiveHistory) + renderHistory(song) || '<div class="shared-song-empty">暂无更多信息</div>';
       wireActions();
-      right.scrollTop = savedScrollTop;
+      detailScroller().scrollTop = savedScrollTop;
       overlay.classList.add("open");
       overlay.setAttribute("aria-hidden", "false");
     }
@@ -200,9 +252,11 @@
         manageHash: !!settings.updateHash,
         activate: activate,
         capture: function () {
-          if (currentSong === song) savedScrollTop = right.scrollTop;
+          if (currentSong === song) savedScrollTop = detailScroller().scrollTop;
         },
         deactivate: function () {
+          right.classList.remove("lyrics-focus-mode", "live-focus-mode");
+          resetFocusModeHeight();
           overlay.classList.remove("open");
           overlay.setAttribute("aria-hidden", "true");
         },
@@ -231,8 +285,8 @@
       return;
     }
     const options = currentOptions;
-    const lyrics = overlay.querySelector(".shared-song-lyrics.clean-mode");
-    if (lyrics) lyrics.classList.remove("clean-mode");
+    right.classList.remove("lyrics-focus-mode", "live-focus-mode");
+    resetFocusModeHeight();
     overlay.classList.remove("open");
     overlay.setAttribute("aria-hidden", "true");
     if (options.updateHash && location.hash.startsWith("#song=")) history.replaceState(null, "", location.pathname + location.search);
