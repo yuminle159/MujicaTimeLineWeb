@@ -137,8 +137,12 @@
   margin: 0 auto;
   color: #ccc;
   font-size: 15px;
-  line-height: 1.9;
+  line-height: 2.85;
 }
+
+.shared-interview-overlay .md-content h1,
+.shared-interview-overlay .md-content h2,
+.shared-interview-overlay .md-content h3 { line-height: 1.9; }
 
 .shared-interview-overlay .md-content h1 {
   margin: 0 0 32px;
@@ -171,7 +175,7 @@
 
 .shared-interview-overlay .md-content .manual-br {
   display: block;
-  height: 1.9em;
+  height: 2.85em;
   height: 1lh;
 }
 
@@ -246,7 +250,7 @@
   border-top: 1px dashed rgba(255, 255, 255, 0.06);
   color: #777;
   font-size: 13px;
-  line-height: 1.7;
+  line-height: 2.55;
 }
 
 .shared-interview-body.hide-original .md-original { display: none; }
@@ -265,6 +269,7 @@
 .shared-interview-overlay .mc-c12 { color: #cc2929; }
 .shared-interview-overlay .mc-c13 { color: #3344AA; }
 .shared-interview-overlay .mc-c14 { color: #77DD77; }
+.shared-interview-overlay .mc-c15 { color: #7777AA; }
 .shared-interview-page-top {
   position: fixed;
   right: 40px;

@@ -687,5 +687,47 @@ const livesData = [
     for_short: "7th D2",
     setlist: [],
     backstage: []
+  },
+  {
+    name: "EVANESCENCE 2026 JAPAN D1",
+    hash_id: "9uutag7Ptje",
+    date: "2026/12/1",
+    venue: "SGC HALL ARIAKE",
+    tag: "Fes",
+    poster: "../images/logo/evanescenced1logo.webp",
+    kv: "../images/evanescence kv.webp",
+    video_url: "",
+    description: "",
+    for_short: "EVANESCENCE D1",
+    setlist: [],
+    backstage: []
+  },
+  {
+    name: "EVANESCENCE 2026 JAPAN D2",
+    hash_id: "mlKFshNCece",
+    date: "2026/12/2",
+    venue: "SGC HALL ARIAKE",
+    tag: "Fes",
+    poster: "../images/logo/evanescenced2logo.webp",
+    kv: "../images/evanescence kv.webp",
+    video_url: "",
+    description: "",
+    for_short: "EVANESCENCE D2",
+    setlist: [],
+    backstage: []
+  },
+  {
+    name: "EVANESCENCE 2026 JAPAN D3",
+    hash_id: "6kqxxhlyg3v",
+    date: "2026/12/4",
+    venue: "Zepp Osaka Bayside",
+    tag: "Fes",
+    poster: "../images/logo/evanescenced3logo.webp",
+    kv: "../images/evanescence kv.webp",
+    video_url: "",
+    description: "",
+    for_short: "EVANESCENCE D3",
+    setlist: [],
+    backstage: []
   }
 ];

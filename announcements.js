@@ -11,6 +11,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.17",
+    "msg": "1.live样式优化 2.live新增即将到来的演出展示",
+    "pinned": false
+  },
+  {
     "date": "2026.09.16",
     "msg": "1.songs & live移动端适配 2.live数据分析bug修复 3.song加入了新歌展示&即将发布的曲子倒计时 4.songsmodal更新歌词模式与live模式",
     "pinned": false

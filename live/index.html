@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609171523">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609171523">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609171523">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609171523">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609171523">
+  <link rel="stylesheet" href="style.css?v=202609172243">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609172243">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609172243">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609172243">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609172243">
 </head>
 <body>
   <div class="live-page">
@@ -59,16 +59,16 @@
     </div>
   </div>
 
-  <script src="../songs/data.js?v=202609171523"></script>
-  <script src="../discography/data.js?v=202609171523"></script>
-  <script src="../interview/data.js?v=202609171523"></script>
-  <script src="data.js?v=202609171523"></script>
-  <script src="../js/renderMarkdown.js?v=202609171523"></script>
-  <script src="../js/overlay-manager.js?v=202609171523"></script>
-  <script src="../js/interview-overlay.js?v=202609171523"></script>
-  <script src="../js/song-modal.js?v=202609171523"></script>
-  <script src="../js/live-drawer.js?v=202609171523"></script>
-  <script src="../js/discography-modal.js?v=202609171523"></script>
+  <script src="../songs/data.js?v=202609172243"></script>
+  <script src="../discography/data.js?v=202609172243"></script>
+  <script src="../interview/data.js?v=202609172243"></script>
+  <script src="data.js?v=202609172243"></script>
+  <script src="../js/renderMarkdown.js?v=202609172243"></script>
+  <script src="../js/overlay-manager.js?v=202609172243"></script>
+  <script src="../js/interview-overlay.js?v=202609172243"></script>
+  <script src="../js/song-modal.js?v=202609172243"></script>
+  <script src="../js/live-drawer.js?v=202609172243"></script>
+  <script src="../js/discography-modal.js?v=202609172243"></script>
   <script>
 (function() {
   InterviewOverlay.configure({ includePageScroll: true });
@@ -129,6 +129,10 @@
     const live = lives[activeIndex];
     const days = daysUntilLive(live);
     const today = days === 0;
+    const countdownUrgency = Math.max(0, Math.min(1, (90 - days) / 90));
+    const countdownColor = `hsl(${Math.round(355 + countdownUrgency * 5)} ${Math.round(16 + countdownUrgency * 79)}% ${Math.round(84 - countdownUrgency * 29)}%)`;
+    const countdownGlow = `rgba(255, 77, 85, ${(0.04 + countdownUrgency * 0.38).toFixed(2)})`;
+    const countdownStyle = today ? "" : ` style="--upcoming-countdown-color: ${countdownColor}; --upcoming-countdown-glow: ${countdownGlow};"`;
     const visual = live.kv || live.poster;
     const poster = live.poster && live.poster !== live.kv ? live.poster : "";
     const pager = lives.length > 1
@@ -152,7 +156,7 @@
           </span>` : ''}
           <span class="upcoming-live-open">EXPLORE LIVE <b aria-hidden="true">↗</b></span>
         </span>
-        <span class="upcoming-live-countdown" aria-label="${today ? '演出就在今天' : `距离演出还有 ${days} 天`}">
+        <span class="upcoming-live-countdown"${countdownStyle} aria-label="${today ? '演出就在今天' : `距离演出还有 ${days} 天`}">
           ${today ? '<strong>LIVE<br>TODAY</strong><small>THE STAGE IS READY</small>' : `<small>COUNTDOWN</small><strong>${days}</strong><small>DAYS TO GO</small>`}
         </span>
         ${pager}
@@ -213,6 +217,7 @@
     window.setTimeout(() => {
       renderUpcomingLiveSpotlight();
       renderGallery();
+      if (document.getElementById("statsOverlay").classList.contains("active")) renderStats();
       scheduleUpcomingDayRefresh();
     }, Math.max(1000, nextDay - Date.now() + 1000));
   }
@@ -406,11 +411,15 @@
 
   // 全局 LIVE DEBUT（每首唯一）：以 setlist 的 highlight_label 标记 "Live debut" 为准，跨全部 Live
   const STATS_DEBUT = {};
-  if (typeof livesData !== "undefined") {
+  function refreshStatsDebuts() {
+    Object.keys(STATS_DEBUT).forEach(songId => { delete STATS_DEBUT[songId]; });
+    const today = japanTodayTimestamp();
     livesData.forEach(live => {
-      const s = parseDateStamp(live.date);
+      const date = liveDay(live);
+      if (date === null || date > today) return;
+      const stamp = parseDateStamp(live.date);
       statsSongEntries(live).forEach(e => {
-        if (e.isDebut) STATS_DEBUT[e.songId] = { stamp: s, date: live.date, liveName: live.name, live: live };
+        if (e.isDebut) STATS_DEBUT[e.songId] = { stamp: stamp, date: live.date, liveName: live.name, live: live };
       });
     });
   }
@@ -421,8 +430,11 @@
   let statsCompareB = null;
 
   function statsScopedLives() {
-    if (statsScope === "all") return livesData.slice();
-    return livesData.filter(l => statsScopeOf(l) === statsScope);
+    const today = japanTodayTimestamp();
+    return livesData.filter(live => {
+      const date = liveDay(live);
+      return date !== null && date <= today && (statsScope === "all" || statsScopeOf(live) === statsScope);
+    });
   }
 
   function statsSongEntries(live) {
@@ -443,6 +455,7 @@
   }
 
   function computeStats() {
+    refreshStatsDebuts();
     const scoped = statsScopedLives().slice().sort((a, b) => parseDateStamp(a.date) - parseDateStamp(b.date));
     // description 仅描述演出或现存影像，不代表 Setlist 是否完整，禁止据此排除统计。
     const analyzedLives = scoped;
