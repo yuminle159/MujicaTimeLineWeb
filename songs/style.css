@@ -296,6 +296,11 @@ body {
 .cover-card:hover img {
   filter: brightness(0.3) blur(2px);
 }
+.cover-card.is-upcoming { background: #111213; box-shadow: 0 0 0 1px rgba(185,185,185,.16), 0 6px 18px rgba(0,0,0,.42); }
+.cover-card.is-upcoming img { filter: grayscale(100%) contrast(.9) brightness(.5); }
+.cover-card.is-upcoming:hover { box-shadow: 0 0 0 1px rgba(190,190,190,.4), 0 12px 28px rgba(0,0,0,.55); }
+.cover-card.is-upcoming:hover img { filter: grayscale(100%) contrast(.9) brightness(.28) blur(2px); }
+.cover-card.is-upcoming .cover-countdown-badge { border-color: rgba(215,215,215,.45); background: rgba(15,16,17,.86); color: #e2e2e2; }
 .cover-new-badge,.cover-countdown-badge {
   position: absolute;
   z-index: 2;

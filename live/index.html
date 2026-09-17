@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609162140">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609162140">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609162140">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609162140">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609162140">
+  <link rel="stylesheet" href="style.css?v=202609171523">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609171523">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609171523">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609171523">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609171523">
 </head>
 <body>
   <div class="live-page">
@@ -20,6 +20,8 @@
       <a class="back-nav" href="../index.html">← 返回主页</a>
       <h1>Live</h1>
     </header>
+
+    <section class="upcoming-live-spotlight" id="upcomingLiveSpotlight" aria-label="即将举行的 Live" hidden></section>
 
     <div class="filter-bar" id="liveFilterBar"></div>
 
@@ -57,21 +59,25 @@
     </div>
   </div>
 
-  <script src="../songs/data.js?v=202609162140"></script>
-  <script src="../discography/data.js?v=202609162140"></script>
-  <script src="../interview/data.js?v=202609162140"></script>
-  <script src="data.js?v=202609162140"></script>
-  <script src="../js/renderMarkdown.js?v=202609162140"></script>
-  <script src="../js/overlay-manager.js?v=202609162140"></script>
-  <script src="../js/interview-overlay.js?v=202609162140"></script>
-  <script src="../js/song-modal.js?v=202609162140"></script>
-  <script src="../js/live-drawer.js?v=202609162140"></script>
-  <script src="../js/discography-modal.js?v=202609162140"></script>
+  <script src="../songs/data.js?v=202609171523"></script>
+  <script src="../discography/data.js?v=202609171523"></script>
+  <script src="../interview/data.js?v=202609171523"></script>
+  <script src="data.js?v=202609171523"></script>
+  <script src="../js/renderMarkdown.js?v=202609171523"></script>
+  <script src="../js/overlay-manager.js?v=202609171523"></script>
+  <script src="../js/interview-overlay.js?v=202609171523"></script>
+  <script src="../js/song-modal.js?v=202609171523"></script>
+  <script src="../js/live-drawer.js?v=202609171523"></script>
+  <script src="../js/discography-modal.js?v=202609171523"></script>
   <script>
 (function() {
   InterviewOverlay.configure({ includePageScroll: true });
   const gallery = document.getElementById("gallery");
   const noResults = document.getElementById("noResults");
+  const upcomingLiveSpotlight = document.getElementById("upcomingLiveSpotlight");
+  let upcomingRotationTimer;
+  let upcomingTransitionTimer;
+  const JAPAN_OFFSET_MS = 9 * 60 * 60 * 1000;
   if (typeof livesData !== "undefined") {
     // 解析日期为可比较数值（处理 YYYY/M/D 和 YYYY-M-D 格式）
     function parseDateStamp(d) {
@@ -93,6 +99,124 @@
     return dateStr.replace(/\s[\d:]+$/, "").trim();
   }
 
+  function japanTodayTimestamp() {
+    const today = new Date(Date.now() + JAPAN_OFFSET_MS);
+    return Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+  }
+
+  function liveDay(live) {
+    const match = String(live.date || "").match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/);
+    if (!match) return null;
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return null;
+    return Date.UTC(year, month - 1, day);
+  }
+
+  function daysUntilLive(live) {
+    const date = liveDay(live);
+    if (date === null) return null;
+    return Math.round((date - japanTodayTimestamp()) / 86400000);
+  }
+
+  function hasCompleteLiveCard(live) {
+    return [live.name, live.date, live.venue, live.poster, live.kv].every(value => String(value || "").trim());
+  }
+
+  function renderUpcomingLiveCard(lives, activeIndex) {
+    const live = lives[activeIndex];
+    const days = daysUntilLive(live);
+    const today = days === 0;
+    const visual = live.kv || live.poster;
+    const poster = live.poster && live.poster !== live.kv ? live.poster : "";
+    const pager = lives.length > 1
+      ? `<span class="upcoming-live-pager" aria-hidden="true">${String(activeIndex + 1).padStart(2, "0")} / ${String(lives.length).padStart(2, "0")}</span>`
+      : "";
+    upcomingLiveSpotlight.innerHTML = `
+      <button class="upcoming-live-card is-rotating${today ? ' is-live-today' : ''}${days >= 100 ? ' is-long-countdown' : ''}" type="button" data-live-index="${livesData.indexOf(live)}" aria-label="查看 ${escapeHTML(live.name).replace(/"/g, '&quot;')} 的演出详情">
+        <span class="upcoming-live-visual" aria-hidden="true">
+          ${visual ? `<img src="${escapeHTML(visual).replace(/"/g, '&quot;')}" alt="">` : '<span class="upcoming-live-visual-placeholder"></span>'}
+        </span>
+        <span class="upcoming-live-content">
+          <span class="upcoming-live-kicker"><i></i> ${today ? 'LIVE TODAY' : 'UPCOMING LIVE'} // ${escapeHTML(stripTime(live.date))}</span>
+          <strong class="upcoming-live-title">${escapeHTML(live.name)}</strong>
+          ${live.tag || live.venue || live.description || poster ? `<span class="upcoming-live-details">
+            <span class="upcoming-live-meta">
+              ${live.tag ? `<span class="upcoming-live-tag">${escapeHTML(live.tag)}</span>` : ''}
+              ${live.venue ? `<span class="upcoming-live-venue">⌖ ${escapeHTML(live.venue)}</span>` : ''}
+              ${live.description ? `<span class="upcoming-live-description">${escapeHTML(live.description)}</span>` : ''}
+            </span>
+            ${poster ? `<span class="upcoming-live-poster" aria-hidden="true"><img src="${escapeHTML(poster).replace(/"/g, '&quot;')}" alt=""></span>` : ''}
+          </span>` : ''}
+          <span class="upcoming-live-open">EXPLORE LIVE <b aria-hidden="true">↗</b></span>
+        </span>
+        <span class="upcoming-live-countdown" aria-label="${today ? '演出就在今天' : `距离演出还有 ${days} 天`}">
+          ${today ? '<strong>LIVE<br>TODAY</strong><small>THE STAGE IS READY</small>' : `<small>COUNTDOWN</small><strong>${days}</strong><small>DAYS TO GO</small>`}
+        </span>
+        ${pager}
+      </button>`;
+  }
+
+  function renderUpcomingLiveSpotlight() {
+    const lives = livesData
+      .filter(live => {
+        const days = daysUntilLive(live);
+        return String(live.name || "").trim() && days !== null && days >= 0;
+      })
+      .sort((a, b) => liveDay(a) - liveDay(b));
+    window.clearInterval(upcomingRotationTimer);
+    window.clearTimeout(upcomingTransitionTimer);
+    if (!lives.length) {
+      upcomingLiveSpotlight.hidden = true;
+      upcomingLiveSpotlight.innerHTML = "";
+      upcomingLiveSpotlight.onmouseenter = null;
+      upcomingLiveSpotlight.onmouseleave = null;
+      return;
+    }
+    upcomingLiveSpotlight.hidden = false;
+    let activeIndex = 0;
+    renderUpcomingLiveCard(lives, activeIndex);
+    function rotateLive() {
+      const card = upcomingLiveSpotlight.querySelector(".upcoming-live-card");
+      const showNext = function() {
+        activeIndex = (activeIndex + 1) % lives.length;
+        renderUpcomingLiveCard(lives, activeIndex);
+      };
+      if (!card) return showNext();
+      card.classList.add("is-leaving");
+      upcomingTransitionTimer = window.setTimeout(showNext, 420);
+    }
+    function pauseRotation() {
+      window.clearInterval(upcomingRotationTimer);
+      window.clearTimeout(upcomingTransitionTimer);
+      upcomingLiveSpotlight.querySelector(".upcoming-live-card")?.classList.remove("is-leaving");
+    }
+    function resumeRotation() {
+      if (lives.length < 2) return;
+      window.clearInterval(upcomingRotationTimer);
+      upcomingRotationTimer = window.setInterval(rotateLive, 6000);
+    }
+    upcomingLiveSpotlight.onmouseenter = pauseRotation;
+    upcomingLiveSpotlight.onmouseleave = resumeRotation;
+    if (!upcomingLiveSpotlight.matches(":hover")) resumeRotation();
+  }
+
+  upcomingLiveSpotlight.addEventListener("click", event => {
+    const card = event.target.closest("[data-live-index]");
+    if (card) openDrawer(Number(card.dataset.liveIndex));
+  });
+
+  function scheduleUpcomingDayRefresh() {
+    const nextDay = japanTodayTimestamp() + 86400000 - JAPAN_OFFSET_MS;
+    window.setTimeout(() => {
+      renderUpcomingLiveSpotlight();
+      renderGallery();
+      scheduleUpcomingDayRefresh();
+    }, Math.max(1000, nextDay - Date.now() + 1000));
+  }
+
   // ===== 筛选 =====
   let activeLiveTag = null;
   let liveSortReverse = false;
@@ -102,7 +226,7 @@
     if (!bar) return;
     // 收集所有唯一的 tag
     const tags = new Set();
-    livesData.forEach(l => { if (l.tag) tags.add(l.tag); });
+    livesData.filter(hasCompleteLiveCard).forEach(l => { if (l.tag) tags.add(l.tag); });
     if (tags.size === 0) return;
 
     let html = '<div class="filter-group"><button class="main-tag active" data-tag=""><span class="diamond">◆</span> ALL</button></div>';
@@ -147,9 +271,9 @@
   // ===== 渲染画廊 =====
   function renderGallery() {
     gallery.innerHTML = "";
-    let filtered = livesData;
+    let filtered = livesData.filter(hasCompleteLiveCard);
     if (activeLiveTag) {
-      filtered = livesData.filter(l => l.tag === activeLiveTag);
+      filtered = filtered.filter(l => l.tag === activeLiveTag);
     }
     if (filtered.length === 0) {
       noResults.style.display = "block";
@@ -166,11 +290,14 @@
     filtered.forEach((live, i) => {
       // 使用原始索引以便打开抽屉
       const origIdx = livesData.indexOf(live);
+      const days = daysUntilLive(live);
+      const isUpcoming = days !== null && days > 0;
       const card = document.createElement("article");
-      card.className = "live-card";
+      card.className = "live-card" + (isUpcoming ? " is-upcoming" : "");
       card.innerHTML = `
         <div class="card-image${live.tag ? ' tag-' + live.tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '') : ''}" onclick="openDrawer(${origIdx})">
           ${live.poster ? `<img src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}" loading="lazy">` : '<div class="card-placeholder"></div>'}
+          ${isUpcoming ? `<span class="card-upcoming-countdown">${days} 天后</span>` : ''}
         </div>
         <div class="card-info" onclick="openDrawer(${origIdx})">
           <div class="card-date">${stripTime(escapeHTML(live.date))}</div>
@@ -188,6 +315,14 @@
 
   buildLiveFilter();
   renderGallery();
+  renderUpcomingLiveSpotlight();
+  scheduleUpcomingDayRefresh();
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      renderUpcomingLiveSpotlight();
+      renderGallery();
+    }
+  });
 
   // Something New 入口：使用可读的 live_name 定位，并直接打开 Live Drawer。
   const directLiveName = new URLSearchParams(window.location.search).get("live");
@@ -239,7 +374,7 @@
 
   function statsStampToDate(s) {
     const y = Math.floor(s / 10000), m = Math.floor((s % 10000) / 100), d = s % 100;
-    return new Date(y, m - 1, d);
+    return new Date(Date.UTC(y, m - 1, d));
   }
   function statsStampDisplay(s, sep) {
     if (!s) return "—";
@@ -253,8 +388,8 @@
     return Math.round((db - da) / 86400000);
   }
   function statsTodayStamp() {
-    const d = new Date();
-    return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+    const d = new Date(japanTodayTimestamp());
+    return d.getUTCFullYear() * 10000 + (d.getUTCMonth() + 1) * 100 + d.getUTCDate();
   }
   function statsMonthKey(dateStr) {
     const m = (dateStr || "").match(/(\d{4})[\/\-](\d{1,2})/);

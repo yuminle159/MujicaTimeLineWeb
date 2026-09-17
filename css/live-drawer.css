@@ -234,8 +234,8 @@
 /* ===== 抽屉内容（双栏） ===== */
 .shared-live-drawer-content {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 16px;
   padding: 40px 48px;
   flex: 1;
   min-height: 0;
@@ -248,6 +248,7 @@
   max-height: 100%;
   padding-right: 8px;
 }
+.shared-live-col-setlist { padding-right: 0; overflow-x: hidden; }
 .shared-live-col-setlist::-webkit-scrollbar,
 .shared-live-col-gallery::-webkit-scrollbar { width: 4px; }
 .shared-live-col-setlist::-webkit-scrollbar-track,
@@ -273,6 +274,22 @@
 }
 
 /* ===== Setlist ===== */
+.shared-live-setlist-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--md-outline);
+}
+.shared-live-setlist-head .shared-live-section-title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.shared-live-pure-mode-button { margin-right: 10px; }
+.shared-live-pure-mode .shared-live-track-highlight { display: none; }
 .shared-live-setlist-list {
   list-style: none;
   padding: 0;
@@ -282,18 +299,24 @@
   margin-bottom: 12px;
 }
 .shared-live-track-info {
-  display: flex;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 44px;
+  grid-template-areas:
+    "number title source"
+    ". highlight .";
   align-items: center;
   min-height: 64px;
-  padding: 10px 14px;
+  padding: 10px 0 10px 14px;
   border-radius: var(--md-radius-sm);
   transition: background var(--md-duration-short) var(--md-easing-standard);
-  gap: 8px;
+  column-gap: 16px;
+  row-gap: 0;
 }
 .shared-live-track-info:hover {
   background: var(--md-surface-container-high);
 }
 .shared-live-track-num {
+  grid-area: number;
   font-family: "Space Grotesk", monospace, sans-serif;
   width: 32px;
   color: var(--md-on-surface-muted);
@@ -302,20 +325,28 @@
   flex-shrink: 0;
 }
 .shared-live-track-title {
+  grid-area: title;
   font-size: 15px;
   font-weight: 500;
-  flex: 1;
   color: var(--md-on-surface);
   min-width: 0;
+  line-height: 1.55;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .shared-live-track-highlight {
+  grid-area: highlight;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
-  flex-shrink: 0;
-  width: 220px;
+  width: auto;
   min-width: 0;
+  margin-top: 12px;
+  overflow: visible;
+  white-space: nowrap;
 }
+.shared-live-track-highlight:empty { display: none; }
 .shared-live-highlight-badge {
   display: inline-block;
   font-family: "Cinzel", serif;
@@ -328,22 +359,23 @@
   color: var(--md-primary);
   text-transform: uppercase;
   white-space: nowrap;
-  flex-shrink: 0;
+  flex: 0 0 auto;
 }
 .shared-live-highlight-desc {
   display: block;
   font-size: 12px;
   color: var(--md-on-surface-variant);
   line-height: 1.5;
+  flex: 1 1 auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  flex: 1;
   min-width: 0;
 }
 
 /* ===== Setlist 眼睛图标（来源链接） ===== */
 .shared-live-track-source {
+  grid-area: source;
   display: flex;
   flex-shrink: 0;
   color: inherit;
@@ -355,14 +387,11 @@
   flex-shrink: 0;
   color: rgba(255, 255, 255, 0.55);
   cursor: pointer;
-  transition: color 0.2s var(--md-easing-standard),
-              transform 0.2s var(--md-easing-standard);
+  transition: color 0.2s var(--md-easing-standard);
   vertical-align: middle;
 }
 .shared-live-track-link-eye:hover {
   color: var(--md-primary);
-  transform: scale(1.2);
-  animation: shared-live-eye-wobble 0.35s ease-in-out;
 }
 .shared-live-track-link-eye .shared-live-eye-almond {
   fill: none;
@@ -373,11 +402,6 @@
 }
 .shared-live-track-link-eye .shared-live-eye-pupil {
   fill: currentColor;
-}
-@keyframes shared-live-eye-wobble {
-  0%, 100% { transform: scale(1.2) rotate(0deg); }
-  25% { transform: scale(1.2) rotate(3deg); }
-  75% { transform: scale(1.2) rotate(-3deg); }
 }
 
 /* ===== Highlight 气泡 ===== */

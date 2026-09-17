@@ -21,6 +21,7 @@
   let lightboxSourceLabels = [];
   let bubbleEl;
   let bubbleTimer;
+  let pureMode = false;
   let currentLayer = 10000;
 
   function escapeHTML(value) {
@@ -105,6 +106,8 @@
 
     document.addEventListener("mouseover", showHighlightBubble);
     document.addEventListener("mouseout", hideHighlightBubble);
+    document.addEventListener("pointerdown", dismissHighlightBubble);
+    document.addEventListener("scroll", dismissHighlightBubble, true);
   }
 
   function buildSongLookup(songs) {
@@ -136,12 +139,13 @@
   function setlistHTML(live, liveIndex) {
     if (!live.setlist || !live.setlist.length) return "";
     const songLookup = buildSongLookup(currentOptions.songs || global.songsData || []);
-    return '<div class="shared-live-col-setlist shared-live-mobile-active" id="sharedLiveSetlistPanel" data-live-panel="setlist" role="tabpanel" aria-labelledby="sharedLiveSetlistTab"><h3 class="shared-live-section-title">Setlist</h3><ul class="shared-live-setlist-list">' +
+    return '<div class="shared-live-col-setlist shared-live-mobile-active' + (pureMode ? ' shared-live-pure-mode' : '') + '" id="sharedLiveSetlistPanel" data-live-panel="setlist" role="tabpanel" aria-labelledby="sharedLiveSetlistTab"><div class="shared-live-setlist-head"><h3 class="shared-live-section-title">Setlist</h3><button class="shared-song-mode-button shared-live-pure-mode-button" type="button" data-live-pure-mode aria-pressed="' + String(pureMode) + '">' + (pureMode ? '退出 Pure Mode' : 'Pure Mode') + '</button></div><ul class="shared-live-setlist-list">' +
       live.setlist.map(function (track, trackIndex) {
         const songIndex = track.title !== "Interlude" ? songLookup[track.title] : undefined;
         const hasMc = !!track.mc_content;
         const clickable = songIndex !== undefined || hasMc;
         const labelClass = track.highlight_label ? " shared-live-highlight-" + track.highlight_label.toLowerCase().replace(/\s+/g, "-") : "";
+        const highlightTooltip = [track.highlight_label, track.highlight_text].filter(Boolean).join(" · ");
         const linkUrl = track.link && track.link !== "0" && /^https?:\/\//i.test(track.link) ? track.link : "";
         const action = songIndex !== undefined
           ? ' data-live-song-index="' + songIndex + '"'
@@ -149,9 +153,9 @@
         const eyeIcon = linkUrl ? '<a class="shared-live-track-source" href="' + escapeHTML(linkUrl) + '" target="_blank" rel="noopener" title="查看来源" aria-label="查看来源"><svg class="shared-live-track-link-eye" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path class="shared-live-eye-almond" d="M16,24 Q24,17 32,24 Q24,31 16,24"/><circle class="shared-live-eye-pupil" cx="24" cy="24" r="3"/></svg></a>' : "";
         return '<li class="shared-live-setlist-item' + (clickable ? ' shared-live-setlist-clickable' : '') + '"><div class="shared-live-track-info">' +
           '<span class="shared-live-track-num">' + (track.num || "&nbsp;&nbsp;") + '</span>' +
-          '<span class="shared-live-track-title"' + action + '>' + escapeHTML(track.title) + (clickable ? ' <span class="shared-live-track-link-icon">&#8599;</span>' : '') + '</span>' +
+          '<span class="shared-live-track-title" title="' + escapeHTML(track.title).replace(/"/g, "&quot;") + '"' + action + '>' + escapeHTML(track.title) + (clickable ? ' <span class="shared-live-track-link-icon">&#8599;</span>' : '') + '</span>' +
           eyeIcon +
-          '<span class="shared-live-track-highlight' + labelClass + '"' + (track.highlight_text ? ' data-tooltip="' + escapeHTML(track.highlight_text).replace(/"/g, "&quot;").replace(/\\n/g, "&#10;") + '"' : '') + '>' +
+          '<span class="shared-live-track-highlight' + labelClass + '"' + (highlightTooltip ? ' data-tooltip="' + escapeHTML(highlightTooltip).replace(/"/g, "&quot;").replace(/\\n/g, "&#10;") + '"' : '') + '>' +
             (track.highlight_label ? '<span class="shared-live-highlight-badge">' + escapeHTML(track.highlight_label) + '</span>' : '') +
             (track.highlight_text ? '<span class="shared-live-highlight-desc">' + escapeHTML(track.highlight_text).replace(/\\n/g, "<br>") + '</span>' : '') +
           '</span></div></li>';
@@ -190,6 +194,15 @@
   }
 
   function handleDrawerClick(event) {
+    const pureModeButton = event.target.closest("[data-live-pure-mode]");
+    if (pureModeButton) {
+      pureMode = !pureMode;
+      pureModeButton.setAttribute("aria-pressed", String(pureMode));
+      pureModeButton.textContent = pureMode ? "退出 Pure Mode" : "Pure Mode";
+      pureModeButton.closest(".shared-live-col-setlist").classList.toggle("shared-live-pure-mode", pureMode);
+      dismissHighlightBubble();
+      return;
+    }
     const panelTab = event.target.closest("[data-live-panel-tab]");
     if (panelTab) {
       const panelName = panelTab.dataset.livePanelTab;
@@ -319,34 +332,45 @@
     restoreBodyScroll();
   }
 
+  function dismissHighlightBubble() {
+    clearTimeout(bubbleTimer);
+    if (bubbleEl) bubbleEl.classList.remove("shared-live-show");
+  }
+
   function showHighlightBubble(event) {
     if (!overlay || !overlay.classList.contains("shared-live-active")) return;
-    const trackInfo = event.target.closest(".shared-live-track-info");
-    if (!trackInfo) return;
-    const highlight = trackInfo.querySelector(".shared-live-track-highlight[data-tooltip]");
-    if (!highlight) return;
+    const highlight = event.target.closest(".shared-live-track-highlight[data-tooltip]");
+    if (!highlight || !overlay.contains(highlight)) return;
     clearTimeout(bubbleTimer);
-    if (!bubbleEl) {
-      bubbleEl = document.createElement("div");
-      bubbleEl.className = "shared-live-highlight-bubble";
-      bubbleEl.style.zIndex = String(currentLayer + 50);
-      document.body.appendChild(bubbleEl);
-    }
-    bubbleEl.textContent = highlight.getAttribute("data-tooltip") || "";
-    bubbleEl.classList.add("shared-live-show");
-    const rect = highlight.getBoundingClientRect();
-    bubbleEl.style.left = rect.left + "px";
-    bubbleEl.style.top = (rect.top - 8) + "px";
-    bubbleEl.style.transform = "translateY(-100%)";
+    bubbleTimer = setTimeout(function () {
+      if (!overlay.classList.contains("shared-live-active") || !highlight.isConnected || !highlight.matches(":hover")) return;
+      if (!bubbleEl) {
+        bubbleEl = document.createElement("div");
+        bubbleEl.className = "shared-live-highlight-bubble";
+        bubbleEl.style.zIndex = String(currentLayer + 50);
+        document.body.appendChild(bubbleEl);
+      }
+      bubbleEl.textContent = highlight.getAttribute("data-tooltip") || "";
+      const rect = highlight.getBoundingClientRect();
+      const panel = highlight.closest(".shared-live-col-setlist").getBoundingClientRect();
+      const leftEdge = Math.max(8, panel.left);
+      const rightEdge = Math.min(window.innerWidth - 8, panel.right);
+      bubbleEl.style.maxWidth = Math.min(360, rightEdge - leftEdge) + "px";
+      const bubbleRect = bubbleEl.getBoundingClientRect();
+      bubbleEl.style.left = Math.max(leftEdge, Math.min(rect.left, rightEdge - bubbleRect.width)) + "px";
+      const below = rect.bottom + 8;
+      const top = below + bubbleRect.height <= window.innerHeight - 8
+        ? below
+        : rect.top - bubbleRect.height - 8;
+      bubbleEl.style.top = Math.max(8, top) + "px";
+      bubbleEl.classList.add("shared-live-show");
+    }, 350);
   }
 
   function hideHighlightBubble(event) {
-    const trackInfo = event.target.closest(".shared-live-track-info");
-    if (trackInfo && event.relatedTarget && trackInfo.contains(event.relatedTarget)) return;
-    if (!bubbleEl) return;
-    bubbleTimer = setTimeout(function () {
-      if (!document.querySelector(".shared-live-track-info:hover .shared-live-track-highlight[data-tooltip]")) bubbleEl.classList.remove("shared-live-show");
-    }, 200);
+    const highlight = event.target.closest(".shared-live-track-highlight[data-tooltip]");
+    if (!highlight || (event.relatedTarget && highlight.contains(event.relatedTarget))) return;
+    dismissHighlightBubble();
   }
 
   function open(indexOrLive, options) {
@@ -390,7 +414,7 @@
           closeLightbox();
           overlay.classList.remove("shared-live-active");
           overlay.setAttribute("aria-hidden", "true");
-          if (bubbleEl) bubbleEl.classList.remove("shared-live-show");
+          dismissHighlightBubble();
         },
         getElement: function () { return overlay; },
         setLayer: function (layer) {
@@ -404,7 +428,7 @@
           if (interactive) return;
           closeMc();
           closeLightbox();
-          if (bubbleEl) bubbleEl.classList.remove("shared-live-show");
+          dismissHighlightBubble();
         },
         onRemove: function () {
           if (currentLive === live) {
@@ -432,7 +456,7 @@
     closeLightbox();
     overlay.classList.remove("shared-live-active");
     overlay.setAttribute("aria-hidden", "true");
-    if (bubbleEl) bubbleEl.classList.remove("shared-live-show");
+    dismissHighlightBubble();
     const options = currentOptions;
     if (options.updateHash && location.hash.startsWith("#live=")) history.replaceState(null, "", location.pathname + location.search);
     currentLive = null;

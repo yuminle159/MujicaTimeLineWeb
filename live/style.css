@@ -66,6 +66,71 @@ body {
 }
 .back-nav:hover { color: var(--md-primary); }
 
+/* ===== Upcoming Live 横幅 ===== */
+.upcoming-live-spotlight { position: relative; margin: 4px 60px 30px; }
+.upcoming-live-spotlight[hidden] { display: none; }
+.upcoming-live-card {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  min-height: 254px;
+  padding: 34px 44px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 91, 91, .3);
+  border-radius: var(--md-radius-lg);
+  background: linear-gradient(118deg, #171011 0%, #0e0d0e 53%, #080808 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.025), 0 18px 46px rgba(0,0,0,.4), 0 0 42px rgba(178,23,31,.11);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: transform .3s var(--md-easing-emphasized), border-color .3s, box-shadow .3s;
+}
+.upcoming-live-card::before { position: absolute; z-index: -1; inset: 0; content: ""; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.018) 3px 4px); pointer-events: none; }
+.upcoming-live-card::after { position: absolute; z-index: -1; top: -55%; left: 40%; width: 62%; aspect-ratio: 1; content: ""; border-radius: 50%; background: radial-gradient(circle, rgba(197,42,45,.23), rgba(135,12,18,.06) 36%, transparent 70%); animation: upcoming-live-pulse 5s ease-in-out infinite; pointer-events: none; }
+.upcoming-live-card:hover { transform: translateY(-3px); border-color: rgba(255,112,112,.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 24px 60px rgba(0,0,0,.52), 0 0 56px rgba(198,30,37,.2); }
+.upcoming-live-card:focus-visible { outline: 2px solid #ff8f8f; outline-offset: 4px; }
+.upcoming-live-visual { position: absolute; z-index: -2; inset: 0 0 0 auto; width: 54%; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 40%); mask-image: linear-gradient(to right, transparent, #000 40%); }
+.upcoming-live-visual::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, #0e0d0e, rgba(14,13,14,.54) 42%, rgba(0,0,0,.2)); }
+.upcoming-live-visual img,.upcoming-live-visual-placeholder { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.76) contrast(1.08) brightness(.62); transform: scale(1.045); transition: filter .3s, transform .7s; }
+.upcoming-live-visual img { object-position: center 30%; }
+.upcoming-live-visual-placeholder { background: radial-gradient(circle at 65% 35%, #522124, #111 68%); }
+.upcoming-live-card:hover .upcoming-live-visual img { filter: saturate(.95) contrast(1.04) brightness(.78); transform: scale(1.09); }
+.upcoming-live-poster { position: absolute; z-index: 0; top: 0; right: 0; display: grid; width: min(72%, 500px); height: 100%; place-items: center; opacity: .3; -webkit-mask-image: linear-gradient(to right, transparent, #000 38%); mask-image: linear-gradient(to right, transparent, #000 38%); }
+.upcoming-live-poster img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(25%) brightness(.85); }
+.upcoming-live-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; max-width: min(760px, 70%); min-height: 184px; }
+.upcoming-live-details { position: relative; display: flex; align-items: center; width: 100%; min-height: 190px; margin-top: 12px; }
+.upcoming-live-meta { position: relative; z-index: 1; display: flex; min-width: 0; max-width: 65%; flex-direction: column; align-items: flex-start; }
+.upcoming-live-kicker,.upcoming-live-open,.upcoming-live-countdown,.upcoming-live-pager { font-family: "Cinzel", "Noto Serif SC", serif; letter-spacing: .12em; }
+.upcoming-live-kicker { display: inline-flex; align-items: center; gap: 9px; color: #e15b5e; font-size: 11px; font-weight: 600; }
+.upcoming-live-kicker i { width: 7px; height: 7px; flex: none; border-radius: 50%; background: #f44d50; animation: upcoming-live-signal 2s ease-out infinite; }
+.upcoming-live-title { margin-top: 14px; color: #f0e8e8; font: 700 clamp(25px, 3.5vw, 44px)/1.12 "Cinzel", "Noto Serif SC", serif; letter-spacing: .035em; overflow-wrap: anywhere; text-shadow: 0 2px 20px rgba(0,0,0,.55); }
+.upcoming-live-tag { border: 1px solid rgba(255,130,130,.32); padding: 3px 8px; color: #ea999a; font: 700 10px "Cinzel", "Noto Serif SC", serif; letter-spacing: .12em; text-transform: uppercase; }
+.upcoming-live-venue { margin-top: 9px; color: #d1bcbc; font-size: 12px; }
+.upcoming-live-description { margin-top: 8px; color: rgba(235,224,224,.64); font-size: 12px; line-height: 1.5; }
+.upcoming-live-open { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; color: #e77e80; font-size: 11px; font-weight: 600; transition: color .2s, gap .2s; }
+.upcoming-live-open b { font-size: 16px; font-weight: 400; line-height: .6; }
+.upcoming-live-card:hover .upcoming-live-open { gap: 15px; color: #ffc1c1; }
+.upcoming-live-countdown { position: absolute; right: 36px; top: 50%; z-index: 1; display: flex; width: 170px; min-height: 142px; flex-direction: column; align-items: flex-end; justify-content: center; gap: 4px; color: #ffdada; text-align: right; transform: translateY(-50%); }
+.upcoming-live-countdown strong { font-size: 72px; line-height: 1; letter-spacing: -.025em; }
+.is-long-countdown .upcoming-live-countdown strong { font-size: 50px; }
+.upcoming-live-countdown small { font-size: 9px; font-weight: 700; line-height: 1.3; }
+.upcoming-live-pager { position: absolute; right: 31px; bottom: 18px; color: rgba(255,225,225,.58); font-size: 10px; font-weight: 600; }
+.upcoming-live-card.is-live-today { border-color: rgba(201,166,79,.72); background: linear-gradient(118deg, #211b10, #100e0b 55%, #080808); box-shadow: 0 0 0 1px rgba(201,166,79,.1), 0 18px 46px rgba(0,0,0,.4), 0 0 46px rgba(201,166,79,.16); }
+.upcoming-live-card.is-live-today::after { background: radial-gradient(circle, rgba(214,173,76,.26), rgba(112,83,20,.06) 36%, transparent 70%); }
+.upcoming-live-card.is-live-today:hover { border-color: rgba(231,196,104,.95); box-shadow: 0 0 0 1px rgba(231,196,104,.22), 0 24px 56px rgba(112,83,20,.2); }
+.is-live-today .upcoming-live-kicker,.is-live-today .upcoming-live-open { color: #daba75; }
+.is-live-today .upcoming-live-kicker i { background: #e7c468; animation: none; box-shadow: 0 0 12px rgba(231,196,104,.6); }
+.is-live-today .upcoming-live-tag { color: #e7cf92; border-color: rgba(231,196,104,.35); }
+.is-live-today .upcoming-live-countdown { color: #f5deaa; }
+.is-live-today .upcoming-live-countdown strong { font-size: 26px; line-height: 1.12; letter-spacing: .06em; }
+.upcoming-live-card.is-rotating { animation: upcoming-live-fade-in .62s ease-out; }
+.upcoming-live-card.is-leaving { animation: upcoming-live-fade-out .42s ease-in forwards; pointer-events: none; }
+@keyframes upcoming-live-pulse { 0%,100% { opacity: .65; transform: scale(.95); } 50% { opacity: 1; transform: scale(1.08); } }
+@keyframes upcoming-live-signal { 0% { box-shadow: 0 0 0 0 rgba(255,77,80,.6); } 70%,100% { box-shadow: 0 0 0 9px rgba(255,77,80,0); } }
+@keyframes upcoming-live-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes upcoming-live-fade-out { from { opacity: 1; } to { opacity: 0; } }
+
 /* ===== 画廊网格 ===== */
 .gallery-container {
   padding: 0 60px 60px;
@@ -179,6 +244,13 @@ body {
   transform: scale(1.05);
   filter: grayscale(0%) contrast(1.1);
 }
+.live-card.is-upcoming .card-image { border-color: rgba(185,185,185,.2); background: linear-gradient(135deg,#171819,#0a0a0b); box-shadow: 0 8px 22px rgba(0,0,0,.55); }
+.live-card.is-upcoming .card-image::before,.live-card.is-upcoming .card-image::after { opacity: .2; }
+.live-card.is-upcoming .card-image img,.live-card.is-upcoming:hover .card-image img { filter: grayscale(100%) contrast(.9) brightness(.48); }
+.live-card.is-upcoming:hover .card-image { border-color: rgba(190,190,190,.4); box-shadow: 0 12px 28px rgba(0,0,0,.65); }
+.live-card.is-upcoming .card-date { color: #999; }
+.live-card.is-upcoming .card-title,.live-card.is-upcoming .card-meta-row { color: #999; }
+.card-upcoming-countdown { position: absolute; z-index: 4; top: 12px; right: 12px; padding: 7px 11px; border: 1px solid rgba(220,220,220,.42); border-radius: 4px; background: rgba(11,12,13,.83); color: #eee; font: 700 11px "Cinzel", "Noto Serif SC", serif; letter-spacing: .06em; backdrop-filter: blur(8px); }
 .card-placeholder {
   width: 100%;
   height: 100%;
@@ -809,6 +881,19 @@ body {
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
   .page-header { padding: 32px 24px 16px; }
+  .upcoming-live-spotlight { margin: 0 24px 26px; }
+  .upcoming-live-card { min-height: 300px; padding: 28px 26px 112px; }
+  .upcoming-live-visual { width: 78%; }
+  .upcoming-live-content { max-width: 100%; min-height: 0; }
+  .upcoming-live-title { font-size: clamp(24px, 5.7vw, 38px); }
+  .upcoming-live-details { min-height: 125px; }
+  .upcoming-live-poster { width: 75%; }
+  .upcoming-live-countdown { top: auto; right: 20px; bottom: 20px; width: 96px; min-height: 82px; transform: none; }
+  .upcoming-live-countdown strong { font-size: 39px; }
+  .is-long-countdown .upcoming-live-countdown strong { font-size: 29px; }
+  .upcoming-live-countdown small { font-size: 8px; }
+  .is-live-today .upcoming-live-countdown strong { font-size: 18px; }
+  .upcoming-live-pager { top: 16px; right: 18px; bottom: auto; }
   .filter-bar { padding: 0 24px; }
   .filter-actions {
     width: 100%;
@@ -820,6 +905,17 @@ body {
     grid-template-columns: 1fr;
     gap: 28px;
   }
+}
+@media (max-width: 560px) {
+  .upcoming-live-spotlight { margin-right: 16px; margin-left: 16px; }
+  .upcoming-live-card { padding: 25px 20px 108px; }
+  .upcoming-live-visual { width: 88%; }
+  .upcoming-live-kicker { max-width: calc(100% - 42px); font-size: 9px; letter-spacing: .1em; }
+  .upcoming-live-title { font-size: clamp(23px, 7vw, 34px); }
+  .upcoming-live-description { display: -webkit-box; max-height: 3em; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .upcoming-live-details { min-height: 110px; }
+  .upcoming-live-poster { width: 80%; opacity: .28; }
+  .upcoming-live-meta { max-width: 70%; }
 }
 /* ===== 数据统计浮窗（全屏沉浸式） ===== */
 .stats-overlay {

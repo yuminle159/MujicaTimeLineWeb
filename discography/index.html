@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609162140">
-  <link rel="stylesheet" href="../css/discography-modal.css?v=202609162140">
-  <link rel="stylesheet" href="../css/live-drawer.css?v=202609162140">
-  <link rel="stylesheet" href="../css/song-modal.css?v=202609162140">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609162140">
+  <link rel="stylesheet" href="style.css?v=202609171523">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202609171523">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202609171523">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202609171523">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609171523">
 </head>
 <body>
   <main class="discography-page">
@@ -38,16 +38,16 @@
     <div id="noResults" class="no-results" hidden>没有找到匹配的发行作品</div>
   </main>
 
-  <script src="data.js?v=202609162140"></script>
-  <script src="../songs/data.js?v=202609162140"></script>
-  <script src="../live/data.js?v=202609162140"></script>
-  <script src="../interview/data.js?v=202609162140"></script>
-  <script src="../js/renderMarkdown.js?v=202609162140"></script>
-  <script src="../js/overlay-manager.js?v=202609162140"></script>
-  <script src="../js/interview-overlay.js?v=202609162140"></script>
-  <script src="../js/song-modal.js?v=202609162140"></script>
-  <script src="../js/live-drawer.js?v=202609162140"></script>
-  <script src="../js/discography-modal.js?v=202609162140"></script>
+  <script src="data.js?v=202609171523"></script>
+  <script src="../songs/data.js?v=202609171523"></script>
+  <script src="../live/data.js?v=202609171523"></script>
+  <script src="../interview/data.js?v=202609171523"></script>
+  <script src="../js/renderMarkdown.js?v=202609171523"></script>
+  <script src="../js/overlay-manager.js?v=202609171523"></script>
+  <script src="../js/interview-overlay.js?v=202609171523"></script>
+  <script src="../js/song-modal.js?v=202609171523"></script>
+  <script src="../js/live-drawer.js?v=202609171523"></script>
+  <script src="../js/discography-modal.js?v=202609171523"></script>
   <script>
   (() => {
     InterviewOverlay.configure({ includePageScroll: true });
@@ -56,20 +56,22 @@
     const escapeHTML = value => { const el = document.createElement('div'); el.textContent = value || ''; return el.innerHTML; };
     const yearOf = date => (date || '').slice(0, 4) || '未分类';
     const parseDate = date => Number((date || '').replace(/\D/g, '').slice(0, 8)) || 0;
+    const JAPAN_OFFSET_MS = 9 * 60 * 60 * 1000;
+    const japanTodayTimestamp = () => {
+      const today = new Date(Date.now() + JAPAN_OFFSET_MS);
+      return Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+    };
     const releaseTimestamp = date => {
       const match = String(date || '').match(/(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/);
       if (!match) return NaN;
-      return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3])).getTime();
+      return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
     };
     const isComingSoon = release => {
       const timestamp = releaseTimestamp(release.release_date);
-      return Number.isFinite(timestamp) && timestamp > Date.now();
+      return Number.isFinite(timestamp) && timestamp > japanTodayTimestamp();
     };
     const isReleaseToday = release => {
-      const match = String(release.release_date || '').match(/^(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/);
-      if (!match) return false;
-      const today = new Date();
-      return Number(match[1]) === today.getFullYear() && Number(match[2]) === today.getMonth() + 1 && Number(match[3]) === today.getDate();
+      return releaseTimestamp(release.release_date) === japanTodayTimestamp();
     };
     const releaseType = release => String(release.type || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     const isCDRelease = release => /single|album/.test(releaseType(release));
@@ -129,6 +131,17 @@
     document.getElementById('filterGroup').addEventListener('click', event => { const button = event.target.closest('[data-filter]'); if (!button) return; activeFilter = button.dataset.filter; document.querySelectorAll('[data-filter]').forEach(item => item.classList.toggle('active', item === button)); renderArchive(); });
     document.getElementById('searchInput').addEventListener('input', event => { query = event.target.value.trim().toLowerCase(); renderArchive(); });
     renderArchive();
+    function scheduleDiscographyDateRefresh() {
+      const nextDay = japanTodayTimestamp() + 86400000 - JAPAN_OFFSET_MS;
+      window.setTimeout(() => {
+        renderArchive();
+        scheduleDiscographyDateRefresh();
+      }, Math.max(1000, nextDay - Date.now() + 1000));
+    }
+    scheduleDiscographyDateRefresh();
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) renderArchive();
+    });
     // Something New entry: use the stable, readable release_id rather than hash_id.
     const directReleaseId = new URLSearchParams(location.search).get('release');
     if (directReleaseId) {
