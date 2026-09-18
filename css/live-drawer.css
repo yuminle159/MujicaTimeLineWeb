@@ -275,6 +275,9 @@
 
 /* ===== Setlist ===== */
 .shared-live-setlist-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -282,6 +285,7 @@
   margin-bottom: 24px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--md-outline);
+  background: var(--md-surface-container);
 }
 .shared-live-setlist-head .shared-live-section-title {
   margin: 0;
@@ -860,6 +864,8 @@
 .shared-live-mc-modal .mc-c13 { color: #3344AA; }
 .shared-live-mc-modal .mc-c14 { color: #77DD77; }
 .shared-live-mc-modal .mc-c15 { color: #7777AA; }
+.shared-live-mc-modal .mc-c16 { color: #FFDD88; }
+.shared-live-mc-modal .mc-c17 { color: #7777AA; }
 /* 原文标记 */
 .shared-live-mc-modal-body .md-original {
   font-size: 13px;
@@ -934,6 +940,7 @@
     overflow: visible;
   }
   .shared-live-mobile-tabs { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 0 -20px 24px; padding: 12px 20px; border-bottom: 1px solid var(--md-outline); background: rgba(20,20,20,.94); backdrop-filter: blur(12px); }
+  .shared-live-has-tabs .shared-live-setlist-head { top: 67px; z-index: 4; }
   .shared-live-mobile-tab { min-height: 42px; border: 1px solid transparent; border-radius: var(--md-radius-full); background: transparent; color: var(--md-on-surface-variant); font: 700 12px "Cinzel",serif; letter-spacing: 1px; cursor: pointer; }
   .shared-live-mobile-tab.is-active { border-color: rgba(255,77,77,.3); background: var(--md-primary-container); color: var(--md-primary); }
   .shared-live-col-setlist,.shared-live-col-gallery { display: block; max-height: none; padding-right: 0; overflow: visible; }

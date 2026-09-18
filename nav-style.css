@@ -216,6 +216,11 @@ body {
 .nav-card.disabled {
   opacity: 0.4;
   pointer-events: none;
+  cursor: default;
+}
+
+.nav-card-coming-soon .card-title {
+  color: #aaa;
 }
 
 .nav-card.disabled:hover {

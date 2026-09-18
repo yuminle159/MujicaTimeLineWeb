@@ -995,9 +995,15 @@ def generate_timeline(wb):
     lines.append("")
     lines.append("const timelineData = [")
     event_items = list(events.items())
+    timeline_ids = {}
     for i, (key, media_list) in enumerate(event_items):
         date, title, category, desc, tag = key
+        id_key = (date, title, category, tag)
+        occurrence = timeline_ids.get(id_key, 0)
+        timeline_ids[id_key] = occurrence + 1
+        event_id = hash_id(*id_key, occurrence + 1) if occurrence else hash_id(*id_key)
         lines.append("  {")
+        lines.append(f'    hash_id: "{event_id}",')
         lines.append(f'    date: "{js_str(date)}",')
         lines.append(f'    title: "{js_str(title)}",')
         lines.append(f'    category: "{js_str(category)}",')
@@ -1057,10 +1063,16 @@ def parse_gallery_tags(raw_tags):
 def generate_gallery(wb):
     images_raw = read_sheet(wb, "gallery_images")
     images = []
+    gallery_ids = {}
     for img in images_raw:
         if not img.get("filename"):
             continue
+        id_key = (img.get("filename", ""),)
+        occurrence = gallery_ids.get(id_key, 0)
+        gallery_ids[id_key] = occurrence + 1
+        image_id = hash_id(*id_key, occurrence + 1) if occurrence else hash_id(*id_key)
         images.append({
+            "hash_id": image_id,
             "filename": img.get("filename", ""),
             "title": img.get("title", ""),
             "date": img.get("date", ""),
@@ -1075,6 +1087,7 @@ def generate_gallery(wb):
     lines.append("const galleryData = [")
     for i, item in enumerate(images):
         lines.append("  {")
+        lines.append(f'    hash_id: "{item["hash_id"]}",')
         lines.append(f'    filename: "{js_str(item["filename"])}",')
         lines.append(f'    title: "{js_str(item["title"])}",')
         lines.append(f'    date: "{js_str(item["date"])}",')

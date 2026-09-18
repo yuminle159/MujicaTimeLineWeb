@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609172243">
+  <link rel="stylesheet" href="style.css?v=202609181740">
 </head>
 <body>
   <div class="gallery-page">
@@ -41,7 +41,7 @@
   <!-- 返回顶部按钮 -->
   <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
 
-  <script src="data.js?v=202609172243"></script>
+  <script src="data.js?v=202609181910"></script>
   <script>
     // ==================== 动态生成筛选器 ====================
     const catMap = {}; // { CATEGORY: Set of subtags }
@@ -241,6 +241,7 @@
     const lightboxClose = document.getElementById('lightboxClose');
 
     function openLightbox(item) {
+      history.replaceState(null, '', '#gallery=' + encodeURIComponent(item.hash_id));
       lightboxImg.src = item.filename;
       lightboxDate.textContent = formatDate(item.date);
       lightboxTitle.textContent = item.title;
@@ -252,6 +253,9 @@
     function closeLightbox() {
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
+      if (location.hash.startsWith('#gallery=')) {
+        history.replaceState(null, '', location.pathname + location.search);
+      }
     }
 
     lightboxClose.addEventListener('click', closeLightbox);
@@ -261,6 +265,19 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();
     });
+
+    function openGalleryFromHash() {
+      if (!location.hash.startsWith('#gallery=')) {
+        if (lightbox.classList.contains('active')) closeLightbox();
+        return;
+      }
+      const id = location.hash.slice(9);
+      const item = galleryData.find(image => image.hash_id === id);
+      if (item) openLightbox(item);
+    }
+
+    window.addEventListener('hashchange', openGalleryFromHash);
+    openGalleryFromHash();
 
     // ==================== 返回顶部按钮 ====================
     const pageTopBtn = document.getElementById("pageTopBtn");
