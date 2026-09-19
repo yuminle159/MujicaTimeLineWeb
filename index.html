@@ -7,10 +7,11 @@
   <title>唯鸡百科 · wijipedia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="announcements.js?v=202609181740" as="script">
-  <link rel="preload" href="something-new.js?v=202609181740" as="script">
+  <link rel="preload" href="announcements.js?v=202609191622" as="script">
+  <link rel="preload" href="something-new.js?v=202609191622" as="script">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="nav-style.css?v=202609181740">
+  <link rel="stylesheet" href="nav-style.css?v=202609191622">
+  <link rel="stylesheet" href="css/global-search.css?v=202609191622">
 </head>
 <body>
   <div class="silk-background">
@@ -181,6 +182,10 @@
       <span class="card-title">COMING SOON…</span>
       <span class="card-desc">敬请期待</span>
     </div>
+    <button class="home-global-search-trigger" type="button" data-global-search-trigger aria-label="打开全站搜索">
+      <img src="icons/search.svg?v=202609191622" alt="" aria-hidden="true">
+      <span>SEARCH</span>
+    </button>
   </nav>
 
   <!-- ================= 首页精选更新入口 ================= -->
@@ -226,9 +231,10 @@
     Ave Mujica · Band &amp; Nonrico
   </footer>
 
-  <script src="something-new.js?v=202609181740"></script>
-  <script src="js/home-updates.js?v=202609181740"></script>
-  <script src="announcements.js?v=202609181740"></script>
+  <script src="something-new.js?v=202609191622"></script>
+  <script src="js/home-updates.js?v=202609191622"></script>
+  <script src="announcements.js?v=202609191622"></script>
+  <script src="js/global-search.js?v=202609191622"></script>
   <script>
     // ==================== 公告轮播 ====================
     let annIdx = 0;
@@ -239,18 +245,25 @@
       annText.innerHTML = pin + '<span class="t-date">' + data.date + '</span> <span class="t-msg">' + data.msg + '</span>';
     }
 
-    // 初始渲染第一条非置顶公告（如果第一条是置顶则在底部显示了）
-    const nonPinned = window.ANNOUNCEMENTS.filter(a => !a.pinned);
-    if (nonPinned.length > 0) renderAnnouncement(nonPinned[0]);
+    // 首页仅轮播最新 5 条非置顶公告；完整历史仍可在公告抽屉中查看。
+    const tickerAnnouncements = window.ANNOUNCEMENTS
+      .filter(a => !a.pinned)
+      .slice(0, 5);
 
-    setInterval(() => {
-      annText.classList.add('trans-fade-out');
-      setTimeout(() => {
-        annIdx = (annIdx + 1) % nonPinned.length;
-        renderAnnouncement(nonPinned[annIdx]);
-        annText.classList.remove('trans-fade-out');
-      }, 500);
-    }, 6000);
+    if (tickerAnnouncements.length > 0) {
+      renderAnnouncement(tickerAnnouncements[0]);
+    }
+
+    if (tickerAnnouncements.length > 1) {
+      setInterval(() => {
+        annText.classList.add('trans-fade-out');
+        setTimeout(() => {
+          annIdx = (annIdx + 1) % tickerAnnouncements.length;
+          renderAnnouncement(tickerAnnouncements[annIdx]);
+          annText.classList.remove('trans-fade-out');
+        }, 500);
+      }, 6000);
+    }
 
     // ==================== 侧滑抽屉 ====================
     const drawer = document.getElementById('archiveDrawer');

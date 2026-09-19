@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609181740">
+  <link rel="stylesheet" href="style.css?v=202609191622">
+  <link rel="stylesheet" href="../css/local-search.css?v=202609191622">
 </head>
 <body>
   <div class="gallery-page">
@@ -19,6 +20,14 @@
 
     <div class="filter-bar" id="filterBar">
         <!-- 由 JS 动态生成 -->
+      </div>
+
+      <div class="gallery-toolbar">
+        <div class="search-box">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="gallerySearchInput" type="search" placeholder="搜索画廊…" autocomplete="off">
+        </div>
+        <span class="result-count" id="galleryResultCount"></span>
       </div>
 
       <div class="masonry-grid" id="masonryGrid">
@@ -41,7 +50,7 @@
   <!-- 返回顶部按钮 -->
   <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
 
-  <script src="data.js?v=202609181910"></script>
+  <script src="data.js?v=202609191622"></script>
   <script>
     // ==================== 动态生成筛选器 ====================
     const catMap = {}; // { CATEGORY: Set of subtags }
@@ -97,29 +106,44 @@
 
     let currentPage = 1;
     const PER_PAGE = 50;
+    let activeGalleryFilter = 'all';
+    let gallerySearchQuery = '';
+
+    document.getElementById('gallerySearchInput').addEventListener('input', function () {
+      gallerySearchQuery = this.value.trim().toLocaleLowerCase();
+      currentPage = 1;
+      applyGalleryFilters();
+    });
 
     function filterBy(target, clickedBtn) {
       // 更新激活状态
       document.querySelectorAll('.main-tag, .sub-tag').forEach(b => b.classList.remove('active'));
       clickedBtn.classList.add('active');
 
+      activeGalleryFilter = target;
+      currentPage = 1;
+      applyGalleryFilters();
+    }
+
+    function applyGalleryFilters() {
       document.querySelectorAll('.masonry-item').forEach(card => {
         const cardTags = JSON.parse(card.getAttribute('data-tags'));
-        let show = false;
+        let tagMatches = false;
 
-        if (target === 'all') {
-          show = true;
-        } else if (target.includes(':')) {
-          const [cat, sub] = target.split(':');
-          show = cardTags[cat] && cardTags[cat].includes(sub);
+        if (activeGalleryFilter === 'all') {
+          tagMatches = true;
+        } else if (activeGalleryFilter.includes(':')) {
+          const [cat, sub] = activeGalleryFilter.split(':');
+          tagMatches = cardTags[cat] && cardTags[cat].includes(sub);
         } else {
-          show = target in cardTags;
+          tagMatches = activeGalleryFilter in cardTags;
         }
-
+        const textMatches = !gallerySearchQuery || card.dataset.search.includes(gallerySearchQuery);
+        const show = tagMatches && textMatches;
         card.classList.toggle('hidden', !show);
       });
-
-      currentPage = 1;
+      const visibleCount = document.querySelectorAll('.masonry-item:not(.hidden)').length;
+      document.getElementById('galleryResultCount').textContent = visibleCount + ' 条结果';
       paginate();
     }
 
@@ -185,6 +209,8 @@
       const card = document.createElement('div');
       card.className = 'masonry-item';
       card.setAttribute('data-tags', JSON.stringify(item.tags));
+      card.dataset.search = [item.title, item.date, item.description, JSON.stringify(item.tags)]
+        .join(' ').toLocaleLowerCase();
 
       const img = document.createElement('img');
       img.src = item.filename;
@@ -217,7 +243,7 @@
     });
 
     // 初始分页
-    paginate();
+    applyGalleryFilters();
 
     function formatDate(dateStr) {
       if (!dateStr) return "";

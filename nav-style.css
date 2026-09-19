@@ -44,6 +44,7 @@ body {
 
 /* ===== 导航卡片网格 ===== */
 .nav-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 24px;
@@ -476,7 +477,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 46px;
+  margin-top: 92px;
   padding: 11px 14px;
   border: 1px solid rgba(204, 41, 41, 0.3);
   background: rgba(12, 12, 14, 0.78);
@@ -859,7 +860,7 @@ body {
   .something-new-kicker { letter-spacing: 2px; }
   .something-new-read { display: none; }
   .something-new-card { flex-basis: min(260px, 82vw); }
-  .something-new-trigger { margin-top: 36px; }
+  .something-new-trigger { margin-top: 78px; }
   .archive-drawer.something-new-drawer { width: 100vw; right: -100vw; }
   .archive-drawer.something-new-drawer.open { right: 0; }
   .something-new-drawer .drawer-header,

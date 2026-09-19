@@ -11,6 +11,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.19",
+    "msg": "新增全局搜索",
+    "pinned": false
+  },
+  {
     "date": "2026.09.17",
     "msg": "1.live样式优化 2.live新增即将到来的演出展示",
     "pinned": false

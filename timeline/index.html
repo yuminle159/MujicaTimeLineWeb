@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609181740">
+  <link rel="stylesheet" href="style.css?v=202609191622">
+  <link rel="stylesheet" href="../css/local-search.css?v=202609191622">
 </head>
 <body>
   <!-- 星空背景（固定在视口后方，随滚动产生视差） -->
@@ -31,6 +32,11 @@
     <!-- 标签筛选器 -->
     <div class="filter-bar" id="filterBar">
       <div class="filter-tags" id="filterTags"></div>
+      <div class="search-box timeline-search-box">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="timelineSearchInput" type="search" placeholder="搜索时间线…" autocomplete="off">
+      </div>
+      <span class="result-count" id="timelineResultCount"></span>
     </div>
     <!-- 年份筛选器 -->
     <div class="filter-bar year-filter-bar" id="yearFilterBar" style="padding-top:0;"></div>
@@ -69,7 +75,7 @@
   <!-- 返回顶部按钮 -->
   <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
 
-  <script src="data.js?v=202609181910"></script>
+  <script src="data.js?v=202609191622"></script>
   <script>
 (function () {
   // ===== 生成星空背景 =====
@@ -239,7 +245,15 @@
 
   // ===== 筛选器 =====
   const filterTags = document.getElementById("filterTags");
+  const timelineSearchInput = document.getElementById("timelineSearchInput");
+  const timelineResultCount = document.getElementById("timelineResultCount");
   let activeFilters = new Set();
+  let timelineSearchQuery = "";
+
+  timelineSearchInput.addEventListener("input", function () {
+    timelineSearchQuery = this.value.trim().toLocaleLowerCase();
+    applyFilter();
+  });
 
   // 生成 ALL 按钮
   const allChip = document.createElement("button");
@@ -279,18 +293,15 @@
       ...Array.from(trackR.querySelectorAll(".event-group"))
     ];
 
-    if (activeFilters.size === 0) {
-      allGroups.forEach(g => g.classList.remove("hidden"));
-    } else {
-      allGroups.forEach(g => {
-        const tag = g.dataset.tag;
-        if (activeFilters.has(tag)) {
-          g.classList.remove("hidden");
-        } else {
-          g.classList.add("hidden");
-        }
-      });
-    }
+    let visibleCount = 0;
+    allGroups.forEach(g => {
+      const tagMatches = activeFilters.size === 0 || activeFilters.has(g.dataset.tag);
+      const textMatches = !timelineSearchQuery || g.dataset.search.includes(timelineSearchQuery);
+      const visible = tagMatches && textMatches;
+      g.classList.toggle("hidden", !visible);
+      if (visible) visibleCount += 1;
+    });
+    timelineResultCount.textContent = visibleCount + " 条结果";
     // 倒序时 tag 筛选后需要重新布局
     if (sortReverse) {
       relayoutTimeline();
@@ -312,6 +323,8 @@
     group.dataset.index = idx;
     group.dataset.category = ev.category;
     group.dataset.tag = ev.tag || "";
+    group.dataset.search = [ev.title, ev.date, ev.description, ev.tag, TAG_NAMES[ev.tag] || ""]
+      .join(" ").toLocaleLowerCase();
 
     const bubble = document.createElement("div");
     bubble.className = "bubble";
@@ -334,6 +347,7 @@
     group.appendChild(eventWrap);
     track.appendChild(group);
   });
+  timelineResultCount.textContent = timelineData.length + " 条结果";
 
   // 相邻事件间距不足时自动错开，避免气泡重叠
   const MIN_GAP = 10;

@@ -11,6 +11,7 @@ import re
 import json
 import hashlib
 import sys
+import html as html_lib
 from collections import OrderedDict
 from datetime import datetime
 from urllib.parse import quote
@@ -147,6 +148,8 @@ OUTPUTS = {
     "gallery":       os.path.join(ROOT, "gallery", "data.js"),
     "interview":     os.path.join(ROOT, "interview", "data.js"),
     "discography":   os.path.join(ROOT, "discography", "data.js"),
+    "search_index":  os.path.join(ROOT, "search-index.js"),
+    "search_bodies": os.path.join(ROOT, "search-bodies.js"),
 }
 
 # 旧 xlsx 文件路径（用于 --init 合并）
@@ -1274,6 +1277,207 @@ def generate_discography(wb):
     return len(releases)
 
 
+# =========================== 8. 全局搜索 ===========================
+def search_plain_text(value):
+    """把 Markdown / HTML 压缩为适合浏览器检索的纯文本。"""
+    text = str(value or "")
+    text = re.sub(r"```[\s\S]*?```", " ", text)
+    text = re.sub(r"!\[([^\]]*)\]\([^)]*\)", r" \1 ", text)
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r" \1 ", text)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"(^|\s)[#>*_`~-]+", " ", text)
+    text = html_lib.unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def search_root_path(path):
+    """数据页中的 ../images 路径转换为相对于站点根目录的路径。"""
+    value = str(path or "").replace("\\", "/")
+    while value.startswith("../"):
+        value = value[3:]
+    return value
+
+
+def generate_search_indexes(wb):
+    """生成轻量元数据索引，以及按需加载的歌词 / 访谈 / MC 正文索引。"""
+    records = []
+    bodies = {}
+
+    def add_record(kind, item_id, title, subtitle, date, image, url, terms, body=""):
+        title = str(title or "").strip()
+        if not title or not item_id:
+            return
+        key = f"{kind}:{item_id}"
+        records.append({
+            "key": key,
+            "type": kind,
+            "title": title,
+            "subtitle": str(subtitle or "").strip(),
+            "date": str(date or "").strip(),
+            "image": search_root_path(image),
+            "url": url,
+            "terms": search_plain_text(" ".join(str(value or "") for value in terms))
+        })
+        body_text = search_plain_text(body)
+        if body_text:
+            bodies[key] = body_text
+
+    # 歌曲：歌词和评论进入按需正文索引。
+    comments_by_song = {}
+    for row in read_sheet(wb, "song_comments"):
+        name = row.get("song_name", "")
+        if name:
+            comments_by_song.setdefault(name, []).append(row.get("comment_text", ""))
+    for row in read_sheet(wb, "songs"):
+        name = row.get("song_name", "")
+        if not name:
+            continue
+        item_id = hash_id(name, row.get("song_name_jp", ""), normalize_date(row.get("release_date", "")))
+        date = normalize_date(row.get("release_date", ""))
+        add_record(
+            "song", item_id, row.get("song_name_jp", "") or name,
+            name if row.get("song_name_jp", "") else row.get("album", ""), date,
+            fix_path(row.get("cover", ""), "songs"), f"songs/index.html#song={quote(item_id)}",
+            [name, row.get("song_name_jp", ""), row.get("album", ""), row.get("album_year", ""),
+             row.get("type", ""), row.get("lyricist", ""), row.get("composer", ""),
+             row.get("arranger", ""), row.get("first_stage", ""), row.get("search_keywords", ""),
+             row.get("appearances", "")],
+            " ".join([row.get("lyrics_jp", ""), row.get("lyrics_cn", ""),
+                      *comments_by_song.get(name, [])])
+        )
+
+    # Live：曲目表放入轻量索引，较长的 MC 放入正文索引。
+    setlists = {}
+    for row in read_sheet(wb, "setlist"):
+        name = row.get("live_name", "")
+        if name:
+            setlists.setdefault(name, []).append(row)
+    for row in read_sheet(wb, "lives"):
+        name = row.get("live_name", "")
+        if not name:
+            continue
+        date = normalize_date(row.get("live_date", ""))
+        item_id = hash_id(name, date, row.get("live_venue", ""))
+        live_tracks = setlists.get(name, [])
+        mc_parts = []
+        for track in live_tracks:
+            mc_file = track.get("mc_file", "").strip()
+            if not mc_file:
+                continue
+            md_path = os.path.join(ROOT, "_data", mc_file)
+            if os.path.isfile(md_path):
+                with open(md_path, "r", encoding="utf-8") as file:
+                    mc_parts.append(file.read())
+        add_record(
+            "live", item_id, name,
+            " · ".join(value for value in [date, row.get("live_venue", "")] if value), date,
+            fix_path(row.get("kv", "") or row.get("poster", ""), "live"),
+            f"live/index.html#live={quote(item_id)}",
+            [name, row.get("live_venue", ""), row.get("live_tag", ""), row.get("description", ""),
+             row.get("for short", ""), *[track.get("track_title", "") for track in live_tracks]],
+            " ".join(mc_parts)
+        )
+
+    # 时间线：完全复用页面生成时的合并和 hash 规则。
+    timeline_rows = read_sheet(wb, "timeline")
+    timeline_events = OrderedDict()
+    timeline_groups = OrderedDict()
+    for row in timeline_rows:
+        group = row.get("group", "")
+        date = normalize_date(row.get("date", ""))
+        event = (date, row.get("title", ""), row.get("category", ""),
+                 row.get("description", ""), row.get("tag", ""))
+        if group:
+            timeline_groups.setdefault(group, []).append(event)
+        else:
+            timeline_events.setdefault(event, None)
+    for rows in timeline_groups.values():
+        dates = sorted(set(row[0] for row in rows if row[0]))
+        first = rows[0]
+        merged_date = dates[0] if len(dates) == 1 else f"{dates[0]} - {dates[-1]}"
+        timeline_events[(merged_date, first[1], first[2], first[3], first[4])] = None
+    timeline_ids = {}
+    for date, title, category, description, tag in timeline_events.keys():
+        id_key = (date, title, category, tag)
+        occurrence = timeline_ids.get(id_key, 0)
+        timeline_ids[id_key] = occurrence + 1
+        item_id = hash_id(*id_key, occurrence + 1) if occurrence else hash_id(*id_key)
+        add_record("timeline", item_id, title, " · ".join(value for value in [date, tag] if value), date, "",
+                   f"timeline/index.html#timeline={quote(item_id)}",
+                   [title, category, description, tag, date])
+
+    # 画廊。
+    gallery_ids = {}
+    for row in read_sheet(wb, "gallery_images"):
+        filename = row.get("filename", "")
+        if not filename:
+            continue
+        occurrence = gallery_ids.get(filename, 0)
+        gallery_ids[filename] = occurrence + 1
+        item_id = hash_id(filename, occurrence + 1) if occurrence else hash_id(filename)
+        add_record("gallery", item_id, row.get("title", "") or os.path.basename(filename),
+                   row.get("tags", ""), row.get("date", ""), filename,
+                   f"gallery/index.html#gallery={quote(item_id)}",
+                   [row.get("title", ""), row.get("tags", ""), row.get("description", ""), row.get("date", "")])
+
+    # 访谈：正文只写入第二层索引。
+    for row in read_sheet(wb, "interview"):
+        title = row.get("title", "")
+        if not title:
+            continue
+        date = row.get("date", "")
+        interviewee = row.get("interviewee", "")
+        item_id = hash_id(title.strip(), interviewee.strip(), date.strip())
+        body = ""
+        md_path = row.get("md_path", "").strip()
+        if md_path:
+            full_path = os.path.join(ROOT, "_data", md_path.lstrip("/\\"))
+            if os.path.isfile(full_path):
+                with open(full_path, "r", encoding="utf-8") as file:
+                    body = file.read()
+        add_record("interview", item_id, title, " · ".join(value for value in [interviewee, date] if value),
+                   date, fix_path(row.get("poster", ""), "interview"),
+                   f"interview/index.html#{quote(item_id)}", [title, interviewee, date], body)
+
+    # 唱片目录：版本、目录编号和收录内容都属于轻量元数据。
+    editions_by_release = {}
+    for row in read_sheet(wb, "discography_editions"):
+        editions_by_release.setdefault(row.get("release_id", ""), []).append(row)
+    contents_by_release = {}
+    for row in read_sheet(wb, "discography_contents"):
+        contents_by_release.setdefault(row.get("release_id", ""), []).append(row)
+    bonuses_by_release = {}
+    for row in read_sheet(wb, "discography_bonus_contents"):
+        bonuses_by_release.setdefault(row.get("release_id", ""), []).append(row)
+    for row in read_sheet(wb, "discography_releases"):
+        release_id = row.get("release_id", "")
+        if not release_id:
+            continue
+        date = normalize_date(row.get("release_date", ""))
+        item_id = hash_id(row.get("title", ""), row.get("title_jp", ""), date)
+        related = editions_by_release.get(release_id, []) + contents_by_release.get(release_id, []) + bonuses_by_release.get(release_id, [])
+        related_terms = [" ".join(item.values()) for item in related]
+        add_record("discography", item_id, row.get("title_jp", "") or row.get("title", ""),
+                   " · ".join(value for value in [row.get("title", ""), row.get("type", ""), date] if value),
+                   date, fix_path(row.get("cover", ""), "discography"),
+                   f"discography/index.html#discography={quote(item_id)}",
+                   [row.get("title", ""), row.get("title_jp", ""), row.get("type", ""),
+                    row.get("formats", ""), row.get("label", ""), row.get("description", ""),
+                    row.get("search_keywords", ""), *related_terms])
+
+    with open(OUTPUTS["search_index"], "w", encoding="utf-8") as file:
+        file.write("// 全局搜索轻量索引，由 generate_all.py 自动生成，请勿手动修改。\n")
+        file.write("window.WIJIPEDIA_SEARCH_INDEX = ")
+        file.write(json.dumps(records, ensure_ascii=False, separators=(",", ":")))
+        file.write(";\n")
+    with open(OUTPUTS["search_bodies"], "w", encoding="utf-8") as file:
+        file.write("// 全局搜索正文索引，首次输入搜索词时按需加载。\n")
+        file.write("window.WIJIPEDIA_SEARCH_BODIES = ")
+        file.write(json.dumps(bodies, ensure_ascii=False, separators=(",", ":")))
+        file.write(";\n")
+    return len(records), len(bodies)
+
+
 # =========================== 初始化：合并旧 xlsx ===========================
 def init_merged_xlsx():
     """从旧的分散 xlsx 合并创建 _data/data.xlsx"""
@@ -1483,6 +1687,12 @@ def main():
         n = generate_discography(wb)
         results["唱片目录"] = f"{n} 张发行作品"
         print(f"  ✓ discography/data.js — {n} 张发行作品")
+
+    # 全局搜索索引始终在各栏目数据之后生成，确保 hash 与页面详情一致。
+    search_count, body_count = generate_search_indexes(wb)
+    results["全局搜索"] = f"{search_count} 条 ({body_count} 条正文)"
+    print(f"  ✓ search-index.js — {search_count} 条轻量索引")
+    print(f"  ✓ search-bodies.js — {body_count} 条正文索引")
 
     wb.close()
 
