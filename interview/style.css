@@ -69,6 +69,43 @@ body {
   margin-bottom: 20px;
 }
 
+/* 筛选按钮：与 Songs 页的点选样式保持一致 */
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.main-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+.main-tag:hover { color: #aaa; }
+.main-tag.active {
+  color: #fff;
+  font-weight: bold;
+}
+.diamond {
+  color: #333;
+  font-size: 12px;
+}
+.main-tag.active .diamond { color: #ff4d4d; }
+.separator {
+  width: 1px;
+  height: 18px;
+  margin: 0 12px;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
 /* 搜索框 */
 .search-box {
   display: flex;
@@ -266,5 +303,6 @@ body {
   .page-header { padding: 28px 16px 8px; }
   .page-header h1 { font-size: 26px; }
   .toolbar { padding: 0 16px 12px; }
+  .separator { display: none; }
   .gallery-container { grid-template-columns: 1fr; padding: 0 16px 40px; }
 }

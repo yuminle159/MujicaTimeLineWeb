@@ -5,8 +5,10 @@
   const noResults = document.getElementById("noResults");
   const resultCount = document.getElementById("resultCount");
   const sortButton = document.getElementById("interviewSortBtn");
+  const translatedFilterButton = document.getElementById("filterTranslated");
   let searchQuery = "";
   let interviewSortReverse = false;
+  let showTranslatedOnly = false;
 
   function formatDate(dateStr) {
     if (!dateStr) return "";
@@ -28,9 +30,11 @@
     });
     const query = searchQuery.toLowerCase();
     const filtered = sorted.filter(function (item) {
-      return !query ||
+      const matchesTranslation = !showTranslatedOnly || String(item.if_translated || "").toLowerCase() === "yes";
+      const matchesSearch = !query ||
         (item.title && item.title.toLowerCase().includes(query)) ||
         (item.interviewee && item.interviewee.toLowerCase().includes(query));
+      return matchesTranslation && matchesSearch;
     });
 
     resultCount.textContent = filtered.length + " 条结果";
@@ -59,6 +63,13 @@
 
   document.getElementById("searchInput").addEventListener("input", function () {
     searchQuery = this.value.trim();
+    renderCards(interviewData);
+  });
+
+  translatedFilterButton.addEventListener("click", function () {
+    showTranslatedOnly = !showTranslatedOnly;
+    translatedFilterButton.classList.toggle("active", showTranslatedOnly);
+    translatedFilterButton.setAttribute("aria-pressed", String(showTranslatedOnly));
     renderCards(interviewData);
   });
 

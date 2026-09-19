@@ -16,6 +16,9 @@
   let lightboxGroup = null;
   let lightboxIndex = 0;
   let lastScrollY = 0;
+  let pageTopUpwardDistance = 0;
+  let pageTopHideTimer = 0;
+  let pageTopIsReturning = false;
   const renderedCache = new Map();
 
   let overlay;
@@ -98,8 +101,12 @@
     });
 
     pageTopButton.addEventListener("click", function () {
+      hidePageTop();
       scrollToTop(getScrollContainer());
     });
+    document.addEventListener("pointerdown", function (event) {
+      if (!pageTopButton.contains(event.target)) hidePageTop();
+    }, true);
     document.addEventListener("scroll", handleScroll, true);
     document.addEventListener("keydown", handleKeydown, true);
   }
@@ -301,6 +308,7 @@
 
   function openLightbox(group, index) {
     ensureMounted();
+    hidePageTop();
     lightboxGroup = Array.isArray(group) ? group : [];
     lightboxIndex = typeof index === "number" ? index : 0;
     lightboxImages.innerHTML = "";
@@ -351,21 +359,50 @@
     return container.isWindow ? window.scrollY : container.element.scrollTop;
   }
 
+  function pageTopMinScroll(container) {
+    const maxScroll = container.isWindow
+      ? Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
+      : Math.max(0, container.element.scrollHeight - container.element.clientHeight);
+    return Math.min(800, Math.max(240, maxScroll * 0.25));
+  }
+
   function handleScroll() {
     if (!pageTopButton) return;
     const container = getScrollContainer();
-    if (!container) {
-      pageTopButton.classList.remove("show");
+    if (!container || (lightbox && lightbox.classList.contains("active"))) {
+      hidePageTop();
       return;
     }
     const current = scrollTopOf(container);
-    if (current < 800 || current > lastScrollY) pageTopButton.classList.remove("show");
-    else pageTopButton.classList.add("show");
+    const delta = current - lastScrollY;
+    if (pageTopIsReturning || current < pageTopMinScroll(container)) {
+      hidePageTop();
+    } else if (delta > 2) {
+      hidePageTop();
+    } else if (delta < -2) {
+      pageTopUpwardDistance += -delta;
+      if (pageTopUpwardDistance >= 160) showPageTop();
+    }
     lastScrollY = current;
+  }
+
+  function hidePageTop(resetIntent) {
+    if (!pageTopButton) return;
+    pageTopButton.classList.remove("show");
+    window.clearTimeout(pageTopHideTimer);
+    if (resetIntent !== false) pageTopUpwardDistance = 0;
+  }
+
+  function showPageTop() {
+    pageTopButton.classList.add("show");
+    window.clearTimeout(pageTopHideTimer);
+    pageTopHideTimer = window.setTimeout(hidePageTop, 4000);
   }
 
   function scrollToTop(container) {
     if (!container) return;
+    pageTopIsReturning = true;
+    hidePageTop();
     if (container.isWindow) {
       document.body.style.overflowAnchor = "none";
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -374,8 +411,10 @@
       container.element.scrollTo({ top: 0, behavior: "smooth" });
     }
     setTimeout(function () {
+      pageTopIsReturning = false;
+      lastScrollY = scrollTopOf(container);
       (container.isWindow ? document.body : container.element).style.overflowAnchor = "auto";
-    }, 1000);
+    }, 1200);
   }
 
   function handleKeydown(event) {

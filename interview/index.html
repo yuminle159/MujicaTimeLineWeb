@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609191622">
-  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609191622">
-  <link rel="stylesheet" href="../css/local-search.css?v=202609191622">
+  <link rel="stylesheet" href="style.css?v=202609200002">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609200002">
+  <link rel="stylesheet" href="../css/local-search.css?v=202609200002">
 </head>
 <body>
   <div class="interview-page">
@@ -21,6 +21,12 @@
 
     <!-- 工具栏 -->
     <div class="toolbar">
+      <div class="filter-group">
+        <button class="main-tag" id="filterTranslated" type="button" aria-pressed="false">
+          <span class="diamond">◆</span> 仅显示已翻译
+        </button>
+      </div>
+      <div class="separator"></div>
       <div class="search-box">
         <span class="search-icon">&#128269;</span>
         <input type="text" id="searchInput" placeholder="搜索访谈人或标题...">
@@ -37,10 +43,10 @@
   </div>
 
 
-  <script src="data.js?v=202609191622"></script>
-  <script src="../js/renderMarkdown.js?v=202609191622"></script>
-  <script src="../js/overlay-manager.js?v=202609191622"></script>
-  <script src="../js/interview-overlay.js?v=202609191622"></script>
-  <script src="page.js?v=202609191622"></script>
+  <script src="data.js?v=202609200002"></script>
+  <script src="../js/renderMarkdown.js?v=202609200002"></script>
+  <script src="../js/overlay-manager.js?v=202609200002"></script>
+  <script src="../js/interview-overlay.js?v=202609200002"></script>
+  <script src="page.js?v=202609200002"></script>
 </body>
 </html>

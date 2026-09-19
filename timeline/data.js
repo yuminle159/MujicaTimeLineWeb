@@ -318,7 +318,7 @@ const timelineData = [
     description: "「美好的世界，但是并不存在」",
     tag: "single",
     media: [
-      { type: "image", src: "../images/utopia.webp" },
+      { type: "image", src: "../images/utopia.webp", caption: "Utopia Cover" },
       { type: "link", url: "", title: "Utopia MV" }
     ]
   },
@@ -330,7 +330,7 @@ const timelineData = [
     description: "「Angles」",
     tag: "single",
     media: [
-      { type: "image", src: "../images/angles.webp" },
+      { type: "image", src: "../images/angles.webp", caption: "Angles Cover" },
       { type: "link", url: "", title: "Angles MV" }
     ]
   },
@@ -342,8 +342,8 @@ const timelineData = [
     description: "「美好的世界，但是并不存在」",
     tag: "album",
     media: [
-      { type: "image", src: "../images/1st single限定.webp" },
-      { type: "image", src: "../images/1st single通常.webp" },
+      { type: "image", src: "../images/1st single限定.webp", caption: "1st Single Cover 限定" },
+      { type: "image", src: "../images/1st single通常.webp", caption: "1st Single Cover 通常" },
       { type: "link", url: "", title: "1单 网易云" }
     ]
   },
@@ -355,8 +355,8 @@ const timelineData = [
     description: "「寻找着光」",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/logo/2nd live logo.webp" },
-      { type: "image", src: "../images/2nd live kv.webp" },
+      { type: "image", src: "../images/logo/2nd live logo.webp", caption: "2nd Live Logo" },
+      { type: "image", src: "../images/2nd live kv.webp", caption: "2nd Live 主视图" },
       { type: "link", url: "", title: "在线观看" }
     ]
   },
@@ -368,7 +368,7 @@ const timelineData = [
     description: "「寻找着光」 本次演出无影像资源",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/logo/2nd live 爱知.webp" }
+      { type: "image", src: "../images/logo/2nd live 爱知.webp", caption: "2nd Live 爱知" }
     ]
   },
   {
@@ -379,8 +379,8 @@ const timelineData = [
     description: "「真实」",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/logo/3rd live logo.webp" },
-      { type: "image", src: "../images/3rd live kv.webp" },
+      { type: "image", src: "../images/logo/3rd live logo.webp", caption: "3rd Live Logo" },
+      { type: "image", src: "../images/3rd live kv.webp", caption: "3rd Live 主视图" },
       { type: "link", url: "", title: "在线观看" }
     ]
   },
@@ -392,7 +392,7 @@ const timelineData = [
     description: "",
     tag: "fes",
     media: [
-      { type: "image", src: "../images/megavagas2024.webp" }
+      { type: "image", src: "../images/megavagas2024.webp", caption: "MEGA VEGAS 2024" }
     ]
   },
   {
@@ -403,7 +403,7 @@ const timelineData = [
     description: "首次海外演唱会 官方精选切片「Ave Mujica」",
     tag: "fes",
     media: [
-      { type: "image", src: "../images/bml2024.webp" },
+      { type: "image", src: "../images/bml2024.webp", caption: "BML 2024" },
       { type: "link", url: "", title: "Ave Mujica 在线观看" }
     ]
   },
@@ -424,7 +424,7 @@ const timelineData = [
     description: "首次出演ASL",
     tag: "fes",
     media: [
-      { type: "image", src: "../images/asl2024.webp" },
+      { type: "image", src: "../images/asl2024.webp", caption: "ASL 2024" },
       { type: "link", url: "", title: "在线观看" }
     ]
   },
@@ -436,7 +436,7 @@ const timelineData = [
     description: "首次参与BanG Dream!企划内LIVE活动",
     tag: "bandori_fes",
     media: [
-      { type: "image", src: "../images/farbe.webp" },
+      { type: "image", src: "../images/farbe.webp", caption: "Roselia「Farbe」" },
       { type: "link", url: "", title: "在线观看" }
     ]
   },
@@ -448,7 +448,7 @@ const timelineData = [
     description: "「元素：火」",
     tag: "single",
     media: [
-      { type: "image", src: "../images/fire.webp" },
+      { type: "image", src: "../images/fire.webp", caption: "Fire Cover" },
       { type: "link", url: "", title: "Fire MV" }
     ]
   },
@@ -460,7 +460,7 @@ const timelineData = [
     description: "「元素：气」",
     tag: "single",
     media: [
-      { type: "image", src: "../images/air.webp" },
+      { type: "image", src: "../images/air.webp", caption: "Air Cover" },
       { type: "link", url: "", title: "Air MV" }
     ]
   },
@@ -472,7 +472,7 @@ const timelineData = [
     description: "「元素：水」",
     tag: "single",
     media: [
-      { type: "image", src: "../images/water.webp" },
+      { type: "image", src: "../images/water.webp", caption: "Water Cover" },
       { type: "link", url: "", title: "Water MV" }
     ]
   },
@@ -484,7 +484,7 @@ const timelineData = [
     description: "「元素：土」",
     tag: "single",
     media: [
-      { type: "image", src: "../images/earth.webp" },
+      { type: "image", src: "../images/earth.webp", caption: "Earth Cover" },
       { type: "link", url: "", title: "Earth MV" }
     ]
   },
@@ -496,7 +496,7 @@ const timelineData = [
     description: "「以太」",
     tag: "single",
     media: [
-      { type: "image", src: "../images/ether.webp" },
+      { type: "image", src: "../images/ether.webp", caption: "Ether Cover" },
       { type: "link", url: "", title: "Ether MV" }
     ]
   },
@@ -508,10 +508,10 @@ const timelineData = [
     description: "「元素」",
     tag: "album",
     media: [
-      { type: "image", src: "../images/元素专特装.webp" },
-      { type: "image", src: "../images/元素专特装BD.webp" },
-      { type: "image", src: "../images/元素专限定.webp" },
-      { type: "image", src: "../images/元素专通常.webp" },
+      { type: "image", src: "../images/元素专特装.webp", caption: "元素专 Cover 特装" },
+      { type: "image", src: "../images/元素专特装BD.webp", caption: "元素专 特装Box" },
+      { type: "image", src: "../images/元素专限定.webp", caption: "元素专 Cover 限定" },
+      { type: "image", src: "../images/元素专通常.webp", caption: "元素专 Cover 通常" },
       { type: "link", url: "", title: "元素专 网易云" }
     ]
   },
@@ -523,8 +523,8 @@ const timelineData = [
     description: "收录Ave Mujica的三首翻唱曲「暗黑天国」「KINGS」「堕天」",
     tag: "album",
     media: [
-      { type: "image", src: "../images/翻唱专限定.webp" },
-      { type: "image", src: "../images/翻唱专通常.webp" },
+      { type: "image", src: "../images/翻唱专限定.webp", caption: "翻唱专 Cover 限定" },
+      { type: "image", src: "../images/翻唱专通常.webp", caption: "翻唱专 Cover 通常" },
       { type: "link", url: "", title: "翻唱专 网易云" }
     ]
   },
@@ -536,7 +536,7 @@ const timelineData = [
     description: "武藏野双日 D1为Roselia的oml，D2为Ave Mujica的oml，互相作为开场嘉宾出演",
     tag: "bandori_fes",
     media: [
-      { type: "image", src: "../images/roselia武藏野.webp" },
+      { type: "image", src: "../images/roselia武藏野.webp", caption: "Roselia「Stille Nacht, Rosen Nacht」" },
       { type: "link", url: "", title: "在线观看" }
     ]
   },
@@ -548,8 +548,8 @@ const timelineData = [
     description: "「降临」",
     tag: "oml",
     media: [
-      { type: "image", src: "../images/logo/4th live logo.webp" },
-      { type: "image", src: "../images/4th live kv.webp" },
+      { type: "image", src: "../images/logo/4th live logo.webp", caption: "4th Live Logo" },
+      { type: "image", src: "../images/4th live kv.webp", caption: "4th Live 主视图" },
       { type: "link", url: "", title: "在线观看" }
     ]
   },
@@ -561,7 +561,7 @@ const timelineData = [
     description: "",
     tag: "fes",
     media: [
-      { type: "image", src: "../images/animax2024.webp" },
+      { type: "image", src: "../images/animax2024.webp", caption: "ANIMAX 2024 FALL" },
       { type: "link", url: "", title: "在线观看" }
     ]
   },
@@ -573,7 +573,7 @@ const timelineData = [
     description: "在全球范围内的10家电影院先行放送了动画第1集",
     tag: "anime",
     media: [
-      { type: "image", src: "../images/logo/animemujica.webp" }
+      { type: "image", src: "../images/logo/animemujica.webp", caption: "动画 Logo" }
     ]
   },
   {
@@ -592,7 +592,7 @@ const timelineData = [
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV14H5q69E4H" },
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1aoLV6iEe2" },
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV18mLz6BECd" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1753061475294556163", title: "高尾奏音 X链接" },
+      { type: "link", url: "", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1753062986447773793", title: "佐佐木李子 X链接" }
     ]
   },
@@ -604,9 +604,9 @@ const timelineData = [
     description: "两人为丰川祥子庆生\n高尾奏音：2月14日是我在BanGDream 里配音的丰川祥子酱的生日哦…🎂🩵☕️\n我试着弹了一下祥子在BanGDream动画MyGO 第13集中弹的那首《月光》🎹\n祥子，生日快乐，祝你度过幸福的一年…",
     tag: "private",
     media: [
-      { type: "image", src: "../images/20240214-1.webp", caption: "佐佐木李子创作" },
-      { type: "image", src: "../images/galleryless/20240214-庆生推特2.webp", caption: "评论区回复" },
-      { type: "image", src: "../images/galleryless/20240214-庆生推特1.webp", caption: "评论区回复" },
+      { type: "image", src: "../images/20240214-1.webp" },
+      { type: "image", src: "../images/galleryless/20240214-庆生推特2.webp" },
+      { type: "image", src: "../images/galleryless/20240214-庆生推特1.webp" },
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV19B421z7wg" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1757419963822854213", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1757772519036330156", title: "佐佐木李子 X链接" }
@@ -622,7 +622,7 @@ const timelineData = [
     media: [
       { type: "image", src: "../images/20240220-1.webp" },
       { type: "image", src: "../images/20240220-2.webp" },
-      { type: "image", src: "../images/galleryless/20240220-推特回复.webp", caption: "评论区回复" },
+      { type: "image", src: "../images/galleryless/20240220-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1759884288571674932", title: "高尾奏音 X链接" }
     ]
   },
@@ -662,7 +662,7 @@ const timelineData = [
     tag: "private",
     media: [
       { type: "image", src: "../images/20240221-1.webp" },
-      { type: "image", src: "../images/galleryless/20240221-推特回复.webp", caption: "评论区回复" },
+      { type: "image", src: "../images/galleryless/20240221-推特回复.webp" },
       { type: "link", url: "https://x.com/sasakirico/status/1760255621709135958", title: "佐佐木李子 X链接" }
     ]
   },
@@ -742,7 +742,7 @@ const timelineData = [
     tag: "private",
     media: [
       { type: "image", src: "../images/20240427.webp" },
-      { type: "image", src: "../images/galleryless/20240427-推特回复.webp", caption: "评论区回复" },
+      { type: "image", src: "../images/galleryless/20240427-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1784059325587358021", title: "高尾奏音 X链接" }
     ]
   },
@@ -864,19 +864,9 @@ const timelineData = [
     media: [
       { type: "image", src: "../images/20241102-1.webp" },
       { type: "image", src: "../images/20241102-2.webp" },
+      { type: "image", src: "../images/galleryless/20241102-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1852674945127797152", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1852702392716026298", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "6LiU1TA4nnl",
-    date: "2024/11/2",
-    title: "青山祭探访ゆづるか活动",
-    category: "personal",
-    description: "结束后两人观星\n我和李子一起去看了在青学举办的ゆづるか第一次的学园祭活动哦~💙\n被她俩的聊天彻底治愈了，我和莉子一直在台下边点头边看☺️笑\n之后大家还一起去逛了学园祭哦〜🏫✨\n看到大家都出现在校园里 真的好开心…！\n能和大家一起度过大学生活最后的学园祭，真是太开心啦💐",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/galleryless/20241102-推特回复.webp" }
     ]
   },
   {
@@ -935,6 +925,163 @@ const timelineData = [
       { type: "image", src: "../images/20241229-3.webp" },
       { type: "image", src: "../images/20241229-4.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1873268990610685972", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "ki3WmqyM1nb",
+    date: "2025/1/2",
+    title: "TV动画「BanG Dream! Ave Mujica」#1 Sub rosa. 播出",
+    category: "organization",
+    description: "「秘密。」\n在发起人祥子的运筹之下，Ave Mujica声名渐起，广受好评。\n为了让下一场盛大的舞台获得成功，祥子倾尽心力，只为呈现一场完美的演出。\n然而，对乐队前行方向心存不满的成员，却逐渐与她产生了龃龉——\n众人各怀心思，而舞台已然拉开帷幕。",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/动画第1话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第1话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第1话先行图03.webp", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "mucwOJw0Mnv",
+    date: "2025/1/9",
+    title: "TV动画「BanG Dream! Ave Mujica」#2 Exitus acta probat. 播出",
+    category: "organization",
+    description: "「用结果说话。」\n在喵梦的算计之下，Ave Mujica的成员们于舞台之上被摘去了假面。\n以真容示人的她们，一时间成为世间瞩目的焦点。\n遭到暗算的祥子，冷眼讥笑的喵梦，心力交瘁的睦。\n失去假面的人偶们，即将迎来摘下面具后的第一场假面舞会……",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/动画第2话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第2话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第2话先行图03.webp", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "t5shmA1sGkY",
+    date: "2025/1/16",
+    title: "TV动画「BanG Dream! Ave Mujica」#3 Quid faciam? 播出",
+    category: "organization",
+    description: "「我该如何是好？」\n精神上的疲惫终于压垮了睦，她在演出中出现了失误。\n瘫坐在舞台上的身影，宛如一具断了线的人偶。台下观众无不屏息。\n虽凭借祥子的临机应变化解了危机，但这场意外留下的阴影，却深深笼罩着Ave Mujica此后的道路。",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/动画第3话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第3话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第3话先行图03.webp", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "uIO7Bcno9lt",
+    date: "2025/1/23",
+    title: "TV动画「BanG Dream! Ave Mujica」#4 Acta est fabula. 播出",
+    category: "organization",
+    description: "「演出已然落幕。」\n得益于睦在台前幕后的活跃表现，Ave Mujica的话题热度也愈发高涨。\n曾经的不和早已不见踪影，成员之间一派融洽。\n面对焕发出全新魅力的Ave Mujica，祥子却——",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/动画第4话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第4话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第4话先行图03.webp", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "4ONRRRuQDak",
+    date: "2025/1/30",
+    title: "TV动画「BanG Dream! Ave Mujica」#5 Facta fugis, facienda petis. 播出",
+    category: "organization",
+    description: "「舍既成之本，逐未竟之业。」\n全国巡演尚在进行，乐队却骤然解散。\nAve Mujica的成员们，也各自逐渐回到了原本的生活。",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/动画第5话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第5话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第5话先行图03.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第5话先行图04.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第5话先行图05.webp", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "uJWeVTMevyr",
+    date: "2025/2/6",
+    title: "TV动画「BanG Dream! Ave Mujica」#6 Animum reges. 播出",
+    category: "organization",
+    description: "「你将掌控心灵。」\n为了唤醒沉睡的睦，束手无策的Mortis，只得将最后的希望寄托于爽世。\n面对眼前这个判若两人的“睦”，MyGO!!!!!的成员们又将……",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/动画第6话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第6话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第6话先行图03.webp", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "Anbc1jWhn1n",
+    date: "2025/2/13",
+    title: "TV动画「BanG Dream! Ave Mujica」#7 Post nubila Phoebus. 播出",
+    category: "organization",
+    description: "「雨后天晴。」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "dZEV3o6HtS2",
+    date: "2025/2/20",
+    title: "TV动画「BanG Dream! Ave Mujica」#8 Belua multorum es capitums. 播出",
+    category: "organization",
+    description: "「你是多首的怪物。」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "ZLSuudLPbeZ",
+    date: "2025/2/27",
+    title: "TV动画「BanG Dream! Ave Mujica」#9 Ne vivam si abis. 播出",
+    category: "organization",
+    description: "「君若离去，我不独生。」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "A5L5Xhpds1A",
+    date: "2025/3/6",
+    title: "TV动画「BanG Dream! Ave Mujica」#10 Odi et amo. 播出",
+    category: "organization",
+    description: "「爱恨交织。」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "f53R2sF3yah",
+    date: "2025/3/13",
+    title: "TV动画「BanG Dream! Ave Mujica」#11 Te ustus amem. 播出",
+    category: "organization",
+    description: "「纵使焚身成灰，我亦要爱你。」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "CMd7ieFyxy3",
+    date: "2025/3/20",
+    title: "TV动画「BanG Dream! Ave Mujica」#12 Fluctuat nec mergitur. 播出",
+    category: "organization",
+    description: "「风吹浪打，亦不沉没。」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "wmtXR47dDQv",
+    date: "2025/3/27",
+    title: "TV动画「BanG Dream! Ave Mujica」#13 Per aspera ad astra. 播出",
+    category: "organization",
+    description: "「循此苦旅，终抵繁星。」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "", caption: "动画先行图" }
     ]
   }
 ];

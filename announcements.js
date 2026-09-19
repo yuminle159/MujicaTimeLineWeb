@@ -12,7 +12,7 @@ window.ANNOUNCEMENTS = [
   },
   {
     "date": "2026.09.19",
-    "msg": "新增全局搜索",
+    "msg": "1.新增全局搜索 2.修复公告栏轮播冗余问题 3.修复Page Top按钮交互异常",
     "pinned": false
   },
   {
