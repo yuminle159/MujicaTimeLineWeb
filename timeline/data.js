@@ -516,9 +516,9 @@ const timelineData = [
     ]
   },
   {
-    hash_id: "DDh493KsDND",
+    hash_id: "7F47C3IaR4r",
     date: "2024/7/10",
-    title: "翻唱专「バンドリ！カバーコレクション Extra Volume」",
+    title: "翻唱专「バンドリ！カバーコレクション Extra Volume」发售",
     category: "organization",
     description: "收录Ave Mujica的三首翻唱曲「暗黑天国」「KINGS」「堕天」",
     tag: "album",
@@ -1106,7 +1106,7 @@ const timelineData = [
     description: "「DIVINE」",
     tag: "single",
     media: [
-      { type: "image", src: "../images/DIVINE.webp", caption: "DIVINE Cover" },
+      { type: "image", src: "../images/galleryless/progress order.webp" },
       { type: "link", url: "https://www.bilibili.com/video/BV1EvcdenE9h", title: "Tie-up 游戏『PROGRESS ORDERS』OP Moive" }
     ]
   },
@@ -1167,6 +1167,134 @@ const timelineData = [
     media: [
       { type: "image", src: "../images/颜.webp", caption: "颜 Cover" },
       { type: "link", url: "https://www.bilibili.com/video/BV1SjL3zNEB6", title: "颜 MV" }
+    ]
+  },
+  {
+    hash_id: "ABgzkhqhV0R",
+    date: "2025/9/4",
+    title: "「碧い瞳の中に」公开",
+    category: "organization",
+    description: "「in your blue eyes」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/蓝眼睛.webp", caption: "碧瞳 Cover" },
+      { type: "link", url: "https://www.bilibili.com/video/BV13Ma2zjEMA", title: "碧瞳 MV" }
+    ]
+  },
+  {
+    hash_id: "9ymQgnaa7HF",
+    date: "2025/9/27",
+    title: "「'S/' The Way」Anime ver.作为其Tie-up TV动画「卡片战斗!! 先导者 Divinez DELUXE 决胜篇」#11 ED公开",
+    category: "organization",
+    description: "「'S/' The Way」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/galleryless/卡片战斗先导者ep11ed.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV17xnLzVEvq/", title: "动画版ED" }
+    ]
+  },
+  {
+    hash_id: "6jRmbzZaUTk",
+    date: "2026/9/14",
+    title: "「A Song Of Romance」公开",
+    category: "organization",
+    description: "「浪漫之歌」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/神名限定cover.webp", caption: "浪漫之歌 Cover" }
+    ]
+  },
+  {
+    hash_id: "C3VuxQVwDmO",
+    date: "2025/1/15",
+    title: "Ave Mujica 2nd Single 「KiLLKiSS」发售",
+    category: "organization",
+    description: "「杀吻」",
+    tag: "album",
+    media: [
+      { type: "image", src: "../images/kk限定.webp", caption: "KiLLKiSS Cover 限定" },
+      { type: "image", src: "../images/kk限定外封.webp", caption: "KiLLKiSS 限定外封套" },
+      { type: "image", src: "../images/kk通常.webp", caption: "KiLLKiSS Cover 通常" },
+      { type: "link", url: "https://music.163.com/#/album?id=255997924", title: "KiLLKiSS 网易云" }
+    ]
+  },
+  {
+    hash_id: "f0JGqlsfEHR",
+    date: "2025/12/10",
+    title: "Ave Mujica 3rd Single 「‘S/’ The Way / Sophie」发售",
+    category: "organization",
+    description: "「‘S/’ The Way / Sophie」",
+    tag: "album",
+    media: [
+      { type: "image", src: "../images/slash通常&限定.webp", caption: "3rd Single Cover 通常&限定" },
+      { type: "image", src: "../images/slash特装.webp", caption: "3rd Single Cover 特装" },
+      { type: "link", url: "https://music.163.com/#/album?id=350280243", title: "3rd Single 网易云" }
+    ]
+  },
+  {
+    hash_id: "xZlDyekjnEr",
+    date: "2025/4/23",
+    title: "Ave Mujica 1st Album 「Completeness」发售",
+    category: "organization",
+    description: "「完全」",
+    tag: "album",
+    media: [
+      { type: "image", src: "../images/完满限定.webp", caption: "完全 Cover 限定" },
+      { type: "image", src: "../images/完满限定硬壳.webp", caption: "完全 限定硬壳" },
+      { type: "image", src: "../images/完满特装.webp", caption: "完全 Cover 特装" },
+      { type: "image", src: "../images/完满通常.webp", caption: "完全 Cover 通常" },
+      { type: "link", url: "https://music.163.com/#/album?id=269138556", title: "完全 网易云" }
+    ]
+  },
+  {
+    hash_id: "vORGbjLNgs4",
+    date: "2026/5/20",
+    title: "纪念首张专辑发售一周年 「Completeness」黑胶发售",
+    category: "organization",
+    description: "「完全」 LP",
+    tag: "album",
+    media: [
+      { type: "image", src: "../images/完满通常.webp", caption: "完全 LP" }
+    ]
+  },
+  {
+    hash_id: "4ONu6xbc4cI",
+    date: "2026/6/17",
+    title: "Ave Mujica 1st Best Album「Ave Música」发售",
+    category: "organization",
+    description: "「Ave Música」",
+    tag: "album",
+    media: [
+      { type: "image", src: "../images/精选通常.webp", caption: "精选 Cover 通常" },
+      { type: "image", src: "../images/精选限定.webp", caption: "精选 Cover 限定" },
+      { type: "image", src: "../images/精选限定封套.webp", caption: "精选 限定封套" },
+      { type: "image", src: "../images/精选特装.webp", caption: "精选 Cover 特装" },
+      { type: "link", url: "https://music.163.com/#/album?id=378695244", title: "精选 网易云" }
+    ]
+  },
+  {
+    hash_id: "rKUlDpvBUze",
+    date: "2025/1/25",
+    title: "Ave Mujica 出演 リスアニ!LIVE 2025 SATURDAY STAGE",
+    category: "organization",
+    description: "",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/lisani2025_am01.webp", caption: "リスアニ!LIVE 2025" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1aAZYYAEEQ/", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "nZy9TO3JuvA",
+    date: "2025/2/2",
+    title: "Ave Mujica「KiLLKiSS」購入者限定フリーライブ",
+    category: "organization",
+    description: "「KiLLKiSS」购入者限定Free Live",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/galleryless/kkfreelive宣传1.webp" },
+      { type: "image", src: "../images/galleryless/kkfreelive宣传2.webp" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48848106", title: "在线观看" }
     ]
   }
 ];
