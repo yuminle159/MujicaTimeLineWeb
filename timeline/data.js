@@ -68,7 +68,7 @@ const timelineData = [
     date: "2023/5/7",
     title: "「神さま、バカ」公开",
     category: "organization",
-    description: "「神明，笨蛋」",
+    description: "「神明，愚蠢」",
     tag: "single",
     media: [
       { type: "image", src: "../images/神蠢.webp", caption: "神明，笨蛋Cover" },
@@ -525,7 +525,7 @@ const timelineData = [
     media: [
       { type: "image", src: "../images/翻唱专限定.webp", caption: "翻唱专 Cover 限定" },
       { type: "image", src: "../images/翻唱专通常.webp", caption: "翻唱专 Cover 通常" },
-      { type: "link", url: "", title: "翻唱专 网易云" }
+      { type: "link", url: "https://music.163.com/#/album?id=198675493", title: "翻唱专 网易云" }
     ]
   },
   {
@@ -1012,10 +1012,12 @@ const timelineData = [
     date: "2025/2/13",
     title: "TV动画「BanG Dream! Ave Mujica」#7 Post nubila Phoebus. 播出",
     category: "organization",
-    description: "「雨后天晴。」",
+    description: "「雨后天晴。」\nCRYCHIC解散的真相，在意想不到的契机下被骤然揭开。\n无论是睦、Ave Mujica，还是曾经的CRYCHIC，祥子都选择了视而不见。而她那番故作淡然的言辞，也在昔日CRYCHIC的成员们心中，激起了无法置之不理的波澜。",
     tag: "anime",
     media: [
-      { type: "image", src: "", caption: "动画先行图" }
+      { type: "image", src: "../images/动画第7话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第7话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第7话先行图03.webp", caption: "动画先行图" }
     ]
   },
   {
@@ -1023,10 +1025,12 @@ const timelineData = [
     date: "2025/2/20",
     title: "TV动画「BanG Dream! Ave Mujica」#8 Belua multorum es capitums. 播出",
     category: "organization",
-    description: "「你是多首的怪物。」",
+    description: "「你是多首的怪物。」\n平凡的少女们，与那曾经无比特别的归宿和回忆，就此诀别。\n而亲眼见证CRYCHIC的演奏后，海铃心中萌生的嫉妒，也逐渐化作了让Ave Mujica重生的野心。",
     tag: "anime",
     media: [
-      { type: "image", src: "", caption: "动画先行图" }
+      { type: "image", src: "../images/动画第8话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第8话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第8话先行图03.webp", caption: "动画先行图" }
     ]
   },
   {
@@ -1034,10 +1038,12 @@ const timelineData = [
     date: "2025/2/27",
     title: "TV动画「BanG Dream! Ave Mujica」#9 Ne vivam si abis. 播出",
     category: "organization",
-    description: "「君若离去，我不独生。」",
+    description: "「君若离去，我不独生。」\n暗自谋划的海铃，苦苦求助的Mortis，愈发焦灼的喵梦，以及深陷执念的初华。\n各自不同的心思，就此纠缠交织在一起。",
     tag: "anime",
     media: [
-      { type: "image", src: "", caption: "动画先行图" }
+      { type: "image", src: "../images/动画第9话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第9话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第9话先行图03.webp", caption: "动画先行图" }
     ]
   },
   {
@@ -1045,10 +1051,12 @@ const timelineData = [
     date: "2025/3/6",
     title: "TV动画「BanG Dream! Ave Mujica」#10 Odi et amo. 播出",
     category: "organization",
-    description: "「爱恨交织。」",
+    description: "「爱恨交织。」\n我的人生，想全部都给你。",
     tag: "anime",
     media: [
-      { type: "image", src: "", caption: "动画先行图" }
+      { type: "image", src: "../images/动画第10话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第10话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第10话先行图03.webp", caption: "动画先行图" }
     ]
   },
   {
@@ -1056,10 +1064,10 @@ const timelineData = [
     date: "2025/3/13",
     title: "TV动画「BanG Dream! Ave Mujica」#11 Te ustus amem. 播出",
     category: "organization",
-    description: "「纵使焚身成灰，我亦要爱你。」",
+    description: "「纵使焚身成灰，我亦要爱你。」\n——接下来为诸位呈上的，是怀抱着秘密的，她的故事。",
     tag: "anime",
     media: [
-      { type: "image", src: "", caption: "动画先行图" }
+      { type: "image", src: "../images/动画第11话先行图01.webp", caption: "动画先行图" }
     ]
   },
   {
@@ -1067,10 +1075,12 @@ const timelineData = [
     date: "2025/3/20",
     title: "TV动画「BanG Dream! Ave Mujica」#12 Fluctuat nec mergitur. 播出",
     category: "organization",
-    description: "「风吹浪打，亦不沉没。」",
+    description: "「风吹浪打，亦不沉没。」\n命运如疾风怒涛般席卷而来。竭力挣扎的她，最终还能握在手中的，究竟是……",
     tag: "anime",
     media: [
-      { type: "image", src: "", caption: "动画先行图" }
+      { type: "image", src: "../images/动画第12话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第12话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第12话先行图03.webp", caption: "动画先行图" }
     ]
   },
   {
@@ -1078,10 +1088,85 @@ const timelineData = [
     date: "2025/3/27",
     title: "TV动画「BanG Dream! Ave Mujica」#13 Per aspera ad astra. 播出",
     category: "organization",
-    description: "「循此苦旅，终抵繁星。」",
+    description: "「循此苦旅，终抵繁星。」\n她们一路走来的路，以及此刻身处之地的风景。\n“季节，已经变了……”",
     tag: "anime",
     media: [
-      { type: "image", src: "", caption: "动画先行图" }
+      { type: "image", src: "../images/动画第13话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第13话先行图02.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第13话先行图03.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第13话先行图04.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第13话先行图05.webp", caption: "动画先行图" }
+    ]
+  },
+  {
+    hash_id: "FPTMyabxM1g",
+    date: "2025/1/17",
+    title: "「DIVINE」Short ver.随其Tie-up 游戏『PROGRESS ORDERS』OP Moive公开",
+    category: "organization",
+    description: "「DIVINE」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/DIVINE.webp", caption: "DIVINE Cover" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1EvcdenE9h", title: "Tie-up 游戏『PROGRESS ORDERS』OP Moive" }
+    ]
+  },
+  {
+    hash_id: "sITrQ7a1wLk",
+    date: "2025/8/4",
+    title: "「DIVINE」Full ver.公开",
+    category: "organization",
+    description: "「DIVINE」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/DIVINE.webp", caption: "DIVINE Cover" }
+    ]
+  },
+  {
+    hash_id: "xeFw2kWo1Ix",
+    date: "2025/3/6",
+    title: "「Imprisoned XII」公开",
+    category: "organization",
+    description: "「囚禁 12」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/囚12.webp", caption: "Imprisoned Cover" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1Ep91YPEQo", title: "Imprisoned MV" }
+    ]
+  },
+  {
+    hash_id: "c7SusdHDbRM",
+    date: "2025/3/6",
+    title: "「Crucifix X」公开",
+    category: "organization",
+    description: "「十字架 10」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/十字架.webp", caption: "十字架 Cover" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1iEQ6YCECx", title: "十字架 MV" }
+    ]
+  },
+  {
+    hash_id: "o6yaRhzzptv",
+    date: "2025/4/3",
+    title: "「天球（そら）のMúsica」公开",
+    category: "organization",
+    description: "「天空的乐章」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/天球.webp", caption: "天球 Cover" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1RtZmYGE3a", title: "天球 MV" }
+    ]
+  },
+  {
+    hash_id: "wMrnaZ2m33L",
+    date: "2025/4/17",
+    title: "「顔」公开",
+    category: "organization",
+    description: "「颜」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/颜.webp", caption: "颜 Cover" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1SjL3zNEB6", title: "颜 MV" }
     ]
   }
 ];

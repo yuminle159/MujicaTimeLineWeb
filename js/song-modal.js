@@ -108,7 +108,7 @@
       (song.type ? '<span class="shared-song-type">' + escapeHTML(song.type) + '</span>' : "") +
       '<button class="shared-song-meta-toggle" type="button" data-song-meta-toggle aria-expanded="false" aria-controls="sharedSongMeta">展开详细信息</button>' +
       '<div class="shared-song-meta" id="sharedSongMeta">' +
-      (song.release_date ? '<div><span class="shared-song-meta-label">发行日期</span><span>' + escapeHTML(song.release_date) + '</span></div>' : "") +
+      (song.release_date ? '<div><span class="shared-song-meta-label">首发日期</span><span>' + escapeHTML(song.release_date) + '</span></div>' : "") +
       (song.album ? '<div><span class="shared-song-meta-label">首发形式</span><span>' + escapeHTML(song.album) + '</span></div>' : "") +
       (song.lyricist ? '<div><span class="shared-song-meta-label">作词</span><span>' + escapeHTML(song.lyricist) + '</span></div>' : "") +
       (song.composer ? '<div><span class="shared-song-meta-label">作曲</span><span>' + escapeHTML(song.composer) + '</span></div>' : "") +
