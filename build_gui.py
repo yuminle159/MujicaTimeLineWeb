@@ -135,6 +135,18 @@ class WorkflowError(Exception):
     """可直接展示给用户的 Git 工作流错误。"""
 
 
+class WorkflowStepError(WorkflowError):
+    """记录失败步骤，并携带从该步骤继续执行所需的信息。"""
+
+    def __init__(self, workflow_name, step_index, step_label, cause):
+        self.workflow_name = workflow_name
+        self.step_index = step_index
+        self.step_label = step_label
+        self.cause = cause
+        self.retry_operation = None
+        super().__init__(f"步骤「{step_label}」失败：\n{cause}")
+
+
 class SelfUpdateRequired(Exception):
     """远端包含当前正在运行的 EXE，需要退出后由辅助进程完成更新。"""
 
@@ -175,41 +187,69 @@ def git_status():
     return run_git_command("status", "--porcelain", "--untracked-files=normal")[1]
 
 
-def run_start_workflow(log_func):
+def run_workflow_steps(workflow_name, steps, start_step, log_func):
+    """从指定步骤执行工作流，并将失败位置包装为可重试错误。"""
+    total = len(steps)
+    for index in range(start_step, total):
+        label, operation = steps[index]
+        log_func(f"[步骤 {index + 1}/{total}] {label}…")
+        try:
+            operation()
+        except SelfUpdateRequired:
+            raise
+        except Exception as exc:
+            raise WorkflowStepError(workflow_name, index, label, exc) from exc
+        log_func(f"[完成] {label}")
+
+
+def run_start_workflow(log_func, start_step=0):
     """同步 main 与 deploy；工作区不干净时拒绝拉取。"""
     require_git_repository()
-    if git_status():
-        raise WorkflowError("检测到未提交修改。请先处理上次留下的修改，再开始同步。")
 
-    branch = run_git_command("branch", "--show-current")[1]
-    if branch != "main":
+    def prepare_main():
+        if git_status():
+            raise WorkflowError("检测到未提交修改。请先处理上次留下的修改，再开始同步。")
+        branch = run_git_command("branch", "--show-current")[1]
+        if branch == "main":
+            return
         log_func(f"当前分支为 {branch or 'detached HEAD'}，正在切换到 main…")
         _, output = run_git_command("switch", "main")
         if output:
             log_func(output)
 
-    log_func("正在获取 origin/main…")
-    _, output = run_git_command("fetch", "origin", "main")
-    if output:
-        log_func(output)
+    def fetch_main():
+        _, output = run_git_command("fetch", "origin", "main")
+        if output:
+            log_func(output)
+        changed_files = run_git_command("diff", "--name-only", "HEAD..origin/main")[1].splitlines()
+        executable_name = os.path.basename(sys.executable)
+        if getattr(sys, "frozen", False) and any(
+            os.path.normcase(path.strip()) == os.path.normcase(executable_name)
+            for path in changed_files
+        ):
+            raise SelfUpdateRequired()
 
-    changed_files = run_git_command("diff", "--name-only", "HEAD..origin/main")[1].splitlines()
-    executable_name = os.path.basename(sys.executable)
-    if getattr(sys, "frozen", False) and any(
-        os.path.normcase(path.strip()) == os.path.normcase(executable_name)
-        for path in changed_files
-    ):
-        raise SelfUpdateRequired()
+    def merge_main():
+        _, output = run_git_command("merge", "--ff-only", "origin/main")
+        if output:
+            log_func(output)
 
-    log_func("正在快进同步 main…")
-    _, output = run_git_command("merge", "--ff-only", "origin/main")
-    if output:
-        log_func(output)
+    def fetch_deploy():
+        _, output = run_git_command("fetch", "origin", "deploy:deploy")
+        if output:
+            log_func(output)
 
-    log_func("正在同步本地 deploy 发布基线…")
-    _, output = run_git_command("fetch", "origin", "deploy:deploy")
-    if output:
-        log_func(output)
+    steps = (
+        ("检查工作区并切换到 main", prepare_main),
+        ("获取 origin/main", fetch_main),
+        ("快进同步 main", merge_main),
+        ("同步 deploy 发布基线", fetch_deploy),
+    )
+    try:
+        run_workflow_steps("开始工作", steps, start_step, log_func)
+    except WorkflowStepError as exc:
+        exc.retry_operation = lambda retry_log, index=exc.step_index: run_start_workflow(retry_log, index)
+        raise
     return "main 与 deploy 已同步，可以开始工作。"
 
 
@@ -247,15 +287,18 @@ Remove-Item -LiteralPath $PSCommandPath -Force
     return script_path
 
 
-def run_finish_workflow(commit_message, log_func):
+def run_finish_workflow(commit_message, log_func, start_step=0):
     """提交并推送 main，然后构建和推送 deploy。"""
     require_git_repository()
     branch = run_git_command("branch", "--show-current")[1]
     if branch != "main":
         raise WorkflowError(f"当前分支是 {branch or 'detached HEAD'}，请先回到 main。")
 
-    status_before = git_status()
-    if status_before:
+    def commit_main():
+        status_before = git_status()
+        if not status_before:
+            log_func("工作区没有需要提交的源码修改。")
+            return
         log_func("正在暂存全部工作区修改…")
         run_git_command("add", "-A")
         staged_code, _ = run_git_command("diff", "--cached", "--quiet", check=False)
@@ -266,37 +309,51 @@ def run_finish_workflow(commit_message, log_func):
             _, output = run_git_command("commit", "-m", commit_message)
             if output:
                 log_func(output)
-    else:
-        log_func("工作区没有需要提交的源码修改。")
 
-    log_func("正在变基同步 origin/main…")
-    _, output = run_git_command("pull", "--rebase", "origin", "main")
-    if output:
-        log_func(output)
+    def pull_main():
+        _, output = run_git_command("pull", "--rebase", "origin", "main")
+        if output:
+            log_func(output)
 
-    log_func("正在推送 main…")
-    _, output = run_git_command("push", "origin", "main")
-    if output:
-        log_func(output)
+    def push_main():
+        _, output = run_git_command("push", "origin", "main")
+        if output:
+            log_func(output)
 
-    log_func("正在同步 deploy 发布基线…")
-    _, output = run_git_command("fetch", "origin", "deploy:deploy")
-    if output:
-        log_func(output)
+    def fetch_deploy():
+        _, output = run_git_command("fetch", "origin", "deploy:deploy")
+        if output:
+            log_func(output)
 
-    log_func("正在生成并校验 dist/…")
-    commit, changed = publish_deploy.create_deploy_commit(False)
-    if changed:
-        log_func(f"已生成 deploy 提交：{commit[:12]}")
-    else:
-        log_func("公开网站内容没有变化，无需创建新的 deploy 提交。")
+    def build_deploy():
+        commit, changed = publish_deploy.create_deploy_commit(False)
+        if changed:
+            log_func(f"已生成 deploy 提交：{commit[:12]}")
+        else:
+            log_func("公开网站内容没有变化，无需创建新的 deploy 提交。")
 
-    log_func("正在推送 deploy…")
-    _, output = run_git_command(
-        "push", "origin", "refs/heads/deploy:refs/heads/deploy"
+    def push_deploy():
+        _, output = run_git_command(
+            "push", "origin", "refs/heads/deploy:refs/heads/deploy"
+        )
+        if output:
+            log_func(output)
+
+    steps = (
+        ("提交本地修改", commit_main),
+        ("变基同步 origin/main", pull_main),
+        ("推送 main", push_main),
+        ("同步 deploy 发布基线", fetch_deploy),
+        ("生成并校验 deploy", build_deploy),
+        ("推送 deploy", push_deploy),
     )
-    if output:
-        log_func(output)
+    try:
+        run_workflow_steps("结束工作", steps, start_step, log_func)
+    except WorkflowStepError as exc:
+        exc.retry_operation = lambda retry_log, index=exc.step_index: run_finish_workflow(
+            commit_message, retry_log, index
+        )
+        raise
     return "main 与 deploy 均已推送；服务器执行 git pull 即可上线。"
 
 
@@ -446,6 +503,8 @@ class App:
         root.configure(bg="#0d0d0d")
         self.action_buttons = []
         self.operation_running = False
+        self.retry_operation = None
+        self.retry_step_label = ""
 
         # 标题
         header = tk.Label(
@@ -493,7 +552,16 @@ class App:
             activebackground="#c43a3a", activeforeground="#fff",
         )
         self.btn_finish_work.pack(side="left", expand=True, fill="x", padx=(5, 0))
-        self.action_buttons.extend((self.btn_start_work, self.btn_finish_work))
+
+        self.btn_retry_work = tk.Button(
+            workflow_frame, text="重试失败步骤及后续", command=self.retry_workflow,
+            font=("Microsoft YaHei", 9, "bold"), fg="#777", bg="#171717",
+            relief="flat", padx=18, pady=7, cursor="hand2", state="disabled",
+            activebackground="#3a3020", activeforeground="#fff",
+            disabledforeground="#555",
+        )
+        self.btn_retry_work.pack(fill="x", padx=10, pady=(5, 5))
+        self.action_buttons.extend((self.btn_start_work, self.btn_finish_work, self.btn_retry_work))
 
         tk.Label(
             workflow_frame,
@@ -578,13 +646,23 @@ class App:
 
     def set_busy(self, busy):
         self.operation_running = busy
-        state = "disabled" if busy else "normal"
         for button in self.action_buttons:
+            retry_unavailable = button is self.btn_retry_work and self.retry_operation is None
+            state = "disabled" if busy or retry_unavailable else "normal"
             button.config(state=state)
 
-    def run_background(self, title, operation):
+    def clear_retry(self):
+        self.retry_operation = None
+        self.retry_step_label = ""
+        self.btn_retry_work.config(
+            text="重试失败步骤及后续", state="disabled", fg="#777", bg="#171717"
+        )
+
+    def run_background(self, title, operation, clear_retry=True):
         if self.operation_running:
             return
+        if clear_retry:
+            self.clear_retry()
         self._start_log(title + "\n")
         self.set_busy(True)
 
@@ -597,7 +675,7 @@ class App:
             except SelfUpdateRequired:
                 self.root.after(0, self.launch_self_update)
             except Exception as exc:
-                self.root.after(0, lambda error=str(exc): self.workflow_failed(error))
+                self.root.after(0, lambda error=exc: self.workflow_failed(error))
             else:
                 self.root.after(0, lambda result=message: self.workflow_succeeded(result))
 
@@ -624,6 +702,7 @@ class App:
         self.root.after(500, self.root.destroy)
 
     def workflow_succeeded(self, message):
+        self.clear_retry()
         self.set_busy(False)
         self.status_var.set("工作流执行成功")
         self.status_label.config(fg="#8fcf8f")
@@ -633,13 +712,33 @@ class App:
         messagebox.showinfo("执行成功", message, parent=self.root)
 
     def workflow_failed(self, error):
+        if isinstance(error, WorkflowStepError) and error.retry_operation:
+            self.retry_operation = error.retry_operation
+            self.retry_step_label = error.step_label
+            self.btn_retry_work.config(
+                text=f"重试：{error.step_label}及后续",
+                fg="#f0c879", bg="#3a3020",
+            )
         self.set_busy(False)
         self.status_var.set("工作流执行失败")
         self.status_label.config(fg="#ff8080")
         self.log("=" * 50, "detail")
         self.log(f"[FAIL] {error}", "error")
+        if self.retry_operation:
+            self.log(f"[INFO] 可点击「重试：{self.retry_step_label}及后续」继续，无需重复已完成步骤。", "warning")
         self.log("=" * 50, "detail")
-        messagebox.showerror("执行失败", error, parent=self.root)
+        messagebox.showerror("执行失败", str(error), parent=self.root)
+
+    def retry_workflow(self):
+        if self.operation_running or self.retry_operation is None:
+            return
+        operation = self.retry_operation
+        label = self.retry_step_label
+        self.run_background(
+            f"从失败步骤继续：{label}…",
+            operation,
+            clear_retry=False,
+        )
 
     def start_work(self):
         self.run_background("开始工作：同步 Git…", run_start_workflow)
