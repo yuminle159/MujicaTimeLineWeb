@@ -4,6 +4,16 @@
 
 ## 日常发布
 
+推荐直接双击 `wijipedia_数据更新工具.exe`：
+
+1. 点击「① 开始工作 · 同步 Git」。
+2. 编辑 Excel／Markdown，按需点击「② 更新所有 data」。
+3. 点击「③ 结束工作 · 提交并发布」，输入本次提交说明。
+
+第三步会自动提交并推送 `main`、生成发布目录、更新并推送 `deploy`。若任一步失败，工作流会停止并在日志中显示原因。
+
+以下命令行方式作为备用：
+
 更新数据并确认页面无误后，先提交并推送源码：
 
 ```powershell
@@ -33,13 +43,13 @@ python build_site.py
 服务器首次部署建议克隆发布分支到独立目录：
 
 ```bash
-git clone --branch deploy --single-branch https://github.com/yuminle159/MujicaTimeLineWeb.git /var/www/mujica-site
+git clone --branch deploy --single-branch https://github.com/yuminle159/MujicaTimeLineWeb.git /var/www/MujicaTimeLineWeb-deploy
 ```
 
-将 Web 服务器根目录设置为 `/var/www/mujica-site`。以后更新只需：
+将 Web 服务器根目录设置为 `/var/www/MujicaTimeLineWeb-deploy`。以后更新只需：
 
 ```bash
-cd /var/www/mujica-site
+cd /var/www/MujicaTimeLineWeb-deploy
 git pull --ff-only origin deploy
 ```
 

@@ -6,10 +6,14 @@ import os
 import sys
 import io
 import logging
+import subprocess
+import threading
+import tempfile
+from pathlib import Path
 # Reapply the extended Tcl paths after PyInstaller's standard runtime hook.
 import tk_runtime_hook
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, simpledialog
 
 try:
     from PIL import Image
@@ -24,6 +28,14 @@ if getattr(sys, 'frozen', False):
 else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     PROJECT_DIR = BASE_DIR
+
+# 发布模块在源码模式下默认使用自身目录；打包后则必须显式指向 EXE 所在的项目目录。
+import build_site
+import publish_deploy
+
+build_site.ROOT = Path(PROJECT_DIR)
+build_site.DIST = build_site.ROOT / "dist"
+publish_deploy.ROOT = Path(PROJECT_DIR)
 
 # 模块名称映射
 MODULE_NAMES = {
@@ -117,6 +129,175 @@ class CapturedOperationError(Exception):
         super().__init__(str(cause))
         self.cause = cause
         self.output = output
+
+
+class WorkflowError(Exception):
+    """可直接展示给用户的 Git 工作流错误。"""
+
+
+class SelfUpdateRequired(Exception):
+    """远端包含当前正在运行的 EXE，需要退出后由辅助进程完成更新。"""
+
+
+def run_git_command(*arguments, check=True):
+    """在项目目录执行 Git，并返回合并后的输出。"""
+    creationflags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
+    try:
+        completed = subprocess.run(
+            ("git", *arguments),
+            cwd=PROJECT_DIR,
+            check=False,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            creationflags=creationflags,
+        )
+    except FileNotFoundError as exc:
+        raise WorkflowError("找不到 Git。请先安装 Git，并确保 git 命令已加入 PATH。") from exc
+    output = completed.stdout.strip()
+    if check and completed.returncode != 0:
+        command = "git " + " ".join(arguments)
+        raise WorkflowError(f"{command} 执行失败：\n{output or '未知 Git 错误'}")
+    return completed.returncode, output
+
+
+def require_git_repository():
+    code, output = run_git_command("rev-parse", "--show-toplevel", check=False)
+    if code != 0:
+        raise WorkflowError("EXE 所在目录不是 Git 仓库，请把工具放在项目根目录后重试。")
+    if os.path.normcase(os.path.abspath(output)) != os.path.normcase(os.path.abspath(PROJECT_DIR)):
+        raise WorkflowError(f"Git 仓库根目录与工具目录不一致：{output}")
+
+
+def git_status():
+    return run_git_command("status", "--porcelain", "--untracked-files=normal")[1]
+
+
+def run_start_workflow(log_func):
+    """同步 main 与 deploy；工作区不干净时拒绝拉取。"""
+    require_git_repository()
+    if git_status():
+        raise WorkflowError("检测到未提交修改。请先处理上次留下的修改，再开始同步。")
+
+    branch = run_git_command("branch", "--show-current")[1]
+    if branch != "main":
+        log_func(f"当前分支为 {branch or 'detached HEAD'}，正在切换到 main…")
+        _, output = run_git_command("switch", "main")
+        if output:
+            log_func(output)
+
+    log_func("正在获取 origin/main…")
+    _, output = run_git_command("fetch", "origin", "main")
+    if output:
+        log_func(output)
+
+    changed_files = run_git_command("diff", "--name-only", "HEAD..origin/main")[1].splitlines()
+    executable_name = os.path.basename(sys.executable)
+    if getattr(sys, "frozen", False) and any(
+        os.path.normcase(path.strip()) == os.path.normcase(executable_name)
+        for path in changed_files
+    ):
+        raise SelfUpdateRequired()
+
+    log_func("正在快进同步 main…")
+    _, output = run_git_command("merge", "--ff-only", "origin/main")
+    if output:
+        log_func(output)
+
+    log_func("正在同步本地 deploy 发布基线…")
+    _, output = run_git_command("fetch", "origin", "deploy:deploy")
+    if output:
+        log_func(output)
+    return "main 与 deploy 已同步，可以开始工作。"
+
+
+def powershell_quote(value):
+    return "'" + str(value).replace("'", "''") + "'"
+
+
+def create_self_update_helper():
+    """创建一次性 PowerShell 助手，在当前 EXE 退出后更新并重新启动。"""
+    if not getattr(sys, "frozen", False):
+        raise WorkflowError("源码模式不需要 EXE 自更新。")
+    descriptor, script_path = tempfile.mkstemp(prefix="wijipedia-self-update-", suffix=".ps1")
+    os.close(descriptor)
+    project = powershell_quote(PROJECT_DIR)
+    executable = powershell_quote(sys.executable)
+    script = f"""$ErrorActionPreference = 'Continue'
+Wait-Process -Id {os.getpid()} -ErrorAction SilentlyContinue
+Start-Sleep -Seconds 2
+Set-Location -LiteralPath {project}
+$messages = New-Object System.Collections.Generic.List[string]
+& git merge --ff-only origin/main 2>&1 | ForEach-Object {{ $messages.Add($_.ToString()) }}
+$exitCode = $LASTEXITCODE
+if ($exitCode -eq 0) {{
+    & git fetch origin deploy:deploy 2>&1 | ForEach-Object {{ $messages.Add($_.ToString()) }}
+    $exitCode = $LASTEXITCODE
+}}
+if ($exitCode -ne 0) {{
+    Add-Type -AssemblyName PresentationFramework
+    [System.Windows.MessageBox]::Show(($messages -join "`n"), 'Git 同步失败', 'OK', 'Error') | Out-Null
+}}
+Start-Process -FilePath {executable}
+Remove-Item -LiteralPath $PSCommandPath -Force
+"""
+    Path(script_path).write_text(script, encoding="utf-8-sig")
+    return script_path
+
+
+def run_finish_workflow(commit_message, log_func):
+    """提交并推送 main，然后构建和推送 deploy。"""
+    require_git_repository()
+    branch = run_git_command("branch", "--show-current")[1]
+    if branch != "main":
+        raise WorkflowError(f"当前分支是 {branch or 'detached HEAD'}，请先回到 main。")
+
+    status_before = git_status()
+    if status_before:
+        log_func("正在暂存全部工作区修改…")
+        run_git_command("add", "-A")
+        staged_code, _ = run_git_command("diff", "--cached", "--quiet", check=False)
+        if staged_code not in (0, 1):
+            raise WorkflowError("无法检查暂存区状态。")
+        if staged_code == 1:
+            log_func(f"正在提交：{commit_message}")
+            _, output = run_git_command("commit", "-m", commit_message)
+            if output:
+                log_func(output)
+    else:
+        log_func("工作区没有需要提交的源码修改。")
+
+    log_func("正在变基同步 origin/main…")
+    _, output = run_git_command("pull", "--rebase", "origin", "main")
+    if output:
+        log_func(output)
+
+    log_func("正在推送 main…")
+    _, output = run_git_command("push", "origin", "main")
+    if output:
+        log_func(output)
+
+    log_func("正在同步 deploy 发布基线…")
+    _, output = run_git_command("fetch", "origin", "deploy:deploy")
+    if output:
+        log_func(output)
+
+    log_func("正在生成并校验 dist/…")
+    commit, changed = publish_deploy.create_deploy_commit(False)
+    if changed:
+        log_func(f"已生成 deploy 提交：{commit[:12]}")
+    else:
+        log_func("公开网站内容没有变化，无需创建新的 deploy 提交。")
+
+    log_func("正在推送 deploy…")
+    _, output = run_git_command(
+        "push", "origin", "refs/heads/deploy:refs/heads/deploy"
+    )
+    if output:
+        log_func(output)
+    return "main 与 deploy 均已推送；服务器执行 git pull 即可上线。"
 
 
 def capture_output(operation):
@@ -258,22 +439,24 @@ def run_update(selected_modules, do_webp, log_func):
 class App:
     def __init__(self, root):
         self.root = root
-        root.title(" wijipedia 数据更新工具")
-        root.geometry("760x760")
-        root.minsize(680, 560)
+        root.title(" wijipedia 工作流工具")
+        root.geometry("800x840")
+        root.minsize(720, 640)
         root.resizable(True, True)
         root.configure(bg="#0d0d0d")
+        self.action_buttons = []
+        self.operation_running = False
 
         # 标题
         header = tk.Label(
-            root, text=" wijipedia 数据更新工具",
+            root, text=" wijipedia 工作流工具",
             font=("Microsoft YaHei", 14, "bold"),
             fg="#ff4d4d", bg="#0d0d0d",
         )
         header.pack(pady=(16, 4))
 
         sub = tk.Label(
-            root, text="选择一个操作开始，更新过程和结果会显示在下方日志中",
+            root, text="同步 Git、更新数据、提交源码并发布 deploy",
             font=("Microsoft YaHei", 9),
             fg="#666", bg="#0d0d0d",
         )
@@ -285,18 +468,52 @@ class App:
         tk.Label(root, text=data_status, font=("Microsoft YaHei", 9),
                  fg="#777" if self.modules else "#ff8080", bg="#0d0d0d").pack(pady=(0, 8))
 
+        # 完整工作流：同步 → 编辑/更新 → 提交并发布
+        workflow_frame = tk.LabelFrame(
+            root, text=" Git 工作流 ", font=("Microsoft YaHei", 9, "bold"),
+            fg="#aaa", bg="#0d0d0d", bd=1, relief="solid",
+            highlightbackground="#2a2a2a",
+        )
+        workflow_frame.pack(fill="x", padx=24, pady=(4, 14))
+        workflow_buttons = tk.Frame(workflow_frame, bg="#0d0d0d")
+        workflow_buttons.pack(fill="x", padx=10, pady=(10, 5))
+
+        self.btn_start_work = tk.Button(
+            workflow_buttons, text="① 开始工作 · 同步 Git", command=self.start_work,
+            font=("Microsoft YaHei", 10, "bold"), fg="#ddd", bg="#202830",
+            relief="flat", padx=18, pady=9, cursor="hand2",
+            activebackground="#2d3a46", activeforeground="#fff",
+        )
+        self.btn_start_work.pack(side="left", expand=True, fill="x", padx=(0, 5))
+
+        self.btn_finish_work = tk.Button(
+            workflow_buttons, text="③ 结束工作 · 提交并发布", command=self.finish_work,
+            font=("Microsoft YaHei", 10, "bold"), fg="#fff", bg="#9f2828",
+            relief="flat", padx=18, pady=9, cursor="hand2",
+            activebackground="#c43a3a", activeforeground="#fff",
+        )
+        self.btn_finish_work.pack(side="left", expand=True, fill="x", padx=(5, 0))
+        self.action_buttons.extend((self.btn_start_work, self.btn_finish_work))
+
+        tk.Label(
+            workflow_frame,
+            text="开始：pull main + 同步 deploy　｜　结束：commit/push main + 构建/push deploy",
+            font=("Microsoft YaHei", 8), fg="#666", bg="#0d0d0d",
+        ).pack(pady=(0, 9))
+
         # 三个固定主操作
         btn_frame_actions = tk.Frame(root, bg="#0d0d0d")
         btn_frame_actions.pack(fill="x", padx=24, pady=(4, 16))
 
         btn_build = tk.Button(
-            btn_frame_actions, text="更新所有 data", command=self.update_all_data,
+            btn_frame_actions, text="② 更新所有 data", command=self.update_all_data,
             font=("Microsoft YaHei", 11, "bold"),
             fg="#fff", bg="#ff4d4d",
             relief="flat", padx=24, pady=8, cursor="hand2",
             activebackground="#ff8080", activeforeground="#fff",
         )
         btn_build.pack(side="left", expand=True, fill="x", padx=(0, 5))
+        self.action_buttons.append(btn_build)
 
         btn_webp = tk.Button(
             btn_frame_actions, text="把图片转为 WebP", command=self.convert_webp,
@@ -305,6 +522,7 @@ class App:
             activebackground="#2a2a2a", activeforeground="#fff",
         )
         btn_webp.pack(side="left", expand=True, fill="x", padx=5)
+        self.action_buttons.append(btn_webp)
 
         btn_scan = tk.Button(
             btn_frame_actions, text="一键把所有图片写入画廊", command=self.scan_gallery,
@@ -314,11 +532,12 @@ class App:
             activebackground="#2a2a2a", activeforeground="#fff",
         )
         btn_scan.pack(side="left", expand=True, fill="x", padx=(5, 0))
+        self.action_buttons.append(btn_scan)
 
         # 运行状态与折叠的详细日志
         status_frame = tk.Frame(root, bg="#141414", highlightthickness=1, highlightbackground="#2a2a2a")
         status_frame.pack(fill="x", padx=24, pady=(0, 12))
-        self.status_var = tk.StringVar(value="就绪 · 等待开始更新")
+        self.status_var = tk.StringVar(value="就绪 · 等待操作")
         self.status_label = tk.Label(
             status_frame, textvariable=self.status_var, anchor="w",
             font=("Microsoft YaHei", 9, "bold"), fg="#aaa", bg="#141414", padx=12, pady=8,
@@ -356,6 +575,101 @@ class App:
         self.output.tag_configure("error", foreground="#ff8080")
         self.output.tag_configure("detail", foreground="#777")
         self.output.insert("end", "就绪。\n")
+
+    def set_busy(self, busy):
+        self.operation_running = busy
+        state = "disabled" if busy else "normal"
+        for button in self.action_buttons:
+            button.config(state=state)
+
+    def run_background(self, title, operation):
+        if self.operation_running:
+            return
+        self._start_log(title + "\n")
+        self.set_busy(True)
+
+        def thread_log(message, tag=None):
+            self.root.after(0, lambda m=message, t=tag: self.log(m, t))
+
+        def worker():
+            try:
+                message = operation(thread_log)
+            except SelfUpdateRequired:
+                self.root.after(0, self.launch_self_update)
+            except Exception as exc:
+                self.root.after(0, lambda error=str(exc): self.workflow_failed(error))
+            else:
+                self.root.after(0, lambda result=message: self.workflow_succeeded(result))
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def launch_self_update(self):
+        try:
+            script_path = create_self_update_helper()
+            creationflags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
+            subprocess.Popen(
+                (
+                    "powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                    "-WindowStyle", "Hidden", "-File", script_path,
+                ),
+                cwd=PROJECT_DIR,
+                creationflags=creationflags,
+            )
+        except Exception as exc:
+            self.workflow_failed(f"无法启动自更新助手：{exc}")
+            return
+        self.status_var.set("检测到工具更新 · 正在重启")
+        self.status_label.config(fg="#e8c778")
+        self.log("[INFO] 远端包含新版工作流工具，当前窗口将退出并自动重新打开。", "warning")
+        self.root.after(500, self.root.destroy)
+
+    def workflow_succeeded(self, message):
+        self.set_busy(False)
+        self.status_var.set("工作流执行成功")
+        self.status_label.config(fg="#8fcf8f")
+        self.log("=" * 50, "detail")
+        self.log(f"[OK] {message}", "success")
+        self.log("=" * 50, "detail")
+        messagebox.showinfo("执行成功", message, parent=self.root)
+
+    def workflow_failed(self, error):
+        self.set_busy(False)
+        self.status_var.set("工作流执行失败")
+        self.status_label.config(fg="#ff8080")
+        self.log("=" * 50, "detail")
+        self.log(f"[FAIL] {error}", "error")
+        self.log("=" * 50, "detail")
+        messagebox.showerror("执行失败", error, parent=self.root)
+
+    def start_work(self):
+        self.run_background("开始工作：同步 Git…", run_start_workflow)
+
+    def finish_work(self):
+        if self.operation_running:
+            return
+        try:
+            has_changes = bool(git_status())
+        except Exception as exc:
+            messagebox.showerror("无法读取 Git 状态", str(exc), parent=self.root)
+            return
+        if has_changes:
+            commit_message = simpledialog.askstring(
+                "提交说明",
+                "请输入本次 git commit 的说明：",
+                parent=self.root,
+            )
+            if commit_message is None:
+                return
+            commit_message = commit_message.strip()
+            if not commit_message:
+                messagebox.showwarning("缺少提交说明", "提交说明不能为空。", parent=self.root)
+                return
+        else:
+            commit_message = "同步发布"
+        self.run_background(
+            "结束工作：提交 main 并生成 deploy…",
+            lambda log_func: run_finish_workflow(commit_message, log_func),
+        )
 
     def log(self, msg, tag=None):
         if tag is None:
