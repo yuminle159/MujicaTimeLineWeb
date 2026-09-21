@@ -1,0 +1,9 @@
+# Generated public deployment directory
+/dist/
+/.dist-*/
+
+# Local authoring/build artifacts
+__pycache__/
+*.py[cod]
+~$*.xlsx
+/_build/

@@ -18,7 +18,7 @@
   border-color: #cc2929;
   box-shadow: 0 0 0 2px rgba(204, 41, 41, .12);
 }
-.search-box .search-icon { flex: 0 0 auto; margin-right: 8px; color: #666; font-size: 14px; }
+.search-box .search-icon { flex: 0 0 auto; margin-right: 8px; color: #666; font-size: 14px; line-height: 1; }
 .search-box input {
   flex: 1;
   min-width: 0;
@@ -40,6 +40,13 @@
   .gallery-toolbar { padding: 0 24px 20px; }
   .timeline-search-box { flex-basis: 100%; margin-left: 0; max-width: none; }
   .filter-actions { flex-wrap: wrap; }
+  /* Songs switches its toolbar to a column here. Reset the desktop flex basis,
+     otherwise 220px becomes the search box's height instead of its width. */
+  .songs-page .toolbar .search-box {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+  }
 }
 @media (max-width: 520px) {
   .gallery-toolbar { padding: 0 16px 18px; }
