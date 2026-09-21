@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico">
+  <title>Timeline · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202609211058">
+  <link rel="stylesheet" href="../css/local-search.css?v=202609211058">
+</head>
+<body>
+  <!-- 星空背景（固定在视口后方，随滚动产生视差） -->
+  <div class="stardust-bg" aria-hidden="true">
+    <div class="stardust-layer" id="stars-base"></div>
+    <div class="stardust-layer" id="stars-mid"></div>
+    <div class="stardust-layer" id="stars-blink-slow"></div>
+    <div class="stardust-layer" id="stars-blink-fast"></div>
+    <!-- 少量大颗“尖头十字”亮星，带朦胧光晕 -->
+    <div class="stardust-sparkles" id="stardustSparkles"></div>
+  </div>
+
+  <div class="timeline-page">
+    <header class="page-header">
+      <a href="../index.html" class="back-nav">&larr; 返回主页</a>
+      <h1>TimeLine</h1>
+      <p>Band &amp; Nonrico</p>
+    </header>
+
+    <!-- 标签筛选器 -->
+    <div class="filter-bar" id="filterBar">
+      <div class="filter-tags" id="filterTags"></div>
+      <div class="search-box timeline-search-box">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="timelineSearchInput" type="search" placeholder="搜索时间线…" autocomplete="off">
+      </div>
+      <span class="result-count" id="timelineResultCount"></span>
+    </div>
+    <!-- 年份筛选器 -->
+    <div class="filter-bar year-filter-bar" id="yearFilterBar" style="padding-top:0;"></div>
+
+    <div class="timeline-wrapper" id="timelineWrapper">
+      <!-- 左侧月度刻度 -->
+      <div class="ticks-left" id="ticksLeft"></div>
+      <!-- 右侧月度刻度 -->
+      <div class="ticks-right" id="ticksRight"></div>
+
+      <!-- 左侧：组织 -->
+      <div class="track track-left" id="trackLeft"></div>
+
+      <!-- 右侧：个人 -->
+      <div class="track track-right" id="trackRight"></div>
+    </div>
+  </div>
+
+  <!-- 详情模态框 -->
+  <div class="tl-modal-overlay" id="tlModalOverlay">
+    <div class="tl-modal-container">
+      <button class="tl-modal-close" id="tlModalClose">&times;</button>
+      <div class="tl-modal-body" id="tlModalBody"></div>
+    </div>
+  </div>
+
+  <!-- 图片灯箱 -->
+  <div id="tlLightbox" class="tl-lightbox">
+    <button class="tl-lightbox-close">&times;</button>
+    <button class="tl-lightbox-arrow tl-lightbox-prev">&#10094;</button>
+    <div class="tl-lightbox-images" id="tlLightboxImages"></div>
+    <span class="tl-lightbox-counter" id="tlLightboxCounter"></span>
+    <button class="tl-lightbox-arrow tl-lightbox-next">&#10095;</button>
+  </div>
+
+  <!-- 返回顶部按钮 -->
+  <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
+
+  <script src="data.js?v=202609211058"></script>
+  <script>
+(function () {
+  // ===== 生成星空背景 =====
+  function generateStardust(elementId, count, colorPalette) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    const shadows = [];
+    for (let i = 0; i < count; i++) {
+      const x = (Math.random() * 100).toFixed(2);
+      const y = (Math.random() * 100).toFixed(2);
+      const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+      shadows.push(x + "vw " + y + "vh " + color);
+    }
+    el.style.boxShadow = shadows.join(", ");
+  }
+
+  // 幽暗底色系：白、红、蓝（低透明度）
+  const stardustDim = [
+    "rgba(255, 255, 255, 0.12)",
+    "rgba(204, 41, 41, 0.15)",
+    "rgba(80, 120, 180, 0.15)"
+  ];
+  // 高亮呼吸色系：白、红、金、蓝（较高透明度）
+  const stardustBright = [
+    "rgba(255, 255, 255, 0.7)",
+    "rgba(230, 40, 40, 0.6)",
+    "rgba(200, 160, 60, 0.55)",
+    "rgba(120, 160, 220, 0.6)"
+  ];
+
+  generateStardust("stars-base", 160, stardustDim);
+  generateStardust("stars-mid", 90, stardustDim);
+  generateStardust("stars-blink-slow", 26, stardustBright);
+  generateStardust("stars-blink-fast", 50, stardustBright);
+
+  // 生成少量大颗“尖头十字”亮星（数量少，各自独立闪烁，几乎不占性能）
+  (function generateBigStars(count) {
+    const container = document.getElementById("stardustSparkles");
+    if (!container) return;
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement("span");
+      s.className = "big-star";
+      const size = (16 + Math.random() * 20).toFixed(1); // 16 ~ 36 px
+      s.style.left = (Math.random() * 100).toFixed(2) + "vw";
+      s.style.top = (Math.random() * 100).toFixed(2) + "vh";
+      s.style.width = size + "px";
+      s.style.height = size + "px";
+      s.style.animationDuration = (3.5 + Math.random() * 4).toFixed(2) + "s";
+      s.style.animationDelay = (Math.random() * 5).toFixed(2) + "s";
+      container.appendChild(s);
+    }
+  })(11);
+
+  const PD = timelineConfig.pixelsPerDay;
+  const START_TOP = 80;
+
+  const trackL = document.getElementById("trackLeft");
+  const trackR = document.getElementById("trackRight");
+  const ticksL = document.getElementById("ticksLeft");
+  const ticksR = document.getElementById("ticksRight");
+  const wrapper = document.getElementById("timelineWrapper");
+
+  const FM = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+
+  function daysBetween(d1, d2) {
+    return Math.round((d2 - d1) / 86400000);
+  }
+
+  function parseDate(dateStr) {
+    // 支持 "2024/7/13 - 2024/7/14" 格式：取第一个日期
+    const first = dateStr.split(" - ")[0].trim();
+    return new Date(first);
+  }
+
+  const startDate = timelineData.reduce((min, e) => {
+    const d = parseDate(e.date); return d < min ? d : min;
+  }, parseDate(timelineData[0]?.date || timelineConfig.zeroDate));
+
+  const endDate = timelineData.reduce((max, e) => {
+    const d = parseDate(e.date); return d > max ? d : max;
+  }, parseDate(timelineData[0]?.date || timelineConfig.zeroDate));
+
+  function calcTop(dateStr) {
+    return START_TOP + daysBetween(startDate, parseDate(dateStr)) * PD;
+  }
+
+  const YEAR_LABEL_GAP = 60; // 年份标签与月份刻度的间距（px），可自行调整
+
+  // 生成月度刻度（统一短轴）+ 年份标签（每年第一个月份上方）
+  // 左右轨共用同一个刻度位置，确保年份/月份完全对齐
+  const allTicks = [];
+  const yearLabels = [];
+  function generateMonthTicks(mergedMonthMap) {
+    const sortedMonths = Object.keys(mergedMonthMap).sort((a, b) => mergedMonthMap[a].minTop - mergedMonthMap[b].minTop);
+    let lastYear = null;
+    let prevMax = -Infinity;
+
+    sortedMonths.forEach((mk) => {
+      // 确保当前刻度位置 >= 上个月最后事件位置 + 间距
+      let tickTop = Math.max(mergedMonthMap[mk].minTop, prevMax + MIN_GAP);
+      prevMax = mergedMonthMap[mk].maxTop;
+      const [y, m] = mk.split('-');
+      const monthNum = parseInt(m);
+      const year = parseInt(y);
+      const label = FM[monthNum - 1];
+
+      // 新年份：在第一个月份刻度上方插入年份标签（左右各一个）
+      if (year !== lastYear) {
+        lastYear = year;
+        const yearTop = tickTop - YEAR_LABEL_GAP;
+        ['left', 'right'].forEach(side => {
+          const yl = document.createElement("div");
+          yl.className = "year-label";
+          yl.style.top = yearTop + "px";
+          yl.textContent = String(year);
+          yl.dataset.originalTop = yearTop;
+          yl.dataset.side = side;
+          (side === 'left' ? ticksL : ticksR).appendChild(yl);
+          yearLabels.push(yl);
+        });
+      }
+
+      // 左右各生成一个刻度，位置相同
+      ['left', 'right'].forEach(side => {
+        const t = document.createElement("div");
+        t.className = "tick";
+        t.style.top = tickTop + "px";
+        t.dataset.originalTop = tickTop;
+        t.dataset.side = side;
+        if (side === 'left') {
+          t.innerHTML = `<span class="tick-line"></span><span class="tick-label">${label}</span>`;
+        } else {
+          t.innerHTML = `<span class="tick-label">${label}</span><span class="tick-line"></span>`;
+        }
+        (side === 'left' ? ticksL : ticksR).appendChild(t);
+        allTicks.push(t);
+      });
+    });
+  }
+
+  // tag 到 icon 的映射（icons/ 文件夹下）
+  const TAG_ICONS = {
+    // 组织相关
+    oml: "../icons/oml.webp",
+    bandori_fes: "../icons/bandori_fes.webp",
+    fes: "../icons/fes.webp",
+    single: "../icons/single.webp",
+    album: "../icons/album.webp",
+    anime: "../icons/anime.webp",
+    offline: "../icons/offline.webp",
+    // 个人相关
+    private: "../icons/private.webp",
+    business: "../icons/business.webp"
+  };
+  // tag 显示名称
+  const TAG_NAMES = {
+    oml: "One Man Live",
+    bandori_fes: "BanG Dream!",
+    fes: "Fes",
+    single: "歌曲",
+    album: "单曲/专辑",
+    anime: "动画",
+    offline: "线下活动",
+    private: "私人行程",
+    business: "商务行程"
+  };
+
+  // ===== 筛选器 =====
+  const filterTags = document.getElementById("filterTags");
+  const timelineSearchInput = document.getElementById("timelineSearchInput");
+  const timelineResultCount = document.getElementById("timelineResultCount");
+  let activeFilters = new Set();
+  let timelineSearchQuery = "";
+
+  timelineSearchInput.addEventListener("input", function () {
+    timelineSearchQuery = this.value.trim().toLocaleLowerCase();
+    applyFilter();
+  });
+
+  // 生成 ALL 按钮
+  const allChip = document.createElement("button");
+  allChip.className = "filter-chip active";
+  allChip.innerHTML = '<span class="diamond">&#9670;</span> ALL';
+  allChip.addEventListener("click", () => {
+    activeFilters.clear();
+    document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+    allChip.classList.add("active");
+    applyFilter();
+  });
+  filterTags.appendChild(allChip);
+
+  // 生成筛选按钮
+  Object.keys(TAG_ICONS).forEach(tag => {
+    const chip = document.createElement("button");
+    chip.className = "filter-chip";
+    chip.dataset.tag = tag;
+    chip.innerHTML = '<span class="diamond">&#9670;</span> ' + (TAG_NAMES[tag] || tag);
+    chip.addEventListener("click", () => {
+      allChip.classList.remove("active");
+      chip.classList.toggle("active");
+      if (chip.classList.contains("active")) {
+        activeFilters.add(tag);
+      } else {
+        activeFilters.delete(tag);
+      }
+      if (activeFilters.size === 0) allChip.classList.add("active");
+      applyFilter();
+    });
+    filterTags.appendChild(chip);
+  });
+
+  function applyFilter() {
+    const allGroups = [
+      ...Array.from(trackL.querySelectorAll(".event-group")),
+      ...Array.from(trackR.querySelectorAll(".event-group"))
+    ];
+
+    let visibleCount = 0;
+    allGroups.forEach(g => {
+      const tagMatches = activeFilters.size === 0 || activeFilters.has(g.dataset.tag);
+      const textMatches = !timelineSearchQuery || g.dataset.search.includes(timelineSearchQuery);
+      const visible = tagMatches && textMatches;
+      g.classList.toggle("hidden", !visible);
+      if (visible) visibleCount += 1;
+    });
+    timelineResultCount.textContent = visibleCount + " 条结果";
+    // 倒序时 tag 筛选后需要重新布局
+    if (sortReverse) {
+      relayoutTimeline();
+    }
+  }
+
+  // 创建事件
+  timelineData.forEach((ev, idx) => {
+    const isOrg = ev.category === "organization";
+    const track = isOrg ? trackL : trackR;
+    const top = calcTop(ev.date);
+    const d = parseDate(ev.date);
+    const monthKey = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+
+    const group = document.createElement("div");
+    group.className = "event-group " + (isOrg ? "org" : "per");
+    group.dataset.originalTop = top;
+    group.dataset.monthKey = monthKey;
+    group.dataset.index = idx;
+    group.dataset.category = ev.category;
+    group.dataset.tag = ev.tag || "";
+    group.dataset.search = [ev.title, ev.date, ev.description, ev.tag, TAG_NAMES[ev.tag] || ""]
+      .join(" ").toLocaleLowerCase();
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    const tagIcon = ev.tag && TAG_ICONS[ev.tag] ? `<img class="tag-icon" src="${TAG_ICONS[ev.tag]}" alt="${ev.tag}" data-tag="${ev.tag}">` : "";
+    bubble.innerHTML = `<div class="b-date">${ev.date}</div><div class="b-title">${ev.title}</div>${tagIcon}`;
+    bubble.onclick = function () { openTimelineModal(idx); };
+
+    const connector = document.createElement("div");
+    connector.className = "connector";
+
+    const spacer = document.createElement("div");
+    spacer.className = "spacer";
+
+    const eventWrap = document.createElement("div");
+    eventWrap.className = "event-wrap";
+    eventWrap.appendChild(connector);
+    eventWrap.appendChild(bubble);
+    eventWrap.appendChild(spacer);
+
+    group.appendChild(eventWrap);
+    track.appendChild(group);
+  });
+  timelineResultCount.textContent = timelineData.length + " 条结果";
+
+  // 相邻事件间距不足时自动错开，避免气泡重叠
+  const MIN_GAP = 10;
+  function resolveOverlaps() {
+    const allGroups = [
+      ...Array.from(trackL.querySelectorAll('.event-group')),
+      ...Array.from(trackR.querySelectorAll('.event-group'))
+    ];
+    allGroups.sort((a, b) => parseFloat(a.dataset.originalTop) - parseFloat(b.dataset.originalTop));
+
+    const monthMap = {};
+    let lastBottom = -Infinity;
+
+    allGroups.forEach(g => {
+      const origTop = parseFloat(g.dataset.originalTop);
+      const groupHeight = g.offsetHeight;
+      const mk = g.dataset.monthKey;
+
+      let baseTop;
+      if (origTop < lastBottom + MIN_GAP) {
+        baseTop = lastBottom + MIN_GAP;
+      } else {
+        baseTop = origTop;
+      }
+
+      g.dataset.baseTop = baseTop;
+      g.style.top = baseTop + 'px';
+      lastBottom = baseTop + groupHeight;
+
+      if (!monthMap[mk]) monthMap[mk] = { minTop: Infinity, maxTop: -Infinity };
+      if (baseTop < monthMap[mk].minTop) monthMap[mk].minTop = baseTop;
+      if (baseTop > monthMap[mk].maxTop) monthMap[mk].maxTop = baseTop;
+    });
+
+    return monthMap;
+  }
+
+  // ===== 模态框 =====
+  const tlModalOverlay = document.getElementById("tlModalOverlay");
+  const tlModalBody = document.getElementById("tlModalBody");
+  const tlModalClose = document.getElementById("tlModalClose");
+
+  function openTimelineModal(index) {
+    const ev = timelineData[index];
+    if (!ev) return;
+    hidePageTop();
+    history.replaceState(null, "", "#timeline=" + encodeURIComponent(ev.hash_id));
+    document.body.style.overflow = "hidden";
+
+    // 清除上一次模态框残留的 media-mode class，避免影响新内容
+    tlModalBody.classList.remove("media-mode-image", "media-mode-video");
+
+    const mediaItems = ev.media || [];
+    const imageItems = mediaItems.filter(m => m.type === "image");
+    const videoItems = mediaItems.filter(m => m.type === "video");
+    const linkItems = mediaItems.filter(m => m.type === "link");
+    const hasBoth = imageItems.length > 0 && videoItems.length > 0;
+
+    let mediaHTML = "";
+
+    // 图片区域（轮播，点击可放大→灯箱）
+    if (imageItems.length > 0) {
+      if (imageItems.length === 1) {
+        const img = imageItems[0];
+        mediaHTML += `<div class="tl-modal-img-carousel${hasBoth ? ' tl-media-img' : ''}">
+          <div class="tl-img-track">
+            <img src="${img.src}" alt="${img.caption || ''}" class="active" onclick="openTlLightbox('${img.src}', ${JSON.stringify(imageItems.map(m => m.src)).replace(/"/g, '&quot;')}, 0)">
+          </div>
+          ${img.caption ? `<div class="tl-modal-img-cap">${img.caption.replace(/\n/g, "<br>")}</div>` : ""}
+        </div>`;
+      } else {
+        mediaHTML += `<div class="tl-modal-img-carousel${hasBoth ? ' tl-media-img' : ''}" id="tlImgCarousel">`;
+        mediaHTML += '<div class="tl-img-track">';
+        imageItems.forEach((img, i) => {
+          mediaHTML += `<img src="${img.src}" alt="${img.caption || ''}" class="${i === 0 ? 'active' : ''}" loading="lazy" data-index="${i}" onclick="openTlLightbox('${img.src}', ${JSON.stringify(imageItems.map(m => m.src)).replace(/"/g, '&quot;')}, ${i})">`;
+        });
+        mediaHTML += '</div>';
+        mediaHTML += '<div class="tl-img-controls">';
+        mediaHTML += '<button class="tl-img-arrow tl-img-prev" onclick="moveTlImg(-1)">&#10094;</button>';
+        mediaHTML += `<span class="tl-img-counter">1 / ${imageItems.length}</span>`;
+        mediaHTML += '<button class="tl-img-arrow tl-img-next" onclick="moveTlImg(1)">&#10095;</button>';
+        mediaHTML += '</div>';
+        // caption 跟随当前图片
+        mediaHTML += `<div class="tl-modal-img-cap" id="tlImgCaption">${imageItems[0].caption || ""}</div>`;
+        mediaHTML += '</div>';
+      }
+    }
+
+    // 视频区域
+    if (videoItems.length > 0) {
+      if (videoItems.length === 1) {
+        mediaHTML += `<div class="tl-modal-video${hasBoth ? ' tl-media-video' : ''}"><iframe ${hasBoth ? `data-src="${videoItems[0].src}"` : `src="${videoItems[0].src}"`} class="tl-single-video" allowfullscreen></iframe></div>`;
+      } else {
+        mediaHTML += `<div class="tl-modal-video-carousel${hasBoth ? ' tl-media-video' : ''}" id="tlVideoCarousel">`;
+        mediaHTML += '<div class="tl-video-track">';
+        videoItems.forEach((v, i) => {
+          mediaHTML += `<iframe data-src="${v.src}" class="tl-carousel-video${i === 0 ? ' active' : ''}" allowfullscreen data-index="${i}"></iframe>`;
+        });
+        mediaHTML += '</div>';
+        mediaHTML += '<div class="tl-video-controls">';
+        mediaHTML += '<button class="tl-video-arrow tl-video-prev" onclick="moveTlVideo(-1)">&#10094;</button>';
+        mediaHTML += `<span class="tl-video-counter">1 / ${videoItems.length}</span>`;
+        mediaHTML += '<button class="tl-video-arrow tl-video-next" onclick="moveTlVideo(1)">&#10095;</button>';
+        mediaHTML += '</div></div>';
+      }
+    }
+
+    // 链接区域
+    if (linkItems.length > 0) {
+      mediaHTML += '<div class="tl-modal-links">';
+      linkItems.forEach(l => {
+        mediaHTML += `<a class="tl-modal-link" href="${l.url}" target="_blank" rel="noopener">${l.title || l.url}</a>`;
+      });
+      mediaHTML += '</div>';
+    }
+
+    // 切换按钮（同时有图片和视频时显示）
+    let toggleHTML = "";
+    if (hasBoth) {
+      toggleHTML = `<div class="tl-modal-toggle">
+        <span class="tl-toggle-tab active" data-mode="image">Image</span>
+        <span class="tl-toggle-tab" data-mode="video">Video</span>
+      </div>`;
+    }
+
+    tlModalBody.innerHTML = `
+      <div class="tl-modal-title">${ev.title}</div>
+      <div class="tl-modal-header">
+        <div class="tl-modal-date">${ev.date}</div>
+        ${toggleHTML}
+      </div>
+      <div class="tl-modal-desc">${(ev.description || "").replace(/\n/g, "<br>")}</div>
+      ${mediaHTML}
+    `;
+
+    // 绑定切换事件
+    if (hasBoth) {
+      tlModalBody.classList.add("media-mode-image");
+      tlModalBody.querySelectorAll(".tl-toggle-tab").forEach(tab => {
+        tab.addEventListener("click", function() {
+          const mode = this.dataset.mode;
+          tlModalBody.classList.remove("media-mode-image", "media-mode-video");
+          tlModalBody.classList.add("media-mode-" + mode);
+          tlModalBody.querySelectorAll(".tl-toggle-tab").forEach(t => t.classList.remove("active"));
+          this.classList.add("active");
+          // 切换到视频时延迟加载首帧
+          if (mode === "video") {
+            setTimeout(() => {
+              const firstVideo = tlModalBody.querySelector(".tl-carousel-video.active") || tlModalBody.querySelector(".tl-single-video[data-src]");
+              if (firstVideo && firstVideo.dataset.src) firstVideo.src = firstVideo.dataset.src;
+            }, 0);
+          } else {
+            // 切回图片时停止视频播放
+            tlModalBody.querySelectorAll("iframe").forEach(f => { f.src = ""; });
+          }
+        });
+      });
+    }
+
+    // 启动视频轮播首帧（无切换按钮时直接加载）
+    if (!hasBoth) {
+      setTimeout(() => {
+        const firstVideo = tlModalBody.querySelector(".tl-carousel-video.active");
+        if (firstVideo && firstVideo.dataset.src) firstVideo.src = firstVideo.dataset.src;
+      }, 0);
+    }
+
+    tlModalOverlay.classList.add("open");
+  }
+
+  function closeTimelineModal() {
+    tlModalOverlay.classList.remove("open");
+    document.body.style.overflow = "";
+    if (location.hash.startsWith("#timeline=")) {
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+    // 停止所有视频
+    tlModalBody.querySelectorAll("iframe").forEach(f => { f.src = ""; });
+  }
+
+  tlModalClose.addEventListener("click", closeTimelineModal);
+  tlModalOverlay.addEventListener("click", function(e) {
+    if (e.target === tlModalOverlay) closeTimelineModal();
+  });
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && tlModalOverlay.classList.contains("open")) {
+      if (document.getElementById("tlLightbox").classList.contains("active")) {
+        closeTlLightbox();
+      } else {
+        closeTimelineModal();
+      }
+    }
+  });
+
+  // 模态框内视频轮播
+  window.moveTlVideo = function(dir) {
+    const track = document.getElementById("tlVideoCarousel");
+    if (!track) return;
+    const videos = track.querySelectorAll(".tl-carousel-video");
+    let current = -1;
+    videos.forEach((v, i) => { if (v.classList.contains("active")) current = i; });
+    if (current < 0) return;
+    videos[current].classList.remove("active");
+    videos[current].src = "";
+    const next = (current + dir + videos.length) % videos.length;
+    videos[next].classList.add("active");
+    if (videos[next].dataset.src) videos[next].src = videos[next].dataset.src;
+    track.querySelector(".tl-video-counter").textContent = (next + 1) + " / " + videos.length;
+  };
+
+  // 模态框内图片轮播
+  window.moveTlImg = function(dir) {
+    const carousel = document.getElementById("tlImgCarousel");
+    if (!carousel) return;
+    const imgs = carousel.querySelectorAll(".tl-img-track img");
+    const total = imgs.length;
+    let current = -1;
+    imgs.forEach((img, i) => { if (img.classList.contains("active")) current = i; });
+    if (current < 0) return;
+    imgs[current].classList.remove("active");
+    const next = (current + dir + total) % total;
+    imgs[next].classList.add("active");
+    carousel.querySelector(".tl-img-counter").textContent = (next + 1) + " / " + total;
+    const capEl = document.getElementById("tlImgCaption");
+    if (capEl) capEl.textContent = imgs[next].alt || "";
+  };
+
+  // ===== 灯箱 =====
+  let tlLightboxGroup = null;
+  let tlLightboxIndex = 0;
+  const tlLightboxImages = document.getElementById("tlLightboxImages");
+
+  window.openTlLightbox = function(src, group, index) {
+    hidePageTop();
+    tlLightboxGroup = (group && group.length > 0) ? group : null;
+    tlLightboxIndex = (index !== undefined) ? index : 0;
+    const lb = document.getElementById("tlLightbox");
+
+    // 预加载所有图片，只显示当前
+    tlLightboxImages.innerHTML = "";
+    if (tlLightboxGroup && tlLightboxGroup.length > 0) {
+      tlLightboxGroup.forEach((imgSrc, i) => {
+        const img = document.createElement("img");
+        img.src = imgSrc;
+        img.className = i === tlLightboxIndex ? "active" : "";
+        tlLightboxImages.appendChild(img);
+      });
+    } else {
+      const img = document.createElement("img");
+      img.src = src;
+      img.className = "active";
+      tlLightboxImages.appendChild(img);
+    }
+
+    const counter = document.getElementById("tlLightboxCounter");
+    const arrows = lb.querySelectorAll(".tl-lightbox-arrow");
+    if (tlLightboxGroup && tlLightboxGroup.length > 1) {
+      counter.textContent = (tlLightboxIndex + 1) + " / " + tlLightboxGroup.length;
+      counter.style.display = "block";
+      arrows.forEach(a => a.style.display = "flex");
+    } else {
+      counter.style.display = "none";
+      arrows.forEach(a => a.style.display = "none");
+    }
+    lb.classList.add("active");
+  };
+
+  window.moveTlLightbox = function(dir) {
+    if (!tlLightboxGroup) return;
+    const imgs = tlLightboxImages.querySelectorAll("img");
+    if (imgs.length === 0) return;
+    imgs[tlLightboxIndex].classList.remove("active");
+    tlLightboxIndex = ((tlLightboxIndex + dir) % tlLightboxGroup.length + tlLightboxGroup.length) % tlLightboxGroup.length;
+    imgs[tlLightboxIndex].classList.add("active");
+    document.getElementById("tlLightboxCounter").textContent = (tlLightboxIndex + 1) + " / " + tlLightboxGroup.length;
+  };
+
+  window.closeTlLightbox = function() {
+    document.getElementById("tlLightbox").classList.remove("active");
+    tlLightboxGroup = null;
+    tlLightboxIndex = 0;
+    // 延迟清理图片，避免关闭时闪烁
+    setTimeout(() => { tlLightboxImages.innerHTML = ""; }, 300);
+  };
+
+  // 灯箱键盘导航
+  document.addEventListener("keydown", function(e) {
+    if (!document.getElementById("tlLightbox").classList.contains("active")) return;
+    if (e.key === "ArrowLeft") moveTlLightbox(-1);
+    if (e.key === "ArrowRight") moveTlLightbox(1);
+  });
+
+  // 灯箱点击事件
+  document.getElementById("tlLightbox").addEventListener("click", function(e) {
+    if (e.target === this) closeTlLightbox();
+  });
+  document.querySelector("#tlLightbox .tl-lightbox-close").addEventListener("click", closeTlLightbox);
+  document.querySelector("#tlLightbox .tl-lightbox-prev").addEventListener("click", function(e) { e.stopPropagation(); moveTlLightbox(-1); });
+  document.querySelector("#tlLightbox .tl-lightbox-next").addEventListener("click", function(e) { e.stopPropagation(); moveTlLightbox(1); });
+
+  // ===== 初始布局 =====
+  document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
+
+  const monthMaps = resolveOverlaps();
+  generateMonthTicks(monthMaps);
+
+  // 调整容器高度
+  let maxH = 600;
+  [trackL, trackR].forEach(track => {
+    track.querySelectorAll(".event-group").forEach(g => {
+      const b = g.offsetTop + g.offsetHeight;
+      if (b > maxH) maxH = b;
+    });
+  });
+  wrapper.style.minHeight = (maxH + 80) + "px";
+  ticksL.style.height = (maxH + 80) + "px";
+  ticksR.style.height = (maxH + 80) + "px";
+
+  // 布局完成后恢复过渡动画
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
+    });
+  });
+
+  // ==================== 排序切换 & 年份筛选 ====================
+  let sortReverse = false;
+  let activeYear = null;
+
+  // 收集所有年份
+  const allYears = [...new Set(
+    timelineData.map(e => parseDate(e.date).getFullYear())
+  )].sort((a, b) => a - b);
+
+  // 年份筛选按钮
+  const yearFilterBar = document.getElementById('yearFilterBar');
+  const yearFilterTags = document.createElement('div');
+  yearFilterTags.className = 'filter-tags';
+  yearFilterBar.appendChild(yearFilterTags);
+
+  const allYearBtn = document.createElement('button');
+  allYearBtn.className = 'filter-chip active';
+  allYearBtn.innerHTML = '<span class="diamond">&#9670;</span> ALL';
+  allYearBtn.addEventListener('click', () => {
+    activeYear = null;
+    yearFilterTags.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    allYearBtn.classList.add('active');
+    filterByYear();
+  });
+  yearFilterTags.appendChild(allYearBtn);
+
+  allYears.forEach(y => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-chip';
+    btn.textContent = String(y);
+    btn.addEventListener('click', () => {
+      activeYear = y;
+      yearFilterTags.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      filterByYear();
+    });
+    yearFilterTags.appendChild(btn);
+  });
+
+  // 排序按钮
+  const sortBtn = document.createElement('button');
+  sortBtn.className = 'sort-btn';
+  sortBtn.innerHTML = '<span>时间倒序</span>';
+  sortBtn.addEventListener('click', () => {
+    sortReverse = !sortReverse;
+    sortBtn.innerHTML = sortReverse ? '<span>时间正序</span>' : '<span>时间倒序</span>';
+    relayoutTimeline();
+  });
+  filterBar.appendChild(sortBtn);
+
+  // 初始统一布局：用 grouped layout 替代初始的 date-based layout，消除切换跳动
+  relayoutTimeline();
+
+  function relayoutTimeline() {
+    document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
+
+    const allGroups = [
+      ...Array.from(trackL.querySelectorAll('.event-group')),
+      ...Array.from(trackR.querySelectorAll('.event-group'))
+    ].filter(g => !g.classList.contains('hidden') && !g.classList.contains('year-hidden'));
+
+    const yearGroups = {};
+    allGroups.forEach(g => {
+      const d = parseDate(g.querySelector('.b-date').textContent);
+      const y = d.getFullYear();
+      if (!yearGroups[y]) yearGroups[y] = [];
+      yearGroups[y].push(g);
+    });
+
+    const years = Object.keys(yearGroups).map(Number).sort((a, b) => sortReverse ? b - a : a - b);
+
+    let currentTop = START_TOP;
+    const newMonthMap = {};
+
+    years.forEach(year => {
+      const groups = yearGroups[year];
+      groups.sort((a, b) => {
+        const da = parseDate(a.querySelector('.b-date').textContent);
+        const db = parseDate(b.querySelector('.b-date').textContent);
+        return sortReverse ? db - da : da - db;
+      });
+
+      currentTop += YEAR_LABEL_GAP;
+
+      groups.forEach(g => {
+        g.dataset.originalTop = currentTop;
+        g.style.top = currentTop + 'px';
+
+        const d = parseDate(g.querySelector('.b-date').textContent);
+        const mk = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+        const gh = g.offsetHeight;
+
+        if (!newMonthMap[mk]) newMonthMap[mk] = { minTop: Infinity, maxTop: -Infinity };
+        if (currentTop < newMonthMap[mk].minTop) newMonthMap[mk].minTop = currentTop;
+        if (currentTop + gh > newMonthMap[mk].maxTop) newMonthMap[mk].maxTop = currentTop + gh;
+
+        currentTop += gh + MIN_GAP;
+      });
+    });
+
+    ticksL.innerHTML = '';
+    ticksR.innerHTML = '';
+    generateMonthTicks(newMonthMap);
+
+    let maxH = 600;
+    [trackL, trackR].forEach(track => {
+      track.querySelectorAll(".event-group").forEach(g => {
+        if (g.classList.contains('hidden') || g.classList.contains('year-hidden')) return;
+        const b = g.offsetTop + g.offsetHeight;
+        if (b > maxH) maxH = b;
+      });
+    });
+    wrapper.style.minHeight = (maxH + 80) + "px";
+    ticksL.style.height = (maxH + 80) + "px";
+    ticksR.style.height = (maxH + 80) + "px";
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
+      });
+    });
+  }
+
+  function filterByYear() {
+    document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
+
+    const allGroups = [
+      ...Array.from(trackL.querySelectorAll('.event-group')),
+      ...Array.from(trackR.querySelectorAll('.event-group'))
+    ];
+
+    allGroups.forEach(g => {
+      const d = parseDate(g.querySelector('.b-date').textContent);
+      const y = d.getFullYear();
+      if (activeYear === null || y === activeYear) {
+        g.classList.remove('year-hidden');
+      } else {
+        g.classList.add('year-hidden');
+      }
+    });
+
+    // 先重新布局，再应用 tag 筛选
+    relayoutTimeline();
+    applyFilter();
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
+      });
+    });
+  }
+
+  // ==================== 返回顶部按钮 ====================
+  const pageTopBtn = document.getElementById("pageTopBtn");
+  let lastScrollY = window.scrollY;
+  let pageTopUpwardDistance = 0;
+  let pageTopHideTimer = 0;
+  let pageTopIsReturning = false;
+
+  function hidePageTop(resetIntent = true) {
+    pageTopBtn.classList.remove("show");
+    window.clearTimeout(pageTopHideTimer);
+    if (resetIntent) pageTopUpwardDistance = 0;
+  }
+
+  function showPageTop() {
+    pageTopBtn.classList.add("show");
+    window.clearTimeout(pageTopHideTimer);
+    pageTopHideTimer = window.setTimeout(hidePageTop, 4000);
+  }
+
+  function pageTopMinScroll() {
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    return Math.min(800, Math.max(240, maxScroll * 0.25));
+  }
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - lastScrollY;
+    const overlayOpen = tlModalOverlay.classList.contains("open") ||
+      document.getElementById("tlLightbox").classList.contains("active");
+
+    if (pageTopIsReturning || currentScrollY < pageTopMinScroll() || overlayOpen) {
+      hidePageTop();
+    } else if (delta > 2) {
+      hidePageTop();
+    } else if (delta < -2) {
+      pageTopUpwardDistance += -delta;
+      if (pageTopUpwardDistance >= 160) showPageTop();
+    }
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+
+  document.addEventListener("pointerdown", (event) => {
+    if (!pageTopBtn.contains(event.target)) hidePageTop();
+  }, true);
+
+  pageTopBtn.addEventListener("click", () => {
+    pageTopIsReturning = true;
+    hidePageTop();
+    document.body.style.overflowAnchor = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      pageTopIsReturning = false;
+      lastScrollY = window.scrollY;
+      document.body.style.overflowAnchor = "auto";
+    }, 1200);
+  });
+
+  function openTimelineFromHash() {
+    if (!location.hash.startsWith("#timeline=")) {
+      if (tlModalOverlay.classList.contains("open")) closeTimelineModal();
+      return;
+    }
+    const id = location.hash.slice(10);
+    const index = timelineData.findIndex(event => event.hash_id === id);
+    if (index >= 0) openTimelineModal(index);
+  }
+
+  window.addEventListener("hashchange", openTimelineFromHash);
+  openTimelineFromHash();
+
+})();
+  </script>
+</body>
+</html>

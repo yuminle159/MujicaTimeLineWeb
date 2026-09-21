@@ -1,0 +1,118 @@
+// 自动生成，请勿手动编辑。运行 generate_all.py 更新
+window.ANNOUNCEMENTS = [
+  {
+    "date": "2026.08.22",
+    "msg": "试运行 意见与建议请联系actury1995@outlook.com",
+    "pinned": true
+  },
+  {
+    "date": "2026.09.14",
+    "msg": "内容更新请见Something New推送，本板块记录公告&功能更新",
+    "pinned": true
+  },
+  {
+    "date": "2026.09.19",
+    "msg": "1.新增全局搜索 2.修复公告栏轮播冗余问题 3.修复Page Top按钮交互异常",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.17",
+    "msg": "1.live样式优化 2.live新增即将到来的演出展示",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.16",
+    "msg": "1.songs & live移动端适配 2.live数据分析bug修复 3.song加入了新歌展示&即将发布的曲子倒计时 4.songsmodal更新歌词模式与live模式",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.15",
+    "msg": "1.Live失效的观看链接修复 2.优化setlist曲目与song_live_history对应逻辑",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.14",
+    "msg": "1.Live数据分析内容优化 2.Songs词云内容优化",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.11",
+    "msg": "1.lives新增数据分析模块优化 2.新增discography子页面，收集实体光盘信息 3.interview新增多篇原文&扫图 4.共享组件重构",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.07",
+    "msg": "1.Bug修复 2.live setlist更新至上海鸡狗2 3.interview更新2023/09/15访谈后篇 4.分享链接优化",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.06",
+    "msg": "1.Bug修复 2.songs&lives更新 3.交互优化 4.每首歌/访谈/live提供标识码，分享时可准确定位 5.lives新增数据分析模块",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.03",
+    "msg": "bug修复",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.02",
+    "msg": "1.interview新增230915前篇 2.interview、timeline、gallery增加返回最上按钮 3.interview图片大小限制，阅读效果优化",
+    "pinned": false
+  },
+  {
+    "date": "2026.09.01",
+    "msg": "1.timeline弄李 ~2024 内容补充 2.新增interview",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.31",
+    "msg": "1.timeline弄李 ~2024 更新完成 2.BUG修复",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.30",
+    "msg": "1.songs全歌曲基础信息&performance更新完毕 2.timeline 弄李部分更新至2024.2 3.live新增跳转切片的功能 4.Bug修复",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.29",
+    "msg": "1.interview更新4篇 2.songs更新元素曲歌词 3.live summer sonic 2026 backstage更新完成 4.Bug处理",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.27",
+    "msg": "1.interview内容测试完成 新增2024/10/02 Diggy-MO'访谈 2.LIVE Backstage图片展示功能测试：SUMMER SONIC 2026 OSAKA完成",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.26",
+    "msg": "1.LIVE logo样式测试 2.公告样式变更 3.interview开放&内容测试",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.25",
+    "msg": "1.Songs更新Angles，元素专歌曲占位中 2.LIVE样式更新 3.日常BUG维护",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.24",
+    "msg": "1.timeline新增倒序&按年份筛选 2.Songs更新素晴らしき世界 でも どこにもない場所 3.浏览器性能优化 4.Lyrcis 全面优化，更接近BK排版 5.Songs搜索启用，可使用花名",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.23",
+    "msg": "1.新增ico 2.Songs更新Mas?uerade Rhapsody Re?uest、神さま、バカ、Ave Mujica 3.Gallery布局优化 4.Live UI优化 5.日常BUG维护",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.22",
+    "msg": "1.浏览器性能优化 2.Songs更新黒のバースデイ、ふたつの月 ~Deep Into The Forest~、Choir 'S' Choir 3.日常BUG维护",
+    "pinned": false
+  },
+  {
+    "date": "2026.08.22",
+    "msg": "新增导航页公告栏目",
+    "pinned": false
+  }
+];

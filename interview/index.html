@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico">
+  <title>Interview · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202609211058">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202609211058">
+  <link rel="stylesheet" href="../css/local-search.css?v=202609211058">
+</head>
+<body>
+  <div class="interview-page">
+    <header class="page-header">
+      <a href="../index.html" class="back-nav">&larr; 返回主页</a>
+      <h1>Interview</h1>
+    </header>
+
+    <!-- 工具栏 -->
+    <div class="toolbar">
+      <div class="filter-group">
+        <button class="main-tag" id="filterTranslated" type="button" aria-pressed="false">
+          <span class="diamond">◆</span> 仅显示已翻译
+        </button>
+      </div>
+      <div class="separator"></div>
+      <div class="search-box">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input type="search" id="searchInput" placeholder="搜索访谈人或标题…" autocomplete="off" aria-label="搜索访谈">
+      </div>
+      <span class="result-count" id="resultCount"></span>
+      <button class="sort-btn" id="interviewSortBtn"><span>时间倒序</span></button>
+    </div>
+
+    <!-- 卡片网格 -->
+    <div class="gallery-container" id="gallery"></div>
+
+    <!-- 无结果 -->
+    <div class="no-results" id="noResults" style="display:none">没有找到匹配的访谈</div>
+  </div>
+
+
+  <script src="data.js?v=202609211058"></script>
+  <script src="../js/renderMarkdown.js?v=202609211058"></script>
+  <script src="../js/overlay-manager.js?v=202609211058"></script>
+  <script src="../js/interview-overlay.js?v=202609211058"></script>
+  <script src="page.js?v=202609211058"></script>
+</body>
+</html>
