@@ -1,7 +1,7 @@
 // 演唱会数据
 // 由 generate_all.py 自动生成，请勿手动修改
 
-const livesData = [
+var livesData = [
   {
     name: "Ave Mujica 0th LIVE「Primo die in scaena」",
     hash_id: "55U3JgpFudO",

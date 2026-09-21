@@ -736,7 +736,7 @@ def generate_songs(wb):
     lines.append("// 曲目数据")
     lines.append("// 由 generate_all.py 自动生成，请勿手动修改")
     lines.append("")
-    lines.append("const songsData = [")
+    lines.append("var songsData = [")
     for i, song in enumerate(songs):
         lines.append("  {")
         lines.append(f'    name: "{js_str(song["name"])}",')
@@ -883,7 +883,7 @@ def generate_live(wb):
     lines.append("// 演唱会数据")
     lines.append("// 由 generate_all.py 自动生成，请勿手动修改")
     lines.append("")
-    lines.append("const livesData = [")
+    lines.append("var livesData = [")
     for i, live in enumerate(lives):
         lines.append("  {")
         lines.append(f'    name: "{js_str(live["name"])}",')
@@ -996,7 +996,7 @@ def generate_timeline(wb):
     lines.append("// 时间轴数据")
     lines.append("// 由 generate_all.py 自动生成，请勿手动修改")
     lines.append("")
-    lines.append("const timelineData = [")
+    lines.append("var timelineData = [")
     event_items = list(events.items())
     timeline_ids = {}
     for i, (key, media_list) in enumerate(event_items):
@@ -1087,7 +1087,7 @@ def generate_gallery(wb):
     lines.append("// 画廊图片数据")
     lines.append("// 由 generate_all.py 自动生成，请勿手动修改")
     lines.append("")
-    lines.append("const galleryData = [")
+    lines.append("var galleryData = [")
     for i, item in enumerate(images):
         lines.append("  {")
         lines.append(f'    hash_id: "{item["hash_id"]}",')
@@ -1142,7 +1142,7 @@ def generate_interview(wb):
     lines.append("// 访谈数据")
     lines.append("// 由 generate_all.py 自动生成，请勿手动修改")
     lines.append("")
-    lines.append("const interviewData = [")
+    lines.append("var interviewData = [")
     for i, item in enumerate(interviews):
         lines.append("  {")
         lines.append(f'    poster: "{js_str(item["poster"])}",')
@@ -1271,7 +1271,7 @@ def generate_discography(wb):
         })
 
     js = "// 唱片目录数据\n// 由 generate_all.py 自动生成，请勿手动修改。\n\n"
-    js += "const discographyData = " + json.dumps(releases, ensure_ascii=False, indent=2) + ";\n"
+    js += "var discographyData = " + json.dumps(releases, ensure_ascii=False, indent=2) + ";\n"
     with open(OUTPUTS["discography"], "w", encoding="utf-8") as f:
         f.write(js)
     return len(releases)

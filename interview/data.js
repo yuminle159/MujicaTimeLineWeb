@@ -1,7 +1,7 @@
 // 访谈数据
 // 由 generate_all.py 自动生成，请勿手动修改
 
-const interviewData = [
+var interviewData = [
   {
     poster: "../images/弄和藤都子2.webp",
     date: "2026-03-31 00:00:00",

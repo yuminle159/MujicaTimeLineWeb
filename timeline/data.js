@@ -1,7 +1,7 @@
 // 时间轴数据
 // 由 generate_all.py 自动生成，请勿手动修改
 
-const timelineData = [
+var timelineData = [
   {
     hash_id: "MyHKAojNilm",
     date: "2023/6/4",

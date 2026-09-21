@@ -40,15 +40,16 @@ PAGE_FILES = {
         "index.html",
         "style.css",
         "data.js",
+        "page.js",
         "lyrics-atlas.js",
         "lyrics-atlas-data.js",
         "vendor",
     ),
-    "live": ("index.html", "style.css", "data.js"),
-    "timeline": ("index.html", "style.css", "data.js"),
-    "gallery": ("index.html", "style.css", "data.js"),
+    "live": ("index.html", "style.css", "data.js", "page.js"),
+    "timeline": ("index.html", "style.css", "data.js", "page.js"),
+    "gallery": ("index.html", "style.css", "data.js", "page.js"),
     "interview": ("index.html", "style.css", "page.js", "data.js"),
-    "discography": ("index.html", "style.css", "data.js"),
+    "discography": ("index.html", "style.css", "data.js", "page.js"),
 }
 
 FORBIDDEN_PUBLIC_SUFFIXES = {".py", ".pyc", ".xlsx", ".md", ".exe"}
