@@ -1,7 +1,7 @@
 // 唱片目录数据
 // 由 generate_all.py 自动生成，请勿手动修改。
 
-const discographyData = [
+var discographyData = [
   {
     "id": "kaminonawo",
     "hash_id": "bOnHpeLPTDR",

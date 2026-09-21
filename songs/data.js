@@ -1,7 +1,7 @@
 // 曲目数据
 // 由 generate_all.py 自动生成，请勿手动修改
 
-const songsData = [
+var songsData = [
   {
     name: "Black Birthday",
     name_jp: "黒のバースデイ",

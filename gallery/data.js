@@ -1,7 +1,7 @@
 // 画廊图片数据
 // 由 generate_all.py 自动生成，请勿手动修改
 
-const galleryData = [
+var galleryData = [
   {
     hash_id: "B8c9dqK8Cqe",
     filename: "../images/0th kv假.webp",
