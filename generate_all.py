@@ -970,7 +970,7 @@ def generate_timeline(wb):
     # 处理分组事件
     for group_name, rows in grouped_rows.items():
         dates = sorted(set(r["date"] for r in rows if r["date"]))
-        merged_date = dates[0] if len(dates) == 1 else f"{dates[0]} - {dates[-1]}"
+        merged_date = dates[0] if len(dates) == 1 else f"{dates[0]} ~ {dates[-1]}"
         first = rows[0]
         key = (merged_date, first["title"], first["category"], first["desc"], first["tag"])
         events[key] = []
@@ -1394,7 +1394,7 @@ def generate_search_indexes(wb):
     for rows in timeline_groups.values():
         dates = sorted(set(row[0] for row in rows if row[0]))
         first = rows[0]
-        merged_date = dates[0] if len(dates) == 1 else f"{dates[0]} - {dates[-1]}"
+        merged_date = dates[0] if len(dates) == 1 else f"{dates[0]} ~ {dates[-1]}"
         timeline_events[(merged_date, first[1], first[2], first[3], first[4])] = None
     timeline_ids = {}
     for date, title, category, description, tag in timeline_events.keys():

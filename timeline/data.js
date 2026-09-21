@@ -396,27 +396,6 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "jcghhaDudEQ",
-    date: "2024/7/13",
-    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
-    category: "organization",
-    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
-    tag: "fes",
-    media: [
-      { type: "image", src: "../images/bml2024.webp", caption: "BML 2024" },
-      { type: "link", url: "", title: "Ave Mujica 在线观看" }
-    ]
-  },
-  {
-    hash_id: "7HUnWYTmUlV",
-    date: "2024/7/14",
-    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
-    category: "organization",
-    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
-    tag: "fes",
-    media: []
-  },
-  {
     hash_id: "025fpefzAU0",
     date: "2024/8/30",
     title: "Ave Mujica 出演 Animelo Summer Live 2024 -Stargazer-",
@@ -1295,6 +1274,45 @@ var timelineData = [
       { type: "image", src: "../images/galleryless/kkfreelive宣传1.webp" },
       { type: "image", src: "../images/galleryless/kkfreelive宣传2.webp" },
       { type: "link", url: "https://www.acfun.cn/v/ac48848106", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "sbdJQOrsOJ4",
+    date: "2025/5/5",
+    title: "Ave Mujica 出演 JAPAN JAM 2025",
+    category: "organization",
+    description: "",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/logo/japanjam2025logo原图.webp" },
+      { type: "image", src: "../images/japanjam2025kv.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1pB3izpExm", title: "在线观看（仅Fire）" }
+    ]
+  },
+  {
+    hash_id: "k9D133AsINI",
+    date: "2024/7/13 - 2024/7/14",
+    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
+    category: "organization",
+    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/bml2024.webp", caption: "BML 2024" },
+      { type: "link", url: "", title: "Ave Mujica 在线观看" }
+    ]
+  },
+  {
+    hash_id: "kGAC98omEKo",
+    date: "2025/4/26 - 2025/4/27",
+    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」",
+    category: "organization",
+    description: "横K举办的MyGO!!!!! x Ave Mujica 第一次合同Live Sumimi暖场 CRYCHIC限定复活",
+    tag: "bandori_fes",
+    media: [
+      { type: "image", src: "../images/logo/横k鸡狗1logo.webp", caption: "横K合同Live Logo" },
+      { type: "image", src: "../images/鸡狗1横k kv.webp", caption: "横K合同Live 主视图" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1RV2eBeEAd", title: "D1 在线观看" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48829435", title: "D2 在线观看" }
     ]
   }
 ];

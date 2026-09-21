@@ -227,7 +227,7 @@ https://player.bilibili.com/player.html?bvid=BVxxxxxx
 | 2024/7/14 | MyGO 7th LIVE | MyGO 7th | image      | D2图1.jpg  |
 
 效果：
-- 合并为**一个气泡**，日期显示为 `2024/7/13 - 2024/7/14`
+- 合并为**一个气泡**，日期显示为 `2024/7/13 ~ 2024/7/14`
 - 所有媒体合并到一个数组，≥ 2 张图时自动轮播
 - 不填 group 的行仍然独立显示，完全兼容
 
