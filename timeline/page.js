@@ -66,8 +66,8 @@
   }
 
   function parseDate(dateStr) {
-    // 支持 "2024/7/13 - 2024/7/14" 格式：取第一个日期
-    const first = dateStr.split(" - ")[0].trim();
+    // 支持 "2024/7/13 ~ 2024/7/14"，并兼容缓存中的旧连字符格式。
+    const first = dateStr.split(/\s+(?:~|-)\s+/)[0].trim();
     return new Date(first);
   }
 
