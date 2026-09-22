@@ -82,26 +82,39 @@
 
   function chooseArchive(items, dateKey) {
     const numericToday = Number(dateKey.replaceAll("-", ""));
+    const supportedTypes = ["song", "live", "timeline", "interview", "discography"];
     const candidates = items.filter(function (item) {
       const itemDate = parseDate(item.date);
-      return item && item.url && item.key && (!itemDate || itemDate <= numericToday);
+      return item && item.url && item.key && supportedTypes.includes(item.type) && (!itemDate || itemDate <= numericToday);
     });
     if (!candidates.length) return null;
 
-    const storageKey = "wijipedia:daily-archive:v1";
+    const groups = supportedTypes.map(function (type) {
+      return candidates.filter(function (item) { return item.type === type; });
+    }).filter(function (group) { return group.length; });
+    const storageKey = "wijipedia:daily-archive:v2";
     try {
       const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
       if (saved && saved.date === dateKey) {
         const storedItem = candidates.find(function (item) { return item.key === saved.key; });
         if (storedItem) return storedItem;
       }
-      const selected = candidates[hashText(dateKey) % candidates.length];
+      const selectedGroup = groups[hashText(dateKey + ":type") % groups.length];
+      const selected = selectedGroup[hashText(dateKey + ":" + selectedGroup[0].type) % selectedGroup.length];
       localStorage.setItem(storageKey, JSON.stringify({ date: dateKey, key: selected.key }));
       return selected;
     } catch (error) {
-      return candidates[hashText(dateKey) % candidates.length];
+      const selectedGroup = groups[hashText(dateKey + ":type") % groups.length];
+      return selectedGroup[hashText(dateKey + ":" + selectedGroup[0].type) % selectedGroup.length];
     }
   }
+
+  function resetButton() {
+    button.disabled = false;
+    button.classList.remove("is-loading");
+  }
+
+  window.addEventListener("pageshow", resetButton);
 
   button.addEventListener("click", function () {
     button.disabled = true;
@@ -111,10 +124,10 @@
       if (!selected) throw new Error("No archive item available");
       const target = new URL(selected.url, siteRoot);
       rememberReturnSource(target);
+      resetButton();
       location.href = target.href;
     }).catch(function () {
-      button.disabled = false;
-      button.classList.remove("is-loading");
+      resetButton();
       button.dataset.tooltip = "档案暂时不可用";
     });
   });
