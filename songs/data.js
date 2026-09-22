@@ -937,7 +937,7 @@ var songsData = [
     album: "『BanG Dream! Ave Mujica』#13 插入曲",
     album_year: "2025",
     release_date: "2025/3/27",
-    cover: "../images/八芒星.webp",
+    cover: "../images/八芒星ournotes.webp",
     type: "Original",
     lyricist: "Diggy-MO'",
     composer: "あらケン (SUPA LOVE) • Diggy-MO'",

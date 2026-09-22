@@ -4,7 +4,10 @@
     const archive = document.getElementById('archive');
     const escapeHTML = value => { const el = document.createElement('div'); el.textContent = value || ''; return el.innerHTML; };
     const yearOf = date => (date || '').slice(0, 4) || '未分类';
-    const parseDate = date => Number((date || '').replace(/\D/g, '').slice(0, 8)) || 0;
+    const parseDate = date => {
+      const match = String(date || '').match(/(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/);
+      return match ? Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])) : 0;
+    };
     const JAPAN_OFFSET_MS = 9 * 60 * 60 * 1000;
     const japanTodayTimestamp = () => {
       const today = new Date(Date.now() + JAPAN_OFFSET_MS);

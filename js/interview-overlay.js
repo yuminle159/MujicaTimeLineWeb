@@ -27,6 +27,8 @@
   let dateEl;
   let titleEl;
   let intervieweeEl;
+  let sectionButton;
+  let sectionPopover;
   let originalButton;
   let lightbox;
   let lightboxImages;
@@ -47,8 +49,13 @@
           '<span class="shared-interview-interviewee"></span>' +
         '</div>' +
         '<div class="shared-interview-actions">' +
+          '<button class="shared-interview-section-btn" type="button" aria-expanded="false" hidden>章节</button>' +
           '<button class="shared-interview-original-btn" type="button" title="切换原文显示">原文显示</button>' +
           '<button class="shared-interview-close" type="button" aria-label="关闭">&times;</button>' +
+          '<div class="shared-interview-section-popover" hidden>' +
+            '<span class="shared-interview-section-kicker">CONTENTS / 章节</span>' +
+            '<nav class="shared-interview-section-popover-list" aria-label="文章章节"></nav>' +
+          '</div>' +
         '</div>' +
       '</div>' +
       '<div class="shared-interview-body"></div>';
@@ -78,6 +85,8 @@
     dateEl = overlay.querySelector(".shared-interview-date");
     titleEl = overlay.querySelector(".shared-interview-title");
     intervieweeEl = overlay.querySelector(".shared-interview-interviewee");
+    sectionButton = overlay.querySelector(".shared-interview-section-btn");
+    sectionPopover = overlay.querySelector(".shared-interview-section-popover");
     originalButton = overlay.querySelector(".shared-interview-original-btn");
     lightboxImages = lightbox.querySelector(".shared-interview-lightbox-images");
     lightboxCounter = lightbox.querySelector(".shared-interview-lightbox-counter");
@@ -86,7 +95,16 @@
     overlay.addEventListener("click", function (event) {
       if (event.target === overlay) close();
     });
+    sectionButton.addEventListener("click", function () {
+      setSectionPopover(sectionPopover.hidden);
+    });
     originalButton.addEventListener("click", toggleOriginal);
+    document.addEventListener("pointerdown", function (event) {
+      if (!sectionPopover.hidden && !overlay.querySelector(".shared-interview-actions").contains(event.target)) {
+        setSectionPopover(false);
+      }
+    }, true);
+    window.addEventListener("resize", function () { setSectionPopover(false); });
 
     lightbox.addEventListener("click", function (event) {
       if (event.target === lightbox) closeLightbox();
@@ -181,6 +199,191 @@
     return renderedCache.get(key);
   }
 
+  function findInterviewById(id, data) {
+    return (data || currentData()).find(function (item) { return item.hash_id === id; });
+  }
+
+  function setSectionPopover(opened) {
+    if (!sectionButton || !sectionPopover) return;
+    const shouldOpen = !!opened && !sectionButton.hidden;
+    sectionPopover.hidden = !shouldOpen;
+    sectionButton.setAttribute("aria-expanded", String(shouldOpen));
+  }
+
+  function makeSectionList(container, sections) {
+    container.innerHTML = "";
+    sections.forEach(function (section, index) {
+      const button = document.createElement("button");
+      button.className = "shared-interview-section-link";
+      button.type = "button";
+      button.dataset.interviewSection = section.id;
+      const number = document.createElement("span");
+      number.textContent = String(index + 1).padStart(2, "0");
+      const label = document.createElement("strong");
+      label.textContent = section.title;
+      button.appendChild(number);
+      button.appendChild(label);
+      button.addEventListener("click", function () { scrollToSection(section.id); });
+      container.appendChild(button);
+    });
+  }
+
+  function scrollToSection(sectionId) {
+    const heading = body && body.querySelector("#" + sectionId);
+    if (!heading) return;
+    const bodyRect = body.getBoundingClientRect();
+    const destination = body.scrollTop + heading.getBoundingClientRect().top - bodyRect.top - 24;
+    setSectionPopover(false);
+    body.scrollTo({ top: Math.max(0, destination), behavior: "smooth" });
+  }
+
+  function updateActiveSection() {
+    if (!overlay || !overlay.classList.contains("active") || !body) return;
+    const headings = Array.from(body.querySelectorAll(".md-content h2[id]"));
+    if (!headings.length) return;
+    const threshold = body.getBoundingClientRect().top + 72;
+    let current = headings[0];
+    headings.forEach(function (heading) {
+      if (heading.getBoundingClientRect().top <= threshold) current = heading;
+    });
+    overlay.querySelectorAll("[data-interview-section]").forEach(function (link) {
+      link.classList.toggle("active", link.dataset.interviewSection === current.id);
+    });
+  }
+
+  function navigateToInterview(hashId) {
+    const data = currentData();
+    const targetIndex = data.findIndex(function (item) { return item.hash_id === hashId; });
+    if (targetIndex < 0) return;
+    const manageHash = activeManageHash;
+    setSectionPopover(false);
+    persistActiveReadingState();
+    open(targetIndex, { data: data, manageHash: manageHash });
+  }
+
+  function makeRelatedCard(target, reason) {
+    const button = document.createElement("button");
+    button.className = "shared-interview-related-card";
+    button.type = "button";
+    button.addEventListener("click", function () { navigateToInterview(target.hash_id); });
+
+    const visual = document.createElement("span");
+    visual.className = "shared-interview-related-visual";
+    if (target.poster) {
+      const image = document.createElement("img");
+      image.src = target.poster;
+      image.alt = "";
+      image.loading = "lazy";
+      visual.appendChild(image);
+    } else {
+      visual.classList.add("is-placeholder");
+      visual.textContent = "INTERVIEW";
+    }
+
+    const copy = document.createElement("span");
+    copy.className = "shared-interview-related-copy";
+    const meta = document.createElement("span");
+    meta.className = "shared-interview-related-meta";
+    meta.textContent = formatDate(target.date) + (reason ? "  ·  " + reason : "");
+    const title = document.createElement("strong");
+    title.textContent = target.title || "";
+    const people = document.createElement("span");
+    people.className = "shared-interview-related-people";
+    people.textContent = target.interviewee || "";
+    copy.appendChild(meta);
+    copy.appendChild(title);
+    copy.appendChild(people);
+
+    const arrow = document.createElement("span");
+    arrow.className = "shared-interview-related-arrow";
+    arrow.textContent = "→";
+    button.appendChild(visual);
+    button.appendChild(copy);
+    button.appendChild(arrow);
+    return button;
+  }
+
+  function makeChronologyLink(target, direction) {
+    const button = document.createElement("button");
+    button.className = "shared-interview-chronology-link " + direction;
+    button.type = "button";
+    button.addEventListener("click", function () { navigateToInterview(target.hash_id); });
+    const label = document.createElement("span");
+    label.textContent = direction === "previous" ? "← PREVIOUS / 上一篇" : "NEXT / 下一篇 →";
+    const date = document.createElement("small");
+    date.textContent = formatDate(target.date);
+    const title = document.createElement("strong");
+    title.textContent = target.title || "";
+    button.appendChild(label);
+    button.appendChild(date);
+    button.appendChild(title);
+    return button;
+  }
+
+  function buildReadingEnhancements(item, data) {
+    const article = body.querySelector(".md-content");
+    if (!article) return;
+    const sections = Array.isArray(item.sections) ? item.sections : [];
+    sectionButton.hidden = sections.length < 2;
+    setSectionPopover(false);
+    makeSectionList(sectionPopover.querySelector(".shared-interview-section-popover-list"), sections);
+
+    const root = document.createElement("div");
+    root.className = "shared-interview-reading-root";
+    const layout = document.createElement("div");
+    layout.className = "shared-interview-reading-layout";
+    const articleColumn = document.createElement("div");
+    articleColumn.className = "shared-interview-article-column";
+    articleColumn.appendChild(article);
+
+    const relatedItems = (Array.isArray(item.related) ? item.related : []).map(function (entry) {
+      const target = findInterviewById(entry.id, data);
+      return target ? { target: target, reason: entry.reason || "" } : null;
+    }).filter(Boolean);
+    if (relatedItems.length) {
+      const related = document.createElement("section");
+      related.className = "shared-interview-related";
+      const heading = document.createElement("div");
+      heading.className = "shared-interview-footer-heading";
+      heading.innerHTML = "<span>RELATED INTERVIEWS</span><strong>关联访谈</strong>";
+      related.appendChild(heading);
+      const list = document.createElement("div");
+      list.className = "shared-interview-related-list";
+      relatedItems.forEach(function (entry) { list.appendChild(makeRelatedCard(entry.target, entry.reason)); });
+      related.appendChild(list);
+      articleColumn.appendChild(related);
+    }
+
+    const previous = findInterviewById(item.previous_id, data);
+    const next = findInterviewById(item.next_id, data);
+    if (previous || next) {
+      const chronology = document.createElement("nav");
+      chronology.className = "shared-interview-chronology" + (!previous || !next ? " is-single" : "");
+      chronology.setAttribute("aria-label", "上一篇与下一篇访谈");
+      if (previous) chronology.appendChild(makeChronologyLink(previous, "previous"));
+      if (next) chronology.appendChild(makeChronologyLink(next, "next"));
+      articleColumn.appendChild(chronology);
+    }
+
+    layout.appendChild(articleColumn);
+    if (sections.length >= 2) {
+      const navigation = document.createElement("aside");
+      navigation.className = "shared-interview-section-nav";
+      const kicker = document.createElement("span");
+      kicker.className = "shared-interview-section-kicker";
+      kicker.textContent = "CONTENTS / 章节";
+      const list = document.createElement("nav");
+      list.setAttribute("aria-label", "文章章节");
+      makeSectionList(list, sections);
+      navigation.appendChild(kicker);
+      navigation.appendChild(list);
+      layout.appendChild(navigation);
+    }
+    root.appendChild(layout);
+    body.appendChild(root);
+    window.requestAnimationFrame(updateActiveSection);
+  }
+
   function open(target, options) {
     options = options || {};
     const data = currentData(options);
@@ -202,6 +405,7 @@
       titleEl.textContent = item.title || "";
       intervieweeEl.textContent = item.interviewee || "";
       body.innerHTML = renderedContent(item, index);
+      buildReadingEnhancements(item, data);
       bindInterviewImages();
       showOriginal = savedShowOriginal;
       originalButton.textContent = showOriginal ? "隐藏原文" : "原文显示";
@@ -210,7 +414,10 @@
       body.style.overflowAnchor = "auto";
       body.scrollTop = savedScrollTop;
       window.setTimeout(function () {
-        if (activeItem === item && overlay.classList.contains("active")) body.scrollTop = savedScrollTop;
+        if (activeItem === item && overlay.classList.contains("active")) {
+          body.scrollTop = savedScrollTop;
+          updateActiveSection();
+        }
       }, 120);
       lastScrollY = savedScrollTop;
       pageTopButton.classList.remove("show");
@@ -233,6 +440,7 @@
         },
         deactivate: function () {
           closeLightbox();
+          setSectionPopover(false);
           overlay.classList.remove("active");
           overlay.setAttribute("aria-hidden", "true");
           pageTopButton.classList.remove("show");
@@ -289,6 +497,7 @@
     }
     persistActiveReadingState();
     closeLightbox();
+    setSectionPopover(false);
     overlay.classList.remove("active");
     overlay.setAttribute("aria-hidden", "true");
     pageTopButton.classList.remove("show");
@@ -328,6 +537,7 @@
         const newTop = anchor.getBoundingClientRect().top;
         body.scrollBy(0, newTop - oldTop);
         body.style.overflowAnchor = "auto";
+        updateActiveSection();
       });
     } else {
       body.style.overflowAnchor = "auto";
@@ -408,6 +618,7 @@
 
   function handleScroll() {
     if (!pageTopButton) return;
+    updateActiveSection();
     const container = getScrollContainer();
     if (!container || (lightbox && lightbox.classList.contains("active"))) {
       hidePageTop();
@@ -460,6 +671,12 @@
   function handleKeydown(event) {
     if (global.OverlayManager && overlay && overlay.classList.contains("active") &&
         !global.OverlayManager.isTop("interview", activeItem && (activeItem.hash_id || activeItem.title))) return;
+    if (event.key === "Escape" && sectionPopover && !sectionPopover.hidden) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      setSectionPopover(false);
+      return;
+    }
     if (event.key === "Escape" && lightbox && lightbox.classList.contains("active")) {
       event.preventDefault();
       event.stopImmediatePropagation();

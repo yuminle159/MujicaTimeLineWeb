@@ -3707,8 +3707,16 @@ var galleryData = [
     description: ""
   },
   {
-    hash_id: "D2IPQHyRFHk",
-    filename: "../images/八芒星.webp",
+    hash_id: "dzQUNvA7W26",
+    filename: "../images/八芒星grp.webp",
+    title: "",
+    date: "",
+    tags: {},
+    description: ""
+  },
+  {
+    hash_id: "MLoakODKuT6",
+    filename: "../images/八芒星ournotes.webp",
     title: "",
     date: "",
     tags: {},
