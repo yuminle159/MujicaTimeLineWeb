@@ -570,12 +570,33 @@ body {
 .something-new-drawer-placeholder {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
-  color: #444;
-  font-size: 9px;
-  letter-spacing: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background:
+    linear-gradient(135deg, transparent 49.7%, rgba(255,255,255,.025) 50%, transparent 50.3%),
+    radial-gradient(circle at 50% 46%, rgba(136,28,34,.14), transparent 31%),
+    linear-gradient(145deg, #17171a, #09090b 72%);
+  color: #666;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: 3px;
 }
+.something-new-drawer-placeholder::before,
+.something-new-drawer-placeholder::after {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 74px;
+  border: 1px solid rgba(255,255,255,.055);
+  transform: rotate(45deg);
+}
+.something-new-drawer-placeholder::after { width: 48px; height: 48px; border-color: rgba(151,45,50,.14); }
+.something-new-drawer-placeholder i { width: 5px; height: 5px; margin-bottom: 4px; transform: rotate(45deg); background: #793136; box-shadow: 0 0 18px rgba(180,42,48,.32); }
+.something-new-drawer-placeholder strong { z-index:1; display:-webkit-box; max-width:82%; overflow:hidden; color:#a3a3a7; font:500 14px/1.4 "Cinzel","Noto Sans SC",sans-serif; letter-spacing:1px; text-align:center; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.something-new-drawer-placeholder small { z-index:1; color:#4b4b50; font-size:8px; letter-spacing:3px; }
+.something-new-drawer-card:hover .something-new-drawer-placeholder strong { color: #8d8d91; }
 .something-new-drawer-type {
   position: absolute;
   z-index: 1;

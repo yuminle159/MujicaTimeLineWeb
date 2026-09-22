@@ -80,6 +80,12 @@
   scrollbar-color: rgba(255,77,77,.12) transparent;
 }
 .shared-song-cover { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 24px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+.shared-song-cover-unknown { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; overflow:hidden; background:linear-gradient(145deg,#19191c,#0c0c0e 72%); color:#69696e; font-family:"Space Grotesk",sans-serif; letter-spacing:3px; }
+.shared-song-cover-unknown::before,.shared-song-cover-unknown::after { content:""; position:absolute; width:48%; aspect-ratio:1; border:1px solid rgba(255,255,255,.055); transform:rotate(45deg); }
+.shared-song-cover-unknown::after { width:30%; border-color:rgba(160,45,50,.16); }
+.shared-song-cover-unknown i { width:6px; height:6px; transform:rotate(45deg); background:#793136; box-shadow:0 0 18px rgba(180,42,48,.3); }
+.shared-song-cover-unknown strong { z-index:1; display:-webkit-box; max-width:82%; overflow:hidden; color:#aaa; font:500 clamp(14px,1.6vw,18px)/1.4 "Cinzel","Noto Sans SC",sans-serif; letter-spacing:.8px; text-align:center; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:3; }
+.shared-song-cover-unknown small { z-index:1; color:#4b4b50; font-size:8px; letter-spacing:3px; }
 .shared-song-title { margin-bottom: 4px; color: var(--md-primary, #cc2929); font: 800 24px/1.25 "Cinzel","Noto Serif JP","Noto Serif SC",serif; letter-spacing: 1.5px; text-align: center; }
 .shared-song-title-cn { margin-bottom: 12px; color: var(--md-on-surface-variant, #999); font-size: 15px; text-align: center; }
 .shared-song-type { margin-bottom: 24px; padding: 4px 14px; border: 1px solid var(--md-primary, #cc2929); border-radius: 20px; color: var(--md-primary, #cc2929); font-size: 11px; font-weight: 600; }

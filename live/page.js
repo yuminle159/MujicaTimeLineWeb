@@ -56,7 +56,7 @@
   }
 
   function hasCompleteLiveCard(live) {
-    return [live.name, live.date, live.venue, live.poster, live.kv].every(value => String(value || "").trim());
+    return [live.name, live.date, live.venue].every(value => String(value || "").trim());
   }
 
   function renderUpcomingLiveCard(lives, activeIndex) {
@@ -75,7 +75,7 @@
     upcomingLiveSpotlight.innerHTML = `
       <button class="upcoming-live-card is-rotating${today ? ' is-live-today' : ''}${days >= 100 ? ' is-long-countdown' : ''}" type="button" data-live-index="${livesData.indexOf(live)}" aria-label="查看 ${escapeHTML(live.name).replace(/"/g, '&quot;')} 的演出详情">
         <span class="upcoming-live-visual" aria-hidden="true">
-          ${visual ? `<img src="${escapeHTML(visual).replace(/"/g, '&quot;')}" alt="">` : '<span class="upcoming-live-visual-placeholder"></span>'}
+          ${visual ? `<img src="${escapeHTML(visual).replace(/"/g, '&quot;')}" alt="">` : `<span class="upcoming-live-visual-placeholder"><i></i><strong>${escapeHTML(live.name)}</strong><small>UNKNOWN</small></span>`}
         </span>
         <span class="upcoming-live-content">
           <span class="upcoming-live-kicker"><i></i> ${today ? 'LIVE TODAY' : 'UPCOMING LIVE'} // ${escapeHTML(stripTime(live.date))}</span>
@@ -255,7 +255,7 @@
       card.className = "live-card" + (isUpcoming ? " is-upcoming" : "");
       card.innerHTML = `
         <div class="card-image${live.tag ? ' tag-' + live.tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '') : ''}" onclick="openDrawer(${origIdx})">
-          ${live.poster ? `<img src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}" loading="lazy">` : '<div class="card-placeholder"></div>'}
+          ${live.poster ? `<img src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}" loading="lazy">` : `<div class="card-placeholder"><i></i><strong>${escapeHTML(live.name)}</strong><small>UNKNOWN</small></div>`}
           ${isUpcoming ? `<span class="card-upcoming-countdown">${days} 天后</span>` : ''}
         </div>
         <div class="card-info" onclick="openDrawer(${origIdx})">

@@ -9,6 +9,7 @@ import logging
 import subprocess
 import threading
 import tempfile
+import webbrowser
 from pathlib import Path
 # Reapply the extended Tcl paths after PyInstaller's standard runtime hook.
 import tk_runtime_hook
@@ -32,10 +33,62 @@ else:
 # 发布模块在源码模式下默认使用自身目录；打包后则必须显式指向 EXE 所在的项目目录。
 import build_site
 import publish_deploy
+import maintenance
 
 build_site.ROOT = Path(PROJECT_DIR)
 build_site.DIST = build_site.ROOT / "dist"
 publish_deploy.ROOT = Path(PROJECT_DIR)
+
+
+def open_preview_file(relative_path, log_func):
+    """Open a homepage file directly in the default browser."""
+    index_file = (Path(PROJECT_DIR) / relative_path).resolve()
+    if not index_file.is_file():
+        raise WorkflowError(f"找不到预览文件：{index_file}")
+
+    log_func(f"[OK] 本地预览：{index_file}")
+    if not webbrowser.open(index_file.as_uri()):
+        raise WorkflowError(f"浏览器未能打开预览，请手动双击：{index_file}")
+    return f"{relative_path} 已在浏览器中打开。"
+
+
+def open_local_preview(log_func):
+    """Preview data updates from the authoring homepage."""
+    return open_preview_file("index.html", log_func)
+
+
+def open_dist_preview(log_func):
+    """Preview the exact public tree produced by a complete build."""
+    return open_preview_file(Path("dist") / "index.html", log_func)
+
+
+def run_project_check(log_func):
+    report = maintenance.check_project(PROJECT_DIR)
+    for line in maintenance.format_check_report(report).splitlines():
+        log_func(line)
+    if report.errors:
+        raise WorkflowError(f"项目体检发现 {len(report.errors)} 个错误，请先修复后再更新。")
+    return f"项目体检通过；{len(report.warnings)} 个提醒已列在日志中。"
+
+
+def run_complete_maintenance(log_func):
+    result = maintenance.run_full_update(PROJECT_DIR, log_func)
+    open_dist_preview(log_func)
+    changes = result["changes"]
+    return (
+        "完整更新完成："
+        f"新增 {len(changes['added'])}、修改 {len(changes['modified'])}、删除 {len(changes['removed'])}；"
+        "数据已备份，发布目录已生成并打开 dist 预览。"
+    )
+
+
+def run_change_report(log_func):
+    text = maintenance.git_change_report(PROJECT_DIR)
+    for line in text.splitlines():
+        log_func(line)
+    report_path = maintenance.write_report(PROJECT_DIR, text, "changes")
+    log_func(f"[OK] 报告已保存：{report_path.relative_to(Path(PROJECT_DIR))}")
+    return "变更报告已生成。"
 
 # 模块名称映射
 MODULE_NAMES = {
@@ -478,6 +531,18 @@ def run_update(selected_modules, do_webp, log_func):
                     log_func(f"[FAIL] {label}：{exc.cause}")
 
             try:
+                search_summary, output = capture_output(lambda: generate_all.generate_search_indexes(wb))
+                add_detail("全局搜索", output)
+                search_count, body_count = search_summary
+                summary = f"search-index.js · {search_count} 条索引 · {body_count} 条正文"
+                result["success"].append(("全局搜索", summary))
+                log_func(f"[OK] 全局搜索：{summary}")
+            except CapturedOperationError as exc:
+                add_detail("全局搜索", exc.output)
+                result["failed"].append(("全局搜索", str(exc.cause)))
+                log_func(f"[FAIL] 全局搜索：{exc.cause}")
+
+            try:
                 version, output = capture_output(lambda: generate_all.inject_version())
                 add_detail("版本号注入", output)
                 result["success"].append(("版本号注入", f"v={version}"))
@@ -497,8 +562,8 @@ class App:
     def __init__(self, root):
         self.root = root
         root.title(" wijipedia 工作流工具")
-        root.geometry("800x840")
-        root.minsize(720, 640)
+        root.geometry("900x820")
+        root.minsize(800, 680)
         root.resizable(True, True)
         root.configure(bg="#0d0d0d")
         self.action_buttons = []
@@ -515,7 +580,7 @@ class App:
         header.pack(pady=(16, 4))
 
         sub = tk.Label(
-            root, text="同步 Git、更新数据、提交源码并发布 deploy",
+            root, text="同步 → 体检、备份、生成与构建 → 提交发布",
             font=("Microsoft YaHei", 9),
             fg="#666", bg="#0d0d0d",
         )
@@ -527,9 +592,9 @@ class App:
         tk.Label(root, text=data_status, font=("Microsoft YaHei", 9),
                  fg="#777" if self.modules else "#ff8080", bg="#0d0d0d").pack(pady=(0, 8))
 
-        # 完整工作流：同步 → 编辑/更新 → 提交并发布
+        # 日常工作流：三个步骤按真实使用顺序排列。
         workflow_frame = tk.LabelFrame(
-            root, text=" Git 工作流 ", font=("Microsoft YaHei", 9, "bold"),
+            root, text=" 日常工作流 ", font=("Microsoft YaHei", 9, "bold"),
             fg="#aaa", bg="#0d0d0d", bd=1, relief="solid",
             highlightbackground="#2a2a2a",
         )
@@ -538,20 +603,41 @@ class App:
         workflow_buttons.pack(fill="x", padx=10, pady=(10, 5))
 
         self.btn_start_work = tk.Button(
-            workflow_buttons, text="① 开始工作 · 同步 Git", command=self.start_work,
+            workflow_buttons, text="① 同步项目", command=self.start_work,
             font=("Microsoft YaHei", 10, "bold"), fg="#ddd", bg="#202830",
             relief="flat", padx=18, pady=9, cursor="hand2",
             activebackground="#2d3a46", activeforeground="#fff",
         )
         self.btn_start_work.pack(side="left", expand=True, fill="x", padx=(0, 5))
 
+        self.btn_maintain_update = tk.Button(
+            workflow_buttons, text="② 完整更新并预览", command=self.complete_maintenance,
+            font=("Microsoft YaHei", 10, "bold"), fg="#fff", bg="#a83338",
+            relief="flat", padx=18, pady=9, cursor="hand2",
+            activebackground="#cc454b", activeforeground="#fff",
+        )
+        self.btn_maintain_update.pack(side="left", expand=True, fill="x", padx=5)
+
         self.btn_finish_work = tk.Button(
-            workflow_buttons, text="③ 结束工作 · 提交并发布", command=self.finish_work,
-            font=("Microsoft YaHei", 10, "bold"), fg="#fff", bg="#9f2828",
+            workflow_buttons, text="③ 提交并发布", command=self.finish_work,
+            font=("Microsoft YaHei", 10, "bold"), fg="#fff", bg="#682529",
             relief="flat", padx=18, pady=9, cursor="hand2",
             activebackground="#c43a3a", activeforeground="#fff",
         )
         self.btn_finish_work.pack(side="left", expand=True, fill="x", padx=(5, 0))
+
+        workflow_hints = tk.Frame(workflow_frame, bg="#0d0d0d")
+        workflow_hints.pack(fill="x", padx=10, pady=(0, 5))
+        for column, hint_text in enumerate((
+            "拉取 main 与 deploy",
+            "备份 · 体检 · 生成 · 构建 · 预览",
+            "推送源码与 deploy",
+        )):
+            workflow_hints.grid_columnconfigure(column, weight=1, uniform="workflow")
+            tk.Label(
+                workflow_hints, text=hint_text, font=("Microsoft YaHei", 8),
+                fg="#666", bg="#0d0d0d",
+            ).grid(row=0, column=column, sticky="ew", padx=5)
 
         self.btn_retry_work = tk.Button(
             workflow_frame, text="重试失败步骤及后续", command=self.retry_workflow,
@@ -561,46 +647,73 @@ class App:
             disabledforeground="#555",
         )
         self.btn_retry_work.pack(fill="x", padx=10, pady=(5, 5))
-        self.action_buttons.extend((self.btn_start_work, self.btn_finish_work, self.btn_retry_work))
+        self.action_buttons.extend((self.btn_start_work, self.btn_maintain_update, self.btn_finish_work, self.btn_retry_work))
 
-        tk.Label(
-            workflow_frame,
-            text="开始：pull main + 同步 deploy　｜　结束：commit/push main + 构建/push deploy",
-            font=("Microsoft YaHei", 8), fg="#666", bg="#0d0d0d",
-        ).pack(pady=(0, 9))
+        # 低频维护操作独立放置，避免与三步主流程混淆。
+        tools_frame = tk.LabelFrame(
+            root, text=" 维护工具 ", font=("Microsoft YaHei", 9, "bold"),
+            fg="#999", bg="#0d0d0d", bd=1, relief="solid",
+            highlightbackground="#242424",
+        )
+        tools_frame.pack(fill="x", padx=24, pady=(0, 14))
+        tools_grid = tk.Frame(tools_frame, bg="#0d0d0d")
+        tools_grid.pack(fill="x", padx=10, pady=10)
+        for column in range(3):
+            tools_grid.grid_columnconfigure(column, weight=1, uniform="tools")
 
-        # 三个固定主操作
-        btn_frame_actions = tk.Frame(root, bg="#0d0d0d")
-        btn_frame_actions.pack(fill="x", padx=24, pady=(4, 16))
+        btn_check = tk.Button(
+            tools_grid, text="项目体检", command=self.project_check,
+            font=("Microsoft YaHei", 9, "bold"), fg="#d9d9dc", bg="#20252a",
+            relief="flat", padx=12, pady=7, cursor="hand2",
+            activebackground="#303840", activeforeground="#fff",
+        )
+        btn_check.grid(row=0, column=0, sticky="ew", padx=(0, 5), pady=(0, 7))
+        self.action_buttons.append(btn_check)
+
+        btn_report = tk.Button(
+            tools_grid, text="查看变更报告", command=self.change_report,
+            font=("Microsoft YaHei", 9, "bold"), fg="#d9d9dc", bg="#252329",
+            relief="flat", padx=12, pady=7, cursor="hand2",
+            activebackground="#35313b", activeforeground="#fff",
+        )
+        btn_report.grid(row=0, column=1, sticky="ew", padx=5, pady=(0, 7))
+        self.action_buttons.append(btn_report)
 
         btn_build = tk.Button(
-            btn_frame_actions, text="② 更新所有 data", command=self.update_all_data,
-            font=("Microsoft YaHei", 11, "bold"),
-            fg="#fff", bg="#ff4d4d",
-            relief="flat", padx=24, pady=8, cursor="hand2",
-            activebackground="#ff8080", activeforeground="#fff",
+            tools_grid, text="仅重新生成 data", command=self.update_all_data,
+            font=("Microsoft YaHei", 9), fg="#bbb", bg="#1a1a1a",
+            relief="flat", padx=12, pady=7, cursor="hand2",
+            activebackground="#2a2a2a", activeforeground="#fff",
         )
-        btn_build.pack(side="left", expand=True, fill="x", padx=(0, 5))
+        btn_build.grid(row=0, column=2, sticky="ew", padx=(5, 0), pady=(0, 7))
         self.action_buttons.append(btn_build)
 
         btn_webp = tk.Button(
-            btn_frame_actions, text="把图片转为 WebP", command=self.convert_webp,
-            font=("Microsoft YaHei", 10), fg="#ddd", bg="#1a1a1a",
-            relief="flat", padx=16, pady=8, cursor="hand2",
+            tools_grid, text="图片转 WebP", command=self.convert_webp,
+            font=("Microsoft YaHei", 9), fg="#bbb", bg="#1a1a1a",
+            relief="flat", padx=12, pady=7, cursor="hand2",
             activebackground="#2a2a2a", activeforeground="#fff",
         )
-        btn_webp.pack(side="left", expand=True, fill="x", padx=5)
+        btn_webp.grid(row=1, column=0, sticky="ew", padx=(0, 5))
         self.action_buttons.append(btn_webp)
 
         btn_scan = tk.Button(
-            btn_frame_actions, text="一键把所有图片写入画廊", command=self.scan_gallery,
-            font=("Microsoft YaHei", 10),
-            fg="#ddd", bg="#1a1a1a",
-            relief="flat", padx=16, pady=8, cursor="hand2",
+            tools_grid, text="扫描图片写入画廊", command=self.scan_gallery,
+            font=("Microsoft YaHei", 9), fg="#bbb", bg="#1a1a1a",
+            relief="flat", padx=12, pady=7, cursor="hand2",
             activebackground="#2a2a2a", activeforeground="#fff",
         )
-        btn_scan.pack(side="left", expand=True, fill="x", padx=(5, 0))
+        btn_scan.grid(row=1, column=1, sticky="ew", padx=5)
         self.action_buttons.append(btn_scan)
+
+        btn_preview = tk.Button(
+            tools_grid, text="打开本地预览", command=self.open_preview,
+            font=("Microsoft YaHei", 9), fg="#bbb", bg="#1a1a1a",
+            relief="flat", padx=12, pady=7, cursor="hand2",
+            activebackground="#2a2a2a", activeforeground="#fff",
+        )
+        btn_preview.grid(row=1, column=2, sticky="ew", padx=(5, 0))
+        self.action_buttons.append(btn_preview)
 
         # 运行状态与折叠的详细日志
         status_frame = tk.Frame(root, bg="#141414", highlightthickness=1, highlightbackground="#2a2a2a")
@@ -743,6 +856,18 @@ class App:
     def start_work(self):
         self.run_background("开始工作：同步 Git…", run_start_workflow)
 
+    def project_check(self):
+        self.run_background("项目体检：检查数据、引用与资源…", run_project_check)
+
+    def complete_maintenance(self):
+        self.run_background("完整更新：备份、体检、生成、构建、报告与预览…", run_complete_maintenance)
+
+    def open_preview(self):
+        self.run_background("正在打开本地预览…", open_local_preview)
+
+    def change_report(self):
+        self.run_background("内容变更报告：对比当前内容与 Git HEAD…", run_change_report)
+
     def finish_work(self):
         if self.operation_running:
             return
@@ -830,6 +955,11 @@ class App:
         except Exception as e:
             result = {"success": [], "skipped": [], "failed": [("更新程序", str(e))], "details": []}
         self.finish_run(result, "所有 data 已更新，请刷新浏览器查看变化。")
+        if not result["failed"]:
+            try:
+                open_local_preview(self.log)
+            except Exception as exc:
+                self.log(f"[FAIL] 无法打开本地预览：{exc}", "error")
 
     def convert_webp(self):
         if not HAS_PILLOW:
@@ -877,7 +1007,7 @@ def main():
             for path in generate_all.OUTPUTS.values():
                 os.makedirs(os.path.dirname(path), exist_ok=True)
             result = run_update([m["id"] for m in discover_sheets()], False, lambda msg: None)
-            if result["failed"] or len(result["success"]) != 9:
+            if result["failed"] or len(result["success"]) != 10:
                 raise RuntimeError(json.dumps(result, ensure_ascii=False))
             if any("--- Logging error ---" in output or "Traceback (most recent call last)" in output
                    for _, output in result["details"]):

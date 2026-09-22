@@ -107,7 +107,7 @@
     newReleaseSpotlight.innerHTML = `
       <button class="new-release-card is-rotating" type="button" data-song-index="${index}" aria-label="查看新曲 ${escapeHTML(newRelease.name_jp || newRelease.name)} 的详情">
         <span class="new-release-visual" aria-hidden="true">
-          ${newRelease.cover ? `<img src="${escapeHTML(newRelease.cover)}" alt="">` : '<span class="new-release-visual-placeholder"></span>'}
+          ${newRelease.cover ? `<img src="${escapeHTML(newRelease.cover)}" alt="">` : `<span class="new-release-visual-placeholder"><i></i><strong>${escapeHTML(newRelease.name_jp || newRelease.name)}</strong><small>UNKNOWN</small></span>`}
         </span>
         <span class="new-release-content">
           <span class="new-release-kicker"><i></i> NEW RELEASE // ${escapeHTML(stripTime(newRelease.release_date))}</span>
@@ -232,7 +232,7 @@
       : (countdownDays ? `<span class="cover-countdown-badge">${countdownDays} 天后</span>` : "");
     return `
       <div class="cover-card type-${(song.type || '').toLowerCase()}${countdownDays ? ' is-upcoming' : ''}" data-song-index="${songsData.indexOf(song)}" onclick="openModal(${songsData.indexOf(song)})">
-        ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name_jp || song.name)}" loading="lazy">` : '<div class="cover-placeholder"></div>'}
+        ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name_jp || song.name)}" loading="lazy">` : `<div class="cover-placeholder"><i></i><strong>${escapeHTML(song.name_jp || song.name)}</strong><small>UNKNOWN</small></div>`}
         ${releaseBadge}
         <div class="cover-overlay">
           ${jp}

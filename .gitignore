@@ -8,3 +8,5 @@ __pycache__/
 ~$*.xlsx
 /_build/
 /exe-*-test.log
+/_backups/
+/_reports/

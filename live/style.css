@@ -94,8 +94,17 @@ body {
 .upcoming-live-visual::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(14,13,14,.78), rgba(14,13,14,.42) 42%, rgba(0,0,0,.16)); }
 .upcoming-live-visual img,.upcoming-live-visual-placeholder { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.76) contrast(1.08) brightness(.62); transform: scale(1.045); transition: filter .3s, transform .7s; }
 .upcoming-live-visual img { object-position: center 30%; }
-.upcoming-live-visual-placeholder { background: radial-gradient(circle at 65% 35%, #522124, #111 68%); }
+.upcoming-live-visual-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; background:radial-gradient(circle at 65% 35%,rgba(82,33,36,.42),#111 68%); color:#777; font-family:"Space Grotesk",sans-serif; letter-spacing:3px; }
+.upcoming-live-visual-placeholder::before,.upcoming-live-visual-placeholder::after { content:""; position:absolute; width:92px; height:92px; border:1px solid rgba(255,255,255,.05); transform:rotate(45deg); }
+.upcoming-live-visual-placeholder::after { width:58px; height:58px; border-color:rgba(204,41,41,.14); }
+.upcoming-live-visual-placeholder i { width:5px; height:5px; transform:rotate(45deg); background:#793136; box-shadow:0 0 18px rgba(180,42,48,.3); }
+.upcoming-live-visual-placeholder strong { z-index:1; display:-webkit-box; max-width:72%; overflow:hidden; color:#a3a3a7; font:500 15px/1.4 "Cinzel","Noto Sans SC",sans-serif; letter-spacing:.8px; text-align:center; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.upcoming-live-visual-placeholder small { z-index:1; color:#49494e; font-size:8px; letter-spacing:3px; }
 .upcoming-live-card:hover .upcoming-live-visual img { filter: saturate(.95) contrast(1.04) brightness(.78); transform: scale(1.09); }
+.upcoming-live-card:hover .upcoming-live-visual-placeholder { filter:saturate(.86) contrast(1.03) brightness(.78); transform:scale(1.065); }
+.upcoming-live-card.is-live-today .upcoming-live-visual-placeholder { background:radial-gradient(circle at 62% 38%,rgba(183,144,61,.2),#111 68%); }
+.upcoming-live-card.is-live-today .upcoming-live-visual-placeholder::after { border-color:rgba(218,181,88,.24); }
+.upcoming-live-card.is-live-today .upcoming-live-visual-placeholder i { background:#aa8844; box-shadow:0 0 18px rgba(218,181,88,.34); }
 .upcoming-live-poster { position: absolute; z-index: 0; top: 0; right: 0; display: grid; width: min(72%, 500px); height: 100%; place-items: center; opacity: .3; pointer-events: none; }
 .upcoming-live-poster img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(25%) brightness(.85); }
 .upcoming-live-content { position: relative; z-index: 1; display: flex; width: 100%; height: 100%; flex-direction: column; align-items: flex-start; justify-content: center; max-width: min(760px, 70%); min-height: 0; }
@@ -277,10 +286,33 @@ body {
   -webkit-backdrop-filter: blur(8px);
 }
 .card-placeholder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   width: 100%;
   height: 100%;
-  background: var(--md-surface-container-high);
+  overflow: hidden;
+  background: linear-gradient(145deg, #19191c, #0d0d0f 72%);
+  color: #6d6d72;
+  font-family: "Space Grotesk", sans-serif;
 }
+.card-placeholder::before,.card-placeholder::after { content:""; position:absolute; width:92px; height:92px; border:1px solid rgba(255,255,255,.055); transform:rotate(45deg); transition:transform .5s var(--md-easing-emphasized),border-color .3s; }
+.card-placeholder::after { width:56px; height:56px; border-color:rgba(150,43,48,.15); }
+.card-placeholder i { width:5px; height:5px; transform:rotate(45deg); background:#793136; box-shadow:0 0 16px rgba(180,42,48,.28); }
+.card-placeholder strong { z-index:1; display:-webkit-box; max-width:82%; overflow:hidden; color:#a0a0a4; font:500 clamp(12px,1.4vw,16px)/1.35 "Cinzel","Noto Sans SC",sans-serif; letter-spacing:.5px; text-align:center; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.card-placeholder small { z-index:1; color:#49494e; font-size:8px; letter-spacing:2.6px; }
+.live-card:hover .card-placeholder::before { transform:rotate(50deg) scale(1.08); border-color:rgba(255,255,255,.09); }
+.live-card:hover .card-placeholder::after { transform:rotate(40deg) scale(.94); border-color:rgba(204,41,41,.24); }
+.live-card.is-upcoming .card-placeholder { background:radial-gradient(circle at 50% 42%,rgba(150,129,82,.08),transparent 34%),linear-gradient(145deg,#1c1b19,#0d0e10 72%); color:#85817a; }
+.live-card.is-upcoming .card-placeholder::before { border-color:rgba(218,210,193,.07); }
+.live-card.is-upcoming .card-placeholder::after { border-color:rgba(175,149,92,.18); }
+.live-card.is-upcoming .card-placeholder i { background:#8c7546; box-shadow:0 0 17px rgba(184,151,79,.22); }
+.live-card.is-upcoming .card-placeholder small { color:#55514a; }
+.live-card.is-upcoming:hover .card-placeholder::before { border-color:rgba(225,218,204,.13); }
+.live-card.is-upcoming:hover .card-placeholder::after { border-color:rgba(205,174,105,.3); }
 .card-info {
   padding: 20px 0;
 }

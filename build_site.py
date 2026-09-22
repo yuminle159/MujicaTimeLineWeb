@@ -50,6 +50,7 @@ PAGE_FILES = {
     "gallery": ("index.html", "style.css", "data.js", "page.js"),
     "interview": ("index.html", "style.css", "page.js", "data.js"),
     "discography": ("index.html", "style.css", "data.js", "page.js"),
+    "upcoming": ("index.html", "style.css", "page.js"),
 }
 
 FORBIDDEN_PUBLIC_SUFFIXES = {".py", ".pyc", ".xlsx", ".md", ".exe"}

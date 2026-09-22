@@ -1598,6 +1598,7 @@ def inject_version(log_func=None):
         os.path.join(ROOT, "gallery", "index.html"),
         os.path.join(ROOT, "interview", "index.html"),
         os.path.join(ROOT, "discography", "index.html"),
+        os.path.join(ROOT, "upcoming", "index.html"),
     ]
     # 匹配所有本地 .css / .js / .svg 引用（跳过 https:// 外部链接）
     pattern = re.compile(

@@ -11,6 +11,7 @@
   let includePageScroll = false;
   let activeManageHash = false;
   let activeItem = null;
+  let activeItemIndex = -1;
   let previousBodyOverflow = "";
   let showOriginal = true;
   let lightboxGroup = null;
@@ -109,6 +110,7 @@
     }, true);
     document.addEventListener("scroll", handleScroll, true);
     document.addEventListener("keydown", handleKeydown, true);
+    window.addEventListener("pagehide", persistActiveReadingState);
   }
 
   function configure(options) {
@@ -140,6 +142,36 @@
     return item.hash_id || item.title || String(index);
   }
 
+  function readingStateKey(item, index) {
+    return "wijipedia:interview-reading:v1:" + cacheKey(item, index);
+  }
+
+  function readReadingState(item, index) {
+    try {
+      const saved = JSON.parse(localStorage.getItem(readingStateKey(item, index)) || "null");
+      return saved && typeof saved === "object" ? saved : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeReadingState(item, index, scrollTop, originalVisible) {
+    if (!item) return;
+    try {
+      localStorage.setItem(readingStateKey(item, index), JSON.stringify({
+        scrollTop: Math.max(0, Math.round(Number(scrollTop) || 0)),
+        showOriginal: originalVisible !== false
+      }));
+    } catch (error) {
+      /* Storage may be unavailable in private browsing; reading still works normally. */
+    }
+  }
+
+  function persistActiveReadingState() {
+    if (!activeItem || !body) return;
+    writeReadingState(activeItem, activeItemIndex, body.scrollTop, showOriginal);
+  }
+
   function renderedContent(item, index) {
     if (!item.md_html) return '<div class="md-content"><p style="color:#555">暂无访谈内容</p></div>';
     const key = cacheKey(item, index);
@@ -158,11 +190,13 @@
 
     ensureMounted();
     const manageHash = typeof options.manageHash === "boolean" ? options.manageHash : manageHashByDefault;
-    let savedShowOriginal = true;
-    let savedScrollTop = 0;
+    const readingState = readReadingState(item, index);
+    let savedShowOriginal = readingState ? readingState.showOriginal !== false : true;
+    let savedScrollTop = readingState ? Math.max(0, Number(readingState.scrollTop) || 0) : 0;
 
     function activate() {
       activeItem = item;
+      activeItemIndex = index;
       activeManageHash = manageHash;
       dateEl.textContent = formatDate(item.date);
       titleEl.textContent = item.title || "";
@@ -175,6 +209,9 @@
       body.classList.toggle("hide-original", !showOriginal);
       body.style.overflowAnchor = "auto";
       body.scrollTop = savedScrollTop;
+      window.setTimeout(function () {
+        if (activeItem === item && overlay.classList.contains("active")) body.scrollTop = savedScrollTop;
+      }, 120);
       lastScrollY = savedScrollTop;
       pageTopButton.classList.remove("show");
       overlay.classList.add("active");
@@ -192,6 +229,7 @@
           if (activeItem !== item) return;
           savedShowOriginal = showOriginal;
           savedScrollTop = body.scrollTop;
+          writeReadingState(item, index, savedScrollTop, savedShowOriginal);
         },
         deactivate: function () {
           closeLightbox();
@@ -213,6 +251,7 @@
         onRemove: function () {
           if (activeItem === item) {
             activeItem = null;
+            activeItemIndex = -1;
             activeManageHash = false;
           }
         }
@@ -248,6 +287,7 @@
       global.OverlayManager.close("interview", activeItem.hash_id || activeItem.title);
       return;
     }
+    persistActiveReadingState();
     closeLightbox();
     overlay.classList.remove("active");
     overlay.setAttribute("aria-hidden", "true");
