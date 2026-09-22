@@ -1105,6 +1105,136 @@ def generate_gallery(wb):
 
 
 # =========================== 6. 访谈 ===========================
+def extract_interview_sections(markdown):
+    """从 Markdown 二级标题生成稳定的文章目录。"""
+    headings = re.findall(r'^##\s+(.+?)\s*$', markdown or "", flags=re.MULTILINE)
+    return [
+        {"id": f"section-{index:02d}", "title": heading.strip()}
+        for index, heading in enumerate(headings, 1)
+        if heading.strip()
+    ]
+
+
+def add_interview_section_ids(rendered_html, sections):
+    """将目录 ID 按顺序写入已经渲染的 h2，避免浏览器端猜测锚点。"""
+    section_index = 0
+
+    def replace_heading(match):
+        nonlocal section_index
+        if section_index >= len(sections):
+            return match.group(0)
+        section_id = sections[section_index]["id"]
+        section_index += 1
+        return f'<h2 id="{section_id}">{match.group(1)}</h2>'
+
+    return re.sub(r'<h2>(.*?)</h2>', replace_heading, rendered_html, flags=re.DOTALL)
+
+
+def interview_date_key(raw):
+    match = re.search(r'(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})', str(raw or ""))
+    if not match:
+        return (0, 0, 0)
+    return tuple(int(part) for part in match.groups())
+
+
+def interview_people(raw):
+    parts = re.split(r'\s*(?:x|×|＆|&|、|・|/|／|,|，)\s*', str(raw or ""), flags=re.IGNORECASE)
+    return {part.strip() for part in parts if part.strip()}
+
+
+def interview_series_key(title):
+    text = str(title or "")
+    reduced = re.sub(r'[（(]?\s*(?:前|中|后|後)篇\s*[）)]?', '', text)
+    reduced = re.sub(r'第\s*\d+\s*回', '', reduced)
+    reduced = re.sub(r'\s+', '', reduced)
+    reduced = re.sub(r'[「」『』“”‘’【】\[\]（）()·・:：!！?？,，。\-—_]', '', reduced)
+    return reduced if reduced and reduced != re.sub(r'\s+', '', text) else ""
+
+
+def interview_text_features(text):
+    normalized = str(text or "").lower()
+    for stopword in (
+        "ave mujica", "bang dream", "访谈", "采访", "对谈", "专访", "部分",
+        "前篇", "中篇", "后篇", "後篇", "解说", "杂志", "live"
+    ):
+        normalized = normalized.replace(stopword, "")
+    normalized = re.sub(r'[^0-9a-z\u3400-\u9fff]+', '', normalized)
+    return {normalized[index:index + 2] for index in range(max(0, len(normalized) - 1))}
+
+
+def interview_similarity(left, right):
+    reasons = []
+    score = 0.0
+    left_series = interview_series_key(left["title"])
+    right_series = interview_series_key(right["title"])
+    if left_series and left_series == right_series:
+        score += 100
+        reasons.append("同系列")
+
+    shared_people = interview_people(left["interviewee"]) & interview_people(right["interviewee"])
+    named_people = sorted(person for person in shared_people if person.lower() != "ave mujica")
+    if named_people:
+        score += 38 * len(named_people)
+        reasons.append("共同受访者：" + "、".join(named_people[:2]))
+    elif shared_people:
+        score += 12
+        reasons.append("同为全员访谈")
+
+    left_features = interview_text_features(left["title"])
+    right_features = interview_text_features(right["title"])
+    if left_features and right_features:
+        overlap = len(left_features & right_features) / len(left_features | right_features)
+        score += overlap * 24
+        if overlap >= 0.28 and not reasons:
+            reasons.append("相近主题")
+
+    left_sections = interview_text_features("".join(section["title"] for section in left["sections"]))
+    right_sections = interview_text_features("".join(section["title"] for section in right["sections"]))
+    if left_sections and right_sections:
+        score += len(left_sections & right_sections) / len(left_sections | right_sections) * 8
+
+    left_date = interview_date_key(left["date"])
+    right_date = interview_date_key(right["date"])
+    if left_date[0] and right_date[0]:
+        try:
+            distance = abs((datetime(*left_date) - datetime(*right_date)).days)
+            if distance <= 14:
+                score += 3
+            elif distance <= 120:
+                score += 1
+        except ValueError:
+            pass
+
+    if not reasons and score >= 5:
+        reasons.append("相近主题")
+    return score, (reasons[0] if reasons else "相关访谈")
+
+
+def enrich_interview_navigation(interviews):
+    """生成时间导航与关联访谈；相同日期按原始表格顺序保持稳定。"""
+    chronological = sorted(
+        enumerate(interviews),
+        key=lambda pair: (interview_date_key(pair[1]["date"]), pair[0])
+    )
+    for position, (_, item) in enumerate(chronological):
+        item["previous_id"] = chronological[position - 1][1]["hash_id"] if position else ""
+        item["next_id"] = chronological[position + 1][1]["hash_id"] if position + 1 < len(chronological) else ""
+
+    for index, item in enumerate(interviews):
+        candidates = []
+        for other_index, other in enumerate(interviews):
+            if index == other_index:
+                continue
+            score, reason = interview_similarity(item, other)
+            candidates.append((score, interview_date_key(other["date"]), -other_index, other["hash_id"], reason))
+        candidates.sort(reverse=True)
+        item["related"] = [
+            {"id": candidate[3], "reason": candidate[4]}
+            for candidate in candidates
+            if candidate[0] >= 5
+        ][:3]
+
+
 def generate_interview(wb):
     raw = read_sheet(wb, "interview")
     interviews = []
@@ -1128,6 +1258,8 @@ def generate_interview(wb):
             if os.path.isfile(full_path):
                 with open(full_path, "r", encoding="utf-8") as f:
                     md_content = f.read()
+        sections = extract_interview_sections(md_content)
+        rendered_html = add_interview_section_ids(render_md_to_html(md_content), sections)
         interviews.append({
             "poster": fix_path(r.get("poster", ""), "interview"),
             "date": r.get("date", "").strip(),
@@ -1135,8 +1267,11 @@ def generate_interview(wb):
             "title": r.get("title", "").strip(),
             "if_translated": if_translated,
             "hash_id": hash_id(r.get("title", "").strip(), r.get("interviewee", "").strip(), r.get("date", "").strip()),
-            "md_html": render_md_to_html(md_content)
+            "md_html": rendered_html,
+            "sections": sections
         })
+
+    enrich_interview_navigation(interviews)
 
     lines = []
     lines.append("// 访谈数据")
@@ -1151,6 +1286,10 @@ def generate_interview(wb):
         lines.append(f'    title: "{js_str(item["title"])}",')
         lines.append(f'    if_translated: "{js_str(item["if_translated"])}",')
         lines.append(f'    hash_id: "{js_str(item["hash_id"])}",')
+        lines.append(f'    sections: {json.dumps(item["sections"], ensure_ascii=False)},')
+        lines.append(f'    related: {json.dumps(item["related"], ensure_ascii=False)},')
+        lines.append(f'    previous_id: "{js_str(item["previous_id"])}",')
+        lines.append(f'    next_id: "{js_str(item["next_id"])}",')
         lines.append(f'    md_html: "{js_str(item["md_html"])}"')
         lines.append("  }" + ("," if i < len(interviews) - 1 else ""))
     lines.append("];")

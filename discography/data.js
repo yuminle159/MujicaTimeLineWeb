@@ -3328,5 +3328,54 @@ var discographyData = [
         ]
       }
     ]
+  },
+  {
+    "id": "十周年bd",
+    "hash_id": "kfVEilzghhw",
+    "title": "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」Blu-ray",
+    "title_jp": "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」Blu-ray",
+    "release_date": "2026/12/9",
+    "type": "Blu-ray",
+    "formats": [
+      "CD",
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "收录了2026年2月28日在Kアリーナ横浜举办的『BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」』的映像",
+    "cover": "../images/十周年bdcover.webp",
+    "search_keywords": "",
+    "chart": {
+      "first_day_rank": "",
+      "first_week_sales": "",
+      "first_week_rank": "",
+      "total_sales": "",
+      "source": ""
+    },
+    "contents": [],
+    "bonus_contents": [],
+    "editions": []
+  },
+  {
+    "id": "台北鸡狗2bd",
+    "hash_id": "e14CA4T8Qdb",
+    "title": "MyGO!!!!!×Ave Mujica Two Man Live「“moment / memory”」台北追加公演 Blu-ray",
+    "title_jp": "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」台北追加公演 Blu-ray",
+    "release_date": "2027/1/27",
+    "type": "Blu-ray",
+    "formats": [],
+    "label": "",
+    "description": "",
+    "cover": "",
+    "search_keywords": "",
+    "chart": {
+      "first_day_rank": "",
+      "first_week_sales": "",
+      "first_week_rank": "",
+      "total_sales": "",
+      "source": ""
+    },
+    "contents": [],
+    "bonus_contents": [],
+    "editions": []
   }
 ];

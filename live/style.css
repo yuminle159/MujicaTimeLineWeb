@@ -1052,6 +1052,9 @@ body {
   align-self: flex-start;
 }
 .stats-close:hover { color: var(--stats-red-bright); }
+@media (min-width: 961px) {
+  .stats-close { margin-top: 30px; }
+}
 
 /* 筛选 + 视图标签栏 */
 .stats-control-deck {

@@ -955,11 +955,6 @@ class App:
         except Exception as e:
             result = {"success": [], "skipped": [], "failed": [("更新程序", str(e))], "details": []}
         self.finish_run(result, "所有 data 已更新，请刷新浏览器查看变化。")
-        if not result["failed"]:
-            try:
-                open_local_preview(self.log)
-            except Exception as exc:
-                self.log(f"[FAIL] 无法打开本地预览：{exc}", "error")
 
     def convert_webp(self):
         if not HAS_PILLOW:

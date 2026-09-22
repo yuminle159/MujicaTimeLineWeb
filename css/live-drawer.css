@@ -767,6 +767,7 @@
   justify-content: center;
   transition: background 0.2s ease, color 0.2s ease;
 }
+
 .shared-live-kv-lightbox-arrow:hover {
   background: rgba(255, 77, 77, 0.5);
   color: #fff;
@@ -954,6 +955,11 @@
   .shared-live-col-setlist,.shared-live-col-gallery { display: block; max-height: none; padding-right: 0; overflow: visible; }
   .shared-live-has-tabs .shared-live-col-setlist,.shared-live-has-tabs .shared-live-col-gallery { display: none; }
   .shared-live-col-setlist.shared-live-mobile-active,.shared-live-col-gallery.shared-live-mobile-active { display: block; }
+}
+
+@media (min-width: 761px) {
+  .shared-live-close-btn,
+  .shared-live-kv-lightbox-close { top: 60px; }
 }
 
 

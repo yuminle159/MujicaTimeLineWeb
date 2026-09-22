@@ -10,7 +10,7 @@
 
 **Profile**
 
-[c7]Ave Mujica[/c7]／诞生于新世代少女乐队企划「BanG Dream!（バンドリ！）」的乐队。成员包括[c1]Gt.＆Vo.佐佐木李子（Doloris／三角初华役）[/c1]、[c2]Gt.渡濑结月（Mortis／若叶睦役）[/c2]、[c3]Ba.冈田梦以（Timoris[／八幡海铃役）[/c3]、[c4]Dr.米泽茜（Amoris／[c4]祐天寺若麦役）[/c4]、[c5]Key.高尾奏 音（Oblivionis／丰川祥子役）[/c5]。2023年6月举办首场公演**0th LIVE “Primo die in scena”**，2024年又连续5个月发行数字单曲，一直在积极展开活动。目前，电视动画「[c7]BanG Dream! Ave Mujica[/c7]」正在播出。2025年4月将在K Arena横滨与[c6]MyGO!!!!![/c6]举办联合Live。
+[c7]Ave Mujica[/c7]／诞生于新世代少女乐队企划「BanG Dream!（バンドリ！）」的乐队。成员包括[c1]Gt.＆Vo.佐佐木李子（Doloris／三角初华役）[/c1]、[c2]Gt.渡濑结月（Mortis／若叶睦役）[/c2]、[c3]Ba.冈田梦以（Timoris[／八幡海铃役）[/c3]、[c4]Dr.米泽茜（Amoris／祐天寺若麦役）[/c4]、[c5]Key.高尾奏 音（Oblivionis／丰川祥子役）[/c5]。2023年6月举办首场公演**0th LIVE “Primo die in scena”**，2024年又连续5个月发行数字单曲，一直在积极展开活动。目前，电视动画「[c7]BanG Dream! Ave Mujica[/c7]」正在播出。2025年4月将在K Arena横滨与[c6]MyGO!!!!![/c6]举办联合Live。
 
 ◇HP=[https://bang-dream.com/avemujica](https://bang-dream.com/avemujica)
 
