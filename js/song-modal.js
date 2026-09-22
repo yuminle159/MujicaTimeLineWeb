@@ -103,7 +103,7 @@
           : '<span class="shared-song-cd">' + content + '</span>';
       }).join("") + '</div>'
       : "";
-    left.innerHTML = (song.cover ? '<img class="shared-song-cover" src="' + escapeHTML(song.cover) + '" alt="' + escapeHTML(song.name_jp || song.name) + '">' : "") +
+    left.innerHTML = (song.cover ? '<img class="shared-song-cover" src="' + escapeHTML(song.cover) + '" alt="' + escapeHTML(song.name_jp || song.name) + '">' : '<div class="shared-song-cover shared-song-cover-unknown"><i></i><strong>' + escapeHTML(song.name_jp || song.name) + '</strong><small>UNKNOWN</small></div>') +
       '<div class="shared-song-title" id="sharedSongModalTitle">' + escapeHTML(song.name_jp || song.name) + '</div>' + cnTitle +
       (song.type ? '<span class="shared-song-type">' + escapeHTML(song.type) + '</span>' : "") +
       '<button class="shared-song-meta-toggle" type="button" data-song-meta-toggle aria-expanded="false" aria-controls="sharedSongMeta">展开详细信息</button>' +

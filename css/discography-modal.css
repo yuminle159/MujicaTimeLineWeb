@@ -76,7 +76,12 @@
 .shared-discography-cover-nav.next { text-align: right; }
 .shared-discography-cover-nav[hidden] { display: none; }
 @keyframes shared-discography-cover-fade { from { opacity: .35; } to { opacity: 1; } }
-.shared-discography-cover-fallback { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; padding: 20px; color: #666; text-align: center; font: 12px "Space Grotesk",sans-serif; letter-spacing: 1px; background: radial-gradient(circle at 50% 35%,#281416,#111); }
+.shared-discography-cover-fallback { position:absolute; inset:0; z-index:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; overflow:hidden; color:#69696e; text-align:center; font-family:"Space Grotesk",sans-serif; background:linear-gradient(145deg,#19191c,#0c0c0e 72%); }
+.shared-discography-cover-fallback::before,.shared-discography-cover-fallback::after { content:""; position:absolute; width:48%; aspect-ratio:1; border:1px solid rgba(255,255,255,.055); transform:rotate(45deg); }
+.shared-discography-cover-fallback::after { width:30%; border-color:rgba(160,45,50,.16); }
+.shared-discography-cover-fallback i { width:6px; height:6px; transform:rotate(45deg); background:#793136; box-shadow:0 0 18px rgba(180,42,48,.3); }
+.shared-discography-cover-fallback strong { z-index:1; display:-webkit-box; max-width:82%; overflow:hidden; color:#aaa; font:500 clamp(14px,1.6vw,18px)/1.4 "Cinzel","Noto Sans SC",sans-serif; letter-spacing:.8px; text-align:center; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:3; }
+.shared-discography-cover-fallback small { z-index:1; color:#4b4b50; font-size:8px; letter-spacing:3px; }
 .shared-discography-detail-type,
 .shared-discography-section-heading span { color: var(--disc-primary); font: 10px "Space Grotesk",sans-serif; letter-spacing: 2px; }
 .shared-discography-detail-summary h2 { margin: 14px 0 6px; color: var(--disc-text); font: 700 clamp(28px,4vw,46px)/1.1 "Cinzel","Noto Sans SC",serif; }
@@ -99,6 +104,9 @@
 .shared-discography-edition-tab:hover,
 .shared-discography-edition-tab.active { border-color: var(--disc-primary); background: rgba(204,41,41,.08); color: #fff; }
 .shared-discography-edition-tab img { width: 58px; height: 58px; object-fit: contain; background: #0d0d0d; }
+.shared-discography-edition-unknown { display:flex; width:58px; height:58px; flex-direction:column; align-items:center; justify-content:center; gap:3px; overflow:hidden; border:1px solid rgba(255,255,255,.06); background:linear-gradient(145deg,#19191c,#0c0c0e); text-align:center; }
+.shared-discography-edition-unknown strong { display:-webkit-box; max-width:50px; overflow:hidden; color:#777; font:500 7px/1.2 "Cinzel","Noto Sans SC",sans-serif; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.shared-discography-edition-unknown small { color:#444; font:500 5px "Space Grotesk",sans-serif; letter-spacing:1px; }
 .shared-discography-edition-tab small,
 .shared-discography-edition-tab em { display: block; color: var(--disc-dim); font: 9px "Space Grotesk",sans-serif; letter-spacing: 1px; font-style: normal; }
 .shared-discography-edition-tab span { font-size: 12px; }

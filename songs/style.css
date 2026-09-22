@@ -94,7 +94,12 @@ body {
 .new-release-visual { position: absolute; z-index: -2; inset: 0 0 0 auto; width: 51%; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 37%); mask-image: linear-gradient(to right, transparent 0%, #000 37%); }
 .new-release-visual::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, #0e0d0e 0%, rgba(14,13,14,.58) 38%, rgba(0,0,0,.14) 100%); }
 .new-release-visual img,.new-release-visual-placeholder { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(1.08) brightness(.64); transform: scale(1.045); transition: filter var(--md-duration-medium) var(--md-easing-standard), transform .7s var(--md-easing-emphasized); }
-.new-release-visual-placeholder { background: radial-gradient(circle at 65% 35%, #522124, #111 68%); }
+.new-release-visual-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; background:radial-gradient(circle at 65% 35%,rgba(82,33,36,.42),#111 68%); color:#777; font-family:"Space Grotesk",sans-serif; letter-spacing:3px; }
+.new-release-visual-placeholder::before,.new-release-visual-placeholder::after { content:""; position:absolute; width:92px; height:92px; border:1px solid rgba(255,255,255,.05); transform:rotate(45deg); }
+.new-release-visual-placeholder::after { width:58px; height:58px; border-color:rgba(204,41,41,.14); }
+.new-release-visual-placeholder i { width:5px; height:5px; transform:rotate(45deg); background:#793136; box-shadow:0 0 18px rgba(180,42,48,.3); }
+.new-release-visual-placeholder strong { z-index:1; display:-webkit-box; max-width:72%; overflow:hidden; color:#a3a3a7; font:500 15px/1.4 "Cinzel","Noto Sans SC",sans-serif; letter-spacing:.8px; text-align:center; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
+.new-release-visual-placeholder small { z-index:1; color:#49494e; font-size:8px; letter-spacing:3px; }
 .new-release-card:hover .new-release-visual img { filter: saturate(.92) contrast(1.04) brightness(.78); transform: scale(1.09); }
 .new-release-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; max-width: min(720px, 86%); }
 .new-release-kicker,.new-release-open,.new-release-seal { font-family: "Space Grotesk", monospace, sans-serif; letter-spacing: .15em; }
@@ -296,10 +301,27 @@ body {
 .cover-card:hover img {
   filter: brightness(0.3) blur(2px);
 }
+.cover-placeholder { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; overflow:hidden; background:linear-gradient(145deg,#19191c,#0d0d0f 70%); color:#6d6d72; font-family:"Space Grotesk",sans-serif; transition:filter var(--md-duration-medium) var(--md-easing-standard); }
+.cover-placeholder::before,.cover-placeholder::after { content:""; position:absolute; width:52%; aspect-ratio:1; border:1px solid rgba(255,255,255,.055); transform:rotate(45deg); transition:transform .5s var(--md-easing-emphasized),border-color .3s; }
+.cover-placeholder::after { width:32%; border-color:rgba(150,43,48,.15); }
+.cover-placeholder i { width:5px; height:5px; margin-bottom:3px; transform:rotate(45deg); background:#793136; box-shadow:0 0 16px rgba(180,42,48,.28); }
+.cover-placeholder strong { z-index:1; display:-webkit-box; max-width:82%; overflow:hidden; color:#a0a0a4; font:500 clamp(12px,1.25vw,15px)/1.35 "Cinzel","Noto Sans SC",sans-serif; letter-spacing:.5px; text-align:center; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:3; }
+.cover-placeholder small { z-index:1; color:#49494e; font-size:8px; letter-spacing:2.6px; }
+.cover-card:hover .cover-placeholder::before { transform:rotate(50deg) scale(1.08); border-color:rgba(255,255,255,.09); }
+.cover-card:hover .cover-placeholder::after { transform:rotate(40deg) scale(.94); border-color:rgba(204,41,41,.24); }
+.cover-card:hover .cover-placeholder { filter:brightness(.3) blur(2px); }
 .cover-card.is-upcoming { background: #111213; box-shadow: 0 0 0 1px rgba(185,185,185,.16), 0 6px 18px rgba(0,0,0,.42); }
 .cover-card.is-upcoming img { filter: grayscale(100%) contrast(.9) brightness(.5); }
 .cover-card.is-upcoming:hover { box-shadow: 0 0 0 1px rgba(190,190,190,.4), 0 12px 28px rgba(0,0,0,.55); }
 .cover-card.is-upcoming:hover img { filter: grayscale(100%) contrast(.9) brightness(.28) blur(2px); }
+.cover-card.is-upcoming .cover-placeholder { background:radial-gradient(circle at 50% 42%,rgba(150,129,82,.08),transparent 34%),linear-gradient(145deg,#1c1b19,#0d0e10 72%); color:#85817a; filter:none; }
+.cover-card.is-upcoming .cover-placeholder::before { border-color:rgba(218,210,193,.07); }
+.cover-card.is-upcoming .cover-placeholder::after { border-color:rgba(175,149,92,.18); }
+.cover-card.is-upcoming .cover-placeholder i { background:#8c7546; box-shadow:0 0 17px rgba(184,151,79,.22); }
+.cover-card.is-upcoming .cover-placeholder small { color:#55514a; }
+.cover-card.is-upcoming:hover .cover-placeholder { filter:grayscale(100%) contrast(.9) brightness(.28) blur(2px); }
+.cover-card.is-upcoming:hover .cover-placeholder::before { border-color:rgba(225,218,204,.13); }
+.cover-card.is-upcoming:hover .cover-placeholder::after { border-color:rgba(205,174,105,.3); }
 .cover-card.is-upcoming .cover-countdown-badge { border-color: rgba(215,215,215,.45); background: rgba(15,16,17,.86); color: #e2e2e2; }
 .cover-new-badge,.cover-countdown-badge {
   position: absolute;

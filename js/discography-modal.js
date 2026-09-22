@@ -81,7 +81,9 @@
       ["EDITIONS", (release.editions || []).length || "—"]
     ]);
     overlay.querySelector(".shared-discography-edition-tabs").innerHTML = (release.editions || []).map(function (edition, index) {
-      return '<button class="shared-discography-edition-tab" type="button" data-discography-edition="' + index + '"><img src="' + escapeHTML(edition.cover || release.cover) + '" alt="" loading="lazy"><span><small>VERSION ' + String(index + 1).padStart(2, "0") + '</small>' + escapeHTML(edition.name) + '<em>' + escapeHTML(edition.catalog_no) + '</em></span></button>';
+      const cover = edition.cover || release.cover;
+      const visual = cover ? '<img src="' + escapeHTML(cover) + '" alt="" loading="lazy">' : '<span class="shared-discography-edition-unknown"><strong>' + escapeHTML(edition.name || mainTitle) + '</strong><small>UNKNOWN</small></span>';
+      return '<button class="shared-discography-edition-tab" type="button" data-discography-edition="' + index + '">' + visual + '<span><small>VERSION ' + String(index + 1).padStart(2, "0") + '</small>' + escapeHTML(edition.name) + '<em>' + escapeHTML(edition.catalog_no) + '</em></span></button>';
     }).join("") || '<p class="shared-discography-empty">暂无版本资料</p>';
     renderEdition();
     renderChart();
@@ -110,7 +112,7 @@
     overlay.querySelectorAll("[data-discography-cover-nav]").forEach(function (button) {
       button.hidden = covers.length < 2;
     });
-    overlay.querySelector(".shared-discography-cover-fallback").textContent = "";
+    overlay.querySelector(".shared-discography-cover-fallback").innerHTML = covers[activeCoverIndex] ? "" : '<i></i><strong>' + escapeHTML(activeRelease.title_jp || activeRelease.title) + '</strong><small>UNKNOWN</small>';
     overlay.querySelector(".shared-discography-edition-meta").innerHTML = metadataHTML([
       ["CATALOG NO.", edition.catalog_no], ["PRICE", edition.price], ["FORMAT", edition.format],
       ["DISTRIBUTION", edition.distribution], ["LIMITATION", edition.limited]

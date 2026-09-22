@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico">
+  <title>Upcoming · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Noto+Sans+SC:wght@300;400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202609221524">
+  <link rel="stylesheet" href="../css/quick-nav.css?v=202609221524">
+</head>
+<body>
+  <main class="upcoming-page">
+    <header class="upcoming-header">
+      <a class="back-nav" href="../index.html" aria-label="返回主页">←Home</a>
+      <p class="file-id">FILE // UPCOMING_SCHEDULE</p>
+      <h1>Upcoming</h1>
+      <p class="subtitle">RELEASES, PERFORMANCES &amp; ARCHIVE SCHEDULE</p>
+    </header>
+
+    <section class="calendar-shell" aria-label="Upcoming 日历">
+      <div class="calendar-toolbar">
+        <div class="type-filters" id="upcomingFilters" aria-label="类型筛选">
+          <button class="active" type="button" data-type="all">全部</button>
+          <button type="button" data-type="song">歌曲</button>
+          <button type="button" data-type="live">演出</button>
+          <button type="button" data-type="discography">唱片</button>
+        </div>
+        <button class="today-button" id="todayButton" type="button">TODAY</button>
+      </div>
+
+      <div class="calendar-layout">
+        <div class="calendar-panel">
+          <div class="month-nav">
+            <button id="previousMonth" type="button" aria-label="上个月">←</button>
+            <h2 id="monthLabel"></h2>
+            <button id="nextMonth" type="button" aria-label="下个月">→</button>
+          </div>
+          <div class="calendar-scroll">
+            <div class="weekday-row" aria-hidden="true">
+              <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
+        </div>
+
+        <aside class="agenda-panel" aria-labelledby="agendaTitle">
+          <div class="agenda-heading">
+            <p>NEXT RECORDS</p>
+            <span id="agendaCount"></span>
+          </div>
+          <h2 id="agendaTitle">临近档期</h2>
+          <div class="agenda-list" id="upcomingAgenda"></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="../songs/data.js?v=202609221524"></script>
+  <script src="../live/data.js?v=202609221524"></script>
+  <script src="../discography/data.js?v=202609221524"></script>
+  <script src="page.js?v=202609221524"></script>
+  <script src="../js/quick-nav.js?v=202609221524"></script>
+  <script src="../js/page-memory.js?v=202609221524"></script>
+</body>
+</html>

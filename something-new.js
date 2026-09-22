@@ -2,38 +2,20 @@
 window.SOMETHING_NEW = [
   {
     "type": "interview",
-    "ref": "2024年4月 Animate 佐佐木李子 x 高尾奏音访谈（前篇）",
-    "update_date": "2026/9/19",
-    "title": "2024年4月 Animate 佐佐木李子 x 高尾奏音访谈（前篇）",
-    "subtitle": "佐佐木李子 x 高尾奏音 · 2024/4/1",
-    "image": "images/202404弄李访谈前篇01.webp",
-    "href": "interview/index.html?interview=2024%E5%B9%B44%E6%9C%88%20Animate%20%E4%BD%90%E4%BD%90%E6%9C%A8%E6%9D%8E%E5%AD%90%20x%20%E9%AB%98%E5%B0%BE%E5%A5%8F%E9%9F%B3%E8%AE%BF%E8%B0%88%EF%BC%88%E5%89%8D%E7%AF%87%EF%BC%89"
+    "ref": "「リスパレ！チョイス」选出艺人・Ave Mujica 访谈",
+    "update_date": "2026/9/22",
+    "title": "「リスパレ！チョイス」选出艺人・Ave Mujica 访谈",
+    "subtitle": "Ave Mujica · 2024/12/11",
+    "image": "images/20241211lisani全员访谈01.webp",
+    "href": "interview/index.html?interview=%E3%80%8C%E3%83%AA%E3%82%B9%E3%83%91%E3%83%AC%EF%BC%81%E3%83%81%E3%83%A7%E3%82%A4%E3%82%B9%E3%80%8D%E9%80%89%E5%87%BA%E8%89%BA%E4%BA%BA%E3%83%BBAve%20Mujica%20%E8%AE%BF%E8%B0%88"
   },
   {
     "type": "interview",
-    "ref": "2024年4月 Animate 佐佐木李子 x 高尾奏音访谈（中篇）",
-    "update_date": "2026/9/19",
-    "title": "2024年4月 Animate 佐佐木李子 x 高尾奏音访谈（中篇）",
-    "subtitle": "佐佐木李子 x 高尾奏音 · 2024/4/4",
-    "image": "images/202404弄李访谈中篇01.webp",
-    "href": "interview/index.html?interview=2024%E5%B9%B44%E6%9C%88%20Animate%20%E4%BD%90%E4%BD%90%E6%9C%A8%E6%9D%8E%E5%AD%90%20x%20%E9%AB%98%E5%B0%BE%E5%A5%8F%E9%9F%B3%E8%AE%BF%E8%B0%88%EF%BC%88%E4%B8%AD%E7%AF%87%EF%BC%89"
-  },
-  {
-    "type": "interview",
-    "ref": "2024年4月 Animate 佐佐木李子 x 高尾奏音访谈（后篇）",
-    "update_date": "2026/9/19",
-    "title": "2024年4月 Animate 佐佐木李子 x 高尾奏音访谈（后篇）",
-    "subtitle": "佐佐木李子 x 高尾奏音 · 2024/4/7",
-    "image": "images/202404弄李访谈后篇01.webp",
-    "href": "interview/index.html?interview=2024%E5%B9%B44%E6%9C%88%20Animate%20%E4%BD%90%E4%BD%90%E6%9C%A8%E6%9D%8E%E5%AD%90%20x%20%E9%AB%98%E5%B0%BE%E5%A5%8F%E9%9F%B3%E8%AE%BF%E8%B0%88%EF%BC%88%E5%90%8E%E7%AF%87%EF%BC%89"
-  },
-  {
-    "type": "interview",
-    "ref": "月刊ブシロード2024年2月号 杂志全员访谈",
-    "update_date": "2026/9/17",
-    "title": "月刊ブシロード2024年2月号 杂志全员访谈",
-    "subtitle": "Ave Mujica · 2024/1/6",
-    "image": "images/galleryless/月刊bushiroad202402访谈cover.webp",
-    "href": "interview/index.html?interview=%E6%9C%88%E5%88%8A%E3%83%96%E3%82%B7%E3%83%AD%E3%83%BC%E3%83%892024%E5%B9%B42%E6%9C%88%E5%8F%B7%20%E6%9D%82%E5%BF%97%E5%85%A8%E5%91%98%E8%AE%BF%E8%B0%88"
+    "ref": "リスアニ!LIVE 2025 场刊 Ave Mujica部分",
+    "update_date": "2026/9/22",
+    "title": "リスアニ!LIVE 2025 场刊 Ave Mujica部分",
+    "subtitle": "Ave Mujica · 2025/1/25",
+    "image": "images/lisani2025_am10.webp",
+    "href": "interview/index.html?interview=%E3%83%AA%E3%82%B9%E3%82%A2%E3%83%8B%21LIVE%C2%A02025%20%E5%9C%BA%E5%88%8A%20Ave%20Mujica%E9%83%A8%E5%88%86"
   }
 ];

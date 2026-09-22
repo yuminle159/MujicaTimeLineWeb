@@ -1290,8 +1290,19 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "k9D133AsINI",
-    date: "2024/7/13 - 2024/7/14",
+    hash_id: "5bBywWFjzrB",
+    date: "2025/6/7",
+    title: "Ave Mujica 出演 ANISAMA WORLD 2025 in MANILA",
+    category: "organization",
+    description: "ASL在马尼拉（菲律宾首都）举行的Live",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/asl2025manlia kv.webp" }
+    ]
+  },
+  {
+    hash_id: "Fw4d2gH0TMY",
+    date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",
     category: "organization",
     description: "首次海外演唱会 官方精选切片「Ave Mujica」",
@@ -1302,8 +1313,8 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "kGAC98omEKo",
-    date: "2025/4/26 - 2025/4/27",
+    hash_id: "wE1T14VImZV",
+    date: "2025/4/26 ~ 2025/4/27",
     title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」",
     category: "organization",
     description: "横K举办的MyGO!!!!! x Ave Mujica 第一次合同Live Sumimi暖场 CRYCHIC限定复活",
@@ -1313,6 +1324,32 @@ var timelineData = [
       { type: "image", src: "../images/鸡狗1横k kv.webp", caption: "横K合同Live 主视图" },
       { type: "link", url: "https://www.bilibili.com/video/BV1RV2eBeEAd", title: "D1 在线观看" },
       { type: "link", url: "https://www.acfun.cn/v/ac48829435", title: "D2 在线观看" }
+    ]
+  },
+  {
+    hash_id: "zpEMUrZP4YZ",
+    date: "2025/7/12 ~ 2025/7/13",
+    title: "Ave Mujica 出演 BILIBILI MACRO LINK 2025 D2 & D3",
+    category: "organization",
+    description: "第二次参加BML 官方精选切片「KiLLKiSS」",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/bml2025宣传图.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1Ac8yzxERF", title: "在线观看（仅kk）" }
+    ]
+  },
+  {
+    hash_id: "wXqD3AN71XE",
+    date: "2025/7/26 ~ 2025/7/27",
+    title: "Ave Mujica 5th LIVE「Nova Historia」",
+    category: "organization",
+    description: "「新的历史」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/5thlogo原图.webp", caption: "5th Live Logo" },
+      { type: "image", src: "../images/5th kv.webp", caption: "5th Live 主视图" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48848113", title: "D1 在线观看" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48737511", title: "D2 在线观看" }
     ]
   }
 ];

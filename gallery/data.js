@@ -491,14 +491,6 @@ var galleryData = [
     description: ""
   },
   {
-    hash_id: "GbOnRjz3QYH",
-    filename: "../images/animemujica.webp",
-    title: "",
-    date: "",
-    tags: {},
-    description: ""
-  },
-  {
     hash_id: "LdOY5xpiIOW",
     filename: "../images/asl2024.webp",
     title: "",
@@ -589,14 +581,6 @@ var galleryData = [
   {
     hash_id: "pJC92rYQW6H",
     filename: "../images/kk通常.webp",
-    title: "",
-    date: "",
-    tags: {},
-    description: ""
-  },
-  {
-    hash_id: "5tmJ5QLRFLU",
-    filename: "../images/kk限定.jpg",
     title: "",
     date: "",
     tags: {},
@@ -797,14 +781,6 @@ var galleryData = [
   {
     hash_id: "cIqPYVhMdWw",
     filename: "../images/碧瞳.webp",
-    title: "",
-    date: "",
-    tags: {},
-    description: ""
-  },
-  {
-    hash_id: "imgzwHngj6e",
-    filename: "../images/神名.webp",
     title: "",
     date: "",
     tags: {},

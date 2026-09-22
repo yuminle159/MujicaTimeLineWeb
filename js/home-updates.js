@@ -63,6 +63,14 @@
     return element;
   }
 
+  function makeUnknownVisual(className, title) {
+    const placeholder = makeElement("span", className);
+    placeholder.appendChild(makeElement("i"));
+    placeholder.appendChild(makeElement("strong", "", title || "Untitled"));
+    placeholder.appendChild(makeElement("small", "", "UNKNOWN"));
+    return placeholder;
+  }
+
   function renderCards() {
     if (rendered) return;
     const fragment = document.createDocumentFragment();
@@ -79,9 +87,12 @@
         image.alt = "";
         image.loading = "lazy";
         image.decoding = "async";
+        image.addEventListener("error", function () {
+          image.replaceWith(makeUnknownVisual("something-new-drawer-placeholder", item.title));
+        }, { once: true });
         visual.appendChild(image);
       } else {
-        visual.appendChild(makeElement("span", "something-new-drawer-placeholder", "NO VISUAL DATA"));
+        visual.appendChild(makeUnknownVisual("something-new-drawer-placeholder", item.title));
       }
       visual.appendChild(makeElement("span", "something-new-drawer-type", item.type.toUpperCase()));
 

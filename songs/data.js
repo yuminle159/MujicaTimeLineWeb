@@ -1273,5 +1273,26 @@ var songsData = [
       { text: "电影「BanG Dream! Ave Mujica prima aurora」插入歌", source: "", from: "Remark", date: "" }
     ],
     live_history: []
+  },
+  {
+    name: "Abracadabra",
+    name_jp: "Abracadabra",
+    hash_id: "3Cws4GxUP7k",
+    album: "BanG Dream! Our Notes Global Server实装",
+    album_year: "2026",
+    release_date: "2026/9/24",
+    cover: "",
+    type: "Cover",
+    lyricist: "",
+    composer: "",
+    arranger: "",
+    first_stage: "",
+    mv_url: "",
+    lyrics_jp: "",
+    lyrics_cn: "",
+    search_keywords: "ladygaga，游戏",
+    appearances: [],
+    comments: [],
+    live_history: []
   }
 ];

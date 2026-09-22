@@ -11,6 +11,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.09.22",
+    "msg": "1.更新快捷切换气泡 2.更新Upcoming日历 3.更新阅读记录功能 4.更新随机推荐功能",
+    "pinned": false
+  },
+  {
     "date": "2026.09.19",
     "msg": "1.新增全局搜索 2.修复公告栏轮播冗余问题 3.修复Page Top按钮交互异常",
     "pinned": false
