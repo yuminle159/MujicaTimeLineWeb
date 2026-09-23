@@ -93,6 +93,10 @@
 
   function renderLeft(song) {
     const cnTitle = song.name ? '<div class="shared-song-title-cn">' + escapeHTML(song.name) + '</div>' : "";
+    const credits = song.lyricist && song.composer && song.lyricist === song.composer
+      ? '<div><span class="shared-song-meta-label">作词 · 作曲</span><span>' + escapeHTML(song.lyricist) + '</span></div>'
+      : (song.lyricist ? '<div><span class="shared-song-meta-label">作词</span><span>' + escapeHTML(song.lyricist) + '</span></div>' : "") +
+        (song.composer ? '<div><span class="shared-song-meta-label">作曲</span><span>' + escapeHTML(song.composer) + '</span></div>' : "");
     const discographyData = currentOptions.discography || [];
     const appearances = song.appearances && song.appearances.length
       ? '<div class="shared-song-appearances"><span class="shared-song-meta-label">收录CD</span>' + song.appearances.map(function (item) {
@@ -110,8 +114,7 @@
       '<div class="shared-song-meta" id="sharedSongMeta">' +
       (song.release_date ? '<div><span class="shared-song-meta-label">首发日期</span><span>' + escapeHTML(song.release_date) + '</span></div>' : "") +
       (song.album ? '<div><span class="shared-song-meta-label">首发形式</span><span>' + escapeHTML(song.album) + '</span></div>' : "") +
-      (song.lyricist ? '<div><span class="shared-song-meta-label">作词</span><span>' + escapeHTML(song.lyricist) + '</span></div>' : "") +
-      (song.composer ? '<div><span class="shared-song-meta-label">作曲</span><span>' + escapeHTML(song.composer) + '</span></div>' : "") +
+      credits +
       (song.arranger ? '<div><span class="shared-song-meta-label">编曲</span><span>' + escapeHTML(song.arranger) + '</span></div>' : "") +
       (song.first_stage ? '<div><span class="shared-song-meta-label">首次登台</span><span>' + escapeHTML(song.first_stage) + '</span></div>' : "") +
       (song.mv_url ? '<div><span class="shared-song-meta-label">MV链接</span><a href="' + escapeHTML(song.mv_url) + '" target="_blank" rel="noopener">观看 MV &#8599;</a></div>' : "") +

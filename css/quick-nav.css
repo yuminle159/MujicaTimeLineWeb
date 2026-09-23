@@ -65,6 +65,34 @@
   .quick-nav a.quick-nav-back { width:52px; }
   .quick-nav a::after { top:auto; bottom:calc(100% + 9px); transform:translate(-50%,3px); }
   .quick-nav a:hover::after,.quick-nav a:focus-visible::after { transform:translate(-50%,0); }
+  .songs-page-top-btn,
+  .page-top-btn,
+  .shared-interview-page-top {
+    left: 50%;
+    right: auto;
+    bottom: calc(max(10px, env(safe-area-inset-bottom)) + 40px);
+    width: 112px;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid rgba(255,255,255,.07);
+    border-top: 2px solid #cc2929;
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+    background: rgba(10,10,12,.9);
+    box-shadow: 0 -6px 18px rgba(0,0,0,.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #bbb;
+    font: 600 10px "Space Grotesk","Noto Sans SC",sans-serif;
+    letter-spacing: .5px;
+    text-align: center;
+    transform: translate(-50%, 12px);
+  }
+  .songs-page-top-btn.show,
+  .page-top-btn.show,
+  .shared-interview-page-top.show { transform: translate(-50%, 0); }
+  .songs-page-top-btn,
+  .page-top-btn { z-index: 15001; }
   body { padding-bottom:52px; }
 }
 @media (prefers-reduced-motion: reduce) { .quick-nav a,.quick-nav a::after { transition:none; } }
