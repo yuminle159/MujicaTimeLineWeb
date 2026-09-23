@@ -1,6 +1,15 @@
 // 首页 Something New 数据（自动生成，请勿手动修改）
 window.SOMETHING_NEW = [
   {
+    "type": "song",
+    "ref": "Abracadabra",
+    "update_date": "2026/9/23",
+    "title": "Abracadabra",
+    "subtitle": "BanG Dream! Our Notes Global Server实装 · 2026",
+    "image": "images/abracadabra cover.webp",
+    "href": "songs/index.html?song=Abracadabra"
+  },
+  {
     "type": "interview",
     "ref": "「リスパレ！チョイス」选出艺人・Ave Mujica 访谈",
     "update_date": "2026/9/22",

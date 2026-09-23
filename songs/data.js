@@ -1281,18 +1281,20 @@ var songsData = [
     album: "BanG Dream! Our Notes Global Server实装",
     album_year: "2026",
     release_date: "2026/9/24",
-    cover: "",
+    cover: "../images/abracadabra cover.webp",
     type: "Cover",
     lyricist: "",
     composer: "",
     arranger: "",
     first_stage: "",
     mv_url: "",
-    lyrics_jp: "",
-    lyrics_cn: "",
+    lyrics_jp: "Abra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\nPay the toll to the angels\\nDrawing circles in the clouds\\nKeep your mind on the distance\\nWhen the devil turns around\\nHold me in your heart tonight\\nIn the magic of the dark moonlight\\nSave me from this empty fight\\nIn the game of life\\nLike a poem said by a lady in red\\nYou hear the last few words of your life\\nWith a haunting dance, now you're both in a trance\\nIt's time to cast your spell on the night\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\nIn her tongue she said\\nDeath or love tonight\\nAbra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\nFeel the beat under your feet\\nThe floor's on fire\\nAbra-ca-dabra\\nAbracadabra\\nChoose the road on the west side\\nAs the dust flies,watch it burn\\nDon't waste time on a feeling\\nUse your passion,no return\\nHold me in your heart tonight\\nIn the magic of the dark moonlight\\nSave me from this empty fight\\nIn the game of life\\nLike a poem said by a lady in red\\nYou hear the last few words of your life\\nWith a haunting dance, now you're both in a trance\\nIt's time to cast your spell on the night\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\nIn her tongue she said\\nDeath or love tonight\\nAbra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\nFeel the beat under your feet\\nThe floor's on fire\\nAbra-ca-dabra\\nAbracadabra\\nPhantom of the dance floor\\nCome to me\\nSing for me a sinful melody\\nAh ah ah ah ah\\nAh ah ah ah\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\nIn her tongue she said\\nDeath or love tonight",
+    lyrics_cn: "Abra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\n向天使缴上灵魂的代价\\n在云端勾勒神秘的圆圈\\n目光锁定远方\\n当恶魔回首之际\\n今晚　将我紧拥在你心中\\n在幽暗月光的魔法下\\n拯救我脱离这场虚无之战\\n在生命的游戏中\\n像是红衣女子吟诵的诗句\\n你听见生命最后的呢喃\\n随着那魅惑的舞步 你们双双陷入恍惚\\n是时候向黑夜施展你的魔咒\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\n她用她的语言低语：\\n「今夜──非爱即死」\\nAbra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\n感受脚下的节奏\\n舞池正在燃烧\\nAbra-ca-dabra\\nAbracadabra\\n选择西边的道路\\n尘土飞扬间　看一切化为灰烬\\n莫将时光耗于情绪\\n燃尽你的激情 无路可退\\n今晚 将我紧拥在你心中\\n在幽暗月光的魔法下\\n拯救我脱离这场虚无之战\\n在生命的游戏中\\n像是红衣女子吟诵的诗句\\n你听见生命最后的呢喃\\n随着那魅惑的舞步　你们双双陷入恍惚\\n是时候向黑夜施展你的魔咒\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\n她用她的语言低语：\\n「今夜──非爱即死」\\nAbra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\n感受脚下的节奏\\n舞池正在燃烧\\nAbra-ca-dabra\\nAbracadabra\\n舞池的幽魂啊\\n来到我面前\\n为我唱一曲罪孽的旋律\\nAh ah ah ah ah\\nAh ah ah ah\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\n她用她的语言低语：\\n「今夜──非爱即死」",
     search_keywords: "ladygaga，游戏",
     appearances: [],
-    comments: [],
+    comments: [
+      { text: "Lady Gaga — Mayhem (2025)", source: "", from: "Originally by", date: "" }
+    ],
     live_history: []
   }
 ];
