@@ -44,7 +44,6 @@ PAGE_FILES = {
         "page.js",
         "lyrics-atlas.js",
         "lyrics-atlas-data.js",
-        "lyrics",
         "vendor",
     ),
     "live": ("index.html", "style.css", "data.js", "page.js"),

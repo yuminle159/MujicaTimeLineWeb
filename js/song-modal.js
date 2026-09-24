@@ -1,40 +1,6 @@
 (function (global) {
   "use strict";
 
-  const ownScript = document.currentScript;
-  const siteRoot = new URL("../", ownScript.src);
-  const assetVersion = new URL(ownScript.src).search;
-  const lyricsRequests = new Map();
-
-  function loadLyrics(song) {
-    if (!song.lyrics_path || Object.prototype.hasOwnProperty.call(song, "lyrics_jp")) return Promise.resolve(song);
-    const cached = global.WIJIPEDIA_SONG_LYRICS || {};
-    if (cached[song.hash_id]) {
-      song.lyrics_jp = cached[song.hash_id].jp;
-      song.lyrics_cn = cached[song.hash_id].cn;
-      return Promise.resolve(song);
-    }
-    if (lyricsRequests.has(song.hash_id)) return lyricsRequests.get(song.hash_id);
-    const request = new Promise(function (resolve, reject) {
-      const script = document.createElement("script");
-      const url = new URL("songs/" + song.lyrics_path, siteRoot);
-      url.search = assetVersion;
-      script.src = url.href;
-      script.onload = function () {
-        const lyrics = (global.WIJIPEDIA_SONG_LYRICS || {})[song.hash_id];
-        script.remove();
-        if (!lyrics) { reject(new Error("歌词数据缺失")); return; }
-        song.lyrics_jp = lyrics.jp;
-        song.lyrics_cn = lyrics.cn;
-        resolve(song);
-      };
-      script.onerror = function () { script.remove(); reject(new Error("歌词载入失败")); };
-      document.head.appendChild(script);
-    }).catch(function (error) { lyricsRequests.delete(song.hash_id); throw error; });
-    lyricsRequests.set(song.hash_id, request);
-    return request;
-  }
-
   let overlay;
   let left;
   let right;
@@ -89,16 +55,6 @@
   }
 
   function handleModalClick(event) {
-    if (event.target.closest("[data-song-lyrics-retry]") && currentSong) {
-      currentSong.lyricsLoadError = false;
-      right.querySelector("[data-song-lyrics-retry]").textContent = "正在重试…";
-      loadLyrics(currentSong).then(function () { if (currentSong) refreshContext({}); }).catch(function (error) {
-        console.error(error);
-        if (currentSong) currentSong.lyricsLoadError = true;
-        if (currentSong) refreshContext({});
-      });
-      return;
-    }
     const metaToggle = event.target.closest("[data-song-meta-toggle]");
     if (metaToggle) {
       const meta = overlay.querySelector(".shared-song-meta");
@@ -176,12 +132,9 @@
   }
 
   function renderLyrics(song, expandForMissingHistory) {
-    if (song.lyrics_path && !Object.prototype.hasOwnProperty.call(song, "lyrics_jp")) {
-      return '<section class="shared-song-section shared-song-lyrics"><div class="shared-song-section-head"><h3>Lyrics</h3></div><p>' +
-        (song.lyricsLoadError ? '歌词载入失败，请检查网络后重试。' : '正在载入歌词…') +
-        ' <button type="button" data-song-lyrics-retry>重试</button></p></section>';
-    }
     if (!song.lyrics_jp && !song.lyrics_cn) return "";
+    // 只按 Excel 中字面的 \n 标记分行；split 保留连续标记之间的空行。
+    // 单元格自身的真实换行不是中日歌词的对照行边界。
     const jp = (song.lyrics_jp || "").split("\\n");
     const cn = (song.lyrics_cn || "").split("\\n");
     const rows = [];
@@ -294,13 +247,6 @@
       detailScroller().scrollTop = savedScrollTop;
       overlay.classList.add("open");
       overlay.setAttribute("aria-hidden", "false");
-      loadLyrics(song).then(function () {
-        if (currentSong === song) refreshContext({});
-      }).catch(function (error) {
-        console.error(error);
-        song.lyricsLoadError = true;
-        if (currentSong === song) refreshContext({});
-      });
     }
 
     if (global.OverlayManager) {

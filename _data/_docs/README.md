@@ -295,6 +295,8 @@ const TAG_ICONS = {
 | `lyrics_cn` | 否 | 中文歌词（`\n` 换行） | `崩坏殆尽...` |
 | `appearances` | 否 | 收录履历（逗号分隔） | `1st Single, ELEMENTS` |
 
+歌词对照行只由字面 `\n` 标记划分：`\n\n` 空一行，`\n\n\n\n` 空三行；Excel 单元格自身的 Alt+Enter 换行不增加对照行。
+
 #### Sheet 2 — "comments"（制作人讲解）
 
 | 列名 | 必填 | 说明 |

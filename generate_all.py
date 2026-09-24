@@ -754,7 +754,8 @@ def generate_songs(wb):
         lines.append(f'    arranger: "{js_str(song["arranger"])}",')
         lines.append(f'    first_stage: "{js_str(song["first_stage"])}",')
         lines.append(f'    mv_url: "{js_str(song["mv_url"])}",')
-        lines.append(f'    lyrics_path: "lyrics/{song["hash_id"]}.js",')
+        lines.append(f'    lyrics_jp: "{js_str(song["lyrics_jp"])}",')
+        lines.append(f'    lyrics_cn: "{js_str(song["lyrics_cn"])}",')
         lines.append(f'    search_keywords: "{js_str(song["search_keywords"])}",')
         lines.append(f'    appearances: {json.dumps(song["appearances"], ensure_ascii=False)},')
         if song["comments"]:
@@ -778,19 +779,6 @@ def generate_songs(wb):
 
     with open(OUTPUTS["songs"], "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
-    lyrics_dir = os.path.join(ROOT, "songs", "lyrics")
-    os.makedirs(lyrics_dir, exist_ok=True)
-    expected = set()
-    for song in songs:
-        filename = song["hash_id"] + ".js"
-        expected.add(filename)
-        payload = {"jp": song["lyrics_jp"], "cn": song["lyrics_cn"]}
-        with open(os.path.join(lyrics_dir, filename), "w", encoding="utf-8") as f:
-            f.write("window.WIJIPEDIA_SONG_LYRICS = window.WIJIPEDIA_SONG_LYRICS || {};\n")
-            f.write("window.WIJIPEDIA_SONG_LYRICS[" + json.dumps(song["hash_id"]) + "] = " + json.dumps(payload, ensure_ascii=False) + ";\n")
-    for filename in os.listdir(lyrics_dir):
-        if filename.endswith(".js") and filename not in expected:
-            os.remove(os.path.join(lyrics_dir, filename))
     generate_lyrics_atlas_data(songs, lexicon_rules)
     return len(songs)
 
