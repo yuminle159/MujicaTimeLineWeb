@@ -97,11 +97,15 @@
         moveLightbox(Number(move.dataset.liveLightboxMove));
         return;
       }
-      if (event.target.closest(".shared-live-kv-lightbox-close") || event.target === lightbox) {
+      if (event.target.closest(".shared-live-kv-lightbox-close")) {
         closeLightbox();
         return;
       }
-      if (event.target === lightboxImage && lightboxGroup) lightboxHud.classList.toggle("shared-live-hidden");
+      if (event.target === lightboxImage) {
+        if (lightboxGroup) lightboxHud.classList.toggle("shared-live-hidden");
+        return;
+      }
+      if (!event.target.closest(".shared-live-kv-lightbox-hud")) closeLightbox();
     });
 
     document.addEventListener("mouseover", showHighlightBubble);

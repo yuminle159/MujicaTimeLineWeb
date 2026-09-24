@@ -817,6 +817,9 @@ body {
   color: #ff4d4d;
   background: rgba(255, 255, 255, 0.08);
 }
+@media (min-width: 761px) {
+  .tl-lightbox-close { top: 84px; }
+}
 .tl-lightbox-arrow {
   position: absolute;
   top: 50%;

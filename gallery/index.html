@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202609241310">
-  <link rel="stylesheet" href="../css/local-search.css?v=202609241310">
-  <link rel="stylesheet" href="../css/quick-nav.css?v=202609241310">
+  <link rel="stylesheet" href="style.css?v=202609241342">
+  <link rel="stylesheet" href="../css/local-search.css?v=202609241342">
+  <link rel="stylesheet" href="../css/quick-nav.css?v=202609241342">
 </head>
 <body>
   <div class="gallery-page">
@@ -40,7 +40,14 @@
   <!-- 灯箱 -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">&times;</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-stage">
+      <img class="lightbox-img" id="lightboxImg" alt="" hidden>
+      <div class="lightbox-loader" id="lightboxLoader" role="status" aria-live="polite" hidden>
+        <span class="lightbox-spinner" aria-hidden="true"></span>
+        <span id="lightboxLoadMessage">图片加载中…</span>
+        <button type="button" id="lightboxRetry" hidden>重试</button>
+      </div>
+    </div>
     <div class="lightbox-info">
       <div class="lightbox-date" id="lightboxDate"></div>
       <div class="lightbox-title" id="lightboxTitle"></div>
@@ -51,11 +58,11 @@
   <!-- 返回顶部按钮 -->
   <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
 
-  <script src="../js/resource-error.js?v=202609241310"></script>
-  <script src="data.js?v=202609241310"></script>
-  <script src="page.js?v=202609241310"></script>
-  <script src="../js/quick-nav.js?v=202609241310"></script>
-  <script src="../js/page-memory.js?v=202609241310"></script>
+  <script src="../js/resource-error.js?v=202609241342"></script>
+  <script src="data.js?v=202609241342"></script>
+  <script src="page.js?v=202609241342"></script>
+  <script src="../js/quick-nav.js?v=202609241342"></script>
+  <script src="../js/page-memory.js?v=202609241342"></script>
   </div>
 </body>
 </html>

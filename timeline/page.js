@@ -563,7 +563,7 @@
 
   // 灯箱点击事件
   document.getElementById("tlLightbox").addEventListener("click", function(e) {
-    if (e.target === this) closeTlLightbox();
+    if (!e.target.closest(".tl-lightbox-images img, .tl-lightbox-close, .tl-lightbox-arrow")) closeTlLightbox();
   });
   document.querySelector("#tlLightbox .tl-lightbox-close").addEventListener("click", closeTlLightbox);
   document.querySelector("#tlLightbox .tl-lightbox-prev").addEventListener("click", function(e) { e.stopPropagation(); moveTlLightbox(-1); });
