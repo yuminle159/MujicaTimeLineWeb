@@ -220,19 +220,59 @@
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxDesc = document.getElementById('lightboxDesc');
     const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxLoader = document.getElementById('lightboxLoader');
+    const lightboxLoadMessage = document.getElementById('lightboxLoadMessage');
+    const lightboxRetry = document.getElementById('lightboxRetry');
+    let imageRequest = 0;
+    let activeItem = null;
+
+    function loadLightboxImage(item) {
+      const request = ++imageRequest;
+      lightboxImg.hidden = true;
+      lightboxImg.removeAttribute('src');
+      lightboxLoader.hidden = false;
+      lightboxLoader.classList.remove('is-error');
+      lightboxLoadMessage.textContent = '图片加载中…';
+      lightboxRetry.hidden = true;
+
+      const nextImage = new Image();
+      nextImage.onload = async () => {
+        if (nextImage.decode) {
+          try { await nextImage.decode(); } catch (error) { /* 已载入，继续显示。 */ }
+        }
+        if (request !== imageRequest || !lightbox.classList.contains('active')) return;
+        lightboxImg.src = nextImage.src;
+        lightboxImg.alt = item.title || '';
+        lightboxImg.hidden = false;
+        lightboxLoader.hidden = true;
+      };
+      nextImage.onerror = () => {
+        if (request !== imageRequest || !lightbox.classList.contains('active')) return;
+        lightboxLoader.classList.add('is-error');
+        lightboxLoadMessage.textContent = '图片加载失败，请检查网络后重试。';
+        lightboxRetry.hidden = false;
+      };
+      nextImage.src = item.filename;
+    }
 
     function openLightbox(item) {
       hidePageTop();
       history.replaceState(null, '', '#gallery=' + encodeURIComponent(item.hash_id));
-      lightboxImg.src = item.filename;
+      activeItem = item;
       lightboxDate.textContent = formatDate(item.date);
       lightboxTitle.textContent = item.title;
       lightboxDesc.textContent = item.description || '';
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
+      loadLightboxImage(item);
     }
 
     function closeLightbox() {
+      imageRequest += 1;
+      activeItem = null;
+      lightboxImg.hidden = true;
+      lightboxImg.removeAttribute('src');
+      lightboxLoader.hidden = true;
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
       if (location.hash.startsWith('#gallery=')) {
@@ -241,8 +281,11 @@
     }
 
     lightboxClose.addEventListener('click', closeLightbox);
+    lightboxRetry.addEventListener('click', () => {
+      if (activeItem) loadLightboxImage(activeItem);
+    });
     lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
+      if (!e.target.closest('.lightbox-img, .lightbox-close, #lightboxRetry')) closeLightbox();
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();

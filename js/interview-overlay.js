@@ -161,7 +161,7 @@
     window.addEventListener("resize", function () { setSectionPopover(false); });
 
     lightbox.addEventListener("click", function (event) {
-      if (event.target === lightbox) closeLightbox();
+      if (!event.target.closest(".shared-interview-lightbox-images img, .shared-interview-lightbox-close, .shared-interview-lightbox-arrow")) closeLightbox();
     });
     lightbox.querySelector(".shared-interview-lightbox-close").addEventListener("click", closeLightbox);
     lightbox.querySelector(".shared-interview-lightbox-prev").addEventListener("click", function (event) {
