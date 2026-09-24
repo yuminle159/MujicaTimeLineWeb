@@ -39,6 +39,9 @@ build_site.ROOT = Path(PROJECT_DIR)
 build_site.DIST = build_site.ROOT / "dist"
 publish_deploy.ROOT = Path(PROJECT_DIR)
 
+GIT_COMMAND_TIMEOUT_SECONDS = 300
+SELF_UPDATE_UNLOCK_TIMEOUT_SECONDS = 60
+
 
 def open_preview_file(relative_path, log_func):
     """Open a homepage file directly in the default browser."""
@@ -204,14 +207,15 @@ class SelfUpdateRequired(Exception):
     """远端包含当前正在运行的 EXE，需要退出后由辅助进程完成更新。"""
 
 
-def run_git_command(*arguments, check=True):
+def run_git_command(*arguments, check=True, timeout=GIT_COMMAND_TIMEOUT_SECONDS):
     """在项目目录执行 Git，并返回合并后的输出。"""
-    creationflags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
+    creationflags = 0
+    if os.name == "nt":
+        creationflags = subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP
     try:
-        completed = subprocess.run(
+        process = subprocess.Popen(
             ("git", *arguments),
             cwd=PROJECT_DIR,
-            check=False,
             text=True,
             encoding="utf-8",
             errors="replace",
@@ -221,11 +225,30 @@ def run_git_command(*arguments, check=True):
         )
     except FileNotFoundError as exc:
         raise WorkflowError("找不到 Git。请先安装 Git，并确保 git 命令已加入 PATH。") from exc
-    output = completed.stdout.strip()
-    if check and completed.returncode != 0:
+
+    try:
+        output, _ = process.communicate(timeout=timeout)
+    except subprocess.TimeoutExpired as exc:
+        if os.name == "nt":
+            subprocess.run(
+                ("taskkill", "/PID", str(process.pid), "/T", "/F"),
+                check=False,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                creationflags=subprocess.CREATE_NO_WINDOW,
+            )
+        else:
+            process.kill()
+        process.communicate()
+        command = "git " + " ".join(arguments)
+        raise WorkflowError(
+            f"{command} 超过 {timeout} 秒仍未完成，已自动终止。请检查网络后重试。"
+        ) from exc
+    output = output.strip()
+    if check and process.returncode != 0:
         command = "git " + " ".join(arguments)
         raise WorkflowError(f"{command} 执行失败：\n{output or '未知 Git 错误'}")
-    return completed.returncode, output
+    return process.returncode, output
 
 
 def require_git_repository():
@@ -318,9 +341,42 @@ def create_self_update_helper():
     os.close(descriptor)
     project = powershell_quote(PROJECT_DIR)
     executable = powershell_quote(sys.executable)
+    process_ids = sorted({os.getpid(), os.getppid()})
+    process_id_list = ", ".join(str(pid) for pid in process_ids if pid > 0)
     script = f"""$ErrorActionPreference = 'Continue'
-Wait-Process -Id {os.getpid()} -ErrorAction SilentlyContinue
-Start-Sleep -Seconds 2
+$processIds = @({process_id_list})
+foreach ($processId in $processIds) {{
+    Wait-Process -Id $processId -ErrorAction SilentlyContinue
+}}
+$executable = {executable}
+$unlockDeadline = [DateTime]::UtcNow.AddSeconds({SELF_UPDATE_UNLOCK_TIMEOUT_SECONDS})
+$executableUnlocked = $false
+while ([DateTime]::UtcNow -lt $unlockDeadline) {{
+    try {{
+        $stream = [System.IO.File]::Open(
+            $executable,
+            [System.IO.FileMode]::Open,
+            [System.IO.FileAccess]::ReadWrite,
+            [System.IO.FileShare]::None
+        )
+        $stream.Dispose()
+        $executableUnlocked = $true
+        break
+    }} catch {{
+        Start-Sleep -Milliseconds 500
+    }}
+}}
+if (-not $executableUnlocked) {{
+    Add-Type -AssemblyName PresentationFramework
+    [System.Windows.MessageBox]::Show(
+        '工作流工具退出后仍被其他程序占用，Git 同步尚未执行。请关闭工具后重试。',
+        '无法更新工作流工具',
+        'OK',
+        'Error'
+    ) | Out-Null
+    Remove-Item -LiteralPath $PSCommandPath -Force
+    exit 1
+}}
 Set-Location -LiteralPath {project}
 $messages = New-Object System.Collections.Generic.List[string]
 & git merge --ff-only origin/main 2>&1 | ForEach-Object {{ $messages.Add($_.ToString()) }}
@@ -330,10 +386,12 @@ if ($exitCode -eq 0) {{
     $exitCode = $LASTEXITCODE
 }}
 if ($exitCode -ne 0) {{
+    $messages.Add('正在恢复同步前的工作区状态...')
+    & git reset --hard HEAD 2>&1 | ForEach-Object {{ $messages.Add($_.ToString()) }}
     Add-Type -AssemblyName PresentationFramework
     [System.Windows.MessageBox]::Show(($messages -join "`n"), 'Git 同步失败', 'OK', 'Error') | Out-Null
 }}
-Start-Process -FilePath {executable}
+Start-Process -FilePath $executable
 Remove-Item -LiteralPath $PSCommandPath -Force
 """
     Path(script_path).write_text(script, encoding="utf-8-sig")

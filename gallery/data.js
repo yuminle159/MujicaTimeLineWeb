@@ -840,15 +840,6 @@ var galleryData = [
     description: ""
   },
   {
-    hash_id: "0s3uWFbzRKI",
-    filename: "../images/同名.webp",
-    thumbnail: "../images/thumbs/0s3uWFbzRKI.webp",
-    title: "",
-    date: "",
-    tags: {},
-    description: ""
-  },
-  {
     hash_id: "eRikAguuaFQ",
     filename: "../images/囚12.webp",
     thumbnail: "../images/thumbs/eRikAguuaFQ.webp",
@@ -933,15 +924,6 @@ var galleryData = [
     hash_id: "A9XggL9GV5p",
     filename: "../images/翻唱专限定.webp",
     thumbnail: "../images/thumbs/A9XggL9GV5p.webp",
-    title: "",
-    date: "",
-    tags: {},
-    description: ""
-  },
-  {
-    hash_id: "fgR5Opujt2V",
-    filename: "../images/蓝眼睛.webp",
-    thumbnail: "../images/thumbs/fgR5Opujt2V.webp",
     title: "",
     date: "",
     tags: {},
@@ -4269,15 +4251,6 @@ var galleryData = [
     description: ""
   },
   {
-    hash_id: "iTl5GdPxAeJ",
-    filename: "../images/同名.webp",
-    thumbnail: "../images/thumbs/iTl5GdPxAeJ.webp",
-    title: "",
-    date: "",
-    tags: {},
-    description: ""
-  },
-  {
     hash_id: "ZBsV6MoFLtm",
     filename: "../images/囚12.webp",
     thumbnail: "../images/thumbs/ZBsV6MoFLtm.webp",
@@ -4983,15 +4956,6 @@ var galleryData = [
     hash_id: "JilC8loz0Y0",
     filename: "../images/翻唱专限定.webp",
     thumbnail: "../images/thumbs/JilC8loz0Y0.webp",
-    title: "",
-    date: "",
-    tags: {},
-    description: ""
-  },
-  {
-    hash_id: "4yTSOYqO5Hp",
-    filename: "../images/蓝眼睛.webp",
-    thumbnail: "../images/thumbs/4yTSOYqO5Hp.webp",
     title: "",
     date: "",
     tags: {},
