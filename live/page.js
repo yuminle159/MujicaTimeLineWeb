@@ -255,7 +255,7 @@
       card.className = "live-card" + (isUpcoming ? " is-upcoming" : "");
       card.innerHTML = `
         <div class="card-image${live.tag ? ' tag-' + live.tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '') : ''}" onclick="openDrawer(${origIdx})">
-          ${live.poster ? `<img src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}" loading="lazy">` : `<div class="card-placeholder"><i></i><strong>${escapeHTML(live.name)}</strong><small>UNKNOWN</small></div>`}
+          ${live.poster ? `<img src="${escapeHTML(live.poster)}" alt="${escapeHTML(live.name)}" loading="${i < 4 ? 'eager' : 'lazy'}" decoding="async">` : `<div class="card-placeholder"><i></i><strong>${escapeHTML(live.name)}</strong><small>UNKNOWN</small></div>`}
           ${isUpcoming ? `<span class="card-upcoming-countdown">${days} 天后</span>` : ''}
         </div>
         <div class="card-info" onclick="openDrawer(${origIdx})">
@@ -269,14 +269,16 @@
 
   // Live 页面保留原有入口名，具体 DOM、渲染与嵌套灯箱均由共享组件负责。
   window.openDrawer = function(index, updateHash = true) {
-    return WijipediaData.load(["songs", "discography", "interview"]).then(function(data) {
-      return LiveDrawer.open(index, {
-        lives: livesData,
-        songs: data.songs,
-        discography: data.discography,
-        updateHash
-      });
-    }).catch(function(error) { reportDataLoadError(error); });
+    const opened = LiveDrawer.open(index, {
+      lives: livesData,
+      songs: WijipediaData.get("songs") || [],
+      discography: WijipediaData.get("discography") || [],
+      updateHash
+    });
+    if (opened) WijipediaData.loadRelated(["songs", "discography", "interview"], function (data) {
+      LiveDrawer.refreshContext({ songs: data.songs, discography: data.discography });
+    });
+    return opened;
   };
 
   buildLiveFilter();

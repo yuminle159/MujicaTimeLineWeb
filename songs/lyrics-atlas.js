@@ -3,6 +3,31 @@
 
   const trigger = document.getElementById("lyricsAtlasTrigger");
   if (!trigger || typeof songsData === "undefined") return;
+  const ownScript = document.currentScript;
+  let resourcesPromise;
+
+  function loadScript(path) {
+    return new Promise(function (resolve, reject) {
+      const script = document.createElement("script");
+      const url = new URL(path, ownScript.src);
+      url.search = new URL(ownScript.src).search;
+      script.src = url.href;
+      script.onload = resolve;
+      script.onerror = function () { script.remove(); reject(new Error(path + " 载入失败")); };
+      document.head.appendChild(script);
+    });
+  }
+
+  function ensureResources() {
+    if (window.LYRICS_ATLAS_DATA && window.WordCloud) return Promise.resolve();
+    if (!resourcesPromise) {
+      resourcesPromise = Promise.all([
+        window.LYRICS_ATLAS_DATA ? Promise.resolve() : loadScript("lyrics-atlas-data.js"),
+        window.WordCloud ? Promise.resolve() : loadScript("vendor/wordcloud2.js")
+      ]).catch(function (error) { resourcesPromise = null; throw error; });
+    }
+    return resourcesPromise;
+  }
 
   const state = { language: "jp", word: "", detailView: "summary", sourcePage: 0 };
   let corpus = null;
@@ -300,7 +325,17 @@
     overlay.querySelector(".lyrics-atlas-close").focus();
   }
 
-  trigger.addEventListener("click", open);
+  trigger.addEventListener("click", function () {
+    trigger.disabled = true;
+    trigger.textContent = "正在载入…";
+    ensureResources().then(open).catch(function (error) {
+      console.error(error);
+      trigger.title = "载入失败，请检查网络后重试";
+    }).finally(function () {
+      trigger.disabled = false;
+      trigger.textContent = "Lyrics Atlas";
+    });
+  });
   window.addEventListener("resize", function () {
     if (overlay && overlay.classList.contains("active")) layoutWordCloud({ animate: false });
   });

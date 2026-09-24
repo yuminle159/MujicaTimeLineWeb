@@ -26,6 +26,7 @@ ROOT_FILES = (
     "something-new.js",
     "search-index.js",
     "search-bodies.js",
+    "daily-archive.js",
 )
 
 SHARED_DIRECTORIES = (
@@ -43,14 +44,15 @@ PAGE_FILES = {
         "page.js",
         "lyrics-atlas.js",
         "lyrics-atlas-data.js",
+        "lyrics",
         "vendor",
     ),
     "live": ("index.html", "style.css", "data.js", "page.js"),
     "timeline": ("index.html", "style.css", "data.js", "page.js"),
     "gallery": ("index.html", "style.css", "data.js", "page.js"),
-    "interview": ("index.html", "style.css", "page.js", "data.js"),
+    "interview": ("index.html", "style.css", "page.js", "data.js", "articles"),
     "discography": ("index.html", "style.css", "data.js", "page.js"),
-    "upcoming": ("index.html", "style.css", "page.js"),
+    "upcoming": ("index.html", "style.css", "page.js", "events.js"),
 }
 
 FORBIDDEN_PUBLIC_SUFFIXES = {".py", ".pyc", ".xlsx", ".md", ".exe"}

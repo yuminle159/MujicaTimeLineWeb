@@ -1,6 +1,60 @@
 (function (global) {
   "use strict";
 
+  const ownScript = document.currentScript;
+  const siteRoot = new URL("../", ownScript.src);
+  const assetVersion = new URL(ownScript.src).search;
+  const articleRequests = new Map();
+  let articleStatus;
+  let pendingOpenId = null;
+
+  function showArticleStatus(message, retry) {
+    if (!articleStatus) {
+      articleStatus = document.createElement("div");
+      articleStatus.className = "interview-load-status";
+      articleStatus.setAttribute("role", "status");
+      document.body.appendChild(articleStatus);
+    }
+    articleStatus.replaceChildren(document.createTextNode(message));
+    if (retry) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = "重试";
+      button.addEventListener("click", retry, { once: true });
+      articleStatus.appendChild(button);
+    }
+    articleStatus.hidden = false;
+  }
+
+  function loadArticle(item) {
+    if (Object.prototype.hasOwnProperty.call(item, "md_html")) return Promise.resolve(item);
+    const id = item.hash_id;
+    const cached = global.WIJIPEDIA_INTERVIEW_ARTICLES;
+    if (cached && Object.prototype.hasOwnProperty.call(cached, id)) {
+      item.md_html = cached[id];
+      return Promise.resolve(item);
+    }
+    if (articleRequests.has(id)) return articleRequests.get(id);
+    const request = new Promise(function (resolve, reject) {
+      const script = document.createElement("script");
+      const url = new URL("interview/" + item.article_path, siteRoot);
+      url.search = assetVersion;
+      script.src = url.href;
+      script.onload = function () {
+        const articles = global.WIJIPEDIA_INTERVIEW_ARTICLES || {};
+        if (Object.prototype.hasOwnProperty.call(articles, id)) {
+          item.md_html = articles[id];
+          resolve(item);
+        } else reject(new Error("访谈正文缺失"));
+        script.remove();
+      };
+      script.onerror = function () { script.remove(); reject(new Error("访谈正文载入失败")); };
+      document.head.appendChild(script);
+    }).catch(function (error) { articleRequests.delete(id); throw error; });
+    articleRequests.set(id, request);
+    return request;
+  }
+
   function discoveredData() {
     if (typeof interviewData !== "undefined" && Array.isArray(interviewData)) return interviewData;
     return Array.isArray(global.interviewData) ? global.interviewData : [];
@@ -384,7 +438,7 @@
     window.requestAnimationFrame(updateActiveSection);
   }
 
-  function open(target, options) {
+  function openLoaded(target, options) {
     options = options || {};
     const data = currentData(options);
     const index = typeof target === "number" ? target : data.indexOf(target);
@@ -471,6 +525,29 @@
     document.body.style.overflow = "hidden";
     if (manageHash && item.hash_id) history.replaceState(null, "", "#" + encodeURIComponent(item.hash_id));
     return true;
+  }
+
+  function open(target, options) {
+    options = options || {};
+    const data = currentData(options);
+    const item = typeof target === "number" ? data[target] : target;
+    if (!item) return false;
+    pendingOpenId = item.hash_id || item.title;
+    if (Object.prototype.hasOwnProperty.call(item, "md_html")) {
+      if (articleStatus) articleStatus.hidden = true;
+      return openLoaded(target, options);
+    }
+    showArticleStatus("正在载入访谈正文…");
+    return loadArticle(item).then(function () {
+      if (pendingOpenId !== (item.hash_id || item.title)) return false;
+      articleStatus.hidden = true;
+      return openLoaded(target, options);
+    }).catch(function (error) {
+      if (pendingOpenId !== (item.hash_id || item.title)) return false;
+      console.error(error);
+      showArticleStatus("访谈正文载入失败，请检查网络后重试。", function () { open(target, options); });
+      return false;
+    });
   }
 
   function openByTitle(title, options) {
@@ -698,17 +775,6 @@
     }
   }
 
-  function preRender(data) {
-    if (Array.isArray(data)) interviews = data;
-    const work = function () {
-      currentData().forEach(function (item, index) {
-        if (item.md_html) renderedContent(item, index);
-      });
-    };
-    if (global.requestIdleCallback) global.requestIdleCallback(work);
-    else setTimeout(work, 100);
-  }
-
   function isOpen() {
     return !!(overlay && overlay.classList.contains("active"));
   }
@@ -720,8 +786,7 @@
     openByHash: openByHash,
     hasTitle: hasTitle,
     close: close,
-    isOpen: isOpen,
-    preRender: preRender
+    isOpen: isOpen
   };
 
   global.InterviewOverlay = api;

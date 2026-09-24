@@ -150,6 +150,8 @@ OUTPUTS = {
     "discography":   os.path.join(ROOT, "discography", "data.js"),
     "search_index":  os.path.join(ROOT, "search-index.js"),
     "search_bodies": os.path.join(ROOT, "search-bodies.js"),
+    "daily_archive": os.path.join(ROOT, "daily-archive.js"),
+    "upcoming_events": os.path.join(ROOT, "upcoming", "events.js"),
 }
 
 # 旧 xlsx 文件路径（用于 --init 合并）
@@ -752,8 +754,7 @@ def generate_songs(wb):
         lines.append(f'    arranger: "{js_str(song["arranger"])}",')
         lines.append(f'    first_stage: "{js_str(song["first_stage"])}",')
         lines.append(f'    mv_url: "{js_str(song["mv_url"])}",')
-        lines.append(f'    lyrics_jp: "{js_str(song["lyrics_jp"])}",')
-        lines.append(f'    lyrics_cn: "{js_str(song["lyrics_cn"])}",')
+        lines.append(f'    lyrics_path: "lyrics/{song["hash_id"]}.js",')
         lines.append(f'    search_keywords: "{js_str(song["search_keywords"])}",')
         lines.append(f'    appearances: {json.dumps(song["appearances"], ensure_ascii=False)},')
         if song["comments"]:
@@ -777,6 +778,19 @@ def generate_songs(wb):
 
     with open(OUTPUTS["songs"], "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
+    lyrics_dir = os.path.join(ROOT, "songs", "lyrics")
+    os.makedirs(lyrics_dir, exist_ok=True)
+    expected = set()
+    for song in songs:
+        filename = song["hash_id"] + ".js"
+        expected.add(filename)
+        payload = {"jp": song["lyrics_jp"], "cn": song["lyrics_cn"]}
+        with open(os.path.join(lyrics_dir, filename), "w", encoding="utf-8") as f:
+            f.write("window.WIJIPEDIA_SONG_LYRICS = window.WIJIPEDIA_SONG_LYRICS || {};\n")
+            f.write("window.WIJIPEDIA_SONG_LYRICS[" + json.dumps(song["hash_id"]) + "] = " + json.dumps(payload, ensure_ascii=False) + ";\n")
+    for filename in os.listdir(lyrics_dir):
+        if filename.endswith(".js") and filename not in expected:
+            os.remove(os.path.join(lyrics_dir, filename))
     generate_lyrics_atlas_data(songs, lexicon_rules)
     return len(songs)
 
@@ -1083,6 +1097,28 @@ def generate_gallery(wb):
             "description": img.get("description", "")
         })
 
+    try:
+        from PIL import Image
+    except ImportError:
+        Image = None
+    thumb_dir = os.path.join(ROOT, "images", "thumbs")
+    if Image:
+        os.makedirs(thumb_dir, exist_ok=True)
+    for item in images:
+        item["thumbnail"] = item["filename"]
+        path = item["filename"]
+        if not Image or not path.startswith("../images/"):
+            continue
+        source = os.path.normpath(os.path.join(ROOT, "gallery", path))
+        if not os.path.isfile(source):
+            continue
+        thumbnail = os.path.join(thumb_dir, item["hash_id"] + ".webp")
+        if not os.path.isfile(thumbnail) or os.path.getmtime(thumbnail) < os.path.getmtime(source):
+            with Image.open(source) as picture:
+                picture.thumbnail((480, 480))
+                picture.save(thumbnail, "WEBP", quality=74, method=5)
+        item["thumbnail"] = "../images/thumbs/" + item["hash_id"] + ".webp"
+
     lines = []
     lines.append("// 画廊图片数据")
     lines.append("// 由 generate_all.py 自动生成，请勿手动修改")
@@ -1092,6 +1128,7 @@ def generate_gallery(wb):
         lines.append("  {")
         lines.append(f'    hash_id: "{item["hash_id"]}",')
         lines.append(f'    filename: "{js_str(item["filename"])}",')
+        lines.append(f'    thumbnail: "{js_str(item["thumbnail"])}",')
         lines.append(f'    title: "{js_str(item["title"])}",')
         lines.append(f'    date: "{js_str(item["date"])}",')
         lines.append(f'    tags: {json.dumps(item["tags"], ensure_ascii=False)},')
@@ -1290,12 +1327,24 @@ def generate_interview(wb):
         lines.append(f'    related: {json.dumps(item["related"], ensure_ascii=False)},')
         lines.append(f'    previous_id: "{js_str(item["previous_id"])}",')
         lines.append(f'    next_id: "{js_str(item["next_id"])}",')
-        lines.append(f'    md_html: "{js_str(item["md_html"])}"')
+        lines.append(f'    article_path: "articles/{item["hash_id"]}.js"')
         lines.append("  }" + ("," if i < len(interviews) - 1 else ""))
     lines.append("];")
 
     with open(OUTPUTS["interview"], "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
+    article_dir = os.path.join(ROOT, "interview", "articles")
+    os.makedirs(article_dir, exist_ok=True)
+    expected = set()
+    for item in interviews:
+        filename = item["hash_id"] + ".js"
+        expected.add(filename)
+        with open(os.path.join(article_dir, filename), "w", encoding="utf-8") as f:
+            f.write("window.WIJIPEDIA_INTERVIEW_ARTICLES = window.WIJIPEDIA_INTERVIEW_ARTICLES || {};\n")
+            f.write("window.WIJIPEDIA_INTERVIEW_ARTICLES[" + json.dumps(item["hash_id"]) + "] = " + json.dumps(item["md_html"], ensure_ascii=False) + ";\n")
+    for filename in os.listdir(article_dir):
+        if filename.endswith(".js") and filename not in expected:
+            os.remove(os.path.join(article_dir, filename))
     return len(interviews)
 
 
@@ -1609,6 +1658,37 @@ def generate_search_indexes(wb):
         file.write("window.WIJIPEDIA_SEARCH_INDEX = ")
         file.write(json.dumps(records, ensure_ascii=False, separators=(",", ":")))
         file.write(";\n")
+    archive = [
+        {key: item[key] for key in ("key", "type", "date", "url")}
+        for item in records if item["type"] in ("song", "live", "timeline", "interview", "discography")
+    ]
+    with open(OUTPUTS["daily_archive"], "w", encoding="utf-8") as file:
+        file.write("// 今日随机档案专用索引，由 generate_all.py 自动生成。\n")
+        file.write("window.WIJIPEDIA_DAILY_ARCHIVE = " + json.dumps(archive, ensure_ascii=False, separators=(",", ":")) + ";\n")
+    events = []
+    for sheet, item_type, date_field, title_field, section, anchor in (
+        ("songs", "song", "release_date", "song_name_jp", "songs", "song"),
+        ("lives", "live", "live_date", "live_name", "live", "live"),
+        ("discography_releases", "discography", "release_date", "title_jp", "discography", "discography"),
+    ):
+        for row in read_sheet(wb, sheet):
+            date = normalize_date(row.get(date_field, ""))
+            if not date:
+                continue
+            if item_type == "song":
+                item_id = hash_id(row.get("song_name", ""), row.get("song_name_jp", ""), date)
+                title = row.get(title_field, "") or row.get("song_name", "")
+            elif item_type == "live":
+                item_id = hash_id(row.get("live_name", ""), date, row.get("live_venue", ""))
+                title = row.get(title_field, "")
+            else:
+                item_id = hash_id(row.get("title", ""), row.get("title_jp", ""), date)
+                title = row.get(title_field, "") or row.get("title", "")
+            events.append({"type": item_type, "date": date, "title": title,
+                           "url": f"../{section}/index.html#{anchor}={quote(item_id)}"})
+    with open(OUTPUTS["upcoming_events"], "w", encoding="utf-8") as file:
+        file.write("// Upcoming 日历专用事件数据，由 generate_all.py 自动生成。\n")
+        file.write("window.WIJIPEDIA_UPCOMING_EVENTS = " + json.dumps(events, ensure_ascii=False, separators=(",", ":")) + ";\n")
     with open(OUTPUTS["search_bodies"], "w", encoding="utf-8") as file:
         file.write("// 全局搜索正文索引，首次输入搜索词时按需加载。\n")
         file.write("window.WIJIPEDIA_SEARCH_BODIES = ")

@@ -73,17 +73,16 @@
       return `<button class="release-row${comingSoon ? ' is-coming-soon' : ''}" data-release-id="${escapeHTML(release.id)}"${comingSoon ? ' aria-label="Coming soon. Please support the official release."' : ''}>${comingSoon ? '<span class="coming-ribbon" aria-hidden="true">COMING SOON</span>' : ''}<div class="row-cover">${coverStack}${covers.length > 1 ? `<span class="cover-count">${covers.length} COVERS</span>` : ''}</div><div class="row-main"><div class="row-type">${escapeHTML(release.type)}</div><h2>${escapeHTML(mainTitle)}</h2>${secondaryTitle ? `<p>${escapeHTML(secondaryTitle)}</p>` : ''}<div class="row-date">${escapeHTML(release.release_date)}</div><div class="release-tags"><span>${release.editions.length} EDITION${release.editions.length === 1 ? '' : 'S'}</span>${release.formats.map(format => `<span class="media">${escapeHTML(format)}</span>`).join('')}</div></div><aside class="row-aside">${comingSoon ? prompt : ''}<div class="catalog">${escapeHTML(catalog)}</div><div class="chart-rank"><small>ORICON WEEKLY</small><span class="chart-summary">${escapeHTML(rank)} - <span class="chart-sales${firstWeekSalesIsNoData ? ' is-no-data' : ''}">${escapeHTML(firstWeekSales)}</span></span></div><div class="open-mark">OPEN ↗</div></aside></button>`;
     }
     function openRelease(id, updateHash = true) {
-      return WijipediaData.load(['songs', 'live', 'interview']).then(data => {
-        return DiscographyModal.open(id, {
-          discography: discographyData,
-          songs: data.songs,
-          lives: data.live,
-          updateHash
-        });
-      }).catch(error => {
-        console.error(error);
-        window.alert('关联资料载入失败，请检查网络后重试。');
+      const opened = DiscographyModal.open(id, {
+        discography: discographyData,
+        songs: WijipediaData.get('songs') || [],
+        lives: WijipediaData.get('live') || [],
+        updateHash
       });
+      if (opened) WijipediaData.loadRelated(['songs', 'live', 'interview'], data => {
+        DiscographyModal.refreshContext({ songs: data.songs, lives: data.live });
+      });
+      return opened;
     }
     document.getElementById('filterGroup').addEventListener('click', event => { const button = event.target.closest('[data-filter]'); if (!button) return; activeFilter = button.dataset.filter; document.querySelectorAll('[data-filter]').forEach(item => item.classList.toggle('active', item === button)); renderArchive(); });
     document.getElementById('searchInput').addEventListener('input', event => { query = event.target.value.trim().toLowerCase(); renderArchive(); });
