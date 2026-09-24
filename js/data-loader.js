@@ -62,9 +62,37 @@
     });
   }
 
+  function loadRelated(names, onReady) {
+    function attempt() {
+      load(names).then(function (data) {
+        if (notice) notice.remove();
+        notice = null;
+        onReady(data);
+      }).catch(function (error) {
+        console.error(error);
+        if (!notice) {
+          notice = document.createElement("div");
+          notice.setAttribute("role", "status");
+          notice.style.cssText = "position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:100000;background:#24202b;color:white;padding:12px 16px;border-radius:8px;box-shadow:0 8px 28px #0005";
+          document.body.appendChild(notice);
+        }
+        notice.textContent = "关联资料载入失败，主内容仍可浏览。 ";
+        const retry = document.createElement("button");
+        retry.type = "button";
+        retry.textContent = "重试";
+        retry.style.cssText = "margin-left:8px;color:inherit;background:transparent;border:1px solid currentColor;border-radius:4px;cursor:pointer";
+        retry.addEventListener("click", attempt, { once: true });
+        notice.appendChild(retry);
+      });
+    }
+    let notice = null;
+    window.setTimeout(attempt, 350);
+  }
+
   global.WijipediaData = {
     get: get,
     load: load,
+    loadRelated: loadRelated,
     isLoaded: function (name) { return Array.isArray(get(name)); }
   };
 })(window);

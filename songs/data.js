@@ -16,8 +16,7 @@ var songsData = [
     arranger: "賀佐泰洋(SUPA LOVE)",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "https://www.bilibili.com/video/BV16v4y1H7ZR",
-    lyrics_jp: "この領域まで侵されて そう プラットフォームは上下する\\n新しく記された my バースデイ 今夜 感じて 燃え 悶える\\nna, 生々しい艷やかな mad day 秘密めいた ruler loo-la, cool, cool,\\n“ようこそ おいでなさい” 告げる 始まりのとき\\n\\nねぇ しなやかなつま先が ‘ゆらっ’描き出すわ輪舞曲(ロンド)\\n純白のドレスを さあ いま 染めて闇の色\\n殺める影よ 舞い上がれ\\n\\n見える 見える 見えないものが ほら\\n生まれ変わる ああ 本当の私に\\n\\n\\n\\nエンジェル・インターセプター concept 混乱のフェーズ 堕ちる術中\\nその小さな胸を引き裂いて\\nbloody lover, lover, la-la-la, bloody 散らばるよ 擦り切れたフィルム\\n場面 場面 蘇る 瞼の裏側で\\n\\nねぇ 張り付く夜には また 究極の快楽が\\njack-jackie, 邪鬼 zap, zap, でもまだ 足りないよ足りない\\n求めて求めて 苛まれて\\n\\n馳せる 馳せる 消えてゆく惑星(ほし)が ほら\\n宇宙(そら)のリスク 真実を歪めたなら\\n\\n\\n\\ncallin' 呼び続けてもまだ darlin' 戻らない\\n誰もが 選ばれたパズルのピースに\\nこのまま このままでいい 世界をあげるわ\\n\\n見える 見える 見えないものが ほら\\n生まれ変わる ああ 本当の私に\\n\\noh, my..\\nblack-black, black, my black birthday",
-    lyrics_cn: "连此领域也被侵蚀 是的 舞台升起降下\\n被重新记载的 my 诞生日 今晚 去感受 燃烧着 痛苦挣扎\\nna, 鲜活妖艳的 mad day 充斥秘密的 ruler loo-la, cool, cool, \\n“欢迎前来 请过来这里” 宣告着 起始之时刻\\n\\n呐啊 柔软优美的足尖 摇荡勾勒轮舞曲\\n将那纯白的礼服 来吧 此刻 染上黑暗之色\\n杀戮的暗影啊 升腾而起吧 \\n\\n看见了 看见了 本不可见之物 看啊\\n重获新生 啊啊 成为真正的我\\n\\n\\n\\n天使拦截者 concept 混乱的局面 堕入陷阱之中\\n将那小小的胸膛撕裂\\nbloody lover, lover, la-la-la, bloody 散落一地啊 磨损的胶片\\n一幕幕场景 重新浮现 在眼帘之后\\n\\n呐啊 在这黏着不去的夜里 再一次 极致的快感…\\njack-jackie, 邪鬼 zap, zap, 但还不够啊 还远远不够啊\\n追求着渴望着 被折磨着\\n\\n奔驰着 奔驰着 逐渐消逝的行星 看啊\\n若要扭曲真实 则将承受宇宙的风险\\n\\n\\n\\ncallin' 即使不断呼喊 darlin' 也不会回来\\n无论是谁 都会被选中成为拼图的碎片\\n这样就好 维持这样就好 我会给你整个世界\\n\\n看见了 看见了 本不可见之物 看啊\\n重获新生 啊啊 成为真正的我\\n\\noh, my..\\nblack-black, black, my black birthday",
+    lyrics_path: "lyrics/ggXANsHGOwf.js",
     search_keywords: "黑色生日，黑生",
     appearances: ["Alea jacta est", "Ave Música"],
     comments: [
@@ -66,8 +65,7 @@ var songsData = [
     arranger: "長谷川大介(SUPA LOVE)",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "https://www.bilibili.com/video/BV1vs4y127DJ",
-    lyrics_jp: "ああ 深く 深く 迷い込んだ森で\\nなぜか私を開いて壊すもの そう そして 感じさせるもの\\n木から落ちる leaf に ほらいま 映り込む未来\\n\\nこの風 吹き抜けるとき 私は祈り人(prayer)\\n\\nおしえてよ おしえてよ こんなに美しいのはなぜ\\n惹かれてく 堕ちてく 月が笑う夜\\n\\n\\n\\n銀のトレーにフルーツを キャンドルホルダーに火を\\nこのまま いくつかの意味をさがすの その幻を暴きたい\\n常に終わりは始まりと組まれる 不思議な creation\\n\\nこの風 命集めて いま 昇るなら\\n\\nおしえてよ おしえてよ こんなに苦しいのはなぜ\\n鏡の中の彼女が 嘲笑う夜\\n\\n\\n\\n大気の重さで もうひとつの月が顔を出す\\n“早く目覚めて ここで眠ってしまわないように”\\n\\nおしえてよ おしえてよ こんなに美しいのはなぜ\\n惹かれてく 堕ちてく 月が笑う夜",
-    lyrics_cn: "啊啊 深深地 深深地 迷失在森林中\\n某物莫名将我剖开破坏 是啊 而后又让我有所感受\\n从树上落下的 leaf 上 看吧 此刻 正映照着未来\\n\\n当这阵风吹过时 我即是祈祷者（prayer）\\n\\n请告诉我 请告诉我吧 为何如此美丽动人\\n渐受蛊惑 步步坠落 月亮嗤笑之夜\\n\\n\\n\\n将果实盛入银盘 为烛台点燃火焰\\n就这样 寻找种种意义 渴望揭穿那重幻象\\n结束总与开始交织纠缠 不可思议的 creation\\n\\n这阵风 汇聚生命 现在 若能升腾而起\\n\\n请告诉我 请告诉我吧 为何如此痛苦难耐\\n镜中的她 嘲弄之夜\\n\\n\\n\\n大气的重压之下 另一轮月亮显露真容\\n“快快醒来 可不要在此处沉睡”\\n\\n请告诉我 请告诉我吧 为何如此美丽动人\\n渐受蛊惑 步步坠落 月亮嗤笑之夜",
+    lyrics_path: "lyrics/PKANtSHaDMP.js",
     search_keywords: "双月",
     appearances: ["Alea jacta est"],
     comments: [
@@ -99,8 +97,7 @@ var songsData = [
     arranger: "角本麻衣(SUPA LOVE)",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "https://www.bilibili.com/video/BV1Xg4y1j7Lt",
-    lyrics_jp: "[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa]\\n\\nChoir Choir, Choir Choir ‘S’ Choir\\n\\n\\n\\nそう サジェスチョンなら Spade 彷徨うスペクター [Spiritual, So Spiritual]\\nイミテーションやら聖なる讃美歌 [Sensual, So Sensual]\\nサディスティック サディスティック 堕天使\\nヒステリック ヒステリック 宿る刻\\n[look, 歌う胸像 the show must go on ルカ 精霊 精霊 ghost, oh, it's comin']\\n\\n‘信じる？ 信じない？’ いないいないばあ\\n感情の万華鏡 引きずり込むのは\\n\\nねぇ誰？ ねぇ誰？ 叫ぶ声が\\n夜に酔えば 真っ赤に腫れた唇がわたしを貪るの\\n‘S’ カレート ‘S’ カレート 忍び寄るわ mysterious\\n目眩く描くほどに 狂い咲くカーニヴァル\\n\\nChoir Choir, Choir Choir ‘S’ Choir\\n\\n\\n\\noh, イリュージョンなら左手のジェスチャー [Spiritual, So Spiritual]\\nテンプテーション 神話にはつづきが [Sensual, So Sensual]\\nサタニック サタニック マジェスティ\\nヒプノティック ヒプノティック 裁く刻\\n[see, 'il giudizio, la giustizia' 下る極彩色 shockin' psychic]\\n\\n‘感じる？ 感じない？’ お気に召す mo'\\n触れてみて 触れてみて 試されてもいい\\n\\nねぇ誰？ ねぇ誰？ 甘い夢が\\n闇に占う カードの悪魔 誘う魂の行方 今\\n‘S’ カレート ‘S’ カレート 気の触れた my desire\\n鼓膜を劈くほどに 咽び泣くアリア\\n\\n\\n\\n[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa,\\ndaa-mennus, daa-menn, philis-poliaa, daa-la-la-daa-daa]\\n\\nああ ワルツに身を委ねて ゆらゆらゆら\\n\\n\\n\\n誰？ ねぇ誰？ 叫ぶ声が\\n夜に酔えば 真っ赤に腫れた唇がわたしを貪るの\\n‘S’ カレート ‘S’ カレート 忍び寄るわ mysterious\\n目眩く描くほどに 狂い咲くカーニヴァル\\n\\n\\n\\n[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa,\\ndaa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa]\\n\\nChoir Choir, Choir Choir ‘S’ Choir",
-    lyrics_cn: "[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa]\\n\\nChoir Choir, Choir Choir ‘S’ Choir\\n\\n\\n\\n是的 若要给出暗示 Spade 彷徨的幽灵 [Spiritual, So Spiritual]\\n赝品亦或是神圣的赞美歌 [Sensual, So Sensual]\\n嗜虐的 嗜虐的 堕天使\\n癔病的 癔病的 附身之时\\n[look, 歌唱的胸像 the show must go on 路加 精灵 精灵 ghost, oh, it's comin']\\n\\n‘相信？ 不相信’ 不在、不在、在这里\\n感情的万华镜 被卷入其中的是\\n\\n是谁？ 是谁？ 是谁正在呼喊\\n沉醉于夜晚 鲜红肿胀的嘴唇将我贪婪吞噬\\n‘S’calate ‘S’calate 悄然接近的 mysterious\\n勾勒到目眩神迷 癫狂盛放的狂欢\\n\\nChoir Choir, Choir Choir ‘S’ Choir\\n\\n\\n\\noh, 若是幻觉则用左手的手势 [Spiritual, So Spiritual]\\n诱惑 神话仍未终结 [Sensual, So Sensual]\\n恶魔般的 恶魔般的 无上威严\\n催眠的 催眠的 裁决之时\\n[see, 'il giudizio, la giustizia' 降临的绚丽色彩 shockin' psychic]\\n\\n‘感觉到？ 感觉不到？’如你所愿 mo'\\n试着触摸 试着触摸 即使受到考验也无妨\\n\\n是谁？ 是谁？ 将这甜美的梦…\\n向黑暗问卜 卡牌的恶魔 引诱灵魂的去向 此刻\\n‘S’calate ‘S’calate 陷入疯狂的 my desire\\n似要刺破鼓膜一般 呜咽的咏叹调\\n\\n\\n\\n[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa,\\ndaa-mennus, daa-menn, philis-poliaa, daa-la-la-daa-daa]\\n\\n啊啊 委身于华尔兹吧 摇摇晃晃\\n\\n\\n\\n是谁？ 是谁？ 是谁正在呼喊\\n沉醉于夜晚 鲜红肿胀的嘴唇将我贪婪吞噬\\n‘S’calate ‘S’calate 悄然接近的 mysterious\\n勾勒到目眩神迷 癫狂盛放的狂欢\\n\\n\\n\\n[daa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa,\\ndaa-mennus, daa-menn, philis-poliaa, taa-mennus, taa-menn, jealis-moliaa]\\n\\nChoir Choir, Choir Choir ‘S’ Choir",
+    lyrics_path: "lyrics/x5Da9rGYqFn.js",
     search_keywords: "csc，合唱团，合唱班",
     appearances: ["Alea jacta est", "Ave Música"],
     comments: [
@@ -147,8 +144,7 @@ var songsData = [
     arranger: "槇島隆人(SUPA LOVE)",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "https://www.bilibili.com/video/BV1Ss4y137ML",
-    lyrics_jp: "在るようで無いのか はたまたその逆か\n戻れぬゲームにぼくらはいる\\n歪な概念が漂うこの空は 所詮\n選択の連続なのさ\\n\\n理不尽な剣を振りかざす騎士(ナイト)たち\\nなぜに闘うの 誰のために\\n\\nわからない わかっちゃいない ぼくら きっとなにひとつ\\n愛と接吻が壊したら ねぇ なにを恨めばいいの\\n神さま、バカ\\n\\n\\n\\n信じる理由が欲しいだけなのに\nまた何かを探り合っている\\n進もうとする者 そして留まる者 それぞれの正義 運命(さだめ) コイントス\\n\\n誰もが皆 生まれるために死ぬのかな\\n嗚呼 ただ救われたいよ\\n\\nわからない わかっちゃいない\nぼくら きっとなにひとつ\\n空が哀しみに染まるなら 白い百合の花を浮かべて\\n弔うから\\n\\n\\n\\nだから せめて きかせて\\nねぇ お願い もう一度\\n\\nわからない わかっちゃいない\nぼくら きっとなにひとつ\\n愛と接吻が壊したら ねぇ なにを恨めばいいの\\n神さま、バカ",
-    lyrics_cn: "似有还无 亦或是相反 我们身陷无法回头的 游戏中\\n漂浮着扭曲概念的这片天空 终究只是选择的连续\\n\\n高举荒谬之剑的骑士们\\n为何而战 为谁而战\\n\\n不明白 根本不明白 我们必定是一无所知\\n若爱与吻将一切摧毁 呐 我又该去憎恨什么\\n神啊 愚蠢\\n\\n\\n\\n明明只是想要相信的理由 却又在相互试探着什么\\n试图前行之人 以及停留之人 各自的正义 命运 抛掷硬币\\n\\n难道所有人都是为了诞生而死去吗\\n啊啊 只是想要被拯救啊\\n\\n不明白 根本不明白 我们必定是一无所知\\n若天空浸染悲哀 便让纯白的百合花浮起\\n以此悼念\\n\\n\\n\\n所以 至少 让我听见\\n呐啊 拜托你 请再一次\\n\\n不明白 根本不明白 我们必定是一无所知\\n若爱与吻将一切摧毁 呐 我又该去憎恨什么\\n神啊 愚蠢",
+    lyrics_path: "lyrics/MlfAbekCuzk.js",
     search_keywords: "愚神，神蠢，神八嘎，神明笨蛋",
     appearances: ["Alea jacta est"],
     comments: [
@@ -192,8 +188,7 @@ var songsData = [
     arranger: "あらケン(SUPA LOVE)",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "https://www.bilibili.com/video/BV13g4y1c743",
-    lyrics_jp: "なら　もう汚れたっていい　重い微睡みに身を委ねて\\nMas?ueradeその仮面の意味don't\nbe afraid私は贈り物\\n紫の空　召されて\\n\\n\\n\\n戯れる影と影　飲み込まれ　さんざめく狂気さえ　心地良いのか\\n滑り込む 夢 夢[the point of no return, dreamin',dreamin',]\\n導いてよtake me thereoh\nyes,oh yes,\\n捧げるわ　いま\\n\\nああ　もうどうだっていい　秘めやかな想いが抉じ開けて\\nMas?uerade　終わらないラプソディ　ぬるい吐息が奏でる\\nやけに甘い調べに抱かれて\\n\\n\\n\\n狂おしい悦びは　何故に何故　蝕んでく世界線　脈を打つ\\n紫煙　燻らす指[the point of no return, dreamin',dreamin',]\\n天使になれない\\n\\nなら　もう汚れたっていい　重い微睡みに身を委ねて\\nMas?ueradeその仮面の意味don't\nbe afraid私は贈り物\\n紫の空　召されて\\n\\n\\n\\nああ　もうどうだっていい　秘めやかな想いが抉じ開けて\\nMas?uerade　終わらないラプソディ　ぬるい吐息が奏でる\\nやけに甘い調べに抱かれて",
-    lyrics_cn: "那么 即使染上污秽也无妨 委身于沉重的浅眠\\nMas?uerade 那副面具的意义 don't be afraid 我是赠礼\\n紫天 蒙召而去\\n\\n\\n\\n嬉戏的影与影 被吞噬殆尽 哪怕是喧腾的狂气 竟也感到愉快吗\\n滑入梦中 梦 梦 [the point of no return, dreamin', dreamin',]\\n引导我吧take me there oh yes, oh yes,\\n此刻 献出一切\\n\\n啊啊 怎样都已无所谓了 隐秘的心绪被强行撬开\\nMas?uerade 温热的吐息奏响永不终结的狂想曲\\n被那异常甜美的旋律拥入怀中\\n\\n\\n\\n令人发狂的欢愉 究竟为何 为何 不断侵蚀世界线 脉搏跳动\\n紫烟 萦绕指尖[the point of no return, dreamin',dreamin',]\\n无法成为天使\\n\\n那么 即使染上污秽也无妨 委身于沉重的浅眠\\nMas?uerade 那副面具的意义 don't be afraid 我是赠礼\\n紫天 蒙召而去\\n\\n\\n\\n啊啊 怎样都已无所谓了 隐秘的心绪被强行撬开\\nMas?uerade 温热的吐息奏响永不终结的狂想曲\\n被那异常甜美的旋律拥入怀中",
+    lyrics_path: "lyrics/ygD7oXIOiiI.js",
     search_keywords: "假面舞会，mas",
     appearances: ["Alea jacta est"],
     comments: [
@@ -246,8 +241,7 @@ var songsData = [
     arranger: "藤間仁(Elements Garden)",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "https://www.bilibili.com/video/BV1MP411h759",
-    lyrics_jp: "「…ようこそ。Ave Mujicaの世界へ」\\n\\n不可逆な生命の歴史 - あらすじ - へと\\n終焉の杭を打つの\\n首を傾げコクリと愛想笑う\\n道化 - ドール -たちが紡ぐ物語 - ストーリー-\\n\\n三日月の舟で（ら La ラ R ァ羅rA乱）\\n音楽の花を（ら La ラ R ァ裸rA嵐）\\n千切ってはお星に変えて\\n毒してあげる\\n(Memento\nmori) 呪縛なの？\\n(Memento\nmori) 救済なの？\\n(此処に) 心、闇に捧げよ…！\\n\\nAve Musica…奇跡を日常に(Fortuna)\\nAve Musica…慈悲を与えましょう(Lacrima)\\nこの右手あなたが掴むなら (果てなき)\\n漆黒の (魅惑に) 悦楽の (虜に)\\nŌ…宿命は産声を上げる\\n\\n心臓と戯れた喜びから\\n感じたのは生の息吹\\n今宵も心地よく深淵を揺らし\\nあなたごと引き摺り込んでく\\n\\n秘密を導に（ら La ラ R ァ羅rA乱）\\n甘美な呪文が（ら La ラ R ァ裸rA嵐）\\n荊棘のように絡みついて\\n離さないと言う\\n(Memento mori) 躍るように\\n(Memento\nmori) 贖うように\\n(此処で) 歌と結ばれましょう\\n\\nAve Musica…仮面の民は誘う \\nAve Musica…安らかな世界へ \\nあなたの過去を差し出すのなら (必ず)\\nいかなる (願いも) いかなる (望みも)\\nSic…叶えてあげる\\n\\nAve Musica…堕ちて、堕ちてゆくの(Fortuna)\\nAve Musica…戻れない所まで(Lacrima)\\n大丈夫 何も怖くないわ (委ねて)\\n始めよう (永遠を) あなたと (私の)\\n\\nAve Musica…奇跡を日常に(Fortuna)\\nAve Musica…慈悲を与えましょう(Lacrima)\\nこの右手あなたが掴むなら (果てなき)\\n漆黒の (魅惑に) 悦楽の (虜に)\\nŌ…宿命は産声を上げる",
-    lyrics_cn: "「…欢迎来到 Ave Mujica的世界」\\n\\n向着不可逆的生命历史  - 概要 -\\n钉下终焉之桩\\n歪头 轻颔 应酬般地笑\\n小丑 - 人偶 -们所编织的故事 - Story -\\n\\n乘着新月之舟（ら La ラ R ァ羅rA乱）\\n将音乐之花（ら La ラ R ァ裸rA嵐）\\n一片片撕碎化为星星\\n令你染上剧毒\\n（Memento mori）是咒缚吗？\\n（Memento mori）是救赎吗？\\n（在此）把心灵奉献给黑暗吧…！\\n\\nAve Musica…将奇迹化为日常（Fortuna）\\nAve Musica…将慈悲赐予你们 (Lacrima)\\n若你紧握住这只右手（永无止尽）\\n染上漆黑的（魅惑） 成为欢愉的（俘虏）\\nŌ…宿命发出初啼\\n\\n从与心脏嬉戏的喜悦中\\n感受到的是生之气息\\n今夜亦惬意地摇撼深渊\\n连同你一并拖入其中\\n\\n以秘密为指引（ら La ラ R ァ羅rA乱）\\n那甜美的咒文（ら La ラ R ァ裸rA嵐）\\n如同荆棘般紧紧缠绕\\n宣告着决不放开\\n（Memento mori）如跃动般\\n（Memento mori）如赎罪般\\n（在此）与歌结为一体吧\\n\\n(Fortuna)Ave\nMusica…假面之民在诱惑（Fortuna）\\n(Lacrima)AveMusica…前往安宁的世界（Lacrima）\\n若你愿意献上过去 那么（必定）\\n无论怎样的（愿望） 无论怎样的（希求）\\nSic…都将为你实现\\n\\nAve Musica…坠落，不断坠落 (Fortuna)\\nAve Musica…直至那不归之处（Lacrima）\\n没关系 不需要恐惧（委身吧）\\n开始吧（永恒）你（与我）的\\n\\nAve Musica…将奇迹化为日常（Fortuna）\\nAve Musica…将慈悲赐予你们 (Lacrima)\\n若你紧握住这只右手（永无止尽）\\n染上漆黑的（魅惑） 成为欢愉的（俘虏）\\nŌ…宿命发出初啼",
+    lyrics_path: "lyrics/OKcNICpWhru.js",
     search_keywords: "同名",
     appearances: ["Alea jacta est"],
     comments: [
@@ -302,8 +296,7 @@ var songsData = [
     arranger: "UYKADO",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "",
-    lyrics_jp: "Darling 目を開けて \\nこの世の悪の巣窟で 啄まれる心を頂戴\\n逃げもできぬ 幽閉の蒼白の王子よ\\nわたしが女神\\nバタフライの羽も 天使の唾液も\\nあなたをまだ見ぬ極楽へ 連れ出せはしない\\n腐りかけた自由 垢に塗れた愛\\n煉獄の焔でzeroから済世しましょう\\n不夜の空に黒いダリア\\n失する妄想 堕ちる現実\\nもがけ蟻ジゴク\\nDarling 声上げて このいま刺し違えるほど\\n大事なものが欲ししのなら 祈りは果てて\\n牢獄で昇天の姫君 あなたが魔王\\n怒りの拳も嘆きの傷も跡形もなく\\n熔けて消えて散って泡沫\\nすべては密猟区 埋もれた罠に ハメられるのなら\\n粉々に砕いてほしいわ\\n死に至らぬ病 心臓には毒薬\\n冒されながらも生きる日々 祝福されたし\\n眼蓋の奥 赤いザクロ\\n恋する右脳 臆する左脳\\nつぶせ針の山\\nHoney 抱きしめて\\n素肌の絹の光沢で 恍惚しちゃう時間を頂戴\\nカラダは裂けて 天国で再会の片割れ\\nふたりは半神\\n至極の善と魅惑の奈落\\n約束の地は 何所か其所か夢かうつつか\\nサアドウゾ 此処イラデ 絶頂ヲ迎エマショウ\\nDarling 目を開けて\\nこの世の悪の巣窟を 蝕めない心を頂戴\\n逃げもしない 幽閉の蒼白の王子よ\\nわたしが女神\\nDarling 声上げて このいま刺し違えるほど\\n大事なものが欲しいのなら 祈りは果てて\\n牢獄で昇天の姫君 あなたが魔王\\n組まれた指と懺悔の首と贖う罪は\\n何か何れか嘘か真か",
-    lyrics_cn: "亲爱的 睁开眼睛吧 \\n在这世间邪恶的巢穴中 让我取走你那被啄食的心灵\\n无法逃离 被幽禁的苍白王子啊\\n我就是女神\\n蝴蝶的翅膀 天使的唾液\\n都不会把你带往 未曾见过的极乐世界\\n腐朽的自由 被污垢涂盖的爱\\n就用炼狱之焰 从零开始拯救这世间吧\\n不眠的天空中 黑色的大丽花\\n丧失的妄想 堕落的现实 \\n挣扎吧 犹如无法摆脱的蚁狱\\n亲爱的 放声呼喊吧 在这个要同归于尽的当下\\n假若你渴望珍贵之物 祈祷便是尽头\\n牢狱中升天的公主 你才是魔王\\n愤怒的拳头 哀叹的伤痕 终将无迹可寻\\n熔化 消散 化作泡沫\\n一切都是非法狩猎场 要是被落入深埋的陷阱中\\n那就请将我彻底粉碎吧\\n无法致死的疾病 对心脏不过是毒药\\n虽然被侵袭但仍存活的日子 要受到祝福吗\\n眼睑深处 红色的石榴 \\n恋爱的右脑 胆怯的左脑 \\n压碎它吧 犹如针山之刑\\n亲爱的 紧紧相拥吧\\n用光滑如绸缎的肌肤 赐予我沉醉的时光\\n身躯即便被撕裂 仍在天国中与另一半重逢\\n我们互为半神\\n至高无上的善 与魅惑的深渊\\n约定之地究竟在哪 是梦境还是现实\\n那么请吧 就在此处 迎来绝顶的快感\\n亲爱的 睁开眼睛吧\\n在这世间邪恶的巢穴中 让我吞噬你那无法侵蚀的心灵\\n无法逃离 被幽禁的苍白王子啊\\n我就是女神\\n亲爱的 放声呼喊吧 在这个要同归于尽的当下\\n假若你渴望珍贵之物 祈祷便是尽头\\n牢狱中升天的公主 你才是魔王\\n紧扣的指尖 忏悔的头颅 所赎的罪孽\\n究竟是什么 是谎言还是事实",
+    lyrics_path: "lyrics/nmSa8KPUdfO.js",
     search_keywords: "暗黑天国",
     appearances: ["バンドリ！ カバーコレクション Extra Volume"],
     comments: [
@@ -332,8 +325,7 @@ var songsData = [
     arranger: "UYKADO",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "",
-    lyrics_jp: "あの日林檎の木の下共犯で 踏み越えてみた境界線\\nすぐにblack out「あ お怒りで」\\n追い立てられてこんな次元へ\\n俺とした事が 俺如きですら\\n俺に限っていや まさかね\\n君のせいにした\\n秘密を手にした\\nイチジクの葉が右左\\nあっという間 目が醒める かと思えば空に落ちて行く\\nなんというか やめられぬ\\nもうひと齧りagain\\nFallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling\\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも\\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってくyeah \\nそこじゃ何から何までごった煮で \\n鬼も仏もおんなじ目 \\n全てshut out どうかしてる?\\n俺らハナから大真面目\\nふりほどいて来た うしろ指ですら\\nむしろ追い風さ まだ足んねぇ\\n蛇に睨まれた 歴史の徒花\\nエデンにはまだ「空室あり」\\nあっという間 染められる かと思えば熱が醒めていく\\nちょっと待ってその前に\\nもうひと雫 again\\nFallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling\\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも \\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってくyeah\\nAgain fallin' falling 螺旋状に堕ちてゆく摩天楼に \\n今 fallin' falling \\n二人ぼっち 気づかない カ一テンコ一ルにも\\n(Yeah yeah yeah yeah yeah)どこまでも \\n(Yeah yeah yeah yeah yeah)この身任せて\\nいつの間に傷が埋まってく\\nこの血が冷めないうちに 飲み干して\\n眩暈するほど気取って\\n取り留めない出会いに色付けて\\nこの目が醒めないうちに 憑り込んで\\n狭い空ごと突き抜けてfalling\\n蜜の味二人ハマってくyeah",
-    lyrics_cn: "那一天在苹果树下 你我作为共犯 跨越了那条边界线\\n随即失去意识“啊 生气了呢”\\n被驱逐到这片次元\\n我在做什么啊 就连像我这样\\n只对我一人 不对 不会吧喂\\n都怪你\\n掌握了秘密\\n无花果叶左右颠倒\\n一转眼间 才刚刚苏醒 便即将坠入空中\\n怎样形容呢 让人欲罢不能\\n那就再咬一口 again\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落\\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋 yeah \\n那里将任意一切都炖成大杂烩\\n恶鬼与神佛皆为同样的眼神 \\n将一切拒之门外 你是疯了吗？\\n可我们从来就是一本正经\\n甩开枷锁吧 就连身后的指责\\n反倒让我们乘风而行 还远远不够\\n毒蛇虎视眈眈 历史徒有其表\\n伊甸园仍有“空房间”\\n转眼之间 脸才被染得通红 热情又即刻冷却殆尽\\n请等一下 在此之前\\n再给一滴甘霖 again\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落\\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋 yeah\\nFallin' falling 在螺旋下坠的摩天楼中\\n此刻坠落 坠落 \\n我们只有彼此 甚至未曾察觉 落幕的掌声已然响起\\n(Yeah yeah yeah yeah yeah)无尽地坠落\\n(Yeah yeah yeah yeah yeah)任凭这身躯飘荡\\n不知不觉 伤口逐渐深埋\\n趁血液尚未冷却 一饮而尽\\n装腔作势至头晕目眩\\n为不得要领的相逢染上色彩\\n趁意识尚未苏醒 互为依凭\\n连带狭小的天空 穿透云霄falling\\n两人一同沉浸于甜蜜的滋味yeah",
+    lyrics_path: "lyrics/8Hn1scGGfDX.js",
     search_keywords: "",
     appearances: ["バンドリ！ カバーコレクション Extra Volume"],
     comments: [
@@ -361,8 +353,7 @@ var songsData = [
     arranger: "UYKADO",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "",
-    lyrics_jp: "Worries slowly come and kiss\\nTell me what's your name\\nまた惹かれ合っては 比べ合う事でけなして\\n何度夜が巡ろうとも 真っ暗闇のどっかで\\n欠けた自分のpieceだったら\\nSearch and kiss and destroy\\nBig bang\\n野蛮な情熱 冷静な衝突\\n血を見るまで容赦はしないの? \\nBig bang\\n確かめたい 繋がっていたい 本当は恐いの?\\n未完成な愛をぐっと振りかざして\\n分かりたい分からない 分からず屋\\n相反する正義に集う輩さ\\n一瞬の安らぎに寄り添って\\n似てると言われる程 気になって仕方なくなる\\n目をそらしたら負けさ 未来はあやふやで\\n過去は二度と変えられないと\\n知っているさ\\nSearch and kiss and destroy \\nBig wave \\n歪んだ衝動 歯痒い残響\\nゆさぶってんの? 逃げたりはしない\\nBig wave\\n競い合っていたい 高ぶっていたい 本当は恐いの?\\n不格好な愛さえ歴史の中じゃ 瞬き以下の瞬刻だろう\\n舐め合う為の傷なんて無いさ\\nプライドがあっち側で笑ってる \\nWorries slowly come and kiss \\nTell me what's your name \\nWorries slowly come and kiss \\nSearch and kiss and destroy \\nBig bang\\n野蛮な情熱 冷静な衝突\\n血を見るまで容赦はしないの? \\nBig bang\\n確かめたい 繋がっていたい 本当は恐いの?\\n未完成な愛をぐっと振りかざして\\n分かりたい分からない 分からず屋\\n相反する正義に集う輩さ\\n一瞬の安らぎに寄り添って \\nCan I feel can you feel\\nLife is a moment\\n惰性を打破して抱きしめたい\\n舐め合う為の傷なんて無いさ\\nプライドがあっち側で笑ってる",
-    lyrics_cn: "忧虑缓缓而至 轻轻吻上\\n告诉我 你的名字是什么\\n彼此再次相互吸引 却又因互相比较而暗自贬低\\n无论要经历多少长夜 黑暗都会存在于某处\\n假若缺失自己的碎片\\n那就去搜寻 去亲吻 去毁坏\\n大爆炸\\n野蛮的热情 冷静的冲突 \\n直至见血之前 都不会宽恕对方丝毫吗？\\n大爆炸\\n渴望得到确认 渴望得到羁绊 其实是出于恐惧吗？\\n标榜着尚未完成的爱\\n渴望理解 却未曾理解 不曾明白的人\\n聚集在相反正义之下的人们啊\\n依偎在一瞬的安宁之中\\n越是被人说相似 越是在意得耿耿于怀\\n移开视线便会败北 未来暧昧不清\\n而过去无法再度改变\\n我明明早已深知\\n那就去搜寻 去亲吻 去毁坏\\n掀起巨浪\\n扭曲的冲动 令人焦躁的余韵\\n是要让人动摇吗？我绝不会逃避的\\n掀起巨浪\\n渴望着竞争 渴望着兴奋 其实是出于恐惧吗？\\n再笨拙的爱在历史的洪流中 不过是转瞬即逝的刹那吧\\n伤痕并不是为了互相舔舐而存在\\n否则自尊心会那一边冷冷嘲笑\\n忧虑缓缓而至 轻轻吻上\\n告诉我 你的名字是什么\\n忧虑缓缓而至 轻轻吻上\\n去搜寻 去亲吻 去毁坏\\n大爆炸\\n野蛮的热情 冷静的冲突 \\n直至见血之前 都不会宽恕对方丝毫吗？\\n大爆炸\\n渴望得到确认 渴望得到羁绊 其实是出于恐惧吗？\\n标榜着尚未完成的爱\\n渴望理解 却未曾理解 不曾明白的人\\n聚集在相反正义之下的人们啊\\n依偎在一瞬的安宁之中\\n我可感觉到 你可感觉到吗\\n生命只是一瞬\\n希望打破惰性 紧紧相拥\\n伤痕并不是为了互相舔舐而存在\\n否则自尊心会那一边冷冷嘲笑",
+    lyrics_path: "lyrics/q6I9nuH3YjF.js",
     search_keywords: "",
     appearances: ["バンドリ！ カバーコレクション Extra Volume"],
     comments: [
@@ -390,8 +381,7 @@ var songsData = [
     arranger: "藤永龍太郎(Elements Garden)",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "",
-    lyrics_jp: "潤んだ予感はbye now\\n滴る痛みの中　雨色に染まって\\n大きく開(ひら)いたdistance\\nいつの間にか落ちてゆくわ…冷たさに\\n滲んだ【スコア】探す【答え】\\n降り止まない苦しみに差し出された\\n微笑みの【微笑みの】Umbrella【Umbrella】\\nus…包み込んで　合わさるprecious\\n【Where there is a will, there is a way.】\\n【Where there is a will…】\\nBring it on down\\n決意の調べ【hang in there】\\n勇気の祈りを音色に載せて【get over】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【響け】貴方の横で\\n今はまだ無理でも\\n【向き合う定めよ】【\\nワタシハ　ヤメナイ\\n蜃気楼のようでfleeting\\n淀んだ景色が行く　伏し目がちになって\\n静けさ返ってはdistance\\n声も届かずに散りだす　はらはらと\\n水面に映る美しき縁(えにし)は\\n【the naked truth】\\n誇りを　今に取り戻すわ\\nBring it on down\\n使命の調べ【set you free】\\n折れないリビドー音色に載せて【till the end】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【光れ】貴方の横で\\n此れで終わりじゃない\\n【奇跡はなくとも】\\nワタシハ　カナデル\\nセカイデ　ヒトツノ　タイセツナヒト\\nツナゲ　ココロ　フカク\\nツナゲ　ユメヲ　シナヤカニ…\\n涙の【スコア】映る【答え】\\n降りしきった悲しみを迎えたのは\\n微笑みの【微笑みの】Umbrella【Umbrella】\\nus…見守るように　優しくhold\non\\n【Where there is a will, there is a way.】\\n【Where there is a will…】\\nBring it on down\\n決意の調べ【hang in there】\\n勇気の祈りを音色に載せて【get over】\\n約束繋ぐ指先で弾(はじ)くの\\nいつしか【響け】貴方の横で\\n今はまだ無理でも\\n【向き合う定めよ】\\nワタシヨ　ツキススメ…！",
-    lyrics_cn: "暗中预感着会在此刻别离\\n那份不停的痛苦　把雨水的颜色尽染\\n逐渐拉开的那份距离\\n不知不觉间开始落下的雨啊…如此寒冷\\n铭记于心的【乐谱】寻找着【回答】\\n向无尽的痛苦之雨中递来的是\\n浮现微笑的【浮现微笑的】雨伞【雨伞】\\n将我们…相互包裹　合而为一的珍贵之物\\n【只要心中所向，道路就在前方。】\\n【有志者事竟成…】\\n随心所欲 将其击溃\\n下定决心的旋律【坚持下去】\\n将勇气的祈愿附在音色之中【将其克服】\\n用那约定相连的指尖弹起\\n不知不觉【奏响吧】就在你身旁奏响的\\n即使是还无法实现\\n面对于你的命运啊】\\n我也绝对　不会放弃\\n像海市蜃楼一般 转瞬即逝\\n模糊的景色散去　低头是空无一物\\n静止不动的那份距离\\n在话语也传达不到的地方开始 簌簌地落下\\n水面上倒映出的美好的缘分\\n【浮现的真实】\\n将骄傲　于此时去取回吧\\n不再被束缚 将其击溃\\n怀有使命的旋律【重夺自由】\\n将不屈的本能附在音色之中【直至终结】\\n用那约定相连的指尖弹起\\n不知不觉【闪耀吧】就在你身旁闪耀的\\n这还不是结束之时\\n【即使没有什么奇迹】\\n我也仍会　将其奏响\\n世界上的　唯有一个　无比而珍贵的人\\n相连吧　将心灵　紧紧地\\n相连吧　将梦想　用那份温柔…\\n泪水的【乐谱】映出着【回答】\\n在无尽的悲伤之雨中迎接着的\\n浮现微笑的【浮现微笑的】雨伞【雨伞】\\n将我们…守护一般　用那温柔让我们向前\\n【只要心中所向，道路就在前方。】\\n【有志者事竟成…】\\n随心所欲 将其击溃\\n下定决心的旋律【坚持下去】\\n将勇气的祈愿附在音色之中【将其克服】\\n用那约定相连的指尖弹起\\n不知不觉【奏响吧】就在你身旁奏响的\\n即使是还无法实现\\n【面对于你的命运啊】\\n我自己啊　继续前行吧…！",
+    lyrics_path: "lyrics/1lsJ34P8u5i.js",
     search_keywords: "决心交响曲，roselia",
     appearances: [],
     comments: [
@@ -415,8 +405,7 @@ var songsData = [
     arranger: "藤永龍太郎(Elements Garden)",
     first_stage: "Ave Mujica 0th LIVE 「Primo die in scaena」",
     mv_url: "",
-    lyrics_jp: "(We went all out to win)\\nPassionate Gaze\\n(We went all out to win)\\nPassionate Voice\\n(We went all out to win)\\nPassionate Soul\\n(We went all out to win)\\n眼差しは　唯ひたすらに愚直さを込めて\\n魂と本能をくすぐっていった\\n新たな挑戦が　本物へと近づく…\\nどんなステージだって　微笑みをあげるわ\\n(Breaking out)逆鱗に触れた先に落ちた\\n(Breaking out)産声が激しくぶつかり合う宴\\n競い咲くように　命の Anthem　嗚らして\\n磨き上げてゆく　それぞれのダイヤを胸に抱き\\n自らの音を　信じているからと　高らかに\\n妥協はしない　譲らない　決して揺るがないものは\\n誇りある　この想い\\n(We went all out to win)\\nPassionate Song\\n(We went all out to win)\\nRush!\\n声と声　重ね合って\\n目覚めてゆく細胞はAmazing\\nChallenge\\nその姿は　正に異端児\\nRush!\\nFreed\\n盤上に開く夢へのGate\\nかかって来なさい、勝てると思うのならば\\n(Living on)互いのセオリー響き合わせて\\n(Living on)目覚ましく現れた熱情が光る\\n常に燃え尽きることなく　心を動かして\\n言の葉の世界が煌びやかに　ひらり舞い踊る\\n授かったものを　輝かしく育ててゆくまで\\n崩れはしない　倒れない　決して壊れないものは\\n誇りある　この絆\\n私たちの最果ては何処なのか\\n己の中を追い求め走り出す\\nこの正解を手に入れるまでは\\nAre you\nready?　…容赦しない\\n競い咲くように　命の Anthem　嗚らして\\n磨き上げてゆく　それぞれのダイヤを胸に抱き\\n自らの音を　信じているからと　高らかに\\n妥協はしない　譲らない　決して揺るがないものは\\n誇りある　仲間たち\\n(We went all out to win)\\nPassionate Gaze\\n(We went all out to win)\\nPassionate Voice\\n(We went all out to win)\\nPassionate Soul\\n(We went all out to win)",
-    lyrics_cn: "我们为了赢而拼尽全力\\n激情的凝视\\n我们为了赢而拼尽全力\\n激情的声音\\n我们为了赢而拼尽全力\\n激情的灵魂\\n我们为了赢而拼尽全力\\n凝视的目光直直刺入愚昧的正直\\n灵魂和本能一直蓄势待发\\n新的挑战离真实之物近在咫尺\\n无论走上怎样的舞台 我们都会献以微笑\\n（爆发吧）在触碰到逆鳞之前他们就已四散而逃\\n（爆发吧）这是初生之啼哭激烈碰撞的盛宴\\n这竞相绽放的生命之颂歌被奏响了\\n把每个人的宝石一点点地擦亮 在胸前抱紧\\n因为尽力相信 自己的声音才越发高昂\\n不妥协 不退让 决不动摇的东西\\n就是这值得骄傲的意志\\n我们为了赢而拼尽全力\\n激情的乐曲\\n我们为了赢而拼尽全力\\n冲刺吧！\\n每个人的声音重合放大\\n正在觉醒的细胞可谓惊奇\\n超越突破极限的挑战\\n这般姿态简直就是异端之子\\n冲刺吧！\\n这成长的双翼不受束缚\\n通往梦想的门自由敞开\\n全都放马过来吧 如果觉得能赢过我们的话\\n（以此为生）让彼此的信条交织奏鸣\\n（以此为生）这闪光的热情震撼登场\\n这永不熄灭的心跳动起来了\\n这由言语组成的世界光辉灿烂地起舞了\\n在所有领悟到的东西全部可以尽情闪耀之前\\n不会崩塌 不会被击倒 绝对无法被破坏的\\n就是这值得为之自豪的羁绊\\n我们的终点到底在何处\\n为追求自己的内在而开始奔跑\\n在把这正解得到手之前\\n你准备好了吗？不会有一点宽容\\n这竞相绽放的生命之颂歌被奏响了\\n把每个人的宝石一点点地擦亮 在胸前抱紧\\n因为尽力相信 自己的声音才越发高昂\\n不妥协 不退让 决不动摇的东西\\n就是值得为之自豪的朋友们\\n我们为了赢而拼尽全力\\n激情的凝视\\n我们为了赢而拼尽全力\\n激情的声音\\n我们为了赢而拼尽全力\\n激情的灵魂\\n我们为了赢而拼尽全力",
+    lyrics_path: "lyrics/cAYWygj93eN.js",
     search_keywords: "roselia",
     appearances: [],
     comments: [
@@ -440,8 +429,7 @@ var songsData = [
     arranger: "長谷川大介(SUPA LOVE)",
     first_stage: "Ave Mujica 1st LIVE「Perdere Omnia」",
     mv_url: "https://www.bilibili.com/video/BV1Xg4y1k7GH",
-    lyrics_jp: "失えばいい たったひとつのひかり目指すため\\n壊せ 壊せと いつも叫んでる 牙を剥く夜\\n嘆くな 憂うな きっとこころは知っているはずさ\\n \\n輝ける時代（とき）の波よ いまはもう幻と移ろう風よ\\n破壊が ほら もたらすわ すべてを\\n \\n[now all the walls will come down] 新たなる火を\\n \\n \\n \\n巡る 時計の数字 消してゆく夜\\n理想郷 信念が描き出す‘素晴らしき世界’\nでも ‘どこにもない’\\n‘どこにもない場所’へと\\n \\n静かなるその熱情よ 届くのだと想い馳せる夢追い人よ\\n破壊が また もたらすわ 真実を\\n \\n \\n \\n[now all the walls come down] 何が見える 何を見る\\n[let's get it off the ground] そう いま架け橋になる\\nさあ 怯むことなく 尊い思想に\\n何をも恐れず 命を誘うように\\n \\n輝ける時代（とき）の波よ いまはもう幻と移ろう風よ\\n破壊が ほら もたらすわ すべてを\\n \\n[now all the walls will come down] 新たなる火を",
-    lyrics_cn: "失去也无妨 只为追寻那唯一的光芒\\n破坏吧 破坏吧 总这样嘶吼着 那露出獠牙的夜晚\\n莫悲叹 莫忧愁 心一定早已知晓\\n \\n辉煌时代的浪潮啊 如今已是幻影与流转之风啊\\n破坏带来的 看吧 是一切\\n \\n[now all the walls will come down] 带来新生之火\\n \\n \\n \\n将轮转的时钟数字 渐渐抹去的夜啊\\n乌托邦 信念描绘出的‘美好世界’，却‘哪里都不存在’\\n向着‘哪里都不存在的地方’\\n \\n那沉静的热情啊 怀揣着终将能够抵达念想的逐梦者啊\\n破坏带来的 再度 是真实\\n \\n \\n \\n[now all the walls come down] 能看见什么 选择去看什么\\n[let's get it off the ground] 是的 此刻化为桥梁\\n来吧 毫不退缩地 向着那崇高的思想\\n无所畏惧 如同召唤生命\\n \\n辉煌时代的浪潮啊 如今已是幻影与流转之风啊\\n破坏带来的 看吧 是一切\\n \\n[now all the walls will come down] 带来新生之火",
+    lyrics_path: "lyrics/hDO89gBUDsA.js",
     search_keywords: "素晴，乌托邦",
     appearances: ["素晴らしき世界 でも どこにもない場所", "Ave Música"],
     comments: [
@@ -481,8 +469,7 @@ var songsData = [
     arranger: "長谷川大介(SUPA LOVE)",
     first_stage: "Ave Mujica 1st LIVE「Perdere Omnia」",
     mv_url: "https://www.bilibili.com/video/BV1Ai4y167MU",
-    lyrics_jp: "訪れたの　いま　連れ出すため\\n明日に落とす　静寂と月明かり\\n見つめている　感じている　歪んだ刻（とき）の中で\\nあらゆる日々は そう　この‘刻（とき）’のため\\n \\n‘すべての段階’　そのリストを　ひとつ　またひとつ　燃やすの\\n \\ndon't be serious　身を任せて　夜が創られてゆく\\ndon't be serious　もう一度　あの月が満ちたら\\ncurious, so curious　怖くなるほど綺麗でしょ\\n‘死’それは私たちを結びつけるわ\\n \\n \\n \\n生まれるのね　祝福とともに\\n未来照らす産声を轟かせ\\n伝えるべきものをと いざ　創られし新たなる物語（ストーリー）\\nあらゆる日々は　そう　この‘瞬間（とき）’のため\\n \\n背景がまた変わる　めくるページ　さあ　目眩く激情\\n \\ndon't be serious　思うままに空を彩どるのは\\ndon't be serious　もう二度と振り返らぬ証\\ncurious, so curious　繰り返すのね　愚かでしょ\\n‘生’それが私たちを分かつものなの\\n \\n \\n \\nYou and I ‘God's Creation’\\n \\ndon't be serious　身を任せて　夜が創られてゆく\\ndon't be serious　もう一度　あの月が満ちたら\\ncurious, so curious　怖くなるほど綺麗でしょ\\n‘死’それは私たちを結びつけるわ",
-    lyrics_cn: "到来了 此刻 为了将我们带走\\n将寂静与月光 洒落于明日\\n凝视着 感受着 在扭曲的时光之中\\n所有的日子 是的 都是为了此刻\\n \\n‘所有的阶段’ 将那清单 一项又一项付之一炬\\n \\ndon't be serious 交托身体 夜晚正被逐渐创造\\ndon't be serious 再一次 当那轮月亮再次盈满\\ncurious, so curious 美丽到使人畏惧吧？\\n‘死’ 它会将我们连结在一起\\n \\n \\n \\n要诞生了呢 与祝福一同\\n让照亮未来的初啼响彻\\n为传达那应传达之物 来吧 就此创生的崭新故事\\n所有的日子 是的 都是为了这 '瞬间'\\n \\n背景再度变幻 翻动书页 来吧 令人目眩的激情\\n \\ndon't be serious 随心所欲地为天空着色\\ndon't be serious 这便是再也不回头的证明\\ncurious, so curious 还在重复着呢 很愚蠢对吧\\n‘生’ 那是会将我们分离之物\\n \\n \\n \\nYou and I 'God's Creation'\\n \\ndon't be serious 交托身体 夜晚正被逐渐创造\\ndon't be serious 再一次 当那轮月亮再次盈满\\ncurious, so curious 美丽到使人畏惧吧？\\n‘死’ 它会将我们连结在一起",
+    lyrics_path: "lyrics/o9sYlph4Hv5.js",
     search_keywords: "角",
     appearances: ["素晴らしき世界 でも どこにもない場所"],
     comments: [
@@ -520,8 +507,7 @@ var songsData = [
     arranger: "長谷川大介(SUPA LOVE)",
     first_stage: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演",
     mv_url: "https://www.bilibili.com/video/BV1GJ4m1E7F4",
-    lyrics_jp: "絵画が燃える　騎士（ナイト）が消える\\n何がほざく　黙らぬ夢に\\n私はいる　あなたの視界の陰に革命を描くの\\n \\nthis is the way 背筋襲う光　浮き上がる火の竜と\\ninto the realm　やがて出逢うわ　西の城壁で\\n焼けてくロザリオ　逆巻く炎 ilala,ilala,\\nこの記憶　孤高の記憶　神の唯一の過ち\\n人は皆　完全なものを語れないわ\\nいつの時代（とき）も残酷さが美を創り　世界は悦んで蠢き出す\\n \\n探しているわ\\n \\n \\n \\n闇は報い　何が救い\\n歴史の海に反射する星よ\\n軋む胸に刻めよ　弔えよ霊を　名もなき英雄を\\n \\nthis is the way 咽せ返る薔薇の楽園に臨めば\\ninto the realm 決まるこの心　いざいま　ゆくだろう\\n \\n煌めくロザリオ　導く者 ilala,ilala,\\nこの記憶　孤高の記憶　誰も奪えはしないわ\\n刻は来た　世界が私だけを忘れてく\\n近づいたの　行き過ぎたの　でもいいわ　すべてを取り戻せるのなら\\n \\n迎えに来たのね　さあ　私を連れてゆけ\\n赤く咲き誇る　この哀しい空に\\nねぇ\\n \\n焼けてくロザリオ　逆巻く炎 ilala,ilala,\\nこの記憶　孤高の記憶　神の唯一の過ち\\n人は皆　完全なものを語れないわ\\nいつの時代（とき）も残酷さが美を創り　世界は悦んで蠢き出す\\n \\n探しているわ",
-    lyrics_cn: "画作燃烧 骑士消失\\n谁在胡言乱语 对着不愿沉默的梦\\n我在此处 于你视野的阴影中描绘革命\\n \\nthis is the way 令脊背战栗的光芒 与浮现而出的火龙\\ninto the realm 终将相遇 在西面城墙下\\n渐燃的玫瑰念珠 翻卷的火焰 ilala, ilala,\\n这份记忆 孤高的记忆 是神唯一的过错\\n人皆无法言说完美之物\\n任何时代都是残酷创造着美 世界欢欣地开始蠢动\\n \\n我正在寻找啊\\n \\n \\n \\n暗为报偿 何为救赎\\n倒映在历史之海中的星星啊\\n铭刻于作痛的胸中 悼唁亡灵吧 悼唁那无名的英雄\\n \\nthis is the way 当来到那令人窒息的玫瑰乐园\\ninto the realm 此心已决 现在 就出发吧\\n \\n闪耀的玫瑰念珠 引导者 ilala, ilala,\\n这份记忆 孤高的记忆 谁都无法夺走\\n时刻已至 世界正唯独将我遗忘\\n是更近一步 还是已然越界 都无妨 只要能够夺回一切\\n \\n你是来接我的吧 来 带我走\\n赤红盛放 在这悲伤的天空之下\\n啊\\n \\n渐燃的玫瑰念珠 翻卷的火焰 ilala, ilala,\\n这份记忆 孤高的记忆 是神唯一的过错\\n人皆无法言说完美之物\\n任何时代都是残酷创造着美 世界欢欣地开始蠢动\\n \\n我正在寻找啊",
+    lyrics_path: "lyrics/XRw6rSdEm73.js",
     search_keywords: "火，元素一，1",
     appearances: ["ELEMENTS", "Ave Música"],
     comments: [
@@ -575,8 +561,7 @@ var songsData = [
     arranger: "高橋涼(SUPA LOVE)",
     first_stage: "Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演",
     mv_url: "https://www.bilibili.com/video/BV1A7421o7Di",
-    lyrics_jp: "この風が　そう‘嵐’ を呼ぶわ\\n私を奏でる誰かの言葉\\n唄いながら闇に踊れ　笑いながら　やあ　泣き濡れて　ただ\\nha-ha, わからないわ　なにもないから\\n \\nでも　世界が望むのならば　そうね\\nハルピュイア　ケルベロス　ああ　何物にでもなれるわ\\n \\nまだまだよ　まだね　まだまださ　まだ\\n何度でも kiss をする色のない私\\nまだまだよ　まだね　まだまださ\\nでも　なぜかしらね　なにをしても虚しいの\\n \\n \\n \\n頼れないもう　時の魔法に\\n奪われた秩序　ああ　北の空\\n降り注ぐ大雨の中　朽ち果てるその魂が　ほら\\nha-ha, 時代を司る大義名分とやら\\n \\nでも　神が見ているのならば　唄い　踊らねば\\n再び ‘嵐’ を呼ぶ　仰せのままに\\n \\nまだまだよ　まだね　まだまださ　まだ\\n彼らを翻弄するわ　求めない私\\nまだまだよ　まだね　まだまださ\\nほらでも　あなたも　そう　きっと同じなのね\\n \\n‘この大地にあるものはすべて消え去る’ と\\nからがら　あなたならあらためるかしら\\n \\nまだまだよ　まだね　まだまださ　まだ\\n何度でも kiss をする色のない私\\nまだまだよ　まだね　まだまださ\\nでも　なぜかしらね　なにをしても虚しいの",
-    lyrics_cn: "这风 是啊 呼唤着 ‘暴风雨’\\n某人的话语奏响了我\\n一边歌唱一边在黑暗中舞蹈 一边笑着 呀 泪流满面 只是\\nha-ha, 我不知道啊 因为一无所有\\n \\n但是 如果是世界所期望的话\\n哈耳庇厄 刻耳柏洛斯 啊啊 可以成为任何东西\\n \\n还不够啊 还不够 还远远不够 还不\\n无色的我一次又一次地亲吻\\n还不够啊 还不够 还远远不够\\n但是 为什么呢 无论做什么都觉得空虚\\n \\n \\n \\n已经无法依赖 时间的魔法\\n被夺走的秩序 啊啊 北方的天空\\n在倾盆大雨中 那彻底腐朽的灵魂 你瞧\\nha-ha, 所谓支配这个时代的大义名分\\n \\n但是 如果神在注视着 我便不得不唱歌 起舞\\n再次召唤 ‘暴风雨’ 悉听尊命\\n \\n还不够啊 还不够 还远远不够 还不\\n我会玩弄他们 别无所求的我\\n还不够啊 还不够 还远远不够\\n但你瞧 你也是 是的 你一定也是一样的呢\\n \\n‘这大地上的一切都将消逝’\\n狼狈不堪 如果是你 会就此改变吗\\n \\n还不够啊 还不够 还远远不够 还不\\n无色的我一次又一次地亲吻\\n还不够啊 还不够 还远远不够\\n但是 为什么呢 无论做什么都觉得空虚",
+    lyrics_path: "lyrics/Bre1fMP4Qzr.js",
     search_keywords: "气，风，元素二，2，马达",
     appearances: ["ELEMENTS", "Ave Música"],
     comments: [
@@ -626,8 +611,7 @@ var songsData = [
     arranger: "トミタカズキ(SUPA LOVE)",
     first_stage: "Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演",
     mv_url: "https://www.bilibili.com/video/BV17w4m1Y7kf/",
-    lyrics_jp: "月を詠む 海のリズム\\n私は ‘最初に降り立った者’\\n流れ出す このプログラム\\n引き合う魂 魂の歌が\\n\\n叫ぶの 欲望を 命の緊張を高めてゆくわ\\n\\n寄せる 寄せる 寄せる波 私の性の中で\\n馳せる 馳せる 馳せる夢 微かな音を抱きしめて\\n揺れる 揺れる 揺れる愛 あなた対極にいて その炎と重なって\\nいま ‘大宇宙(おおぞら)’になる\\n\\n\\n\\n可哀想に おいでなさい\\nついには影を手放したのね\\n古い本は焼き払われ\\n時代が通り過ぎてゆく\\n\\nいまでも 幸せなその’死’の訪れをただ祈りながら\\n\\n寄せる 寄せる 寄せる波 すべてを 嗚呼 受け入れて\\n馳せる 馳せる 馳せる夢 何もかもを失って\\n揺れる 揺れる 揺れる愛 遠く近く あなたの炎が舞い上がる\\n世界は白くなる\\n\\n\\n\\n導くように\\n小さな磁気を帯びて煌めいている場所がある\\nそう 私はかつて最初に降り立った者\\nこの白き世界に\\n\\n寄せる 寄せる 寄せる波 ‘生’の中で\\n馳せる 馳せる 馳せる夢 微かな音を抱きしめて\\n揺れる 揺れる 揺れる愛 ああ その命(ほのお)と重なって\\nいま ‘大空’になる",
-    lyrics_cn: "吟咏月色 海之节奏\\n我是“最初降临之人”\\n既定的程式运作流转\\n彼此吸引的灵魂 灵魂之歌\\n\\n呐喊的欲望 绷紧生命的琴弦\\n\\n翻涌 翻涌 波浪层层涌来 在我的天性中激荡\\n疾驰 疾驰 梦想奔向远方 怀抱微弱的余音\\n摇曳 摇曳 爱情动摇不定 与身处对极的你 同那火焰重叠在一起\\n此刻 化作广阔天空\\n\\n\\n\\n真是可怜 过来吧\\n终于舍弃了影子呢\\n旧书被焚毁\\n一个时代渐渐远去\\n\\n直到如今 仍只祈祷着幸福的死亡降临\\n\\n翻涌 翻涌 波浪层层涌来 啊啊 将所有尽数接纳\\n疾驰 疾驰 梦想奔向远方 纵然失去一切\\n摇曳 摇曳 爱情动摇不定 似近似远 你的火焰飞扬而起\\n世界变得一片纯白\\n\\n\\n\\n仿佛命运指引一般\\n有处地方带微弱的磁场 闪烁光芒\\n没错 我是最初降临于此之人\\n在这纯白的世界\\n\\n翻涌 翻涌 波浪层层涌来 在生命之中\\n疾驰 疾驰 梦想奔向远方 怀抱微弱的回响\\n摇曳 摇曳 爱情动摇不定 啊啊 与生命之火交融\\n此刻 化作无垠宇宙",
+    lyrics_path: "lyrics/VqWmmjSEUDE.js",
     search_keywords: "元素水，窝塔，元素三，3",
     appearances: ["ELEMENTS"],
     comments: [
@@ -659,8 +643,7 @@ var songsData = [
     arranger: "長谷川大介(SUPA LOVE)",
     first_stage: "Ave Mujica 3rd LIVE「Veritas」",
     mv_url: "https://www.bilibili.com/video/BV1Cz421e79N",
-    lyrics_jp: "紡いでゆくの\\nかつて　この地が幾多の文化を慈しんだように\\n捧げているの\\n紅い花が咲くとき　入り口は開かれるわ\\n \\ncome into me 次の人生を　ああ　嗚呼　形どるの\\nそうよ　いつか飛び立つときを知るでしょう\\n \\n差し出されたサフラン色の翼\\nいまはそこに　光を纏って\\nyou are.. you are.. you\nare my reason to be\\nyou’re my only 自由になって\\n \\n \\n \\n還ってゆくの\\n下腹部に耳を当て　星の鼓動を数えながら\\n \\ncome into me and again さあ　礎をもてば　描けるわ\\nそうよ　そのときのため\\n \\n追憶に蘇る　アイリスの恵み　雨\\n広がる緑　赤土の丘に青い弓が張り　大地に美しいスカーフが架かる\\n \\n \\n \\n差し出されたサフラン色の翼\\nいまはそこに　光を纏って\\nyou are.. you are.. you\nare my reason to be\\nyou're my only.. you’re my only.. you are my reason\\n \\nyou are my reason",
-    lyrics_cn: "就此编织下去\\n正如这片大地曾珍爱过无数文化那般\\n奉献\\n当红花绽放之时 入口将会开启\\n \\ncome into me 将下一段人生 啊啊 塑造成型\\n是啊 总有一天会知晓展翅高飞之时吧\\n \\n那被给予的藏红花色翅膀\\n如今在那里 披覆着光芒\\nyou are.. you are... you\nare my reason to be\\nyou're my only 获得自由吧\\n \\n \\n \\n归去\\n附耳于小腹 细数星辰的心跳\\n \\ncome into me and again 来吧 若拥有基石 便能绘出\\n是啊 正是为了那一刻\\n \\n在追忆中复苏的 伊里斯之恩泽 雨\\n绿意铺展 蓝弓张于红土丘陵 美丽的长带横跨大地\\n \\n \\n \\n那被给予的藏红花色翅膀\\n如今在那里 披覆着光芒\\nyou are.. you are... you\nare my reason to be\\nyou're my only.. you’re my only.. you are my reason\\n \\nyou are my reason",
+    lyrics_path: "lyrics/BHwj4JvQrJL.js",
     search_keywords: "地，土，元素四，4",
     appearances: ["ELEMENTS"],
     comments: [
@@ -698,8 +681,7 @@ var songsData = [
     arranger: "長谷川大介(SUPA LOVE)",
     first_stage: "Ave Mujica 3rd LIVE「Veritas」",
     mv_url: "https://www.bilibili.com/video/BV1D12BYUEXn",
-    lyrics_jp: "一葉の銀河系\\n夢を描く\\n幻をああ　体験しているのね\\n星図にはないわ　いま 刻（とき）のしじまを破って命が流転する\\n宇宙（そら）のオーケストラ　人の願望とは果てしなく\\n \\n月より下に時代を創って　何者かになるのね\\n \\nでもね　知ってほしい　本当の光を\\n静寂の中でだけ輝くその光\\nあなたに　知ってほしい　真実（ほんとう）の輝きを\\n深い闇の中でそれを知り 決して　忘れてはいけない\\n \\n \\n \\n複雑性の一面を人は運命と呼ぶ\\n自分らしさに拘らないで\\n計り知れないところで巡ってゆく\\n \\n月より下に　それでも掲げ　闘うのね\\n \\nでもね  知ってほしい　本当の光を\\n静寂の中でだけ輝くその光\\nあなたに　知ってほしい　真実（ほんとう）の輝きを\\n深い闇の中でそれを知り　決して　忘れてはいけない\\n \\n \\n \\n自由になる\\n廻る　やがて調和が訪れる\\nそのとき　自由という概念も無くなるわ\\nまた　宇宙（そら）へ　還ってゆく",
-    lyrics_cn: "一叶银河系\\n描绘着梦\\n啊啊 正在体验幻象呢\\n星图之上不存在 此刻 打破时光的寂静 生命流转\\n宇宙的管弦乐 所谓人的愿望 无穷无尽\\n \\n在月亮之下开创时代 会成为某种存在吧\\n \\n但是啊 希望你知晓 真正的光芒\\n那道只在寂静之中闪耀的光芒\\n希望你知晓 真实的光辉\\n在深邃的黑暗中知晓它 绝对 不能忘记\\n \\n \\n \\n复杂性的一面 人们称之为命运\\n不要拘泥于自我本色\\n于不可测知之处循环流转\\n \\n在月亮之下 即便如此仍高举着 战斗着呢\\n \\n但是啊 希望你知晓 真正的光芒\\n那道只在寂静之中闪耀的光芒\\n希望你知晓 真实的光辉\\n在深邃的黑暗中知晓它 绝对 不能忘记\\n \\n \\n \\n获得自由\\n周而复始 和谐终将降临\\n届时 自由这一概念也将不复存在\\n再一次 归于宇宙",
+    lyrics_path: "lyrics/MwmeWsIFsKd.js",
     search_keywords: "以太，元素五，5",
     appearances: ["ELEMENTS", "Ave Música"],
     comments: [
@@ -729,8 +711,7 @@ var songsData = [
     arranger: "長谷川大介(SUPA LOVE)",
     first_stage: "Ave Mujica 4th LIVE「Adventus」",
     mv_url: "https://www.bilibili.com/video/BV1g4E4zsEQr",
-    lyrics_jp: "弄られて垂れ流す 音のない音\\n遍く 名前を捨てたのね あなたのモザイクが泣いてる\\ncan not, can not, not,\nnot, not deny 紛れもなく真実\\nさあ 預けて 回帰するように\\n \\nエネルギーはサイクル そう いまは無重力\\n象徴的なパレード この月夜に仰げよ仰げ\\n‘completeness’\\n嗚呼 命の灯を掲げ\\n \\nKiLLKiSS judy..,\nKiLLKiSS jude.., KiLLKiSS juda..,\\n欺いて\\nKiLLKiSS judy..,\nKiLLKiSS jude.., KiLLKiSS juda..,\\n抱きしめて\\nねぇ 無防備だね 美しい戯れに 人は壊れてゆく\\n可笑しいわね\\n \\n \\n \\n'cuz we're all alone\\nalone, 噛み締めても まだ痛むなら\\n \\n手を挙げ 希え\\noh, when you bleed, 惑星に そう その影を伸ばせ\\nねぇ 私の世界（ほし）が知りたがっているわ さあ\\nyou bleed, yes, bleed その血で 天（そら）の五線譜を書き換えれば\\ncode ‘KiLLKiSS’ uh..,\\n \\nKiLLKiSS judy..,\nKiLLKiSS jude.., KiLLKiSS juda..,\\n欺いて\\nKiLLKiSS judy..,\nKiLLKiSS jude.., KiLLKiSS juda..,\\n抱きしめて\\nねぇ あからさまね 醜い終局に すべてが変わってゆく\\n儚いのね\\n \\nそう このまま 壊れて",
-    lyrics_cn: "被玩弄着倾泻出 无声之音\\n舍弃了一切名字呢 你的马赛克正在哭泣\\ncan not, can not, not, not, not deny 毫无疑问的真相\\n来吧 托付于我 如同回归一般\\n \\n能量循环往复 是的 此刻已然失重\\n象征性的游行 于此月夜仰望吧 仰望\\n‘completeness’\\n啊 高举生命之灯\\n \\nKiLLKiSS judy..,\nKiLLKiSS jude.., KiLLKiSS juda..,\\n瞒天过海\\nKiLLKiSS judy..,\nKiLLKiSS jude.., KiLLKiSS juda..,\\n紧抱入怀\\n真是毫无防备啊 人在这甜美嬉戏中逐渐崩坏\\n真是可笑呢\\n \\n \\n \\n'cuz we're all alone\\nalone, 倘若咬紧牙关依旧疼痛\\n \\n高举双手 祈愿吧\\noh, when you bleed, 向着行星 是的 延伸阴影\\n呐 我的世界正渴望知晓 来吧\\nyou bleed, yes, bleed 那血液 若能改写天空的五线谱\\ncode ‘KiLLKiSS’ uh..,\\n \\nKiLLKiSS judy..,\nKiLLKiSS jude.., KiLLKiSS juda..,\\n瞒天过海\\nKiLLKiSS judy..,\nKiLLKiSS jude.., KiLLKiSS juda..,\\n紧抱入怀\\n多么昭然若揭啊 一切逐渐走向丑陋终局\\n真是虚幻啊\\n \\n是的 就这样 毁坏吧",
+    lyrics_path: "lyrics/TlIS1QK8jXa.js",
     search_keywords: "kk，杀吻，op",
     appearances: ["KiLLKiSS", "Completeness", "Ave Música"],
     comments: [
@@ -789,8 +770,7 @@ var songsData = [
     arranger: "松坂康司（SUPA LOVE）",
     first_stage: "リスアニ!LIVE 2025 SATURDAY STAGE",
     mv_url: "https://www.bilibili.com/bangumi/play/ep1365126",
-    lyrics_jp: "白銀の糸を伝い 想い 手繰り寄せてた\\nその果てで妊る月 抱きしめたなら\\n \\n待っているの 太陽から夜が堕ちてくるのを\\nねぇ その果てで満たしてよ 届く気がするの\\n \\nもつれたまま 踊る Georgette Me, Georgette You まわる\\n痛むほどに ほら 煌めくドレスを纏いながら\\n \\neverlastin’ ever.. darlin’ ever, ever.. 締め付けて again\\neverlastin’ ever.. 離れぬように ever, ever, ever..\\n\\n\\n\\n縛るものはなに？ それは 誰かの遠い祈り\\nああ 最初から知っていたわ 許されないこと\\n \\n愛せぬまま 踊る Georgette Me, Georgette You is that true?\\nあなたが触れたわ この傷口に\\n\\n\\n\\nもつれたまま 踊る Georgette Me, Georgette You まわる\\nこのまま このままでいさせて\\n\\n\\n\\n愛せぬまま 踊る Georgette Me, Georgette You is that true?\\n痛みは光ね 煌めくドレスを纏いながら\\n \\neverlastin’ ever.. darlin’ ever, ever.. 締め付けて again\\neverlastin’ ever.. 離れぬように ever, ever, ever..",
-    lyrics_cn: "沿着白银的丝线 将思念牵至身边\\n在那尽头所孕育的月 若能将它拥入怀中\\n \\n等待着 夜晚从太阳坠落\\n啊 在那尽头将我满足 思绪仿佛能够传达\\n \\n缠绵不清 翩翩起舞 Georgette Me, Georgette You 旋转不停\\n越是痛苦不已 看啊 身缠礼服愈加闪耀\\n \\n直到永远…亲爱的 永远永远…再次将你我紧缚\\n直到永远…为了永不分离 永远 永远 永远…\\n\\n\\n\\n束缚我们的是什么？是某人遥远的祈祷\\n啊啊 最初我便知晓 这是不被允许之事\\n \\n无法相爱 翩翩起舞 Georgette Me, Georgette You 这是否真实？\\n是你触碰到了啊 这处伤口\\n\\n\\n\\n缠绵不清 翩翩起舞 Georgette Me, Georgette You 旋转不停\\n就这样 就让我们一直这样下去\\n\\n\\n\\n无法相爱 翩翩起舞 Georgette Me, Georgette You 这便是真实？\\n痛苦是光明呢 看啊 身缠礼服闪耀至此\\n \\n直到永远…亲爱的 永远 永远…再次将你我紧缚\\n直到永远…为了永不分离 永远 永远 永远…",
+    lyrics_path: "lyrics/g2LwpyA5VV6.js",
     search_keywords: "GMGY,ed，缠你缠我",
     appearances: ["KiLLKiSS", "Completeness", "Ave Música"],
     comments: [
@@ -825,8 +805,7 @@ var songsData = [
     arranger: "高橋涼 (SUPA LOVE)",
     first_stage: "Ave Mujica 5th LIVE「Nova Historia」DAY1",
     mv_url: "https://www.bilibili.com/video/BV1EvcdenE9h",
-    lyrics_jp: "さやめく光は 夢見る悪魔か\\n遠き予言者なのか\\n仕掛けられたアレゴリーが動き出したこの宙（そら）\\nエレメンタル覗くのは\\n \\n天球の Blue World そこに生きる者 \\n冒険者よ 共にゆこう さあ いざ\\n \\nその眼が捕える その眼が創る その眼が愛する 時代（とき）よ\\n謎めくは運命（さだめ） いま 変えてゆくのさ\\n \\nDIVINE DIVINE 闇夜を貫く眩い Vision（未来）へ\\n輝ける新たな真実を描いて\\n \\n \\n \\nささやかなことから始まる破滅が\\n人を悲哀へと\\n狂おしいほど疲れ切った魂を蝕むあからさまな現実よ\\n \\n境目の Cruel World そこに生きる者\\nなにもかもが正しくなくてもいい\\n \\nその瞳に惹かれる その瞳に歌う その瞳に見つめる 君よ\\n同じ悲しみに いま 寄り添いたい\\n \\nDIVINE DIVINE震える想い 張り裂けそうで\\nああ 忘れないで 本当の心だけ抱きしめて\\n \\n \\n \\nDIVINE, so DIVINE\\n \\n \\n \\n歴史の狭間 揺れる世界で 寂しさが人を繋ぐのかもしれない\\nぬくもりの中で また 汚れた\\n生きてゆくため そう そのために 理由が 答えが 欲しいのか 何故\\n嗚呼 蒼き熱情よ\\nならば ならば 教えてくれ\\n \\n \\n \\nその眼が捕える その眼が創る その眼が愛する 時代（とき）よ\\n謎めくは運命（さだめ） いま 変えてゆくのさ\\n \\nDIVINE DIVINE闇夜を貫く眩い Vision（未来）へ\\n輝ける新たな真実を描いて",
-    lyrics_cn: "沙沙低语的光芒 是做梦的恶魔吗\\n还是遥远的预言者呢\\n这片天空中 被布置好的寓言开始运转\\n窥视着元素的是\\n \\n天球之上的 Blue World 生活于其中的人们\\n冒险者啊 一起前行吧 来吧 出发\\n \\n那双眼所捕捉 那双眼所创造 那双眼所爱的 时代啊\\n神秘莫测的正是命运 此刻 逐渐改变\\n \\nDIVINE DIVINE 向着那贯穿暗夜的耀眼 Vision（未来）\\n描绘那闪耀的崭新真实\\n \\n \\n \\n从微不足道之事开始的毁灭\\n将人引向悲哀\\n侵蚀着疲惫得近乎疯狂的灵魂的赤裸裸的现实啊\\n \\n边界上的 Cruel World 生活于其中的人们\\n一切即便都不正确也无妨\\n \\n被那双眼吸引 向那双眼歌唱 凝望那双眼的 你啊\\n想要在此刻 依偎于同样的悲伤\\n \\nDIVINE DIVINE 颤抖的思念几近迸裂\\n啊 请不要忘记 只拥抱那颗真正的心\\n \\n \\n \\nDIVINE, so DIVINE\\n \\n \\n \\n在历史的夹缝中 摇荡的世界里 也许是寂寞将人们相连\\n在温暖之中 又染上了污秽\\n为了活下去 是的 正因如此 才想要理由 想要答案吗 为何\\n啊啊 苍蓝的热情啊\\n那么 那么 请告诉我\\n \\n \\n \\n那双眼所捕捉 那双眼所创造 那双眼所爱的 时代啊\\n命运正是神秘莫测 此刻 逐渐改变\\n \\nDIVINE DIVINE 向着那贯穿暗夜的耀眼 Vision（未来）\\n描绘那闪耀的崭新真实",
+    lyrics_path: "lyrics/Yg4Gnpj6mW3.js",
     search_keywords: "迪歪，神圣",
     appearances: ["Ave Música"],
     comments: [
@@ -864,8 +843,7 @@ var songsData = [
     arranger: "松坂康司（SUPA LOVE）",
     first_stage: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor",
     mv_url: "https://www.bilibili.com/video/BV1Ep91YPEQo",
-    lyrics_jp: "ねじれた空を描いて思うの　羽根のない君　堕ちればいい\\n触れてしまった神聖なもの　今夜　私の神話になって\\n \\nほら　逃げられないわ　弱っていく君　閉じ込めて\\n \\nyou know i want... i want... i want... i want you so, i want...\\nいなければよかったのに　なぜ\\nyou know... you know... you know... you know i want you to know how much i need you so,\\nいま　狂おしいほど\\n \\n \\n \\nわかってるの　でも　いまは密やかに　奇妙な時間をただ君と\\n冷たいこの手で　愛すべきもの　葬る私を受け入れて\\n \\n危きこころの壁に　忍ぶは理不尽な夢\\n \\ni say, you're mine... you're mine...　ほら　すぐそこにいるのに\\n \\n叶わない　それでも　i want... i want...  i want you so, i want...\\n想い出なんていらない　だから\\nyou know... you know... you know... so, you know i want you to know how much i need you so\\nいま　狂おしいほど",
-    lyrics_cn: "描绘扭曲天空 我不禁遐想 没有羽翼的你 就这样坠落吧\\n触碰到了神圣之物 今夜 成为我的神话吧\\n \\n看吧 你已无路可逃 将逐渐虚弱的你 囚禁起来\\n \\nyou know i want... i want... i want... i want you so, i want...\\n若不存在该多好 为何\\nyou know... you know... you know... you know i want you to know how much i need you so,\\n此刻我如痴如狂\\n \\n \\n \\n我知道的 可是此刻只想悄然与你共度这奇妙时光\\n以冰冷的双手 埋葬本该珍爱之物 请接纳这样的我吧\\n \\n摇摇欲坠的心墙之中 潜藏着荒诞的梦\\n \\ni say, you're mine... you're mine... 看吧 明明近在咫尺\\n \\n无法实现 纵使如此 i want... i want...  i want you so, i want...\\n我不需要什么回忆 所以……\\nyou know... you know... you know... so, you know i want you to know how much i need you so\\n此刻我如痴如狂",
+    lyrics_path: "lyrics/7eSWmR3YWGn.js",
     search_keywords: "囚禁，监禁，囚12",
     appearances: ["Completeness", "Ave Música"],
     comments: [
@@ -902,8 +880,7 @@ var songsData = [
     arranger: "o-saka(SUPA LOVE)",
     first_stage: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor",
     mv_url: "https://www.bilibili.com/video/BV1iEQ6YCECx",
-    lyrics_jp: "あぁ　私を辱めたあなたのメロディは　いまだ猛り狂うのか\\n \\n戦慄のカテドラル　抗う心臓\\n焼けてゆく後ろ髪のないフォルトゥーナ\\n \\nstill alive　命の歯車が　so, still alive　回り出す\\n振り切る己をゆく\\nstill alive?　ロゴスの誘いは　so, still alive?　まだ見えない\\n汚れてく異教徒たちの涙\\n \\n \\n \\n[face] so, we got to face this [face] we got to face\\n[face]　繰り返す　疎外　虚勢　絶望　鎮まらぬ魂　人は何故\\n \\nstill alive　誰かの歯車が　so, still alive　狂い出す\\n忌まわしい鐘楼が鳴る\\nstill alive?　‘来るべき世界’は　so, still alive?　求めている\\n処刑台の終わりなき犠牲者\\n \\n \\n \\nnever die　歴史の血の河を　i never die　掻い潜り\\n彷徨える　我が十字架\\n \\n \\n \\nstill alive　命の歯車が　so, still alive　回り出す\\n振り切る己をゆく\\nstill alive?　ロゴスの誘いは　so, still alive?　まだ見えない\\n汚れてく異教徒たちの涙\\n月の下　顔のないマリア",
-    lyrics_cn: "啊 那曾羞辱我的 你的旋律 如今仍在狂暴肆虐吗？\\n \\n战栗的大教堂 抗争的心脏\\n逐渐燃烧没有后发的福尔图娜\\n \\nstill alive 生命的齿轮 so, still alive 开始转动\\n挣脱桎梏贯彻自我\\nstill alive? 逻各斯的诱惑 so, still alive? 仍不可见\\n逐渐污浊 异教徒们的眼泪\\n \\n \\n \\n[face] so, we got to face this [face] we got to face\\n[face] 不断重复 异化 逞强 绝望 不得安宁的灵魂 人究竟为何\\n \\nstill alive 谁人的齿轮 so, still alive 开始疯狂\\n不祥的钟楼鸣响\\nstill alive? “应至的世界” so, still alive? 正在渴求\\n处刑台上 无穷无尽的牺牲者\\n \\n \\n \\nnever die 历史的血河 i never die 穿行而过\\n彷徨流浪的 我的十字架\\n \\n \\n \\nstill alive 生命的齿轮 so, still alive 开始转动\\n挣脱桎梏贯彻自我\\nstill alive? 逻各斯的诱惑 so, still alive? 仍不可见\\n逐渐污浊 异教徒们的眼泪\\n月亮之下 无面的玛利亚",
+    lyrics_path: "lyrics/uKi0624MMjg.js",
     search_keywords: "十字架",
     appearances: ["Completeness"],
     comments: [
@@ -944,8 +921,7 @@ var songsData = [
     arranger: "あらケン (SUPA LOVE)",
     first_stage: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor",
     mv_url: "https://www.bilibili.com/video/BV1zA5XzwEp1",
-    lyrics_jp: "赤の象 獅子 熊 go-go insane\\nクラッカー首謀者welcome to the house of pain\\n \\n \\n \\n夜はサーカス　ヴェールの道化　傍観してないで\\nmake it hot　アクロバティック・キスで運命の啓示に火を点けて\\n \\n無い　成さない　style　災い　じゃ従わない\\n哀　嘲笑い　yea'p, till i die\\nbuddy, alright?\\n \\nyes ya gonna jump yes ya gonna jump　突き抜けてく\\nlet me be the one let me be the one　'YES'　八芒星へ\\nyes ya gonna jump yes ya gonna jump　笑い　叫ぶ\\n本当の人生（life）なんざ忘れて\\n \\n \\n \\n赤の象 獅子 熊 go-go insane\\nクラッカー首謀者welcome to the house of pain\\n \\n \\n \\nあなた息切らし　炎の中　私と泳いで　so dream\\n絵画的ダンス　woo-la-la this the drama　セリフはいらない\\n \\n'ruff'　もうもう　enuff, snuff, so nervous, just got to be tuff'\\n僅かに透かす　かます　yea'p, bluff a buzz-buzz\\ntricky you puff..,\\n \\nyes ya gonna jump yes ya gonna jump　夢中になる\\nlet me be the one let me be the one　火花散らして\\nyes ya gonna jump yes ya gonna jump　天に踊る　逆さまに覗く　angel\\n \\n \\n \\n左回りよ　描く軌道が虜にするわ　唯一無二の芸術（アート）\\n \\n連れてって\\n \\nyes ya gonna jump yes ya gonna jump　突き抜けてく\\nlet me be the one let me be the one　'YES'　八芒星へ\\nyes ya gonna jump yes ya gonna jump　笑い　叫ぶ\\n本当の人生（life）なんざ忘れて\\n \\n \\n \\n赤の象 獅子 熊 go-go insane\\nクラッカー首謀者welcome to the house of pain",
-    lyrics_cn: "红色的象 狮子 熊 go-go insane\\n拉炮 主谋 welcome to the house of pain\\n \\n \\n \\n夜晚是马戏团 戴面纱的小丑 别再旁观了\\nmake it hot 以杂技般的吻点燃命运的启示\\n \\n无 不成 style 灾祸 才不会顺从\\n悲哀 嘲笑 yea'p, till i die\\nbuddy, alright?\\n \\nyes ya gonna jump yes ya gonna jump 穿透而去\\nlet me be the one let me be the one 'YES' 向着八芒星\\nyes ya gonna jump yes ya gonna jump 笑着 叫着\\n忘却那不值一提的真正的人生\\n \\n \\n \\n红色的象 狮子 熊 go-go insane\\n拉炮 主谋 welcome to the house of pain\\n \\n \\n \\n你喘息着 与我一同游弋火焰之中吧 so dream\\n绘画般的舞蹈 woo-la-la this the drama 无需台词\\n \\n'ruff' 够了够了 enuff, snuff, so nervous, just got to be tuff'\\n隐约显露 来上一下 yea'p, bluff a buzz-buzz\\ntricky you puff..,\\n \\nYes ya gonna jump, yes ya gonna jump 沉迷其中\\nLet me be the one, let me be the one 火花飞溅\\nYes ya gonna jump, yes ya gonna jump 在天上舞蹈 倒悬窥望的 angel\\n \\n \\n \\n向左旋转啊 描绘出的轨道会将你俘虏哦 独一无二的艺术\\n \\n带我走吧\\n \\nyes ya gonna jump yes ya gonna jump 穿透而去\\nlet me be the one let me be the one 'YES' 向着八芒星\\nyes ya gonna jump yes ya gonna jump 笑着 叫着\\n忘却那不值一提的真正的人生\\n \\n \\n \\n红色的象 狮子 熊 go-go insane\\n拉炮 主谋 welcome to the house of pain",
+    lyrics_path: "lyrics/AvyPCOtyeRO.js",
     search_keywords: "八芒星",
     appearances: ["Completeness", "Ave Música"],
     comments: [
@@ -994,8 +970,7 @@ var songsData = [
     arranger: "木下龍平 (SUPA LOVE)",
     first_stage: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor",
     mv_url: "https://www.bilibili.com/video/BV1SjL3zNEB6",
-    lyrics_jp: "事を/事を拗らせてるの/せてるの\\nアルレッキーノコルセットを調整してよ\\nちょいと顎上げたりして　鏡の私\\n同じに見える違う顔\\n \\n化粧映え　誰double 化け charmin' チェーミン　チューミン\\nハート見せないわ　ほんとんとこ\\n平気/平気で　そう　涙も流してみせましょ\\n正気かしら？　正気よ\\n \\n偽る日々滑らかに　無関心でいるために　[1-2,]\\n \\n \\n \\ni am a pretender up, up, up, up, shake, shake, shake it up\\nうしろ姿　なじるあなた　[hey!]\\nthe pretender up, up, up, up, shake, shake, shake it up, it up　[あらら]\\nバカねさよならloser, loser, loser [bye-bye and bye]\\n私　make up, make up, make up, babe\\nあなたを跨ぐ\\nhey!\\n \\n \\n \\nうそ/うそ七色うそ笑顔ならポンピンビート\\nくすぐるこのこころ\\nやり過ごすためのアルゴリズム　冷淡に\\nでも何か足りない　わからない/ないけれど\\nah, もはや慣れたわ　[cool-cool,]\\n \\n \\n \\ni am a pretender up, up, up, up, shake, shake, shake it up\\nうしろ姿　なじるあなた　[hey!]\\nthe pretender up, up, up, up, shake, shake, shake it up, it up　[あらら]\\nバカね　さよなら　loser, loser, loser\\n \\n \\n \\n↑\\n \\n \\n \\nえ？　[あらら]　え？　[あらら]　え？　え？\\nまあ　まあ　まあ\\n \\nとかなんとか言っちゃってさ　空虚な自己防衛さ\\n \\n[hate]\\n \\nyou're just a pretender あっぷ　あっぷ　あっぷ　あっぷ shake, shake, shake it up\\nどこまでそう気取るのかしら[hate!]\\n嫌pretender あっぷ　あっぷ　あっぷ　あっぷ shake, shake, shake it up, it up　[あらら]\\nいつまでやるの\\n \\n閉pretender あっぷ　あっぷ　あっぷ　あっぷ shake, shake, shake it up\\n誤魔化さずにほら向き合えば[hate!]\\n嫌pretender あっぷ　あっぷ　あっぷ　あっぷ shake, shake, shake it up, it up　[あらら]\\nこっちがほんもの　勝者　勝者　勝者　[bye-bye and bye]\\ni'm a pretender hater, hater, hate the fake\\n鏡の中のおまえを暴く",
-    lyrics_cn: "让事情/事情变得复杂化/复杂化的\\n阿莱基诺 替我调整束腰吧\\n稍稍扬起下巴 镜中的我\\n看似相同 却是另一张面孔\\n \\n妆后美人 是谁double 幻化 charmin' 迷人 诱人\\n真心绝不示人 这是真的\\n若无其事/若无其事地 没错 连眼泪也流给你看吧\\n还清醒吗？清醒着呢\\n \\n让虚伪的日子顺滑流过 为了保持漠不关心 [1-2,]\\n \\n \\n \\ni am a pretender up, up, up, up, shake, shake, shake it up\\n你只能斥责我的背影[hey!]\\nthe pretender up, up, up, up, shake, shake, shake it up, it up [哎呀呀]\\n真是愚蠢 永别了loser, loser, loser [bye-bye and bye]\\n我 make up, make up, make up, babe\\n从你身上跨过\\nhey!\\n \\n \\n \\n谎言/谎言 五光十色的谎言\\n笑容清脆撩拨这颗心脏\\n用以应付一切的算法 冷淡运行\\n但总觉得缺了什么 虽然不明白/不知为何\\nah，早已习以为常 [cool-cool,]\\n \\n \\n \\ni am a pretender up, up, up, up, shake, shake, shake it up\\n你只能斥责我的背影[hey!]\\nthe pretender up, up, up, up, shake, shake, shake it up, it up [哎呀呀]\\n真是愚蠢 永别了loser, loser, loser [bye-bye and bye]\\n \\n \\n \\n↑\\n \\n \\n \\n哎？ [哎呀呀] 哎？  [哎呀呀] 哎？ 哎？\\n算了 算了 算了吧\\n \\n说这些莫名其妙的话 不过是空虚的自卫罢了\\n \\n[hate]\\n \\nyou're just a pretender up, up, up, up, shake, shake, shake it up\\n还想装腔作势到什么地步[hate!]\\n讨厌pretender up, up, up, up, shake, shake, shake it up, it up [哎呀呀]\\n还想执迷不悟到何时\\n \\n封闭pretender up, up, up, up, shake, shake, shake it up\\n别再掩饰 来 直面吧[hate!]\\n讨厌pretender up, up, up, up, shake, shake, shake it up, it up [哎呀呀]\\n这边才是真货 赢家 赢家 赢家[bye-bye and bye]\\ni'm a pretender hater, hater, hate the fake\\n将镜中的你彻底揭穿",
+    lyrics_path: "lyrics/iscoz8RZ2TB.js",
     search_keywords: "颜，kao",
     appearances: ["Completeness", "Ave Música"],
     comments: [
@@ -1049,8 +1024,7 @@ var songsData = [
     arranger: "高橋涼 (SUPA LOVE)",
     first_stage: "MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor",
     mv_url: "https://www.bilibili.com/video/BV1RtZmYGE3a",
-    lyrics_jp: "ゆこう明日へと\\n美しい時代（とき）よ\\n人は忘れてく\\n \\n \\n \\n心が闘ってたそう受け入れるため\\n向こう側はあるのか\\n嘘にも真実にもなれるだろう\\n歪みとは ‘らしさ’ なのかもしれない\\n \\n目前にして押し寄せてくる最後の痛みを嗚呼\\n越えたら\\n \\nぼくらいま流れてく\\nlet’s sing along   let’s sing along\\n鮮やかな夜明けとともに\\nさあ\\n \\n \\n \\nゆこう明日へと\\n美しい時代（とき）よ\\n人は忘れてく\\nいつかは消えてく\\n \\n \\n \\n想いを綴るようになったのはなぜ\\n光と闇を司るその命\\nきっとすべてに物語がある\\ntell me a story   tell me a story   叶うなら\\n \\nこんなに誰かを想うのは嗚呼なぜ\\n光と闇を抱いたまま胸焦がし\\nそうさすべてに物語がある\\ntell me more   tell me more   don’t stop\\n \\n \\n \\n巡り逢うノイズの中魂のoverdrive\\n輝くよ何度も\\n崩れてく失ってく\\n嗚呼ずっと探してた刹那の遠い色\\n \\nもしもこの詩が天球（そら）に夢のつづきを描くのなら\\n見つめて\\n \\nぼくらいま解き放つ\\nlet’s sing along   let’s sing along\\n張り裂ける心奏でて\\nさあ\\n \\n \\n \\nゆこう明日へと\\n美しい時代（とき）よ\\n人は忘れてく\\nいつかは消えてく\\n \\nゆこうAve Mujica（世界）へと\\n美しい時代（とき）よ\\n人は忘れてく\\nいつかは消えてく",
-    lyrics_cn: "走吧 向着明天\\n美好时代啊\\n人会逐渐忘却\\n \\n \\n \\n心灵一直在抗争 是啊 只为了接受\\n彼岸是否存在\\n既能成为谎言 也能成为真相\\n所谓扭曲或许就是「本色」\\n \\n最后的痛苦汹涌而来迫近眼前 啊\\n若能跨越\\n \\n如今我们流淌而去\\nlet's sing along let's sing along\\n与绚烂的黎明一同\\n来吧\\n \\n \\n \\n走吧 向着明天\\n美好时代啊\\n人会逐渐忘却\\n终有一天会渐渐消逝\\n \\n \\n \\n为何开始书写自己的心绪\\n那司掌光与暗的生命\\n想必森罗万象都有其故事\\ntell me a story.. tell me a story.. 若能实现\\n \\n为何会如此思念某个人\\n怀抱光与暗 内心焦灼难耐\\n没错森罗万象都有其故事\\ntell me more   tell me more   don’t stop\\n \\n \\n \\n在噪声中辗转相逢 灵魂的overdrive\\n会闪耀的 无论多少次\\n逐渐崩毁逐渐失去\\n啊 一直寻找着 刹那间的遥远色彩\\n \\n若这首诗在天球上描绘梦的延续\\n请凝望吧\\n \\n此刻我们释放\\nlet's sing along let's sing along\\n奏响这颗几欲迸裂的心\\n来吧\\n \\n \\n \\n走吧 向着明天\\n美好时代啊\\n人会逐渐忘却\\n终有一天会渐渐消逝\\n \\n走吧 向着Ave Mujica（世界）\\n美好时代啊\\n人会逐渐忘却\\n终有一天会渐渐消逝",
+    lyrics_path: "lyrics/ZD2T9yOaJvZ.js",
     search_keywords: "天球",
     appearances: ["Completeness", "Ave Música"],
     comments: [
@@ -1086,8 +1060,7 @@ var songsData = [
     arranger: "Diggy-MO' • 木下龍平(SUPA LOVE)",
     first_stage: "Ave Mujica 5th LIVE「Nova Historia」DAY1",
     mv_url: "https://www.bilibili.com/video/BV1LmmLBpEAs",
-    lyrics_jp: "心を乱さないで　ねぇ　ロゼ\\nxs and os\nmystic terrorist　を宿して\\n世界を呑み込んで　変わる夢の色\\nほくそ笑むカードが映し出すの\\n未来へ\\n \\nYes,\nS-L-A-S-H,  'S/' The Way\\nYes,\nS-L-A-S-H,  'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H,  'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H,  'S/' The Way\\n \\nうそみたいなほんとを見せてあげるわ　いま　いま\\nそう　いま\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\nさあ　手にしたいんだ　new [new], new sky\\n塗り替えてく　[cool], cool, get up\\n求める強さは\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n満たされてく　あの月のように\\nねぇ　知ってるでしょ\\n \\n \\n \\n裂けた天（そら）　ほら　また堕とされて\\n誰が為 踊る夜の　mas?uerade\\n欲しいの　欲しいわね　ああ　望むまま\\nあなたがヴェールを剥がしてゆく\\n震えて\\n \\nYes,\nS-L-A-S-H,  'S/' The Way\\n \\n時折り　正しさなんて退屈だわ\\nもうこれ以上 もてあまさないで\\n異様な熱情\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\n研ぎ澄ます　i do [do], do me right\\n見つめている　[lu], lu, live up\\n輝く刹那は\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n目醒めてゆく\\n世界が少しだけ　静かになる\\n \\n \\n \\nそういま \nnow the time\\n \\n'S/'\nEcstasy Burn i challenge you\\n手にしたいんだ　new [new], new sky\\n塗り替えてく　[cool], cool, get up\\n求める強さは\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n満たされてく　あの月のように\\n目醒めて　'S/'\\n世界が止まって　いま　わたしのものになる\\n \\n \\n \\nYes,\nS-L-A-S-H, 'S/' The Way\\nYes,\nS-L-A-S-H, 'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H, 'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H, 'S/' The Way\\nThe Way",
-    lyrics_cn: "不要扰乱我心 呐 Rosé\\n怀有xs and os mystic terrorist\\n吞噬世界 变换的梦之色\\n暗自窃笑的卡片映照出的\\n向着未来\\n \\nYes,\nS-L-A-S-H,  'S/' The Way\\nYes,\nS-L-A-S-H,  'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H,  'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H,  'S/' The Way\\n \\n让你看看谎言般的真实吧 现在 现在\\n是的 就现在\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\n来吧 我想要得到 new [new], new sky\\n重新描绘 [cool], cool, get up\\n所追求的强大\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n逐渐盈满 仿佛那轮月亮\\n呐 你知道的吧\\n \\n \\n \\n裂开的天空 看 再次被击落\\n为谁起舞的夜之mas？uerade\\n是想要的吧 任凭所愿\\n你逐渐揭开面纱\\n颤抖吧\\n \\nYes,\nS-L-A-S-H, 'S/' The Way\\n \\n时而觉得 所谓正确真是无趣\\n别再让它无处安放\\n这异样的热情\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\n磨得锐利 i do [do], do me right\\n凝视着 [lu], lu, live up\\n闪耀的刹那\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n逐渐醒来\\n世界变得安静了少许\\n \\n \\n \\n是的 就现在 now the time\\n \\n'S/'\nEcstasy Burn i challenge you [you], you [you]\\n我想要得到 new [new], new sky\\n重新描绘 [cool], cool, get up\\n所追求的强大\\n'S/'\nHysteria it's just comin' true [true], true [true]\\n逐渐盈满 仿佛那轮月亮\\n醒来吧 'S/'\\n世界停转 此刻 归我所有\\n \\n \\n \\nYes,\nS-L-A-S-H, 'S/' The Way\\nYes,\nS-L-A-S-H, 'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H, 'S/' The Way\\nYes, S-L-A,\nYes, S-L-A-S-H, 'S/' The Way\\nThe Way",
+    lyrics_path: "lyrics/APtsp8s9Doz.js",
     search_keywords: "收收味，s the way",
     appearances: ["‘S/’ The Way / Sophie"],
     comments: [
@@ -1127,8 +1100,7 @@ var songsData = [
     arranger: "松坂康司 (SUPA LOVE) • Diggy-MO'",
     first_stage: "Ave Mujica 6th LIVE 「Ulterius Procedere」东京公演",
     mv_url: "https://www.bilibili.com/video/BV13Ma2zjEMA",
-    lyrics_jp: "虜になっていた 光 うつらうつら\\n幻を見ていた 儚い夢の中\\n\\nこの天（そら）の狭間に彷徨（さまよ）って 堕ちてゆく\\n[気づいて 気づいて このままじゃいけない]\\nそうね 知っているわ\\n\\nwake up wake up babe don't fear\\n君の碧い瞳の中に ああ わたしはいたい\\nwake up wake up babe さあ いま\\nもういちど 自分を越えて 越えて\\n信じて\\n\\n\\n\\n聖なる人も皆 生きる罪深さに苛まれ\\nやがて伝説は ただの土に\\n\\nこの愛のあとにも また忘却が続くのかしら\\n\\n[お願い お願い ねぇ 戻ってきて]\\nこのぬくもり 失えない\\n\\nwake up wake up babe don't fear\\n君の碧い瞳が やさしく微笑む未来\\nwake up wake up babe さあ いま\\n奏でるの 世界を ともに描いて\\n\\nwake up wake up babe don't fear\\n君の碧い瞳の中に ああ わたしはいたい\\nwake up wake up babe さあ いま\\nもういちど 自分を越えて 越えて\\n信じて",
-    lyrics_cn: "曾深陷其中 光芒朦朦胧胧\\n曾见到模糊的幻想 在转瞬即逝的梦中\\n\\n在天空的狭缝中彷徨徘徊 逐渐坠落\\n[请察觉到 请察觉到 不能这样下去了]\\n是啊 我早已明白\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n我愿长存于你空灵美丽的眼眸之中\\n醒来吧 醒来吧 亲爱的 就是现在\\n再一次 去超越自我 超越吧\\n请相信吧\\n\\n\\n\\n纵使是圣洁之人 也会为生命的罪孽深受煎熬\\n而那传说 终将化作尘土\\n\\n这份爱之后 是否仍唯有忘却相随\\n\\n[求求你 求求你 呐 回到我身边吧]\\n不能失去这份温暖\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n你空灵美丽的眼眸中温柔微笑的未来\\n醒来吧 醒来吧 亲爱的 就是现在\\n奏响由我们共同描绘的世界\\n\\n醒来吧 醒来吧 亲爱的 别害怕\\n我愿长存于你空灵美丽的眼眸之中\\n醒来吧 醒来吧 亲爱的 就是现在\\n再一次 去超越自我 超越吧\\n请相信吧",
+    lyrics_path: "lyrics/NBxd6EllAIr.js",
     search_keywords: "碧瞳，蓝眼睛",
     appearances: ["Ave Música"],
     comments: [
@@ -1154,8 +1126,7 @@ var songsData = [
     arranger: "Diggy-MO' • ÐIK",
     first_stage: "Ave Mujica 6th LIVE 「Ulterius Procedere」东京公演",
     mv_url: "https://www.bilibili.com/video/BV1UR2DB6ErR",
-    lyrics_jp: "太陽は山羊座へ向かう\\nいま 天（そら）は黒い海で 嗚呼 満たされて\\nそう わたしのこころ 悲鳴は神に届かぬと憂いて\\n運命（さだめ）嘆いて\\n\\nまた カーテシーがあなたの欲情を掻き立てる\\n‘美徳’ とこの魂 何処へ\\n\\n誘って 誘って 誘って 誘って 嘲笑って こんなわたしを辱めて\\nもうヤダって ヤダって 嫌だって だからやめて ほんとヤダ...\\n絶望のハイライト 揺れる死神の影\\n\\n\\n\\nhow bizarre\\n腐敗したハイエロファント\\n至上の愉悦を覚え わたしから掠め取ってゆく\\n純潔は壊され\\n\\n\\n\\nmaterial, material, material, how bizarre\\nmaterial, material,.. この ‘不幸’ を呪って\\n\\n\\n\\n誘って 誘って 誘って 誘って 嘲笑って こんなわたしを辱めて\\nもうヤダって ヤダって 嫌だって だからやめて ほんとヤダ...\\nほんとヤダ... ほんとヤダ... ほんとヤダ...\\n\\n儚い夢に取り憑かれているのかしら\\nそう この世で ‘美徳’ など 報いられないの\\n欺かれ続け 嗚咽と涙に 嗚呼 咽ぶばかりで\\n嫌だって... ほんとヤダ...\\nこんなことならいっそ...\\n絶望のハイライト 揺れる死神の影\\n",
-    lyrics_cn: "太阳向摩羯座西沉\\n啊 此刻 天空被漆黑的海洋填满\\n是的 我的心 忧虑着悲鸣无法传达给神明\\n哀叹着命运\\n\\n又一次 屈膝礼在挑起你的情欲\\n‘美德’和这灵魂 将去往何处\\n\\n引诱我 引诱我 引诱我 引诱我 嘲笑我 羞辱这样的我\\n不想再这样下去 不想 不要 所以请不要 真的好讨厌…\\n绝望的高光高潮 摇曳的死神之影\\n\\n\\n\\nhow bizarre\\n腐败的神启者\\n感受这至高的欢愉 从我身上掠夺而去\\n纯洁被破坏\\n\\n\\n\\nmaterial, material, material, how bizarre\\nmaterial, material,..诅咒这份‘不幸’\\n\\n\\n\\n引诱我 引诱我 引诱我 引诱我 嘲笑我 羞辱这样的我\\n不想再这样下去 不想 不要 所以请不要 真的好讨厌…\\n真的好讨厌… 真的好讨厌… 真的好讨厌…\\n\\n莫非是被虚妄的梦附身了吗？\\n是的 在这个世上 ‘美德’之类是没有回报的\\n持续被欺骗 在呜咽和泪水之中 啊 唯有哽咽\\n不要…真的好讨厌…\\n既然如此 不如干脆…\\n绝望的高光高潮 摇曳的死神之影",
+    lyrics_path: "lyrics/qCkB7hfjMwz.js",
     search_keywords: "索菲，鬼叫，苏菲",
     appearances: ["‘S/’ The Way / Sophie"],
     comments: [
@@ -1196,8 +1167,7 @@ var songsData = [
     arranger: "Diggy-MO'",
     first_stage: "Coming Soon…",
     mv_url: "https://www.bilibili.com/video/BV18LjB6eEYm",
-    lyrics_jp: "風よ 空よ 海よ 隙間に滑り込め\\n星よ 時代（とき）よ 真実（ひかり）よ\n眼差しの奥で\\n \\n燃えゆく命 駆け抜ける短さに\\n嘲う世界 闇を暴け\\n \\nBlue, Blue, Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくら晒されて\\n震える夜を越え いま儚く消えた声\\n \\n \\n \\n何故に 何故に こんなに届かない\n苛立ち\\n足りない 足りない 言葉じゃ\nこんなんじゃ感じない\\n \\nyour head up... stand up...\\n神のいないこの天（そら）\\n \\nBlue,Blue,Blue World So Cruel World\\n立ち向かってゆく ぼくら約束の果て\\n美しい夜を越え さあ\\n \\n \\n \\n確かなもの探していた 打ちひしがれて\\n運命を切り拓け\\n受け入れられないものを変えてゆけると\\n信じたいのに…信じたいのに…\\n信じていたのに\\n \\n \\n \\nclose to\nyou\\nただ終わりへと向かってゆくだけのその哀しみに\\n震える君を抱きしめ\\n \\n追いかける\\nBlue,Blue,Blue World The Whole Blue World\\n砕け散ってゆく夢 ぼくらそのままで\\n震える夜を越え 嗚呼\\nいま",
-    lyrics_cn: "风啊 天空啊 大海啊 滑入缝隙之中吧\\n星啊 时光啊 真实（光）啊 在眼神深处\\n \\n持续燃烧的生命 在飞驰而过的短暂中\\n嗤笑着的世界 揭露黑暗吧\\n \\nBlue, Blue, Blue World The Whole Blue World\\n逐渐破碎的梦 我们暴露其中\\n越过颤抖的夜 此刻虚幻消失的声音\\n \\n \\n \\n为何 为何 如此无法传达 焦躁\\n不够 不够 仅凭语言 这样根本感受不到\\n \\nyour head up... stand up...\\n没有神明的这片天空\\n \\nBlue, Blue, Blue World So Cruel World\\n挺身面对 向我们约定的尽头\\n穿越美丽的黑夜 来吧\\n \\n \\n \\n寻找着确切之物 却深受打击\\n开辟命运吧\\n相信能改变无法接受之事\\n明明想要相信…明明想要相信…\\n明明曾经相信\\n \\n \\n \\nclose to\nyou\\n在那份只是逐渐走向终结的哀伤中\\n抱紧颤抖的你\\n \\n追逐\\nBlue, Blue, Blue World The Whole Blue World\\n逐渐破碎的梦 我们就这样 \\n越过颤抖的夜晚 啊啊\\n此刻",
+    lyrics_path: "lyrics/m8wqmJXCAMX.js",
     search_keywords: "蓝世界，姨妈",
     appearances: ["Ave Música"],
     comments: [
@@ -1219,8 +1189,7 @@ var songsData = [
     arranger: "植木建象 • 冬真",
     first_stage: "",
     mv_url: "https://www.bilibili.com/video/BV1X58m6AENA",
-    lyrics_jp: "残酷な天使のように　少年よ神話になれ\\n蒼い風がいま　胸のドアを叩いても\\n私だけをただ見つめて微笑んでるあなた\\nそっとふれるもの　もとめることに夢中で\\n運命さえまだ知らない　いたいけな瞳\\nだけどいつか気付くでしょう　その背中には\\n遥か未来めざすための羽根があること\\n残酷な天使のテーゼ　窓辺からやがて飛び立つ\\nほとばしる熱いパトスで　思い出を裏切るなら\\nこの宇宙（そら）を抱いて輝く　少年よ神話になれ\\nずっと眠ってる 私の愛の揺りかご\\nあなただけが 夢の使者に呼ばれる朝がくる中\\n細い首筋を 月あかりが映してる\\n世界中の時を止めて 閉じこめたいけど\\nもしもふたり逢えたことに 意味があるなら\\n私はそう 自由を知るためのバイブル\\n残酷な天使のテーゼ 悲しみがそしてはじまる\\n抱きしめた命のかたち その夢に目覚めたとき\\n誰よりも光を放つ 少年よ 神話になれ\\n人は愛をつむぎながら 歴史をつくる\\n女神なんてなれないまま 私は生きる\\n残酷な天使のテーゼ　窓辺からやがて飛び立つ\\nほとばしる熱いパトスで　思い出を裏切るなら\\nこの宇宙（そら）を抱いて輝く　少年よ神話になれ",
-    lyrics_cn: "就像那残酷的天使 少年啊 成为神话吧\\n在此刻 苍蓝的风 轻轻敲击着我的心\\n但你只凝视我 对我微笑\\n指尖的轻触 为之执着 为之痴狂\\n连那命运也未曾谋面的 稚嫩双眸\\n不过总有一天会发觉 就在你背上\\n有那为了前往遥远未来而生的羽翼\\n残酷天使的行动纲领 旋即从窗边飞出\\n若以那迸发的炽热之情 连回忆也一同背叛\\n拥抱宇宙 放射光芒 少年啊 成为神话吧\\n我那爱的摇篮 一直在沉睡\\n有一个清晨 梦之使者会只将你呼唤\\n月光映着你纤细的颈\\n我多想停止全世界的时间，将你封存于沉眠之中\\n如果说我们两人的相逢 有某种意义\\n那么我就是那本这样了解“自由”的圣经\\n残酷天使的行动纲领 悲伤自此开始\\n紧拥的生命形状 自那梦中醒来时\\n放射最耀眼的耀眼光芒 少年啊 变成神话吧\\n人类一边编制爱 一边创造历史\\n依然不能成为女神的我 就这样生存着\\n残酷天使的行动纲领 旋即从窗边飞出\\n若以那迸发的炽热之情 连回忆也一同背叛\\n拥抱宇宙 放射光芒 少年啊 成为神话吧",
+    lyrics_path: "lyrics/PdDZryXc0Gq.js",
     search_keywords: "残纲，eva",
     appearances: [],
     comments: [
@@ -1242,8 +1211,7 @@ var songsData = [
     arranger: "植木建象 • 加藤貴之",
     first_stage: "",
     mv_url: "",
-    lyrics_jp: "また夢から覚める、濡れた瞼を開ける\\n狂おしいほど思い残す、遠い日の無力さを呪う\\n身を焼かれるような絶望も糧にはなろうか\\n憧れに焦がれるまま燃やし続けている\\nキラキラお星様宿したあなたのeyes\\nカラカラ渇いて可哀想なlack of 愛？\\n全てを孤独から救う眩しい光\\n僕にだけ落ちる影はあなたのせい？\\n致命的な欠落をくれたね\\n身勝手な巨星、狂わされた生\\nお願い、声を聞かせて、声を聞かせて\\n絡まって歪んでしまった傷さえ\\nくれたのはあなただけ、あなただけ\\nお願い、僕を見ていて、僕を見ていて\\n宿命に刻まれた痛みさえ武器にして\\nいつかの後悔すら照らせるように\\nあなたがいないと生きていけない\\n何もかも捧げてしまってもいい\\nあなたの愛がまだ足らない\\n欠けたものは何で埋めたらいい？\\n致命的、致命的、致命的な愛\\n運命的、運命的、運命的なI\\n必然的、必然的、必然的な哀\\n僕を見ていてね、最愛のファタール！\\nキラキラお星様宿したあなたのeyes\\nカラカラ渇いて可哀想なlack of 愛？\\n遥か彼方から放たれた美しさに\\n灼かれた眼、もがれた羽根、創造的堕天\\nあらゆる視界をジャック\\nその輝きはエゴイスティック\\n胸の奥仕舞った感情さえ\\n引っ張り出して昇華して\\n僕という運命を全部抱きしめていく\\nあなたがいないと生きていけない\\n眩しさでこの身を照らして欲しい\\nあなたの愛がまだ足らない\\n夢の中でもらうしかないのに\\n致命的、致命的、致命的な愛\\n運命的、運命的、運命的なI\\n必然的、必然的、必然的な哀\\n誰のものでもない、最愛のファタール！\\n何度悔やんだだろう\\n何度呪っただろう\\nどれほどの幸福を注いだとしても\\n満たされることのない器\\n何度夢見ただろう\\n何度願っただろう\\n僕の胸で膿み続けている傷を撫でる手を\\nこの舞台で足掻くことをやめない\\nただ一つのアイに近づきたい\\n固く定まったこの宿命\\nあの星の光からこぼれた闇\\nあなたがいないと生きていけない\\n何もかも捧げてしまってもいい\\nあなたの愛がまだ足らない\\n欠けたものは何で埋めたらいい？\\n致命的、致命的、致命的な愛\\n運命的、運命的、運命的なI\\n必然的、必然的、必然的な哀\\n僕を見ていてね、最愛のファタール！\\n最愛のファタール",
-    lyrics_cn: "又再从恶梦中惊醒 硬睁开浸湿的眼睑\\n几近令人疯狂的懊悔 咀咒遥远昔日的无力\\n连这份宛若烧灼自身的绝望也化为食粮吧\\n带着对憧憬的向往不断燃烧自己\\n寄宿着闪闪星光的你那eyes\\n如饥似渴惹人悲怜的lack of 爱？\\n将一切从孤独中拯救的眩目光芒\\n只落在我一人身上的阴影是你的错？\\n你给予了我致命的缺陷呢\\n只顾己私的巨星 脱轨失序的人生\\n求求你 让我听听你的声音 让我再听听你的声音\\n那些紧缠不清彻底扭曲的伤痕\\n为我留下的就只有你，惟独只有你\\n求求你 请注视着我 一直注视着我\\n甚至连深镂于宿命的悲痛也当作武器\\n但愿为曾经的后悔亦耀起一丝光明\\n没有你的话我根本活不下去\\n即使要献上所有一切我都无所谓\\n你予我的爱我还远远不足\\n缺口的空虚该用什么来填补？\\n致命的、致命的、致命的爱\\n命运的、命运的、命运的I\\n必然的、必然的、必然的哀\\n要一直注视着我呢 我最爱的Fatale！\\n寄宿着闪闪星光的你那eyes\\n如饥似渴惹人悲怜的lack of 爱？\\n被你那从遥远彼方所尽放的美\\n烧灼的双瞳 折落的翼羽 创造的堕天\\n将眼前视野一切占据夺走\\n那道耀眼光辉主张着自我的自负\\n甚至连深藏于心底的情感\\n亦硬是牵扯出来使其升华\\n紧紧拥抱住名为我的命运那所有一切\\n没有你的话我根本活不下去\\n渴望以你的耀光照亮我的身影\\n你予我的爱我还远远不足\\n明明只能够在梦中得到\\n致命的、致命的、致命的爱\\n命运的、命运的、命运的I\\n必然的、必然的、必然的哀\\n不属于任何一个人 我最爱的Fatale！\\n已经悔恨过无数次了吧\\n已经咀咒过无数遍了吧\\n哪怕注入再多的幸福\\n都无法被填满的容器\\n已经梦到过无数次了吧\\n已经许愿过无数遍了吧\\n对我伸出能抚慰 我内心持断溃烂化脓伤口的手\\n我绝不会放弃在此舞台上挣扎\\n只盼更接近那一道爱的身影\\n这既已尘埃落定的宿命\\n自那道星光涌溢而出的黑暗\\n没有你的话我根本活不下去\\n即使要献上所有一切我都无所谓\\n你予我的爱我还远远不足\\n缺口的空虚该用什么来填补？\\n致命的、致命的、致命的爱\\n命运的、命运的、命运的I\\n必然的、必然的、必然的哀\\n要一直注视着我呢 我最爱的Fatale！\\n我最爱的Fatale",
+    lyrics_path: "lyrics/AuHnc1IScNT.js",
     search_keywords: "推子",
     appearances: [],
     comments: [
@@ -1265,8 +1233,7 @@ var songsData = [
     arranger: "Diggy-MO’",
     first_stage: "Coming Soon…",
     mv_url: "",
-    lyrics_jp: "ざわめく海  哀しい幻\\n堕ちるように昇ってゆく愛  still burnin’\\n鮮やかな闇を描くこの天(そら)に\\nまた わたしの吐息を許すのなら\\n巡り巡る星よ\\n時代(とき)の波間に来て\\n生まれ変わって もういちど\\nさあ わたしの傷口にキスをして\\nloneliness, loneliness,  baby, let me hear you\\nso, let me hear you sing ‘A Song Of Romance’\\nloneliness,  baby, let me hear you\\nplease, let me hear you sing ‘A Song Of Romance’\\nキスをして  さあ 癒して  キスをして\\n甦れば\\n真実に近づけると believe\\nまた自由に 自由になれると  still dreamin’\\n追憶の君を辿れば わたしも同じなの\\n理解(わか)ってあげられたはずなのに\\n揺れる揺れる星を\\nそっと 抱き寄せて\\n孤独をただ分け合うように\\nそうね きっとみんな寂しいのね\\nwho am i…\\noh, who am i…\\nalienation, emptiness,\\nfrom despair to where…\\nhappiness, loneliness,\\nbeyond,  beyond,\\n巡り巡る星よ\\n時代(とき)の波間に来て\\n生まれ変わって もういちど\\n君に出逢えたなら\\n傷だらけの星を\\nそっと 抱き寄せて\\n孤独をただ分け合うように\\n赤裸々に\\n…sing ‘A Song Of Romance’\\nloneliness,  baby, let me hear you\\nplease, let me hear you sing ‘A Song Of Romance’",
-    lyrics_cn: "喧嚣翻涌的海 悲伤的幻影\\n如坠落般不断升腾的爱 still burnin’\\n描绘鲜明黑暗的这片天空中\\n若能再次容许我的呼吸\\n轮回运转的星啊\\n来到时光的波涛间\\n重获新生 再一次\\n来吧 亲吻我的伤口\\nloneliness, loneliness, baby, let me hear you\\nso, let me hear you sing ‘A Song Of Romance’\\nloneliness, baby, let me hear you\\nplease, let me hear you sing ‘A Song Of Romance’\\n亲吻我 来吧 治愈我 亲吻我\\n若能复苏\\n就能接近真实 believe\\n就能再次自由 变得自由 still dreamin’\\n追寻记忆中的你 我也是一样啊\\n明明本应能理解你\\n将那摇曳不定的星\\n轻轻地拥入怀中\\n仿佛只是在彼此分担孤独\\n是啊 想必大家都很寂寞\\nwho am i…\\noh, who am i…\\nalienation, emptiness,\\nfrom despair to where…\\nhappiness, loneliness,\\nbeyond, beyond,\\n轮回运转的星啊\\n来到时光的波涛间\\n重获新生 再一次\\n若能与你相遇\\n将那伤痕累累的星\\n轻轻地拥入怀中\\n仿佛只是在彼此分担孤独\\n无遮无掩地\\n…sing ‘A Song Of Romance’\\nloneliness, baby, let me hear you\\nplease, let me hear you sing ‘A Song Of Romance’",
+    lyrics_path: "lyrics/lM9g1g0VGCA.js",
     search_keywords: "浪漫，电影",
     appearances: ["神の名を"],
     comments: [
@@ -1288,8 +1255,7 @@ var songsData = [
     arranger: "長谷川大介(SUPA LOVE)",
     first_stage: "",
     mv_url: "https://www.bilibili.com/video/BV1ZLeG6JEha",
-    lyrics_jp: "Abra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\nPay the toll to the angels\\nDrawing circles in the clouds\\nKeep your mind on the distance\\nWhen the devil turns around\\nHold me in your heart tonight\\nIn the magic of the dark moonlight\\nSave me from this empty fight\\nIn the game of life\\nLike a poem said by a lady in red\\nYou hear the last few words of your life\\nWith a haunting dance, now you're both in a trance\\nIt's time to cast your spell on the night\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\nIn her tongue she said\\nDeath or love tonight\\nAbra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\nFeel the beat under your feet\\nThe floor's on fire\\nAbra-ca-dabra\\nAbracadabra\\nChoose the road on the west side\\nAs the dust flies,watch it burn\\nDon't waste time on a feeling\\nUse your passion,no return\\nHold me in your heart tonight\\nIn the magic of the dark moonlight\\nSave me from this empty fight\\nIn the game of life\\nLike a poem said by a lady in red\\nYou hear the last few words of your life\\nWith a haunting dance, now you're both in a trance\\nIt's time to cast your spell on the night\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\nIn her tongue she said\\nDeath or love tonight\\nAbra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\nFeel the beat under your feet\\nThe floor's on fire\\nAbra-ca-dabra\\nAbracadabra\\nPhantom of the dance floor\\nCome to me\\nSing for me a sinful melody\\nAh ah ah ah ah\\nAh ah ah ah\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\nIn her tongue she said\\nDeath or love tonight",
-    lyrics_cn: "Abra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\n向天使缴上灵魂的代价\\n在云端勾勒神秘的圆圈\\n目光锁定远方\\n当恶魔回首之际\\n今晚　将我紧拥在你心中\\n在幽暗月光的魔法下\\n拯救我脱离这场虚无之战\\n在生命的游戏中\\n像是红衣女子吟诵的诗句\\n你听见生命最后的呢喃\\n随着那魅惑的舞步 你们双双陷入恍惚\\n是时候向黑夜施展你的魔咒\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\n她用她的语言低语：\\n「今夜──非爱即死」\\nAbra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\n感受脚下的节奏\\n舞池正在燃烧\\nAbra-ca-dabra\\nAbracadabra\\n选择西边的道路\\n尘土飞扬间　看一切化为灰烬\\n莫将时光耗于情绪\\n燃尽你的激情 无路可退\\n今晚 将我紧拥在你心中\\n在幽暗月光的魔法下\\n拯救我脱离这场虚无之战\\n在生命的游戏中\\n像是红衣女子吟诵的诗句\\n你听见生命最后的呢喃\\n随着那魅惑的舞步　你们双双陷入恍惚\\n是时候向黑夜施展你的魔咒\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\n她用她的语言低语：\\n「今夜──非爱即死」\\nAbra-ca-dabra\\nAbracadabra\\nAbra-ca-dabra\\nAbracadabra\\n感受脚下的节奏\\n舞池正在燃烧\\nAbra-ca-dabra\\nAbracadabra\\n舞池的幽魂啊\\n来到我面前\\n为我唱一曲罪孽的旋律\\nAh ah ah ah ah\\nAh ah ah ah\\nAbracadabra\\nAmor oo na na\\nAbra ca da bra\\nMorta oo gaga\\nAbracadabra\\nAbra oo na na\\n她用她的语言低语：\\n「今夜──非爱即死」",
+    lyrics_path: "lyrics/3Cws4GxUP7k.js",
     search_keywords: "ladygaga，游戏",
     appearances: [],
     comments: [

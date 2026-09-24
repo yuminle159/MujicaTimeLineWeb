@@ -325,6 +325,15 @@
     else document.body.style.overflow = document.querySelector(".shared-song-modal-overlay.open, .shared-live-drawer-overlay.shared-live-active") ? "hidden" : "";
   }
 
+  function refreshContext(options) {
+    if (!activeRelease || !overlay || !overlay.classList.contains("open")) return;
+    Object.assign(currentOptions, options);
+    const scrollTarget = overlay.querySelector(".shared-discography-modal");
+    const position = scrollTarget.scrollTop;
+    renderRelease();
+    scrollTarget.scrollTop = position;
+  }
+
   function normalizeTitle(value) {
     return String(value || "").replace(/[\s\u00a0]+/g, "").toLowerCase();
   }
@@ -349,6 +358,7 @@
   global.DiscographyModal = {
     open: open,
     close: close,
+    refreshContext: refreshContext,
     isOpen: function () { return !!(overlay && overlay.classList.contains("open")); },
     findByTitle: findByTitle,
     openByTitle: function (title, options) {

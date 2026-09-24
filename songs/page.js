@@ -6,15 +6,6 @@
   let newReleaseRotationTimer;
   let newReleaseTransitionTimer;
 
-  function loadSongContext() {
-    return WijipediaData.load(["discography", "live", "interview"]);
-  }
-
-  function reportDataLoadError(error) {
-    console.error(error);
-    window.alert("关联资料载入失败，请检查网络后重试。");
-  }
-
   // ===== 类型筛选按钮 =====
   document.getElementById("filterOriginal").addEventListener("click", function() {
     if (activeType === "Original") {
@@ -193,7 +184,7 @@
           <span class="album-name">${escapeHTML(year.year)}</span>
         </div>
         <div class="cover-grid">
-          ${filtered.map(s => renderCoverCard(s)).join("")}
+          ${filtered.map((s, index) => renderCoverCard(s, totalVisible - filtered.length + index)).join("")}
         </div>`;
       gallery.appendChild(section);
     });
@@ -222,7 +213,7 @@
     return y * 10000 + m * 100 + d;
   }
 
-  function renderCoverCard(song) {
+  function renderCoverCard(song, visibleIndex) {
     const coverSrc = song.cover || "";
     const jp = song.name_jp ? `<span class="cover-song-name">${escapeHTML(song.name_jp)}</span>` : "";
     const cn = song.name ? `<span class="cover-song-name-cn">${escapeHTML(song.name)}</span>` : "";
@@ -232,7 +223,7 @@
       : (countdownDays ? `<span class="cover-countdown-badge">${countdownDays} 天后</span>` : "");
     return `
       <div class="cover-card type-${(song.type || '').toLowerCase()}${countdownDays ? ' is-upcoming' : ''}" data-song-index="${songsData.indexOf(song)}" onclick="openModal(${songsData.indexOf(song)})">
-        ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name_jp || song.name)}" loading="lazy">` : `<div class="cover-placeholder"><i></i><strong>${escapeHTML(song.name_jp || song.name)}</strong><small>UNKNOWN</small></div>`}
+        ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name_jp || song.name)}" loading="${visibleIndex < 4 ? 'eager' : 'lazy'}" decoding="async">` : `<div class="cover-placeholder"><i></i><strong>${escapeHTML(song.name_jp || song.name)}</strong><small>UNKNOWN</small></div>`}
         ${releaseBadge}
         <div class="cover-overlay">
           ${jp}
@@ -265,14 +256,16 @@
   });
 
   window.openModal = function(index, updateHash = true) {
-    return loadSongContext().then(function(data) {
-      return SongModal.open(index, {
-        songs: songsData,
-        discography: data.discography,
-        lives: data.live,
-        updateHash
-      });
-    }).catch(reportDataLoadError);
+    const opened = SongModal.open(index, {
+      songs: songsData,
+      discography: WijipediaData.get("discography") || [],
+      lives: WijipediaData.get("live") || [],
+      updateHash
+    });
+    if (opened) WijipediaData.loadRelated(["discography", "live", "interview"], function (data) {
+      SongModal.refreshContext({ discography: data.discography, lives: data.live });
+    });
+    return opened;
   };
 
   newReleaseSpotlight.addEventListener("click", function(event) {

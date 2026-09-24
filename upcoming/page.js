@@ -23,23 +23,10 @@
   let shownMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   let activeType = "all";
 
-  function itemUrl(section, hashId) {
-    const parameters = { songs: "song", live: "live", discography: "discography" };
-    return "../" + section + "/index.html#" + parameters[section] + "=" + encodeURIComponent(hashId || "");
-  }
-
   const allEvents = [];
-  (window.songsData || []).forEach(function (item) {
-    const date = parseDate(item.release_date);
-    if (date) allEvents.push({ type: "song", date: date, title: item.name_jp || item.name || "Unknown", url: itemUrl("songs", item.hash_id) });
-  });
-  (window.livesData || []).forEach(function (item) {
+  (window.WIJIPEDIA_UPCOMING_EVENTS || []).forEach(function (item) {
     const date = parseDate(item.date);
-    if (date) allEvents.push({ type: "live", date: date, title: item.name || "Unknown", url: itemUrl("live", item.hash_id) });
-  });
-  (window.discographyData || []).forEach(function (item) {
-    const date = parseDate(item.release_date);
-    if (date) allEvents.push({ type: "discography", date: date, title: item.title_jp || item.title || "Unknown", url: itemUrl("discography", item.hash_id) });
+    if (date) allEvents.push({ type: item.type, date: date, title: item.title || "Unknown", url: item.url });
   });
   allEvents.sort(function (left, right) { return left.date - right.date || left.title.localeCompare(right.title); });
 

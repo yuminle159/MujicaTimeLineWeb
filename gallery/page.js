@@ -103,7 +103,11 @@
       allCards.forEach(c => c.style.display = 'none');
       const start = (currentPage - 1) * PER_PAGE;
       const end = start + PER_PAGE;
-      visibleCards.slice(start, end).forEach(c => c.style.display = '');
+      visibleCards.slice(start, end).forEach(c => {
+        c.style.display = '';
+        const image = c.querySelector('img[data-src]');
+        if (image && !image.getAttribute('src')) image.src = image.dataset.src;
+      });
 
       renderPagination(totalPages);
     }
@@ -151,7 +155,7 @@
 
     // ==================== 动态生成图片卡片 ====================
     const grid = document.getElementById('masonryGrid');
-    galleryData.forEach(item => {
+    galleryData.forEach((item, index) => {
       const card = document.createElement('div');
       card.className = 'masonry-item';
       card.setAttribute('data-tags', JSON.stringify(item.tags));
@@ -159,12 +163,17 @@
         .join(' ').toLocaleLowerCase();
 
       const img = document.createElement('img');
-      img.src = item.filename;
+      img.dataset.src = item.thumbnail || item.filename;
       img.alt = item.title;
-      img.loading = 'lazy';
+      img.loading = index < 4 ? 'eager' : 'lazy';
+      img.decoding = 'async';
+      img.onerror = () => {
+        if (img.src !== new URL(item.filename, location.href).href) img.src = item.filename;
+        else card.classList.add('loaded');
+      };
       img.onload = () => card.classList.add('loaded');
       // 如果图片已缓存，onload 可能不触发
-      if (img.complete) card.classList.add('loaded');
+      if (img.getAttribute('src') && img.complete) card.classList.add('loaded');
 
       const cornerTL = document.createElement('div');
       cornerTL.className = 'corner-tl';

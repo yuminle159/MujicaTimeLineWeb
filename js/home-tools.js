@@ -54,13 +54,18 @@
   }
 
   function loadIndex() {
-    if (window.WIJIPEDIA_SEARCH_INDEX) return Promise.resolve(window.WIJIPEDIA_SEARCH_INDEX);
+    if (window.WIJIPEDIA_DAILY_ARCHIVE) return Promise.resolve(window.WIJIPEDIA_DAILY_ARCHIVE);
     if (indexPromise) return indexPromise;
     indexPromise = new Promise(function (resolve, reject) {
       const script = document.createElement("script");
-      script.src = new URL("search-index.js", siteRoot).href;
-      script.onload = function () { resolve(window.WIJIPEDIA_SEARCH_INDEX || []); };
-      script.onerror = reject;
+      const url = new URL("daily-archive.js", siteRoot);
+      url.search = new URL(ownScript.src).search;
+      script.src = url.href;
+      script.onload = function () {
+        if (Array.isArray(window.WIJIPEDIA_DAILY_ARCHIVE)) resolve(window.WIJIPEDIA_DAILY_ARCHIVE);
+        else { indexPromise = null; reject(new Error("每日档案索引无效")); }
+      };
+      script.onerror = function () { indexPromise = null; script.remove(); reject(new Error("每日档案索引载入失败")); };
       document.head.appendChild(script);
     });
     return indexPromise;
@@ -114,6 +119,14 @@
     button.classList.remove("is-loading");
   }
 
+  window.addEventListener("load", function () {
+    window.setTimeout(function () {
+      const warmIndex = function () { loadIndex().catch(function () { /* 点击时可重试。 */ }); };
+      if (window.requestIdleCallback) window.requestIdleCallback(warmIndex, { timeout: 3000 });
+      else warmIndex();
+    }, 1200);
+  }, { once: true });
+
   window.addEventListener("pageshow", resetButton);
 
   button.addEventListener("click", function () {
@@ -128,7 +141,7 @@
       location.href = target.href;
     }).catch(function () {
       resetButton();
-      button.dataset.tooltip = "档案暂时不可用";
+      button.dataset.tooltip = "档案载入失败，点击重试";
     });
   });
 })();

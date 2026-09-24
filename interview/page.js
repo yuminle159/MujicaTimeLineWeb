@@ -41,7 +41,7 @@
     noResults.style.display = filtered.length ? "none" : "block";
     gallery.innerHTML = "";
 
-    filtered.forEach(function (item) {
+    filtered.forEach(function (item, visibleIndex) {
       const originalIndex = data.indexOf(item);
       const card = document.createElement("div");
       card.className = "interview-card";
@@ -49,7 +49,7 @@
       card.addEventListener("click", function () { InterviewOverlay.open(originalIndex); });
       card.innerHTML =
         '<div class="card-image">' +
-          (item.poster ? '<img src="' + escapeHTML(item.poster) + '" alt="' + escapeHTML(item.title) + '" loading="lazy">' : '<div class="card-placeholder"></div>') +
+          (item.poster ? '<img src="' + escapeHTML(item.poster) + '" alt="' + escapeHTML(item.title) + '" loading="' + (visibleIndex < 4 ? 'eager' : 'lazy') + '" decoding="async">' : '<div class="card-placeholder"></div>') +
           (String(item.if_translated || "").toLowerCase() === "yes" ? '<span class="interview-status">CN</span>' : '') +
         '</div>' +
         '<div class="card-info">' +
@@ -81,7 +81,6 @@
 
   InterviewOverlay.configure({ data: interviewData, manageHash: true, includePageScroll: true });
   renderCards(interviewData);
-  InterviewOverlay.preRender(interviewData);
 
   // Something New 入口：使用可读的 title 定位，并直接打开采访组件。
   const directInterviewTitle = new URLSearchParams(window.location.search).get("interview");

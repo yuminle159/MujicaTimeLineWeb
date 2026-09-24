@@ -169,7 +169,7 @@
       photoGroups.map(function (group, groupIndex) {
         const firstPhoto = group.photos[0];
         const multiBadge = group.photos.length > 1 ? '<span class="shared-live-multi-badge">+' + (group.photos.length - 1) + '</span>' : "";
-        return '<div class="shared-live-photo-card"><button type="button" data-live-photo-group="' + groupIndex + '"><img src="' + escapeHTML(firstPhoto.photo) + '" alt="' + escapeHTML(group.credit || "") + '"></button>' +
+        return '<div class="shared-live-photo-card"><button type="button" data-live-photo-group="' + groupIndex + '"><img src="' + escapeHTML(firstPhoto.photo) + '" alt="' + escapeHTML(group.credit || "") + '" loading="lazy"></button>' +
           (group.credit ? '<span class="shared-live-credit-tag">' + escapeHTML(group.credit) + '</span>' : '') + multiBadge + '</div>';
       }).join("") + '</div></div>';
   }
@@ -382,7 +382,6 @@
     if (!live) return false;
     if (typeof settings.beforeOpen === "function") settings.beforeOpen(live);
     let savedScrollTop = 0;
-    let photosPreloaded = false;
 
     function activate() {
       currentOptions = settings;
@@ -391,12 +390,6 @@
       drawerBody.scrollTop = savedScrollTop;
       overlay.classList.add("shared-live-active");
       overlay.setAttribute("aria-hidden", "false");
-      if (!photosPreloaded) {
-        photoGroups.forEach(function (group) {
-          group.photos.forEach(function (photo) { const image = new Image(); image.src = photo.photo; });
-        });
-        photosPreloaded = true;
-      }
     }
 
     if (global.OverlayManager) {
@@ -465,6 +458,14 @@
     else restoreBodyScroll();
   }
 
+  function refreshContext(options) {
+    if (!currentLive || !overlay || !overlay.classList.contains("shared-live-active")) return;
+    Object.assign(currentOptions, options);
+    const position = drawerBody.scrollTop;
+    render(currentLive, (currentOptions.lives || global.livesData || []).indexOf(currentLive));
+    drawerBody.scrollTop = position;
+  }
+
   function normalizedTitle(value) {
     return String(value || "").replace(/[\s\u00a0]+/g, "").replace(/[「」『』]/g, function (mark) { return mark; }).toLowerCase();
   }
@@ -498,6 +499,7 @@
   global.LiveDrawer = {
     open: open,
     close: close,
+    refreshContext: refreshContext,
     isOpen: function () { return !!(overlay && overlay.classList.contains("shared-live-active")); },
     isAuxiliaryOpen: function () { return !!((mcModal && mcModal.classList.contains("shared-live-active")) || (lightbox && lightbox.classList.contains("shared-live-active"))); },
     findByTitle: findByTitle,
