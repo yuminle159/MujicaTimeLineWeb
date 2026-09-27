@@ -1,0 +1,48 @@
+model = "gpt-6-astra"
+model_reasoning_effort = "medium"
+[marketplaces.openai-bundled]
+last_updated = "2026-06-04T15:00:40Z"
+source_type = "local"
+source = '\\?\C:\Users\YUMIN\.codex\.tmp\bundled-marketplaces\openai-bundled'
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[features]
+js_repl = false
+
+[mcp_servers.node_repl]
+args = []
+command = 'C:\Users\YUMIN\AppData\Local\OpenAI\Codex\bin\34ab3e1324cc55b5\node_repl.exe'
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = ""
+NODE_REPL_NODE_PATH = 'C:\Users\YUMIN\AppData\Local\OpenAI\Codex\bin\5b9024f90663758b\node.exe'
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\YUMIN\.codex'
+CODEX_HOME = 'C:\Users\YUMIN\.codex'
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "4b6bfaf4ed2ce9b5cd68e60a61642eb4927a36306ba8c8993f6058607b3530fb,e13c388c2427308a68dffc803e1f28316077b719672e4518a621ae6ab56ad7cf"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+CODEX_CLI_PATH = 'C:\Users\YUMIN\AppData\Local\OpenAI\Codex\bin\716dda49c14d31a0\codex.exe'
+
+[projects.'f:\mujicatimelineweb']
+trust_level = "trusted"
+
+[projects.'c:\users\yumin\downloads\横k鸡狗1场刊']
+trust_level = "trusted"
+
+[projects.'f:\临时']
+trust_level = "trusted"
+
+[tui]
+screen_reader_detection_done = true
+
+[tui.model_availability_nux]
+gpt-6-astra = 4
+
+[windows]
+sandbox = "elevated"
