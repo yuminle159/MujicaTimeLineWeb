@@ -1301,6 +1301,69 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "L9GJ2X5u7GQ",
+    date: "2025/8/16",
+    title: "Ave Mujica 出演 SUMMER SONIC 2025 TOKYO",
+    category: "organization",
+    description: "首次出演SUMMER SONIC（日本最大的面向国际的音乐节）",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/ss2025 kv.webp" },
+      { type: "image", src: "../images/summersonic2025合照.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1F9YYzwESD", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "q0pD494uNEx",
+    date: "2025/8/30",
+    title: "Ave Mujica 出演 Animelo Summer Live 2025 “ThanXX!” D2",
+    category: "organization",
+    description: "第二次出演ASL",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/asl2025合照.webp" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48796328", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "yIAJsJtCfL5",
+    date: "2025/9/20",
+    title: "Ave Mujica 出演 rockin'on presents ROCK IN JAPAN FESTIVAL 2025",
+    category: "organization",
+    description: "",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/rij2025合照.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1CZUfBtEWF", title: "在线观看(仅颜&kk）" }
+    ]
+  },
+  {
+    hash_id: "kgzHnTdoWhK",
+    date: "2025/12/14",
+    title: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演",
+    category: "organization",
+    description: "「继续前进」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/6th live logo.webp", caption: "6th Live Logo" },
+      { type: "image", src: "../images/6th kv.webp", caption: "6th Live 主视图" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48691288", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "R1UlQYO7T5n",
+    date: "2025/12/26",
+    title: "Ave Mujica 出演 ABEMA 日本アニメトレンド大賞 2025",
+    category: "organization",
+    description: "",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/abema大赏2025合照.webp" },
+      { type: "image", src: "../images/abemaanison大赏2025 kv.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1LmBvBQEag", title: "在线观看" }
+    ]
+  },
+  {
     hash_id: "Fw4d2gH0TMY",
     date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",
@@ -1350,6 +1413,19 @@ var timelineData = [
       { type: "image", src: "../images/5th kv.webp", caption: "5th Live 主视图" },
       { type: "link", url: "https://www.acfun.cn/v/ac48848113", title: "D1 在线观看" },
       { type: "link", url: "https://www.acfun.cn/v/ac48737511", title: "D2 在线观看" }
+    ]
+  },
+  {
+    hash_id: "Z84QqalGK0c",
+    date: "2025/10/11 ~ 2025/10/12",
+    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同Live「分歧路口，前途漫漫」",
+    category: "organization",
+    description: "于上海 梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）举办的演出",
+    tag: "bandori_fes",
+    media: [
+      { type: "image", src: "../images/鸡狗1上海 kv.webp" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48832641", title: "D1 在线观看" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48832628", title: "D2 在线观看" }
     ]
   }
 ];
