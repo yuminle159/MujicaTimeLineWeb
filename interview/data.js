@@ -215,7 +215,7 @@ var interviewData = [
     date: "2024-08-11 00:00:00",
     interviewee: "斋藤光二 x 绪方航贵 x 松本拓辉",
     title: "『Anisama 2024』斋藤P x “MyGO!!!!!”P 绪方航贵 x “Ave Mujica”P 松本拓辉 三方对谈",
-    if_translated: "no",
+    if_translated: "yes",
     hash_id: "jqNjeOrIDQb",
     sections: [{"id": "section-01", "title": "与Bushiroad企划的勾结是“没有的事！”"}, {"id": "section-02", "title": "MyGO!!!!!那些难读标题的诞生秘闻"}, {"id": "section-03", "title": "制作人亲自指导Ave Mujica甩头"}, {"id": "section-04", "title": "谈论女子乐队企划蓬勃发展的当下"}, {"id": "section-05", "title": "何为“Anisama中的胜负”？"}, {"id": "section-06", "title": "以“把一切统统砸烂”的心态去挑战"}],
     related: [{"id": "DhvrDXRrWlS", "reason": "共同受访者：松本拓辉"}],
