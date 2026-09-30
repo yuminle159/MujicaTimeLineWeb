@@ -339,6 +339,15 @@ var discographyData = [
             "content_title": "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」",
             "duration": "",
             "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "Back Stage Comment映像",
+            "duration": "",
+            "note": ""
           }
         ]
       },
