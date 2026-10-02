@@ -1364,6 +1364,208 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "HI8CdRih5pS",
+    date: "2026/1/15",
+    title: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演",
+    category: "organization",
+    description: "「继续前进」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/6th live logo.webp", caption: "6th Live Logo" },
+      { type: "image", src: "../images/6th kv.webp", caption: "6th Live 主视图" }
+    ]
+  },
+  {
+    hash_id: "3ylmCLe0Oib",
+    date: "2026/2/28",
+    title: "Ave Mujica 出演 BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」",
+    category: "organization",
+    description: "BanG Dream! 十周年Live「以BanG Dream!之名」",
+    tag: "bandori_fes",
+    media: [
+      { type: "image", src: "../images/logo/十周年livelogo.webp", caption: "十周年Live Logo" },
+      { type: "image", src: "../images/邦邦10周年 kv.webp", caption: "十周年Live 主视图" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48832656", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "FPDRG8gMBUF",
+    date: "2026/3/1",
+    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」",
+    category: "organization",
+    description: "「“瞬间 / 记忆”」",
+    tag: "bandori_fes",
+    media: [
+      { type: "image", src: "../images/logo/横k鸡狗2logo彩.webp", caption: "横K Two Men Live Logo" },
+      { type: "image", src: "../images/横k鸡狗2 kv.webp", caption: "横K Two Men Live 主视图" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1TFJW6FEeP", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "onTyTrrGsb4",
+    date: "2026/3/20",
+    title: "Ave Mujica 出演 MEGA VEGAS 2026",
+    category: "organization",
+    description: "",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/galleryless/megavegas2026宣布.webp" }
+    ]
+  },
+  {
+    hash_id: "5qkr8Um09tu",
+    date: "2026/4/4",
+    title: "Ave Mujica 出演 CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026",
+    category: "organization",
+    description: "Sony Music 主导的大型都市型音乐节",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/galleryless/central2026宣布.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV18RdHBnELz", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "T4U3nlwNYfI",
+    date: "2026/1/10",
+    title: "Ave Mujica Talk Event 「UNMASQUERADE」东京场",
+    category: "organization",
+    description: "「不假面舞会」 午场 & 夜场两部",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/logo/unmasqueradelogo.webp" },
+      { type: "image", src: "../images/unmasquerade东京合照.webp" }
+    ]
+  },
+  {
+    hash_id: "lRP03AreI78",
+    date: "2026/2/21",
+    title: "Ave Mujica Talk Event 「UNMASQUERADE」大阪场",
+    category: "organization",
+    description: "「不假面舞会」 午场 & 夜场两部",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/logo/unmasqueradelogo.webp" },
+      { type: "image", src: "../images/unmasquerade大阪合照.webp" }
+    ]
+  },
+  {
+    hash_id: "GykH3QffYm5",
+    date: "2026/4/11",
+    title: "Ave Mujica 出演 BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」",
+    category: "organization",
+    description: "「“瞬间 / 记忆”」与Poppin' Party & Roselia 一同出演的BanG Dream! Special LIVE in TAIPEI",
+    tag: "bandori_fes",
+    media: [
+      { type: "image", src: "../images/logo/台北鸡狗2logo彩.webp", caption: "台北 Two Men Live Logo" },
+      { type: "image", src: "../images/台北鸡狗2 kv.webp", caption: "台北 Two Men Live 主视图" }
+    ]
+  },
+  {
+    hash_id: "w1wAgN22hl5",
+    date: "2026/4/17",
+    title: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演",
+    category: "organization",
+    description: "「出口」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/exituslogo彩.webp", caption: "26年巡演 Logo" },
+      { type: "image", src: "../images/exitus kv.webp", caption: "26年巡演 主视图" }
+    ]
+  },
+  {
+    hash_id: "2T9ausb7ZE8",
+    date: "2026/4/26",
+    title: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演",
+    category: "organization",
+    description: "「出口」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/exituslogo彩.webp" },
+      { type: "image", src: "../images/exitus kv.webp" }
+    ]
+  },
+  {
+    hash_id: "UqTWFlpX3kR",
+    date: "2026/5/1",
+    title: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演",
+    category: "organization",
+    description: "「出口」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/exituslogo彩.webp" },
+      { type: "image", src: "../images/exitus kv.webp" }
+    ]
+  },
+  {
+    hash_id: "5kz2KPP7MVM",
+    date: "2026/5/4",
+    title: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演",
+    category: "organization",
+    description: "「出口」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/exituslogo彩.webp" },
+      { type: "image", src: "../images/exitus kv.webp" }
+    ]
+  },
+  {
+    hash_id: "MERP4w4xExZ",
+    date: "2026/7/12",
+    title: "Ave Mujica 出演 BEAT AX -SUMMER EDITION 2026-",
+    category: "organization",
+    description: "日本电视台主办的大型拼盘音乐节",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/beatax2026 kv.webp" }
+    ]
+  },
+  {
+    hash_id: "st2NC7Pnho0",
+    date: "2026/8/14",
+    title: "SUMMER SONIC 2026 OSAKA",
+    category: "organization",
+    description: "第二次出演SUMMER SONIC（日本最大的面向国际的音乐节）",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/ss2026 kv.webp" }
+    ]
+  },
+  {
+    hash_id: "CuSinYv0xr2",
+    date: "2026/8/16",
+    title: "SUMMER SONIC 2026 TOKYO",
+    category: "organization",
+    description: "第二次出演SUMMER SONIC（日本最大的面向国际的音乐节）",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/ss2026 kv.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV17iYj6bE6G", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "gvwnZV8BuBs",
+    date: "2026/1/12",
+    title: "Bushiroad新春大发表会宣布制作新手机游戏 BanG Dream! Our Notes",
+    category: "organization",
+    description: "Ave Mujica作为该游戏的五支初始乐队之一登场",
+    tag: "game",
+    media: [
+      { type: "image", src: "../images/logo/新春大发表会2026logo.webp" }
+    ]
+  },
+  {
+    hash_id: "HnGPaJWFoRe",
+    date: "2023/9/14",
+    title: "TV动画「BanG Dream! It's MyGO!!!!!」#13 信じられるのは我が身ひとつ 播出",
+    category: "organization",
+    description: "「唯一能相信的只有自己」\n动画中正式登场，演出同名曲「Ave Mujica」\n成员身份揭晓，五人同时发送推文「…欢迎来到，Ave Mujica的世界」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/mygoep13截图.webp", caption: "MyGO!!!!! #13" },
+      { type: "image", src: "../images/galleryless/自我介绍.webp", caption: "重新自我介绍" }
+    ]
+  },
+  {
     hash_id: "Fw4d2gH0TMY",
     date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",
@@ -1427,6 +1629,32 @@ var timelineData = [
       { type: "link", url: "https://www.acfun.cn/v/ac48832641", title: "D1 在线观看" },
       { type: "link", url: "https://www.acfun.cn/v/ac48832628", title: "D2 在线观看" }
     ]
+  },
+  {
+    hash_id: "4vTsI40D8mc",
+    date: "2026/6/19 ~ 2026/6/20",
+    title: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL-",
+    category: "organization",
+    description: "「出口」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/exituslogo彩.webp" },
+      { type: "image", src: "../images/exitus kv.webp" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48645465", title: "D1 在线观看" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48644820", title: "D2 在线观看" }
+    ]
+  },
+  {
+    hash_id: "OvnUSu8M99H",
+    date: "2026/8/8 ~ 2026/8/9",
+    title: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演",
+    category: "organization",
+    description: "「出口」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/exituslogo彩.webp" },
+      { type: "image", src: "../images/exitus kv.webp" }
+    ]
   }
 ];
 
@@ -1434,3 +1662,5 @@ const timelineConfig = {
   zeroDate: "2023-06-04",
   pixelsPerDay: 4
 };
+
+var timelineTagOptions = ["oml", "bandori_fes", "fes", "single", "album", "anime", "game", "offline", "private", "business"];

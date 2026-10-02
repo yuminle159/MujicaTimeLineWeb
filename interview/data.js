@@ -10,7 +10,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "eoCADeAXqYd",
     sections: [{"id": "section-01", "title": "从第一印象中逐渐显现出的，两人的“真实一面”"}, {"id": "section-02", "title": "TV动画化确定时，两人各自的觉悟"}, {"id": "section-03", "title": "从3岁开始的“宿命”，与从16岁开始的挑战——各自的人生轨迹"}, {"id": "section-04", "title": "“你觉得音乐是快乐的吗？”"}, {"id": "section-05", "title": "没能以“很开心”来收尾"}, {"id": "section-06", "title": "想要一起去寻找那份闪耀"}],
-    related: [{"id": "hHvY1EWykhY", "reason": "同系列"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "m58tZySEck6", "reason": "共同受访者：高尾奏音"}],
+    related: [{"id": "hHvY1EWykhY", "reason": "同系列"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "BE9kJEFFOW6", "reason": "共同受访者：高尾奏音"}],
     previous_id: "hloIGz0UBX8",
     next_id: "hHvY1EWykhY",
     article_path: "articles/eoCADeAXqYd.js"
@@ -206,7 +206,7 @@ var interviewData = [
     hash_id: "HfJYreVxg8X",
     sections: [],
     related: [{"id": "MX8CI0pi7ii", "reason": "同为全员访谈"}, {"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}, {"id": "hloIGz0UBX8", "reason": "同为全员访谈"}],
-    previous_id: "EGHiOMHcXyX",
+    previous_id: "BE9kJEFFOW6",
     next_id: "vg0aUAR0CnH",
     article_path: "articles/HfJYreVxg8X.js"
   },
@@ -244,9 +244,9 @@ var interviewData = [
     if_translated: "no",
     hash_id: "EGHiOMHcXyX",
     sections: [{"id": "section-01", "title": "「リスパレ！」力荐 Ave Mujica 的理由是什么？"}, {"id": "section-02", "title": "回顾那场伴随震撼惊喜一同呈现的4th LIVE"}, {"id": "section-03", "title": "聊聊热门OP「KiLLKiSS」与动画配音的幕后故事！"}, {"id": "section-04", "title": "也请留意歌词！让人直到最后都沉浸于动画世界的ED"}, {"id": "section-05", "title": "假如Ave Mujica要推出自己的专属广播节目的话……？"}],
-    related: [{"id": "n7j1fu7Aamc", "reason": "共同受访者：高尾奏音"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：渡濑结月"}, {"id": "m58tZySEck6", "reason": "共同受访者：高尾奏音"}],
+    related: [{"id": "BE9kJEFFOW6", "reason": "共同受访者：高尾奏音"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：高尾奏音"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：渡濑结月"}],
     previous_id: "wlMKzDwspiJ",
-    next_id: "HfJYreVxg8X",
+    next_id: "BE9kJEFFOW6",
     article_path: "articles/EGHiOMHcXyX.js"
   },
   {
@@ -274,5 +274,18 @@ var interviewData = [
     previous_id: "D8V8YJOLbPX",
     next_id: "hloIGz0UBX8",
     article_path: "articles/DhvrDXRrWlS.js"
+  },
+  {
+    poster: "../images//galleryless/astarsvol6cover.webp",
+    date: "2025-01-23 00:00:00",
+    interviewee: "高尾奏音",
+    title: "“我当时想告诉祥子，身边的人其实会给你更多帮助的呀” TVガイド A Stars vol.06 高尾奏音访谈",
+    if_translated: "no",
+    hash_id: "BE9kJEFFOW6",
+    sections: [{"id": "section-01", "title": "处处都是全新体验的乐队活动，以及伙伴们的存在"}, {"id": "section-02", "title": "Ave Mujica 是祥子为了活下去的手段"}],
+    related: [{"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：高尾奏音"}, {"id": "m58tZySEck6", "reason": "共同受访者：高尾奏音"}],
+    previous_id: "EGHiOMHcXyX",
+    next_id: "HfJYreVxg8X",
+    article_path: "articles/BE9kJEFFOW6.js"
   }
 ];
