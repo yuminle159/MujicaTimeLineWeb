@@ -50,7 +50,6 @@
     }
   })(11);
 
-  const PD = timelineConfig.pixelsPerDay;
   const START_TOP = 80;
 
   const trackL = document.getElementById("trackLeft");
@@ -61,43 +60,22 @@
 
   const FM = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 
-  function daysBetween(d1, d2) {
-    return Math.round((d2 - d1) / 86400000);
-  }
-
   function parseDate(dateStr) {
     // 支持 "2024/7/13 ~ 2024/7/14"，并兼容缓存中的旧连字符格式。
     const first = dateStr.split(/\s+(?:~|-)\s+/)[0].trim();
     return new Date(first);
   }
 
-  const startDate = timelineData.reduce((min, e) => {
-    const d = parseDate(e.date); return d < min ? d : min;
-  }, parseDate(timelineData[0]?.date || timelineConfig.zeroDate));
-
-  const endDate = timelineData.reduce((max, e) => {
-    const d = parseDate(e.date); return d > max ? d : max;
-  }, parseDate(timelineData[0]?.date || timelineConfig.zeroDate));
-
-  function calcTop(dateStr) {
-    return START_TOP + daysBetween(startDate, parseDate(dateStr)) * PD;
-  }
-
   const YEAR_LABEL_GAP = 60; // 年份标签与月份刻度的间距（px），可自行调整
 
   // 生成月度刻度（统一短轴）+ 年份标签（每年第一个月份上方）
   // 左右轨共用同一个刻度位置，确保年份/月份完全对齐
-  const allTicks = [];
-  const yearLabels = [];
   function generateMonthTicks(mergedMonthMap) {
     const sortedMonths = Object.keys(mergedMonthMap).sort((a, b) => mergedMonthMap[a].minTop - mergedMonthMap[b].minTop);
     let lastYear = null;
-    let prevMax = -Infinity;
 
     sortedMonths.forEach((mk) => {
-      // 确保当前刻度位置 >= 上个月最后事件位置 + 间距
-      let tickTop = Math.max(mergedMonthMap[mk].minTop, prevMax + MIN_GAP);
-      prevMax = mergedMonthMap[mk].maxTop;
+      const tickTop = mergedMonthMap[mk].minTop;
       const [y, m] = mk.split('-');
       const monthNum = parseInt(m);
       const year = parseInt(y);
@@ -112,10 +90,8 @@
           yl.className = "year-label";
           yl.style.top = yearTop + "px";
           yl.textContent = String(year);
-          yl.dataset.originalTop = yearTop;
           yl.dataset.side = side;
           (side === 'left' ? ticksL : ticksR).appendChild(yl);
-          yearLabels.push(yl);
         });
       }
 
@@ -124,7 +100,6 @@
         const t = document.createElement("div");
         t.className = "tick";
         t.style.top = tickTop + "px";
-        t.dataset.originalTop = tickTop;
         t.dataset.side = side;
         if (side === 'left') {
           t.innerHTML = `<span class="tick-line"></span><span class="tick-label">${label}</span>`;
@@ -132,42 +107,46 @@
           t.innerHTML = `<span class="tick-label">${label}</span><span class="tick-line"></span>`;
         }
         (side === 'left' ? ticksL : ticksR).appendChild(t);
-        allTicks.push(t);
       });
     });
   }
 
-  // tag 到 icon 的映射（icons/ 文件夹下）
-  const TAG_ICONS = {
-    // 组织相关
-    oml: "../icons/oml.webp",
-    bandori_fes: "../icons/bandori_fes.webp",
-    fes: "../icons/fes.webp",
-    single: "../icons/single.webp",
-    album: "../icons/album.webp",
-    anime: "../icons/anime.webp",
-    offline: "../icons/offline.webp",
-    // 个人相关
-    private: "../icons/private.webp",
-    business: "../icons/business.webp"
+  // 票根类别统一使用文字、色系和同一笔触的线条图标。
+  const TICKET_ICONS = {
+    live: '<path d="M4 19V8l4-4h8l4 4v11M8 4v15m8-15v15M4 12h16"/>',
+    music: '<path d="M9 18V5l11-2v13M9 9l11-2"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+    record: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 3a9 9 0 0 1 9 9"/>',
+    film: '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M8 5v14m8-14v14M3 9h5m-5 6h5m8-6h5m-5 6h5"/>',
+    game: '<path d="M7 8h10a4 4 0 0 1 3.9 3.1l1 5a2 2 0 0 1-3.1 2l-2.3-1.8h-9L5.2 18a2 2 0 0 1-3.1-2l1-5A4 4 0 0 1 7 8Z"/><path d="M7 11v4m-2-2h4"/><circle cx="16" cy="12" r=".7" fill="currentColor" stroke="none"/><circle cx="18" cy="14" r=".7" fill="currentColor" stroke="none"/>',
+    ticket: '<path d="M3 7h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V7Z"/><path d="M12 7v2m0 2v2m0 2v2"/>',
+    person: '<circle cx="12" cy="8" r="3"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/>',
+    case: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18m-10 0v2h2v-2"/>'
   };
-  // tag 显示名称
-  const TAG_NAMES = {
-    oml: "One Man Live",
-    bandori_fes: "BanG Dream!",
-    fes: "Fes",
-    single: "歌曲",
-    album: "单曲/专辑",
-    anime: "动画",
-    offline: "线下活动",
-    private: "私人行程",
-    business: "商务行程"
+  const TICKET_TYPES = {
+    oml: { label: "单独Live", code: "LIVE", icon: "live", tone: "live" },
+    bandori_fes: { label: "邦邦拼盘", code: "BanG Dream!", icon: "live", tone: "live" },
+    fes: { label: "出演音乐节", code: "FES", icon: "live", tone: "live" },
+    single: { label: "单曲发布", code: "SINGLE", icon: "music", tone: "music" },
+    album: { label: "实体唱片", code: "RECORD", icon: "record", tone: "music" },
+    anime: { label: "动画相关", code: "ANIME", icon: "film", tone: "anime" },
+    game: { label: "游戏相关", code: "GAME", icon: "game", tone: "anime" },
+    offline: { label: "线下活动", code: "EVENT", icon: "ticket", tone: "offline" },
+    private: { label: "私人行程", code: "PERSONAL", icon: "person", tone: "private" },
+    business: { label: "工作行程", code: "WORK", icon: "case", tone: "business" },
+    other: { label: "其他事件", code: "EVENT", icon: "ticket", tone: "neutral" }
   };
+  // 筛选与搜索沿用票根同一套中文类别名称。
+  const TAG_NAMES = Object.fromEntries(
+    Object.entries(TICKET_TYPES)
+      .filter(([tag]) => tag !== "other")
+      .map(([tag, type]) => [tag, type.label])
+  );
 
   // ===== 筛选器 =====
   const filterTags = document.getElementById("filterTags");
   const timelineSearchInput = document.getElementById("timelineSearchInput");
   const timelineResultCount = document.getElementById("timelineResultCount");
+  const eventGroups = [];
   let activeFilters = new Set();
   let timelineSearchQuery = "";
 
@@ -182,14 +161,15 @@
   allChip.innerHTML = '<span class="diamond">&#9670;</span> ALL';
   allChip.addEventListener("click", () => {
     activeFilters.clear();
-    document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+    filterTags.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
     allChip.classList.add("active");
     applyFilter();
   });
   filterTags.appendChild(allChip);
 
   // 生成筛选按钮
-  Object.keys(TAG_ICONS).forEach(tag => {
+  const availableTags = typeof timelineTagOptions !== "undefined" ? timelineTagOptions : Object.keys(TAG_NAMES);
+  availableTags.forEach(tag => {
     const chip = document.createElement("button");
     chip.className = "filter-chip";
     chip.dataset.tag = tag;
@@ -209,38 +189,29 @@
   });
 
   function applyFilter() {
-    const allGroups = [
-      ...Array.from(trackL.querySelectorAll(".event-group")),
-      ...Array.from(trackR.querySelectorAll(".event-group"))
-    ];
-
     let visibleCount = 0;
-    allGroups.forEach(g => {
+    eventGroups.forEach(g => {
       const tagMatches = activeFilters.size === 0 || activeFilters.has(g.dataset.tag);
       const textMatches = !timelineSearchQuery || g.dataset.search.includes(timelineSearchQuery);
-      const visible = tagMatches && textMatches;
+      const yearMatches = activeYear === null || Number(g.dataset.year) === activeYear;
+      const visible = tagMatches && textMatches && yearMatches;
       g.classList.toggle("hidden", !visible);
       if (visible) visibleCount += 1;
     });
     timelineResultCount.textContent = visibleCount + " 条结果";
-    // 倒序时 tag 筛选后需要重新布局
-    if (sortReverse) {
-      relayoutTimeline();
-    }
+    relayoutTimeline();
   }
 
   // 创建事件
   timelineData.forEach((ev, idx) => {
     const isOrg = ev.category === "organization";
     const track = isOrg ? trackL : trackR;
-    const top = calcTop(ev.date);
     const d = parseDate(ev.date);
-    const monthKey = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
 
     const group = document.createElement("div");
     group.className = "event-group " + (isOrg ? "org" : "per");
-    group.dataset.originalTop = top;
-    group.dataset.monthKey = monthKey;
+    group.dataset.dateKey = String(d.getTime());
+    group.dataset.year = String(d.getFullYear());
     group.dataset.index = idx;
     group.dataset.category = ev.category;
     group.dataset.tag = ev.tag || "";
@@ -249,9 +220,21 @@
 
     const bubble = document.createElement("div");
     bubble.className = "bubble";
-    const tagIcon = ev.tag && TAG_ICONS[ev.tag] ? `<img class="tag-icon" src="${TAG_ICONS[ev.tag]}" alt="${ev.tag}" data-tag="${ev.tag}">` : "";
-    bubble.innerHTML = `<div class="b-date">${ev.date}</div><div class="b-title">${ev.title}</div>${tagIcon}`;
+    bubble.setAttribute("role", "button");
+    bubble.tabIndex = 0;
+    const ticketType = TICKET_TYPES[ev.tag] || TICKET_TYPES.other;
+    bubble.classList.add("ticket-" + ticketType.tone);
+    bubble.innerHTML = `<div class="ticket-stub" aria-label="${ticketType.label}">
+      <svg class="ticket-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TICKET_ICONS[ticketType.icon]}</svg>
+      <span class="ticket-label">${ticketType.label}</span><span class="ticket-code">${ticketType.code}</span>
+    </div><div class="ticket-body"><div class="b-date">${ev.date}</div><div class="b-title">${ev.title}</div></div>`;
     bubble.onclick = function () { openTimelineModal(idx); };
+    bubble.onkeydown = function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openTimelineModal(idx);
+      }
+    };
 
     const connector = document.createElement("div");
     connector.className = "connector";
@@ -267,44 +250,12 @@
 
     group.appendChild(eventWrap);
     track.appendChild(group);
+    eventGroups.push(group);
   });
   timelineResultCount.textContent = timelineData.length + " 条结果";
 
-  // 相邻事件间距不足时自动错开，避免气泡重叠
+  // 相邻日期行及同一天的多条事件之间的固定间距。
   const MIN_GAP = 10;
-  function resolveOverlaps() {
-    const allGroups = [
-      ...Array.from(trackL.querySelectorAll('.event-group')),
-      ...Array.from(trackR.querySelectorAll('.event-group'))
-    ];
-    allGroups.sort((a, b) => parseFloat(a.dataset.originalTop) - parseFloat(b.dataset.originalTop));
-
-    const monthMap = {};
-    let lastBottom = -Infinity;
-
-    allGroups.forEach(g => {
-      const origTop = parseFloat(g.dataset.originalTop);
-      const groupHeight = g.offsetHeight;
-      const mk = g.dataset.monthKey;
-
-      let baseTop;
-      if (origTop < lastBottom + MIN_GAP) {
-        baseTop = lastBottom + MIN_GAP;
-      } else {
-        baseTop = origTop;
-      }
-
-      g.dataset.baseTop = baseTop;
-      g.style.top = baseTop + 'px';
-      lastBottom = baseTop + groupHeight;
-
-      if (!monthMap[mk]) monthMap[mk] = { minTop: Infinity, maxTop: -Infinity };
-      if (baseTop < monthMap[mk].minTop) monthMap[mk].minTop = baseTop;
-      if (baseTop > monthMap[mk].maxTop) monthMap[mk].maxTop = baseTop;
-    });
-
-    return monthMap;
-  }
 
   // ===== 模态框 =====
   const tlModalOverlay = document.getElementById("tlModalOverlay");
@@ -569,31 +520,6 @@
   document.querySelector("#tlLightbox .tl-lightbox-prev").addEventListener("click", function(e) { e.stopPropagation(); moveTlLightbox(-1); });
   document.querySelector("#tlLightbox .tl-lightbox-next").addEventListener("click", function(e) { e.stopPropagation(); moveTlLightbox(1); });
 
-  // ===== 初始布局 =====
-  document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
-
-  const monthMaps = resolveOverlaps();
-  generateMonthTicks(monthMaps);
-
-  // 调整容器高度
-  let maxH = 600;
-  [trackL, trackR].forEach(track => {
-    track.querySelectorAll(".event-group").forEach(g => {
-      const b = g.offsetTop + g.offsetHeight;
-      if (b > maxH) maxH = b;
-    });
-  });
-  wrapper.style.minHeight = (maxH + 80) + "px";
-  ticksL.style.height = (maxH + 80) + "px";
-  ticksR.style.height = (maxH + 80) + "px";
-
-  // 布局完成后恢复过渡动画
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
-    });
-  });
-
   // ==================== 排序切换 & 年份筛选 ====================
   let sortReverse = false;
   let activeYear = null;
@@ -616,7 +542,7 @@
     activeYear = null;
     yearFilterTags.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
     allYearBtn.classList.add('active');
-    filterByYear();
+    applyFilter();
   });
   yearFilterTags.appendChild(allYearBtn);
 
@@ -628,7 +554,7 @@
       activeYear = y;
       yearFilterTags.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
-      filterByYear();
+      applyFilter();
     });
     yearFilterTags.appendChild(btn);
   });
@@ -644,106 +570,66 @@
   });
   filterBar.appendChild(sortBtn);
 
-  // 初始统一布局：用 grouped layout 替代初始的 date-based layout，消除切换跳动
+  const emptyState = document.createElement("div");
+  emptyState.className = "timeline-empty";
+  emptyState.textContent = "没有符合条件的事件";
+  wrapper.appendChild(emptyState);
+
+  // 正序、倒序和所有筛选共用这一套双轨日期行布局。
   relayoutTimeline();
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(relayoutTimeline, 120);
+  });
+  if (document.fonts) document.fonts.ready.then(relayoutTimeline);
 
   function relayoutTimeline() {
-    document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
-
-    const allGroups = [
-      ...Array.from(trackL.querySelectorAll('.event-group')),
-      ...Array.from(trackR.querySelectorAll('.event-group'))
-    ].filter(g => !g.classList.contains('hidden') && !g.classList.contains('year-hidden'));
-
-    const yearGroups = {};
-    allGroups.forEach(g => {
-      const d = parseDate(g.querySelector('.b-date').textContent);
-      const y = d.getFullYear();
-      if (!yearGroups[y]) yearGroups[y] = [];
-      yearGroups[y].push(g);
+    const visibleGroups = eventGroups.filter(g => !g.classList.contains("hidden"));
+    const dateRows = new Map();
+    visibleGroups.forEach(g => {
+      const key = Number(g.dataset.dateKey);
+      if (!dateRows.has(key)) dateRows.set(key, { left: [], right: [] });
+      dateRows.get(key)[g.dataset.category === "organization" ? "left" : "right"].push(g);
     });
 
-    const years = Object.keys(yearGroups).map(Number).sort((a, b) => sortReverse ? b - a : a - b);
-
+    const orderedDates = [...dateRows.keys()].sort((a, b) => sortReverse ? b - a : a - b);
+    const monthMap = {};
     let currentTop = START_TOP;
-    const newMonthMap = {};
+    let previousYear = null;
 
-    years.forEach(year => {
-      const groups = yearGroups[year];
-      groups.sort((a, b) => {
-        const da = parseDate(a.querySelector('.b-date').textContent);
-        const db = parseDate(b.querySelector('.b-date').textContent);
-        return sortReverse ? db - da : da - db;
-      });
+    orderedDates.forEach(dateKey => {
+      const date = new Date(dateKey);
+      const year = date.getFullYear();
+      const monthKey = year + "-" + String(date.getMonth() + 1).padStart(2, "0");
+      if (year !== previousYear) currentTop += YEAR_LABEL_GAP;
+      previousYear = year;
 
-      currentTop += YEAR_LABEL_GAP;
+      const row = dateRows.get(dateKey);
+      row.left.sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
+      row.right.sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
+      const rowCount = Math.max(row.left.length, row.right.length);
 
-      groups.forEach(g => {
-        g.dataset.originalTop = currentTop;
-        g.style.top = currentTop + 'px';
-
-        const d = parseDate(g.querySelector('.b-date').textContent);
-        const mk = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
-        const gh = g.offsetHeight;
-
-        if (!newMonthMap[mk]) newMonthMap[mk] = { minTop: Infinity, maxTop: -Infinity };
-        if (currentTop < newMonthMap[mk].minTop) newMonthMap[mk].minTop = currentTop;
-        if (currentTop + gh > newMonthMap[mk].maxTop) newMonthMap[mk].maxTop = currentTop + gh;
-
-        currentTop += gh + MIN_GAP;
-      });
-    });
-
-    ticksL.innerHTML = '';
-    ticksR.innerHTML = '';
-    generateMonthTicks(newMonthMap);
-
-    let maxH = 600;
-    [trackL, trackR].forEach(track => {
-      track.querySelectorAll(".event-group").forEach(g => {
-        if (g.classList.contains('hidden') || g.classList.contains('year-hidden')) return;
-        const b = g.offsetTop + g.offsetHeight;
-        if (b > maxH) maxH = b;
-      });
-    });
-    wrapper.style.minHeight = (maxH + 80) + "px";
-    ticksL.style.height = (maxH + 80) + "px";
-    ticksR.style.height = (maxH + 80) + "px";
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
-      });
-    });
-  }
-
-  function filterByYear() {
-    document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = 'none'; });
-
-    const allGroups = [
-      ...Array.from(trackL.querySelectorAll('.event-group')),
-      ...Array.from(trackR.querySelectorAll('.event-group'))
-    ];
-
-    allGroups.forEach(g => {
-      const d = parseDate(g.querySelector('.b-date').textContent);
-      const y = d.getFullYear();
-      if (activeYear === null || y === activeYear) {
-        g.classList.remove('year-hidden');
-      } else {
-        g.classList.add('year-hidden');
+      for (let i = 0; i < rowCount; i++) {
+        const left = row.left[i];
+        const right = row.right[i];
+        if (!monthMap[monthKey]) monthMap[monthKey] = { minTop: currentTop };
+        if (left) left.style.top = currentTop + "px";
+        if (right) right.style.top = currentTop + "px";
+        currentTop += Math.max(left?.offsetHeight || 0, right?.offsetHeight || 0) + MIN_GAP;
       }
     });
 
-    // 先重新布局，再应用 tag 筛选
-    relayoutTimeline();
-    applyFilter();
+    ticksL.replaceChildren();
+    ticksR.replaceChildren();
+    generateMonthTicks(monthMap);
+    emptyState.hidden = visibleGroups.length > 0;
+    wrapper.classList.toggle("is-empty", visibleGroups.length === 0);
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.querySelectorAll('.event-group, .tick').forEach(el => { el.style.transition = ''; });
-      });
-    });
+    const contentHeight = visibleGroups.length ? currentTop - MIN_GAP + 80 : 220;
+    wrapper.style.minHeight = contentHeight + "px";
+    ticksL.style.height = contentHeight + "px";
+    ticksR.style.height = contentHeight + "px";
   }
 
   // ==================== 返回顶部按钮 ====================

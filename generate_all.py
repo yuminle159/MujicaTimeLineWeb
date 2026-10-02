@@ -164,6 +164,11 @@ OLD_XLSX = {
     "interview":      os.path.join(ROOT, "interview", "data.xlsx"),
 }
 
+TIMELINE_TAGS = (
+    "oml", "bandori_fes", "fes", "single", "album",
+    "anime", "game", "offline", "private", "business",
+)
+
 
 # =========================== 工具函数 ===========================
 def js_str(s):
@@ -212,6 +217,28 @@ def read_sheet(wb, sheet_name):
         if any(v for v in d.values()):
             result.append(d)
     return result
+
+
+def add_timeline_tag_validation(wb):
+    """给源表 tag 列加下拉选项，和生成器支持的类别保持一致。"""
+    if "timeline" not in wb.sheetnames:
+        return
+    ws = wb["timeline"]
+    headers = [str(cell.value).strip().lower() if cell.value else "" for cell in ws[1]]
+    if "tag" not in headers:
+        return
+    column = openpyxl.utils.get_column_letter(headers.index("tag") + 1)
+    for validation in list(ws.data_validations.dataValidation):
+        if validation.type == "list" and f"{column}2" in validation.sqref:
+            ws.data_validations.dataValidation.remove(validation)
+    validation = openpyxl.worksheet.datavalidation.DataValidation(
+        type="list", formula1='"' + ",".join(TIMELINE_TAGS) + '"',
+        allow_blank=True,
+    )
+    validation.error = "请选择列表中的时间轴 tag"
+    validation.showErrorMessage = True
+    ws.add_data_validation(validation)
+    validation.add(f"{column}2:{column}1048576")
 
 
 def render_md_to_html(md):
@@ -914,6 +941,10 @@ def generate_timeline(wb):
     if not raw:
         return 0
 
+    unknown_tags = sorted({row.get("tag", "") for row in raw if row.get("tag", "") and row["tag"] not in TIMELINE_TAGS})
+    if unknown_tags:
+        raise ValueError(f"timeline 表含有未知 tag: {', '.join(unknown_tags)}")
+
     # 构建列映射
     header_keys = list(raw[0].keys())
     data_rows = []
@@ -1036,6 +1067,8 @@ def generate_timeline(wb):
     lines.append('  zeroDate: "2023-06-04",')
     lines.append("  pixelsPerDay: 4")
     lines.append("};")
+    lines.append("")
+    lines.append("var timelineTagOptions = " + json.dumps(TIMELINE_TAGS, ensure_ascii=False) + ";")
 
     with open(OUTPUTS["timeline"], "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
@@ -1726,6 +1759,7 @@ def init_merged_xlsx():
         ws_new.append(["content_type", "content_ref", "update_date", "show"])
         print("  [OK] 创建 something_new 模板表")
 
+    add_timeline_tag_validation(wb)
     wb.save(XLSX_PATH)
     print(f"\n合并完成！{merged_count} 个 Sheet 已写入 {XLSX_PATH}")
     return merged_count

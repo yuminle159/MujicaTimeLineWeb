@@ -11,6 +11,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.10.02",
+    "msg": "1.timeline样式更新",
+    "pinned": false
+  },
+  {
     "date": "2026.09.22",
     "msg": "1.更新快捷切换气泡 2.更新Upcoming日历 3.更新阅读记录功能 4.更新随机推荐功能 5.访谈新增章节/上一篇下一篇/关联页面",
     "pinned": false

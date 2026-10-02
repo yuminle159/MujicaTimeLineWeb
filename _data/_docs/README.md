@@ -14,7 +14,7 @@
 - [时间线 (Timeline)](#时间线-timeline)
   - [文件结构](#文件结构)
   - [XLSX 列说明](#xlsx-列说明)
-  - [标签图标](#标签图标tag-icon)
+  - [票根类别](#票根类别)
   - [媒体类型详解](#媒体类型详解)
   - [重要规则](#重要规则)
 - [曲目 (Songs)](#曲目-songs)
@@ -135,7 +135,7 @@ web/
 
 #### 示例：只有描述、没有媒体的事件
 
-`media_type` 列留空即可，tag 留空则不显示图标。
+`media_type` 列留空即可，tag 留空则显示“其他事件”票根。
 
 #### 第三步：运行脚本
 
@@ -163,7 +163,7 @@ python generate_data.py
 | `title`         | 是     | 事件标题（显示在气泡上）                                         | `Ave Mujica 0th LIVE` |
 | `category`      | 是     | `organization`（左侧/Band）或 `personal`（右侧/Nonrico），下拉选择 | `organization`        |
 | `description`   | 是     | 事件描述（展开后显示，支持多行换行）                                   | `「初次登台」`              |
-| `tag`           | 否     | 事件标签，决定气泡右上角图标（留空 = 无图标），下拉选择，根据 category 联动         | `live`                |
+| `tag`           | 否     | 事件类别，决定票根文字、图标和颜色；可从下拉列表选择，留空显示为“其他事件”             | `game`                |
 | `media_type`    | 否     | 媒体类型：`image` / `video` / `link`（留空 = 无媒体），下拉选择       | `image`               |
 | `media_src`     | 媒体时   | 图片路径（相对路径）或视频 Bilibili 嵌入 URL                        | `images/photo.jpg`    |
 | `media_caption` | 否     | 图片/视频的说明文字（显示在下方）                                    | `现场照片`                |
@@ -173,24 +173,25 @@ python generate_data.py
 
 ### 支持的 tag 值
 
-| tag 值      | 含义      | 分类   | 图标文件                 |
-| ---------- | ------- | ---- | -------------------- |
-| `oml`      | One Man Live | 组织相关 | `icons/oml.png`      |
-| `bandori_fes` | BanG Dream! Fes | 组织相关 | `icons/bandori_fes.png` |
-| `fes`      | 联合演出 | 组织相关 | `icons/fes.png`        |
-| `single`   | 单曲发售    | 组织相关 | `icons/single.png`   |
-| `album`    | 专辑发售    | 组织相关 | `icons/album.png`    |
-| `anime`    | 动画      | 组织相关 | `icons/anime.png`    |
-| `offline`  | 线下活动    | 组织相关 | `icons/offline.png`  |
-| `private`  | 私人事件    | 个人相关 | `icons/private.png`  |
-| `business` | 工作事务    | 个人相关 | `icons/business.png` |
-| （留空）       | 无标签/无图标 | —    | —                    |
+| tag 值 | 票根名称 | 常用轨道 | 票根色系 |
+| --- | --- | --- | --- |
+| `oml` | 单独Live | 组织相关 | 紫色 |
+| `bandori_fes` | 邦邦拼盘 | 组织相关 | 紫色 |
+| `fes` | 出演音乐节 | 组织相关 | 紫色 |
+| `single` | 单曲发布 | 组织相关 | 红色 |
+| `album` | 实体唱片 | 组织相关 | 红色 |
+| `anime` | 动画相关 | 组织相关 | 绿色 |
+| `game` | 游戏相关 | 组织相关 | 绿色 |
+| `offline` | 线下活动 | 组织相关 | 深蓝色 |
+| `private` | 私人行程 | 个人相关 | 金色 |
+| `business` | 工作行程 | 个人相关 | 蓝色 |
+| （留空） | 其他事件 | 任一轨道 | 中性色 |
 
 如需新增 tag 类型，请同时：
 
-1. 在 `icons/` 文件夹放入对应图标（如 `icons/newtag.png`）
-2. 在 `index.html` 中的 `TAG_ICONS` 映射表（约第 166 行）添加 `newtag: "icons/newtag.png"`
-3. 在 `data.xlsx` 的隐藏工作表 `Lists` 中添加对应值
+1. 在 `generate_all.py` 的 `TIMELINE_TAGS` 中添加 tag，并更新 Excel 的 tag 下拉选项。
+2. 在 `timeline/page.js` 的 `TICKET_TYPES` 中添加票根名称、英文标识、线条图标和色系。
+3. 运行数据生成工具，重新生成 `timeline/data.js`；已有事件不会自动改分类，需要在 Excel 的 `tag` 列填写新值。
 
 ### 媒体类型详解
 
@@ -233,37 +234,9 @@ https://player.bilibili.com/player.html?bvid=BVxxxxxx
 
 ---
 
-## 标签图标（Tag Icon）
+## 票根类别
 
-每个事件的气泡右上角会根据 `tag` 字段自动显示一个小图标。
-
-### tag 到 icon 的映射
-
-在 `index.html`（约第 166 行）的 `TAG_ICONS` 对象中定义：
-
-```javascript
-const TAG_ICONS = {
-  // 组织相关
-  live: "icons/live.png",
-  single: "icons/single.png",
-  album: "icons/album.png",
-  anime: "icons/anime.png",
-  offline: "icons/offline.png",
-  // 个人相关
-  private: "icons/private.png",
-  business: "icons/business.png"
-};
-```
-
-### 图标样式
-
-在 `style.css` 第 260-271 行，可自行调整位置和大小。
-
-### 图标制作建议
-
-- 建议尺寸：52×52px 或 64×64px（会缩放至 26×26px 显示）
-- 格式：PNG（支持透明背景）
-- 风格：白色或浅色图标（气泡背景是红色/蓝黄渐变）
+时间轴卡片由 `timeline/page.js` 的 `TICKET_TYPES` 根据 `tag` 显示中文名称、英文标识和线条图标；配色在 `timeline/style.css` 中定义。`game` 与 `anime` 使用相同绿色，但名称和图标不同。筛选器使用同一套中文名称。
 
 ---
 
@@ -441,11 +414,13 @@ const TAG_ICONS = {
 .event-group.per .bubble { background: linear-gradient(135deg, #1565c0, #f9a825); }
 ```
 
-### 标签图标（style.css 第 260-271 行）
+### 票根图标与颜色
 
 ```css
-.tag-icon { width: 26px; height: 26px; }  /* 气泡右上角图标 */
+.ticket-anime { --ticket-ink: #acd9ba; --ticket-stub: #254034; }
 ```
+
+`anime` 与 `game` 都使用 `ticket-anime` 色系；图标和文字由 `timeline/page.js` 决定。
 
 ### 详情框（style.css 第 273-322 行）
 
@@ -601,17 +576,15 @@ https://player.bilibili.com/player.html?bvid=BVxxxxxx
 
 从 Bilibili 视频页 → 分享 → 嵌入代码 → 复制 `src` 中的 URL。
 
-### Q：标签图标不显示？
+### Q：票根类别不正确？
 
-1. 确认 `icons/` 文件夹下有对应的 PNG 文件（如 `icons/live.png`）
-2. 确认 xlsx 中 `tag` 列的值与 `index.html` 中 `TAG_ICONS` 的 key 一致
-3. 确认图标文件名完全匹配（区分大小写）
+1. 确认 Excel `timeline` 表的 `tag` 值在 `generate_all.py` 的 `TIMELINE_TAGS` 中。
+2. 确认 `timeline/page.js` 的 `TICKET_TYPES` 中有对应的展示配置。
+3. 重新生成 `timeline/data.js` 并刷新页面。
 
 ### Q：如何新增标签类型？
 
-1. 在 `icons/` 放入图标（如 `icons/newtag.png`）
-2. 在 `index.html` 的 `TAG_ICONS` 对象中添加 `newtag: "icons/newtag.png"`
-3. 在 `data.xlsx` 的隐藏工作表 `Lists` 中添加对应值
+在 `generate_all.py` 的 `TIMELINE_TAGS` 和 `timeline/page.js` 的 `TICKET_TYPES` 中添加类型，再运行 `add_timeline_tag_validation` 更新 Excel 下拉并重新生成数据。
 
 ### Q：展开事件后详情框与后续事件重叠？
 

@@ -3,7 +3,7 @@
 /* ===== 可自行修改的变量 ===== */
 :root {
   --edge-gap: clamp(16px, 3vw, 28px);           /* 刻度/连接线离边缘的距离（响应式） */
-  --bubble-max-width: clamp(360px, 36vw, 520px); /* 气泡最大宽度（响应式） */
+  --bubble-max-width: clamp(360px, 36vw, 520px); /* 票券最大宽度（响应式） */
   --md-primary: #cc2929;
   --md-on-surface-muted: #555;
   --md-on-surface: #ddd;
@@ -188,17 +188,30 @@ body {
 .timeline-wrapper {
   display: flex;
   position: relative;
-  min-height: 600px;
+  min-height: 220px;
   padding: 20px 0 60px;
-  transition: min-height 0.4s ease;
 }
+
+.timeline-empty {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #888;
+  font-size: 13px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.timeline-empty[hidden],
+.timeline-wrapper.is-empty .ticks-left,
+.timeline-wrapper.is-empty .ticks-right { display: none; }
 
 /* ===== 单侧轨道 ===== */
 .track {
   position: relative;
   width: 50%;
   flex-shrink: 0;
-  min-height: 600px;
+  min-height: 0;
 }
 
 .track-left  { padding-left: var(--edge-gap); }
@@ -211,7 +224,6 @@ body {
   top: 0;
   width: 80px;
   z-index: 1;
-  transition: height 0.4s ease;
   pointer-events: none;
 }
 
@@ -306,10 +318,6 @@ body {
 .event-group.hidden {
   display: none;
 }
-.event-group.year-hidden {
-  display: none;
-}
-
 /* 排序按钮 */
 .sort-btn {
   display: inline-flex;
@@ -349,10 +357,9 @@ body {
 /* 右侧：connector 从气泡延伸到边缘 */
 .event-group.per .event-wrap { flex-direction: row-reverse; }
 
-/* 连接线：虚线连接到边缘刻度
-   修改 flex 值可调整虚线长度：connector_flex / (connector_flex + spacer_flex) = 虚线占比 */
+/* 连接线保留在外侧刻度与票券之间；内侧留白把两列票券推向页面边缘。 */
 .connector {
-  flex: 1;
+  flex: 0 0 clamp(32px, 5.5vw, 78px);
   height: 0;
   border-top: 2px dashed #ff4d4d;
   opacity: 0.55;
@@ -364,9 +371,9 @@ body {
 .event-group.org .connector { margin-left: 10px; }
 .event-group.per .connector { margin-right: 10px; }
 
-/* 内侧撑开器：调大 flex 值可缩短虚线 */
+/* 内侧留白 */
 .spacer {
-  flex: 3;
+  flex: 1 1 12px;
   min-width: 12px;
 }
 
@@ -385,70 +392,137 @@ body {
 .event-group.org .connector::after { left: 0; }
 .event-group.per .connector::after { right: 0; }
 
-/* ===== 气泡 ===== */
+/* ===== 剧场票券：所有轨道的票根都在卡片左侧 ===== */
 .bubble {
-  max-width: var(--bubble-max-width);
-  padding: 10px 16px;
-  border-radius: 20px;
+  --ticket-stub-width: 92px;
+  --ticket-ink: #d19a9a;
+  --ticket-stub: #341c20;
+  display: flex;
+  width: var(--bubble-max-width);
+  max-width: calc(100% - 34px);
+  min-width: 0;
+  min-height: 88px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 7px;
+  background: #171719;
+  color: #e9e5e4;
   cursor: pointer;
   pointer-events: auto;
   position: relative;
   z-index: 10;
-  flex-shrink: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex: 0 1 var(--bubble-max-width);
+  transition: transform 0.24s ease, filter 0.24s ease, border-color 0.24s ease, background 0.24s ease;
   user-select: none;
+  mask-image: radial-gradient(circle 5px at var(--ticket-stub-width) 0, transparent 4.5px, #000 5px), radial-gradient(circle 5px at var(--ticket-stub-width) 100%, transparent 4.5px, #000 5px);
+  mask-composite: intersect;
 }
 
-.bubble:hover {
-  transform: scale(1.04);
+.bubble:hover,
+.bubble:focus-visible {
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--ticket-ink);
+  background: #222226;
+  filter: drop-shadow(0 9px 13px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 14px color-mix(in srgb, var(--ticket-ink) 65%, transparent));
 }
 
-/* 组织：红色 */
-.event-group.org .bubble {
-  background: linear-gradient(135deg, #b71c1c 0%, #e53935 100%);
-  color: #fff;
-  box-shadow: 0 3px 14px rgba(229, 57, 53, 0.35);
-}
-.event-group.org .bubble:hover {
-  box-shadow: 0 5px 22px rgba(229, 57, 53, 0.55);
+.bubble:focus-visible {
+  outline: 2px solid var(--ticket-ink);
+  outline-offset: 3px;
 }
 
-/* 个人：蓝黄渐变 */
-.event-group.per .bubble {
-  background: linear-gradient(135deg, #1565c0 0%, #f9a825 100%);
-  color: #fff;
-  box-shadow: 0 3px 14px rgba(21, 101, 192, 0.35);
+.event-group:has(.bubble:hover),
+.event-group:has(.bubble:focus-visible) { z-index: 4; }
+
+.ticket-live { --ticket-ink: #d8b8ee; --ticket-stub: #3b294a; }
+.ticket-music { --ticket-ink: #f2adab; --ticket-stub: #482528; }
+.ticket-anime { --ticket-ink: #acd9ba; --ticket-stub: #254034; }
+.ticket-offline { --ticket-ink: #aec4e4; --ticket-stub: #25354e; }
+.ticket-private { --ticket-ink: #f0d099; --ticket-stub: #463823; }
+.ticket-business { --ticket-ink: #a9d6e8; --ticket-stub: #254252; }
+.ticket-neutral { --ticket-ink: #c9c4bd; --ticket-stub: #343230; }
+
+.ticket-stub {
+  position: relative;
+  flex: 0 0 calc(var(--ticket-stub-width) - 1px);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 5px;
+  background: var(--ticket-stub);
+  color: var(--ticket-ink);
+  text-align: center;
+  transition: filter 0.24s ease;
 }
-.event-group.per .bubble:hover {
-  box-shadow: 0 5px 22px rgba(21, 101, 192, 0.55);
+.bubble:hover .ticket-stub,
+.bubble:focus-visible .ticket-stub { filter: brightness(1.25); }
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: -1px;
+  border-right: 1px dashed rgba(235, 221, 210, 0.48);
+}
+.ticket-icon {
+  width: 23px;
+  height: 23px;
+  flex: none;
+  transition: transform 0.24s ease;
+}
+.bubble:hover .ticket-icon,
+.bubble:focus-visible .ticket-icon { transform: scale(1.14); }
+.ticket-label {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: normal;
+}
+.ticket-code {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+.ticket-body {
+  min-width: 0;
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 13px 15px 14px;
+}
+.bubble:hover .ticket-body,
+.bubble:focus-visible .ticket-body {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--ticket-ink) 15%, transparent), transparent 72%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble, .ticket-stub, .ticket-icon { transition: none; }
+  .bubble:hover, .bubble:focus-visible { transform: none; }
 }
 
 .b-date {
   font-family: "Space Grotesk", monospace, sans-serif;
   font-size: 11px;
-  opacity: 0.8;
-  margin-bottom: 3px;
-  letter-spacing: 0.5px;
+  color: #aaa3a1;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+  overflow-wrap: anywhere;
 }
 
 .b-title {
   font-size: 14px;
-  font-weight: 700;
-  line-height: 1.45;
+  font-weight: 600;
+  line-height: 1.5;
   margin: 0;
-}
-
-/* 标签图标：气泡右上角 */
-.tag-icon {
-  position: absolute;
-  top: 4px;
-  right: 6px;
-  bottom: auto;
-  width: 26px;
-  height: 26px;
-  opacity: 0.85;
-  pointer-events: none;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+  overflow-wrap: anywhere;
 }
 
 /* ===== 模态框遮罩 ===== */
@@ -891,8 +965,13 @@ body {
   }
 
   .bubble {
-    padding: 8px 12px;
-    border-radius: 16px;
+    --ticket-stub-width: 76px;
+  }
+  .ticket-body {
+    padding: 10px 11px;
+  }
+  .ticket-label {
+    font-size: 10px;
   }
   .b-date {
     font-size: 10px;
@@ -915,8 +994,8 @@ body {
 
 @media (max-width: 480px) {
   :root {
-    --edge-gap: 12px;
-    --bubble-max-width: 140px;
+    --edge-gap: 8px;
+    --bubble-max-width: 178px;
   }
 
   .page-header h1 {
@@ -934,8 +1013,26 @@ body {
   }
 
   .connector {
+    flex-basis: 6px;
     border-top-width: 1px;
+    min-width: 6px;
   }
+
+  .spacer { flex-basis: 2px; min-width: 2px; }
+  .event-group.org .connector { margin-left: 3px; }
+  .event-group.per .connector { margin-right: 3px; }
+  .bubble {
+    --ticket-stub-width: 48px;
+    max-width: calc(100% - 11px);
+    min-height: 76px;
+    mask-image: radial-gradient(circle 4px at var(--ticket-stub-width) 0, transparent 3.5px, #000 4px), radial-gradient(circle 4px at var(--ticket-stub-width) 100%, transparent 3.5px, #000 4px);
+  }
+  .ticket-stub { padding: 7px 2px; gap: 2px; }
+  .ticket-icon { width: 17px; height: 17px; }
+  .ticket-label { font-size: 9px; line-height: 1.2; }
+  .ticket-code { font-size: 6px; letter-spacing: 0; }
+  .ticket-body { padding: 8px 6px 9px; }
+  .b-date { font-size: 9px; margin-bottom: 4px; }
 
   .b-title {
     font-size: 11px;
