@@ -166,7 +166,7 @@ OLD_XLSX = {
 
 TIMELINE_TAGS = (
     "oml", "bandori_fes", "fes", "single", "album",
-    "anime", "game", "offline", "private", "business",
+    "anime", "game", "book", "program", "offline", "private", "business",
 )
 
 
@@ -1507,6 +1507,77 @@ def search_root_path(path):
     return value
 
 
+def collect_timeline_events(wb):
+    """按时间线页面的分组合并规则取得事件键。"""
+    timeline_events = OrderedDict()
+    timeline_groups = OrderedDict()
+    for row in read_sheet(wb, "timeline"):
+        group = row.get("group", "")
+        date = normalize_date(row.get("date", ""))
+        event = (date, row.get("title", ""), row.get("category", ""),
+                 row.get("description", ""), row.get("tag", ""))
+        if group:
+            timeline_groups.setdefault(group, []).append(event)
+        else:
+            timeline_events.setdefault(event, None)
+    for rows in timeline_groups.values():
+        dates = sorted(set(row[0] for row in rows if row[0]))
+        first = rows[0]
+        merged_date = dates[0] if len(dates) == 1 else f"{dates[0]} ~ {dates[-1]}"
+        timeline_events[(merged_date, first[1], first[2], first[3], first[4])] = None
+    return timeline_events
+
+
+def generate_upcoming_events(wb, timeline_events=None):
+    """汇总歌曲、演出、唱片和指定的时间线类别。"""
+    events = []
+    for sheet, item_type, date_field, title_field, section, anchor in (
+        ("songs", "song", "release_date", "song_name_jp", "songs", "song"),
+        ("lives", "live", "live_date", "live_name", "live", "live"),
+        ("discography_releases", "discography", "release_date", "title_jp", "discography", "discography"),
+    ):
+        for row in read_sheet(wb, sheet):
+            date = normalize_date(row.get(date_field, ""))
+            if not date:
+                continue
+            if item_type == "song":
+                item_id = hash_id(row.get("song_name", ""), row.get("song_name_jp", ""), date)
+                title = row.get(title_field, "") or row.get("song_name", "")
+            elif item_type == "live":
+                item_id = hash_id(row.get("live_name", ""), date, row.get("live_venue", ""))
+                title = row.get(title_field, "")
+            else:
+                item_id = hash_id(row.get("title", ""), row.get("title_jp", ""), date)
+                title = row.get(title_field, "") or row.get("title", "")
+            events.append({"type": item_type, "date": date, "title": title,
+                           "url": f"../{section}/index.html#{anchor}={quote(item_id)}"})
+
+    timeline_types = {"anime": "animation", "game": "animation", "book": "animation",
+                      "program": "activity", "offline": "activity"}
+    timeline_ids = {}
+    if timeline_events is None:
+        timeline_events = collect_timeline_events(wb)
+    for date, title, category, description, tag in timeline_events.keys():
+        id_key = (date, title, category, tag)
+        occurrence = timeline_ids.get(id_key, 0)
+        timeline_ids[id_key] = occurrence + 1
+        item_type = timeline_types.get(tag) if category == "organization" else None
+        if not item_type or not date or not title:
+            continue
+        item_id = hash_id(*id_key, occurrence + 1) if occurrence else hash_id(*id_key)
+        start_date, _, end_date = date.partition(" ~ ")
+        event = {"type": item_type, "date": start_date, "title": title,
+                 "url": f"../timeline/index.html#timeline={quote(item_id)}"}
+        if end_date:
+            event["endDate"] = end_date
+        events.append(event)
+
+    with open(OUTPUTS["upcoming_events"], "w", encoding="utf-8") as file:
+        file.write("// Upcoming 日历专用事件数据，由 generate_all.py 自动生成。\n")
+        file.write("window.WIJIPEDIA_UPCOMING_EVENTS = " + json.dumps(events, ensure_ascii=False, separators=(",", ":")) + ";\n")
+    return len(events)
+
+
 def generate_search_indexes(wb):
     """生成轻量元数据索引，以及按需加载的歌词 / 访谈 / MC 正文索引。"""
     records = []
@@ -1588,23 +1659,7 @@ def generate_search_indexes(wb):
         )
 
     # 时间线：完全复用页面生成时的合并和 hash 规则。
-    timeline_rows = read_sheet(wb, "timeline")
-    timeline_events = OrderedDict()
-    timeline_groups = OrderedDict()
-    for row in timeline_rows:
-        group = row.get("group", "")
-        date = normalize_date(row.get("date", ""))
-        event = (date, row.get("title", ""), row.get("category", ""),
-                 row.get("description", ""), row.get("tag", ""))
-        if group:
-            timeline_groups.setdefault(group, []).append(event)
-        else:
-            timeline_events.setdefault(event, None)
-    for rows in timeline_groups.values():
-        dates = sorted(set(row[0] for row in rows if row[0]))
-        first = rows[0]
-        merged_date = dates[0] if len(dates) == 1 else f"{dates[0]} ~ {dates[-1]}"
-        timeline_events[(merged_date, first[1], first[2], first[3], first[4])] = None
+    timeline_events = collect_timeline_events(wb)
     timeline_ids = {}
     for date, title, category, description, tag in timeline_events.keys():
         id_key = (date, title, category, tag)
@@ -1686,30 +1741,7 @@ def generate_search_indexes(wb):
     with open(OUTPUTS["daily_archive"], "w", encoding="utf-8") as file:
         file.write("// 今日随机档案专用索引，由 generate_all.py 自动生成。\n")
         file.write("window.WIJIPEDIA_DAILY_ARCHIVE = " + json.dumps(archive, ensure_ascii=False, separators=(",", ":")) + ";\n")
-    events = []
-    for sheet, item_type, date_field, title_field, section, anchor in (
-        ("songs", "song", "release_date", "song_name_jp", "songs", "song"),
-        ("lives", "live", "live_date", "live_name", "live", "live"),
-        ("discography_releases", "discography", "release_date", "title_jp", "discography", "discography"),
-    ):
-        for row in read_sheet(wb, sheet):
-            date = normalize_date(row.get(date_field, ""))
-            if not date:
-                continue
-            if item_type == "song":
-                item_id = hash_id(row.get("song_name", ""), row.get("song_name_jp", ""), date)
-                title = row.get(title_field, "") or row.get("song_name", "")
-            elif item_type == "live":
-                item_id = hash_id(row.get("live_name", ""), date, row.get("live_venue", ""))
-                title = row.get(title_field, "")
-            else:
-                item_id = hash_id(row.get("title", ""), row.get("title_jp", ""), date)
-                title = row.get(title_field, "") or row.get("title", "")
-            events.append({"type": item_type, "date": date, "title": title,
-                           "url": f"../{section}/index.html#{anchor}={quote(item_id)}"})
-    with open(OUTPUTS["upcoming_events"], "w", encoding="utf-8") as file:
-        file.write("// Upcoming 日历专用事件数据，由 generate_all.py 自动生成。\n")
-        file.write("window.WIJIPEDIA_UPCOMING_EVENTS = " + json.dumps(events, ensure_ascii=False, separators=(",", ":")) + ";\n")
+    generate_upcoming_events(wb, timeline_events)
     with open(OUTPUTS["search_bodies"], "w", encoding="utf-8") as file:
         file.write("// 全局搜索正文索引，首次输入搜索词时按需加载。\n")
         file.write("window.WIJIPEDIA_SEARCH_BODIES = ")
@@ -1871,6 +1903,15 @@ def main():
         print(f"错误: 找不到 {XLSX_PATH}")
         print("请先运行 py generate_all.py --init 来从旧文件合并创建。")
         sys.exit(1)
+
+    if len(sys.argv) > 1 and sys.argv[1] == "--upcoming":
+        wb = openpyxl.load_workbook(XLSX_PATH, data_only=True)
+        try:
+            count = generate_upcoming_events(wb)
+        finally:
+            wb.close()
+        print(f"✓ upcoming/events.js — {count} 条事件")
+        return
 
     print("=== 唯鸡百科 · 统一数据生成 ===")
     print(f"数据源: {XLSX_PATH}\n")

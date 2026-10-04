@@ -24,7 +24,7 @@ SEARCH_INDEX_PREFIX = "window.WIJIPEDIA_SEARCH_INDEX = "
 GENERATED_FILES = (
     "announcements.js", "something-new.js", "search-index.js", "search-bodies.js",
     "songs/data.js", "songs/lyrics-atlas-data.js", "live/data.js", "timeline/data.js",
-    "gallery/data.js", "interview/data.js", "discography/data.js",
+    "gallery/data.js", "interview/data.js", "discography/data.js", "upcoming/events.js",
 )
 REQUIRED_SHEETS = (
     "announcements", "something_new", "songs", "lives", "timeline", "gallery_images",
@@ -319,6 +319,8 @@ def _configure_generator(root: Path):
         "live": str(root / "live" / "data.js"), "timeline": str(root / "timeline" / "data.js"),
         "gallery": str(root / "gallery" / "data.js"), "interview": str(root / "interview" / "data.js"),
         "discography": str(root / "discography" / "data.js"),
+        "upcoming_events": str(root / "upcoming" / "events.js"),
+        "daily_archive": str(root / "daily-archive.js"),
     })
     return generate_all
 
@@ -347,6 +349,8 @@ def generate_all_content(root: Path | str = ROOT, log_func: Callable[[str], None
         search_count, body_count = generator.generate_search_indexes(workbook)
         results["全局搜索"] = f"{search_count} 条索引 · {body_count} 条正文"
         log_func(f"[OK] 全局搜索：{results['全局搜索']}")
+        results["Upcoming"] = "upcoming/events.js 已更新"
+        log_func("[OK] Upcoming：upcoming/events.js 已更新")
         version = generator.inject_version()
         results["缓存版本"] = version
         log_func(f"[OK] 缓存版本：v={version}")

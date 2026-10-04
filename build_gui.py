@@ -595,6 +595,8 @@ def run_update(selected_modules, do_webp, log_func):
                 summary = f"search-index.js · {search_count} 条索引 · {body_count} 条正文"
                 result["success"].append(("全局搜索", summary))
                 log_func(f"[OK] 全局搜索：{summary}")
+                result["success"].append(("Upcoming", "upcoming/events.js 已更新"))
+                log_func("[OK] Upcoming：upcoming/events.js 已更新")
             except CapturedOperationError as exc:
                 add_detail("全局搜索", exc.output)
                 result["failed"].append(("全局搜索", str(exc.cause)))

@@ -276,7 +276,7 @@ var interviewData = [
     article_path: "articles/DhvrDXRrWlS.js"
   },
   {
-    poster: "../images//galleryless/astarsvol6cover.webp",
+    poster: "../images/galleryless/astarsvol6cover.webp",
     date: "2025-01-23 00:00:00",
     interviewee: "高尾奏音",
     title: "“我当时想告诉祥子，身边的人其实会给你更多帮助的呀” TVガイド A Stars vol.06 高尾奏音访谈",

@@ -182,6 +182,8 @@ python generate_data.py
 | `album` | 实体唱片 | 组织相关 | 红色 |
 | `anime` | 动画相关 | 组织相关 | 绿色 |
 | `game` | 游戏相关 | 组织相关 | 绿色 |
+| `book` | 出版物 | 组织相关 | 绿色 |
+| `program` | 节目出演 | 组织相关 | 深蓝色 |
 | `offline` | 线下活动 | 组织相关 | 深蓝色 |
 | `private` | 私人行程 | 个人相关 | 金色 |
 | `business` | 工作行程 | 个人相关 | 蓝色 |
@@ -236,7 +238,7 @@ https://player.bilibili.com/player.html?bvid=BVxxxxxx
 
 ## 票根类别
 
-时间轴卡片由 `timeline/page.js` 的 `TICKET_TYPES` 根据 `tag` 显示中文名称、英文标识和线条图标；配色在 `timeline/style.css` 中定义。`game` 与 `anime` 使用相同绿色，但名称和图标不同。筛选器使用同一套中文名称。
+时间轴卡片由 `timeline/page.js` 的 `TICKET_TYPES` 根据 `tag` 显示中文名称、英文标识和线条图标；配色在 `timeline/style.css` 中定义。`anime`、`game`、`book` 使用相同绿色；`program` 与 `offline` 使用相同深蓝色。筛选器使用同一套中文名称。
 
 ---
 
@@ -417,10 +419,11 @@ https://player.bilibili.com/player.html?bvid=BVxxxxxx
 ### 票根图标与颜色
 
 ```css
-.ticket-anime { --ticket-ink: #acd9ba; --ticket-stub: #254034; }
+.ticket-anime, .ticket-book { --ticket-ink: #acd9ba; --ticket-stub: #254034; }
 ```
 
-`anime` 与 `game` 都使用 `ticket-anime` 色系；图标和文字由 `timeline/page.js` 决定。
+`anime`、`game` 与 `book` 都使用绿色票根；图标和文字由 `timeline/page.js` 决定。
+`program` 与 `offline` 共用 `ticket-offline` 色系，并使用不同的图标和文字。
 
 ### 详情框（style.css 第 273-322 行）
 

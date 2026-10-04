@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=202610022358">
-  <link rel="stylesheet" href="../css/local-search.css?v=202610022358">
-  <link rel="stylesheet" href="../css/quick-nav.css?v=202610022358">
+  <link rel="stylesheet" href="style.css?v=202610042357">
+  <link rel="stylesheet" href="../css/local-search.css?v=202610042357">
+  <link rel="stylesheet" href="../css/quick-nav.css?v=202610042357">
 </head>
 <body>
   <!-- 星空背景（固定在视口后方，随滚动产生视差） -->
@@ -30,17 +30,52 @@
       <p>Band &amp; Nonrico</p>
     </header>
 
-    <!-- 标签筛选器 -->
-    <div class="filter-bar" id="filterBar">
-      <div class="filter-tags" id="filterTags"></div>
-      <div class="search-box timeline-search-box">
-        <span class="search-icon" aria-hidden="true">⌕</span>
-        <input id="timelineSearchInput" type="search" placeholder="搜索时间线…" autocomplete="off">
+    <div class="timeline-switches">
+      <div class="view-switch" role="group" aria-label="时间线显示方式">
+        <button type="button" class="view-switch-button active" id="timelineViewButton" aria-pressed="true">时间线</button>
+        <button type="button" class="view-switch-button" id="calendarViewButton" aria-pressed="false">日历</button>
       </div>
-      <span class="result-count" id="timelineResultCount"></span>
+      <div class="filter-visibility-switch" role="group" aria-label="筛选器显示">
+        <button type="button" class="filter-visibility-button" data-filters="show" aria-controls="timelineFilters" aria-pressed="false">显示筛选器</button>
+        <button type="button" class="filter-visibility-button active" data-filters="hide" aria-controls="timelineFilters" aria-pressed="true">关闭筛选器</button>
+      </div>
     </div>
-    <!-- 年份筛选器 -->
-    <div class="filter-bar year-filter-bar" id="yearFilterBar" style="padding-top:0;"></div>
+
+    <div id="timelineFilters" hidden>
+      <div class="filter-reset-row">
+        <span>筛选条件</span>
+        <button type="button" class="reset-filters-btn" id="resetTimelineFilters">重置全部筛选</button>
+        <div class="timeline-filter-actions" id="timelineFilterActions">
+          <div class="search-box timeline-search-box">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="timelineSearchInput" type="search" placeholder="搜索时间线…" autocomplete="off">
+          </div>
+        </div>
+      </div>
+      <div class="focus-filter" aria-label="关注范围筛选">
+        <div class="focus-filter-heading">
+          <span>关注范围</span>
+          <button type="button" class="focus-switch-button filter-chip active" data-focus="all" aria-pressed="true"><span class="diamond">&#9670;</span> ALL</button>
+        </div>
+        <div class="focus-filter-panel">
+          <div class="focus-switch" role="group" aria-label="事件关注范围">
+            <button type="button" class="focus-switch-button filter-chip" data-focus="organization" aria-pressed="false"><span class="diamond">&#9670;</span> 关注乐队</button>
+            <button type="button" class="focus-switch-button filter-chip" data-focus="personal" aria-pressed="false"><span class="diamond">&#9670;</span> 关注弄李</button>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-filter-toolbar">
+        <div class="year-filter" id="yearFilterBar" aria-label="年份筛选">
+          <div class="year-filter-heading" id="yearFilterHeading"><span>年份</span></div>
+          <div class="year-filter-panel"><div class="filter-tags" id="yearFilterTags"></div></div>
+        </div>
+      </div>
+
+      <!-- 标签筛选器 -->
+      <div class="filter-bar" id="filterBar">
+        <div class="filter-tags" id="filterTags"></div>
+      </div>
+    </div>
 
     <div class="timeline-wrapper" id="timelineWrapper">
       <!-- 左侧月度刻度 -->
@@ -54,6 +89,34 @@
       <!-- 右侧：个人 -->
       <div class="track track-right" id="trackRight"></div>
     </div>
+
+    <section class="timeline-calendar" id="timelineCalendar" aria-label="Timeline 日历" hidden>
+      <div class="timeline-calendar-layout">
+        <div class="timeline-calendar-main">
+          <div class="timeline-month-nav">
+            <button type="button" id="timelinePreviousMonth" aria-label="上个月">&#8592;</button>
+            <div class="timeline-month-picker-wrap">
+              <button type="button" class="timeline-month-label" id="timelineMonthPickerToggle" aria-label="选择年份和月份" aria-expanded="false" aria-controls="timelineMonthPicker"><span id="timelineMonthLabel"></span><span class="timeline-month-caret" aria-hidden="true">⌄</span></button>
+              <div class="timeline-month-picker" id="timelineMonthPicker" hidden>
+                <label>年份<select id="timelineYearSelect"></select></label>
+                <label>月份<select id="timelineMonthSelect"></select></label>
+                <button type="button" id="timelineMonthJump">跳转</button>
+              </div>
+            </div>
+            <button type="button" id="timelineNextMonth" aria-label="下个月">&#8594;</button>
+          </div>
+          <div class="timeline-calendar-scroll">
+            <div class="timeline-weekdays" aria-hidden="true"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+            <div class="timeline-calendar-grid" id="timelineCalendarGrid"></div>
+          </div>
+        </div>
+        <aside class="timeline-day-panel" aria-labelledby="timelineDayHeading">
+          <p class="timeline-day-kicker">DAILY RECORDS <span id="timelineDayCount"></span></p>
+          <h2 id="timelineDayHeading"></h2>
+          <div id="timelineDayEvents" class="timeline-day-events"></div>
+        </aside>
+      </div>
+    </section>
   </div>
 
   <!-- 详情模态框 -->
@@ -76,10 +139,10 @@
   <!-- 返回顶部按钮 -->
   <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
 
-  <script src="../js/resource-error.js?v=202610022358"></script>
-  <script src="data.js?v=202610022358"></script>
-  <script src="page.js?v=202610022358"></script>
-  <script src="../js/quick-nav.js?v=202610022358"></script>
-  <script src="../js/page-memory.js?v=202610022358"></script>
+  <script src="../js/resource-error.js?v=202610042357"></script>
+  <script src="data.js?v=202610042357"></script>
+  <script src="page.js?v=202610042357"></script>
+  <script src="../js/quick-nav.js?v=202610042357"></script>
+  <script src="../js/page-memory.js?v=202610042357"></script>
 </body>
 </html>
