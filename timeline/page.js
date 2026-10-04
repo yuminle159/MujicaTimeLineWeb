@@ -57,13 +57,30 @@
   const ticksL = document.getElementById("ticksLeft");
   const ticksR = document.getElementById("ticksRight");
   const wrapper = document.getElementById("timelineWrapper");
+  const futureDivider = document.createElement("div");
+  futureDivider.id = "futureTimelineDivider";
+  futureDivider.className = "future-divider";
+  futureDivider.setAttribute("role", "separator");
+  futureDivider.innerHTML = '<span class="future-divider-label"><span class="future-divider-spark" aria-hidden="true">✦</span> FUTURE <span class="future-divider-arrow" aria-hidden="true"></span></span>';
+  futureDivider.hidden = true;
+  wrapper.appendChild(futureDivider);
 
   const FM = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 
   function parseDate(dateStr) {
     // 支持 "2024/7/13 ~ 2024/7/14"，并兼容缓存中的旧连字符格式。
-    const first = dateStr.split(/\s+(?:~|-)\s+/)[0].trim();
-    return new Date(first);
+    const first = String(dateStr).match(/(\d{4})[/.\-](\d{1,2})[/.\-](\d{1,2})/);
+    if (!first) return new Date(NaN);
+    return new Date(Number(first[1]), Number(first[2]) - 1, Number(first[3]));
+  }
+
+  function todayStart() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  }
+
+  function isFutureDate(date) {
+    return Number.isFinite(date.getTime()) && date > todayStart();
   }
 
   const YEAR_LABEL_GAP = 60; // 年份标签与月份刻度的间距（px），可自行调整
@@ -118,6 +135,8 @@
     record: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 3a9 9 0 0 1 9 9"/>',
     film: '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M8 5v14m8-14v14M3 9h5m-5 6h5m8-6h5m-5 6h5"/>',
     game: '<path d="M7 8h10a4 4 0 0 1 3.9 3.1l1 5a2 2 0 0 1-3.1 2l-2.3-1.8h-9L5.2 18a2 2 0 0 1-3.1-2l1-5A4 4 0 0 1 7 8Z"/><path d="M7 11v4m-2-2h4"/><circle cx="16" cy="12" r=".7" fill="currentColor" stroke="none"/><circle cx="18" cy="14" r=".7" fill="currentColor" stroke="none"/>',
+    book: '<path d="M12 6c-2-1.5-5-2-9-1v14c4-1 7-.5 9 1.5 2-2 5-2.5 9-1.5V5c-4-1-7-.5-9 1Z"/><path d="M12 6v14.5"/>',
+    screen: '<rect x="3" y="4" width="18" height="15" rx="2"/><path d="M8 22h8m-4-3v3"/>',
     ticket: '<path d="M3 7h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V7Z"/><path d="M12 7v2m0 2v2m0 2v2"/>',
     person: '<circle cx="12" cy="8" r="3"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/>',
     case: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18m-10 0v2h2v-2"/>'
@@ -130,6 +149,8 @@
     album: { label: "实体唱片", code: "RECORD", icon: "record", tone: "music" },
     anime: { label: "动画相关", code: "ANIME", icon: "film", tone: "anime" },
     game: { label: "游戏相关", code: "GAME", icon: "game", tone: "anime" },
+    book: { label: "出版物", code: "BOOK", icon: "book", tone: "book" },
+    program: { label: "节目出演", code: "PROGRAM", icon: "screen", tone: "offline" },
     offline: { label: "线下活动", code: "EVENT", icon: "ticket", tone: "offline" },
     private: { label: "私人行程", code: "PERSONAL", icon: "person", tone: "private" },
     business: { label: "工作行程", code: "WORK", icon: "case", tone: "business" },
@@ -145,10 +166,45 @@
   // ===== 筛选器 =====
   const filterTags = document.getElementById("filterTags");
   const timelineSearchInput = document.getElementById("timelineSearchInput");
-  const timelineResultCount = document.getElementById("timelineResultCount");
   const eventGroups = [];
   let activeFilters = new Set();
   let timelineSearchQuery = "";
+  let activeFocus = "all";
+
+  document.querySelectorAll(".focus-switch-button").forEach(button => {
+    button.addEventListener("click", () => {
+      activeFocus = button.dataset.focus;
+      document.querySelectorAll(".focus-switch-button").forEach(option => {
+        const selected = option === button;
+        option.classList.toggle("active", selected);
+        option.setAttribute("aria-pressed", String(selected));
+      });
+      wrapper.classList.toggle("focus-band", activeFocus === "organization");
+      wrapper.classList.toggle("focus-nonrico", activeFocus === "personal");
+      filterTags.classList.toggle("focus-band", activeFocus === "organization");
+      filterTags.classList.toggle("focus-nonrico", activeFocus === "personal");
+      filterTags.querySelectorAll(".tag-group .filter-chip[data-tag].active").forEach(chip => {
+        if (activeFocus !== "all" && chip.dataset.category !== activeFocus) {
+          activeFilters.delete(chip.dataset.tag);
+        }
+      });
+      syncTagFilterUI();
+      if (!calendarPanel.hidden) selectedCalendarDate = null;
+      applyFilter();
+    });
+  });
+
+  const timelineFilters = document.getElementById("timelineFilters");
+  document.querySelectorAll(".filter-visibility-button").forEach(button => {
+    button.addEventListener("click", () => {
+      timelineFilters.hidden = button.dataset.filters === "hide";
+      document.querySelectorAll(".filter-visibility-button").forEach(option => {
+        const selected = option === button;
+        option.classList.toggle("active", selected);
+        option.setAttribute("aria-pressed", String(selected));
+      });
+    });
+  });
 
   timelineSearchInput.addEventListener("input", function () {
     timelineSearchQuery = this.value.trim().toLocaleLowerCase();
@@ -156,50 +212,132 @@
   });
 
   // 生成 ALL 按钮
+  filterTags.classList.add("timeline-tag-filters");
+  const tagFilterHeading = document.createElement("div");
+  tagFilterHeading.className = "tag-filter-heading";
+  const tagFilterTitle = document.createElement("span");
+  tagFilterTitle.textContent = "事件类别";
+  tagFilterHeading.appendChild(tagFilterTitle);
   const allChip = document.createElement("button");
   allChip.className = "filter-chip active";
+  allChip.type = "button";
   allChip.innerHTML = '<span class="diamond">&#9670;</span> ALL';
   allChip.addEventListener("click", () => {
     activeFilters.clear();
-    filterTags.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
-    allChip.classList.add("active");
+    syncTagFilterUI();
     applyFilter();
   });
-  filterTags.appendChild(allChip);
+  tagFilterHeading.appendChild(allChip);
+  filterTags.appendChild(tagFilterHeading);
+
+  const tagGroupGrid = document.createElement("div");
+  tagGroupGrid.className = "tag-group-grid";
+  const tagGroupChips = {};
+  [["organization", "乐队", "左栏"], ["personal", "弄李", "右栏"]].forEach(([category, name, side]) => {
+    const group = document.createElement("div");
+    group.className = "tag-group tag-group-" + category;
+    const heading = document.createElement("div");
+    heading.className = "tag-group-heading";
+    heading.innerHTML = `<strong>${name}</strong><span>${side}</span>`;
+    const chips = document.createElement("div");
+    chips.className = "tag-group-chips";
+    group.append(heading, chips);
+    tagGroupGrid.appendChild(group);
+    tagGroupChips[category] = chips;
+  });
+  filterTags.appendChild(tagGroupGrid);
 
   // 生成筛选按钮
   const availableTags = typeof timelineTagOptions !== "undefined" ? timelineTagOptions : Object.keys(TAG_NAMES);
+  const personalTags = new Set(["private", "business"]);
+  const tagFamilies = [
+    { label: "Live", tags: ["oml", "bandori_fes", "fes"] },
+    { label: "音乐", tags: ["single", "album"] },
+    { label: "动画相关", tags: ["anime", "game", "book"] },
+    { label: "线上/线下活动", tags: ["program", "offline"] }
+  ];
+  const familyButtons = [];
+  const familyContainers = new Map();
+  tagGroupChips.organization.className = "tag-family-list";
+  tagFamilies.forEach(family => {
+    const tags = family.tags.filter(tag => availableTags.includes(tag));
+    if (!tags.length) return;
+    const row = document.createElement("div");
+    row.className = "tag-family";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "tag-family-button";
+    button.textContent = family.label;
+    button.setAttribute("aria-pressed", "false");
+    const chips = document.createElement("div");
+    chips.className = "tag-group-chips";
+    row.append(button, chips);
+    tagGroupChips.organization.appendChild(row);
+    familyButtons.push({ button, tags });
+    tags.forEach(tag => familyContainers.set(tag, chips));
+    button.addEventListener("click", () => {
+      const allSelected = tags.every(tag => activeFilters.has(tag));
+      tags.forEach(tag => allSelected ? activeFilters.delete(tag) : activeFilters.add(tag));
+      syncTagFilterUI();
+      applyFilter();
+    });
+  });
+
+  function syncTagFilterUI() {
+    filterTags.querySelectorAll(".filter-chip[data-tag]").forEach(chip => {
+      const selected = activeFilters.has(chip.dataset.tag);
+      chip.classList.toggle("active", selected);
+      chip.setAttribute("aria-pressed", String(selected));
+    });
+    familyButtons.forEach(({ button, tags }) => {
+      const selectedCount = tags.filter(tag => activeFilters.has(tag)).length;
+      button.classList.toggle("active", selectedCount === tags.length);
+      button.classList.toggle("partial", selectedCount > 0 && selectedCount < tags.length);
+      button.setAttribute("aria-pressed", selectedCount === 0 ? "false" : selectedCount === tags.length ? "true" : "mixed");
+    });
+    const allSelected = activeFilters.size === 0;
+    allChip.classList.toggle("active", allSelected);
+    allChip.setAttribute("aria-pressed", String(allSelected));
+  }
+
   availableTags.forEach(tag => {
     const chip = document.createElement("button");
     chip.className = "filter-chip";
+    chip.type = "button";
     chip.dataset.tag = tag;
+    chip.dataset.category = personalTags.has(tag) ? "personal" : "organization";
     chip.innerHTML = '<span class="diamond">&#9670;</span> ' + (TAG_NAMES[tag] || tag);
+    chip.setAttribute("aria-pressed", "false");
     chip.addEventListener("click", () => {
-      allChip.classList.remove("active");
-      chip.classList.toggle("active");
-      if (chip.classList.contains("active")) {
-        activeFilters.add(tag);
-      } else {
-        activeFilters.delete(tag);
-      }
-      if (activeFilters.size === 0) allChip.classList.add("active");
+      if (activeFilters.has(tag)) activeFilters.delete(tag);
+      else activeFilters.add(tag);
+      syncTagFilterUI();
       applyFilter();
     });
-    filterTags.appendChild(chip);
+    (chip.dataset.category === "personal" ? tagGroupChips.personal : familyContainers.get(tag) || tagGroupChips.organization).appendChild(chip);
   });
 
   function applyFilter() {
-    let visibleCount = 0;
     eventGroups.forEach(g => {
+      const focusMatches = activeFocus === "all" || g.dataset.category === activeFocus;
       const tagMatches = activeFilters.size === 0 || activeFilters.has(g.dataset.tag);
       const textMatches = !timelineSearchQuery || g.dataset.search.includes(timelineSearchQuery);
       const yearMatches = activeYear === null || Number(g.dataset.year) === activeYear;
-      const visible = tagMatches && textMatches && yearMatches;
+      const visible = focusMatches && tagMatches && textMatches && yearMatches;
       g.classList.toggle("hidden", !visible);
-      if (visible) visibleCount += 1;
     });
-    timelineResultCount.textContent = visibleCount + " 条结果";
     relayoutTimeline();
+    if (!calendarPanel.hidden) {
+      const records = visibleCalendarRecords();
+      const monthStart = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), 1);
+      const monthEnd = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() + 1, 0);
+      if (records.length && !records.some(record => record.start <= monthEnd && record.end >= monthStart)) {
+        const latest = records.reduce((left, right) => left.end > right.end ? left : right);
+        calendarMonth = new Date(latest.end.getFullYear(), latest.end.getMonth(), 1);
+        selectedCalendarDate = null;
+      }
+      renderTimelineCalendar();
+    }
   }
 
   // 创建事件
@@ -207,9 +345,11 @@
     const isOrg = ev.category === "organization";
     const track = isOrg ? trackL : trackR;
     const d = parseDate(ev.date);
+    const future = isFutureDate(d);
 
     const group = document.createElement("div");
     group.className = "event-group " + (isOrg ? "org" : "per");
+    group.classList.toggle("is-future", future);
     group.dataset.dateKey = String(d.getTime());
     group.dataset.year = String(d.getFullYear());
     group.dataset.index = idx;
@@ -227,7 +367,7 @@
     bubble.innerHTML = `<div class="ticket-stub" aria-label="${ticketType.label}">
       <svg class="ticket-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TICKET_ICONS[ticketType.icon]}</svg>
       <span class="ticket-label">${ticketType.label}</span><span class="ticket-code">${ticketType.code}</span>
-    </div><div class="ticket-body"><div class="b-date">${ev.date}</div><div class="b-title">${ev.title}</div></div>`;
+    </div><div class="ticket-body"><div class="b-date">${ev.date}</div><div class="b-title">${ev.title}</div><span class="future-label" aria-label="未来事件">Coming Soon…</span></div>`;
     bubble.onclick = function () { openTimelineModal(idx); };
     bubble.onkeydown = function (event) {
       if (event.key === "Enter" || event.key === " ") {
@@ -252,7 +392,6 @@
     track.appendChild(group);
     eventGroups.push(group);
   });
-  timelineResultCount.textContent = timelineData.length + " 条结果";
 
   // 相邻日期行及同一天的多条事件之间的固定间距。
   const MIN_GAP = 10;
@@ -265,6 +404,7 @@
   function openTimelineModal(index) {
     const ev = timelineData[index];
     if (!ev) return;
+    const eventStart = parseDate(ev.date);
     hidePageTop();
     history.replaceState(null, "", "#timeline=" + encodeURIComponent(ev.hash_id));
     document.body.style.overflow = "hidden";
@@ -348,7 +488,7 @@
     tlModalBody.innerHTML = `
       <div class="tl-modal-title">${ev.title}</div>
       <div class="tl-modal-header">
-        <div class="tl-modal-date">${ev.date}</div>
+        <div class="tl-modal-date-wrap"><div class="tl-modal-date">${ev.date}</div><span class="tl-modal-future" data-start="${eventStart.getTime()}" ${isFutureDate(eventStart) ? "" : "hidden"}>Coming Soon…</span></div>
         ${toggleHTML}
       </div>
       <div class="tl-modal-desc">${(ev.description || "").replace(/\n/g, "<br>")}</div>
@@ -531,28 +671,35 @@
 
   // 年份筛选按钮
   const yearFilterBar = document.getElementById('yearFilterBar');
-  const yearFilterTags = document.createElement('div');
-  yearFilterTags.className = 'filter-tags';
-  yearFilterBar.appendChild(yearFilterTags);
+  const yearFilterTags = document.getElementById('yearFilterTags');
+  const clearYearSelection = () => yearFilterBar.querySelectorAll('.filter-chip')
+    .forEach(button => button.classList.remove('active'));
 
   const allYearBtn = document.createElement('button');
   allYearBtn.className = 'filter-chip active';
   allYearBtn.innerHTML = '<span class="diamond">&#9670;</span> ALL';
   allYearBtn.addEventListener('click', () => {
     activeYear = null;
-    yearFilterTags.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    clearYearSelection();
     allYearBtn.classList.add('active');
     applyFilter();
   });
-  yearFilterTags.appendChild(allYearBtn);
+  document.getElementById('yearFilterHeading').appendChild(allYearBtn);
 
   allYears.forEach(y => {
     const btn = document.createElement('button');
     btn.className = 'filter-chip';
-    btn.textContent = String(y);
+    btn.innerHTML = '<span class="diamond">&#9670;</span> ' + y;
     btn.addEventListener('click', () => {
       activeYear = y;
-      yearFilterTags.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      if (!calendarPanel.hidden) {
+        const firstEvent = timelineData.map(e => parseDate(e.date))
+          .filter(date => date.getFullYear() === y)
+          .sort((left, right) => left - right)[0];
+        calendarMonth = new Date(y, firstEvent ? firstEvent.getMonth() : 0, 1);
+        selectedCalendarDate = null;
+      }
+      clearYearSelection();
       btn.classList.add('active');
       applyFilter();
     });
@@ -568,7 +715,17 @@
     sortBtn.innerHTML = sortReverse ? '<span>时间正序</span>' : '<span>时间倒序</span>';
     relayoutTimeline();
   });
-  filterBar.appendChild(sortBtn);
+  document.getElementById("timelineFilterActions").appendChild(sortBtn);
+
+  const futureJumpBtn = document.createElement("button");
+  futureJumpBtn.type = "button";
+  futureJumpBtn.className = "future-jump-btn";
+  futureJumpBtn.innerHTML = '<span aria-hidden="true">✦</span> 未来事件';
+  futureJumpBtn.setAttribute("aria-controls", futureDivider.id);
+  futureJumpBtn.addEventListener("click", () => {
+    if (!futureDivider.hidden) futureDivider.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+  document.getElementById("timelineFilterActions").appendChild(futureJumpBtn);
 
   const emptyState = document.createElement("div");
   emptyState.className = "timeline-empty";
@@ -584,6 +741,309 @@
   });
   if (document.fonts) document.fonts.ready.then(relayoutTimeline);
 
+  // 日历只读取时间线事件，复用筛选结果和事件详情。
+  const calendarPanel = document.getElementById("timelineCalendar");
+  const calendarGrid = document.getElementById("timelineCalendarGrid");
+  const calendarMonthLabel = document.getElementById("timelineMonthLabel");
+  const dayHeading = document.getElementById("timelineDayHeading");
+  const dayCount = document.getElementById("timelineDayCount");
+  const dayEvents = document.getElementById("timelineDayEvents");
+  const timelineViewButton = document.getElementById("timelineViewButton");
+  const calendarViewButton = document.getElementById("calendarViewButton");
+  const monthPicker = document.getElementById("timelineMonthPicker");
+  const monthPickerToggle = document.getElementById("timelineMonthPickerToggle");
+  const yearSelect = document.getElementById("timelineYearSelect");
+  const monthSelect = document.getElementById("timelineMonthSelect");
+
+  function dateKey(date) {
+    return date.getFullYear() + "-" + String(date.getMonth() + 1).padStart(2, "0") + "-" + String(date.getDate()).padStart(2, "0");
+  }
+
+  function eventDates(event) {
+    const matches = String(event.date).match(/\d{4}[/.\-]\d{1,2}[/.\-]\d{1,2}/g) || [];
+    const start = parseDate(matches[0] || event.date);
+    const end = matches.length > 1 ? parseDate(matches[1]) : start;
+    return [start, end >= start ? end : start];
+  }
+
+  const calendarRecords = timelineData.map((event, index) => {
+    const [start, end] = eventDates(event);
+    return { event, index, start, end, category: event.category === "organization" ? "org" : "per" };
+  });
+  const newestDate = calendarRecords.reduce((latest, record) => record.end > latest ? record.end : latest, calendarRecords[0].end);
+  let calendarMonth = new Date(newestDate.getFullYear(), newestDate.getMonth(), 1);
+  let selectedCalendarDate = dateKey(newestDate);
+  let displayedToday = dateKey(todayStart());
+
+  function refreshFutureEvents() {
+    const today = todayStart();
+    const todayKey = dateKey(today);
+    if (todayKey === displayedToday) return;
+    displayedToday = todayKey;
+    calendarRecords.forEach(record => {
+      eventGroups[record.index].classList.toggle("is-future", record.start > today);
+    });
+    const modalFuture = tlModalBody.querySelector(".tl-modal-future");
+    if (modalFuture) modalFuture.hidden = !(Number(modalFuture.dataset.start) > today.getTime());
+    relayoutTimeline();
+    if (!calendarPanel.hidden) renderTimelineCalendar();
+  }
+
+  // 本地午夜准时切换；定期及重新聚焦时校正休眠或手动调时。
+  function scheduleMidnightRefresh() {
+    const now = new Date();
+    const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    window.setTimeout(() => {
+      refreshFutureEvents();
+      scheduleMidnightRefresh();
+    }, Math.max(1000, nextMidnight.getTime() - now.getTime() + 100));
+  }
+  scheduleMidnightRefresh();
+  window.setInterval(refreshFutureEvents, 60 * 1000);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) refreshFutureEvents();
+  });
+  window.addEventListener("focus", refreshFutureEvents);
+
+  function visibleCalendarRecords() {
+    return calendarRecords.filter(record => !eventGroups[record.index].classList.contains("hidden"));
+  }
+
+  function recordsOnDay(records, date) {
+    const day = date.getTime();
+    return records.filter(record => record.start.getTime() <= day && day <= record.end.getTime());
+  }
+
+  function makeCalendarEvent(record, className) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = className + " " + record.category + (isFutureDate(record.start) ? " is-future" : "");
+    button.textContent = record.event.title;
+    button.title = record.event.date + " · " + record.event.title;
+    button.addEventListener("click", event => {
+      event.stopPropagation();
+      openTimelineModal(record.index);
+    });
+    return button;
+  }
+
+  function renderDayPanel(records) {
+    const [year, month, day] = selectedCalendarDate.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    const entries = recordsOnDay(records, date);
+    dayHeading.textContent = year + " / " + String(month).padStart(2, "0") + " / " + String(day).padStart(2, "0");
+    dayCount.textContent = String(entries.length).padStart(2, "0");
+    dayEvents.replaceChildren();
+    if (!entries.length) {
+      const empty = document.createElement("p");
+      empty.className = "timeline-day-empty";
+      empty.textContent = "这一天没有符合条件的事件";
+      dayEvents.appendChild(empty);
+      return;
+    }
+    entries.forEach(record => {
+      const ticketType = TICKET_TYPES[record.event.tag] || TICKET_TYPES.other;
+      const button = makeCalendarEvent(record, "timeline-day-event");
+      button.dataset.tone = ticketType.tone;
+      const meta = document.createElement("span");
+      meta.className = "timeline-day-event-meta";
+      const label = document.createElement("span");
+      label.className = "timeline-day-event-category";
+      label.textContent = ticketType.label;
+      meta.appendChild(label);
+      if (isFutureDate(record.start)) {
+        const futureLabel = document.createElement("span");
+        futureLabel.className = "timeline-day-event-future";
+        futureLabel.textContent = "Coming Soon…";
+        meta.appendChild(futureLabel);
+      }
+      const title = document.createElement("span");
+      title.textContent = record.event.title;
+      const dateText = document.createElement("small");
+      dateText.textContent = record.event.date;
+      button.replaceChildren(meta, title, dateText);
+      dayEvents.appendChild(button);
+    });
+  }
+
+  function selectCalendarDate(date, showPanel = true) {
+    selectedCalendarDate = dateKey(date);
+    if (date.getFullYear() !== calendarMonth.getFullYear() || date.getMonth() !== calendarMonth.getMonth()) {
+      calendarMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+      if (activeYear !== null && activeYear !== date.getFullYear()) {
+        activeYear = null;
+        clearYearSelection();
+        allYearBtn.classList.add('active');
+        applyFilter();
+      } else renderTimelineCalendar();
+    } else renderTimelineCalendar();
+    if (showPanel && window.matchMedia("(max-width: 1280px)").matches) {
+      document.querySelector(".timeline-day-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function renderTimelineCalendar() {
+    const year = calendarMonth.getFullYear();
+    const month = calendarMonth.getMonth();
+    const records = visibleCalendarRecords();
+    const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
+    const dayCountInMonth = new Date(year, month + 1, 0).getDate();
+    const rows = Math.ceil((firstWeekday + dayCountInMonth) / 7);
+    const startDate = new Date(year, month, 1 - firstWeekday);
+    calendarMonthLabel.textContent = year + " / " + String(month + 1).padStart(2, "0");
+    calendarGrid.replaceChildren();
+
+    if (!selectedCalendarDate || !selectedCalendarDate.startsWith(year + "-" + String(month + 1).padStart(2, "0") + "-")) {
+      const firstWithEvent = Array.from({ length: dayCountInMonth }, (_, index) => new Date(year, month, index + 1))
+        .find(date => recordsOnDay(records, date).length);
+      selectedCalendarDate = dateKey(firstWithEvent || new Date(year, month, 1));
+    }
+
+    for (let index = 0; index < rows * 7; index += 1) {
+      const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
+      const key = dateKey(date);
+      const cell = document.createElement("div");
+      cell.className = "timeline-calendar-day";
+      cell.addEventListener("click", () => selectCalendarDate(date));
+      if (date.getMonth() !== month) cell.classList.add("is-outside");
+      if (key === dateKey(new Date())) cell.classList.add("is-today");
+      if (key === selectedCalendarDate) cell.classList.add("is-selected");
+
+      const number = document.createElement("button");
+      number.type = "button";
+      number.className = "timeline-day-number";
+      number.textContent = date.getDate();
+      number.setAttribute("aria-label", key + "，查看当日事件");
+      cell.appendChild(number);
+
+      const list = document.createElement("div");
+      list.className = "timeline-calendar-events";
+      const entries = recordsOnDay(records, date);
+      entries.slice(0, 3).forEach(record => list.appendChild(makeCalendarEvent(record, "timeline-calendar-event")));
+      if (entries.length > 3) {
+          const more = document.createElement("button");
+          more.type = "button";
+          more.className = "timeline-calendar-more";
+          more.textContent = "+ " + (entries.length - 3) + " MORE";
+          more.setAttribute("aria-label", key + " 查看更多事件");
+          more.addEventListener("click", event => {
+            event.stopPropagation();
+            selectCalendarDate(date);
+          });
+          list.appendChild(more);
+      }
+      cell.appendChild(list);
+      calendarGrid.appendChild(cell);
+    }
+    renderDayPanel(records);
+  }
+
+  function setView(view) {
+    const isCalendar = view === "calendar";
+    if (isCalendar && activeYear !== null && calendarMonth.getFullYear() !== activeYear) {
+      const firstEvent = calendarRecords.map(record => record.start)
+        .filter(date => date.getFullYear() === activeYear)
+        .sort((left, right) => left - right)[0];
+      calendarMonth = new Date(activeYear, firstEvent ? firstEvent.getMonth() : 0, 1);
+      selectedCalendarDate = null;
+    }
+    calendarPanel.hidden = !isCalendar;
+    wrapper.hidden = isCalendar;
+    sortBtn.hidden = isCalendar;
+    futureJumpBtn.hidden = isCalendar;
+    timelineViewButton.classList.toggle("active", !isCalendar);
+    calendarViewButton.classList.toggle("active", isCalendar);
+    timelineViewButton.setAttribute("aria-pressed", String(!isCalendar));
+    calendarViewButton.setAttribute("aria-pressed", String(isCalendar));
+    if (isCalendar) renderTimelineCalendar();
+    else relayoutTimeline();
+  }
+
+  timelineViewButton.addEventListener("click", () => setView("timeline"));
+  calendarViewButton.addEventListener("click", () => setView("calendar"));
+
+  allYears.forEach(year => {
+    const option = document.createElement("option");
+    option.value = String(year);
+    option.textContent = String(year);
+    yearSelect.appendChild(option);
+  });
+  for (let month = 1; month <= 12; month++) {
+    const option = document.createElement("option");
+    option.value = String(month);
+    option.textContent = String(month).padStart(2, "0") + " 月";
+    monthSelect.appendChild(option);
+  }
+  function closeMonthPicker() {
+    monthPicker.hidden = true;
+    monthPickerToggle.setAttribute("aria-expanded", "false");
+  }
+  monthPickerToggle.addEventListener("click", () => {
+    if (!monthPicker.hidden) return closeMonthPicker();
+    if (![...yearSelect.options].some(option => Number(option.value) === calendarMonth.getFullYear())) {
+      const option = document.createElement("option");
+      option.value = String(calendarMonth.getFullYear());
+      option.textContent = option.value;
+      yearSelect.appendChild(option);
+    }
+    yearSelect.value = String(calendarMonth.getFullYear());
+    monthSelect.value = String(calendarMonth.getMonth() + 1);
+    monthPicker.hidden = false;
+    monthPickerToggle.setAttribute("aria-expanded", "true");
+    yearSelect.focus();
+  });
+  document.getElementById("timelineMonthJump").addEventListener("click", () => {
+    changeCalendarMonth(new Date(Number(yearSelect.value), Number(monthSelect.value) - 1, 1));
+    closeMonthPicker();
+  });
+  monthPicker.addEventListener("keydown", event => { if (event.key === "Escape") closeMonthPicker(); });
+  document.addEventListener("click", event => {
+    if (!monthPicker.hidden && !event.target.closest(".timeline-month-picker-wrap")) closeMonthPicker();
+  });
+
+  function changeCalendarMonth(date) {
+    calendarMonth = date;
+    selectedCalendarDate = null;
+    if (activeYear !== null && activeYear !== calendarMonth.getFullYear()) {
+      activeYear = null;
+      clearYearSelection();
+      allYearBtn.classList.add('active');
+      applyFilter();
+      return;
+    }
+    renderTimelineCalendar();
+  }
+  document.getElementById("timelinePreviousMonth").addEventListener("click", () => {
+    changeCalendarMonth(new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() - 1, 1));
+  });
+  document.getElementById("timelineNextMonth").addEventListener("click", () => {
+    changeCalendarMonth(new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() + 1, 1));
+  });
+
+  document.getElementById("resetTimelineFilters").addEventListener("click", () => {
+    activeFocus = "all";
+    document.querySelectorAll(".focus-switch-button").forEach(button => {
+      const selected = button.dataset.focus === "all";
+      button.classList.toggle("active", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
+    wrapper.classList.remove("focus-band", "focus-nonrico");
+    filterTags.classList.remove("focus-band", "focus-nonrico");
+    activeYear = null;
+    clearYearSelection();
+    allYearBtn.classList.add("active");
+    activeFilters.clear();
+    syncTagFilterUI();
+    timelineSearchInput.value = "";
+    timelineSearchQuery = "";
+    sortReverse = false;
+    sortBtn.innerHTML = '<span>时间倒序</span>';
+    calendarMonth = new Date(newestDate.getFullYear(), newestDate.getMonth(), 1);
+    selectedCalendarDate = dateKey(newestDate);
+    closeMonthPicker();
+    applyFilter();
+  });
+
   function relayoutTimeline() {
     const visibleGroups = eventGroups.filter(g => !g.classList.contains("hidden"));
     const dateRows = new Map();
@@ -594,16 +1054,33 @@
     });
 
     const orderedDates = [...dateRows.keys()].sort((a, b) => sortReverse ? b - a : a - b);
+    const todayKey = todayStart().getTime();
+    const hasFuture = orderedDates.some(key => key > todayKey);
     const monthMap = {};
     let currentTop = START_TOP;
     let previousYear = null;
+    let previousFuture = null;
+    let dividerPlaced = false;
+
+    function placeFutureDivider() {
+      futureDivider.style.top = currentTop + 24 + "px";
+      futureDivider.dataset.direction = sortReverse ? "up" : "down";
+      futureDivider.querySelector(".future-divider-arrow").textContent = sortReverse ? "↑" : "↓";
+      futureDivider.setAttribute("aria-label", sortReverse ? "分界线上方为未来事件" : "分界线下方为未来事件");
+      currentTop += 54;
+      dividerPlaced = true;
+    }
 
     orderedDates.forEach(dateKey => {
       const date = new Date(dateKey);
+      const future = dateKey > todayKey;
       const year = date.getFullYear();
       const monthKey = year + "-" + String(date.getMonth() + 1).padStart(2, "0");
       if (year !== previousYear) currentTop += YEAR_LABEL_GAP;
       previousYear = year;
+      if (hasFuture && !dividerPlaced && (sortReverse ? previousFuture && !future : future)) {
+        placeFutureDivider();
+      }
 
       const row = dateRows.get(dateKey);
       row.left.sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
@@ -618,7 +1095,12 @@
         if (right) right.style.top = currentTop + "px";
         currentTop += Math.max(left?.offsetHeight || 0, right?.offsetHeight || 0) + MIN_GAP;
       }
+      previousFuture = future;
     });
+    if (sortReverse && hasFuture && !dividerPlaced) placeFutureDivider();
+    futureDivider.hidden = !dividerPlaced;
+    futureJumpBtn.disabled = !dividerPlaced;
+    futureJumpBtn.title = dividerPlaced ? "跳转到未来事件分界线" : "当前筛选下没有未来事件";
 
     ticksL.replaceChildren();
     ticksR.replaceChildren();

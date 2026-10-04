@@ -907,6 +907,18 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "SWqYTVNmuUi",
+    date: "2025/1/2",
+    title: "TV动画放送直前特番「Ave Mujica: Ante Masquerade」播出",
+    category: "organization",
+    description: "「Ave Mujica: 假面舞会之前」动画开播前的专题宣传节目",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/galleryless/动画直前特番.webp" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep1364843", title: "在线观看" }
+    ]
+  },
+  {
     hash_id: "ki3WmqyM1nb",
     date: "2025/1/2",
     title: "TV动画「BanG Dream! Ave Mujica」#1 Sub rosa. 播出",
@@ -1153,17 +1165,17 @@ var timelineData = [
     date: "2025/9/4",
     title: "「碧い瞳の中に」公开",
     category: "organization",
-    description: "「in your blue eyes」",
+    description: "「in your blue eyes」【明日方舟 × BanG Dream! Ave Mujica】SideStory「无忧梦呓」的EP",
     tag: "single",
     media: [
-      { type: "image", src: "../images/蓝眼睛.webp", caption: "碧瞳 Cover" },
+      { type: "image", src: "../images/碧瞳.webp", caption: "碧瞳 Cover" },
       { type: "link", url: "https://www.bilibili.com/video/BV13Ma2zjEMA", title: "碧瞳 MV" }
     ]
   },
   {
-    hash_id: "9ymQgnaa7HF",
+    hash_id: "QGqDUThNy04",
     date: "2025/9/27",
-    title: "「'S/' The Way」Anime ver.作为其Tie-up TV动画「卡片战斗!! 先导者 Divinez DELUXE 决胜篇」#11 ED公开",
+    title: "「‘S/’ The Way」Anime ver.作为其Tie-up TV动画「卡片战斗!! 先导者 Divinez DELUXE 决胜篇」#11 ED公开",
     category: "organization",
     description: "「'S/' The Way」",
     tag: "single",
@@ -1566,6 +1578,314 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "VJRQJ8owBRr",
+    date: "2025/4/26",
+    title: "明日方舟 x Ave Mujica 联动前瞻预告发表",
+    category: "organization",
+    description: "",
+    tag: "game",
+    media: [
+      { type: "image", src: "../images/logo/mjc粥联动前瞻.webp" }
+    ]
+  },
+  {
+    hash_id: "yVzgMhEbViD",
+    date: "2025/9/4",
+    title: "【明日方舟 × BanG Dream! Ave Mujica】SideStory「无忧梦呓」活动开启",
+    category: "organization",
+    description: "",
+    tag: "game",
+    media: [
+      { type: "image", src: "../images/mjc粥联动kv.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1bveDzcEY7", title: "活动PV" }
+    ]
+  },
+  {
+    hash_id: "OFwO9RK5oPW",
+    date: "2026/9/24",
+    title: "BanG Dream! Our Notes 全球公测启动",
+    category: "organization",
+    description: "",
+    tag: "game",
+    media: [
+      { type: "image", src: "../images/logo/ournoteslogo.webp", caption: "游戏 Logo" },
+      { type: "image", src: "../images/ournoteskv.webp", caption: "游戏 开服主视图" }
+    ]
+  },
+  {
+    hash_id: "MJWMLVfufiw",
+    date: "2026/8/22",
+    title: "Cover曲「残酷な天使のテーゼ」公开",
+    category: "organization",
+    description: "Our Notes事前登录开始纪念特番宣布 将于开服后实装进入游戏",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/残纲.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1X58m6AENA", title: "残纲 PV" }
+    ]
+  },
+  {
+    hash_id: "werMIHEHSNP",
+    date: "2026/9/24",
+    title: "Cover曲「Abracadabra」公开",
+    category: "organization",
+    description: "BanG Dream! Our Notes Global Server独家开服活动",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/abracadabra cover.webp", caption: "单曲 Cover" },
+      { type: "image", src: "../images/abracadabrakv.webp", caption: "开服活动主视图" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1ZLeG6JEha", title: "Abracadabra MV" }
+    ]
+  },
+  {
+    hash_id: "GYGeKgZHIpL",
+    date: "2026/9/28",
+    title: "Cover曲「ファタール」Short ver. 公开",
+    category: "organization",
+    description: "Our Notes发布日决定特番宣布 将作为开服后5连翻唱活动歌曲实装",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/fatal.webp" }
+    ]
+  },
+  {
+    hash_id: "Vy5auXsqDt6",
+    date: "2025/10/31",
+    title: "ドズル社×TVアニメ「BanG Dream! Ave Mujica」Minecraft 联动企划公开",
+    category: "organization",
+    description: "BanG Dream! 与日本知名 Minecraft 游戏实况团体 ドズル社 的合作企划。公开 Ave Mujica 主题的剧情式密室逃脱/解谜地图「Ave Mujicaの世界からの脱出」",
+    tag: "game",
+    media: [
+      { type: "image", src: "../images/mc联动.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1Hc1EBeE3J", title: "汉化版下载链接" },
+      { type: "link", url: "https://www.bilibili.com/video/BV15u15BkE5M", title: "汉化流程" }
+    ]
+  },
+  {
+    hash_id: "6LFzlezNSmK",
+    date: "2025/9/30",
+    title: "「BanG Dream! Ave Mujica」official guidebook Fatiscriptum 发售",
+    category: "organization",
+    description: "官方设定集，附赠广播剧「Finem Lauda」赞颂终焉",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/公式书cover.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1GVn2zXEF4", title: "在线观看" }
+    ]
+  },
+  {
+    hash_id: "Dzr21nZicBH",
+    date: "2026/7/18",
+    title: "Ave Mujica XR『Ave Mujica -pupa ludere-』开始",
+    category: "organization",
+    description: "与VR设施&空间联动的活动",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/xr活动kv.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1K4hg6WEX1", title: "渡濑结月体验视频" }
+    ]
+  },
+  {
+    hash_id: "VBvPc8XoF4O",
+    date: "2025/5/28",
+    title: "TV动画「BanG Dream! Ave Mujica」Blu-ray 上下全2卷发售",
+    category: "organization",
+    description: "",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/mjc动画bd上卷.webp", caption: "上卷封面" },
+      { type: "image", src: "../images/mjc动画bd下卷.webp", caption: "下卷封面" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1QNmpBNEmm", title: "上卷附赠OST" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1YNmpBNEG1", title: "下卷附赠OST" }
+    ]
+  },
+  {
+    hash_id: "U64bj9DdVIk",
+    date: "2026/10/16",
+    title: "电影「BanG Dream! Ave Mujica prima aurora」上映",
+    category: "organization",
+    description: "「黎明初现」",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/电影主视图.webp", caption: "电影主视图" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1xtYC6UEwN", title: "电影主PV" }
+    ]
+  },
+  {
+    hash_id: "IQDgYDfcSdE",
+    date: "2025/6/15",
+    title: "Ave Mujica 1st Album「Completeness」发售纪念手渡会 ジョーシン日本橋店",
+    category: "organization",
+    description: "佐佐木李子 x 冈田梦以",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/completeness手渡会1.webp" }
+    ]
+  },
+  {
+    hash_id: "WGmcSoqWWR1",
+    date: "2025/6/21",
+    title: "Ave Mujica 1st Album「Completeness」发售纪念手渡会 AKIHABARAゲーマーズ本店",
+    category: "organization",
+    description: "米泽茜 x 高尾奏音",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/completeness手渡会2.webp" }
+    ]
+  },
+  {
+    hash_id: "Tk65v4xfmsx",
+    date: "2025/6/28",
+    title: "Ave Mujica 1st Album「Completeness」发售纪念手渡会 タワーレコード 名古屋パルコ店",
+    category: "organization",
+    description: "冈田梦以 x 高尾奏音",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/completeness手渡会3.webp" }
+    ]
+  },
+  {
+    hash_id: "IYQffBDwk6i",
+    date: "2025/7/6",
+    title: "Ave Mujica 1st Album「Completeness」发售纪念手渡会 HMVエソラ池袋",
+    category: "organization",
+    description: "渡濑结月 x 高尾奏音",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/completeness手渡会4.webp" }
+    ]
+  },
+  {
+    hash_id: "adLSDWTcwP4",
+    date: "2025/7/20",
+    title: "Ave Mujica 1st Album「Completeness」发售纪念手渡会 HMV&BOOKS SHIBUYA",
+    category: "organization",
+    description: "渡濑结月 x 米泽茜",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/completeness手渡会5.webp" }
+    ]
+  },
+  {
+    hash_id: "CeIKRjYEgoi",
+    date: "2025/8/9",
+    title: "Ave Mujica 1st Album「Completeness」发售纪念手渡会 アニメイト大阪日本橋",
+    category: "organization",
+    description: "佐佐木李子 x 米泽茜",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/completeness手渡会6.webp" }
+    ]
+  },
+  {
+    hash_id: "sGwshwmEGEW",
+    date: "2025/1/10",
+    title: "「BanG Dream! Ave Mujica -manuscriptus-」连载开始",
+    category: "organization",
+    description: "TV动画剧情的官方改编漫画，改编至#10，没有#11~#13的内容",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/官方漫画kv.webp" },
+      { type: "link", url: "https://comic-growl.com/series/06ce1dd5dfc16", title: "观看地址" }
+    ]
+  },
+  {
+    hash_id: "aUzX4hzAAHq",
+    date: "2025/2/7",
+    title: "「BanG Dream! Ave Mujica -manuscriptus- 1」发售",
+    category: "organization",
+    description: "官方漫画第1卷",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/漫画第1卷普通版cover.webp", caption: "普通版封面" },
+      { type: "image", src: "../images/漫画第1卷特装版cover.webp", caption: "特装版封面" }
+    ]
+  },
+  {
+    hash_id: "hlZa6hyIZOU",
+    date: "2025/9/8",
+    title: "「BanG Dream! Ave Mujica -manuscriptus- 2」发售",
+    category: "organization",
+    description: "官方漫画第2卷",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/漫画第2卷cover.webp" }
+    ]
+  },
+  {
+    hash_id: "8YHB7kQvybj",
+    date: "2026/4/8",
+    title: "「BanG Dream! Ave Mujica -manuscriptus- 3」发售",
+    category: "organization",
+    description: "官方漫画第3卷",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/漫画第3卷cover.webp" }
+    ]
+  },
+  {
+    hash_id: "CrOIMd8nhMg",
+    date: "2026/12/25",
+    title: "「Ave Mujica マーダーミステリー 五人のソワレ」发售",
+    category: "organization",
+    description: "「Ave Mujica 谋杀之谜 五人夜宴」",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/mjc剧本杀.webp" }
+    ]
+  },
+  {
+    hash_id: "4jIhpOJWJ54",
+    date: "2026/10/21",
+    title: "Ave Mujica Mini Album「神の名を」发售",
+    category: "organization",
+    description: "「God's Blood」",
+    tag: "album",
+    media: [
+      { type: "image", src: "../images/神名5000限.webp", caption: "5000限封面" },
+      { type: "image", src: "../images/神名限定.webp", caption: "限定版封面" },
+      { type: "image", src: "../images/神名限定cover.webp", caption: "限定版外套" },
+      { type: "image", src: "../images/神名通常.webp", caption: "通常版封面" }
+    ]
+  },
+  {
+    hash_id: "VRmkxFGvx6y",
+    date: "2026/12/4",
+    title: "Ave Mujica 出演 EVANESCENCE 2026 JAPAN 大阪公演",
+    category: "organization",
+    description: "",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/evanescence kv.webp" }
+    ]
+  },
+  {
+    hash_id: "bv005jE0MKk",
+    date: "2025/10/2",
+    title: "迷你动画「元祖！バンドリちゃん」开播 #1 元祖！バンドリちゃん",
+    category: "organization",
+    description: "「元祖！邦多利酱」\nDoloris 出演",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖kv.webp", caption: "主视图" },
+      { type: "image", src: "../images/元祖第1集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第1集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep2224392", title: "第1集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "sCRH7VOglDJ",
+    date: "2025/10/3",
+    title: "香澄×蘭×彩×友希那×こころ×ましろ×レイヤ×燈×ドロリス×あられ「元祖！バンドリちゃんのテーマ」公开",
+    category: "organization",
+    description: "10团主唱演唱的「元祖！邦多利酱的主题曲」",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/元祖主题曲.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1vsxyzNE6N", title: "在线试听" }
+    ]
+  },
+  {
     hash_id: "Fw4d2gH0TMY",
     date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",
@@ -1655,6 +1975,29 @@ var timelineData = [
       { type: "image", src: "../images/logo/exituslogo彩.webp" },
       { type: "image", src: "../images/exitus kv.webp" }
     ]
+  },
+  {
+    hash_id: "DUg5tBsLUex",
+    date: "2026/10/24 ~ 2026/10/25",
+    title: "Ave Mujica 7th LIVE「Virtus」",
+    category: "organization",
+    description: "「美德」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/7thlivelogo.webp", caption: "7th Live Logo" },
+      { type: "image", src: "../images/7th kv.webp", caption: "7th Live 主视图" }
+    ]
+  },
+  {
+    hash_id: "Xjv8Ajud2aP",
+    date: "2026/12/1 ~ 2026/12/2",
+    title: "Ave Mujica 出演 EVANESCENCE 2026 JAPAN 东京公演",
+    category: "organization",
+    description: "",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/evanescence kv.webp" }
+    ]
   }
 ];
 
@@ -1663,4 +2006,4 @@ const timelineConfig = {
   pixelsPerDay: 4
 };
 
-var timelineTagOptions = ["oml", "bandori_fes", "fes", "single", "album", "anime", "game", "offline", "private", "business"];
+var timelineTagOptions = ["oml", "bandori_fes", "fes", "single", "album", "anime", "game", "book", "program", "offline", "private", "business"];
