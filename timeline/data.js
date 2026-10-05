@@ -1864,12 +1864,13 @@ var timelineData = [
     date: "2025/10/2",
     title: "迷你动画「元祖！バンドリちゃん」开播 #1 元祖！バンドリちゃん",
     category: "organization",
-    description: "「元祖！邦多利酱」\nDoloris 出演",
+    description: "「元祖！BanG Dream Chan」\n三角初华 出演\n\n来来来，都来瞧一瞧、看一看！\n「元祖！BanG Dream Chan」要开演啦！\n“元祖”到底是什么！\n“BanG Dream Chan”又是什么！\n想说的话当然有一大堆，不过先把脑袋放空，轻轻松松地看起来吧！\n钱嘛您走的时候再看着给吧！",
     tag: "anime",
     media: [
       { type: "image", src: "../images/元祖kv.webp", caption: "主视图" },
       { type: "image", src: "../images/元祖第1集配布壁纸1.webp", caption: "配布壁纸PC" },
       { type: "image", src: "../images/元祖第1集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第1集staff绘.webp", caption: "Staff绘" },
       { type: "link", url: "https://www.bilibili.com/bangumi/play/ep2224392", title: "第1集 在线观看" }
     ]
   },
@@ -1883,6 +1884,281 @@ var timelineData = [
     media: [
       { type: "image", src: "../images/元祖主题曲.webp" },
       { type: "link", url: "https://www.bilibili.com/video/BV1vsxyzNE6N", title: "在线试听" }
+    ]
+  },
+  {
+    hash_id: "LDUjWvlBaRc",
+    date: "2025/12/4",
+    title: "迷你动画「元祖！バンドリちゃん」#10 Minna na cayosi.",
+    category: "organization",
+    description: "伪拉丁语，实为日语发音，意为「みんな仲良し（大家关系好）」\nMujica团回\n\n某一天的会议。来到事务所会议室的祥子，映入眼帘的东西是——",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第10集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第10集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第10集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第10集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep2471546", title: "第10集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "nsUB6k1r0ml",
+    date: "2025/12/18",
+    title: "迷你动画「元祖！バンドリちゃん」#12 天体観測",
+    category: "organization",
+    description: "「天体观测」\n三角初华 出演\n\n啵——哔哔哔啵啵　啵哔哔哔——，\n啵哔啵——　哔哔——！",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第12集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第12集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第12集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第12集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep2527595", title: "第12集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "ljLhOVFqhEZ",
+    date: "2026/2/5",
+    title: "迷你动画「元祖！バンドリちゃん」#18 スペシャルコラボ！にゃむちチャンネル",
+    category: "organization",
+    description: "「特别联动！Nyamuchi Channel」\n祐天寺若麦 出演\n\n喵姆喵姆大家好～！\n我是喵梦～！\n今天我们请来了特别嘉宾！\n有请～！",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第18集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第18集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第18集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第18集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep3067543", title: "第18集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "wqYB3BcXaHg",
+    date: "2026/2/12",
+    title: "迷你动画「元祖！バンドリちゃん」#19 箱入りミッシェル",
+    category: "organization",
+    description: "「箱中米歇尔」\n祐天寺若麦 出演\n\n在公寓电梯里，\n正凑过去准备按楼层按钮时，\n却发现自己那一层已经被按亮了——\n这种时候，不会莫名有点尴尬吗。\n啊，原来是住同一层的人啊。",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第19集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第19集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第19集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第19集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep3129294", title: "第19集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "i0SDfWgAlRi",
+    date: "2026/2/26",
+    title: "迷你动画「元祖！バンドリちゃん」#21 バイトミーさん",
+    category: "organization",
+    description: "「兼职直聘」\n丰川祥子 出演\n\n要找兼职　Baitomi～\n一起来打工吧　Baitomi～\nBaitomi Baitomi　富～　Baitomi～\nBaitomi～",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第21集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第21集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第21集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第21集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep3200995", title: "第21集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "JxNZHV5j0Nh",
+    date: "2026/3/12",
+    title: "迷你动画「元祖！バンドリちゃん」#23 放課後トークタイム",
+    category: "organization",
+    description: "「放学后Talk Time」\n若叶睦 出演\n\n聊天这种事，真开心呢！",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第23集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第23集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第23集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第23集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep3298787", title: "第23集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "ErszInAQJYt",
+    date: "2026/3/19",
+    title: "迷你动画「元祖！バンドリちゃん」#24 ドリフティング・クラスルーム",
+    category: "organization",
+    description: "「漂流·教室」\n三角初华、八幡海铃 出演\n\n虽然这个故事简介栏的信用度\n正在一天天下降，\n但这一次，教室真的会漂流，\n而且——\n食物三天就会耗尽。",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第24集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第24集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第24集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第24集staff绘1.webp", caption: "Staff绘" },
+      { type: "image", src: "../images/元祖第24集staff绘2.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep3348683", title: "第24集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "LEPXOy3QXUf",
+    date: "2026/4/2",
+    title: "迷你动画「元祖！バンドリちゃん」#26 魔法少女パッピームジゴ",
+    category: "organization",
+    description: "「魔法少女Pappy，Muji GO！」\n若叶睦 出演\n\n随着怪物现身，\n繁华街在一夜之间化作火海。\n四散奔逃的人群，逐渐崩坏的日常。\n被迫在市区展开战斗的\nPappy，Muji GO们，\n在必须守护之物，\n与不断失去之物之间动摇。\n第26话　「魔法少女Pappy，Muji GO！」\n今晚的晚饭——看来会是烤鸡串！？",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第26集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第26集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第26集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第26集staff绘1.webp", caption: "Staff绘" },
+      { type: "image", src: "../images/元祖第26集staff绘2.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep3477850", title: "第26集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "zylxLnTqlSt",
+    date: "2026/4/23",
+    title: "迷你动画「元祖！バンドリちゃん」#29 サバイバルタワーの試練",
+    category: "organization",
+    description: "「生存之塔的试炼」\n八幡海铃 出演 三角初华画面出现，未出声\n\n45名乐队成员，被某人关在了某座高塔的最顶层。\n面对这突如其来的事态，众人尚在困惑之中，\n神秘的游戏主持人便宣布了逃脱条件：\n“以各支乐队为单位，\n一边跨越重重试炼，一边前往一楼。”\nPoppin'Party五人也向着出口进发。\n然而，在一次又一次袭来的卑劣陷阱之下，\n成员一个接一个地出局。\n终于，只剩下香澄与有咲两人。\n就在出口近在眼前之际，焦急的有咲脚下地板突然崩塌。\n眼看她就要坠落——\n香澄却牺牲自己救下了有咲，\n随后带着微笑，消失在无底深渊之中……",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第29集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第29集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第29集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第29集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep3650610", title: "第29集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "sAbIm1uYdzf",
+    date: "2026/6/11",
+    title: "迷你动画「元祖！バンドリちゃん」#36 クイズ答えてバンドリちゃんの館",
+    category: "organization",
+    description: "「一问到底・BanG Dream Chan之馆」\n丰川祥子 出演 三角初华画面出现，未出声\n\n竞猜节目的主持人……哎呀，这份工作还提供餐饮呢。",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第36集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第36集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第36集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第36集staff绘1.webp", caption: "Staff绘" },
+      { type: "image", src: "../images/元祖第36集staff绘2.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep4287111", title: "第36集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "2WF6IjcRVVW",
+    date: "2026/7/2",
+    title: "迷你动画「元祖！バンドリちゃん」#39 ＊＊＊＊＊＊のお悩み相談室",
+    category: "organization",
+    description: "「＊＊＊＊＊＊的烦恼咨询室」\n三角初华 作为Sumimi的初华出演\n\n本节目是一档谈话综艺节目——\n由我们＊＊＊＊＊＊，\n来为各位听众投稿的烦恼咨询一一作出解答！",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第39集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第39集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第39集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第39集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep4602551", title: "第39集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "6w97QbuByVl",
+    date: "2026/7/9",
+    title: "迷你动画「元祖！バンドリちゃん」#40 アーティスト格付けチョイス",
+    category: "organization",
+    description: "「Artist等级鉴定」\n若叶睦、祐天寺若麦 出演\n\n松叶蟹属于螃蟹，\n但帝王蟹其实并不是螃蟹，\n而是寄居蟹的同类。\n蟹味棒同样不是螃蟹，\n而是鱼糕的同类。",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第40集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第40集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第40集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第40集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep4710029", title: "第40集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "G5HPJupRFS4",
+    date: "2026/7/23",
+    title: "迷你动画「元祖！バンドリちゃん」#42 ショートショートショート",
+    category: "organization",
+    description: "「Shorts Shorts Shorts」\n若叶睦 出演\n\n“哎呀，一盘牛舌只有四片呢。”\n“我们有五个人，一份不够啊。”\n“我还以为点了以后，会按人数来切呢。”\n“那要两份吗？”\n“那样会多出三片，反而要吵起来了呢。”\n“啊，广町只吃一片也没关系哦。”\n“这种时候该怎么办才好呢……”\n“不过要是点五份的话，大家倒是能平均分到，但那也太——”\n“麻烦来五盘牛舌！”",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第42集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第42集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第42集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第42集staff绘1.webp", caption: "Staff绘" },
+      { type: "image", src: "../images/元祖第42集staff绘2.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep4927118", title: "第42集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "2JuHFKXJzQe",
+    date: "2026/8/6",
+    title: "迷你动画「元祖！バンドリちゃん」#44 これは元祖！バンドリちゃんのあらすじ",
+    category: "organization",
+    description: "「这是元祖！BanG Dream Chan的梗概」\nMujica众人出演，未出声\n\n「元祖！BanG Dream Chan」就是力量！\n「元祖！BanG Dream Chan」就是力量！\n「元祖！BanG Dream Chan」就是力量！！！",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第44集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第44集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第44集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第44集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep5161246", title: "第44集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "sqhJtU80gc0",
+    date: "2026/8/27",
+    title: "迷你动画「元祖！バンドリちゃん」#47 これは元祖！Sauna de totonoi.",
+    category: "organization",
+    description: "伪拉丁语，实为日语发音，意为「サウナでととのい（桑拿之后，身心舒畅）」\nMujica团回\n\n熬过令人窒息的灼热，\n与仿佛连身体都会冻结的冰冷之后——\n她们所感受到的，究竟是……",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第47集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第47集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第47集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第47集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep5732269", title: "第47集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "sdpBD2S4oS5",
+    date: "2026/9/17",
+    title: "迷你动画「元祖！バンドリちゃん」#50 機動宇宙戦妃 バンドール",
+    category: "organization",
+    description: "「机动宇宙战妃 BanG DOLL」\n八幡海铃 出演\n\n在与 A-NON 的死斗中艰难取胜后，\nTaki Shiina匆忙踏上返回母舰的归途。\n然而——\n仿佛要截断她的退路一般，\n出现在漆黑宇宙中的，\n竟是一架所属不明的 BanG DOLL……",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第50集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第50集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第50集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第50集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep6230738", title: "第50集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "219j1f7OfmA",
+    date: "2026/9/24",
+    title: "迷你动画「元祖！バンドリちゃん」#51 明けの明星",
+    category: "organization",
+    description: "「黎明之星」\n若叶睦、丰川祥子 出演\n\n为了将累积的债务一笔勾销，\n祥子等人登上暗黑客船“Des Espoir号”(绝望号）\n企图一举翻盘。\n命运女神——\n究竟会向她们露出微笑吗？",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第51集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第51集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第51集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第51集staff绘1.webp", caption: "Staff绘" },
+      { type: "image", src: "../images/元祖第51集staff绘2.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep6420840", title: "第51集 在线观看" }
+    ]
+  },
+  {
+    hash_id: "7OeMgOkWNZj",
+    date: "2026/10/1",
+    title: "迷你动画「元祖！バンドリちゃん」#52 さらば！バンドリちゃん",
+    category: "organization",
+    description: "「再见了！BanG Dream Chan」\n三角初华 出演\n\n香澄她们与负乐队粒子之间的战斗，\n终于迎来了终结。\n面对正在逐渐自毁的敌人，\n香澄将说出怎样的话语……！\n「元祖！BanG Dream Chan」最终回——\n望着穿透云隙洒下的光芒，\n你，又会想些什么。",
+    tag: "anime",
+    media: [
+      { type: "image", src: "../images/元祖第52集先行图.webp", caption: "先行图" },
+      { type: "image", src: "../images/元祖第52集配布壁纸1.webp", caption: "配布壁纸PC" },
+      { type: "image", src: "../images/元祖第52集配布壁纸2.webp", caption: "配布壁纸手机" },
+      { type: "image", src: "../images/元祖第52集staff绘.webp", caption: "Staff绘" },
+      { type: "link", url: "https://www.bilibili.com/bangumi/play/ep6551059?", title: "第52集 在线观看" }
     ]
   },
   {
