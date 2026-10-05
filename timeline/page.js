@@ -317,7 +317,7 @@
     (chip.dataset.category === "personal" ? tagGroupChips.personal : familyContainers.get(tag) || tagGroupChips.organization).appendChild(chip);
   });
 
-  function applyFilter() {
+  function applyFilter(jumpToMatchingMonth = true) {
     eventGroups.forEach(g => {
       const focusMatches = activeFocus === "all" || g.dataset.category === activeFocus;
       const tagMatches = activeFilters.size === 0 || activeFilters.has(g.dataset.tag);
@@ -331,7 +331,7 @@
       const records = visibleCalendarRecords();
       const monthStart = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), 1);
       const monthEnd = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() + 1, 0);
-      if (records.length && !records.some(record => record.start <= monthEnd && record.end >= monthStart)) {
+      if (jumpToMatchingMonth && records.length && !records.some(record => record.start <= monthEnd && record.end >= monthStart)) {
         const latest = records.reduce((left, right) => left.end > right.end ? left : right);
         calendarMonth = new Date(latest.end.getFullYear(), latest.end.getMonth(), 1);
         selectedCalendarDate = null;
@@ -770,9 +770,9 @@
     const [start, end] = eventDates(event);
     return { event, index, start, end, category: event.category === "organization" ? "org" : "per" };
   });
-  const newestDate = calendarRecords.reduce((latest, record) => record.end > latest ? record.end : latest, calendarRecords[0].end);
-  let calendarMonth = new Date(newestDate.getFullYear(), newestDate.getMonth(), 1);
-  let selectedCalendarDate = dateKey(newestDate);
+  const initialCalendarDate = todayStart();
+  let calendarMonth = new Date(initialCalendarDate.getFullYear(), initialCalendarDate.getMonth(), 1);
+  let selectedCalendarDate = dateKey(initialCalendarDate);
   let displayedToday = dateKey(todayStart());
 
   function refreshFutureEvents() {
@@ -889,7 +889,6 @@
     const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
     const dayCountInMonth = new Date(year, month + 1, 0).getDate();
     const rows = Math.ceil((firstWeekday + dayCountInMonth) / 7);
-    const startDate = new Date(year, month, 1 - firstWeekday);
     calendarMonthLabel.textContent = year + " / " + String(month + 1).padStart(2, "0");
     calendarGrid.replaceChildren();
 
@@ -899,41 +898,76 @@
       selectedCalendarDate = dateKey(firstWithEvent || new Date(year, month, 1));
     }
 
-    for (let index = 0; index < rows * 7; index += 1) {
-      const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
-      const key = dateKey(date);
-      const cell = document.createElement("div");
-      cell.className = "timeline-calendar-day";
-      cell.addEventListener("click", () => selectCalendarDate(date));
-      if (date.getMonth() !== month) cell.classList.add("is-outside");
-      if (key === dateKey(new Date())) cell.classList.add("is-today");
-      if (key === selectedCalendarDate) cell.classList.add("is-selected");
+    for (let row = 0; row < rows; row += 1) {
+      const week = document.createElement("div");
+      week.className = "timeline-calendar-week";
+      const dates = Array.from({ length: 7 }, (_, column) =>
+        new Date(year, month, 1 - firstWeekday + row * 7 + column));
+      const weekStart = dates[0].getTime();
+      const weekEnd = dates[6].getTime();
+      const occupied = Array.from({ length: 3 }, () => Array(7).fill(false));
+      const shown = Array(7).fill(0);
 
-      const number = document.createElement("button");
-      number.type = "button";
-      number.className = "timeline-day-number";
-      number.textContent = date.getDate();
-      number.setAttribute("aria-label", key + "，查看当日事件");
-      cell.appendChild(number);
+      dates.forEach((date, column) => {
+        const key = dateKey(date);
+        const cell = document.createElement("div");
+        cell.className = "timeline-calendar-day";
+        cell.style.gridColumn = String(column + 1);
+        cell.addEventListener("click", () => selectCalendarDate(date));
+        if (date.getMonth() !== month) cell.classList.add("is-outside");
+        if (key === dateKey(new Date())) cell.classList.add("is-today");
+        if (key === selectedCalendarDate) cell.classList.add("is-selected");
 
-      const list = document.createElement("div");
-      list.className = "timeline-calendar-events";
-      const entries = recordsOnDay(records, date);
-      entries.slice(0, 3).forEach(record => list.appendChild(makeCalendarEvent(record, "timeline-calendar-event")));
-      if (entries.length > 3) {
-          const more = document.createElement("button");
-          more.type = "button";
-          more.className = "timeline-calendar-more";
-          more.textContent = "+ " + (entries.length - 3) + " MORE";
-          more.setAttribute("aria-label", key + " 查看更多事件");
-          more.addEventListener("click", event => {
-            event.stopPropagation();
-            selectCalendarDate(date);
-          });
-          list.appendChild(more);
-      }
-      cell.appendChild(list);
-      calendarGrid.appendChild(cell);
+        const number = document.createElement("button");
+        number.type = "button";
+        number.className = "timeline-day-number";
+        number.textContent = date.getDate();
+        number.setAttribute("aria-label", key + "，查看当日事件");
+        cell.appendChild(number);
+        week.appendChild(cell);
+      });
+
+      const segments = records.filter(record => record.start.getTime() <= weekEnd && record.end.getTime() >= weekStart)
+        .map(record => ({
+          record,
+          first: dates.findIndex(date => date >= record.start),
+          last: dates.findLastIndex(date => date <= record.end)
+        }));
+      segments.forEach(segment => {
+        segment.first = segment.first < 0 ? 0 : segment.first;
+        segment.last = segment.last < 0 ? 6 : segment.last;
+      });
+      segments.sort((left, right) => left.first - right.first || right.last - left.last || left.record.index - right.record.index);
+
+      segments.forEach(({ record, first, last }) => {
+        const lane = occupied.findIndex(columns => columns.slice(first, last + 1).every(value => !value));
+        if (lane < 0) return;
+        for (let column = first; column <= last; column += 1) {
+          occupied[lane][column] = true;
+          shown[column] += 1;
+        }
+        const bubble = makeCalendarEvent(record, "timeline-calendar-event");
+        bubble.style.gridColumn = (first + 1) + " / " + (last + 2);
+        bubble.style.setProperty("--event-lane", lane);
+        week.appendChild(bubble);
+      });
+
+      dates.forEach((date, column) => {
+        const hiddenCount = recordsOnDay(records, date).length - shown[column];
+        if (hiddenCount <= 0) return;
+        const more = document.createElement("button");
+        more.type = "button";
+        more.className = "timeline-calendar-more";
+        more.textContent = "+ " + hiddenCount + " MORE";
+        more.setAttribute("aria-label", dateKey(date) + " 查看更多事件");
+        more.style.gridColumn = String(column + 1);
+        more.addEventListener("click", event => {
+          event.stopPropagation();
+          selectCalendarDate(date);
+        });
+        week.appendChild(more);
+      });
+      calendarGrid.appendChild(week);
     }
     renderDayPanel(records);
   }
@@ -1038,10 +1072,11 @@
     timelineSearchQuery = "";
     sortReverse = false;
     sortBtn.innerHTML = '<span>时间倒序</span>';
-    calendarMonth = new Date(newestDate.getFullYear(), newestDate.getMonth(), 1);
-    selectedCalendarDate = dateKey(newestDate);
+    const today = todayStart();
+    calendarMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    selectedCalendarDate = dateKey(today);
     closeMonthPicker();
-    applyFilter();
+    applyFilter(false);
   });
 
   function relayoutTimeline() {

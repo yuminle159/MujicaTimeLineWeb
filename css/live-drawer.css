@@ -468,7 +468,7 @@
 
 /* ===== Backstage 照片 ===== */
 .shared-live-photo-grid {
-  column-count: 2;
+  column-count: 3;
   column-gap: 12px;
 }
 .shared-live-photo-card {
@@ -961,6 +961,7 @@
   .shared-live-mobile-tab { min-height: 42px; border: 1px solid transparent; border-radius: var(--md-radius-full); background: transparent; color: var(--md-on-surface-variant); font: 700 12px "Cinzel",serif; letter-spacing: 1px; cursor: pointer; }
   .shared-live-mobile-tab.is-active { border-color: rgba(255,77,77,.3); background: var(--md-primary-container); color: var(--md-primary); }
   .shared-live-col-setlist,.shared-live-col-gallery { display: block; max-height: none; padding-right: 0; overflow: visible; }
+  .shared-live-photo-grid { column-count: 2; }
   .shared-live-has-tabs .shared-live-col-setlist,.shared-live-has-tabs .shared-live-col-gallery { display: none; }
   .shared-live-col-setlist.shared-live-mobile-active,.shared-live-col-gallery.shared-live-mobile-active { display: block; }
 }
