@@ -10,12 +10,12 @@
 
   function isDetailUrl(url) {
     const path = url.pathname.toLowerCase();
-    if (path.includes("/songs/")) return url.hash.startsWith("#song=");
-    if (path.includes("/live/")) return url.hash.startsWith("#live=");
-    if (path.includes("/discography/")) return url.hash.startsWith("#discography=");
+    if (path.includes("/songs/")) return !!url.searchParams.get("song") || url.hash.startsWith("#song=");
+    if (path.includes("/live/")) return !!url.searchParams.get("live") || url.hash.startsWith("#live=");
+    if (path.includes("/discography/")) return !!url.searchParams.get("release") || url.hash.startsWith("#discography=");
     if (path.includes("/timeline/")) return url.hash.startsWith("#timeline=");
     if (path.includes("/gallery/")) return url.hash.startsWith("#gallery=");
-    if (path.includes("/interview/")) return url.hash.length > 1;
+    if (path.includes("/interview/")) return !!url.searchParams.get("interview") || url.hash.length > 1;
     return false;
   }
 

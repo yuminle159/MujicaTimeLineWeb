@@ -15,7 +15,7 @@
   }
 
   function writeRootHash(entry) {
-    ownsRootHash = !!entry.hash;
+    ownsRootHash = entry.manageHash !== false && !!entry.hash;
     if (ownsRootHash) replaceUrl(entry.hash);
   }
 

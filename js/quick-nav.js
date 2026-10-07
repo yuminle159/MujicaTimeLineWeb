@@ -84,7 +84,9 @@
   }
 
   function isDetailLanding() {
-    if ((!explicitReturnSource && !storedReturnSource && !cameFromAnotherInternalPage()) || !landingHash) return false;
+    if (!explicitReturnSource && !storedReturnSource && !cameFromAnotherInternalPage()) return false;
+    // The page script consumes readable entry queries before quick-nav initializes.
+    if (!landingHash) return !!(explicitReturnSource || storedReturnSource);
     if (path.includes("/songs/")) return landingHash.startsWith("#song=");
     if (path.includes("/live/")) return landingHash.startsWith("#live=");
     if (path.includes("/discography/")) return landingHash.startsWith("#discography=");
