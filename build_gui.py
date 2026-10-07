@@ -263,6 +263,19 @@ def git_status():
     return run_git_command("status", "--porcelain", "--untracked-files=normal")[1]
 
 
+def require_executable_closed_for_update():
+    """Avoid checking out a running EXE, including when retry starts at the merge step."""
+    if not getattr(sys, "frozen", False):
+        return
+    changed_files = run_git_command("diff", "--name-only", "HEAD..origin/main")[1].splitlines()
+    executable_name = os.path.basename(sys.executable)
+    if any(
+        os.path.normcase(path.strip()) == os.path.normcase(executable_name)
+        for path in changed_files
+    ):
+        raise SelfUpdateRequired()
+
+
 def run_workflow_steps(workflow_name, steps, start_step, log_func):
     """从指定步骤执行工作流，并将失败位置包装为可重试错误。"""
     total = len(steps)
@@ -297,15 +310,10 @@ def run_start_workflow(log_func, start_step=0):
         _, output = run_git_command("fetch", "origin", "main")
         if output:
             log_func(output)
-        changed_files = run_git_command("diff", "--name-only", "HEAD..origin/main")[1].splitlines()
-        executable_name = os.path.basename(sys.executable)
-        if getattr(sys, "frozen", False) and any(
-            os.path.normcase(path.strip()) == os.path.normcase(executable_name)
-            for path in changed_files
-        ):
-            raise SelfUpdateRequired()
+        require_executable_closed_for_update()
 
     def merge_main():
+        require_executable_closed_for_update()
         _, output = run_git_command("merge", "--ff-only", "origin/main")
         if output:
             log_func(output)
@@ -388,8 +396,20 @@ if ($exitCode -eq 0) {{
 if ($exitCode -ne 0) {{
     $messages.Add('正在恢复同步前的工作区状态...')
     & git reset --hard HEAD 2>&1 | ForEach-Object {{ $messages.Add($_.ToString()) }}
+    $resetExitCode = $LASTEXITCODE
+    $statusStart = $messages.Count
+    & git status --porcelain 2>&1 | ForEach-Object {{ $messages.Add($_.ToString()) }}
+    $statusExitCode = $LASTEXITCODE
+    $restoreFailed = $resetExitCode -ne 0 -or $statusExitCode -ne 0 -or $messages.Count -gt $statusStart
+    if ($restoreFailed) {{
+        $messages.Add('工作区恢复失败，请勿继续使用此目录；关闭占用文件的程序后检查 git status。')
+    }}
     Add-Type -AssemblyName PresentationFramework
     [System.Windows.MessageBox]::Show(($messages -join "`n"), 'Git 同步失败', 'OK', 'Error') | Out-Null
+    if ($restoreFailed) {{
+        Remove-Item -LiteralPath $PSCommandPath -Force
+        exit 1
+    }}
 }}
 Start-Process -FilePath $executable
 Remove-Item -LiteralPath $PSCommandPath -Force

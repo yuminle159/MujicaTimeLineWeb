@@ -9,6 +9,7 @@
   const overlay = document.getElementById("drawerOverlay");
   const items = Array.isArray(window.SOMETHING_NEW) ? window.SOMETHING_NEW : [];
   const storageKey = "wijipedia:something-new:seen:v1";
+  const drawerHash = "#something-new";
   let rendered = false;
 
   function syncPageActivity() {
@@ -125,6 +126,7 @@
     drawer.setAttribute("aria-hidden", "false");
     trigger.setAttribute("aria-expanded", "true");
     overlay.classList.add("active");
+    history.replaceState(history.state, "", drawerHash);
     window.requestAnimationFrame(markVisibleRead);
   }
 
@@ -133,6 +135,9 @@
     drawer.setAttribute("aria-hidden", "true");
     trigger.setAttribute("aria-expanded", "false");
     overlay.classList.remove("active");
+    if (location.hash === drawerHash) {
+      history.replaceState(history.state, "", location.pathname + location.search);
+    }
     trigger.focus({ preventScroll: true });
   }
 
@@ -147,4 +152,8 @@
 
   trigger.hidden = false;
   updateCount();
+  // Restore after a fresh load as well as a back/forward cache return.
+  window.addEventListener("pageshow", function () {
+    if (location.hash === drawerHash) openDrawer();
+  });
 })();

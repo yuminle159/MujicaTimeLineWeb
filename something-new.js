@@ -2,6 +2,24 @@
 window.SOMETHING_NEW = [
   {
     "type": "live",
+    "ref": "BEAT AX -SUMMER EDITION 2026-",
+    "update_date": "2026/10/7",
+    "title": "BEAT AX -SUMMER EDITION 2026-",
+    "subtitle": "2026/7/12 · Kアリーナ横浜",
+    "image": "images/beatax2026 kv.webp",
+    "href": "live/index.html?live=BEAT%20AX%20-SUMMER%20EDITION%202026-"
+  },
+  {
+    "type": "interview",
+    "ref": "Voice Febri Vol.1 杂志全员访谈",
+    "update_date": "2026/10/7",
+    "title": "Voice Febri Vol.1 杂志全员访谈",
+    "subtitle": "Ave Mujica · 2025/1/13",
+    "image": "images/voicefebrivol116.webp",
+    "href": "interview/index.html?interview=Voice%20Febri%20Vol.1%20%E6%9D%82%E5%BF%97%E5%85%A8%E5%91%98%E8%AE%BF%E8%B0%88"
+  },
+  {
+    "type": "live",
     "ref": "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1",
     "update_date": "2026/10/5",
     "title": "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1",

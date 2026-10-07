@@ -1163,14 +1163,38 @@ def generate_gallery(wb):
 
 
 # =========================== 6. 访谈 ===========================
+def interview_section_text(heading):
+    """把标题的 Markdown 和访谈自定义标签转换为目录纯文本。"""
+    from html.parser import HTMLParser
+
+    class TextCollector(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.parts = []
+
+        def handle_data(self, data):
+            self.parts.append(data)
+
+        def handle_starttag(self, tag, attrs):
+            if tag == "img":
+                self.parts.append(dict(attrs).get("alt", ""))
+
+    heading = re.sub(r'\[br\]', ' ', heading, flags=re.IGNORECASE)
+    heading = re.sub(r'\[/?(?:c\d+|original|translation)\]', '', heading, flags=re.IGNORECASE)
+    collector = TextCollector()
+    collector.feed(render_md_to_html("## " + heading))
+    return re.sub(r'\s+', ' ', ''.join(collector.parts)).strip()
+
+
 def extract_interview_sections(markdown):
     """从 Markdown 二级标题生成稳定的文章目录。"""
     headings = re.findall(r'^##\s+(.+?)\s*$', markdown or "", flags=re.MULTILINE)
-    return [
-        {"id": f"section-{index:02d}", "title": heading.strip()}
-        for index, heading in enumerate(headings, 1)
-        if heading.strip()
-    ]
+    sections = []
+    for index, heading in enumerate(headings, 1):
+        title = interview_section_text(heading)
+        if title:
+            sections.append({"id": f"section-{index:02d}", "title": title})
+    return sections
 
 
 def add_interview_section_ids(rendered_html, sections):

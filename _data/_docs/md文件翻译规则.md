@@ -69,7 +69,7 @@
 
 - ——开始，回答者回答，下一个——到来，在下一个——上方加入一个[br]
 
-- 除了提问者以外的，中文部分非歌名的、所有的 Ave Mujica → [c7]Ave Mujica[/c7]，Mujica → [c7]Mujica[/c7]
+- 除了提问者以外的，中文部分非歌名的、所有的BanG Dream! Ave Mujica →[c7]BanG Dream! Ave Mujica[/c7] ，Ave Mujica → [c7]Ave Mujica[/c7]，Mujica → [c7]Mujica[/c7]。BanG Dream! It's MyGO!!!!! → [c6]BanG Dream! It's MyGO!!!!![/c6]，MyGO!!!!!→[c6]MyGO!!!!![/c6]
 
 - 回答人的标识，佐佐木 → **[c1]佐佐木[/c1]**、渡濑 → **[c2]渡濑[/c2]**、冈田 → **[c3]冈田[/c3]**、米泽 → **[c4]米泽[/c4]**、高尾 → **[c5]高尾[/c5]** 。这里提到人以外的所有其他回答人，只需加粗，如**回答人**，无需使用自定义函数颜色标识。
 
@@ -89,4 +89,4 @@
   
   祥子/小祥/丰川祥子/Oblivionis/高尾/高尾奏音/奏音碳/奏音/弄碳/弄弄 →[c5]同原文[/c5]
 
-- 一些固有名词的翻译原则：ライブ = Live
+- 一些固有名词的翻译原则：ライブ = Live、にゃむ=若麦
