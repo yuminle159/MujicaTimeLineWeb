@@ -16,7 +16,8 @@
     ["L", "Live", "live/index.html", "live"],
     ["I", "访谈", "interview/index.html", "interview"],
     ["G", "画廊", "gallery/index.html", "gallery"],
-    ["＋", "Upcoming", "upcoming/index.html", "upcoming"]
+    ["＋", "Upcoming", "upcoming/index.html", "upcoming"],
+    ["P", "节目档案", "programs/index.html", "programs"]
   ];
   const nav = document.createElement("nav");
   nav.className = "quick-nav";

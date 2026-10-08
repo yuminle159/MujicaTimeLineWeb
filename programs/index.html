@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs 节目档案 · 唯鸡百科</title>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Noto+Sans+SC:wght@300;400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202610081700">
+  <link rel="stylesheet" href="statistics.css?v=202610081700">
+  <link rel="stylesheet" href="../css/quick-nav.css?v=202610081700">
+</head>
+<body>
+  <main class="programs-page">
+    <header class="programs-header">
+      <a class="back-nav" href="../index.html" aria-label="返回主页">←Home</a>
+      <p class="file-id">FILE // PROGRAM_ARCHIVE</p>
+      <h1>Programs</h1>
+      <p class="subtitle">BROADCASTS, CAST &amp; CLIPS</p>
+    </header>
+    <section class="filters" aria-label="节目筛选">
+      <div class="filter-top">
+        <label class="ave-toggle"><input id="aveOnly" type="checkbox" checked>只看 Ave Mujica</label>
+        <label class="search"><span class="sr-only">搜索节目、期数或出演者</span><input id="search" type="search" placeholder="搜索节目 / 期数 / 出演者" autocomplete="off"></label>
+      </div>
+      <div class="filter-fields">
+        <label>节目<select id="series"><option value="">全部节目</option></select></label>
+        <label>年份<select id="year"><option value="">全部年份</option></select></label>
+        <div class="performer-field">
+          <span class="field-label">出演者</span>
+          <details class="multi-filter" id="performerFilter">
+            <summary><span id="performerSelection">全部出演者</span></summary>
+            <div class="multi-panel"><button type="button" data-clear="performers">清空选择</button><div id="performerOptions" class="multi-options" role="group" aria-label="出演者多选"></div></div>
+          </details>
+        </div>
+        <label>排序<select id="sort"><option value="newest">最新在前</option><option value="oldest">最早在前</option></select></label>
+        <button id="reset" type="button">重置筛选</button>
+      </div>
+      <p class="filter-hint">出演者多选仅显示所有选中人员共同出演的节目。</p>
+    </section>
+    <div class="archive-layout">
+      <section aria-label="节目列表">
+        <div class="list-meta"><p id="resultCount" role="status" aria-live="polite"></p><button id="programStatsTrigger" class="program-stats-trigger" type="button">Program Statistics</button></div>
+        <div id="programList" class="program-grid"></div>
+        <button id="loadMore" class="load-more" type="button" hidden>加载更多</button>
+      </section>
+    </div>
+    <footer>时间按所标注时区显示 · 未确认的开播时刻留空</footer>
+    <noscript>请启用 JavaScript 查看节目档案与筛选。</noscript>
+  </main>
+  <dialog id="programStats" class="program-stats" aria-labelledby="programStatsTitle">
+    <div class="stats-shell">
+      <header class="program-stats-header"><div><p class="file-id">FILE // PROGRAM_STATISTICS</p><h2 id="programStatsTitle">Program Statistics</h2><p class="subtitle">CAST, BROADCASTS &amp; CONNECTIONS</p></div><button id="programStatsClose" type="button" aria-label="关闭统计">×</button></header>
+      <div class="stats-controls"><p id="statsScopeNote" role="status"></p></div>
+      <nav class="stats-tabs" aria-label="分析视图"><button type="button" data-stats-view="counts" aria-pressed="true">出演次数</button><button type="button" data-stats-view="trend" aria-pressed="false">出演趋势</button><button type="button" data-stats-view="together" aria-pressed="false">共同出演</button><button type="button" data-stats-view="profile" aria-pressed="false">个人档案</button></nav>
+      <section id="programStatsBody" class="program-stats-body" aria-label="统计内容"></section>
+      <section id="statsRecords" class="stats-records" aria-label="对应节目" hidden></section>
+      <p class="stats-footnote">仅统计已收录节目，未来预告暂不计入。每人／每乐队在同一期只计一次，姓名别名已归一。点击图表数字或条目查看期目。</p>
+    </div>
+  </dialog>
+  <button id="pageTopBtn" class="page-top-btn" type="button" aria-label="返回页面顶部" tabindex="-1" aria-hidden="true">↑ PAGE TOP</button>
+  <script src="data.js?v=202610081700"></script>
+  <script src="page.js?v=202610081700"></script>
+  <script src="statistics.js?v=202610081700"></script>
+  <script src="../js/quick-nav.js?v=202610081700"></script>
+</body>
+</html>
