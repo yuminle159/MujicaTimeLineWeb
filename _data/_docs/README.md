@@ -39,6 +39,28 @@
 
 每个子页面有独立的 `data.xlsx` 和 `generate_data.py`，互不干扰。
 
+### 节目档案单表（programs）
+
+节目数据统一放在 `_data/data.xlsx` 的 `programs` 工作表，不接入 Upcoming。
+
+- 左侧 A:L：一期节目一行。平时主要填写 `program`（节目系列）、`episode`（期数）、`date`（播出日期）、`performers`（出演者）和 `clips`（切片）。
+- `performers` 用半角 `|` 分隔姓名，例如 `佐佐木李子|高尾奏音`。同一期重复出现的姓名只视为一个出演者。
+- `clips` 用半角 `|` 分隔链接，例如 `https://www.bilibili.com/video/BVxxx|https://www.bilibili.com/video/BVyyy`；需要标题时可写 `切片标题=>https://...|另一个标题=>https://...`。
+- `time` 和 `timezone` 可选；知道具体开播时间时同时填入，例如 `21:00`、`+09:00`。原表只有日期，导入时不会把午夜当作开播时间。
+- `title` 用于特别节目或本期主题。`episode` 可以留空，特别节目标题不再挤进期数列。
+- `video_url` 是完整节目链接，`cover` 是本地封面路径；封面脚本自动补全空白字段，也允许手动填写。
+- A 列 `program_id` 默认隐藏，由脚本生成稳定标识；请勿随意修改。排序和筛选只针对 A:L，不能把右侧字典当作同一条节目数据。
+- N:Q 是同一工作表内的独立出演者字典：`cast_name`、`band`、`band_color`、`aliases`。字典行与左侧节目行无关联；新出演者只需登记一次。色值如 `#881144`，无需给单元格涂色。别名用 `|` 分隔，用于将不同姓名写法归为同一人；加入别名时应合并重复的标准名条目。多乐队及其色值按相同顺序用 `|` 分隔。
+- 原表未登记乐队的嘉宾保留姓名，乐队字段留空，等待核对。所有字段说明也已写入表头批注。
+
+在项目目录运行 `python sync_programs.py`，会读取指定的 YouTube 播放列表，按节目期数和年份匹配，下载封面并转换为 WebP，保存为 `images/programs/节目ID-视频ID.webp`，然后填入链接和封面路径。仅抓取公开列表信息和封面，不下载视频。依赖 `openpyxl`、`Pillow`、`requests`。
+
+- 已有手动值不会被覆盖；再次运行只补充空白项。播放列表不会自动增加或删除节目记录。
+- 无法唯一匹配的节目留空，并在 `_reports/programs-sync.json` 中列出。可手动填 `video_url` 后再运行，脚本将按指定视频抓取封面。
+- `python sync_programs.py --offline` 使用已保存的列表缓存与本地封面，不访问网络。若需要重新下载某张封面，应先清空该行 `cover` 并删除对应本地图片，再联网运行。
+- 每次修改工作簿前自动备份至 `_backups/programs-时间戳/`。运行时若检测到工作簿被其他程序修改，会停止覆盖。
+- 首次导入命令：`python sync_programs.py --import-source "原始文件.xlsx" --import-only`。重复导入仅追加未收录期目，保留已编辑的节目、切片和封面。
+
 ### 首页 Something New
 
 首页精选内容由 `_data/data.xlsx` 中的 `something_new` 工作表维护。每行只填写四列：
@@ -186,8 +208,11 @@ python generate_data.py
 | `program` | 节目出演 | 组织相关 | 深蓝色 |
 | `offline` | 线下活动 | 组织相关 | 深蓝色 |
 | `private` | 私人行程 | 个人相关 | 金色 |
-| `business` | 工作行程 | 个人相关 | 蓝色 |
+| `business_mjc` | 工作行程 | 个人相关 | 蓝色 |
+| `business_others` | 工作行程 | 个人相关 | 蓝色 |
 | （留空） | 其他事件 | 任一轨道 | 中性色 |
+
+`business_mjc` 与 `business_others` 仅在数据和 JS 内部区分，时间线统一显示“工作行程”，共用一个筛选按钮。Upcoming 仅收录 `category=personal` 且 `tag=business_mjc` 的工作行程，统一归入“线上/线下活动”（`activity`），不收录 `business_others`。原有 `business` 数据已迁移为 `business_mjc`。
 
 如需新增 tag 类型，请同时：
 
@@ -650,3 +675,8 @@ score = Σ log1p(countInSong) + 0.35 * log1p(trackCount)
 - 打开 Atlas 或切换日文/中文页签时播放词云渐入动画；仅因窗口尺寸变化而重新布局时不播放。
 
 如需调节倾向，修改 `songs/lyrics-atlas.js` 中的 `coverageWeight`：`0.2` 更保留单曲反复，`0.5` 更强调跨歌曲意象。
+
+
+## Programs 节目档案
+
+单表字段、筛选和更新说明见 [programs.md](programs.md)。

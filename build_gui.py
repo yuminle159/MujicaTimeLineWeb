@@ -103,6 +103,7 @@ MODULE_NAMES = {
     "gallery_images":    "画廊（Gallery）",
     "interview":         "访谈（Interview）",
     "discography_releases": "唱片目录（Discography）",
+    "programs":           "节目档案（Programs）",
 }
 
 
@@ -592,6 +593,8 @@ def run_update(selected_modules, do_webp, log_func):
                         return f"interview/data.js · {generate_all.generate_interview(wb)} 篇访谈"
                     if mod_id == "discography_releases" and "discography_releases" in sheets:
                         return f"discography/data.js · {generate_all.generate_discography(wb)} 张发行作品"
+                    if mod_id == "programs" and "programs" in sheets:
+                        return f"programs/data.js · {generate_all.generate_programs(wb)} 期节目"
                     return None
 
                 try:
@@ -1068,6 +1071,25 @@ class App:
 
 
 def main():
+    if "--smoke-test-full-update" in sys.argv:
+        # Exercise the frozen generator AND the frozen publication manifest.
+        # This uses the same workflow as the GUI; only opening a browser is skipped.
+        required = {"statistics.js", "statistics.css"}
+        if not required.issubset(build_site.PAGE_FILES.get("programs", ())):
+            raise RuntimeError("exe 的发布清单缺少节目统计资源，请重新打包。")
+        lines = []
+        result = maintenance.run_full_update(PROJECT_DIR, lines.append)
+        if "节目档案" not in result["generated"]:
+            raise RuntimeError("完整更新未生成节目档案数据。")
+        for name in required:
+            target = Path(PROJECT_DIR) / "dist" / "programs" / name
+            source = Path(PROJECT_DIR) / "programs" / name
+            if not target.is_file() or target.read_bytes() != source.read_bytes():
+                raise RuntimeError(f"发布目录的节目统计资源缺失或不是最新版本：{name}")
+        build_site.validate_public_tree(Path(PROJECT_DIR) / "dist")
+        lines.append(f"OK: 完整更新与发布清单自检通过，{result['build'][0]} 个公开文件。")
+        (Path(PROJECT_DIR) / "exe-full-update-test.log").write_text("\n".join(lines), encoding="utf-8")
+        return
     if "--smoke-test-update" in sys.argv:
         import json
         import tempfile
@@ -1081,9 +1103,27 @@ def main():
             }
             for path in generate_all.OUTPUTS.values():
                 os.makedirs(os.path.dirname(path), exist_ok=True)
-            result = run_update([m["id"] for m in discover_sheets()], False, lambda msg: None)
-            if result["failed"] or len(result["success"]) != 10:
+            modules = [m["id"] for m in discover_sheets()]
+            result = run_update(modules, False, lambda msg: None)
+            # 数据模块 + 全局搜索 + Upcoming + 版本号注入。
+            if result["failed"] or len(result["success"]) != len(modules) + 3:
                 raise RuntimeError(json.dumps(result, ensure_ascii=False))
+            if "programs" in modules:
+                with open(generate_all.OUTPUTS["programs"], encoding="utf-8") as file:
+                    programs = json.loads(file.read().split(" = ", 1)[1].rstrip(";\n"))
+                if not programs or any(not item["program_id"] for item in programs):
+                    raise RuntimeError("节目档案生成不完整")
+            with open(generate_all.OUTPUTS["timeline"], encoding="utf-8") as file:
+                timeline_js = file.read()
+            with open(generate_all.OUTPUTS["upcoming_events"], encoding="utf-8") as file:
+                upcoming_events = json.loads(file.read().split(" = ", 1)[1].rstrip(";\n"))
+            if 'tag: "business"' in timeline_js:
+                raise RuntimeError("时间线仍使用已迁移的 business 标签")
+            for event in upcoming_events:
+                if event["type"] in {"business", "business_mjc", "business_others"}:
+                    raise RuntimeError("Upcoming 收录了不支持的工作行程标签")
+                if event["type"] == "activity" and event["url"].split("=", 1)[1] not in timeline_js:
+                    raise RuntimeError("Upcoming 活动链接与时间线不匹配")
             if any("--- Logging error ---" in output or "Traceback (most recent call last)" in output
                    for _, output in result["details"]):
                 raise RuntimeError(json.dumps(result, ensure_ascii=False))
@@ -1114,9 +1154,11 @@ def main():
 
 
 if __name__ == "__main__":
-    if "--smoke-test-nlp" in sys.argv or "--smoke-test-update" in sys.argv:
+    if any(flag in sys.argv for flag in ("--smoke-test-nlp", "--smoke-test-update", "--smoke-test-full-update")):
         import traceback
         log_path = os.path.join(PROJECT_DIR, "exe-update-test.log" if "--smoke-test-update" in sys.argv else "exe-smoke-test.log")
+        if "--smoke-test-full-update" in sys.argv:
+            log_path = os.path.join(PROJECT_DIR, "exe-full-update-test.log")
         try:
             main()
         except Exception:

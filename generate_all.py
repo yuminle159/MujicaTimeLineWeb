@@ -152,6 +152,7 @@ OUTPUTS = {
     "search_bodies": os.path.join(ROOT, "search-bodies.js"),
     "daily_archive": os.path.join(ROOT, "daily-archive.js"),
     "upcoming_events": os.path.join(ROOT, "upcoming", "events.js"),
+    "programs": os.path.join(ROOT, "programs", "data.js"),
 }
 
 # 旧 xlsx 文件路径（用于 --init 合并）
@@ -166,7 +167,7 @@ OLD_XLSX = {
 
 TIMELINE_TAGS = (
     "oml", "bandori_fes", "fes", "single", "album",
-    "anime", "game", "book", "program", "offline", "private", "business",
+    "anime", "game", "book", "program", "offline", "private", "business_mjc", "business_others",
 )
 
 
@@ -1552,8 +1553,48 @@ def collect_timeline_events(wb):
     return timeline_events
 
 
+def generate_programs(wb):
+    """Read the episode table and independent N:Q cast dictionary."""
+    rows = read_sheet(wb, "programs")
+    cast, aliases = {}, {}
+    for order, row in enumerate(rows):
+        name = row.get("cast_name", "")
+        if not name:
+            continue
+        cast[name] = {"name": name, "order": order, "bands": split_list(row.get("band", ""), "|"),
+                      "color": row.get("band_color", ""), "aliases": split_list(row.get("aliases", ""), "|")}
+        for alias in [name, *cast[name]["aliases"]]:
+            if alias in aliases and aliases[alias] != name:
+                raise ValueError(f"出演者别名冲突：{alias}")
+            aliases[alias] = name
+    episodes, seen = [], set()
+    for row in rows:
+        if not row.get("program"):
+            continue
+        item = {key: row.get(key, "") for key in ("program_id", "program", "episode", "date", "time", "timezone", "title", "video_url", "cover", "notes")}
+        item["date"] = normalize_date(item["date"].split(" ")[0])
+        if item["date"]:
+            item["date"] = datetime.strptime(item["date"], "%Y/%m/%d").strftime("%Y-%m-%d")
+        item["time"] = item["time"][:5]
+        item["program_id"] = item["program_id"] or hash_id(item["program"], item["episode"], item["date"], item["title"])
+        if item["program_id"] in seen:
+            raise ValueError(f"节目 ID 重复：{item['program_id']}")
+        seen.add(item["program_id"])
+        names = list(dict.fromkeys(aliases.get(name, name) for name in split_list(row.get("performers", ""), "|")))
+        item["performers"] = [cast.get(name, {"name": name, "bands": [], "color": "", "aliases": []}) for name in names]
+        item["clips"] = split_list(row.get("clips", ""), "|")
+        item["cover"] = fix_path(item["cover"], "programs")
+        episodes.append(item)
+    episodes.sort(key=lambda item: (item["date"], item["episode"]), reverse=True)
+    os.makedirs(os.path.dirname(OUTPUTS["programs"]), exist_ok=True)
+    with open(OUTPUTS["programs"], "w", encoding="utf-8") as file:
+        file.write("// 由 generate_all.py 自动生成，请在 data.xlsx 的 programs 表维护。\n")
+        file.write("window.programsData = " + json.dumps(episodes, ensure_ascii=False, indent=2) + ";\n")
+    return len(episodes)
+
+
 def generate_upcoming_events(wb, timeline_events=None):
-    """汇总歌曲、演出、唱片和指定的时间线类别。"""
+    """汇总歌曲、演出、唱片和指定的时间线类别（含个人工作行程）。"""
     events = []
     for sheet, item_type, date_field, title_field, section, anchor in (
         ("songs", "song", "release_date", "song_name_jp", "songs", "song"),
@@ -1586,6 +1627,8 @@ def generate_upcoming_events(wb, timeline_events=None):
         occurrence = timeline_ids.get(id_key, 0)
         timeline_ids[id_key] = occurrence + 1
         item_type = timeline_types.get(tag) if category == "organization" else None
+        if category == "personal" and tag == "business_mjc":
+            item_type = "activity"
         if not item_type or not date or not title:
             continue
         item_id = hash_id(*id_key, occurrence + 1) if occurrence else hash_id(*id_key)
@@ -1896,6 +1939,7 @@ def inject_version(log_func=None):
         os.path.join(ROOT, "interview", "index.html"),
         os.path.join(ROOT, "discography", "index.html"),
         os.path.join(ROOT, "upcoming", "index.html"),
+        os.path.join(ROOT, "programs", "index.html"),
     ]
     # 匹配所有本地 .css / .js / .svg 引用（跳过 https:// 外部链接）
     pattern = re.compile(
@@ -1927,6 +1971,15 @@ def main():
         print(f"错误: 找不到 {XLSX_PATH}")
         print("请先运行 py generate_all.py --init 来从旧文件合并创建。")
         sys.exit(1)
+
+    if len(sys.argv) > 1 and sys.argv[1] == "--programs":
+        wb = openpyxl.load_workbook(XLSX_PATH, data_only=True)
+        try:
+            count = generate_programs(wb)
+        finally:
+            wb.close()
+        print(f"✓ programs/data.js — {count} 期节目")
+        return
 
     if len(sys.argv) > 1 and sys.argv[1] == "--upcoming":
         wb = openpyxl.load_workbook(XLSX_PATH, data_only=True)
@@ -1994,6 +2047,11 @@ def main():
         n = generate_discography(wb)
         results["唱片目录"] = f"{n} 张发行作品"
         print(f"  ✓ discography/data.js — {n} 张发行作品")
+
+    if "programs" in sheets:
+        n = generate_programs(wb)
+        results["节目档案"] = f"{n} 期节目"
+        print(f"  ✓ programs/data.js — {n} 期节目")
 
     # 全局搜索索引始终在各栏目数据之后生成，确保 hash 与页面详情一致。
     search_count, body_count = generate_search_indexes(wb)

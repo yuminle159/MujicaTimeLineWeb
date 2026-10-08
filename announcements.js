@@ -11,6 +11,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.10.08",
+    "msg": "1.新增Programs 节目档案入口 用以收集バンドリ！TV LIVE 或 Ournotes生放送信息",
+    "pinned": false
+  },
+  {
     "date": "2026.10.04",
     "msg": "1.timeline样式更新 2.upcoming样式更新",
     "pinned": false

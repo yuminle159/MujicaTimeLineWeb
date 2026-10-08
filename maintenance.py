@@ -25,6 +25,7 @@ GENERATED_FILES = (
     "announcements.js", "something-new.js", "search-index.js", "search-bodies.js",
     "songs/data.js", "songs/lyrics-atlas-data.js", "live/data.js", "timeline/data.js",
     "gallery/data.js", "interview/data.js", "discography/data.js", "upcoming/events.js",
+    "programs/data.js",
 )
 REQUIRED_SHEETS = (
     "announcements", "something_new", "songs", "lives", "timeline", "gallery_images",
@@ -321,6 +322,7 @@ def _configure_generator(root: Path):
         "discography": str(root / "discography" / "data.js"),
         "upcoming_events": str(root / "upcoming" / "events.js"),
         "daily_archive": str(root / "daily-archive.js"),
+        "programs": str(root / "programs" / "data.js"),
     })
     return generate_all
 
@@ -340,6 +342,7 @@ def generate_all_content(root: Path | str = ROOT, log_func: Callable[[str], None
             ("gallery_images", "画廊", lambda: f"{generator.generate_gallery(workbook)} 张"),
             ("interview", "访谈", lambda: f"{generator.generate_interview(workbook)} 篇"),
             ("discography_releases", "唱片目录", lambda: f"{generator.generate_discography(workbook)} 张"),
+            ("programs", "节目档案", lambda: f"{generator.generate_programs(workbook)} 期"),
         )
         for sheet_name, label, operation in steps:
             if sheet_name not in workbook.sheetnames:

@@ -52,6 +52,7 @@ PAGE_FILES = {
     "interview": ("index.html", "style.css", "page.js", "data.js", "articles"),
     "discography": ("index.html", "style.css", "data.js", "page.js"),
     "upcoming": ("index.html", "style.css", "page.js", "events.js"),
+    "programs": ("index.html", "style.css", "page.js", "data.js", "statistics.js", "statistics.css"),
 }
 
 FORBIDDEN_PUBLIC_SUFFIXES = {".py", ".pyc", ".xlsx", ".md", ".exe"}

@@ -296,7 +296,7 @@ var discographyData = [
     "cover": "../images/横k鸡狗2bd通常.webp",
     "search_keywords": "横k 鸡狗2 bd",
     "chart": {
-      "first_day_rank": "—",
+      "first_day_rank": "#9",
       "first_week_sales": "—",
       "first_week_rank": "—",
       "total_sales": "—",

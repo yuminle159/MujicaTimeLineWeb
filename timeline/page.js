@@ -154,6 +154,8 @@
     offline: { label: "线下活动", code: "EVENT", icon: "ticket", tone: "offline" },
     private: { label: "私人行程", code: "PERSONAL", icon: "person", tone: "private" },
     business: { label: "工作行程", code: "WORK", icon: "case", tone: "business" },
+    business_mjc: { label: "工作行程", code: "WORK", icon: "case", tone: "business" },
+    business_others: { label: "工作行程", code: "WORK", icon: "case", tone: "business" },
     other: { label: "其他事件", code: "EVENT", icon: "ticket", tone: "neutral" }
   };
   // 筛选与搜索沿用票根同一套中文类别名称。
@@ -248,7 +250,9 @@
   filterTags.appendChild(tagGroupGrid);
 
   // 生成筛选按钮
-  const availableTags = typeof timelineTagOptions !== "undefined" ? timelineTagOptions : Object.keys(TAG_NAMES);
+  // 工作行程在数据中保留细分标签，筛选仍共用一个按钮。
+  const filterTagFor = tag => tag === "business_mjc" || tag === "business_others" ? "business" : tag;
+  const availableTags = [...new Set((typeof timelineTagOptions !== "undefined" ? timelineTagOptions : Object.keys(TAG_NAMES)).map(filterTagFor))];
   const personalTags = new Set(["private", "business"]);
   const tagFamilies = [
     { label: "Live", tags: ["oml", "bandori_fes", "fes"] },
@@ -320,7 +324,7 @@
   function applyFilter(jumpToMatchingMonth = true) {
     eventGroups.forEach(g => {
       const focusMatches = activeFocus === "all" || g.dataset.category === activeFocus;
-      const tagMatches = activeFilters.size === 0 || activeFilters.has(g.dataset.tag);
+      const tagMatches = activeFilters.size === 0 || activeFilters.has(filterTagFor(g.dataset.tag));
       const textMatches = !timelineSearchQuery || g.dataset.search.includes(timelineSearchQuery);
       const yearMatches = activeYear === null || Number(g.dataset.year) === activeYear;
       const visible = focusMatches && tagMatches && textMatches && yearMatches;
