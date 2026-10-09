@@ -2249,7 +2249,7 @@ var timelineData = [
     description: "放映电影前或后，声优登台进行的Talk活动，本日分两部\n会场：新宿バルト9",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/1017电影舞台问候.webp" }
+      { type: "image", src: "../images/电影舞台问候时间表.webp" }
     ]
   },
   {
@@ -2259,7 +2259,9 @@ var timelineData = [
     category: "organization",
     description: "放映电影前或后，声优登台进行的Talk活动，情报后日公开\n地点：熊本",
     tag: "offline",
-    media: []
+    media: [
+      { type: "image", src: "../images/电影舞台问候时间表.webp" }
+    ]
   },
   {
     hash_id: "m0W1lMIfFGY",
@@ -2268,7 +2270,9 @@ var timelineData = [
     category: "organization",
     description: "放映电影前或后，声优登台进行的Talk活动，情报后日公开\n地点：大阪",
     tag: "offline",
-    media: []
+    media: [
+      { type: "image", src: "../images/电影舞台问候时间表.webp" }
+    ]
   },
   {
     hash_id: "d5WoSDqgEqX",
@@ -2833,6 +2837,26 @@ var timelineData = [
       { type: "link", url: "https://x.com/Kanon_Takao/status/2006355137770790975", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/2006378216467075295", title: "佐佐木李子 X链接" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/2006379606736265295", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "Osk1fFZ80Qi",
+    date: "2026/10/15",
+    title: "高尾奏音 出演 「バンドリ！TVLIVE 2026」＃336",
+    category: "organization",
+    description: "",
+    tag: "program",
+    media: []
+  },
+  {
+    hash_id: "LSrrIqWukHq",
+    date: "2026/11/21",
+    title: "渡濑结月 & 高尾奏音 出演 电影「BanG Dream! Ave Mujica prima aurora」舞台挨拶",
+    category: "organization",
+    description: "放映电影前或后，声优登台进行的Talk活动，本场为昼夜两部\n地点：北海道新千歳空港国際アニメーション映画祭",
+    tag: "offline",
+    media: [
+      { type: "image", src: "../images/电影舞台问候时间表.webp" }
     ]
   },
   {

@@ -84,6 +84,11 @@
   let sectionButton;
   let sectionPopover;
   let originalButton;
+  let readingProgress;
+  let restartButton;
+  let readingSaveTimer;
+  let pendingReadingRestore;
+  let readingResizeObserver;
   let lightbox;
   let lightboxImages;
   let lightboxCounter;
@@ -104,6 +109,7 @@
         '</div>' +
         '<div class="shared-interview-actions">' +
           '<button class="shared-interview-section-btn" type="button" aria-expanded="false" hidden>章节</button>' +
+          '<button class="shared-interview-restart-btn" type="button" hidden>从头阅读</button>' +
           '<button class="shared-interview-original-btn" type="button" title="切换原文显示">原文显示</button>' +
           '<button class="shared-interview-close" type="button" aria-label="关闭">&times;</button>' +
           '<div class="shared-interview-section-popover" hidden>' +
@@ -112,6 +118,7 @@
           '</div>' +
         '</div>' +
       '</div>' +
+      '<div class="shared-interview-progress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>' +
       '<div class="shared-interview-body"></div>';
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-modal", "true");
@@ -142,6 +149,20 @@
     sectionButton = overlay.querySelector(".shared-interview-section-btn");
     sectionPopover = overlay.querySelector(".shared-interview-section-popover");
     originalButton = overlay.querySelector(".shared-interview-original-btn");
+    readingProgress = overlay.querySelector(".shared-interview-progress");
+    restartButton = overlay.querySelector(".shared-interview-restart-btn");
+    if (global.ExcerptCard) global.ExcerptCard.registerSource(body, {
+      allowNode: function (node) { return !!node.closest(".md-content"); },
+      getMetadata: function () {
+        if (!isOpen() || !activeItem) return null;
+        return {
+          kind: "interview", title: activeItem.title,
+          people: activeItem.interviewee ? "受访者：" + activeItem.interviewee : "",
+          date: formatDate(activeItem.date),
+          url: global.ExcerptCard.pageUrl("interview/index.html", activeItem.hash_id)
+        };
+      }
+    });
     lightboxImages = lightbox.querySelector(".shared-interview-lightbox-images");
     lightboxCounter = lightbox.querySelector(".shared-interview-lightbox-counter");
 
@@ -153,12 +174,25 @@
       setSectionPopover(sectionPopover.hidden);
     });
     originalButton.addEventListener("click", toggleOriginal);
+    restartButton.addEventListener("click", function () {
+      cancelReadingRestore();
+      body.scrollTo({ top: 0, behavior: "instant" });
+      persistActiveReadingState();
+      updateActiveSection();
+    });
+    body.addEventListener("wheel", cancelReadingRestore, { passive: true });
+    body.addEventListener("touchstart", cancelReadingRestore, { passive: true });
+    body.addEventListener("pointerdown", cancelReadingRestore);
+    overlay.addEventListener("keydown", function (event) {
+      if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) cancelReadingRestore();
+    });
     document.addEventListener("pointerdown", function (event) {
       if (!sectionPopover.hidden && !overlay.querySelector(".shared-interview-actions").contains(event.target)) {
         setSectionPopover(false);
       }
     }, true);
-    window.addEventListener("resize", function () { setSectionPopover(false); });
+    window.addEventListener("resize", function () { setSectionPopover(false); restoreReadingPosition(); updateReadingProgress(); });
+    body.addEventListener("load", function () { restoreReadingPosition(); updateReadingProgress(); }, true);
 
     lightbox.addEventListener("click", function (event) {
       if (!event.target.closest(".shared-interview-lightbox-images img, .shared-interview-lightbox-close, .shared-interview-lightbox-arrow")) closeLightbox();
@@ -183,6 +217,9 @@
     document.addEventListener("scroll", handleScroll, true);
     document.addEventListener("keydown", handleKeydown, true);
     window.addEventListener("pagehide", persistActiveReadingState);
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) persistActiveReadingState();
+    });
   }
 
   function configure(options) {
@@ -221,7 +258,10 @@
   function readReadingState(item, index) {
     try {
       const saved = JSON.parse(localStorage.getItem(readingStateKey(item, index)) || "null");
-      return saved && typeof saved === "object" ? saved : null;
+      if (!saved || typeof saved !== "object" || !Number.isFinite(saved.scrollTop) || saved.scrollTop < 0) return null;
+      if (!Number.isFinite(saved.progress) || saved.progress < 0 || saved.progress > 1) delete saved.progress;
+      if (saved.anchor && (!Number.isInteger(saved.anchor.index) || saved.anchor.index < 0 || typeof saved.anchor.key !== "string" || !Number.isFinite(saved.anchor.position))) delete saved.anchor;
+      return saved;
     } catch (error) {
       return null;
     }
@@ -229,19 +269,72 @@
 
   function writeReadingState(item, index, scrollTop, originalVisible) {
     if (!item) return;
+    const state = {
+      scrollTop: Math.max(0, Math.round(Number(scrollTop) || 0)),
+      showOriginal: originalVisible !== false,
+      progress: scrollTop > 20 ? articleProgress() : 0,
+      anchor: scrollTop > 20 ? (pendingReadingRestore ? pendingReadingRestore.state.anchor : captureReadingAnchor()) : null
+    };
     try {
-      localStorage.setItem(readingStateKey(item, index), JSON.stringify({
-        scrollTop: Math.max(0, Math.round(Number(scrollTop) || 0)),
-        showOriginal: originalVisible !== false
-      }));
+      localStorage.setItem(readingStateKey(item, index), JSON.stringify(state));
+      document.dispatchEvent(new CustomEvent("interviewreadingchange", { detail: { key: cacheKey(item, index), state: state } }));
     } catch (error) {
       /* Storage may be unavailable in private browsing; reading still works normally. */
     }
+    if (restartButton) restartButton.hidden = state.scrollTop <= 20;
+    return state;
   }
 
   function persistActiveReadingState() {
-    if (!activeItem || !body) return;
-    writeReadingState(activeItem, activeItemIndex, body.scrollTop, showOriginal);
+    window.clearTimeout(readingSaveTimer);
+    if (!activeItem || !body || !isOpen()) return;
+    return writeReadingState(activeItem, activeItemIndex, body.scrollTop, showOriginal);
+  }
+
+  function articleProgress() {
+    const article = body && body.querySelector(".md-content");
+    if (!article) return 0;
+    const end = body.scrollTop + article.getBoundingClientRect().bottom - body.getBoundingClientRect().top;
+    const range = Math.max(0, end - body.clientHeight);
+    return range ? Math.min(1, Math.max(0, body.scrollTop / range)) : 1;
+  }
+
+  function readingBlocks() {
+    return Array.from(body.querySelectorAll(".md-content p, .md-content h1, .md-content h2, .md-content h3, .md-content li, .md-content blockquote, .md-content img"));
+  }
+
+  function blockKey(block) {
+    return block.tagName + ":" + (block.id || (block.tagName === "IMG" ? block.getAttribute("src") : block.textContent.trim().replace(/\s+/g, " ").slice(0, 80)));
+  }
+
+  function captureReadingAnchor() {
+    const blocks = readingBlocks();
+    const top = body.getBoundingClientRect().top;
+    const visible = blocks.map(function (block, index) { return { block: block, index: index, rect: block.getBoundingClientRect() }; }).filter(function (entry) { return entry.rect.height > 0; });
+    const entry = visible.find(function (candidate) { return candidate.rect.bottom > top; }) || visible[visible.length - 1];
+    return entry ? { index: entry.index, key: blockKey(entry.block), position: Math.max(-2, Math.min(1, (top - entry.rect.top) / entry.rect.height)) } : null;
+  }
+
+  function cancelReadingRestore() {
+    pendingReadingRestore = null;
+    if (readingResizeObserver) readingResizeObserver.disconnect();
+  }
+
+  function restoreReadingPosition() {
+    if (!pendingReadingRestore || pendingReadingRestore.item !== activeItem || !isOpen()) return;
+    const saved = pendingReadingRestore.state;
+    let top = saved.scrollTop;
+    if (saved.anchor) {
+      const blocks = readingBlocks();
+      let block = blocks[saved.anchor.index];
+      if (!block || blockKey(block) !== saved.anchor.key) block = blocks.find(function (candidate) { return blockKey(candidate) === saved.anchor.key; });
+      if (block && block.getBoundingClientRect().height > 0) {
+        const rect = block.getBoundingClientRect();
+        top = body.scrollTop + rect.top - body.getBoundingClientRect().top + rect.height * saved.anchor.position;
+      }
+    }
+    body.scrollTo({ top: Math.max(0, top), behavior: "instant" });
+    updateActiveSection();
   }
 
   function renderedContent(item, index) {
@@ -283,6 +376,7 @@
   }
 
   function scrollToSection(sectionId) {
+    cancelReadingRestore();
     const heading = body && body.querySelector("#" + sectionId);
     if (!heading) return;
     const bodyRect = body.getBoundingClientRect();
@@ -291,8 +385,16 @@
     body.scrollTo({ top: Math.max(0, destination), behavior: "smooth" });
   }
 
+  function updateReadingProgress() {
+    if (!overlay || !overlay.classList.contains("active") || !body || !readingProgress) return;
+    const ratio = articleProgress();
+    readingProgress.querySelector("span").style.transform = `scaleX(${ratio})`;
+    readingProgress.setAttribute("aria-valuenow", String(Math.round(ratio * 100)));
+  }
+
   function updateActiveSection() {
     if (!overlay || !overlay.classList.contains("active") || !body) return;
+    updateReadingProgress();
     const headings = Array.from(body.querySelectorAll(".md-content h2[id]"));
     if (!headings.length) return;
     const threshold = body.getBoundingClientRect().top + 72;
@@ -301,7 +403,10 @@
       if (heading.getBoundingClientRect().top <= threshold) current = heading;
     });
     overlay.querySelectorAll("[data-interview-section]").forEach(function (link) {
-      link.classList.toggle("active", link.dataset.interviewSection === current.id);
+      const active = link.dataset.interviewSection === current.id;
+      link.classList.toggle("active", active);
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
     });
   }
 
@@ -450,8 +555,16 @@
     const readingState = readReadingState(item, index);
     let savedShowOriginal = readingState ? readingState.showOriginal !== false : true;
     let savedScrollTop = readingState ? Math.max(0, Number(readingState.scrollTop) || 0) : 0;
+    let savedReadingState = readingState;
 
     function activate() {
+      cancelReadingRestore();
+      window.clearTimeout(readingSaveTimer);
+      savedReadingState = readReadingState(item, index) || savedReadingState;
+      if (savedReadingState) {
+        savedShowOriginal = savedReadingState.showOriginal !== false;
+        savedScrollTop = savedReadingState.scrollTop;
+      }
       activeItem = item;
       activeItemIndex = index;
       activeManageHash = manageHash;
@@ -467,16 +580,20 @@
       body.classList.toggle("hide-original", !showOriginal);
       body.style.overflowAnchor = "auto";
       body.scrollTop = savedScrollTop;
-      window.setTimeout(function () {
-        if (activeItem === item && overlay.classList.contains("active")) {
-          body.scrollTop = savedScrollTop;
-          updateActiveSection();
-        }
-      }, 120);
       lastScrollY = savedScrollTop;
       pageTopButton.classList.remove("show");
       overlay.classList.add("active");
       overlay.setAttribute("aria-hidden", "false");
+      restartButton.hidden = savedScrollTop <= 20;
+      if (savedReadingState && savedScrollTop > 20) {
+        pendingReadingRestore = { item: item, state: savedReadingState };
+        restoreReadingPosition();
+        if (global.ResizeObserver) {
+          readingResizeObserver = new ResizeObserver(restoreReadingPosition);
+          readingResizeObserver.observe(body.querySelector(".md-content"));
+        }
+      }
+      updateReadingProgress();
     }
 
     if (global.OverlayManager) {
@@ -490,9 +607,10 @@
           if (activeItem !== item) return;
           savedShowOriginal = showOriginal;
           savedScrollTop = body.scrollTop;
-          writeReadingState(item, index, savedScrollTop, savedShowOriginal);
+          savedReadingState = writeReadingState(item, index, savedScrollTop, savedShowOriginal);
         },
         deactivate: function () {
+          cancelReadingRestore();
           closeLightbox();
           setSectionPopover(false);
           overlay.classList.remove("active");
@@ -568,11 +686,12 @@
 
   function close() {
     if (!overlay || !overlay.classList.contains("active")) return;
+    persistActiveReadingState();
     if (global.OverlayManager && activeItem) {
       global.OverlayManager.close("interview", activeItem.hash_id || activeItem.title);
       return;
     }
-    persistActiveReadingState();
+    cancelReadingRestore();
     closeLightbox();
     setSectionPopover(false);
     overlay.classList.remove("active");
@@ -586,6 +705,7 @@
   }
 
   function toggleOriginal() {
+    cancelReadingRestore();
     body.style.overflowAnchor = "none";
     const blocks = body.querySelectorAll("p, h1, h2, h3, li, blockquote");
     let anchor = null;
@@ -615,9 +735,12 @@
         body.scrollBy(0, newTop - oldTop);
         body.style.overflowAnchor = "auto";
         updateActiveSection();
+        persistActiveReadingState();
       });
     } else {
       body.style.overflowAnchor = "auto";
+      updateReadingProgress();
+      persistActiveReadingState();
     }
   }
 
@@ -696,6 +819,10 @@
   function handleScroll() {
     if (!pageTopButton) return;
     updateActiveSection();
+    if (isOpen() && !pendingReadingRestore) {
+      window.clearTimeout(readingSaveTimer);
+      readingSaveTimer = window.setTimeout(persistActiveReadingState, 300);
+    }
     const container = getScrollContainer();
     if (!container || (lightbox && lightbox.classList.contains("active"))) {
       hidePageTop();
@@ -729,6 +856,7 @@
 
   function scrollToTop(container) {
     if (!container) return;
+    cancelReadingRestore();
     pageTopIsReturning = true;
     hidePageTop();
     if (container.isWindow) {
@@ -786,7 +914,8 @@
     openByHash: openByHash,
     hasTitle: hasTitle,
     close: close,
-    isOpen: isOpen
+    isOpen: isOpen,
+    getReadingState: readReadingState
   };
 
   global.InterviewOverlay = api;

@@ -770,3 +770,20 @@
 }
 .interview-load-status[hidden] { display: none; }
 .interview-load-status button { margin-left: 12px; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 5px; cursor: pointer; }
+
+/* Reader ornaments: preserve the existing sizing, spacing and title colors. */
+.shared-interview-progress { flex:none; height:2px; background:rgba(150,144,133,.12); }
+.shared-interview-progress>span { display:block; height:100%; background:linear-gradient(90deg,#8d8170,#b4a17e); transform:scaleX(0); transform-origin:left; }
+.shared-interview-overlay .md-content img { border-radius:2px; outline:1px solid #8d8370; outline-offset:5px; box-shadow:0 0 0 5px #26231f,3px 5px 0 5px #171614,4px 6px 0 5px #5b554b,0 10px 24px rgba(0,0,0,.4); }
+.shared-interview-overlay .md-original { font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN","Noto Serif SC",serif; border-left:1px solid rgba(163,150,126,.5); padding-left:14px; }
+.shared-interview-section-nav,.shared-interview-section-popover { padding:16px 12px; border:1px solid rgba(150,142,126,.12); border-radius:2px; background:#151413; clip-path:none; }
+.shared-interview-section-nav .shared-interview-section-kicker,.shared-interview-section-popover .shared-interview-section-kicker { color:#8d867b; border-bottom:1px solid rgba(150,142,126,.1); padding-bottom:11px; letter-spacing:1.3px; }
+.shared-interview-section-nav .shared-interview-section-link,.shared-interview-section-popover .shared-interview-section-link { grid-template-columns:23px minmax(0,1fr); gap:6px; color:#aba697; border-radius:0 2px 2px 0; }
+.shared-interview-section-nav .shared-interview-section-link span,.shared-interview-section-popover .shared-interview-section-link span { color:#8f8470; }
+.shared-interview-section-nav .shared-interview-section-link.active,.shared-interview-section-popover .shared-interview-section-link.active { color:#ddd6cb; background:rgba(183,160,119,.045); }
+.shared-interview-section-nav .shared-interview-section-link.active::before,.shared-interview-section-popover .shared-interview-section-link.active::before { width:2px; background:#b7a07d; }
+.shared-interview-section-nav .shared-interview-section-link.active span,.shared-interview-section-popover .shared-interview-section-link.active span { color:#c6b18b; }
+.shared-interview-restart-btn { padding:4px 12px; border:1px solid rgba(150,142,126,.2); border-radius:4px; background:transparent; color:#999; font:11px "Space Grotesk","Noto Sans SC",sans-serif; letter-spacing:1px; white-space:nowrap; cursor:pointer; }
+.shared-interview-restart-btn:hover { color:#ddd; border-color:rgba(150,142,126,.4); }
+.shared-interview-restart-btn[hidden] { display:none; }
+@media (max-width:750px) { .shared-interview-restart-btn { padding-right:9px; padding-left:9px; font-size:10px; } }

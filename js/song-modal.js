@@ -31,6 +31,24 @@
     document.body.appendChild(overlay);
     left = overlay.querySelector(".shared-song-modal-left");
     right = overlay.querySelector(".shared-song-modal-right");
+    if (global.ExcerptCard) global.ExcerptCard.registerSource(right, {
+      allowNode: function (node) { return !!node.closest(".shared-song-lyrics-columns"); },
+      getSelectionData: function (range) {
+        const rows = Array.from(right.querySelectorAll(".shared-song-lyrics-row")).filter(function (row) { return range.intersectsNode(row); });
+        return { lyricRows: rows.map(function (row) {
+          return { jp: row.children[0].textContent, cn: row.children[1].textContent };
+        }) };
+      },
+      getMetadata: function () {
+        if (!currentSong || !overlay.classList.contains("open")) return null;
+        return {
+          kind: "lyrics", title: currentSong.name_jp || currentSong.name,
+          people: [["作词", currentSong.lyricist], ["作曲", currentSong.composer]].filter(function (entry) { return entry[1]; }).map(function (entry) { return entry[0] + "：" + entry[1]; }).join(" · "),
+          date: stripTime(currentSong.release_date),
+          url: global.ExcerptCard.pageUrl("songs/index.html", "song=" + encodeURIComponent(currentSong.hash_id))
+        };
+      }
+    });
     overlay.querySelector(".shared-song-modal-close").addEventListener("click", close);
     overlay.addEventListener("click", function (event) {
       if (event.target === overlay) close();

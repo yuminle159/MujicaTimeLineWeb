@@ -297,9 +297,9 @@ var discographyData = [
     "search_keywords": "横k 鸡狗2 bd",
     "chart": {
       "first_day_rank": "#9",
-      "first_week_sales": "—",
-      "first_week_rank": "—",
-      "total_sales": "—",
+      "first_week_sales": "1604",
+      "first_week_rank": "#19",
+      "total_sales": "1604",
       "source": "ORICON WEEKLY ALBUM RANKING"
     },
     "contents": [],

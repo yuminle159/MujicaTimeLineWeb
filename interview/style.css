@@ -291,6 +291,12 @@ body {
 }
 
 /* ===== 响应式 ===== */
+.card-reading-state { margin-top:12px; }
+.card-reading-state[hidden] { display:none; }
+.card-reading-track { display:block; height:1px; background:rgba(150,142,126,.15); }
+.card-reading-track i { display:block; height:100%; background:#9e9178; }
+.card-reading-label { display:block; margin-top:6px; color:#958d80; font:10px/1.6 "Space Grotesk","Noto Sans SC",sans-serif; letter-spacing:.3px; }
+
 @media (max-width: 1100px) {
   .gallery-container { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
 }

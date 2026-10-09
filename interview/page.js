@@ -23,6 +23,20 @@
     return element.innerHTML;
   }
 
+  function readingIndicator(state) {
+    if (!state || state.scrollTop <= 20) return "";
+    const known = Number.isFinite(state.progress);
+    const percent = known ? Math.max(1, Math.round(state.progress * 100)) : 0;
+    const label = known && state.progress >= .98 ? "上次读至末尾" : (known ? `继续阅读 · ${percent}%` : "继续阅读");
+    return '<span class="card-reading-track" aria-hidden="true"><i style="width:' + (known ? percent : 0) + '%"></i></span><span class="card-reading-label">' + label + '</span>';
+  }
+
+  function updateReadingIndicator(card, state) {
+    const indicator = card.querySelector(".card-reading-state");
+    indicator.innerHTML = readingIndicator(state);
+    indicator.hidden = !indicator.innerHTML;
+  }
+
   function renderCards(data) {
     const sorted = data.slice().sort(function (a, b) {
       const comparison = (a.date || "").localeCompare(b.date || "");
@@ -45,6 +59,7 @@
       const originalIndex = data.indexOf(item);
       const card = document.createElement("div");
       card.className = "interview-card";
+      card.dataset.interviewKey = item.hash_id || item.title || String(originalIndex);
       card.style.cursor = "pointer";
       card.addEventListener("click", function () { InterviewOverlay.open(originalIndex); });
       card.innerHTML =
@@ -56,7 +71,9 @@
           '<div class="card-date">' + formatDate(item.date) + '</div>' +
           '<div class="card-title">' + escapeHTML(item.title) + '</div>' +
           '<div class="card-interviewee">' + escapeHTML(item.interviewee) + '</div>' +
+          '<div class="card-reading-state" hidden></div>' +
         '</div>';
+      updateReadingIndicator(card, InterviewOverlay.getReadingState(item, originalIndex));
       gallery.appendChild(card);
     });
   }
@@ -80,6 +97,18 @@
   });
 
   InterviewOverlay.configure({ data: interviewData, manageHash: true, includePageScroll: true });
+  document.addEventListener("interviewreadingchange", function (event) {
+    gallery.querySelectorAll(".interview-card").forEach(function (card) {
+      if (card.dataset.interviewKey === event.detail.key) updateReadingIndicator(card, event.detail.state);
+    });
+  });
+  window.addEventListener("storage", function (event) {
+    if (event.key && !event.key.startsWith("wijipedia:interview-reading:v1:")) return;
+    gallery.querySelectorAll(".interview-card").forEach(function (card) {
+      const index = interviewData.findIndex(function (item) { return (item.hash_id || item.title) === card.dataset.interviewKey; });
+      if (index >= 0) updateReadingIndicator(card, InterviewOverlay.getReadingState(interviewData[index], index));
+    });
+  });
   renderCards(interviewData);
 
   // Something New 入口：使用可读的 title 定位，并直接打开采访组件。

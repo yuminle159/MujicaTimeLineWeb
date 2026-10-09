@@ -228,175 +228,81 @@ body {
   font-weight: 500;
 }
 
-/* ===== 专辑分隔带 ===== */
-.album-section {
-  padding: 0 60px;
-  margin-bottom: 40px;
-}
-.album-divider {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 20px 0 24px;
-  border-bottom: 1px solid var(--md-outline-variant);
-  margin-bottom: 24px;
-}
-.album-divider .album-name {
-  font-family: "Cinzel", serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--md-primary);
-  letter-spacing: 1.5px;
-}
-.album-divider .album-year {
-  font-family: "Space Grotesk", monospace, sans-serif;
-  font-size: 13px;
-  color: var(--md-on-surface-muted);
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
+/* ===== 年份收藏区 ===== */
+.album-section { padding:0 60px; margin-bottom:52px; }
+.album-divider { display:flex; align-items:center; gap:20px; padding:16px 0 20px; margin-bottom:22px; }
+.album-divider::after { content:""; height:1px; flex:1; background:linear-gradient(90deg,#453332,#252020 70%,transparent); }
+.album-divider .album-name { margin:0; color:#aaa09a; font:500 clamp(36px,4.4vw,58px)/1 "Space Grotesk",sans-serif; letter-spacing:-2px; }
+.album-year { display:grid; gap:3px; border-left:2px solid #853c3c; padding-left:14px; }
+.album-year>span { color:#786e6b; font:9px/1.4 "Space Grotesk",sans-serif; letter-spacing:1.8px; }
+.album-year strong { font-size:11px; font-weight:400; color:#b9aaa1; }
 
-/* ===== 封面网格 ===== */
-.cover-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--cover-size), 1fr));
-  gap: var(--cover-gap);
+/* ===== 唱片收藏架 ===== */
+.cover-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(var(--cover-size),1fr)); gap:28px var(--cover-gap); align-items:start; }
+.cover-card { --record-accent:#bda574; position:relative; display:block; width:100%; min-width:0; margin:0; padding:0; border:0; border-radius:3px; background:transparent; color:inherit; font:inherit; text-align:left; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:transform .3s var(--md-easing-emphasized); }
+.cover-card.type-cover { --record-accent:#839fba; }
+.cover-card.type-other { --record-accent:#99918b; }
+.cover-card:focus-visible { outline:2px solid #df8d83; outline-offset:7px; }
+.record-sleeve { position:relative; display:block; padding:0 8px 8px 0; isolation:isolate; }
+.record-back { position:absolute; z-index:-1; inset:5px 0 0 5px; border:1px solid #45403b; border-radius:2px; background:repeating-linear-gradient(90deg,#24201e 0 2px,#2c2724 2px 3px); box-shadow:2px 4px 9px #0005; transition:transform .35s var(--md-easing-emphasized),border-color .3s; }
+.record-back::after { content:""; position:absolute; inset:8px 4px 8px auto; width:1px; background:#645647; opacity:.5; }
+.record-face { position:relative; display:block; aspect-ratio:1; overflow:hidden; padding:5px; border:1px solid #44382b; border-color:color-mix(in srgb,var(--record-accent) 38%,#242020); border-radius:2px; background:linear-gradient(135deg,#302a26,#171514); box-shadow:0 5px 14px #0008,inset 0 0 0 1px #ffffff05; transition:transform .35s var(--md-easing-emphasized),box-shadow .3s,border-color .3s; }
+.record-face img { display:block; width:100%; height:100%; object-fit:contain; background:#111; }
+.record-face img,.cover-placeholder { transition:filter .3s var(--md-easing-standard); }
+.cover-overlay { position:absolute; inset:5px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px; text-align:center; opacity:0; transition:opacity .3s var(--md-easing-standard); pointer-events:none; }
+.cover-hover-title { color:#fff; font:700 15px/1.4 "Cinzel","Noto Serif JP",serif; letter-spacing:.5px; overflow-wrap:anywhere; }
+.cover-hover-subtitle { margin-top:4px; color:#ffffff99; font-size:11px; }
+.cover-info-icon { flex:none; width:36px; height:36px; margin-top:10px; color:#ffffffcc; filter:drop-shadow(0 0 4px #ffffff4d); }
+.cover-info-icon .hexagram-ring { animation:hexagram-spin 30s linear infinite; transform-origin:24px 24px; }
+.cover-info-icon .hexagram-up,.cover-info-icon .hexagram-down,.cover-info-icon .eye-almond { fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; }
+.cover-info-icon .eye-pupil { fill:currentColor; }
+.cover-card:focus-visible .cover-overlay { opacity:1; }
+.cover-card:focus-visible .record-face img,.cover-card:focus-visible .cover-placeholder { filter:brightness(.3) blur(2px); }
+.song-caption { display:block; padding:10px 8px 0 1px; }
+.song-card-meta { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:7px; }
+.song-kind { display:flex; align-items:center; gap:6px; color:var(--record-accent); font-size:9px; letter-spacing:1px; }
+.song-kind::before { content:""; width:14px; height:1px; background:currentColor; }
+.song-open-arrow { color:#857773; font:16px/1 "Space Grotesk",sans-serif; opacity:.35; transition:transform .3s,color .3s,opacity .3s; }
+.cover-song-name { display:-webkit-box; min-height:2.9em; overflow:hidden; -webkit-line-clamp:2; -webkit-box-orient:vertical; color:#e0d8d2; font:500 clamp(13px,1.15vw,16px)/1.45 "Cinzel","Noto Serif JP","Noto Sans SC",serif; overflow-wrap:anywhere; }
+.cover-song-name-cn { display:-webkit-box; min-height:1.7em; margin-top:4px; overflow:hidden; -webkit-line-clamp:1; -webkit-box-orient:vertical; color:#9c928d; font-size:11px; line-height:1.7; }
+.song-release-date { display:block; margin-top:9px; color:#81756e; font:10px/1.5 "Space Grotesk",sans-serif; letter-spacing:.7px; }
+.cover-new-badge,.cover-countdown-badge { position:absolute; top:11px; left:11px; max-width:calc(100% - 22px); padding:5px 7px; border:1px solid #c7695b; border-radius:2px; background:#571f1bea; color:#ffddd4; font:600 9px/1.4 "Space Grotesk","Noto Sans SC",sans-serif; letter-spacing:.6px; box-shadow:0 2px 8px #0005; }
+.cover-countdown-badge { border-color:#bd975b; background:#302515ed; color:#f6d69d; letter-spacing:0; }
+.cover-card.is-upcoming .record-back { border-color:#775f3d; }
+.cover-card.is-upcoming .song-release-date { color:#c2a374; }
+.cover-placeholder { position:absolute; inset:5px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; overflow:hidden; background:radial-gradient(ellipse at 50% 35%,#3a282b55,transparent 65%),#151315; }
+.cover-placeholder::before,.cover-placeholder::after { content:""; position:absolute; width:55%; aspect-ratio:1; border:1px solid #55453b; transform:rotate(45deg); opacity:.45; }
+.cover-placeholder::after { width:37%; border-color:#824a42; }
+.cover-placeholder i { z-index:1; width:5px; height:5px; background:#b18263; transform:rotate(45deg); }
+.cover-placeholder strong { z-index:1; max-width:75%; color:#b7aaa0; font:500 12px/1.5 "Cinzel","Noto Sans SC",serif; text-align:center; overflow-wrap:anywhere; }
+.cover-placeholder small { z-index:1; color:#978478; font-size:9px; letter-spacing:1px; }
+.cover-card:focus-visible .record-face { border-color:#bf635b; box-shadow:0 7px 20px #0009,0 0 18px #ba3a2a15; }
+.cover-card:focus-visible .song-open-arrow { opacity:1; color:#df8d83; }
+@media (hover:hover) and (pointer:fine) {
+  .cover-card:hover { transform:translateY(-5px); }
+  .cover-card:hover .record-face { transform:translate(-3px,-2px); border-color:#bf635b; box-shadow:0 10px 24px #0009,0 0 18px #ba3a2a18; }
+  .cover-card:hover .record-back { transform:translate(3px,1px); border-color:#66504a; }
+  .cover-card:hover .cover-overlay { opacity:1; }
+  .cover-card:hover .record-face img,.cover-card:hover .cover-placeholder { filter:brightness(.3) blur(2px); }
+  .cover-card:hover .song-open-arrow { opacity:1; color:#df8d83; transform:translate(2px,-2px); }
 }
-
-/* ===== 封面卡片 ===== */
-.cover-card {
-  position: relative;
-  aspect-ratio: 1;
-  border-radius: var(--md-radius-md);
-  overflow: hidden;
-  cursor: pointer;
-  background: var(--md-surface-container);
-  transition: transform var(--md-duration-medium) var(--md-easing-emphasized),
-              box-shadow var(--md-duration-medium) var(--md-easing-standard);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+.cover-card:active .record-face { transform:translateY(1px); }
+@media (max-width:480px) {
+  .album-divider { gap:12px; margin-bottom:16px; }
+  .album-divider .album-name { font-size:38px; }
+  .album-year { padding-left:10px; }
+  .album-year>span { font-size:8px; letter-spacing:1px; }
+  .cover-grid { row-gap:24px; }
+  .record-face { padding:4px; }
+  .song-caption { padding-top:8px; }
+  .cover-song-name { font-size:13px; }
+  .cover-song-name-cn { font-size:10px; }
+  .cover-countdown-badge { font-size:8px; padding:4px 6px; }
 }
-/* 原创曲：淡淡暗金色边框+光晕 */
-.cover-card.type-original {
-  box-shadow: 0 0 0 1px rgba(180, 150, 80, 0.15), 0 0 16px rgba(180, 150, 80, 0.08), 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-/* 翻唱曲：淡淡暗蓝色边框+光晕 */
-.cover-card.type-cover {
-  box-shadow: 0 0 0 1px rgba(80, 120, 180, 0.15), 0 0 16px rgba(80, 120, 180, 0.08), 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-.cover-card:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 0 1px rgba(255, 77, 77, 0.4), 0 12px 32px rgba(255, 77, 77, 0.18);
-  z-index: 2;
-}
-.cover-card:active {
-  transform: scale(0.98);
-}
-.cover-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: filter var(--md-duration-medium) var(--md-easing-standard);
-}
-.cover-card:hover img {
-  filter: brightness(0.3) blur(2px);
-}
-.cover-placeholder { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; overflow:hidden; background:linear-gradient(145deg,#19191c,#0d0d0f 70%); color:#6d6d72; font-family:"Space Grotesk",sans-serif; transition:filter var(--md-duration-medium) var(--md-easing-standard); }
-.cover-placeholder::before,.cover-placeholder::after { content:""; position:absolute; width:52%; aspect-ratio:1; border:1px solid rgba(255,255,255,.055); transform:rotate(45deg); transition:transform .5s var(--md-easing-emphasized),border-color .3s; }
-.cover-placeholder::after { width:32%; border-color:rgba(150,43,48,.15); }
-.cover-placeholder i { width:5px; height:5px; margin-bottom:3px; transform:rotate(45deg); background:#793136; box-shadow:0 0 16px rgba(180,42,48,.28); }
-.cover-placeholder strong { z-index:1; display:-webkit-box; max-width:82%; overflow:hidden; color:#a0a0a4; font:500 clamp(12px,1.25vw,15px)/1.35 "Cinzel","Noto Sans SC",sans-serif; letter-spacing:.5px; text-align:center; overflow-wrap:anywhere; -webkit-box-orient:vertical; -webkit-line-clamp:3; }
-.cover-placeholder small { z-index:1; color:#49494e; font-size:8px; letter-spacing:2.6px; }
-.cover-card:hover .cover-placeholder::before { transform:rotate(50deg) scale(1.08); border-color:rgba(255,255,255,.09); }
-.cover-card:hover .cover-placeholder::after { transform:rotate(40deg) scale(.94); border-color:rgba(204,41,41,.24); }
-.cover-card:hover .cover-placeholder { filter:brightness(.3) blur(2px); }
-.cover-card.is-upcoming { background: #111213; box-shadow: 0 0 0 1px rgba(185,185,185,.16), 0 6px 18px rgba(0,0,0,.42); }
-.cover-card.is-upcoming img { filter: grayscale(100%) contrast(.9) brightness(.5); }
-.cover-card.is-upcoming:hover { box-shadow: 0 0 0 1px rgba(190,190,190,.4), 0 12px 28px rgba(0,0,0,.55); }
-.cover-card.is-upcoming:hover img { filter: grayscale(100%) contrast(.9) brightness(.28) blur(2px); }
-.cover-card.is-upcoming .cover-placeholder { background:radial-gradient(circle at 50% 42%,rgba(150,129,82,.08),transparent 34%),linear-gradient(145deg,#1c1b19,#0d0e10 72%); color:#85817a; filter:none; }
-.cover-card.is-upcoming .cover-placeholder::before { border-color:rgba(218,210,193,.07); }
-.cover-card.is-upcoming .cover-placeholder::after { border-color:rgba(175,149,92,.18); }
-.cover-card.is-upcoming .cover-placeholder i { background:#8c7546; box-shadow:0 0 17px rgba(184,151,79,.22); }
-.cover-card.is-upcoming .cover-placeholder small { color:#55514a; }
-.cover-card.is-upcoming:hover .cover-placeholder { filter:grayscale(100%) contrast(.9) brightness(.28) blur(2px); }
-.cover-card.is-upcoming:hover .cover-placeholder::before { border-color:rgba(225,218,204,.13); }
-.cover-card.is-upcoming:hover .cover-placeholder::after { border-color:rgba(205,174,105,.3); }
-.cover-card.is-upcoming .cover-countdown-badge { border-color: rgba(215,215,215,.45); background: rgba(15,16,17,.86); color: #e2e2e2; }
-.cover-new-badge,.cover-countdown-badge {
-  position: absolute;
-  z-index: 2;
-  top: 9px;
-  left: 9px;
-  padding: 4px 7px;
-  border: 1px solid rgba(255,180,180,.62);
-  border-radius: 3px;
-  background: rgba(114,15,19,.86);
-  box-shadow: 0 2px 10px rgba(0,0,0,.45);
-  color: #fff1f1;
-  font: 700 9px/1 "Space Grotesk", monospace, sans-serif;
-  letter-spacing: .11em;
-  white-space: nowrap;
-}
-.cover-countdown-badge { border-color: rgba(215, 205, 184, .48); background: rgba(38, 35, 30, .9); color: #f3ead8; letter-spacing: .03em; }
-.cover-card .cover-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--md-duration-medium) var(--md-easing-standard);
-  padding: 16px;
-  text-align: center;
-}
-.cover-card:hover .cover-overlay {
-  opacity: 1;
-}
-.cover-overlay .cover-song-name {
-  font-family: "Cinzel", serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.5px;
-  line-height: 1.4;
-  margin-bottom: 4px;
-}
-.cover-overlay .cover-song-name-cn {
-  font-size: 11px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
-}
-.cover-overlay .cover-info-icon {
-  width: 36px;
-  height: 36px;
-  color: rgba(255, 255, 255, 0.5);
-  transition: color var(--md-duration-short) var(--md-easing-standard),
-              filter var(--md-duration-short) var(--md-easing-standard);
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.15));
-}
-.cover-info-icon .hexagram-ring {
-  animation: hexagram-spin 30s linear infinite;
-  transform-origin: 24px 24px;
-}
-.cover-card:hover .cover-info-icon {
-  color: rgba(255, 255, 255, 0.85);
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
-}
-.cover-info-icon .hexagram-up,
-.cover-info-icon .hexagram-down,
-.cover-info-icon .eye-almond {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.cover-info-icon .eye-pupil {
-  fill: currentColor;
+@media (prefers-reduced-motion:reduce) {
+  .cover-card,.record-face,.record-back,.song-open-arrow,.cover-overlay,.record-face img,.cover-placeholder { transition:none; }
+  .cover-info-icon .hexagram-ring { animation:none; }
+  .cover-card:hover,.cover-card:hover .record-face,.cover-card:hover .record-back,.cover-card:hover .song-open-arrow { transform:none; }
 }
 
 /* ===== 意图感应式返回顶部 ===== */
