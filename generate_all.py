@@ -246,7 +246,9 @@ def render_md_to_html(md):
     """预渲染 Markdown → HTML（保留 [original] [cN] [br] [translation] 标签供浏览器动态处理）"""
     if not md:
         return ""
-    html = md
+    # UTF-8 files saved with a BOM expose U+FEFF when read as utf-8.
+    # Ignore only this file prefix so anchored Markdown headings still match.
+    html = md.lstrip('\ufeff')
 
     # 1. 代码块保护
     code_blocks = []
@@ -1189,7 +1191,7 @@ def interview_section_text(heading):
 
 def extract_interview_sections(markdown):
     """从 Markdown 二级标题生成稳定的文章目录。"""
-    headings = re.findall(r'^##\s+(.+?)\s*$', markdown or "", flags=re.MULTILINE)
+    headings = re.findall(r'^##\s+(.+?)\s*$', (markdown or "").lstrip('\ufeff'), flags=re.MULTILINE)
     sections = []
     for index, heading in enumerate(headings, 1):
         title = interview_section_text(heading)

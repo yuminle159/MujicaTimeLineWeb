@@ -167,7 +167,7 @@
     let totalVisible = 0;
     const years = groupByYear();
 
-    years.forEach(year => {
+    years.forEach((year, yearIndex) => {
       const filtered = filterSongs(year.songs);
       filtered.sort((a, b) => {
         const da = parseDate(a.release_date);
@@ -181,12 +181,14 @@
       section.className = "album-section";
       section.innerHTML = `
         <div class="album-divider">
-          <span class="album-name">${escapeHTML(year.year)}</span>
+          <h2 class="album-name" id="songs-year-${yearIndex}">${escapeHTML(year.year)}</h2>
+          <span class="album-year"><span>SONG COLLECTION</span><strong>${filtered.length} 首</strong></span>
         </div>
         <div class="cover-grid">
           ${filtered.map((s, index) => renderCoverCard(s, totalVisible - filtered.length + index)).join("")}
         </div>`;
       gallery.appendChild(section);
+      section.setAttribute("aria-labelledby", `songs-year-${yearIndex}`);
     });
 
     noResults.style.display = totalVisible === 0 ? "block" : "none";
@@ -215,29 +217,43 @@
 
   function renderCoverCard(song, visibleIndex) {
     const coverSrc = song.cover || "";
-    const jp = song.name_jp ? `<span class="cover-song-name">${escapeHTML(song.name_jp)}</span>` : "";
-    const cn = song.name ? `<span class="cover-song-name-cn">${escapeHTML(song.name)}</span>` : "";
+    const title = song.name_jp || song.name;
+    const cn = song.name ? escapeHTML(song.name) : "";
+    const type = song.type === "Original" ? "original" : (song.type === "Cover" ? "cover" : "other");
+    const typeLabel = type === "original" ? "原创" : (type === "cover" ? "翻唱" : "歌曲");
+    const date = stripTime(song.release_date || "");
     const countdownDays = daysUntilRelease(song);
     const releaseBadge = isNewRelease(song)
       ? '<span class="cover-new-badge">NEW</span>'
-      : (countdownDays ? `<span class="cover-countdown-badge">${countdownDays} 天后</span>` : "");
+      : (countdownDays ? `<span class="cover-countdown-badge">待发布 · ${countdownDays} 天后</span>` : "");
     return `
-      <div class="cover-card type-${(song.type || '').toLowerCase()}${countdownDays ? ' is-upcoming' : ''}" data-song-index="${songsData.indexOf(song)}" onclick="openModal(${songsData.indexOf(song)})">
-        ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="${escapeHTML(song.name_jp || song.name)}" loading="${visibleIndex < 4 ? 'eager' : 'lazy'}" decoding="async">` : `<div class="cover-placeholder"><i></i><strong>${escapeHTML(song.name_jp || song.name)}</strong><small>UNKNOWN</small></div>`}
-        ${releaseBadge}
-        <div class="cover-overlay">
-          ${jp}
-          ${cn}
-          <svg class="cover-info-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <g class="hexagram-ring">
-            <polygon class="hexagram-up" points="43.1,13 4.9,13 24,46"/>
-            <polygon class="hexagram-down" points="24,2 4.9,35 43.1,35"/>
-          </g>
-          <path class="eye-almond" d="M16,24 Q24,17 32,24 Q24,31 16,24"/>
-          <circle class="eye-pupil" cx="24" cy="24" r="3"/>
-        </svg>
-        </div>
-      </div>`;
+      <button type="button" class="cover-card type-${type}${countdownDays ? ' is-upcoming' : ''}" data-song-index="${songsData.indexOf(song)}" onclick="openModal(${songsData.indexOf(song)})" aria-label="查看 ${escapeHTML(title)} 的歌曲详情${countdownDays ? `，待发布，${countdownDays} 天后` : ''}">
+        <span class="record-sleeve">
+          <span class="record-back" aria-hidden="true"></span>
+          <span class="record-face">
+            ${coverSrc ? `<img src="${escapeHTML(coverSrc)}" alt="" loading="${visibleIndex < 4 ? 'eager' : 'lazy'}" decoding="async">` : `<span class="cover-placeholder"><i></i><strong>${escapeHTML(title)}</strong><small>封面待公开</small></span>`}
+            ${releaseBadge}
+            <span class="cover-overlay" aria-hidden="true">
+              <span class="cover-hover-title">${escapeHTML(title)}</span>
+              ${cn ? `<span class="cover-hover-subtitle">${cn}</span>` : ''}
+              <svg class="cover-info-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <g class="hexagram-ring">
+                  <polygon class="hexagram-up" points="43.1,13 4.9,13 24,46"/>
+                  <polygon class="hexagram-down" points="24,2 4.9,35 43.1,35"/>
+                </g>
+                <path class="eye-almond" d="M16,24 Q24,17 32,24 Q24,31 16,24"/>
+                <circle class="eye-pupil" cx="24" cy="24" r="3"/>
+              </svg>
+            </span>
+          </span>
+        </span>
+        <span class="song-caption">
+          <span class="song-card-meta"><span class="song-kind">${typeLabel}</span><span class="song-open-arrow" aria-hidden="true">↗</span></span>
+          <span class="cover-song-name">${escapeHTML(title)}</span>
+          <span class="cover-song-name-cn">${cn}</span>
+          <span class="song-release-date">${escapeHTML(date.replace(/[\/-]/g, '.') || '发行日期待确认')}</span>
+        </span>
+      </button>`;
   }
 
   // ===== 搜索 =====

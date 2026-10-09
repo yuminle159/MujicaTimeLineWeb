@@ -36,20 +36,33 @@
     return !query || haystack.includes(query);
   }
   window.ProgramArchive = { current: () => data.filter(baseMatches) };
+  function isUpcoming(item, now = Date.now()) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(item.date)) return false;
+    if (/^\d{2}:\d{2}$/.test(item.time) && /^[+-]\d{2}:\d{2}$/.test(item.timezone)) {
+      return Date.parse(`${item.date}T${item.time}:00${item.timezone}`) > now;
+    }
+    // Without a confirmed time, only future broadcast dates count as upcoming.
+    const offset = /^[+-]\d{2}:\d{2}$/.test(item.timezone)
+      ? (item.timezone[0] === '-' ? -1 : 1) * (Number(item.timezone.slice(1, 3)) * 60 + Number(item.timezone.slice(4)))
+      : 9 * 60;
+    const broadcastDate = new Date(now + offset * 60 * 1000).toISOString().slice(0, 10);
+    return item.date > broadcastDate;
+  }
   function externalLink(url, title) {
     const safe = safeUrl(url);
     return safe ? `<a href="${escape(safe)}" target="_blank" rel="noopener noreferrer">${escape(title)} ↗</a>` : '';
   }
   function card(item) {
+    const upcoming = isUpcoming(item);
     const title = item.title || `${item.program} ${item.episode}`;
     const safeCover = /^\.\.\/images\/[a-zA-Z0-9_./\-\u0080-\uffff]+$/.test(item.cover) ? item.cover : safeUrl(item.cover);
     const image = safeCover ? `<img src="${escape(safeCover)}" alt="${escape(title)} 封面" loading="lazy" width="640" height="360">` : '<div class="cover-fallback">Programs<small>BROADCAST ARCHIVE</small></div>';
     const video = safeUrl(item.video_url);
-    const coverContent = image + `<span class="episode-label">${escape(item.episode || 'SPECIAL')}</span>`;
-    const cover = video ? `<a class="cover-link" href="${escape(video)}" target="_blank" rel="noopener noreferrer" aria-label="观看 ${escape(title)}">${coverContent}</a>` : `<div class="cover-link">${coverContent}</div>`;
+    const coverContent = image + `<span class="episode-label">${escape(item.episode || 'SPECIAL')}</span>` + (upcoming ? '<span class="broadcast-badge"><span aria-hidden="true">◷</span> 待播</span>' : '');
+    const cover = video ? `<a class="cover-link" href="${escape(video)}" target="_blank" rel="noopener noreferrer" aria-label="${upcoming ? '预约直播' : '观看'} ${escape(title)}">${coverContent}</a>` : `<div class="cover-link">${coverContent}</div>`;
     const tags = item.performers.map(person => `<button type="button" class="cast-tag" data-person="${escape(person.name)}" style="--band-color:${color(person)}" aria-pressed="${selectedPerformers.has(person.name)}" aria-label="筛选 ${escape(person.name)} 出演的节目"><span>${escape(person.name)}</span><small>${escape(band(person))}</small></button>`).join('');
     const clips = item.clips.map((url, index) => externalLink(url, `切片 ${index + 1}`)).filter(Boolean);
-    return `<article class="program-card" id="${escape(item.program_id)}">${cover}<div class="card-body"><div class="program-date">${escape(item.date.replaceAll('-', '.') || '日期待确认')}${item.time ? `<span>${escape(item.time)} (UTC${escape(item.timezone)})</span>` : ''}</div><p class="series-label">${escape(item.program)}</p><h3>${escape(title)}</h3><div class="cast-tags">${tags || '<span class="no-clips">出演者待补充</span>'}</div><div class="card-actions">${externalLink(item.video_url, '完整节目')}${clips.join('')}${!clips.length ? '<span class="no-clips">暂无切片</span>' : ''}</div>${item.notes ? `<details class="notes"><summary>节目备注</summary><p>${escape(item.notes)}</p></details>` : ''}</div></article>`;
+    return `<article class="program-card${upcoming ? ' is-upcoming' : ''}" id="${escape(item.program_id)}">${cover}<div class="card-body"><div class="program-date">${escape(item.date.replaceAll('-', '.') || '日期待确认')}${item.time ? `<span>${escape(item.time)} (UTC${escape(item.timezone)})</span>` : ''}</div><p class="series-label">${escape(item.program)}</p><h3>${escape(title)}</h3><div class="cast-tags">${tags || '<span class="no-clips">出演者待补充</span>'}</div><div class="card-actions">${externalLink(item.video_url, upcoming ? '直播预约' : '完整节目')}${clips.join('')}${!clips.length && !upcoming ? '<span class="no-clips">暂无切片</span>' : ''}</div>${item.notes ? `<details class="notes"><summary>节目备注</summary><p>${escape(item.notes)}</p></details>` : ''}</div></article>`;
   }
   function render() {
     const filtered = data.filter(baseMatches);
@@ -164,4 +177,16 @@
   });
   renderCastFilters();
   render();
+  let upcomingIds = data.filter(item => isUpcoming(item)).map(item => item.program_id).join('|');
+  function refreshBroadcastStatus() {
+    const next = data.filter(item => isUpcoming(item)).map(item => item.program_id).join('|');
+    if (next !== upcomingIds) {
+      upcomingIds = next;
+      render();
+    }
+  }
+  window.setInterval(refreshBroadcastStatus, 30000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refreshBroadcastStatus();
+  });
 })();
