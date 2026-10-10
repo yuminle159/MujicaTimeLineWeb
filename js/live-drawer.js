@@ -13,6 +13,9 @@
   let renderedLive = null;
   let mcContent = "";
   let photoGroups = [];
+  const preparedPhotoTexts = new Map();
+  const photoTextState = new WeakMap();
+  let photoTextRenderer;
   let lightboxGroup = null;
   let lightboxIndex = 0;
   let lightboxCredits = [];
@@ -168,6 +171,8 @@
 
   function backstageHTML(live) {
     photoGroups = groupBackstage(live.backstage);
+    preparedPhotoTexts.clear();
+    prepareBackstageText();
     if (!photoGroups.length) return "";
     return '<div class="shared-live-col-gallery" id="sharedLiveBackstagePanel" data-live-panel="backstage" role="tabpanel" aria-labelledby="sharedLiveBackstageTab"><h3 class="shared-live-section-title">Backstage</h3><div class="shared-live-photo-grid">' +
       photoGroups.map(function (group, groupIndex) {
@@ -303,9 +308,39 @@
     document.body.style.overflow = "hidden";
   }
 
+  function prepareBackstageText() {
+    const renderer = global.WijipediaEmoji;
+    if (!renderer) return;
+    if (photoTextRenderer !== renderer) preparedPhotoTexts.clear();
+    photoTextRenderer = renderer;
+    photoGroups.forEach(function (group) {
+      group.photos.forEach(function (photo) {
+        [photo.credit || group.credit || "", photo.credit_text || ""].forEach(function (text) {
+          if (!preparedPhotoTexts.has(text)) preparedPhotoTexts.set(text, renderer.prepareText(text));
+        });
+      });
+    });
+  }
+
+  function setPhotoText(element, text) {
+    const renderer = global.WijipediaEmoji;
+    const previous = photoTextState.get(element);
+    if (previous && previous.text === text && previous.renderer === renderer) return;
+    if (renderer) {
+      if (!preparedPhotoTexts.has(text)) preparedPhotoTexts.set(text, renderer.prepareText(text));
+      renderer.applyText(element, preparedPhotoTexts.get(text));
+    } else element.textContent = text;
+    photoTextState.set(element, { text: text, renderer: renderer });
+  }
+
+  document.addEventListener("wijipedia:emoji-ready", function () {
+    prepareBackstageText();
+    if (lightboxGroup) updateLightboxHud();
+  });
+
   function updateLightboxHud() {
-    lightbox.querySelector(".shared-live-hud-title").textContent = lightboxCredits[lightboxIndex] || "";
-    lightbox.querySelector(".shared-live-hud-desc").textContent = lightboxCreditTexts[lightboxIndex] || "";
+    setPhotoText(lightbox.querySelector(".shared-live-hud-title"), lightboxCredits[lightboxIndex] || "");
+    setPhotoText(lightbox.querySelector(".shared-live-hud-desc"), lightboxCreditTexts[lightboxIndex] || "");
     lightbox.querySelector(".shared-live-counter-num").textContent = "[ " + (lightboxIndex + 1) + " / " + lightboxGroup.length + " ]";
     const source = lightbox.querySelector(".shared-live-hud-source-btn");
     const label = (lightboxSourceLabels[lightboxIndex] || "").trim().toLowerCase();
