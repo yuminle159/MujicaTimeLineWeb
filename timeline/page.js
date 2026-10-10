@@ -455,7 +455,7 @@
     // 视频区域
     if (videoItems.length > 0) {
       if (videoItems.length === 1) {
-        mediaHTML += `<div class="tl-modal-video${hasBoth ? ' tl-media-video' : ''}"><iframe ${hasBoth ? `data-src="${videoItems[0].src}"` : `src="${videoItems[0].src}"`} class="tl-single-video" allowfullscreen></iframe></div>`;
+        mediaHTML += `<div class="tl-modal-video${hasBoth ? ' tl-media-video' : ''}"><iframe ${hasBoth ? `data-src="${videoItems[0].src}"` : `src="${videoItems[0].src}"`} class="tl-single-video" allowfullscreen></iframe><div class="tl-modal-video-cap" id="tlVideoCaption"></div></div>`;
       } else {
         mediaHTML += `<div class="tl-modal-video-carousel${hasBoth ? ' tl-media-video' : ''}" id="tlVideoCarousel">`;
         mediaHTML += '<div class="tl-video-track">';
@@ -467,7 +467,7 @@
         mediaHTML += '<button class="tl-video-arrow tl-video-prev" onclick="moveTlVideo(-1)">&#10094;</button>';
         mediaHTML += `<span class="tl-video-counter">1 / ${videoItems.length}</span>`;
         mediaHTML += '<button class="tl-video-arrow tl-video-next" onclick="moveTlVideo(1)">&#10095;</button>';
-        mediaHTML += '</div></div>';
+        mediaHTML += '</div><div class="tl-modal-video-cap" id="tlVideoCaption"></div></div>';
       }
     }
 
@@ -498,6 +498,16 @@
       <div class="tl-modal-desc">${(ev.description || "").replace(/\n/g, "<br>")}</div>
       ${mediaHTML}
     `;
+
+    // H 列描述跟随当前视频，并按纯文本保留换行。
+    tlModalBody.querySelectorAll(".tl-single-video, .tl-carousel-video").forEach((video, i) => {
+      video.dataset.caption = videoItems[i].caption || "";
+    });
+    const videoCaption = tlModalBody.querySelector("#tlVideoCaption");
+    if (videoCaption) {
+      videoCaption.textContent = videoItems[0].caption || "";
+      videoCaption.hidden = !videoCaption.textContent;
+    }
 
     // 绑定切换事件
     if (hasBoth) {
@@ -572,6 +582,9 @@
     videos[next].classList.add("active");
     if (videos[next].dataset.src) videos[next].src = videos[next].dataset.src;
     track.querySelector(".tl-video-counter").textContent = (next + 1) + " / " + videos.length;
+    const caption = track.querySelector("#tlVideoCaption");
+    caption.textContent = videos[next].dataset.caption || "";
+    caption.hidden = !caption.textContent;
   };
 
   // 模态框内图片轮播

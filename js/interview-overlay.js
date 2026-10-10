@@ -300,7 +300,7 @@
   }
 
   function readingBlocks() {
-    return Array.from(body.querySelectorAll(".md-content p, .md-content h1, .md-content h2, .md-content h3, .md-content li, .md-content blockquote, .md-content img"));
+    return Array.from(body.querySelectorAll(".md-content p, .md-content h1, .md-content h2, .md-content h3, .md-content li, .md-content blockquote, .md-content img:not(.site-emoji-image)"));
   }
 
   function blockKey(block) {
@@ -745,7 +745,7 @@
   }
 
   function bindInterviewImages() {
-    const images = body.querySelectorAll(".md-content img");
+    const images = body.querySelectorAll(".md-content img:not(.site-emoji-image)");
     const sources = Array.from(images).map(function (image) { return image.src; });
     images.forEach(function (image, index) {
       image.style.cursor = "zoom-in";

@@ -1,0 +1,41 @@
+/* Keep emoji inline, regardless of article/gallery image styles. */
+.site-emoji {
+  display: inline-block;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  vertical-align: 0;
+  margin: 0 0.04em;
+  white-space: nowrap;
+}
+.site-emoji > .site-emoji-text {
+  opacity: 0;
+}
+.site-emoji > img.site-emoji-image {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  object-fit: contain !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+  cursor: inherit !important;
+  pointer-events: none;
+  user-select: none;
+}

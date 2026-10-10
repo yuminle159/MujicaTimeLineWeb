@@ -961,6 +961,13 @@ body {
   text-align: center;
   padding: 6px 0 4px;
 }
+.tl-modal-video-cap {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+  padding: 6px 0 4px;
+  white-space: pre-line;
+}
 
 /* 模态框内视频 */
 .tl-modal-video {
