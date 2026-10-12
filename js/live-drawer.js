@@ -128,16 +128,17 @@
 
   function groupBackstage(backstage) {
     const groups = [];
-    let currentGroup = null;
+    const groupsById = new Map();
     (backstage || []).forEach(function (photo) {
       const groupId = photo.group_id || "";
       if (!groupId) {
         groups.push({ photos: [photo], credit: photo.credit, credit_text: photo.credit_text, source_url: photo.source_url, source_label: photo.source_label });
-      } else if (currentGroup && currentGroup.id === groupId) {
-        currentGroup.photos.push(photo);
+      } else if (groupsById.has(groupId)) {
+        groupsById.get(groupId).photos.push(photo);
       } else {
-        currentGroup = { id: groupId, photos: [photo], credit: photo.credit, credit_text: photo.credit_text, source_url: photo.source_url, source_label: photo.source_label };
-        groups.push(currentGroup);
+        const group = { id: groupId, photos: [photo], credit: photo.credit, credit_text: photo.credit_text, source_url: photo.source_url, source_label: photo.source_label };
+        groupsById.set(groupId, group);
+        groups.push(group);
       }
     });
     return groups;
