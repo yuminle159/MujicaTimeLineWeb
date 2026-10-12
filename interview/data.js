@@ -306,7 +306,7 @@ var interviewData = [
     date: "2025-01-31 00:00:00",
     interviewee: "高尾奏音",
     title: "ほんのひきだし 怀抱希望，见证「Ave Mujica」的“前方” 专访丰川祥子役·高尾奏音",
-    if_translated: "no",
+    if_translated: "yes",
     hash_id: "qDzrFr9bmoq",
     sections: [{"id": "section-01", "title": "TV动画「BanG Dream! Ave Mujica」所交织出的、宛如悬疑作品般的人际关系"}, {"id": "section-02", "title": "高尾奏音的阅读方式与推荐书目"}],
     related: [{"id": "BE9kJEFFOW6", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "m58tZySEck6", "reason": "共同受访者：高尾奏音"}],
