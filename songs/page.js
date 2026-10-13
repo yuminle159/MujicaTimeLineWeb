@@ -104,7 +104,7 @@
           <span class="new-release-kicker"><i></i> NEW RELEASE // ${escapeHTML(stripTime(newRelease.release_date))}</span>
           <strong class="new-release-title">${escapeHTML(newRelease.name_jp || newRelease.name)}</strong>
           ${newRelease.name ? `<span class="new-release-subtitle">${escapeHTML(newRelease.name)}</span>` : ""}
-          <span class="new-release-open">EXPLORE SONG <b aria-hidden="true">↗</b></span>
+          <span class="new-release-open">EXPLORE SONG <b data-native-emoji aria-hidden="true">↗</b></span>
         </span>
         <span class="new-release-seal" aria-hidden="true">NEW<br>SONG</span>
         ${pager}
@@ -248,7 +248,7 @@
           </span>
         </span>
         <span class="song-caption">
-          <span class="song-card-meta"><span class="song-kind">${typeLabel}</span><span class="song-open-arrow" aria-hidden="true">↗</span></span>
+          <span class="song-card-meta"><span class="song-kind">${typeLabel}</span><span class="song-open-arrow" data-native-emoji aria-hidden="true">↗</span></span>
           <span class="cover-song-name">${escapeHTML(title)}</span>
           <span class="cover-song-name-cn">${cn}</span>
           <span class="song-release-date">${escapeHTML(date.replace(/[\/-]/g, '.') || '发行日期待确认')}</span>

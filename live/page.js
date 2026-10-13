@@ -88,7 +88,7 @@
             </span>
             ${poster ? `<span class="upcoming-live-poster" aria-hidden="true"><img src="${escapeHTML(poster).replace(/"/g, '&quot;')}" alt=""></span>` : ''}
           </span>` : ''}
-          <span class="upcoming-live-open">EXPLORE LIVE <b aria-hidden="true">↗</b></span>
+          <span class="upcoming-live-open">EXPLORE LIVE <b data-native-emoji aria-hidden="true">↗</b></span>
         </span>
         <span class="upcoming-live-countdown"${countdownStyle} aria-label="${today ? '演出就在今天' : `距离演出还有 ${days} 天`}">
           ${today ? '<strong>LIVE<br>TODAY</strong><small>THE STAGE IS READY</small>' : `<small>COUNTDOWN</small><strong>${days}</strong><small>DAYS TO GO</small>`}

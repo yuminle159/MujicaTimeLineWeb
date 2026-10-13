@@ -37,6 +37,25 @@
     indicator.hidden = !indicator.innerHTML;
   }
 
+  function recoverPoster(card) {
+    const image = card.querySelector(".card-image img");
+    if (!image) return;
+    const originalSrc = image.getAttribute("src");
+    let retried = false;
+    image.addEventListener("error", function () {
+      if (!retried) {
+        retried = true;
+        const retryUrl = new URL(originalSrc, document.baseURI);
+        retryUrl.searchParams.set("retry", String(Date.now()));
+        image.src = retryUrl.href;
+        return;
+      }
+      const placeholder = document.createElement("div");
+      placeholder.className = "card-placeholder";
+      image.replaceWith(placeholder);
+    });
+  }
+
   function renderCards(data) {
     const sorted = data.slice().sort(function (a, b) {
       const comparison = (a.date || "").localeCompare(b.date || "");
@@ -64,7 +83,7 @@
       card.addEventListener("click", function () { InterviewOverlay.open(originalIndex); });
       card.innerHTML =
         '<div class="card-image">' +
-          (item.poster ? '<img src="' + escapeHTML(item.poster) + '" alt="' + escapeHTML(item.title) + '" loading="' + (visibleIndex < 4 ? 'eager' : 'lazy') + '" decoding="async">' : '<div class="card-placeholder"></div>') +
+          (item.poster ? '<img src="' + escapeHTML(item.poster) + '" alt="' + escapeHTML(item.title) + '" loading="' + (visibleIndex < 4 ? 'eager' : 'lazy') + '">' : '<div class="card-placeholder"></div>') +
           (String(item.if_translated || "").toLowerCase() === "yes" ? '<span class="interview-status">CN</span>' : '') +
         '</div>' +
         '<div class="card-info">' +
@@ -73,6 +92,7 @@
           '<div class="card-interviewee">' + escapeHTML(item.interviewee) + '</div>' +
           '<div class="card-reading-state" hidden></div>' +
         '</div>';
+      recoverPoster(card);
       updateReadingIndicator(card, InterviewOverlay.getReadingState(item, originalIndex));
       gallery.appendChild(card);
     });

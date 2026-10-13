@@ -192,8 +192,6 @@ body {
 /* ===== Interview 卡片 ===== */
 .interview-card {
   cursor: pointer;
-  will-change: transform;
-  contain: layout style paint;
   transition: transform var(--md-duration-medium) var(--md-easing-emphasized),
               box-shadow var(--md-duration-medium) var(--md-easing-standard);
 }
@@ -220,22 +218,31 @@ body {
   pointer-events: none;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.24) 24%, transparent 48%);
 }
+.card-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(16, 16, 16, 0.3);
+  transition: opacity 0.35s var(--md-easing-standard);
+}
+.interview-card:hover .card-image::after {
+  opacity: 0;
+}
 .interview-card:hover .card-image {
   border-color: rgba(255, 77, 77, 0.4);
   box-shadow: 0 0 48px rgba(255, 77, 77, 0.10), 0 0 80px rgba(255, 77, 77, 0.06), 0 12px 32px var(--md-primary-glow);
 }
 .card-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  will-change: transform, filter;
-  transform: translateZ(0);
-  transition: transform 0.35s var(--md-easing-standard), filter 0.35s var(--md-easing-standard);
-  filter: grayscale(30%) contrast(1.1);
+  transition: transform 0.35s var(--md-easing-standard);
 }
 .interview-card:hover .card-image img {
-  transform: scale(1.05) translateZ(0);
-  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.05);
 }
 .card-placeholder {
   width: 100%;

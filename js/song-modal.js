@@ -135,7 +135,7 @@
       credits +
       (song.arranger ? '<div><span class="shared-song-meta-label">编曲</span><span>' + escapeHTML(song.arranger) + '</span></div>' : "") +
       (song.first_stage ? '<div><span class="shared-song-meta-label">首次登台</span><span>' + escapeHTML(song.first_stage) + '</span></div>' : "") +
-      (song.mv_url ? '<div><span class="shared-song-meta-label">MV链接</span><a href="' + escapeHTML(song.mv_url) + '" target="_blank" rel="noopener">观看 MV &#8599;</a></div>' : "") +
+      (song.mv_url ? '<div><span class="shared-song-meta-label">MV链接</span><a href="' + escapeHTML(song.mv_url) + '" target="_blank" rel="noopener">观看 MV <span data-native-emoji aria-hidden="true">&#8599;</span></a></div>' : "") +
       appearances + '</div>';
   }
 

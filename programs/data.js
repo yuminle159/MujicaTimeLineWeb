@@ -991,7 +991,14 @@ window.programsData = [
         "aliases": []
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】手指play：更适合鸡u体质的电影情报播报方式 邦TV#325切片=>https://www.bilibili.com/video/BV1SEGP6fEzp",
+      "【奏李组】说到live的干劲是主唱对键盘手使用了蹭蹭脸颊 邦TV#325切片=>https://www.bilibili.com/video/BV14VGu6BEBP",
+      "【奏李组】💃「给我一个特 别 的 亲 亲」💃 邦TV#325切片=>https://www.bilibili.com/video/BV19H3m6XETq",
+      "【奏李组】关于相方不管做什么都显得帅呆了这件事 邦TV#325切片=>https://www.bilibili.com/video/BV1XR3X6vEco",
+      "【奏李组】《女生如何发出女生无法拒绝的邀约》 邦TV#325切片=>https://www.bilibili.com/video/BV1zK3o6REQa",
+      "【奏李组】无法忍受在秀恩爱辣眼程度上低人一等的吃瓜情侣 邦TV#325切片=>https://www.bilibili.com/video/BV1EzMR6CEXo"
+    ]
   },
   {
     "program_id": "bdtv-0324",
@@ -1362,7 +1369,12 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】生 日 礼 物 在 说 话=>https://www.bilibili.com/video/BV1DF7L6gE86",
+      "【奏李组】桃李不言 momo被吃=>https://www.bilibili.com/video/BV14iTe6wEfp",
+      "【奏李组】ObDo超经意展示=>https://www.bilibili.com/video/BV1WXT46TEuw",
+      "【奏李组】新游戏太好玩了我看看看看看看=>https://www.bilibili.com/video/BV1y3Mc6AEMm"
+    ]
   },
   {
     "program_id": "bdtv-0320",
@@ -1544,7 +1556,9 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】妖艳而耽美的主唱家里那位会被尖叫着抓回家吗 邦TV#318切片=>https://www.bilibili.com/video/BV1RpjN6SEkJ"
+    ]
   },
   {
     "program_id": "bdtv-0317",
@@ -1985,7 +1999,9 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】6th BD Reaction但看到键盘会发出奇妙叫声的主唱 邦TV#309切片=>https://www.bilibili.com/video/BV1zGDyBSEU7"
+    ]
   },
   {
     "program_id": "bdtv-0308",
@@ -2033,7 +2049,9 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】黄馒头：❤️ob大人❤️ 邦TV#308切片=>https://www.bilibili.com/video/BV1Kz9MBTEog"
+    ]
   },
   {
     "program_id": "bdtv-0307",
@@ -3693,7 +3711,9 @@ window.programsData = [
         "aliases": []
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】办公室恋爱的危害ep03 主演：青木警官 邦TV#277切片=>https://www.bilibili.com/video/BV1cUbi67EBg"
+    ]
   },
   {
     "program_id": "program-20250814-cbcdb3e1",
@@ -3884,7 +3904,10 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】双向奔赴：mjc核心是虐待主唱而主唱正好是抖M 邦TV#275切片=>https://www.bilibili.com/video/BV13h426XEF5",
+      "【奏李组】《史诗级牛马主唱的福报：最爱大钢琴的她拥有了世界级的她》 邦TV#275切片=>https://www.bilibili.com/video/BV1xMKa6SE3e"
+    ]
   },
   {
     "program_id": "bdtv-0274",
@@ -4622,7 +4645,12 @@ window.programsData = [
         "aliases": []
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】那个键盘手：我家李子桑在当偶像～ 邦TV#262切片=>https://www.bilibili.com/video/BV1dugx6tEhs",
+      "【奏李组】颜首演reaction：很love弄大人hate并开始狂喜乱舞的主唱 邦TV#262切片=>https://www.bilibili.com/video/BV1qP3u6DEG2",
+      "【奏李组】擅长吃10个饭团的高尾同学 邦TV#262切片=>https://www.bilibili.com/video/BV12v3w6jETC",
+      "【奏李组】办公室恋爱的危害ep02 主演：青木警官 邦TV#262切片=>https://www.bilibili.com/video/BV1Y2gH62Ei1"
+    ]
   },
   {
     "program_id": "bdtv-0261",
@@ -4833,7 +4861,9 @@ window.programsData = [
         "aliases": []
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】🙇 工 伤 致 歉 🙇  邦TV#255 #258切片=>https://www.bilibili.com/video/BV1QhV866EaJ"
+    ]
   },
   {
     "program_id": "bdtv-0257",
@@ -4958,7 +4988,9 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】面具之下的真实：佐佐木李子诉说的关于三角初华的一切 邦TV#256切片=>https://www.bilibili.com/video/BV1QfdUBaE5u"
+    ]
   },
   {
     "program_id": "bdtv-0255",
@@ -5004,7 +5036,16 @@ window.programsData = [
         "aliases": []
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】可靠的年下键盘手发表一定会让好孩子主唱打喷嚏宣言 邦TV#255切片=>https://www.bilibili.com/video/BV1dYGE61EPQ",
+      "【奏李组】闯祸后惊慌失措的主唱选择把炸弹递给可靠的年下键盘手 邦TV#255切片=>https://www.bilibili.com/video/BV1JDVN6DE14",
+      "【奏李组】🙇 工 伤 致 歉 🙇  邦TV#255 #258切片=>https://www.bilibili.com/video/BV1QhV866EaJ",
+      "【奏李组】拼命将监禁解读为8+歌曲的主唱和她不配合的女同事 邦TV#255切片=>https://www.bilibili.com/video/BV1gX7y64EkW",
+      "【奏李组】查重率不通过之我也十分尊敬席琳·迪翁老师 邦TV#255切片及其他=>https://www.bilibili.com/video/BV1bqMM6bEGw",
+      "【奏李组】mjc秘闻：顶天立地大主唱有个小五岁的萝莉妈妈 邦TV#255切片=>https://www.bilibili.com/video/BV13qNx6rEcr",
+      "【奏李组】史上最！@#￥%…&*的工商环节 邦TV#255切片=>https://www.bilibili.com/video/BV1KEKB6TEgq",
+      "【奏李组】是萝莉妈妈是调皮年下也是绿袖子情人 邦TV#255切片=>https://www.bilibili.com/video/BV1XRKH6iEf6"
+    ]
   },
   {
     "program_id": "bdtv-0254",
@@ -5318,7 +5359,11 @@ window.programsData = [
         "aliases": []
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】神降临：Oblivionis首谈入侵Doloris领域 邦TV#250切片=>https://www.bilibili.com/video/BV1zsAbzzEQ6",
+      "【奏李组】主唱键盘的二人世界小讲堂：听着她的呼吸声我就能做到… 邦TV#250切片=>https://www.bilibili.com/video/BV1CrArzjEK4",
+      "【奏李组】无法想象李子拉雪橇但拉的不是自己的高尾奏音选择变成雪橇 邦TV#250切片=>https://www.bilibili.com/video/BV1C9PHz8EL7"
+    ]
   },
   {
     "program_id": "bdtv-0249",
@@ -5711,7 +5756,9 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】办公室恋爱的危害ep01 主演：青木警官 邦TV#245切片=>https://www.bilibili.com/video/BV1dCuB6fEXQ"
+    ]
   },
   {
     "program_id": "bdtv-0244",
@@ -6873,7 +6920,9 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】于当台被键盘手摁怀里擦泪的当下忆主唱第一次流Water：2nd爱知水元素首演 邦TV#223切片=>https://www.bilibili.com/video/BV1Pd5J6qEXy"
+    ]
   },
   {
     "program_id": "program-20240704-0169f741",
@@ -7367,7 +7416,9 @@ window.programsData = [
         ]
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】关于李子担心弄坏弄弄柔弱的身体的那些时候 邦TV#215 #203切片=>https://www.bilibili.com/video/BV1uacQzjEFR"
+    ]
   },
   {
     "program_id": "bdtv-0214",
@@ -7921,11 +7972,11 @@ window.programsData = [
       }
     ],
     "clips": [
-      "https://www.bilibili.com/video/BV1uacQzjEFR",
-      "https://www.bilibili.com/video/BV1YgRbB6EvU",
-      "https://www.bilibili.com/video/BV14H5q69E4H",
-      "https://www.bilibili.com/video/BV1aoLV6iEe2",
-      "https://www.bilibili.com/video/BV18mLz6BECd"
+      "【奏李组】关于李子担心弄坏弄弄柔弱的身体的那些时候 邦TV#215 #203切片=>https://www.bilibili.com/video/BV1uacQzjEFR",
+      "【奏李组】24年初的双月小故事：弄李还需要商量动作的清纯时候 邦TV#203切片=>https://www.bilibili.com/video/BV1YgRbB6EvU",
+      "【奏李组】同队恋爱的危险分子潜伏期人物介绍by受害者 邦TV#203切片=>https://www.bilibili.com/video/BV14H5q69E4H",
+      "【奏李组】已经在live上演杂技的爱吃醋的佐佐木李子 邦TV#203切片=>https://www.bilibili.com/video/BV1aoLV6iEe2",
+      "【奏李组】后脑勺长着头发的福尔图娜（幸运女神） 邦TV#203切片=>https://www.bilibili.com/video/BV18mLz6BECd"
     ]
   },
   {
