@@ -49,7 +49,7 @@ PAGE_FILES = {
     "live": ("index.html", "style.css", "data.js", "page.js"),
     "timeline": ("index.html", "style.css", "data.js", "page.js"),
     "gallery": ("index.html", "style.css", "data.js", "page.js"),
-    "interview": ("index.html", "style.css", "page.js", "data.js", "articles"),
+    "interview": ("index.html", "style.css", "page.js", "data.js", "articles", "timeline.css", "timeline-model.js", "timeline.js"),
     "discography": ("index.html", "style.css", "data.js", "page.js"),
     "upcoming": ("index.html", "style.css", "page.js", "events.js"),
     "programs": ("index.html", "style.css", "page.js", "data.js", "statistics.js", "statistics.css"),

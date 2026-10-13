@@ -9,9 +9,10 @@
 - `cast_name` 为标准名，`band` 为所属乐队，`band_color` 为十六进制颜色（如 `#881144`），`aliases` 为日文名等别名，多值用 `|` 分隔。
 - 页面每次打开默认勾选「只看 Ave Mujica」，条件为至少一位出演者的字典乐队包含 `Ave Mujica`。取消可看全档案；未配置归属的出演者显示「其他」。出演者筛选按 N:Q 对应表顺序排列，「其他」人员放在最后，不凭姓名推断归属。
 - 支持节目、年份、出演者多选、关键字和日期排序。出演者必须全部出演（A&B）；出演者控件与年份、排序并排，支持清空选择，重置恢复默认「只看 Ave Mujica」。点击节目中的姓名标签可切换该人的选中状态。出演记录侧栏暂不展示；别名归一。桌面端每行四个节目，窄屏自适应为两列或一列。
-- 官方视频与切片均新窗口打开。无切片时显示「暂无切片」。
+- 官方完整节目显示为 YouTube 主入口；字幕组切片显示在可展开的 Bilibili 列表，附切片数量。两者均新窗口打开。无切片时显示「暂无切片」。数据仍使用 `video_url` 和 `clips` 两列。
+- 更新 `video_url` 时参考官方 YouTube 播放列表；更新 `clips` 时参考字幕组 Bilibili 合集 `https://space.bilibili.com/3690988597938228/lists/7952732?type=season`，按标题中的邦 TV 期数匹配。切片用 `标题=>链接` 保存，保留已有内容。
 
-维护后在数据更新 exe 中勾选「节目档案（Programs）」生成，或运行 `python generate_all.py --programs`。完整生成也会包含此模块。封面补齐使用 `python sync_programs.py`；调用 `update-programs` skill 可核对官方节目资料，切片始终手动维护。构建发布目录使用现有 `python build_site.py`。
+维护后在数据更新 exe 中勾选「节目档案（Programs）」生成，或运行 `python generate_all.py --programs`。完整生成也会包含此模块。封面补齐使用 `python sync_programs.py`；调用 `update-programs` skill 可核对官方节目资料并同步字幕组切片。构建发布目录使用现有 `python build_site.py`。
 
 ## Program Statistics
 

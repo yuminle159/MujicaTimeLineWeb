@@ -101,7 +101,12 @@
       body.appendChild(makeElement("span", "something-new-drawer-date", formatDate(item.update_date)));
       body.appendChild(makeElement("strong", "something-new-drawer-title", item.title));
       body.appendChild(makeElement("span", "something-new-drawer-subtitle", item.subtitle));
-      body.appendChild(makeElement("span", "something-new-drawer-open", "OPEN FILE  ↗"));
+      const open = makeElement("span", "something-new-drawer-open", "OPEN FILE  ");
+      const arrow = makeElement("span", "", "↗");
+      arrow.setAttribute("data-native-emoji", "");
+      arrow.setAttribute("aria-hidden", "true");
+      open.appendChild(arrow);
+      body.appendChild(open);
 
       card.appendChild(visual);
       card.appendChild(body);

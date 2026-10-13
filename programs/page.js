@@ -50,7 +50,7 @@
   }
   function externalLink(url, title) {
     const safe = safeUrl(url);
-    return safe ? `<a href="${escape(safe)}" target="_blank" rel="noopener noreferrer">${escape(title)} ↗</a>` : '';
+    return safe ? `<a href="${escape(safe)}" target="_blank" rel="noopener noreferrer">${escape(title)}</a>` : '';
   }
   function card(item) {
     const upcoming = isUpcoming(item);
@@ -61,8 +61,15 @@
     const coverContent = image + `<span class="episode-label">${escape(item.episode || 'SPECIAL')}</span>` + (upcoming ? '<span class="broadcast-badge"><span aria-hidden="true">◷</span> 待播</span>' : '');
     const cover = video ? `<a class="cover-link" href="${escape(video)}" target="_blank" rel="noopener noreferrer" aria-label="${upcoming ? '预约直播' : '观看'} ${escape(title)}">${coverContent}</a>` : `<div class="cover-link">${coverContent}</div>`;
     const tags = item.performers.map(person => `<button type="button" class="cast-tag" data-person="${escape(person.name)}" style="--band-color:${color(person)}" aria-pressed="${selectedPerformers.has(person.name)}" aria-label="筛选 ${escape(person.name)} 出演的节目"><span>${escape(person.name)}</span><small>${escape(band(person))}</small></button>`).join('');
-    const clips = item.clips.map((url, index) => externalLink(url, `切片 ${index + 1}`)).filter(Boolean);
-    return `<article class="program-card${upcoming ? ' is-upcoming' : ''}" id="${escape(item.program_id)}">${cover}<div class="card-body"><div class="program-date">${escape(item.date.replaceAll('-', '.') || '日期待确认')}${item.time ? `<span>${escape(item.time)} (UTC${escape(item.timezone)})</span>` : ''}</div><p class="series-label">${escape(item.program)}</p><h3>${escape(title)}</h3><div class="cast-tags">${tags || '<span class="no-clips">出演者待补充</span>'}</div><div class="card-actions">${externalLink(item.video_url, upcoming ? '直播预约' : '完整节目')}${clips.join('')}${!clips.length && !upcoming ? '<span class="no-clips">暂无切片</span>' : ''}</div>${item.notes ? `<details class="notes"><summary>节目备注</summary><p>${escape(item.notes)}</p></details>` : ''}</div></article>`;
+    const clips = item.clips.map((value, index) => {
+      const separator = value.indexOf('=>');
+      const label = separator < 0 ? `切片 ${String(index + 1).padStart(2, '0')}` : value.slice(0, separator).trim() || `切片 ${String(index + 1).padStart(2, '0')}`;
+      const url = separator < 0 ? value : value.slice(separator + 2).trim();
+      return externalLink(url, label);
+    }).filter(Boolean);
+    const fullVideo = video ? `<a class="full-video-link" href="${escape(video)}" target="_blank" rel="noopener noreferrer"><span><small>${upcoming ? 'OFFICIAL LIVE' : 'FULL PROGRAM · YOUTUBE'}</small><strong>${upcoming ? '前往直播预约' : '观看完整节目'}</strong></span></a>` : `<div class="full-video-unavailable">完整节目暂未收录</div>`;
+    const clipSection = clips.length ? `<details class="clip-section"><summary><span class="clip-section-title">字幕组切片 <small>BILIBILI</small></span><span class="clip-count">${clips.length} 条 <span aria-hidden="true">⌄</span></span></summary><div class="clip-links">${clips.join('')}</div></details>` : (!upcoming ? '<div class="clip-section-empty">字幕组切片 <span>暂无切片</span></div>' : '');
+    return `<article class="program-card${upcoming ? ' is-upcoming' : ''}" id="${escape(item.program_id)}">${cover}<div class="card-body"><div class="program-date">${escape(item.date.replaceAll('-', '.') || '日期待确认')}${item.time ? `<span>${escape(item.time)} (UTC${escape(item.timezone)})</span>` : ''}</div><p class="series-label">${escape(item.program)}</p><h3>${escape(title)}</h3><div class="cast-tags">${tags || '<span class="no-clips">出演者待补充</span>'}</div><div class="program-watch">${fullVideo}${clipSection}</div>${item.notes ? `<details class="notes"><summary>节目备注</summary><p>${escape(item.notes)}</p></details>` : ''}</div></article>`;
   }
   function render() {
     const filtered = data.filter(baseMatches);
