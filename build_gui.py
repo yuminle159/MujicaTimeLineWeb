@@ -268,10 +268,11 @@ def require_executable_closed_for_update():
     """Avoid checking out a running EXE, including when retry starts at the merge step."""
     if not getattr(sys, "frozen", False):
         return
-    changed_files = run_git_command("diff", "--name-only", "HEAD..origin/main")[1].splitlines()
+    # -z keeps non-ASCII paths unquoted, so the Chinese EXE name can be matched.
+    changed_files = run_git_command("diff", "--name-only", "-z", "HEAD..origin/main")[1].split("\0")
     executable_name = os.path.basename(sys.executable)
     if any(
-        os.path.normcase(path.strip()) == os.path.normcase(executable_name)
+        os.path.normcase(path) == os.path.normcase(executable_name)
         for path in changed_files
     ):
         raise SelfUpdateRequired()

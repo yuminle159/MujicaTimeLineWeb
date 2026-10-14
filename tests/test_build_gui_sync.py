@@ -11,7 +11,7 @@ class SyncRetryTests(unittest.TestCase):
         def fake_git(*args, **kwargs):
             commands.append(args)
             if args[:2] == ("diff", "--name-only"):
-                return 0, "wijipedia_数据更新工具.exe\nindex.html"
+                return 0, "wijipedia_数据更新工具.exe\0index.html\0"
             return 0, ""
 
         with (
@@ -24,6 +24,7 @@ class SyncRetryTests(unittest.TestCase):
                 build_gui.run_start_workflow(lambda message: None, start_step=2)
 
         self.assertNotIn(("merge", "--ff-only", "origin/main"), commands)
+        self.assertIn(("diff", "--name-only", "-z", "HEAD..origin/main"), commands)
 
     def test_merge_retry_without_exe_change_can_continue(self):
         commands = []
@@ -31,7 +32,7 @@ class SyncRetryTests(unittest.TestCase):
         def fake_git(*args, **kwargs):
             commands.append(args)
             if args[:2] == ("diff", "--name-only"):
-                return 0, "index.html"
+                return 0, "index.html\0"
             return 0, ""
 
         with (
