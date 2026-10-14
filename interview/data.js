@@ -241,7 +241,7 @@ var interviewData = [
     date: "2025-01-17 00:00:00",
     interviewee: "渡濑结月 x 高尾奏音",
     title: "「リスパレ！チョイス」选出艺人・Ave Mujica x 丰田穗乃花 对谈",
-    if_translated: "no",
+    if_translated: "yes",
     hash_id: "EGHiOMHcXyX",
     sections: [{"id": "section-01", "title": "「リスパレ！」力荐 Ave Mujica 的理由是什么？"}, {"id": "section-02", "title": "回顾那场伴随震撼惊喜一同呈现的4th LIVE"}, {"id": "section-03", "title": "聊聊热门OP「KiLLKiSS」与动画配音的幕后故事！"}, {"id": "section-04", "title": "也请留意歌词！让人直到最后都沉浸于动画世界的ED"}, {"id": "section-05", "title": "假如Ave Mujica要推出自己的专属广播节目的话……？"}],
     related: [{"id": "tLoc6uej4kx", "reason": "共同受访者：渡濑结月"}, {"id": "qDzrFr9bmoq", "reason": "共同受访者：高尾奏音"}, {"id": "BE9kJEFFOW6", "reason": "共同受访者：高尾奏音"}],
