@@ -15,6 +15,8 @@ from pathlib import Path
 import tk_runtime_hook
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
+from tkinterdnd2 import TkinterDnD
+from image_renamer import RenameDialog
 
 try:
     from PIL import Image
@@ -108,58 +110,13 @@ MODULE_NAMES = {
 
 
 def convert_images_to_webp(folder_path, log_func=None):
-    """将文件夹中的图片转为 WebP 格式并压缩（max_width=1920, quality=75, method=6）
-    已存在同名 .webp 的文件始终跳过，避免重复转换和覆盖已有图片。
-    """
-    def log(msg):
-        (log_func or print)(msg)
-
+    """Convert a folder using the same rules as the batch rename dialog."""
+    from image_conversion import convert_image_files_to_webp
     if not os.path.isdir(folder_path):
-        log(f"  [跳过] 目录不存在: {folder_path}")
+        (log_func or print)(f"  [跳过] 目录不存在: {folder_path}")
         return 0
-
-    supported_formats = ('.png', '.jpg', '.jpeg', '.webp', '.bmp', '.tiff', '.tif')
-    converted = 0
-    for filename in os.listdir(folder_path):
-        if not filename.lower().endswith(supported_formats):
-            continue
-        if filename.lower().endswith('.webp'):
-            continue
-
-        file_path = os.path.join(folder_path, filename)
-        name_without_ext = os.path.splitext(filename)[0]
-        webp_path = os.path.join(folder_path, f"{name_without_ext}.webp")
-
-        # 跳过已存在 webp 的文件
-        if os.path.abspath(file_path) != os.path.abspath(webp_path) and os.path.exists(webp_path):
-            continue
-
-        temp_path = webp_path + ".tmp"
-        orig_size_kb = os.path.getsize(file_path) / 1024 if os.path.exists(file_path) else 0
-
-        try:
-            with Image.open(file_path) as img:
-                if img.mode not in ('RGB', 'RGBA'):
-                    img = img.convert('RGBA')
-
-                # 缩放
-                max_width = 1920
-                if img.width > max_width:
-                    new_h = int(img.height * (max_width / img.width))
-                    img = img.resize((max_width, new_h), Image.Resampling.LANCZOS)
-                    log(f"    [缩放] {filename}: {img.width}x{img.height} -> {max_width}x{new_h}")
-
-                img.save(temp_path, 'webp', quality=75, method=6)
-
-            new_size_kb = os.path.getsize(temp_path) / 1024
-            os.replace(temp_path, webp_path)
-            log(f"    {filename} ({orig_size_kb:.1f}KB -> {new_size_kb:.1f}KB)")
-            converted += 1
-        except Exception as e:
-            log(f"    [失败] {filename}: {e}")
-            if os.path.exists(temp_path):
-                os.remove(temp_path)
-    return converted
+    paths = [Path(folder_path) / name for name in os.listdir(folder_path)]
+    return len(convert_image_files_to_webp(paths, log_func)["created"])
 
 
 def discover_sheets():
@@ -799,6 +756,15 @@ class App:
         btn_preview.grid(row=1, column=2, sticky="ew", padx=(5, 0))
         self.action_buttons.append(btn_preview)
 
+        btn_rename = tk.Button(
+            tools_grid, text="图片批量重命名", command=lambda: RenameDialog(self.root),
+            font=("Microsoft YaHei", 9), fg="#bbb", bg="#1a1a1a",
+            relief="flat", padx=12, pady=7, cursor="hand2",
+            activebackground="#2a2a2a", activeforeground="#fff",
+        )
+        btn_rename.grid(row=2, column=0, sticky="ew", padx=(0, 5), pady=(7, 0))
+        self.action_buttons.append(btn_rename)
+
         # 运行状态与折叠的详细日志
         status_frame = tk.Frame(root, bg="#141414", highlightthickness=1, highlightbackground="#2a2a2a")
         status_frame.pack(fill="x", padx=24, pady=(0, 12))
@@ -1072,6 +1038,49 @@ class App:
 
 
 def main():
+    if "--smoke-test-rename" in sys.argv:
+        import tempfile
+        import time
+        from types import SimpleNamespace
+        from image_renamer import make_plan, execute
+        root = TkinterDnD.Tk()
+        root.withdraw()
+        dialog = RenameDialog(root)
+        dialog.withdraw()
+        with tempfile.TemporaryDirectory() as folder:
+            paths = [Path(folder) / "原图 2.jpg", Path(folder) / "原图 1.PNG"]
+            for path in paths:
+                Image.new('RGB', (40, 20), 'red').save(path)
+            dialog.drop(SimpleNamespace(data=tk._join([str(path) for path in paths])))
+            dialog.prefix.set("20240411邦tv212")
+            root.update_idletasks()
+            assert len(dialog.plan) == 2
+            assert dialog.convert_webp.get() is True
+            dialog.run()
+            deadline = time.monotonic() + 30
+            while dialog.busy and time.monotonic() < deadline:
+                root.update()
+                time.sleep(0.02)
+            assert not dialog.busy, 'WebP conversion timeout'
+            assert len(dialog.created_webp) == 2
+            assert not (Path(folder) / "20240411邦tv212-01.PNG").exists()
+            assert (Path(folder) / "20240411邦tv212-01.webp").is_file()
+            assert not dialog.undo_plan
+            assert all(path.suffix == '.webp' and path.is_file() for path in dialog.paths)
+            dialog.clear()
+            for path in paths:
+                Image.new('RGB', (40, 20), 'red').save(path)
+            dialog.add(paths)
+            dialog.convert_webp.set(False)
+            dialog.prefix.set('只重命名')
+            dialog.run()
+            assert not dialog.busy
+            assert not (Path(folder) / '只重命名-01.webp').exists()
+            dialog.undo()
+        dialog.destroy()
+        root.destroy()
+        Path(PROJECT_DIR, "_build", "rename-smoke-ok.txt").write_text("OK", encoding="utf-8")
+        return
     if "--smoke-test-full-update" in sys.argv:
         # Exercise the frozen generator AND the frozen publication manifest.
         # This uses the same workflow as the GUI; only opening a browser is skipped.
@@ -1149,7 +1158,7 @@ def main():
             sys.path.remove(BASE_DIR)
         return
 
-    root = tk.Tk()
+    root = TkinterDnD.Tk()
     App(root)
     root.mainloop()
 

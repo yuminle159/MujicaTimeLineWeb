@@ -33,6 +33,7 @@ required_modules = {
     "sudachipy": "sudachipy",
     "sudachidict_small": "sudachidict_small",
     "jieba": "jieba",
+    "tkinterdnd2": "tkinterdnd2",
 }
 missing_packages = [
     package_name
@@ -78,6 +79,7 @@ cmd = [
     "--collect-all", "sudachipy",
     "--collect-all", "sudachidict_small",
     "--collect-all", "jieba",
+    "--collect-all", "tkinterdnd2",
     "--clean",
     script
 ]
