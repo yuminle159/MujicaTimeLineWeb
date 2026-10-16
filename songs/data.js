@@ -1326,5 +1326,47 @@ var songsData = [
       { text: "电影「BanG Dream! Ave Mujica prima aurora」插入歌", source: "", from: "Remark", date: "" }
     ],
     live_history: []
+  },
+  {
+    name: "A Song Of Romance Pt.2",
+    name_jp: "A Song Of Romance Pt.2",
+    hash_id: "NukOyd1hOBH",
+    album: "电影「BanG Dream! Ave Mujica prima aurora」 插入曲",
+    album_year: "2026",
+    release_date: "2026/10/16",
+    cover: "",
+    type: "Original",
+    lyricist: "",
+    composer: "",
+    arranger: "",
+    first_stage: "Coming Soon…",
+    mv_url: "",
+    lyrics_jp: "",
+    lyrics_cn: "",
+    search_keywords: "",
+    appearances: [],
+    comments: [],
+    live_history: []
+  },
+  {
+    name: "BADDY BADDY",
+    name_jp: "BADDY BADDY",
+    hash_id: "HX4e1JkJ5T3",
+    album: "电影「BanG Dream! Ave Mujica prima aurora」 插入曲",
+    album_year: "2026",
+    release_date: "2026/10/16",
+    cover: "",
+    type: "Original",
+    lyricist: "",
+    composer: "",
+    arranger: "",
+    first_stage: "Coming Soon…",
+    mv_url: "",
+    lyrics_jp: "",
+    lyrics_cn: "",
+    search_keywords: "",
+    appearances: [],
+    comments: [],
+    live_history: []
   }
 ];

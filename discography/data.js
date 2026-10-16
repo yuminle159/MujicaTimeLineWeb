@@ -92,7 +92,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "01",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "神の名を",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -101,7 +101,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "02",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "A Song Of Romance Pt.2",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -110,7 +110,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "03",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "BADDY BADDY",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -119,7 +119,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "04",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "A Song Of Romance",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -175,7 +175,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "01",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "神の名を",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -184,7 +184,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "02",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "A Song Of Romance Pt.2",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -193,7 +193,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "03",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "BADDY BADDY",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -202,7 +202,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "04",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "A Song Of Romance",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -245,7 +245,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "01",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "神の名を",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -254,7 +254,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "02",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "A Song Of Romance Pt.2",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -263,7 +263,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "03",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "BADDY BADDY",
             "content_title": "",
             "duration": "",
             "note": ""
@@ -272,7 +272,7 @@ var discographyData = [
             "disc_no": "01",
             "disc_type": "CD",
             "track_no": "04",
-            "song_name": "新曲「标题未公开」",
+            "song_name": "A Song Of Romance",
             "content_title": "",
             "duration": "",
             "note": ""
