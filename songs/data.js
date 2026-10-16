@@ -734,6 +734,7 @@ var songsData = [
     search_keywords: "kk，杀吻，op",
     appearances: ["KiLLKiSS", "Completeness", "Ave Música"],
     comments: [
+      { text: "TV动画『BanG Dream! Ave Mujica』OP", source: "", from: "Remark", date: "" },
       { text: "我认为，能让人由衷感叹“这正是‘The Ave Mujica’”的说服力，以及能够代表迄今为止所有主题的综合实力是必需的。\\n\n关于标题，我的基本构想是：要有能让人一下子豁然开朗的易懂感，要有一种似曾相识却又前所未有的感觉，总之语感要抓耳，同时还能全方位地概括乐队的形象概念。基于这些，我脑海中第一个闪现的就是这个名字。\\n\n感觉非常自然，有种很好的预感，所以我想将它作为标志性的关键词来使用，在保持一贯的品格与紧张感的同时，通过诗词和音乐构筑出不可动摇的世界观。\\n\n并且，在展现适合新篇章的冲击力与华丽感的同时，为了将曾经由「黒のバースデイ」开启的故事与角色特性更加赤裸裸地展现出来，我认为同时继承哥特风格及其背景中的隐喻也是非常重要的。\\n\n「弄られて垂れ流す 音のない音」\\n\n「被玩弄着倾泻出 无声之音」\\n\n通过第一声在潜意识中会影响人的关键词迫使观众面对那种触目惊心的真实感与鲜活感，\\n\n在揭露无法抹去的过去、无法逃避的人类本源的孤独、以及终将被迫自立而破碎的内心的同时，表达呈现出这种“悲哀”从此处不为人知地逐渐激化、逐渐失控的形态。\\n\n我也强调了：即便舍弃名字，即便试图远离什么，原本的真实始终如一。\\n\n而在另一方面，我也置入了一个相去甚远、浩瀚无垠的概念。\\n\n「エネルギーはサイクル」\\n\n「能量循环往复」\\n\n那种自身是宇宙一部分的潜在感觉，以及“本真如此”的思想，是延伸至前作「Ether」的精神世界。\\n\n不过，这里的“completeness”（完美），除了包含「Ether」中那种“因果的完全性”的含义外，还有另一种意图，即指向人们通过想象构建起来的故事与角色性的某种“抵达”。 \\n\n我脑海中想象了这样一幅画面：摆脱来自过去的束缚、支配性的事物以及背叛，甩开那些不断浮现的一幕幕场景，在月夜下映照出真实的自己。\\n\n在Hook（副歌）部分，让语言一举觉醒。\\n\n这里描写的“接吻”所暗示的内容，其中的意象也会让人联想到了圣经中非常著名的题材，而在这样的视觉意象中连续释放的词语，我让它们在保持相同含义的同时改变拼写，以三种节奏构成了在演唱时的语感和发音上都能名副其实地“Hook（钩住）”住听众的冲击力。\\n\n通过“与时间共存之物”、“言行的表里”、“心情的阴阳”等表达人格的多面性，同时像这样将它们罗列并符号化，使直接的背景母题在暗处若隐若现。但在听感和表面上，又将其封闭在以“原创/Ave Mujica”的诗词世界为轴心的艺术之中，确保其归根结底，能作为一种“音乐上的语感”而成立。\\n\n这是我作词的基本手法之一。\\n\n「高举双手 祈愿吧」\\n\n所谓人，就是会标榜卑劣又傲慢的理想，抑或是祈求幸福，为了抓住幸福而挣扎、向某些事物献媚、反抗，有时甚至流着血，在这颗星球上延伸着自己的影子的存在。\\n\n能够理解的人，又或是与这一切无缘的人，命运便在这些节点上分化出无数的岔路。\\n\n欺骗、拥抱、哭泣、欢笑。复杂性的一面又一面，孕育着巨大矛盾的“我”。 \\n\n在逐渐暴露人性与历史、以及愈发激烈的心灵呐喊的同时，拥抱着“KiLL（杀）”与“KiSS（吻）”的两面并逐渐扭曲，在某种意义上，这可以说是过于坦诚的生命的真正的声音。希望大家聆听“这个世界的‘声音’”，并沉浸其中。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
     ],
     live_history: [
@@ -779,7 +780,7 @@ var songsData = [
     name: "Georgette Me, Georgette You",
     name_jp: "Georgette Me, Georgette You",
     hash_id: "g2LwpyA5VV6",
-    album: "『BanG Dream! Ave Mujica』#1～#3 电影院先行上映",
+    album: "TV动画『BanG Dream! Ave Mujica』#1～#3 电影院先行上映",
     album_year: "2024",
     release_date: "2024/12/27",
     cover: "../images/GMGY.webp",
@@ -794,6 +795,7 @@ var songsData = [
     search_keywords: "GMGY,ed，缠你缠我",
     appearances: ["KiLLKiSS", "Completeness", "Ave Música"],
     comments: [
+      { text: "TV动画『BanG Dream! Ave Mujica』ED", source: "", from: "Remark", date: "" },
       { text: "我一边想着，如果能将被戏剧化的情感故事比作白银色的乔其纱（Georgette）来表现就好了，一边写下了这首歌。\\n\n此外，关于频频登场的“月”，以及其所比喻的对象，我也希望能在各种各样的乐曲中运用它，带来不同的想象。\\n\n在这首歌里，我尤其像描绘一幅美丽的画作那样，一字一句地精心编织。\\n\n“拒绝之事” “接纳之事” \\n\n人，在“人生的旋转舞台”上不停地扮演着自己。有时甚至会活成并非自己的另一个人。\\n\n我也希望能够表达出这样一种内涵：“在内心的某个地方，我们都知道存在着一种无法控制的、引导着我们的命运。”\\n\n真的非常不可思议，人总是同时兼容着相互矛盾的事物。\\n\n重要的是“微妙”这一点。也就是说，“细腻到令人害怕”。 \\n\n作为与以往作品的共同项，我在第二段歌词中也加入了隐约让人联想到宗教背景的语句。\\n\n随之而来的转折点。\\n\n在人生的各种意义上，都可以认为在“丧失”之后，才是“真正的开始”。 \\n\n「あなたが触れたわ　この傷口に」\\n\n“是你触碰到了啊 这处伤口” \\n\n如果将其理解为：各种各样的事情逐渐变得明晰，在不断蔓延的悲伤中逐渐懂得人生。那么，那重重交织闪耀着的光芒同时既是痛苦，而黑暗的深邃则让那光芒绽放出更加耀眼的光彩。\\n\n这是一首纯粹执着于“语言描写”的歌曲。\\n\n此外，这首歌在构建与动画不同的“独立性”过程中，也采用了这样一种形式：既表现人拼命延续生命的美，又同时带有可以解读为恋爱中关系性表达的一面。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
     ],
     live_history: [
@@ -854,7 +856,7 @@ var songsData = [
     name: "Imprisoned XII",
     name_jp: "Imprisoned XII",
     hash_id: "7eSWmR3YWGn",
-    album: "『BanG Dream! Ave Mujica』#10 插入曲",
+    album: "TV动画『BanG Dream! Ave Mujica』#10 插入曲",
     album_year: "2025",
     release_date: "2025/3/6",
     cover: "../images/囚12.webp",
@@ -869,6 +871,7 @@ var songsData = [
     search_keywords: "囚禁，监禁，囚12",
     appearances: ["Completeness", "Ave Música"],
     comments: [
+      { text: "TV动画『BanG Dream! Ave Mujica』#10 插入曲", source: "", from: "Remark", date: "" },
       { text: "“监禁”“占有” \\n\n在描写因为抱有理想而产生的嫉妒、愿望的扭曲、支配性的独占欲等利己主义时，这首歌曲刻意使用了字面意义上扭曲的词尾和过于直白的措辞，展现了那种近乎疯狂的不可理喻的一面，或者说是“强硬”的感觉。\\n\n我觉得这些词汇连续出现所带来的不稳定性，也给听众留下了可以想象的空白。\\n\n在“告解”这一层面上，我原本也想过同时沿用背景性的要素。但在在这首歌里，相比于那些，我选择优先凸显故事本身的意象，从而让焦点始终集中在人物内心活动的戏剧冲突上，以此来完成整首作品。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
     ],
     live_history: [
@@ -892,7 +895,7 @@ var songsData = [
     name: "Crucifix X",
     name_jp: "Crucifix X",
     hash_id: "uKi0624MMjg",
-    album: "『BanG Dream! Ave Mujica』#10 插入曲",
+    album: "TV动画『BanG Dream! Ave Mujica』#10 插入曲",
     album_year: "2025",
     release_date: "2025/3/6",
     cover: "../images/十字架.webp",
@@ -907,6 +910,7 @@ var songsData = [
     search_keywords: "十字架",
     appearances: ["Completeness"],
     comments: [
+      { text: "TV动画『BanG Dream! Ave Mujica』#10 插入曲", source: "", from: "Remark", date: "" },
       { text: "这首歌将具有强烈世界观的哥特乐队的定位与构想推向了极致。\\n\n这是一首非常契合其本身定位的歌曲，为了更好地凸显这支乐队本身的“不祥的形象”，我一边采用了这样的表现方式，一边思考着在某种意义上要让它稍微夸张一些。\\n\n在「素晴らしき世界 でも どこにもない場所」「Angles」中融入了托马斯·莫尔和安妮·博林，在「ELEMENTS」中则不仅是人物，还加入了莎士比亚的《暴风雨》等其他各种神话与戏剧的片段，\\n\n像这样，迄今为止我们已经将极其复合、多种多样的母题混合在一起，编织出另一个故事性及其解读，这是她们所表现的“作为哥特乐队的Ave Mujica”的世界观得以被进一步强化的一部分核心要素。因此我重新提醒自己，要适时地加入这样的背景依据与艺术化处理，始终致力于打造出绝不落入俗套的描写与质感。\\n\n作为这首的灵感来源，大体上也是非常经典的方向，我将想象力驰骋于16、17世纪左右的欧洲并为其上色，因此这首歌与上述的那些乐曲也有着密切的联系。\\n\n仿佛亲吻玫瑰念珠的十字架的场景所暗示的人生“瞬间”。我一边想象着重叠着玛丽与伊丽莎白这样代表时代的女王的身影，一边融入各种信息，强调对“Scene（场景）”的聚焦，营造出故事的紧张感。\\n\n“完成宿命的那一刻”，或者是“将被命运捉弄的选择、岔路口” \\n\n开始转动的齿轮，和开始狂乱的齿轮\\n\n大概就是这种感觉。\\n\n题外话，其实这首歌还有一个最终在半途废弃的备用构想。\\n\n最初创作这首曲子时，我是以据说是玛丽在幽禁生活期间创作的编织物上所描绘的凤凰作为题材展开想象，从一个截然不同的角度来写的。\\n\n顺着这个关联进一步说，这与「ELEMENTS」中的「Symbol I : △(Fire)」也有着联系。\\n\n那里的“火”之元素是沙罗曼达，当然与凤凰无关。不过当时在「ELEMENTS」的主题和走向尚未明确决定的时期，关于这些的想法就已经记在了笔记本上。结果只保留了能够自洽的部分，这些部分在「△」中得到了一定程度的升华。在继续推进的过程中，又融合了圣女贞德等国度和时代都不同的参考对象以及各种背景，以大致看不出痕迹的程度和分寸被多样地混合在一起，最终作为「ELEMENTS」概念中的「Symbol I : △(Fire)」得以完成。\\n\n此外，我也曾考虑过让这首「Crucifix X」与「Imprisoned XII」直接形成“对立/呼应”。不不过，由于动画也在同步推进，在权衡各种平衡的过程中，我在意识到两者相互关系的同时，也将该分离开的部分在半途切断了，转变方向以便双方都能达到最佳的落脚点。「Imprisoned XII」这边决定只保留符号化的暗示性标题。包含这些在内的种种，也是一系列创作过程中的感性部分，事到如今，我将这些看作是我创作过程中的一种俯瞰视角的“心血来潮”或是“时机之妙”，也算是一件趣事。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
     ],
     live_history: [
@@ -934,7 +938,7 @@ var songsData = [
     name: "Octagram Dance",
     name_jp: "八芒星ダンス",
     hash_id: "AvyPCOtyeRO",
-    album: "『BanG Dream! Ave Mujica』#13 插入曲",
+    album: "TV动画『BanG Dream! Ave Mujica』#13 插入曲",
     album_year: "2025",
     release_date: "2025/3/27",
     cover: "../images/八芒星ournotes.webp",
@@ -949,6 +953,7 @@ var songsData = [
     search_keywords: "八芒星",
     appearances: ["Completeness", "Ave Música"],
     comments: [
+      { text: "TV动画『BanG Dream! Ave Mujica』#13 插入曲", source: "", from: "Remark", date: "" },
       { text: "这首曲子的主题是“马戏团”。 \\n\n在极其个人的想象中，我最先脑海中浮现的画面是：马戏团放射状的天花板仿佛将仰望者引向伯利恒之星。\\n\n我排除了圣诞节的含义，而是转向“八芒星（Octagram）”所具有的更加不可思议的奇妙感觉。\\n\n暗示性的advertising\\n\n用红色涂料画的大象、狮子、熊\\n\n戏剧、讽刺、幻术师、尘土、事件、死亡面具\\n\n此外，脑海中还浮现出古希腊剧场的象征——喜剧与悲剧的面具等，就像这样混杂在一起，接连不断地产生出无数的联想。\\n\n门后才是真正的life\\n\n法则、艺术、倒悬窥视的天使\\n\n穿透穹顶直达星辰，台词之中并无戏剧，失误即是致命，抓紧不要被甩落\\n\n活着这件事本身的奴隶\\n\n最初，我在笔记本的备忘录里写下了类似这样的话。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
     ],
     live_history: [
@@ -984,7 +989,7 @@ var songsData = [
     name: "Alter Ego",
     name_jp: "顔",
     hash_id: "iscoz8RZ2TB",
-    album: "『BanG Dream! Ave Mujica』#13 插入曲",
+    album: "TV动画『BanG Dream! Ave Mujica』#13 插入曲",
     album_year: "2025",
     release_date: "2025/3/27",
     cover: "../images/颜.webp",
@@ -999,6 +1004,7 @@ var songsData = [
     search_keywords: "颜，kao",
     appearances: ["Completeness", "Ave Música"],
     comments: [
+      { text: "TV动画『BanG Dream! Ave Mujica』#13 插入曲", source: "", from: "Remark", date: "" },
       { text: "这首歌非常注重玩心。\\n\n开篇通过Arlecchino、corset等词汇的选择，只是为了轻巧地带出世界观的统一感。之后便全神贯注地追求干脆利落的短语带来的冲击力。\\n\n这是一首会因演唱的律动（Groove）而让人印象完全改变的曲子，所以我对与此相关的编曲进行了一些近乎偏执的协调性上的细节的调整。可以说，在此基础上的演唱表现，最终确定了作品的完成形态。\\n\n即使唱起来难度很高，为了不让听众听起来觉得生涩难懂，我也注重将其打磨成一首能够自然律动、对听众友好的歌曲。\\n\n稍稍离开紧绷的歌词世界，作为作品群中的一种变化，结果我觉得应该算是做出了悦耳的作品。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
     ],
     live_history: [
@@ -1039,7 +1045,7 @@ var songsData = [
     name: "Musica Caelestis",
     name_jp: "天球（そら）のMúsica",
     hash_id: "ZD2T9yOaJvZ",
-    album: "『BanG Dream! Ave Mujica』#13 插入曲",
+    album: "TV动画『BanG Dream! Ave Mujica』#13 插入曲",
     album_year: "2025",
     release_date: "2025/3/27",
     cover: "../images/天球.webp",
@@ -1054,6 +1060,7 @@ var songsData = [
     search_keywords: "天球",
     appearances: ["Completeness", "Ave Música"],
     comments: [
+      { text: "TV动画『BanG Dream! Ave Mujica』#13 插入曲", source: "", from: "Remark", date: "" },
       { text: "我着重考虑了虚构与幻想中的现实主义。\\n\n我强调了这样一种现实：当理解了“扭曲＝本色”时，了解了自己，在即将触手可及之时，眼前却迎来了最后的痛苦。\\n\n人在活着的时候会挑战各种斗争，怀抱情感，最终又将其遗忘。而无论是人还是任何有形之物终将消亡，这种规律非常自然，甚至在某种程度上让人觉得是件“好事”。所以在这首歌里，我同样在表现人性部分的同时，也描绘了循环、调和这些与以往共通的主题性。\\n\n这首歌歌唱的是：所有生命，都会在还能奏响属于自身生命赞歌的时候，竭尽全力地奏响，生命便是如此的存在。\\n\n关于“Ave Mujica”，我在不祥的世界观中思考“美丽的诗句”的机会是比较多的，但除此之外，也有例如“情色的诗句”，有时甚至有怎样都好的“胡闹轻浮的诗句”等，而无论编织怎样的诗词世界，都有一个共同点。我意识到：在作品的某些地方，总要加入与人的本性和真实情感紧密相连的东西，在作品中放上仿佛直刺内心深处的触目惊心的鲜活感与令人猛然意识到的真相，是非常重要的。\\n\n大概就是这种感觉：人类“真正想说的就是真实的事情”，而这一概念确实就在所谓的“具有诗性”之中。在这支乐队里也是如此，在构筑故事和世界观的过程中，我希望能描绘出不让其止步于此的观察视角，并在其中带入对未来、对展望，或者与“人究竟为何…”相关的共鸣，如果能引导出某种结论，那就是最理想的。\\n\n而且我认为，正是这些东西，构成了歌词真正的趣味和“内核”。 \\n\n基于“天文学依然是艺术”的观念，我想象着“奏响音乐的美丽天球”，并以此作为了标题。", source: "Ave Mujica Sound Producer Diggy-MO' Completeness解说", from: "Diggy-MO'", date: "2025/3/28" }
     ],
     live_history: [
@@ -1294,6 +1301,29 @@ var songsData = [
     appearances: [],
     comments: [
       { text: "Lady Gaga — Mayhem (2025)", source: "", from: "Originally by", date: "" }
+    ],
+    live_history: []
+  },
+  {
+    name: "God's Blood",
+    name_jp: "神の名を",
+    hash_id: "Ag3uEpfTAWX",
+    album: "电影「BanG Dream! Ave Mujica prima aurora」 插入曲",
+    album_year: "2026",
+    release_date: "2026/10/16",
+    cover: "../images/神名通常.webp",
+    type: "Original",
+    lyricist: "Diggy-MO'",
+    composer: "Diggy-MO' • hisakuni(SUPA LOVE)",
+    arranger: "Diggy-MO'",
+    first_stage: "Coming Soon…",
+    mv_url: "",
+    lyrics_jp: "",
+    lyrics_cn: "",
+    search_keywords: "电影，神血，神名",
+    appearances: [],
+    comments: [
+      { text: "电影「BanG Dream! Ave Mujica prima aurora」插入歌", source: "", from: "Remark", date: "" }
     ],
     live_history: []
   }
