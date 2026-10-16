@@ -2,6 +2,15 @@
 window.SOMETHING_NEW = [
   {
     "type": "song",
+    "ref": "God's Blood",
+    "update_date": "2026/10/16",
+    "title": "神の名を",
+    "subtitle": "电影「BanG Dream! Ave Mujica prima aurora」 插入曲 · 2026",
+    "image": "images/神名通常.webp",
+    "href": "songs/index.html?song=God%27s%20Blood"
+  },
+  {
+    "type": "song",
     "ref": "A Song Of Romance",
     "update_date": "2026/10/15",
     "title": "A Song Of Romance",

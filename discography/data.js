@@ -4,8 +4,8 @@
 var discographyData = [
   {
     "id": "kaminonawo",
-    "hash_id": "bOnHpeLPTDR",
-    "title": "God's Blood…",
+    "hash_id": "Yrcb11fIhiQ",
+    "title": "God's Blood",
     "title_jp": "神の名を",
     "release_date": "2026/10/21",
     "type": "MINI ALBUM",
