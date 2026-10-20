@@ -1318,10 +1318,10 @@ var songsData = [
     arranger: "Diggy-MO'",
     first_stage: "Coming Soon…",
     mv_url: "",
-    lyrics_jp: "",
-    lyrics_cn: "",
+    lyrics_jp: "'God's Blood'\\nそう 新たな幕開けは いま\\n我が時代（とき）を語れよ 讃え ひれ伏せよ\\n \\nreign, reign,\\nwhatever it takes\\n \\n‘天（そら）を統べて’と 無垢な狂気を\\n奏で魅せられて\\n振りかざすこの scythe の描く夢に\\n \\nand the 'God's Blood'\\nいざ 大いなる運命（destiny）いま 二つ目の光に\\nこの手よ 届けよ\\nすべからく‘奪うのだ’と 神の名を\\n \\nand the 'God's Blood'\\nひそやかに こころ揺るがす星 煌めき\\nその生くべき証に\\n‘奪うのだ’と‘謳うのだ’と そう\\n神の名を\\n \\n \\n \\nwho am i… reign,\\nwho am i… reign,\\n \\n \\n \\nいやや 待つのだ\\nいや 愚かだ\\nああ どうかしてしまったのだろうか 私は\\n \\n疑いをもつとき 成せると\\n畏れ慄くとき そうとも\\n \\nwho am i… know who i am\\nこの魂を抱いてより強くなれるのだから\\n \\n \\n \\nand the 'God's Blood'\\nいざ 大いなる運命(destiny) いま 二つ目の光に\\nこの手よ 届けよ\\nすべからく‘奪うのだ’と 神の名を\\n \\nand the 'God's Blood'\\nひそやかに こころ揺るがす星 煌めき\\nその生くべき証に\\n‘奪うのだ’と‘謳うのだ’と そう\\n神の名を",
+    lyrics_cn: "'God's Blood'\\n是的 崭新的序幕 就此揭开\\n传颂我的时代吧 赞颂我 向我俯首吧\\n \\nreign, reign,\\nwhatever it takes\\n \\n以“统御苍穹”之名 将纯洁无瑕的疯狂\\n奏响出来 并沉醉于\\n高高挥舞的这把镰刀所描绘的梦境\\n \\nand the 'God's Blood'\\n来吧 伟大的命运 此刻 向着第二道光芒\\n这只手啊 触及吧\\n务必宣告“夺取吧” 将神之名 \\n \\nand the 'God's Blood'\\n撼动心灵的星辰静静地闪耀着\\n作为其理应活下去的证明\\n“去夺取吧！” “去歌颂吧！” 是的\\n将神之名 \\n \\n \\n \\nwho am i… reign,\\nwho am i… reign,\\n \\n \\n \\n不 不对 等一下\\n不 太愚蠢了\\n啊 我究竟是怎么了\\n \\n心怀疑虑之时 却说能够成就\\n恐惧战栗之时 也说正是如此\\n \\nwho am i… know who i am\\n正因怀抱着这灵魂 我就能变得更强\\n \\n \\n \\nand the 'God's Blood'\\n来吧 伟大的命运 此刻 向着第二道光芒\\n这只手啊 触及吧\\n务必宣告“夺取吧” 将神之名 \\n \\nand the 'God's Blood'\\n撼动心灵的星辰静静地闪耀着\\n作为其理应活下去的证明\\n“去夺取吧！” “去歌颂吧！” 是的\\n将神之名",
     search_keywords: "电影，神血，神名",
-    appearances: [],
+    appearances: ["神の名を"],
     comments: [
       { text: "电影「BanG Dream! Ave Mujica prima aurora」插入歌", source: "", from: "Remark", date: "" }
     ],
@@ -1334,18 +1334,20 @@ var songsData = [
     album: "电影「BanG Dream! Ave Mujica prima aurora」 插入曲",
     album_year: "2026",
     release_date: "2026/10/16",
-    cover: "",
+    cover: "../images/神名限定cover.webp",
     type: "Original",
-    lyricist: "",
-    composer: "",
-    arranger: "",
+    lyricist: "Diggy-MO'",
+    composer: "Diggy-MO' • 須藤幽玄 • 鶴田知己",
+    arranger: "Diggy-MO'",
     first_stage: "Coming Soon…",
     mv_url: "",
-    lyrics_jp: "",
-    lyrics_cn: "",
-    search_keywords: "",
-    appearances: [],
-    comments: [],
+    lyrics_jp: "首筋を撫でた未来の予兆に\\n避けられない運命（さだめ）を感じたわ\\n \\nそれでも愛おしい人生にすがって すがって\\n明日にしがみついて\\n \\nあぁ あぁ わたしは… 欲深い\\n薫（くゆ）るキャビアと薔薇の花\\n‘愛’ 乱れ踊りながら\\n \\n \\n \\nるぅ らら るぅ らら\\n \\nなんて なんて他愛ない\\n \\n \\n \\nあぁ あぁ わたしは… 欲深い\\n薫（くゆ）るキャビアと薔薇の花\\n‘哀’\\n \\nあぁ あぁ 誰もが欲深い\\n薫（くゆ）るキャビアと薔薇の花\\n‘相’ 乱れ踊りながら",
+    lyrics_cn: "面对那轻抚颈侧的未来预兆\\n我感受到了无法逃避的宿命\\n \\n即便如此 我依旧依附着这令人眷恋的人生 依附着\\n紧紧抓住明日 不愿放手\\n \\n啊 啊 我真是……贪得无厌\\n香气浮动的鱼子酱与玫瑰花\\n“爱” 恣意狂舞着\\n \\n \\n \\n噜 啦啦 噜 啦啦\\n \\n多么 多么 天真啊\\n \\n \\n \\n啊 啊 我真是……贪得无厌\\n香气浮动的鱼子酱与玫瑰花\\n“哀”\\n \\n啊 啊 每个人都贪得无厌\\n香气浮动的鱼子酱与玫瑰花\\n“彼此” 在狂乱中共舞",
+    search_keywords: "电影，pt2，浪漫",
+    appearances: ["神の名を"],
+    comments: [
+      { text: "电影「BanG Dream! Ave Mujica prima aurora」插入歌", source: "", from: "Remark", date: "" }
+    ],
     live_history: []
   },
   {
@@ -1355,18 +1357,20 @@ var songsData = [
     album: "电影「BanG Dream! Ave Mujica prima aurora」 插入曲",
     album_year: "2026",
     release_date: "2026/10/16",
-    cover: "",
+    cover: "../images/神名限定cover.webp",
     type: "Original",
-    lyricist: "",
-    composer: "",
-    arranger: "",
+    lyricist: "Diggy-MO'",
+    composer: "Diggy-MO' • JUNKOO",
+    arranger: "Diggy-MO' • JUNKOO",
     first_stage: "Coming Soon…",
     mv_url: "",
-    lyrics_jp: "",
-    lyrics_cn: "",
-    search_keywords: "",
-    appearances: [],
-    comments: [],
+    lyrics_jp: "イケてる？\\nok, go like this\\ncome on\\nhun? do you hear me??\\n \\n \\n \\nTap!\\nto lava-da 薔薇の束なら七束 love\\n在るがまま我儘サ まだこの性が欲しがるワ\\nだから sha-lang ♪ あなたン中 掻き鳴らす mad strummer\\n \\nuh, あ～ら まぁ卑怯って？\\nあなただってやるワ え？ 理解してなかった？ ヤダ\\nほら 誰もがネ get jealous-jealous, stop!\\n \\nだったらわたしなら… これがわたしなら so,\\nBADDY BADDY, BADDY BADDY, oh,\\nBADDY BADDY, BADDY BADDY, woo,\\n \\n本当のわたしなラ ah, これが Ave Mujica（世界）なラ so,\\nときに誰かのエピソードを殺メ\\n神話も超えてこの罪を曝セ no!\\nどうにでもなればイイ\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY, woo,\\nねぇ まだワカンナイ？\\n‘ようこソ 本当ノ Ave Mujica ノ世界へ’ \\n \\n \\n \\n夢\\n夢また夢 幻と暴けば この憂い\\n虚空に踊り疲れ さあどこへ\\nわたしの天（そら）に触れたあなたが教えてくれたワ\\n \\n生きる中で この世に自分のものなんて ah, ひとつも ないのだと\\nそうよ この自分自身でさえモ\\n \\nだったらわたしなら… これがわたしなら so,\\nBADDY BADDY, BADDY BADDY, oh,\\nBADDY BADDY, BADDY BADDY, woo,\\n本当のわたしなラ ah, これが Ave Mujica（世界）なラ so,\\nなにも知りたくなかったのにナゼ？\\n欲まみれの誰？わたし？ねぇダッテ… no!\\nもう好きにすればイイ\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY,\\nna, break\\n \\n \\n \\nあなたはわたし わたしはあなた\\n嘘モ本当モ 無限に繰り返されるノ 無限に繰り返されるノ\\n無限に繰り返されるノ\\nいやあぁぁぁぁっ！\\n \\n \\n \\nひび割れたハートの形の box\\nバカね こころは壊れたりなんかしないワ\\n \\n \\n \\ndatta-la…, datta-la, da-latta-la, ta,\\nBADDY BADDY, BADDY BADDY, oh,\\nBADDY BADDY, BADDY BADDY, woo,\\n \\n本当のわたしなラ ah, これが Ave Mujica（世界）なラ so,\\n*** とき x 誰 xxx ピソードを殺 x 神話 x 超え xxx ***\\n \\nStutta-la-tann!\\n \\ndatta-la, da-latta-la, stutta-la, di-ladda-di-da, tann,\\nBADDY BADDY, BADDY BADDY, oh,\\nBADDY…\\nyes indeed, woo,\\nこれが本当の歌ならば この哀しみから la,\\n救ってくれるワ\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY, woo,\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY, oh,\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY, so!",
+    lyrics_cn: "够有型吧？\\nok, go like this\\ncome on\\nhun? do you hear me??\\n \\n \\n \\nTap!\\nto lava-da 若是玫瑰花束那就来七束 love\\n随心所欲任性妄为 我的这份天性还在渴求着呢\\n所以 sha-lang ♪ 在你的里面 猛烈扫弦 mad strummer\\n \\nuh, 哎呀～你说我卑鄙？\\n你不也会这么做嘛 诶？还没明白吗？真讨厌\\n你看 谁都会这样嘛 get jealous-jealous, stop!\\n \\n既然如此 如果是我……如果这就是我的话 so,\\nBADDY BADDY, BADDY BADDY, oh,\\nBADDY BADDY, BADDY BADDY, woo,\\n \\n如果这是真正的我 ah, 如果这就是Ave Mujica（世界） so,\\n有时杀死某个人的故事\\n甚至超越神话 将这份罪孽揭露 no!\\n变成怎样都无所谓\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY, woo,\\n喂 你还不明白吗？\\n“欢迎来到 真正的 Ave Mujica的世界”\\n \\n \\n \\n梦\\n梦复一梦 若揭穿为幻象 这份忧愁\\n在虚空中舞至精疲力竭 来吧又该去往何方\\n是曾触碰了我的天空的你告诉了我啊\\n \\n在这一生中 这世上根本没有任何东西真正属于自己 ah, 一样也没有\\n没错 就连我自己也一样\\n \\n既然如此 如果是我……如果这就是我的话 so,\\nBADDY BADDY, BADDY BADDY, oh,\\nBADDY BADDY, BADDY BADDY, woo,\\n如果这是真正的我 ah, 如果这就是Ave Mujica（世界） so,\\n明明什么都不想知道 为什么？\\n被欲望浸透的人是谁？是我？喂 可是…… no!\\n你想怎样做都随便吧\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY,\\nna, break\\n \\n \\n \\n你就是我 我就是你\\n谎言也好真实也好 都在无限地重复 无限地重复\\n无限地重复着\\n不要啊啊啊啊！\\n \\n \\n \\n布满裂痕的心形的box\\n真傻呢 心才不会轻易碎掉呢\\n \\n \\n \\ndatta-la…, datta-la, da-latta-la, ta,\\nBADDY BADDY, BADDY BADDY, oh,\\nBADDY BADDY, BADDY BADDY, woo,\\n \\n如果这是真正的我 ah, 如果这就是Ave Mujica（世界） so,\\n*** 有时 x 某人 xxx 杀死故事 x 神话 x 超越 xxx ***\\n \\nStutta-la-tann!\\n \\ndatta-la, da-latta-la, stutta-la, di-ladda-di-da, tann,\\nBADDY BADDY, BADDY BADDY, oh,\\nBADDY…\\nyes indeed, woo,\\n如果这是真正的歌 它会将我从这份悲伤中 la\\n拯救出来吧\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY, woo,\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY, oh,\\n \\nBADDY BADDY, BADDY BADDY,\\nBADDY BADDY, BADDY BADDY, so!",
+    search_keywords: "坏坏",
+    appearances: ["神の名を"],
+    comments: [
+      { text: "电影「BanG Dream! Ave Mujica prima aurora」插入歌", source: "", from: "Remark", date: "" }
+    ],
     live_history: []
   }
 ];
