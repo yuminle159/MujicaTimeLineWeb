@@ -1,6 +1,12 @@
 (function () {
   "use strict";
 
+  // 临时剧透警示：添加条目的 hash_id 即可启用；删除对应 ID 即可撤下，清空集合可全部关闭。
+  // 独立于生成的 data.js，更新数据时不会丢失。
+  const spoilerWarningIds = new Set([
+    "f5ckErYJPuS", // SCREENα vol.10 · 佐佐木李子 × 高尾奏音
+  ]);
+
   const gallery = document.getElementById("gallery");
   const noResults = document.getElementById("noResults");
   const resultCount = document.getElementById("resultCount");
@@ -85,6 +91,7 @@
         '<div class="card-image">' +
           (item.poster ? '<img src="' + escapeHTML(item.poster) + '" alt="' + escapeHTML(item.title) + '" loading="' + (visibleIndex < 4 ? 'eager' : 'lazy') + '">' : '<div class="card-placeholder"></div>') +
           (String(item.if_translated || "").toLowerCase() === "yes" ? '<span class="interview-status">CN</span>' : '') +
+          (spoilerWarningIds.has(item.hash_id) ? '<span class="card-spoiler-warning"><span class="spoiler-warning-label" aria-hidden="true">⚠ SPOILER WARNING</span><strong>剧透注意！</strong></span>' : '') +
         '</div>' +
         '<div class="card-info">' +
           '<div class="card-date">' + formatDate(item.date) + '</div>' +

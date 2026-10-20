@@ -38,7 +38,7 @@ var interviewData = [
     sections: [{"id": "section-01", "title": "正因同为主唱，才会彼此相互吸引"}, {"id": "section-02", "title": "主唱所认为的“好的歌唱”是什么？"}, {"id": "section-03", "title": "同为站在最前方之人的独特感受"}, {"id": "section-04", "title": "想要不断跃入梦限大的世界中"}],
     related: [{"id": "eoCADeAXqYd", "reason": "同系列"}, {"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子"}],
     previous_id: "eoCADeAXqYd",
-    next_id: "",
+    next_id: "f5ckErYJPuS",
     article_path: "articles/hHvY1EWykhY.js"
   },
   {
@@ -114,7 +114,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "VXjlXSdRiCl",
     sections: [{"id": "section-01", "title": "“没想到竟然会说出‘混账老爹’这种台词”"}, {"id": "section-02", "title": "佐佐木小姐每天都会更新的那本笔记"}, {"id": "section-03", "title": "角色设定虽然黑暗，但角色之下的我们却很温暖。"}],
-    related: [{"id": "m58tZySEck6", "reason": "同系列"}, {"id": "n7j1fu7Aamc", "reason": "同系列"}, {"id": "D8V8YJOLbPX", "reason": "共同受访者：佐佐木李子"}],
+    related: [{"id": "m58tZySEck6", "reason": "同系列"}, {"id": "n7j1fu7Aamc", "reason": "同系列"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "MX8CI0pi7ii",
     next_id: "n7j1fu7Aamc",
     article_path: "articles/VXjlXSdRiCl.js"
@@ -127,7 +127,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "n7j1fu7Aamc",
     sections: [{"id": "section-01", "title": "不仅在声音上，也想通过动作与彼此相连"}, {"id": "section-02", "title": "独一无二的世界观，无限可能的乐队"}, {"id": "section-03", "title": "走过 0th LIVE，终于迈向 1st LIVE"}],
-    related: [{"id": "m58tZySEck6", "reason": "同系列"}, {"id": "VXjlXSdRiCl", "reason": "同系列"}, {"id": "D8V8YJOLbPX", "reason": "共同受访者：佐佐木李子"}],
+    related: [{"id": "m58tZySEck6", "reason": "同系列"}, {"id": "VXjlXSdRiCl", "reason": "同系列"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "VXjlXSdRiCl",
     next_id: "m58tZySEck6",
     article_path: "articles/n7j1fu7Aamc.js"
@@ -140,7 +140,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "m58tZySEck6",
     sections: [{"id": "section-01", "title": "“我一边感受着大家，一边歌唱”"}, {"id": "section-02", "title": "疯狂的Riff Master所演奏的紧张琶音"}, {"id": "section-03", "title": "「美好的世界，但是并不存在」"}, {"id": "section-04", "title": "在『BanG Dream! Ave Mujica』中“得到了救赎”"}, {"id": "section-05", "title": "迈向美好的未来"}],
-    related: [{"id": "n7j1fu7Aamc", "reason": "同系列"}, {"id": "VXjlXSdRiCl", "reason": "同系列"}, {"id": "D8V8YJOLbPX", "reason": "共同受访者：佐佐木李子"}],
+    related: [{"id": "n7j1fu7Aamc", "reason": "同系列"}, {"id": "VXjlXSdRiCl", "reason": "同系列"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "n7j1fu7Aamc",
     next_id: "ZiWd1iURLsj",
     article_path: "articles/m58tZySEck6.js"
@@ -283,7 +283,7 @@ var interviewData = [
     if_translated: "no",
     hash_id: "BE9kJEFFOW6",
     sections: [{"id": "section-01", "title": "处处都是全新体验的乐队活动，以及伙伴们的存在"}, {"id": "section-02", "title": "Ave Mujica 是祥子为了活下去的手段"}],
-    related: [{"id": "qDzrFr9bmoq", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：高尾奏音"}],
+    related: [{"id": "qDzrFr9bmoq", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：高尾奏音"}],
     previous_id: "EGHiOMHcXyX",
     next_id: "HfJYreVxg8X",
     article_path: "articles/BE9kJEFFOW6.js"
@@ -313,5 +313,18 @@ var interviewData = [
     previous_id: "tLoc6uej4kx",
     next_id: "vg0aUAR0CnH",
     article_path: "articles/qDzrFr9bmoq.js"
+  },
+  {
+    poster: "../images/261016screenvol10弄李访谈-11.webp",
+    date: "2026-10-16 00:00:00",
+    interviewee: "佐佐木李子 x 高尾奏音",
+    title: "SCREENα vol.10 电影「BanG Dream! Ave Mujica prima aurora」特集 佐佐木李子 x 高尾奏音访谈",
+    if_translated: "yes",
+    hash_id: "f5ckErYJPuS",
+    sections: [],
+    related: [{"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "VXjlXSdRiCl", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
+    previous_id: "hHvY1EWykhY",
+    next_id: "",
+    article_path: "articles/f5ckErYJPuS.js"
   }
 ];
