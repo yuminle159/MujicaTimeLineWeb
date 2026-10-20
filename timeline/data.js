@@ -3087,6 +3087,15 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "QNO0qSIQHih",
+    date: "2026/11/1",
+    title: "Ave Mujica 出演 NHK WORLD-JAPAN 「J-MELO」",
+    category: "organization",
+    description: "NHK 面向海外观众制作的日本音乐介绍节目",
+    tag: "program",
+    media: []
+  },
+  {
     hash_id: "Fw4d2gH0TMY",
     date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",
