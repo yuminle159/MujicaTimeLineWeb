@@ -37,6 +37,15 @@ window.SOMETHING_NEW = [
     "href": "songs/index.html?song=BADDY%20BADDY"
   },
   {
+    "type": "interview",
+    "ref": "SCREENα vol.10 电影「BanG Dream! Ave Mujica prima aurora」特集 佐佐木李子 x 高尾奏音访谈",
+    "update_date": "2026/10/20",
+    "title": "SCREENα vol.10 电影「BanG Dream! Ave Mujica prima aurora」特集 佐佐木李子 x 高尾奏音访谈",
+    "subtitle": "佐佐木李子 x 高尾奏音 · 2026/10/16",
+    "image": "images/261016screenvol10弄李访谈-11.webp",
+    "href": "interview/index.html?interview=SCREEN%CE%B1%20vol.10%20%E7%94%B5%E5%BD%B1%E3%80%8CBanG%20Dream%21%20Ave%20Mujica%20prima%20aurora%E3%80%8D%E7%89%B9%E9%9B%86%20%E4%BD%90%E4%BD%90%E6%9C%A8%E6%9D%8E%E5%AD%90%20x%20%E9%AB%98%E5%B0%BE%E5%A5%8F%E9%9F%B3%E8%AE%BF%E8%B0%88"
+  },
+  {
     "type": "song",
     "ref": "God's Blood",
     "update_date": "2026/10/16",

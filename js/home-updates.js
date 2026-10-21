@@ -96,6 +96,10 @@
         visual.appendChild(makeUnknownVisual("something-new-drawer-placeholder", item.title));
       }
       visual.appendChild(makeElement("span", "something-new-drawer-type", item.type.toUpperCase()));
+      if (InterviewSpoilers.has(item)) {
+        visual.insertAdjacentHTML("beforeend", InterviewSpoilers.markup);
+        card.setAttribute("aria-label", "剧透注意！" + card.getAttribute("aria-label"));
+      }
 
       const body = makeElement("span", "something-new-drawer-card-body");
       body.appendChild(makeElement("span", "something-new-drawer-date", formatDate(item.update_date)));
