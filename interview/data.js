@@ -334,7 +334,7 @@ var interviewData = [
     title: "ototoy Ave Mujica 「神の名を」引诱人步入的深邃世界——向故事的前方，向音乐的更深处",
     if_translated: "yes",
     hash_id: "yvFZ0YTSvaC",
-    sections: [{"id": "section-01", "title": "MAIL INTERVIEW : Ave Mujica"}, {"id": "section-02", "title": "名副其实的“全新序幕”一般的作品"}, {"id": "section-03", "title": "希望能够始终以更好的状态呈现给大家为此会竭尽全力"}, {"id": "section-04", "title": "从今往后，Ave Mujica也将不断超越Ave Mujica自身"}, {"id": "section-05", "title": "REVIEW : Ave Mujica『神の名を』"}],
+    sections: [{"id": "section-01", "title": "MAIL INTERVIEW : Ave Mujica"}, {"id": "section-02", "title": "名副其实的“全新序幕”一般的作品"}, {"id": "section-03", "title": "希望能够始终以更好的状态呈现给大家，为此会竭尽全力"}, {"id": "section-04", "title": "从今往后，Ave Mujica也将不断超越Ave Mujica自身"}, {"id": "section-05", "title": "REVIEW : Ave Mujica『神の名を』"}],
     related: [{"id": "hloIGz0UBX8", "reason": "同为全员访谈"}, {"id": "bFRYIyvBbTN", "reason": "同为全员访谈"}, {"id": "HfJYreVxg8X", "reason": "同为全员访谈"}],
     previous_id: "f5ckErYJPuS",
     next_id: "",
