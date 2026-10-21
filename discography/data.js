@@ -4,8 +4,8 @@
 var discographyData = [
   {
     "id": "kaminonawo",
-    "hash_id": "Yrcb11fIhiQ",
-    "title": "God's Blood",
+    "hash_id": "hw3tumC2Quq",
+    "title": "神之血",
     "title_jp": "神の名を",
     "release_date": "2026/10/21",
     "type": "MINI ALBUM",
@@ -94,7 +94,7 @@ var discographyData = [
             "track_no": "01",
             "song_name": "神の名を",
             "content_title": "",
-            "duration": "",
+            "duration": "05:01:00",
             "note": ""
           },
           {
@@ -103,7 +103,7 @@ var discographyData = [
             "track_no": "02",
             "song_name": "A Song Of Romance Pt.2",
             "content_title": "",
-            "duration": "",
+            "duration": "03:35:00",
             "note": ""
           },
           {
@@ -112,7 +112,7 @@ var discographyData = [
             "track_no": "03",
             "song_name": "BADDY BADDY",
             "content_title": "",
-            "duration": "",
+            "duration": "04:32:00",
             "note": ""
           },
           {
@@ -121,7 +121,7 @@ var discographyData = [
             "track_no": "04",
             "song_name": "A Song Of Romance",
             "content_title": "",
-            "duration": "",
+            "duration": "04:06:00",
             "note": ""
           },
           {
@@ -177,7 +177,7 @@ var discographyData = [
             "track_no": "01",
             "song_name": "神の名を",
             "content_title": "",
-            "duration": "",
+            "duration": "05:01:00",
             "note": ""
           },
           {
@@ -186,7 +186,7 @@ var discographyData = [
             "track_no": "02",
             "song_name": "A Song Of Romance Pt.2",
             "content_title": "",
-            "duration": "",
+            "duration": "03:35:00",
             "note": ""
           },
           {
@@ -195,7 +195,7 @@ var discographyData = [
             "track_no": "03",
             "song_name": "BADDY BADDY",
             "content_title": "",
-            "duration": "",
+            "duration": "04:32:00",
             "note": ""
           },
           {
@@ -204,7 +204,7 @@ var discographyData = [
             "track_no": "04",
             "song_name": "A Song Of Romance",
             "content_title": "",
-            "duration": "",
+            "duration": "04:06:00",
             "note": ""
           },
           {
@@ -247,7 +247,7 @@ var discographyData = [
             "track_no": "01",
             "song_name": "神の名を",
             "content_title": "",
-            "duration": "",
+            "duration": "05:01:00",
             "note": ""
           },
           {
@@ -256,7 +256,7 @@ var discographyData = [
             "track_no": "02",
             "song_name": "A Song Of Romance Pt.2",
             "content_title": "",
-            "duration": "",
+            "duration": "03:35:00",
             "note": ""
           },
           {
@@ -265,7 +265,7 @@ var discographyData = [
             "track_no": "03",
             "song_name": "BADDY BADDY",
             "content_title": "",
-            "duration": "",
+            "duration": "04:32:00",
             "note": ""
           },
           {
@@ -274,7 +274,7 @@ var discographyData = [
             "track_no": "04",
             "song_name": "A Song Of Romance",
             "content_title": "",
-            "duration": "",
+            "duration": "04:06:00",
             "note": ""
           }
         ]
