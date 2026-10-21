@@ -192,7 +192,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "hloIGz0UBX8",
     sections: [{"id": "section-01", "title": "乐队成员简介"}, {"id": "section-02", "title": "乐队成员Q & A"}, {"id": "section-03", "title": "终于能毫无保留地表现出来了，我想传达Ave Mujica灵魂的呐喊"}, {"id": "section-04", "title": "有种夹在小睦和Mortis之间的感觉"}, {"id": "section-05", "title": "海铃的那份笨拙也很可爱，我特别喜欢"}, {"id": "section-06", "title": "我一直有信心，最后大家一定会喜欢上若麦"}, {"id": "section-07", "title": "谢谢大家陪着我一起守望祥子的成长"}, {"id": "section-08", "title": "乐队成员寄语"}],
-    related: [{"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}, {"id": "HfJYreVxg8X", "reason": "同为全员访谈"}, {"id": "0ZQv1f6v1zW", "reason": "同为全员访谈"}],
+    related: [{"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "HfJYreVxg8X", "reason": "同为全员访谈"}],
     previous_id: "DhvrDXRrWlS",
     next_id: "eoCADeAXqYd",
     article_path: "articles/hloIGz0UBX8.js"
@@ -267,7 +267,7 @@ var interviewData = [
     date: "2025-03-28 00:00:00",
     interviewee: "佐佐木李子 x 松本拓辉",
     title: "Real Sound 佐佐木李子×松本拓辉P揭秘Ave Mujica幕后 “丝毫不妥协这一点让人欣喜”",
-    if_translated: "no",
+    if_translated: "yes",
     hash_id: "DhvrDXRrWlS",
     sections: [{"id": "section-01", "title": "朗读剧中埋下的TV动画『Ave Mujica』的伏笔"}, {"id": "section-02", "title": "正因为是“能直言不讳交换意见”的团队，才孕育出 Ave Mujica 的现场演出"}, {"id": "section-03", "title": "「KiLLKiSS」中所倾注的 Diggy-MO’ 的执着"}, {"id": "section-04", "title": "迷你专辑『ELEMENTS』诞生秘话"}, {"id": "section-05", "title": "谈谈TV动画『BanG Dream! Ave Mujica』第10话以后的乐曲"}, {"id": "section-06", "title": "分歧路口，前途漫漫"}, {"id": "section-07", "title": "佐佐木李子 × 松本拓辉眼中的Ave Mujica未来"}],
     related: [{"id": "D8V8YJOLbPX", "reason": "共同受访者：佐佐木李子"}, {"id": "VXjlXSdRiCl", "reason": "共同受访者：佐佐木李子"}, {"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子"}],
@@ -324,7 +324,20 @@ var interviewData = [
     sections: [],
     related: [{"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "VXjlXSdRiCl", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "hHvY1EWykhY",
-    next_id: "",
+    next_id: "yvFZ0YTSvaC",
     article_path: "articles/f5ckErYJPuS.js"
+  },
+  {
+    poster: "../images/261021ototoy访谈-01.webp",
+    date: "2026-10-21 00:00:00",
+    interviewee: "Ave Mujica",
+    title: "ototoy Ave Mujica 「神の名を」引诱人步入的深邃世界——向故事的前方，向音乐的更深处",
+    if_translated: "yes",
+    hash_id: "yvFZ0YTSvaC",
+    sections: [{"id": "section-01", "title": "MAIL INTERVIEW : Ave Mujica"}, {"id": "section-02", "title": "名副其实的“全新序幕”一般的作品"}, {"id": "section-03", "title": "希望能够始终以更好的状态呈现给大家为此会竭尽全力"}, {"id": "section-04", "title": "从今往后，Ave Mujica也将不断超越Ave Mujica自身"}, {"id": "section-05", "title": "REVIEW : Ave Mujica『神の名を』"}],
+    related: [{"id": "hloIGz0UBX8", "reason": "同为全员访谈"}, {"id": "bFRYIyvBbTN", "reason": "同为全员访谈"}, {"id": "HfJYreVxg8X", "reason": "同为全员访谈"}],
+    previous_id: "f5ckErYJPuS",
+    next_id: "",
+    article_path: "articles/yvFZ0YTSvaC.js"
   }
 ];
