@@ -3096,6 +3096,24 @@ var timelineData = [
     media: []
   },
   {
+    hash_id: "NjLskZTaw9e",
+    date: "2026/10/22",
+    title: "佐佐木李子 & 冈田梦以 出演 「バンドリ！TVLIVE 2026」＃337",
+    category: "organization",
+    description: "",
+    tag: "program",
+    media: []
+  },
+  {
+    hash_id: "9n9jGSKn67U",
+    date: "2026/10/29",
+    title: "佐佐木李子 & 渡濑结月 出演 「バンドリ！TVLIVE 2026」＃338",
+    category: "organization",
+    description: "与 工藤晴香 & 樱川惠 & 東雲はる & 柊優花 （from 魔法少女的魔女裁判） 共同出演",
+    tag: "program",
+    media: []
+  },
+  {
     hash_id: "Fw4d2gH0TMY",
     date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",
