@@ -1,6 +1,6 @@
 # VOICE Febri VOL.1 Special Feature Ave Mujica 假面之下成员们真实的一面
 
-**访谈时间**：2025/01/31
+**访谈时间**：2025/01/13
 
 **访谈人**：Ave Mujica
 
@@ -430,8 +430,6 @@ Mei Okada
 
 **[c4]米泽[/c4]**：和其他成员不同，[c4]若麦[/c4]一直想公开自己就是[c4]Amoris[/c4]，因为她喜欢受人瞩目。架子鼓虽然设在舞台后方，她的表演却很张扬。所以演[c4]Amoris[/c4]时，我也刻意保留了这种“[c4]若麦[/c4]特色”。几乎没做什么区分，就当作“戴着面具的[c4]若麦[/c4]”来演。
 
-
-
 ---
 
 ## 为了后半段，现在请尽情讨厌若麦
@@ -499,7 +497,6 @@ Mei Okada
 [br]
 ![采访图片4](../images/voicefebrivol112.webp)
 *Akane Yonezawa 祐天寺若麦 / Amoris役 米泽 茜*
-
 
 ---
 
@@ -617,7 +614,6 @@ Mei Okada
 [br]
 ![采访图片4](../images/voicefebrivol113.webp)
 *Kanon Takao 丰川祥子／Oblivionis役 高尾奏音*
-
 
 ---
 

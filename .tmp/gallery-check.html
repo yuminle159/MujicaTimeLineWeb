@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><base href="file:///D:/yumin/web/MujicaTimeLineWeb/gallery/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico">
+  <title>Gallery · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=202610221440">
+  <link rel="stylesheet" href="../css/local-search.css?v=202610221440">
+  <link rel="stylesheet" href="../css/quick-nav.css?v=202610221440">
+  <link rel="stylesheet" href="../css/emoji.css?v=202610221440">
+  <script defer src="../js/vendor/twemoji/twemoji.min.js?v=202610221440"></script>
+  <script defer src="../js/emoji.js?v=202610221440"></script>
+</head>
+<body>
+  <div class="gallery-page">
+    <header class="page-header">
+      <a href="../index.html" class="back-nav" aria-label="返回主页">&larr;Home</a>
+      <h1>Gallery</h1>
+    </header>
+
+    <div class="filter-bar" id="filterBar">
+        <!-- 由 JS 动态生成 -->
+      </div>
+
+      <div class="gallery-toolbar">
+        <div class="search-box">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="gallerySearchInput" type="search" placeholder="搜索画廊…" autocomplete="off">
+        </div>
+        <span class="result-count" id="galleryResultCount"></span>
+      </div>
+
+      <div class="masonry-grid" id="masonryGrid">
+        <!-- 由 JS 动态生成 -->
+      </div>
+
+      <div class="pagination-bar" id="paginationBar"></div>
+
+  <!-- 灯箱 -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <div class="lightbox-stage">
+      <img class="lightbox-img" id="lightboxImg" alt="" hidden>
+      <div class="lightbox-loader" id="lightboxLoader" role="status" aria-live="polite" hidden>
+        <span class="lightbox-spinner" aria-hidden="true"></span>
+        <span id="lightboxLoadMessage">图片加载中…</span>
+        <button type="button" id="lightboxRetry" hidden>重试</button>
+      </div>
+    </div>
+    <div class="lightbox-info">
+      <div class="lightbox-date" id="lightboxDate"></div>
+      <div class="lightbox-title" id="lightboxTitle"></div>
+      <div class="lightbox-desc" id="lightboxDesc"></div>
+    </div>
+  </div>
+
+  <!-- 返回顶部按钮 -->
+  <button class="page-top-btn" id="pageTopBtn">↑Page Top</button>
+
+  <script src="../js/resource-error.js?v=202610221440"></script>
+  <script src="data.js?v=202610221440"></script>
+  <script src="page.js?v=202610221440"></script>
+  <script src="../js/quick-nav.js?v=202610221440"></script>
+  <script src="../js/page-memory.js?v=202610221440"></script>
+  </div>
+
+<script>
+try {
+  const assert = (value, message) => { if (!value) throw new Error(message); };
+  const click = value => document.querySelector('[data-filter="' + value + '"]').click();
+  const visible = () => [...document.querySelectorAll('.masonry-item:not(.hidden)')];
+  const tags = card => JSON.parse(card.dataset.tags);
+  assert(galleryData.length === 984, 'image count');
+  assert(new Set(galleryData.map(x => x.filename)).size === 984, 'duplicate images');
+  assert(visible().length === 984, 'initial render');
+  click('类型:Live返图');
+  assert(visible().length > 0 && visible().every(c => tags(c)['类型'].includes('Live返图')), 'type filter');
+  click('LIVE:0th');
+  assert(visible().length === 9, 'cross dimension intersection');
+  click('类型:主视觉');
+  assert(visible().length === 10, 'same dimension union');
+  click('类型:主视觉');
+  assert(visible().length === 9, 'toggle off');
+  click('LIVE');
+  assert(visible().length > 9, 'clear category');
+  click('all');
+  assert(visible().length === 984, 'clear all');
+  const input = document.getElementById('gallerySearchInput');
+  input.value = 'no-results-123456789';
+  input.dispatchEvent(new Event('input'));
+  assert(visible().length === 0, 'search and empty state');
+  input.value = ''; input.dispatchEvent(new Event('input'));
+  assert(visible().length === 984, 'restore search');
+  assert(document.documentElement.scrollWidth <= window.innerWidth, 'horizontal overflow');
+  document.body.dataset.testResult = 'PASS';
+} catch (e) { document.body.dataset.testResult = 'FAIL: ' + e.message; }
+</script>
+</body>
+</html>

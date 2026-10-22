@@ -9,12 +9,14 @@
 import os
 import re
 import json
+import random
+import posixpath
 import hashlib
 import sys
 import html as html_lib
 from collections import OrderedDict
 from datetime import datetime
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 # 修复 Windows 控制台编码（windowed exe 无控制台则跳过）
 if sys.platform == "win32" and sys.stdout is not None:
@@ -1101,17 +1103,46 @@ def parse_gallery_tags(raw_tags):
                 result[cat] = []
     return result
 
-def generate_gallery(wb):
-    images_raw = read_sheet(wb, "gallery_images")
-    images = []
-    gallery_ids = {}
-    for img in images_raw:
-        if not img.get("filename"):
+def is_gallery_image(filename):
+    """画廊只收录图片目录顶层文件，排除其子目录中的素材。"""
+    path = str(filename or "").strip().replace("\\", "/")
+    if not path:
+        return False
+    parts = path.split("/")
+    for index, part in enumerate(parts):
+        if part.lower() in {"image", "images"}:
+            return len(parts[index + 1:]) == 1 and bool(parts[-1])
+    return True
+
+
+def gallery_image_key(filename):
+    """统一扫描去重键：兼容裸文件名、相对路径、反斜杠和 Windows 大小写。"""
+    path = posixpath.normpath(unquote(str(filename or "").strip()).replace("\\", "/"))
+    for prefix in ("../images/", "images/", "/images/"):
+        if path.lower().startswith(prefix):
+            path = path[len(prefix):]
+            break
+    return path.casefold()
+
+
+def gallery_rows(wb):
+    """生成与搜索共用唯一图片列表；保留首次记录，不改写人工维护的表格。"""
+    seen = set()
+    for row in read_sheet(wb, "gallery_images"):
+        filename = row.get("filename")
+        if not is_gallery_image(filename):
             continue
-        id_key = (img.get("filename", ""),)
-        occurrence = gallery_ids.get(id_key, 0)
-        gallery_ids[id_key] = occurrence + 1
-        image_id = hash_id(*id_key, occurrence + 1) if occurrence else hash_id(*id_key)
+        key = gallery_image_key(filename)
+        if key not in seen:
+            seen.add(key)
+            yield row
+
+
+def generate_gallery(wb):
+    images_raw = gallery_rows(wb)
+    images = []
+    for img in images_raw:
+        image_id = hash_id(img["filename"])
         images.append({
             "hash_id": image_id,
             "filename": img.get("filename", ""),
@@ -1120,6 +1151,9 @@ def generate_gallery(wb):
             "tags": parse_gallery_tags(img.get("tags", "")),
             "description": img.get("description", "")
         })
+
+    # ID 在洗牌前生成，确保重新生成不影响图片直达链接。
+    random.shuffle(images)
 
     try:
         from PIL import Image
@@ -1740,14 +1774,9 @@ def generate_search_indexes(wb):
                    [title, category, description, tag, date])
 
     # 画廊。
-    gallery_ids = {}
-    for row in read_sheet(wb, "gallery_images"):
+    for row in gallery_rows(wb):
         filename = row.get("filename", "")
-        if not filename:
-            continue
-        occurrence = gallery_ids.get(filename, 0)
-        gallery_ids[filename] = occurrence + 1
-        item_id = hash_id(filename, occurrence + 1) if occurrence else hash_id(filename)
+        item_id = hash_id(filename)
         add_record("gallery", item_id, row.get("title", "") or os.path.basename(filename),
                    row.get("tags", ""), row.get("date", ""), filename,
                    f"gallery/index.html#gallery={quote(item_id)}",
@@ -1901,15 +1930,18 @@ def scan_gallery_images(log_func=None):
     for row_idx in range(2, ws.max_row + 1):
         val = ws.cell(row=row_idx, column=filename_col).value
         if val and str(val).strip():
-            existing.add(str(val).strip())
+            existing.add(gallery_image_key(val))
 
     # 扫描 images/ 下所有图片文件
     IMG_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp"}
     new_files = []
-    for fname in os.listdir(images_dir):
+    for fname in sorted(os.listdir(images_dir)):
         ext = os.path.splitext(fname)[1].lower()
-        if ext in IMG_EXTS and fname not in existing:
+        key = gallery_image_key(fname)
+        if (ext in IMG_EXTS and os.path.isfile(os.path.join(images_dir, fname))
+                and key not in existing):
             new_files.append(fname)
+            existing.add(key)
 
     if not new_files:
         (log_func or print)(f"  已扫描 {len(existing)} 张图片，无新增")

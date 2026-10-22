@@ -8,7 +8,7 @@
   if (!window.twemoji) return;
 
   const assetRoot = new URL("vendor/twemoji/svg/", document.currentScript.src);
-  const excluded = "script, style, textarea, input, select, option, pre, code, svg, math, .site-emoji, [data-native-emoji]";
+  const excluded = "script, style, textarea, input, select, option, pre, code, svg, math, .site-emoji";
   const failedIcons = new Set();
   const pending = new Set();
   let timer;
@@ -29,8 +29,12 @@
 
   function renderText(node) {
     const parent = node.parentElement;
-    const text = node.nodeValue;
     if (!parent || parent.closest(excluded)) return;
+    // 外链箭头属于界面文字，统一指定 text presentation；包括粘贴的 ↗️。
+    // 在 native-emoji 区域也执行，避免系统字体把箭头画成彩色方块。
+    const text = node.nodeValue.replace(/\u2197[\uFE0E\uFE0F]?/g, "\u2197\uFE0E");
+    if (text !== node.nodeValue) node.nodeValue = text;
+    if (parent.closest('[data-native-emoji]')) return;
     const tokens = [];
     let cursor = 0;
     twemoji.replace(text, function (raw) {

@@ -296,9 +296,15 @@
     lightboxCreditTexts = creditTexts || [];
     lightboxSourceUrls = sourceUrls || [];
     lightboxSourceLabels = sourceLabels || [];
-    lightboxImage.src = lightboxGroup ? lightboxGroup[lightboxIndex] : src;
-    lightboxImage.style.opacity = "0";
-    lightboxImage.onload = function () { lightboxImage.style.opacity = "1"; };
+    lightbox.querySelectorAll('.shared-live-kv-lightbox-img').forEach(image => image.remove());
+    (lightboxGroup || [src]).forEach(function (source, i) {
+      const image = document.createElement('img');
+      image.src = source;
+      image.className = 'shared-live-kv-lightbox-img' + (i === lightboxIndex ? ' shared-live-active' : '');
+      image.alt = '图片 ' + (i + 1);
+      lightbox.insertBefore(image, lightboxHud);
+      if (i === lightboxIndex) lightboxImage = image;
+    });
     lightbox.querySelectorAll(".shared-live-kv-lightbox-arrow").forEach(function (arrow) { arrow.style.display = lightboxGroup ? "flex" : "none"; });
     lightbox.querySelector(".shared-live-hud-counter").style.display = lightboxGroup ? "flex" : "none";
     lightboxHud.classList.toggle("shared-live-hidden", !lightboxGroup);
@@ -354,12 +360,9 @@
   function moveLightbox(direction) {
     if (!lightboxGroup) return;
     lightboxIndex = ((lightboxIndex + direction) % lightboxGroup.length + lightboxGroup.length) % lightboxGroup.length;
-    lightboxImage.style.opacity = "0";
-    lightboxImage.src = "";
-    requestAnimationFrame(function () {
-      lightboxImage.src = lightboxGroup[lightboxIndex];
-      lightboxImage.onload = function () { lightboxImage.style.opacity = "1"; };
-    });
+    lightboxImage.classList.remove('shared-live-active');
+    lightboxImage = lightbox.querySelectorAll('.shared-live-kv-lightbox-img')[lightboxIndex];
+    lightboxImage.classList.add('shared-live-active');
     updateLightboxHud();
   }
 

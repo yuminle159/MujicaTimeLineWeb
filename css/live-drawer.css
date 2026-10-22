@@ -532,13 +532,21 @@
   position: relative;
 }
 .shared-live-photo-carousel .shared-live-carousel-track {
+  display: grid;
+  place-items: center;
   position: relative;
 }
 .shared-live-photo-carousel .shared-live-carousel-track img {
-  display: none;
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .shared-live-photo-carousel .shared-live-carousel-track img.shared-live-active {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 .shared-live-photo-carousel .shared-live-carousel-controls {
   position: absolute;
@@ -608,6 +616,10 @@
   visibility: visible;
 }
 .shared-live-kv-lightbox img {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
@@ -615,7 +627,7 @@
   box-shadow: var(--md-elevation-3);
   cursor: pointer;
   background: #000;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 /* HUD 悬浮面板（毛玻璃铭牌） */
 .shared-live-kv-lightbox-hud {
@@ -972,3 +984,8 @@
 }
 
 
+
+.shared-live-kv-lightbox img.shared-live-active { opacity: 1; visibility: visible; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .shared-live-kv-lightbox img, .shared-live-photo-carousel .shared-live-carousel-track img { transition: none; }
+}

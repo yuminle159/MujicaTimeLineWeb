@@ -17,6 +17,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from tkinterdnd2 import TkinterDnD
 from image_renamer import RenameDialog
+from gallery_editor import GalleryEditor
 
 try:
     from PIL import Image
@@ -602,6 +603,7 @@ def run_update(selected_modules, do_webp, log_func):
 class App:
     def __init__(self, root):
         self.root = root
+        self.root.protocol('WM_DELETE_WINDOW', self.close)
         root.title(" wijipedia 工作流工具")
         root.geometry("900x820")
         root.minsize(800, 680)
@@ -764,6 +766,15 @@ class App:
         )
         btn_rename.grid(row=2, column=0, sticky="ew", padx=(0, 5), pady=(7, 0))
         self.action_buttons.append(btn_rename)
+
+        btn_gallery_tags = tk.Button(
+            tools_grid, text="看图填标签", command=self.open_gallery_editor,
+            font=("Microsoft YaHei", 9), fg="#ddd", bg="#1a1a1a",
+            relief="flat", padx=12, pady=7, cursor="hand2",
+            activebackground="#2a2a2a", activeforeground="#fff",
+        )
+        btn_gallery_tags.grid(row=2, column=1, sticky="ew", padx=5, pady=(7, 0))
+        self.action_buttons.append(btn_gallery_tags)
 
         # 运行状态与折叠的详细日志
         status_frame = tk.Frame(root, bg="#141414", highlightthickness=1, highlightbackground="#2a2a2a")
@@ -1017,6 +1028,21 @@ class App:
             result = {"success": [], "skipped": [], "failed": [("图片转 WebP", str(e))], "details": []}
         self.finish_run(result, "WebP 转换已完成。")
 
+    def close(self):
+        editor = getattr(self, 'gallery_editor', None)
+        if editor is not None and editor.winfo_exists():
+            editor.close(on_closed=self.root.destroy)
+        else:
+            self.root.destroy()
+
+    def open_gallery_editor(self):
+        existing = getattr(self, 'gallery_editor', None)
+        if existing is not None and existing.winfo_exists():
+            existing.deiconify()
+            existing.lift()
+            return
+        self.gallery_editor = GalleryEditor(self.root, PROJECT_DIR)
+
     def scan_gallery(self):
         self._start_log("开始把所有图片写入画廊...\n")
         try:
@@ -1038,6 +1064,52 @@ class App:
 
 
 def main():
+    if "--smoke-test-gallery-editor" in sys.argv:
+        from gallery_editor import smoke_test
+        smoke_test()
+        (Path(PROJECT_DIR) / "exe-gallery-editor-test.log").write_text(
+            "PASS: gallery editor thumbnail, preview, tag selection, inheritance, save-next, filtering and workbook persistence.\n",
+            encoding="utf-8")
+        return
+    if "--smoke-test-gallery" in sys.argv:
+        import tempfile
+        import openpyxl
+        import generate_all
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "images" / "excluded").mkdir(parents=True)
+            for name in ("old.png", "new.png", "excluded/hidden.png"):
+                Image.new("RGB", (8, 8), "red").save(root / "images" / name)
+            workbook = openpyxl.Workbook()
+            sheet = workbook.active
+            sheet.title = "gallery_images"
+            sheet.append(["filename", "tags"])
+            sheet.append(["images/OLD.png", "人物:高尾奏音, 类型:合照"])
+            source = root / "data.xlsx"
+            workbook.save(source)
+            workbook.close()
+            generate_all.ROOT = folder
+            generate_all.XLSX_PATH = str(source)
+            generate_all.OUTPUTS["gallery"] = str(root / "data.js")
+            assert generate_all.scan_gallery_images(lambda _: None) == 1
+            first_scan = source.read_bytes()
+            assert generate_all.scan_gallery_images(lambda _: None) == 0
+            assert source.read_bytes() == first_scan
+            workbook = openpyxl.load_workbook(source)
+            assert workbook["gallery_images"].max_row == 3
+            assert workbook["gallery_images"]["B2"].value == "人物:高尾奏音, 类型:合照"
+            # 模拟手工误填重复行，生成端依然只输出唯一图片。
+            workbook["gallery_images"].append(["../images/old.png", "类型:访谈"])
+            for _ in range(2):
+                assert generate_all.generate_gallery(workbook) == 2
+                output = (root / "data.js").read_text(encoding="utf-8")
+                assert output.count("filename:") == 2
+                assert "高尾奏音" in output and "访谈" not in output
+            workbook.close()
+        (Path(PROJECT_DIR) / "exe-gallery-test.log").write_text(
+            "PASS: repeated scan adds no duplicates; manual tags preserved; subfolders excluded; repeated generation stays unique.\n",
+            encoding="utf-8")
+        return
     if "--smoke-test-rename" in sys.argv:
         import tempfile
         import time
@@ -1164,11 +1236,15 @@ def main():
 
 
 if __name__ == "__main__":
-    if any(flag in sys.argv for flag in ("--smoke-test-nlp", "--smoke-test-update", "--smoke-test-full-update")):
+    if any(flag in sys.argv for flag in ("--smoke-test-nlp", "--smoke-test-update", "--smoke-test-full-update", "--smoke-test-gallery", "--smoke-test-gallery-editor")):
         import traceback
         log_path = os.path.join(PROJECT_DIR, "exe-update-test.log" if "--smoke-test-update" in sys.argv else "exe-smoke-test.log")
         if "--smoke-test-full-update" in sys.argv:
             log_path = os.path.join(PROJECT_DIR, "exe-full-update-test.log")
+        if "--smoke-test-gallery" in sys.argv:
+            log_path = os.path.join(PROJECT_DIR, "exe-gallery-test.log")
+        if "--smoke-test-gallery-editor" in sys.argv:
+            log_path = os.path.join(PROJECT_DIR, "exe-gallery-editor-test.log")
         try:
             main()
         except Exception:
