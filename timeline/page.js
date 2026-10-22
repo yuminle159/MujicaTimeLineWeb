@@ -659,7 +659,7 @@
     tlLightboxGroup = null;
     tlLightboxIndex = 0;
     // 延迟清理图片，避免关闭时闪烁
-    setTimeout(() => { tlLightboxImages.innerHTML = ""; }, 300);
+    setTimeout(() => { if (!document.getElementById("tlLightbox").classList.contains("active")) tlLightboxImages.innerHTML = ""; }, 300);
   };
 
   // 灯箱键盘导航

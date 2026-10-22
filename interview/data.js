@@ -10,8 +10,8 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "eoCADeAXqYd",
     sections: [{"id": "section-01", "title": "从第一印象中逐渐显现出的，两人的“真实一面”"}, {"id": "section-02", "title": "TV动画化确定时，两人各自的觉悟"}, {"id": "section-03", "title": "从3岁开始的“宿命”，与从16岁开始的挑战——各自的人生轨迹"}, {"id": "section-04", "title": "“你觉得音乐是快乐的吗？”"}, {"id": "section-05", "title": "没能以“很开心”来收尾"}, {"id": "section-06", "title": "想要一起去寻找那份闪耀"}],
-    related: [{"id": "hHvY1EWykhY", "reason": "同系列"}, {"id": "qDzrFr9bmoq", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}],
-    previous_id: "hloIGz0UBX8",
+    related: [{"id": "hHvY1EWykhY", "reason": "同系列"}, {"id": "qDzrFr9bmoq", "reason": "共同受访者：高尾奏音"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：高尾奏音"}],
+    previous_id: "MYRb5diekKM",
     next_id: "hHvY1EWykhY",
     article_path: "articles/eoCADeAXqYd.js"
   },
@@ -62,7 +62,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "NDm8tZaWJgu",
     sections: [{"id": "section-01", "title": "只有在黑暗中才能闪耀的东西一定是存在着的"}, {"id": "section-02", "title": "越是了解就越感觉谜团重重的Doloris"}, {"id": "section-03", "title": "仿佛深深潜入歌词之海般的感觉"}, {"id": "section-04", "title": "Ave Mujica能成为任何存在"}],
-    related: [{"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子"}, {"id": "ZiWd1iURLsj", "reason": "共同受访者：佐佐木李子"}, {"id": "DhvrDXRrWlS", "reason": "共同受访者：佐佐木李子"}],
+    related: [{"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子"}, {"id": "ZiWd1iURLsj", "reason": "共同受访者：佐佐木李子"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子"}],
     previous_id: "1UhshAZcpdF",
     next_id: "0ZQv1f6v1zW",
     article_path: "articles/NDm8tZaWJgu.js"
@@ -114,7 +114,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "VXjlXSdRiCl",
     sections: [{"id": "section-01", "title": "“没想到竟然会说出‘混账老爹’这种台词”"}, {"id": "section-02", "title": "佐佐木小姐每天都会更新的那本笔记"}, {"id": "section-03", "title": "角色设定虽然黑暗，但角色之下的我们却很温暖。"}],
-    related: [{"id": "m58tZySEck6", "reason": "同系列"}, {"id": "n7j1fu7Aamc", "reason": "同系列"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
+    related: [{"id": "m58tZySEck6", "reason": "同系列"}, {"id": "n7j1fu7Aamc", "reason": "同系列"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "MX8CI0pi7ii",
     next_id: "n7j1fu7Aamc",
     article_path: "articles/VXjlXSdRiCl.js"
@@ -127,7 +127,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "n7j1fu7Aamc",
     sections: [{"id": "section-01", "title": "不仅在声音上，也想通过动作与彼此相连"}, {"id": "section-02", "title": "独一无二的世界观，无限可能的乐队"}, {"id": "section-03", "title": "走过 0th LIVE，终于迈向 1st LIVE"}],
-    related: [{"id": "m58tZySEck6", "reason": "同系列"}, {"id": "VXjlXSdRiCl", "reason": "同系列"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
+    related: [{"id": "m58tZySEck6", "reason": "同系列"}, {"id": "VXjlXSdRiCl", "reason": "同系列"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "VXjlXSdRiCl",
     next_id: "m58tZySEck6",
     article_path: "articles/n7j1fu7Aamc.js"
@@ -140,7 +140,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "m58tZySEck6",
     sections: [{"id": "section-01", "title": "“我一边感受着大家，一边歌唱”"}, {"id": "section-02", "title": "疯狂的Riff Master所演奏的紧张琶音"}, {"id": "section-03", "title": "「美好的世界，但是并不存在」"}, {"id": "section-04", "title": "在『BanG Dream! Ave Mujica』中“得到了救赎”"}, {"id": "section-05", "title": "迈向美好的未来"}],
-    related: [{"id": "n7j1fu7Aamc", "reason": "同系列"}, {"id": "VXjlXSdRiCl", "reason": "同系列"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
+    related: [{"id": "n7j1fu7Aamc", "reason": "同系列"}, {"id": "VXjlXSdRiCl", "reason": "同系列"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "n7j1fu7Aamc",
     next_id: "ZiWd1iURLsj",
     article_path: "articles/m58tZySEck6.js"
@@ -194,7 +194,7 @@ var interviewData = [
     sections: [{"id": "section-01", "title": "乐队成员简介"}, {"id": "section-02", "title": "乐队成员Q & A"}, {"id": "section-03", "title": "终于能毫无保留地表现出来了，我想传达Ave Mujica灵魂的呐喊"}, {"id": "section-04", "title": "有种夹在小睦和Mortis之间的感觉"}, {"id": "section-05", "title": "海铃的那份笨拙也很可爱，我特别喜欢"}, {"id": "section-06", "title": "我一直有信心，最后大家一定会喜欢上若麦"}, {"id": "section-07", "title": "谢谢大家陪着我一起守望祥子的成长"}, {"id": "section-08", "title": "乐队成员寄语"}],
     related: [{"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "HfJYreVxg8X", "reason": "同为全员访谈"}],
     previous_id: "DhvrDXRrWlS",
-    next_id: "eoCADeAXqYd",
+    next_id: "Aci7jBwVNAv",
     article_path: "articles/hloIGz0UBX8.js"
   },
   {
@@ -218,7 +218,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "jqNjeOrIDQb",
     sections: [{"id": "section-01", "title": "与Bushiroad企划的勾结是“没有的事！”"}, {"id": "section-02", "title": "MyGO!!!!!那些难读标题的诞生秘闻"}, {"id": "section-03", "title": "制作人亲自指导Ave Mujica甩头"}, {"id": "section-04", "title": "谈论女子乐队企划蓬勃发展的当下"}, {"id": "section-05", "title": "何为“Anisama中的胜负”？"}, {"id": "section-06", "title": "以“把一切统统砸烂”的心态去挑战"}],
-    related: [{"id": "DhvrDXRrWlS", "reason": "共同受访者：松本拓辉"}],
+    related: [{"id": "Aci7jBwVNAv", "reason": "共同受访者：松本拓辉"}, {"id": "DhvrDXRrWlS", "reason": "共同受访者：松本拓辉"}],
     previous_id: "B0F4USdjUL8",
     next_id: "1UhshAZcpdF",
     article_path: "articles/jqNjeOrIDQb.js"
@@ -257,7 +257,7 @@ var interviewData = [
     if_translated: "no",
     hash_id: "D8V8YJOLbPX",
     sections: [{"id": "section-01", "title": "有笑声的「It's MyGO!!!!!」现场，与气氛沉重的「Ave Mujica」现场"}, {"id": "section-02", "title": "「人間になりたいうたII」「春日影」的演唱中所倾注的讲究"}, {"id": "section-03", "title": "散布点缀在「Ave Mujica」中身为初音的心境"}, {"id": "section-04", "title": "彼此对对方乐队的印象是“好厉害！”“蒸蒸日上”"}, {"id": "section-05", "title": "“真的很多” 「BanG Dream!」主唱的辛苦之处"}, {"id": "section-06", "title": "希望办成一场让人感叹“也曾有过这样的事啊”、并能勾起故事回忆的合同Live"}],
-    related: [{"id": "DhvrDXRrWlS", "reason": "共同受访者：佐佐木李子"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子"}, {"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子"}],
+    related: [{"id": "DhvrDXRrWlS", "reason": "共同受访者：佐佐木李子"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子"}],
     previous_id: "vg0aUAR0CnH",
     next_id: "DhvrDXRrWlS",
     article_path: "articles/D8V8YJOLbPX.js"
@@ -269,8 +269,8 @@ var interviewData = [
     title: "Real Sound 佐佐木李子×松本拓辉P揭秘Ave Mujica幕后 “丝毫不妥协这一点让人欣喜”",
     if_translated: "yes",
     hash_id: "DhvrDXRrWlS",
-    sections: [{"id": "section-01", "title": "朗读剧中埋下的TV动画『Ave Mujica』的伏笔"}, {"id": "section-02", "title": "正因为是“能直言不讳交换意见”的团队，才孕育出 Ave Mujica 的现场演出"}, {"id": "section-03", "title": "「KiLLKiSS」中所倾注的 Diggy-MO’ 的执着"}, {"id": "section-04", "title": "迷你专辑『ELEMENTS』诞生秘话"}, {"id": "section-05", "title": "谈谈TV动画『BanG Dream! Ave Mujica』第10话以后的乐曲"}, {"id": "section-06", "title": "分歧路口，前途漫漫"}, {"id": "section-07", "title": "佐佐木李子 × 松本拓辉眼中的Ave Mujica未来"}],
-    related: [{"id": "D8V8YJOLbPX", "reason": "共同受访者：佐佐木李子"}, {"id": "VXjlXSdRiCl", "reason": "共同受访者：佐佐木李子"}, {"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子"}],
+    sections: [{"id": "section-01", "title": "朗读剧中埋下的TV动画『Ave Mujica』的伏笔"}, {"id": "section-02", "title": "正因为是“能直言不讳交换意见”的团队，才孕育出 Ave Mujica 的现场演出"}, {"id": "section-03", "title": "「KiLLKiSS」中所倾注的 Diggy-MO’ 的执着"}, {"id": "section-04", "title": "迷你专辑『ELEMENTS』诞生秘话"}, {"id": "section-05", "title": "谈谈TV动画『BanG Dream! Ave Mujica』第10话以后的乐曲"}, {"id": "section-06", "title": "分歧路口，前途漫漫"}, {"id": "section-07", "title": "佐佐木李子 × 松本拓辉眼中的Ave Mujica的未来"}],
+    related: [{"id": "D8V8YJOLbPX", "reason": "共同受访者：佐佐木李子"}, {"id": "Aci7jBwVNAv", "reason": "共同受访者：松本拓辉"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子"}],
     previous_id: "D8V8YJOLbPX",
     next_id: "hloIGz0UBX8",
     article_path: "articles/DhvrDXRrWlS.js"
@@ -309,7 +309,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "qDzrFr9bmoq",
     sections: [{"id": "section-01", "title": "TV动画「BanG Dream! Ave Mujica」所交织出的、宛如悬疑作品般的人际关系"}, {"id": "section-02", "title": "高尾奏音的阅读方式与推荐书目"}],
-    related: [{"id": "BE9kJEFFOW6", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "m58tZySEck6", "reason": "共同受访者：高尾奏音"}],
+    related: [{"id": "BE9kJEFFOW6", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：高尾奏音"}],
     previous_id: "tLoc6uej4kx",
     next_id: "vg0aUAR0CnH",
     article_path: "articles/qDzrFr9bmoq.js"
@@ -322,7 +322,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "f5ckErYJPuS",
     sections: [],
-    related: [{"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "VXjlXSdRiCl", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
+    related: [{"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "hHvY1EWykhY",
     next_id: "yvFZ0YTSvaC",
     article_path: "articles/f5ckErYJPuS.js"
@@ -335,9 +335,48 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "yvFZ0YTSvaC",
     sections: [{"id": "section-01", "title": "MAIL INTERVIEW : Ave Mujica"}, {"id": "section-02", "title": "名副其实的“全新序幕”一般的作品"}, {"id": "section-03", "title": "希望能够始终以更好的状态呈现给大家，为此会竭尽全力"}, {"id": "section-04", "title": "从今往后，Ave Mujica也将不断超越Ave Mujica自身"}, {"id": "section-05", "title": "REVIEW : Ave Mujica『神の名を』"}],
-    related: [{"id": "hloIGz0UBX8", "reason": "同为全员访谈"}, {"id": "bFRYIyvBbTN", "reason": "同为全员访谈"}, {"id": "HfJYreVxg8X", "reason": "同为全员访谈"}],
+    related: [{"id": "hloIGz0UBX8", "reason": "同为全员访谈"}, {"id": "MYRb5diekKM", "reason": "同为全员访谈"}, {"id": "bFRYIyvBbTN", "reason": "同为全员访谈"}],
     previous_id: "f5ckErYJPuS",
     next_id: "",
     article_path: "articles/yvFZ0YTSvaC.js"
+  },
+  {
+    poster: "../images/250429animetv松本访谈-01.webp",
+    date: "2025-04-29 00:00:00",
+    interviewee: "松本拓辉",
+    title: "AnimeTV  Ave Mujica 骰子已被掷下：乐队制作人松本拓辉独家专访",
+    if_translated: "no",
+    hash_id: "Aci7jBwVNAv",
+    sections: [],
+    related: [{"id": "jqNjeOrIDQb", "reason": "共同受访者：松本拓辉"}, {"id": "DhvrDXRrWlS", "reason": "共同受访者：松本拓辉"}],
+    previous_id: "hloIGz0UBX8",
+    next_id: "8OooM0J1zZR",
+    article_path: "articles/Aci7jBwVNAv.js"
+  },
+  {
+    poster: "../images/250728弄李访谈-01.webp",
+    date: "2025-07-28 00:00:00",
+    interviewee: "佐佐木李子 x 高尾奏音",
+    title: "2025年7月 Animate 佐佐木李子 x 高尾奏音访谈",
+    if_translated: "no",
+    hash_id: "8OooM0J1zZR",
+    sections: [{"id": "section-01", "title": "在与MyGO!!!!!的联合Live中，两人以音乐相交的「对话」"}, {"id": "section-02", "title": "动画的结局：正因为曾身处黑暗之中，才会觉得那一丝微光如此耀眼"}, {"id": "section-03", "title": "即使摘下了面具，也始终戴着一副“看不见的面具”"}, {"id": "section-04", "title": "希望今后能继续举办超越作品本身、让「Ave Mujica」之名铭刻于乐队历史的Live"}],
+    related: [{"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "VXjlXSdRiCl", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
+    previous_id: "Aci7jBwVNAv",
+    next_id: "MYRb5diekKM",
+    article_path: "articles/8OooM0J1zZR.js"
+  },
+  {
+    poster: "../images/20250908读卖新闻-01.webp",
+    date: "2025-09-08 00:00:00",
+    interviewee: "Ave Mujica",
+    title: "読売新聞 Ave Mujica 动画声优亲自上阵演奏……备受国内外瞩目的五人金属乐队",
+    if_translated: "no",
+    hash_id: "MYRb5diekKM",
+    sections: [{"id": "section-01", "title": "诞生自「BanG Dream!」"}, {"id": "section-02", "title": "突破动画的框架，目标是世界巡演"}, {"id": "section-03", "title": "2首新曲，全程无MC，一气呵成的One Man Live「Nova Historia」"}, {"id": "section-04", "title": "首张专辑「Completeness」广受专业音乐杂志好评"}],
+    related: [{"id": "bFRYIyvBbTN", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "hloIGz0UBX8", "reason": "同为全员访谈"}],
+    previous_id: "8OooM0J1zZR",
+    next_id: "eoCADeAXqYd",
+    article_path: "articles/MYRb5diekKM.js"
   }
 ];

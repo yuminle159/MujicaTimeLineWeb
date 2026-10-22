@@ -6,7 +6,11 @@
         subs.forEach(s => catMap[cat].add(s));
       });
     });
-    const categories = Object.keys(catMap).sort();
+    const dimensionOrder = ['类型', 'LIVE', '人物', '关联人物', '作品', '节目', '来源'];
+    const categories = Object.keys(catMap).sort((a, b) => {
+      const rank = value => dimensionOrder.includes(value) ? dimensionOrder.indexOf(value) : 99;
+      return rank(a) - rank(b) || a.localeCompare(b, 'zh-CN');
+    });
 
     const filterBar = document.getElementById('filterBar');
 
@@ -16,24 +20,24 @@
     const allBtn = document.createElement('button');
     allBtn.className = 'main-tag active';
     allBtn.setAttribute('data-filter', 'all');
-    allBtn.innerHTML = '<span class="diamond">&#9670;</span> ALL';
+    allBtn.innerHTML = '<span class="diamond">&#9670;</span> 全部 / 清除筛选';
+    allBtn.setAttribute('aria-pressed', 'true');
     allBtn.addEventListener('click', () => filterBy('all', allBtn));
     allGroup.appendChild(allBtn);
     filterBar.appendChild(allGroup);
 
     // 分类 + 子标签
     categories.forEach(cat => {
-      const sep = document.createElement('div');
-      sep.className = 'separator';
-      filterBar.appendChild(sep);
-
       const group = document.createElement('div');
       group.className = 'filter-group';
+      group.setAttribute('role', 'group');
+      group.setAttribute('aria-label', cat);
 
       const catBtn = document.createElement('button');
       catBtn.className = 'main-tag';
       catBtn.setAttribute('data-filter', cat);
-      catBtn.innerHTML = '<span class="diamond">&#9670;</span> ' + cat;
+      catBtn.textContent = cat;
+      catBtn.title = '清除此分类的筛选';
       catBtn.addEventListener('click', () => filterBy(cat, catBtn));
       group.appendChild(catBtn);
 
@@ -43,6 +47,7 @@
         subBtn.className = 'sub-tag pill';
         subBtn.setAttribute('data-filter', cat + ':' + sub);
         subBtn.textContent = sub;
+        subBtn.setAttribute('aria-pressed', 'false');
         subBtn.addEventListener('click', () => filterBy(cat + ':' + sub, subBtn));
         group.appendChild(subBtn);
       });
@@ -52,7 +57,7 @@
 
     let currentPage = 1;
     const PER_PAGE = 50;
-    let activeGalleryFilter = 'all';
+    const activeGalleryFilters = new Map();
     let gallerySearchQuery = '';
 
     document.getElementById('gallerySearchInput').addEventListener('input', function () {
@@ -62,11 +67,29 @@
     });
 
     function filterBy(target, clickedBtn) {
-      // 更新激活状态
-      document.querySelectorAll('.main-tag, .sub-tag').forEach(b => b.classList.remove('active'));
-      clickedBtn.classList.add('active');
-
-      activeGalleryFilter = target;
+      if (target === 'all') {
+        activeGalleryFilters.clear();
+      } else if (!target.includes(':')) {
+        activeGalleryFilters.delete(target);
+      } else {
+        const separator = target.indexOf(':');
+        const category = target.slice(0, separator);
+        const value = target.slice(separator + 1);
+        const selected = activeGalleryFilters.get(category) || new Set();
+        if (selected.has(value)) selected.delete(value);
+        else selected.add(value);
+        if (selected.size) activeGalleryFilters.set(category, selected);
+        else activeGalleryFilters.delete(category);
+      }
+      filterBar.querySelectorAll('[data-filter]').forEach(button => {
+        const value = button.dataset.filter;
+        const separator = value.indexOf(':');
+        const active = value === 'all' ? activeGalleryFilters.size === 0
+          : separator < 0 ? activeGalleryFilters.has(value)
+          : Boolean(activeGalleryFilters.get(value.slice(0, separator))?.has(value.slice(separator + 1)));
+        button.classList.toggle('active', active);
+        if (separator >= 0 || value === 'all') button.setAttribute('aria-pressed', String(active));
+      });
       currentPage = 1;
       applyGalleryFilters();
     }
@@ -74,16 +97,9 @@
     function applyGalleryFilters() {
       document.querySelectorAll('.masonry-item').forEach(card => {
         const cardTags = JSON.parse(card.getAttribute('data-tags'));
-        let tagMatches = false;
-
-        if (activeGalleryFilter === 'all') {
-          tagMatches = true;
-        } else if (activeGalleryFilter.includes(':')) {
-          const [cat, sub] = activeGalleryFilter.split(':');
-          tagMatches = cardTags[cat] && cardTags[cat].includes(sub);
-        } else {
-          tagMatches = activeGalleryFilter in cardTags;
-        }
+        // 同一维度任选其一，不同维度同时满足。
+        const tagMatches = [...activeGalleryFilters].every(([category, selected]) =>
+          [...selected].some(value => (cardTags[category] || []).includes(value)));
         const textMatches = !gallerySearchQuery || card.dataset.search.includes(gallerySearchQuery);
         const show = tagMatches && textMatches;
         card.classList.toggle('hidden', !show);
@@ -158,6 +174,10 @@
     galleryData.forEach((item, index) => {
       const card = document.createElement('div');
       card.className = 'masonry-item';
+      card.dataset.galleryIndex = String(index);
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', '查看图片：' + (item.title || item.filename.split('/').pop()));
       card.setAttribute('data-tags', JSON.stringify(item.tags));
       card.dataset.search = [item.title, item.date, item.description, JSON.stringify(item.tags)]
         .join(' ').toLocaleLowerCase();
@@ -193,6 +213,12 @@
       card.appendChild(overlay);
 
       card.addEventListener('click', () => openLightbox(item));
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openLightbox(item);
+        }
+      });
 
       grid.appendChild(card);
     });
@@ -215,80 +241,161 @@
 
     // ==================== 灯箱 ====================
     const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxDate = document.getElementById('lightboxDate');
-    const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxDesc = document.getElementById('lightboxDesc');
+    let lightboxImg = document.getElementById('lightboxImg');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
     const lightboxClose = document.getElementById('lightboxClose');
     const lightboxLoader = document.getElementById('lightboxLoader');
     const lightboxLoadMessage = document.getElementById('lightboxLoadMessage');
     const lightboxRetry = document.getElementById('lightboxRetry');
     let imageRequest = 0;
     let activeItem = null;
+    let lightboxItems = [];
+    let lightboxIndex = 0;
+    let returnFocus = null;
+    let previousOverflow = '';
+    let touchStart = null;
+    let suppressClickUntil = 0;
+
+    function filteredGalleryImages() {
+      // hidden 标记筛选结果；display:none 只是分页，不应限制轮播范围。
+      return [...document.querySelectorAll('.masonry-item:not(.hidden)')]
+        .map(card => galleryData[Number(card.dataset.galleryIndex)]);
+    }
 
     function loadLightboxImage(item) {
       const request = ++imageRequest;
-      lightboxImg.hidden = true;
-      lightboxImg.removeAttribute('src');
-      lightboxLoader.hidden = false;
+      const previous = lightboxImg;
+      previous.removeAttribute('id');
+      lightboxImg = document.createElement('img');
+      const current = lightboxImg;
+      current.id = 'lightboxImg';
+      current.className = 'lightbox-img';
+      current.alt = '图片 ' + (lightboxIndex + 1) + ' / ' + lightboxItems.length;
+      current.src = item.thumbnail || item.filename;
+      previous.after(current);
+      // Start the transition immediately, independently of the full-size request.
+      void current.offsetWidth;
+      previous.classList.remove('active');
+      current.classList.add('active');
+      setTimeout(() => previous.remove(), 300);
+      lightboxLoader.hidden = true;
       lightboxLoader.classList.remove('is-error');
-      lightboxLoadMessage.textContent = '图片加载中…';
       lightboxRetry.hidden = true;
 
       const nextImage = new Image();
-      nextImage.onload = async () => {
-        if (nextImage.decode) {
-          try { await nextImage.decode(); } catch (error) { /* 已载入，继续显示。 */ }
-        }
+      nextImage.onload = () => {
         if (request !== imageRequest || !lightbox.classList.contains('active')) return;
-        lightboxImg.src = nextImage.src;
-        lightboxImg.alt = item.title || '';
+        current.src = nextImage.src;
+        lightboxImg.alt = '图片 ' + (lightboxIndex + 1) + ' / ' + lightboxItems.length;
         lightboxImg.hidden = false;
         lightboxLoader.hidden = true;
       };
       nextImage.onerror = () => {
         if (request !== imageRequest || !lightbox.classList.contains('active')) return;
+        lightboxLoader.hidden = false;
         lightboxLoader.classList.add('is-error');
         lightboxLoadMessage.textContent = '图片加载失败，请检查网络后重试。';
         lightboxRetry.hidden = false;
       };
       nextImage.src = item.filename;
+      // Only warm adjacent originals; opening a gallery must not fetch every file.
+      [-1, 1].forEach(offset => {
+        const neighbor = lightboxItems[(lightboxIndex + offset + lightboxItems.length) % lightboxItems.length];
+        if (neighbor && neighbor !== item) { const image = new Image(); image.src = neighbor.filename; }
+      });
     }
 
     function openLightbox(item) {
       hidePageTop();
+      if (!lightbox.classList.contains('active')) {
+        returnFocus = document.activeElement;
+        previousOverflow = document.body.style.overflow;
+      }
+      lightboxItems = filteredGalleryImages();
+      lightboxIndex = lightboxItems.indexOf(item);
+      // 外部直达链接若不在当前筛选中，仅打开该图。
+      if (lightboxIndex < 0) {
+        lightboxItems = [item];
+        lightboxIndex = 0;
+      }
+      lightboxPrev.hidden = lightboxNext.hidden = lightboxItems.length < 2;
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      showLightboxItem();
+      lightboxClose.focus({ preventScroll: true });
+    }
+
+    function showLightboxItem() {
+      const item = lightboxItems[lightboxIndex];
+      if (!item) return;
       history.replaceState(null, '', '#gallery=' + encodeURIComponent(item.hash_id));
       activeItem = item;
-      lightboxDate.textContent = formatDate(item.date);
-      lightboxTitle.textContent = item.title;
-      lightboxDesc.textContent = item.description || '';
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
       loadLightboxImage(item);
     }
 
+    function moveLightbox(direction) {
+      if (!lightbox.classList.contains('active') || lightboxItems.length < 2) return;
+      lightboxIndex = (lightboxIndex + direction + lightboxItems.length) % lightboxItems.length;
+      showLightboxItem();
+    }
+
     function closeLightbox() {
+      if (!lightbox.classList.contains('active')) return;
       imageRequest += 1;
       activeItem = null;
+      lightboxItems = [];
+      touchStart = null;
       lightboxImg.hidden = true;
       lightboxImg.removeAttribute('src');
       lightboxLoader.hidden = true;
       lightbox.classList.remove('active');
-      document.body.style.overflow = '';
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = previousOverflow;
       if (location.hash.startsWith('#gallery=')) {
         history.replaceState(null, '', location.pathname + location.search);
       }
+      if (returnFocus && returnFocus.isConnected) returnFocus.focus({ preventScroll: true });
     }
 
     lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => moveLightbox(-1));
+    lightboxNext.addEventListener('click', () => moveLightbox(1));
     lightboxRetry.addEventListener('click', () => {
       if (activeItem) loadLightboxImage(activeItem);
     });
     lightbox.addEventListener('click', (e) => {
-      if (!e.target.closest('.lightbox-img, .lightbox-close, #lightboxRetry')) closeLightbox();
+      if (performance.now() < suppressClickUntil) return;
+      if (!e.target.closest('.lightbox-img, button')) closeLightbox();
     });
+    lightbox.addEventListener('touchstart', event => {
+      touchStart = event.touches.length === 1 && !event.target.closest('button')
+        ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null;
+    }, { passive: true });
+    lightbox.addEventListener('touchcancel', () => { touchStart = null; });
+    lightbox.addEventListener('touchend', event => {
+      if (!touchStart || !event.changedTouches.length) return;
+      const dx = event.changedTouches[0].clientX - touchStart.x;
+      const dy = event.changedTouches[0].clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        suppressClickUntil = performance.now() + 400;
+        moveLightbox(dx < 0 ? 1 : -1);
+      }
+    }, { passive: true });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
+      if (!lightbox.classList.contains('active')) return;
+      if (['Escape', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault();
+        if (e.key === 'Escape') closeLightbox();
+        else moveLightbox(e.key === 'ArrowLeft' ? -1 : 1);
+      } else if (e.key === 'Tab') {
+        const controls = [...lightbox.querySelectorAll('button')].filter(button => button.getClientRects().length);
+        const next = controls[(controls.indexOf(document.activeElement) + (e.shiftKey ? -1 : 1) + controls.length) % controls.length];
+        e.preventDefault();
+        next.focus();
+      }
     });
 
     function openGalleryFromHash() {
