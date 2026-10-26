@@ -18,6 +18,11 @@
     return value ? String(value).replace(/\s[\d:]+$/, "").trim() : "";
   }
 
+  function historyDateValue(value) {
+    const match = String(value || "").match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})/);
+    return match ? Number(match[1]) * 10000 + Number(match[2]) * 100 + Number(match[3]) : Number.MAX_SAFE_INTEGER;
+  }
+
   function ensureMarkup() {
     if (overlay) return;
     overlay = document.createElement("div");
@@ -165,7 +170,7 @@
 
   function renderHistory(song) {
     if (!song.live_history || !song.live_history.length) return "";
-    const history = song.live_history.slice().sort(function (a, b) { return (a.date || "").localeCompare(b.date || ""); });
+    const history = song.live_history.slice().sort(function (a, b) { return historyDateValue(a.date) - historyDateValue(b.date); });
     return '<section class="shared-song-section shared-song-history"><div class="shared-song-section-head"><h3>Performance History</h3><div class="shared-song-lyrics-actions shared-song-history-actions"><button class="shared-song-mode-button" type="button" data-song-action="live-mode" aria-pressed="false">Live Mode</button></div></div><div class="shared-song-live-list">' + history.map(function (item) {
       const name = item.has_video && item.video_url
         ? '<a class="shared-song-live-name" href="' + escapeHTML(item.video_url) + '" target="_blank" rel="noopener">' + escapeHTML(item.name) + '</a>'

@@ -306,13 +306,14 @@ body {
 .card-placeholder small { z-index:1; color:#49494e; font-size:8px; letter-spacing:2.6px; }
 .live-card:hover .card-placeholder::before { transform:rotate(50deg) scale(1.08); border-color:rgba(255,255,255,.09); }
 .live-card:hover .card-placeholder::after { transform:rotate(40deg) scale(.94); border-color:rgba(204,41,41,.24); }
-.live-card.is-upcoming .card-placeholder { background:radial-gradient(circle at 50% 42%,rgba(150,129,82,.08),transparent 34%),linear-gradient(145deg,#1c1b19,#0d0e10 72%); color:#85817a; }
+.live-card.is-upcoming .card-placeholder { background:radial-gradient(circle at 50% 42%,rgba(150,129,82,.08),transparent 34%),linear-gradient(145deg,#1c1b19,#0d0e10 72%); color:#85817a; filter:blur(4px); transform:scale(1.06); transition:filter .5s var(--md-easing-standard),transform .5s var(--md-easing-standard); }
 .live-card.is-upcoming .card-placeholder::before { border-color:rgba(218,210,193,.07); }
 .live-card.is-upcoming .card-placeholder::after { border-color:rgba(175,149,92,.18); }
 .live-card.is-upcoming .card-placeholder i { background:#8c7546; box-shadow:0 0 17px rgba(184,151,79,.22); }
 .live-card.is-upcoming .card-placeholder small { color:#55514a; }
 .live-card.is-upcoming:hover .card-placeholder::before { border-color:rgba(225,218,204,.13); }
 .live-card.is-upcoming:hover .card-placeholder::after { border-color:rgba(205,174,105,.3); }
+.live-card.is-upcoming:hover .card-placeholder { filter:blur(2px); transform:scale(1.08); }
 .card-info {
   padding: 20px 0;
 }

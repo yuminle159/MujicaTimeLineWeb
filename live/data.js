@@ -729,5 +729,61 @@ var livesData = [
     for_short: "EVANESCENCE D3",
     setlist: [],
     backstage: []
+  },
+  {
+    name: "Ave Mujica 8th LIVE「Discrimen Fati」DAY1",
+    hash_id: "PHSCfEkioSZ",
+    date: "2027/5/29",
+    venue: "Kアリーナ横浜",
+    tag: "One Man Live",
+    poster: "",
+    kv: "",
+    video_url: "",
+    description: "「命运的分岔点」",
+    for_short: "8th D1",
+    setlist: [],
+    backstage: []
+  },
+  {
+    name: "Ave Mujica 8th LIVE「Discrimen Fati」DAY2",
+    hash_id: "7okE5Vp26of",
+    date: "2027/5/30",
+    venue: "Kアリーナ横浜",
+    tag: "One Man Live",
+    poster: "",
+    kv: "",
+    video_url: "",
+    description: "「命运的分岔点」",
+    for_short: "8th D2",
+    setlist: [],
+    backstage: []
+  },
+  {
+    name: "ブシロード20周年記念ライブ DAY1",
+    hash_id: "Qq9PagSPw7H",
+    date: "2027/6/12",
+    venue: "横浜アリーナ",
+    tag: "BanG Dream!",
+    poster: "../images/logo/武士道20周年D1.webp",
+    kv: "",
+    video_url: "",
+    description: "",
+    for_short: "bsr20 D1",
+    setlist: [],
+    backstage: []
+  },
+  {
+    name: "ブシロード20周年記念ライブ DAY2",
+    hash_id: "BxbnoThKtox",
+    date: "2027/6/13",
+    venue: "横浜アリーナ",
+    tag: "BanG Dream!",
+    poster: "../images/logo/武士道20周年D2.webp",
+    kv: "",
+    video_url: "",
+    description: "",
+    for_short: "bsr20 D2",
+    setlist: [],
+    backstage: []
   }
 ];
