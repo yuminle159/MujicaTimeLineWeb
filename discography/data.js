@@ -3386,5 +3386,202 @@ var discographyData = [
     "contents": [],
     "bonus_contents": [],
     "editions": []
+  },
+  {
+    "id": "电影bd",
+    "hash_id": "rkDz36O6etV",
+    "title": "电影「BanG Dream! Ave Mujica prima aurora」Blu-ray",
+    "title_jp": "映画「BanG Dream! Ave Mujica prima aurora」Blu-ray",
+    "release_date": "2026/12/23",
+    "type": "Blu-ray",
+    "formats": [
+      "CD",
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "收录了电影『BanG Dream! Ave Mujica prima aurora』，除本篇外，还收录了Ave Mujica观影礼仪讲座、特别舞台问候声优谈话节目（Blu-ray ver.）",
+    "cover": "../images/电影bdcover.webp",
+    "search_keywords": "电影",
+    "chart": {
+      "first_day_rank": "",
+      "first_week_sales": "",
+      "first_week_rank": "",
+      "total_sales": "",
+      "source": ""
+    },
+    "contents": [],
+    "bonus_contents": [],
+    "editions": [
+      {
+        "name": "通常盤",
+        "type": "通常盘",
+        "catalog_no": "BRMM-11117",
+        "price": "11000",
+        "cover": "../images/电影bdcover.webp",
+        "cover_gallery": [],
+        "format": "CD + Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "特制小册子",
+          "特制封面贴纸1张",
+          "特制三面包覆封套盒",
+          "早期预约特典：迷你照片风格卡片（5款套装）",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "电影「BanG Dream! Ave Mujica prima aurora」本篇",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "Ave Mujica 观影礼仪讲座剧场",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "03",
+            "song_name": "",
+            "content_title": "特别舞台问候声优谈话节目（Blu-ray ver.）",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "01",
+            "song_name": "Overture",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "02",
+            "song_name": "冥界への誘い",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "03",
+            "song_name": "血の祭儀",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "04",
+            "song_name": "幕間の素顔",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "05",
+            "song_name": "桜咲く夜道",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "06",
+            "song_name": "盛者必衰",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "07",
+            "song_name": "もう一つの顔",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "08",
+            "song_name": "緊張と緩和",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "09",
+            "song_name": "アンティーク・ファントム",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "10",
+            "song_name": "おかえりなさい！",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "11",
+            "song_name": "独立宣言",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "12",
+            "song_name": "グラスを片手に",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "CD（OST)",
+            "track_no": "13",
+            "song_name": "崩れ出す日常",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      }
+    ]
   }
 ];

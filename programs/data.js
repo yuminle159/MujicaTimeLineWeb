@@ -1,6 +1,143 @@
 // 由 generate_all.py 自动生成，请在 data.xlsx 的 programs 表维护。
 window.programsData = [
   {
+    "program_id": "bdtv-0338",
+    "program": "バンドリ！TV LIVE",
+    "episode": "#338",
+    "date": "2026-10-29",
+    "time": "21:30",
+    "timezone": "+09:00",
+    "title": "バンドリ！TV LIVE 2026 #338",
+    "video_url": "https://www.youtube.com/watch?v=euixQCD3Llg",
+    "cover": "../images/programs/bdtv-0338-euixQCD3Llg.webp",
+    "notes": "",
+    "performers": [
+      {
+        "name": "工藤晴香",
+        "order": 16,
+        "bands": [
+          "Roselia"
+        ],
+        "color": "#3344AA",
+        "aliases": []
+      },
+      {
+        "name": "樱川惠",
+        "order": 18,
+        "bands": [
+          "Roselia"
+        ],
+        "color": "#3344AA",
+        "aliases": [
+          "櫻川めぐ"
+        ]
+      },
+      {
+        "name": "佐佐木李子",
+        "order": 40,
+        "bands": [
+          "Ave Mujica"
+        ],
+        "color": "#881144",
+        "aliases": [
+          "佐々木李子"
+        ]
+      },
+      {
+        "name": "渡濑结月",
+        "order": 41,
+        "bands": [
+          "Ave Mujica"
+        ],
+        "color": "#881144",
+        "aliases": [
+          "渡瀬結月"
+        ]
+      },
+      {
+        "name": "東雲はる",
+        "order": 71,
+        "bands": [],
+        "color": "",
+        "aliases": []
+      },
+      {
+        "name": "柊優花",
+        "order": 72,
+        "bands": [],
+        "color": "",
+        "aliases": []
+      }
+    ],
+    "clips": []
+  },
+  {
+    "program_id": "program-20261026-695fc346",
+    "program": "~BanG Dream! Our Notes~ だんらんTV！",
+    "episode": "",
+    "date": "2026-10-26",
+    "time": "20:00",
+    "timezone": "+09:00",
+    "title": "初回放送",
+    "video_url": "https://www.youtube.com/watch?v=y2jXT9dAvCo",
+    "cover": "../images/programs/program-20261026-695fc346-y2jXT9dAvCo.webp",
+    "notes": "",
+    "performers": [
+      {
+        "name": "橘芽衣",
+        "order": 55,
+        "bands": [
+          "一家Dumb Rock!"
+        ],
+        "color": "#FFAA33",
+        "aliases": [
+          "橘めい"
+        ]
+      },
+      {
+        "name": "凉泉樱花",
+        "order": 56,
+        "bands": [
+          "一家Dumb Rock!"
+        ],
+        "color": "#FFAA33",
+        "aliases": [
+          "涼泉桜花"
+        ]
+      },
+      {
+        "name": "林鼓子",
+        "order": 39,
+        "bands": [
+          "MyGO!!!!!"
+        ],
+        "color": "#3388BB",
+        "aliases": []
+      },
+      {
+        "name": "渡濑结月",
+        "order": 41,
+        "bands": [
+          "Ave Mujica"
+        ],
+        "color": "#881144",
+        "aliases": [
+          "渡瀬結月"
+        ]
+      },
+      {
+        "name": "菱川花菜",
+        "order": 58,
+        "bands": [
+          "一家Dumb Rock!"
+        ],
+        "color": "#FFAA33",
+        "aliases": []
+      }
+    ],
+    "clips": []
+  },
+  {
     "program_id": "bdtv-0337",
     "program": "バンドリ！TV LIVE",
     "episode": "#337",

@@ -3114,6 +3114,60 @@ var timelineData = [
     media: []
   },
   {
+    hash_id: "VhCZd9ulug0",
+    date: "2026/10/26",
+    title: "渡濑结月 出演 「~BanG Dream! Our Notes~ だんらんTV！」",
+    category: "organization",
+    description: "与 橘芽衣 & 凉泉樱花 & 林鼓子 & 菱川花菜 共同出演",
+    tag: "program",
+    media: []
+  },
+  {
+    hash_id: "ov5ExtVFdOi",
+    date: "2027/1/8",
+    title: "TV动画「BanG Dream! MyGO!!!!! // Ave Mujica」#1 播出",
+    category: "organization",
+    description: "",
+    tag: "anime",
+    media: []
+  },
+  {
+    hash_id: "tE1zlLvWdhT",
+    date: "2027/5/29",
+    title: "Ave Mujica 8th LIVE「Discrimen Fati」",
+    category: "organization",
+    description: "「命运的分岔点」",
+    tag: "oml",
+    media: []
+  },
+  {
+    hash_id: "B9SaWALfnBu",
+    date: "2027/5/30",
+    title: "Ave Mujica 8th LIVE「Discrimen Fati」",
+    category: "organization",
+    description: "「命运的分岔点」",
+    tag: "oml",
+    media: []
+  },
+  {
+    hash_id: "XO8g9zAz0Wq",
+    date: "2027/6/12",
+    title: "Ave Mujica 出演 ブシロード20周年記念ライブ",
+    category: "organization",
+    description: "",
+    tag: "bandori_fes",
+    media: []
+  },
+  {
+    hash_id: "i8q2UIQ7pA1",
+    date: "2027/6/13",
+    title: "Ave Mujica 出演 ブシロード20周年記念ライブ",
+    category: "organization",
+    description: "",
+    tag: "bandori_fes",
+    media: []
+  },
+  {
     hash_id: "Fw4d2gH0TMY",
     date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",
