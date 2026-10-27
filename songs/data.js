@@ -51,7 +51,7 @@ var songsData = [
       { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
-      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47935101_2" }
+      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
   {
@@ -85,7 +85,7 @@ var songsData = [
       { date: "2024/12/15", venue: "武蔵野の森総合スポーツプラザ", name: "Ave Mujica 4th LIVE「Adventus」", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_5" },
       { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47931075_6" },
       { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac47933675_8" },
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
       { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
@@ -565,8 +565,8 @@ var songsData = [
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
       { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac47931603_8" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac47933063_7" },
-      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47933063_8" }
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
+      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
   {
@@ -618,7 +618,7 @@ var songsData = [
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
       { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48409409_4" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac47931075_2" },
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
       { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
@@ -724,8 +724,8 @@ var songsData = [
       { date: "2025/7/27", venue: "LaLa arena TOKYO-BAY", name: "Ave Mujica 5th LIVE「Nova Historia」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47933636_5" },
       { date: "2026/6/20", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47933636_6" },
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac47932379" },
-      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47932379_2" }
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
+      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
   {
@@ -787,7 +787,7 @@ var songsData = [
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
       { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48751334_3" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac47932208_7" },
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
       { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
@@ -826,8 +826,8 @@ var songsData = [
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
       { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac47924476_8" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac47935303" },
-      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47935303_2" }
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
+      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
   {
@@ -858,7 +858,7 @@ var songsData = [
       { date: "2025/12/14", venue: "東京国際フォーラム ホールA", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_3" },
       { date: "2026/1/15", venue: "グランキューブ大阪 メインホール", name: "Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演", has_video: false, video_url: "" },
       { date: "2026/3/1", venue: "Kアリーナ横浜", name: "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」", has_video: true, video_url: "https://www.acfun.cn/v/ac47930865_4" },
-      { date: "2026/4/11", venue: "台北・大佳河濱公園", name: "BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」", has_video: false, video_url: "https://www.acfun.cn/v/ac47932379_7" },
+      { date: "2026/4/11", venue: "台北・大佳河濱公園", name: "BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」", has_video: false, video_url: "" },
       { date: "2026/4/17", venue: "Zepp Fukuoka", name: "Ave Mujica LIVE TOUR 2026「Exitus」福冈公演", has_video: false, video_url: "" },
       { date: "2026/4/26", venue: "Zepp Namba", name: "Ave Mujica LIVE TOUR 2026「Exitus」大阪公演", has_video: false, video_url: "" },
       { date: "2026/5/1", venue: "Zepp Nagoya", name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演", has_video: false, video_url: "" },
@@ -868,7 +868,7 @@ var songsData = [
       { date: "2026/7/12", venue: "Kアリーナ横浜", name: "BEAT AX -SUMMER EDITION 2026-", has_video: false, video_url: "" },
       { date: "2026/8/8", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1", has_video: false, video_url: "" },
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac48055738_6" },
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
       { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
@@ -909,7 +909,7 @@ var songsData = [
       { date: "2026/5/1", venue: "Zepp Nagoya", name: "Ave Mujica LIVE TOUR 2026「Exitus」爱知公演", has_video: false, video_url: "" },
       { date: "2026/5/4", venue: "Zepp Haneda (TOKYO)", name: "Ave Mujica LIVE TOUR 2026「Exitus」东京公演", has_video: false, video_url: "" },
       { date: "2026/6/19", venue: "SGC HALL ARIAKE", name: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1", has_video: true, video_url: "https://www.acfun.cn/v/ac47931260_8" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac47931830_3" }
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" }
     ]
   },
   {
@@ -1005,7 +1005,7 @@ var songsData = [
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
       { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48751840_3" },
-      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac48311717_5" }
+      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
   {
@@ -1063,7 +1063,7 @@ var songsData = [
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
       { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48311717_7" },
       { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
-      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47930836_7" }
+      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
   {
@@ -1214,8 +1214,8 @@ var songsData = [
       { date: "2026/8/9", venue: "國立體育大學綜合體育館（林口體育館）", name: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2", has_video: false, video_url: "" },
       { date: "2026/8/14", venue: "万博記念公園", name: "SUMMER SONIC 2026 OSAKA", has_video: false, video_url: "" },
       { date: "2026/8/16", venue: "ZOZOマリンスタジアム＆幕張メッセ", name: "SUMMER SONIC 2026 TOKYO", has_video: true, video_url: "https://www.acfun.cn/v/ac48115972_7" },
-      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "https://www.acfun.cn/v/ac47931569_6" },
-      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "https://www.acfun.cn/v/ac47931569_7" }
+      { date: "2026/10/24", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY1", has_video: false, video_url: "" },
+      { date: "2026/10/25", venue: "京王アリーナ TOKYO", name: "Ave Mujica 7th LIVE「Virtus」DAY2", has_video: true, video_url: "" }
     ]
   },
   {
