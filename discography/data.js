@@ -3352,7 +3352,7 @@ var discographyData = [
     "label": "Bushiroad Music",
     "description": "收录了2026年2月28日在Kアリーナ横浜举办的『BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」』的映像",
     "cover": "../images/十周年bdcover.webp",
-    "search_keywords": "",
+    "search_keywords": "10周年",
     "chart": {
       "first_day_rank": "",
       "first_week_sales": "",
@@ -3362,7 +3362,1172 @@ var discographyData = [
     },
     "contents": [],
     "bonus_contents": [],
-    "editions": []
+    "editions": [
+      {
+        "name": "完全生産限定版",
+        "type": "限定盘",
+        "catalog_no": "BRMM-11105",
+        "price": "30000",
+        "cover": "../images/十周年bdcover.webp",
+        "cover_gallery": [],
+        "format": "CD + Blu-ray + Goods",
+        "distribution": "Bushroad Online Shop",
+        "limited": "数量限定",
+        "bonus": [
+          "纪念册",
+          "特制乐队Logo徽章（共10款）",
+          "特制BOX",
+          "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」Live音源CD",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": true,
+          "bluray": true,
+          "box": true,
+          "goods": true
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "RAISE A SUILEN",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "1. R·I·O·T",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "2. V.I.P MONSTER",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "3. OUTSIDER RODEO",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "4. HELL! or HELL?",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Afterglow",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "5. 燦々",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "6. Hey-day狂騒曲(カプリチオ)",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "7. Scarlet Sky",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "夢限大みゅーたいぷ",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "8. 夢現妄想世界",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "9. チューニング",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "10. コミュ着火Fire!",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "ハロー、ハッピーワールド！×夢限大みゅーたいぷ",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "11. えがおのオーケストラっ！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "ハロー、ハッピーワールド！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "12. ゴーカ！ごーかい！？ファントムシーフ！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "13. サンバロハッピ〜！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "14. うぃーきゃん☆フレフレっ！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Morfonica",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "15. Daylight -デイライト-",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "16. メランコリックララバイ",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "17. 誓いのWingbeat",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "18. Tempest",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Pastel＊Palettes",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "19. 天下トーイツA to Z☆",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "20. しゅわりん☆どり〜みん",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Pastel＊Palettes×Afterglow",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "21. Y.O.L.O！！！！！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Pastel＊Palettes",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "22. もういちど ルミナス",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Ave Mujica",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "23. KiLLKiSS",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "24. 顔",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "25. Sophie",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "26. Symbol I : △",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Roselia",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "27. ZEAL of proud",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "28. BLACK SHOUT",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "29. FIRE BIRD",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "30. VIOLET LINE",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Roselia×美竹蘭 from Afterglow",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "31. PASSIONATE ANTHEM",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "MyGO!!!!!",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "32. 迷星叫",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "33. 壱雫空",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "34. 影色舞",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "35. 往欄印",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Poppin'Party",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "36. ティアドロップス",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "37. ぽっぴん'どりーむ！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "38. STAR BEAT!〜ホシノコドウ〜",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "39. キズナミュージック♪",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "CiRCLE THANKS PARTY！スペシャルバンド×MyGO!!!!!×Ave Mujica×夢限大みゅーたいぷ",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "40. CiRCLE THANKS MUSiC♪",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "ALL LINEUP",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "41. Yes! BanG_Dream!",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "03",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "Back Stage影像",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "01",
+            "song_name": "ハロー、ハッピーワールド！×夢限大みゅーたいぷ「えがおのオーケストラっ！」",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "02",
+            "song_name": "Pastel＊Palettes×Afterglow「Y.O.L.O！！！！！」",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "03",
+            "song_name": "Roselia×美竹蘭 from Afterglow「PASSIONATE ANTHEM」",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "04",
+            "song_name": "CiRCLE THANKS PARTY！スペシャルバンド×MyGO!!!!!×Ave Mujica×夢限大みゅーたいぷ「CiRCLE THANKS MUSiC♪」",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "04",
+            "disc_type": "CD",
+            "track_no": "05",
+            "song_name": "ALL LINEUP「Yes! BanG_Dream!」",
+            "content_title": "",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "name": "通常版",
+        "type": "通常盘",
+        "catalog_no": "BRMM-11106",
+        "price": "8800",
+        "cover": "../images/十周年bd通常.webp",
+        "cover_gallery": [],
+        "format": "Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": false,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "RAISE A SUILEN",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "1. R·I·O·T",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "2. V.I.P MONSTER",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "3. OUTSIDER RODEO",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "4. HELL! or HELL?",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Afterglow",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "5. 燦々",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "6. Hey-day狂騒曲(カプリチオ)",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "7. Scarlet Sky",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "夢限大みゅーたいぷ",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "8. 夢現妄想世界",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "9. チューニング",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "10. コミュ着火Fire!",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "ハロー、ハッピーワールド！×夢限大みゅーたいぷ",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "11. えがおのオーケストラっ！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "ハロー、ハッピーワールド！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "12. ゴーカ！ごーかい！？ファントムシーフ！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "13. サンバロハッピ〜！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "14. うぃーきゃん☆フレフレっ！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Morfonica",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "15. Daylight -デイライト-",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "16. メランコリックララバイ",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "17. 誓いのWingbeat",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "18. Tempest",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Pastel＊Palettes",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "19. 天下トーイツA to Z☆",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "20. しゅわりん☆どり〜みん",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Pastel＊Palettes×Afterglow",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "21. Y.O.L.O！！！！！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Pastel＊Palettes",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "22. もういちど ルミナス",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "02",
+            "song_name": "",
+            "content_title": "BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Ave Mujica",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "23. KiLLKiSS",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "24. 顔",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "25. Sophie",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "26. Symbol I : △",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Roselia",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "27. ZEAL of proud",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "28. BLACK SHOUT",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "29. FIRE BIRD",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "30. VIOLET LINE",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Roselia×美竹蘭 from Afterglow",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "31. PASSIONATE ANTHEM",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "MyGO!!!!!",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "32. 迷星叫",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "33. 壱雫空",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "34. 影色舞",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "35. 往欄印",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "Poppin'Party",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "36. ティアドロップス",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "37. ぽっぴん'どりーむ！",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "38. STAR BEAT!〜ホシノコドウ〜",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "39. キズナミュージック♪",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "CiRCLE THANKS PARTY！スペシャルバンド×MyGO!!!!!×Ave Mujica×夢限大みゅーたいぷ",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "40. CiRCLE THANKS MUSiC♪",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "ALL LINEUP",
+            "duration": "",
+            "note": ""
+          },
+          {
+            "disc_no": "02",
+            "disc_type": "BLU-RAY",
+            "track_no": "",
+            "song_name": "",
+            "content_title": "41. Yes! BanG_Dream!",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "台北鸡狗2bd",
