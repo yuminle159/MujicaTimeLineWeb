@@ -1,0 +1,4 @@
+interface:
+  display_name: "更新节目档案"
+  short_description: "检索官方节目资料，更新期目、出演者、乐队归属和封面，保留手填切片"
+  default_prompt: "使用 $update-programs 更新节目档案，补全历史缺失资料并收录最新节目，保留我填写的全部切片。"

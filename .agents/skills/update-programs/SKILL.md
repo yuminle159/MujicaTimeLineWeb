@@ -1,6 +1,6 @@
 ---
 name: update-programs
-description: 更新唯鸡百科 data.xlsx 的 programs 单表节目档案：检索官方直播节目、新增期目、补全及更正日期时间和出演者、维护乐队归属与别名、同步官方视频链接和封面。用户要求更新 program/programs、节目档案或生放送资料时使用；保留用户手填的全部切片，不接入 Upcoming。
+description: 更新唯鸡百科 data.xlsx 的 programs 单表节目档案：检索官方直播节目、新增期目、补全及更正日期时间和出演者、维护乐队归属与别名、同步官方完整节目、字幕组切片和封面。用户要求更新 program/programs、节目档案或生放送资料时使用；保留已有切片，不接入 Upcoming。
 ---
 
 # 节目档案更新
@@ -9,7 +9,7 @@ description: 更新唯鸡百科 data.xlsx 的 programs 单表节目档案：检�
 
 ## 必须保留的约定
 
-- `clips` 完全由用户维护。不得修改、清空、重新格式化、去重或补全现有切片单元格；新节目切片留空。使用随附工具写入，不能靠临时重建整张表来更新。
+- `video_url` 是官方 YouTube 完整节目，`clips` 是字幕组 Bilibili 节目切片。按本技能来源自动追加 `标题=>链接`；对合集内已有裸链接补标题，保留其他用户手填内容、原顺序、批注和样式。其他资料更新工具继续禁止写 `clips`。
 - 一期一行，出演者以 `|` 分隔；N:Q 是同一张表内的独立姓名、乐队、色值和别名字典，与左侧同一行的节目没有关联。不要整表排序，也不要另建出演者或切片工作表。
 - `program_id` 是稳定标识，已有记录不能重算。先匹配原视频 ID、节目系列与期数、日期与标题，避免把改期或改标题误当成新节目。
 - 维护定期与不定期节目，不限于 Ave Mujica 出演的期目。不把演唱会、MV、剪辑或普通动画集数自动当作直播节目。不改 Upcoming。
@@ -56,7 +56,14 @@ description: 更新唯鸡百科 data.xlsx 的 programs 单表节目档案：检�
 
 5. **同步封面**：在项目目录运行 `python sync_programs.py`。它会补空白链接、下载并命名 WebP；不能拿这个命令代替前面的期目/出演者更新。若已核实要更换原视频封面，补丁里明确清空该条 `cover` 后再运行；已有自定义封面默认保留。
 
-6. **核对切片和结果**：
+6. **同步字幕组切片**：从 [references/programs.md](references/programs.md) 指定的 Bilibili 合集读取所有分页，按标题中 `邦TV#期数` 匹配 `バンドリ！TV LIVE`。先预览，再用同一脚本应用；一个标题出现多个期数时追加到每一期。新切片保存为 `标题=>链接`，合集内已存在的裸链接补标题。只修改 I 列需要更新的单元格；无法唯一匹配的条目列入报告。
+
+   ```powershell
+   python "SKILL/scripts/season_clips.py" --project "PROJECT" --report "PROJECT/_reports/programs-clips-preview.json"
+   python "SKILL/scripts/season_clips.py" --project "PROJECT" --apply --report "PROJECT/_reports/programs-clips-update.json"
+   ```
+
+7. **核对切片和结果**：
 
    ```powershell
    python "SKILL/scripts/programs_tool.py" verify --project "PROJECT" --snapshot "PROJECT/_reports/programs-before.json" --output "PROJECT/_reports/programs-verify.json"
@@ -64,4 +71,4 @@ description: 更新唯鸡百科 data.xlsx 的 programs 单表节目档案：检�
 
    检查本轮新增/更新数、重复节目、时间与时区、别名冲突、本地封面、未补齐项和所有原切片。封面失败或来源不足的项目列出，不能称为全部完成。原始来源暂时不可访问时，保留可核实部分并报告未完成范围；不要无限重试或绕过登录/访问限制。
 
-结束时用中文简述新增与更正数、仍需核对的项目、报告位置及切片保护结果。这个项目目前未将 programs 接入网页生成器；先检查当前代码，只有已有节目页面和生成链路时才按现有流程生成其本地产物。不要因更新数据而擅自新建页面、接入 Upcoming、部署或提交 Git。
+结束时用中文简述新增与更正数、仍需核对的项目、报告位置及切片保护结果。项目已有节目页面和生成链路，数据更新后运行 `python generate_all.py --programs` 生成本地节目数据并核对链接。不要因更新数据而擅自新建页面、接入 Upcoming、部署或提交 Git。

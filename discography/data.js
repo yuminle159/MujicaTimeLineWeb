@@ -18,10 +18,10 @@ var discographyData = [
     "cover": "../images/神名通常.webp",
     "search_keywords": "神名 电影",
     "chart": {
-      "first_day_rank": "—",
-      "first_week_sales": "—",
-      "first_week_rank": "—",
-      "total_sales": "—",
+      "first_day_rank": "#8",
+      "first_week_sales": "13835",
+      "first_week_rank": "#11",
+      "total_sales": "13835",
       "source": "ORICON WEEKLY ALBUM RANKING"
     },
     "contents": [],
