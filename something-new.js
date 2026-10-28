@@ -1,6 +1,15 @@
 // 首页 Something New 数据（自动生成，请勿手动修改）
 window.SOMETHING_NEW = [
   {
+    "type": "song",
+    "ref": "Kaibutsu",
+    "update_date": "2026/10/28",
+    "title": "怪物",
+    "subtitle": "BanG Dream! Our Notes实装(Game Ver.) · 2026",
+    "image": "images/怪物cover.webp",
+    "href": "songs/index.html?song=Kaibutsu"
+  },
+  {
     "type": "discography",
     "ref": "电影bd",
     "update_date": "2026/10/27",
