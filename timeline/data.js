@@ -1685,9 +1685,9 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "GYGeKgZHIpL",
+    hash_id: "nLHKl3KPYDO",
     date: "2026/9/28",
-    title: "Cover曲「ファタール」Short ver. 公开",
+    title: "Cover曲「ファタール」Game ver. 公开",
     category: "organization",
     description: "Our Notes发布日决定特番宣布 将作为开服后5连翻唱活动歌曲实装",
     tag: "single",
@@ -3166,6 +3166,28 @@ var timelineData = [
     description: "",
     tag: "bandori_fes",
     media: []
+  },
+  {
+    hash_id: "DpixXGJXUIP",
+    date: "2026/10/28",
+    title: "Cover曲「怪物」Game ver. 公开",
+    category: "organization",
+    description: "Our Notes 2026年万圣挑战活动「A day〜#HalloweenSnap〜」课题曲实装",
+    tag: "single",
+    media: [
+      { type: "image", src: "../images/怪物cover.webp" }
+    ]
+  },
+  {
+    hash_id: "iUtT1jnkBLk",
+    date: "2027/1/8",
+    title: "全员 出演 『ブシロード新春大発表会2027』",
+    category: "organization",
+    description: "",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/2026新春大发表会-01.webp" }
+    ]
   },
   {
     hash_id: "Fw4d2gH0TMY",

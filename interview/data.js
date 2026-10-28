@@ -205,7 +205,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "HfJYreVxg8X",
     sections: [{"id": "section-01", "title": "佐佐木李子"}, {"id": "section-02", "title": "渡濑结月"}, {"id": "section-03", "title": "冈田梦以"}, {"id": "section-04", "title": "米泽茜"}, {"id": "section-05", "title": "高尾奏音"}],
-    related: [{"id": "MX8CI0pi7ii", "reason": "同为全员访谈"}, {"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}, {"id": "hloIGz0UBX8", "reason": "同为全员访谈"}],
+    related: [{"id": "gUsOq9umi6w", "reason": "同为全员访谈"}, {"id": "MX8CI0pi7ii", "reason": "同为全员访谈"}, {"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}],
     previous_id: "BE9kJEFFOW6",
     next_id: "tLoc6uej4kx",
     article_path: "articles/HfJYreVxg8X.js"
@@ -324,7 +324,7 @@ var interviewData = [
     sections: [],
     related: [{"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "VsrmlhE1P27",
-    next_id: "yvFZ0YTSvaC",
+    next_id: "gUsOq9umi6w",
     article_path: "articles/f5ckErYJPuS.js"
   },
   {
@@ -335,8 +335,8 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "yvFZ0YTSvaC",
     sections: [{"id": "section-01", "title": "MAIL INTERVIEW : Ave Mujica"}, {"id": "section-02", "title": "名副其实的“全新序幕”一般的作品"}, {"id": "section-03", "title": "希望能够始终以更好的状态呈现给大家，为此会竭尽全力"}, {"id": "section-04", "title": "从今往后，Ave Mujica也将不断超越Ave Mujica自身"}, {"id": "section-05", "title": "REVIEW : Ave Mujica『神の名を』"}],
-    related: [{"id": "hloIGz0UBX8", "reason": "同为全员访谈"}, {"id": "MYRb5diekKM", "reason": "同为全员访谈"}, {"id": "bFRYIyvBbTN", "reason": "同为全员访谈"}],
-    previous_id: "f5ckErYJPuS",
+    related: [{"id": "gUsOq9umi6w", "reason": "同为全员访谈"}, {"id": "hloIGz0UBX8", "reason": "同为全员访谈"}, {"id": "MYRb5diekKM", "reason": "同为全员访谈"}],
+    previous_id: "gUsOq9umi6w",
     next_id: "b3R0inuR9IR",
     article_path: "articles/yvFZ0YTSvaC.js"
   },
@@ -374,7 +374,7 @@ var interviewData = [
     if_translated: "no",
     hash_id: "MYRb5diekKM",
     sections: [{"id": "section-01", "title": "诞生自「BanG Dream!」"}, {"id": "section-02", "title": "突破动画的框架，目标是世界巡演"}, {"id": "section-03", "title": "2首新曲，全程无MC，一气呵成的One Man Live「Nova Historia」"}, {"id": "section-04", "title": "首张专辑「Completeness」广受专业音乐杂志好评"}],
-    related: [{"id": "bFRYIyvBbTN", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "hloIGz0UBX8", "reason": "同为全员访谈"}],
+    related: [{"id": "gUsOq9umi6w", "reason": "同为全员访谈"}, {"id": "bFRYIyvBbTN", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}],
     previous_id: "8OooM0J1zZR",
     next_id: "2KtTbpuZnmj",
     article_path: "articles/MYRb5diekKM.js"
@@ -430,5 +430,18 @@ var interviewData = [
     previous_id: "hHvY1EWykhY",
     next_id: "f5ckErYJPuS",
     article_path: "articles/VsrmlhE1P27.js"
+  },
+  {
+    poster: "../images/电影场刊-00.webp",
+    date: "2026-10-16 00:00:00",
+    interviewee: "Ave Mujica",
+    title: "电影「BanG Dream！Ave Mujica prima aurora」场刊 声优访谈部分",
+    if_translated: "no",
+    hash_id: "gUsOq9umi6w",
+    sections: [{"id": "section-01", "title": "三角初华役 佐佐木李子"}, {"id": "section-02", "title": "若叶睦役 渡濑结月"}, {"id": "section-03", "title": "八幡海铃役 冈田梦以"}, {"id": "section-04", "title": "祐天寺若麦役 米泽茜"}, {"id": "section-05", "title": "丰川祥子役 高尾奏音"}],
+    related: [{"id": "HfJYreVxg8X", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}],
+    previous_id: "f5ckErYJPuS",
+    next_id: "yvFZ0YTSvaC",
+    article_path: "articles/gUsOq9umi6w.js"
   }
 ];
