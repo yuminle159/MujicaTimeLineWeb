@@ -482,8 +482,12 @@
   function openStats() {
     const overlay = document.getElementById("statsOverlay");
     const body = document.getElementById("statsBody");
-    overlay.classList.add("active");
-    document.body.style.overflow = "hidden";
+    OverlayManager.open({
+      type: "stats", id: "live", manageHash: false,
+      activate: function() { overlay.classList.add("active"); },
+      deactivate: function() { overlay.classList.remove("active"); overlay.setAttribute("aria-hidden", "true"); },
+      getElement: function() { return overlay; }
+    });
     body.scrollTop = 0;
     body.innerHTML = '<div class="stats-loading">正在载入歌曲资料…</div>';
     WijipediaData.load("songs").then(function(data) {
@@ -492,8 +496,7 @@
     }).catch(function(error) { reportDataLoadError(error, body); });
   }
   function closeStats() {
-    document.getElementById("statsOverlay").classList.remove("active");
-    document.body.style.overflow = "";
+    OverlayManager.close("stats", "live");
   }
   window.closeStats = closeStats;
   window.openStats = openStats;
@@ -503,7 +506,7 @@
     if (e.target === this) closeStats();
   });
   document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape" && document.getElementById("statsOverlay").classList.contains("active")) {
+    if (e.key === "Escape" && !e.defaultPrevented && OverlayManager.isTop("stats", "live")) {
       closeStats();
     }
   });
@@ -542,7 +545,13 @@
       '<div class="stats-view active" id="view-overview">' + renderOverview(S) + '</div>' +
       '<div class="stats-view" id="view-evolution">' + renderEvolution(S) + '</div>' +
       '<div class="stats-view" id="view-compare">' + renderCompare(S) + '</div>' +
-      '<div class="stats-view" id="view-repertoire">' + renderRepertoire(S) + '</div>';
+      '<div class="stats-view" id="view-repertoire">' + renderRepertoire(S) + '</div>' +
+      '<div class="stats-view" id="view-venues"></div>';
+    VenueAtlas.mount(document.getElementById('view-venues'), {
+      lives: livesData, scope: statsScope, scopeOf: statsScopeOf,
+      dayOf: liveDay, today: japanTodayTimestamp(),
+      openLive: function(index) { openDrawer(index); }
+    });
     document.querySelectorAll("#statsBody .stats-view").forEach(v => {
       v.classList.toggle("active", v.id === "view-" + statsView);
     });
