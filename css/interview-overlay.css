@@ -307,7 +307,12 @@
 }
 
 .shared-interview-overlay .md-content strong { color: #eee; font-weight: 700; }
-.shared-interview-overlay .md-content em { color: #aaa; font-style: italic; }
+/* Markdown *文字*：以较小、较淡的斜体呈现补充说明。 */
+.shared-interview-overlay .md-content em {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+}
 
 .shared-interview-overlay .md-content a {
   color: var(--interview-primary);
