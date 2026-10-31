@@ -2370,7 +2370,7 @@ var timelineData = [
     date: "2025/4/3",
     title: "出演バンドリ TV LIVE #258",
     category: "personal",
-    description: "",
+    description: "高尾奏音：バンドリTVLIVE 感谢大家的收看🌙⚙️\n“のんここりこ”三个人在一起，情绪简直嗨到了顶点呢🌸\n只要我们三个聚在一起，就总会忍不住闹腾起来☺️\n丰川祥子的客户服务中心也……\n玩得很开心呢……！！！📞🕊️🩵笑\n\n佐佐木李子：バンドリTV 和のんここりこ一起，感谢大家的收看！\n向右看，有为我指引方向的鼓子亲\n向左看，有无论何时都会对我微笑的のん\n向前看，有角色们，还有和我们一起享受其中的各位粉丝与工作人员\n我不禁心想，我这是有多幸福啊‼️",
     tag: "business_mjc",
     media: [
       { type: "image", src: "../images/20250403-1.webp" },
@@ -2382,22 +2382,49 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "CWhQSwBcR8N",
+    hash_id: "FHZV2M5lZxN",
     date: "2025/4/8",
-    title: "参观合同展",
+    title: "5人一起参观合同展 弄李用留言隔空对话",
     category: "personal",
-    description: "",
-    tag: "business_mjc",
+    description: "高尾奏音：🧭汇聚的瞬间，珍藏的永恒🌙\n去参观了 #MyGO 和 #AveMujica 的联合企划展🎪\n见到祥子了呢……🕊️🩵\n\n佐佐木李子：#MyGO × #AveMujica 联合企划展\n🧭汇聚的瞬间，珍藏的永恒🌙\n我们五位成员一起去参观啦！\n大家一起在展览各处留下了签名和留言，散落在各个角落，记得去找找看哦。。",
+    tag: "private",
     media: [
-      { type: "image", src: "" }
+      { type: "image", src: "../images/20250408签名-01.webp", caption: "李子写的：小祥……♥" },
+      { type: "image", src: "../images/20250408签名-02.webp", caption: "李子在“我要和她一起生活”下面花了两条横线+…!!\n弄弄回复：下划线让我有点笑出来了" },
+      { type: "image", src: "../images/20250408签名-03.webp", caption: "李子写的：喵梦谢谢你" },
+      { type: "image", src: "../images/20250408签名-04.webp", caption: "李子写的：不要抢走我的小祥！！（其实原台词是：不要从我身边抢走小祥）" },
+      { type: "image", src: "../images/20250408-01.webp" },
+      { type: "image", src: "../images/20250408-02.webp" },
+      { type: "image", src: "../images/20250408-03.webp" },
+      { type: "image", src: "../images/20250408-04.webp" },
+      { type: "image", src: "../images/20250408-05.webp" },
+      { type: "image", src: "../images/20250408-06.webp" },
+      { type: "image", src: "../images/20250408-07.webp" },
+      { type: "image", src: "../images/20250408-08.webp" },
+      { type: "image", src: "../images/20250408-09.webp" },
+      { type: "image", src: "../images/20250408-10.webp" },
+      { type: "image", src: "../images/20250408-11.webp" },
+      { type: "image", src: "../images/20250408-12.webp" },
+      { type: "image", src: "../images/20250408-13.webp" },
+      { type: "image", src: "../images/20250408-14.webp" },
+      { type: "image", src: "../images/20250408-15.webp" },
+      { type: "image", src: "../images/20250408-16.webp" },
+      { type: "image", src: "../images/20250408-17.webp" },
+      { type: "image", src: "../images/20250408-18.webp" },
+      { type: "image", src: "../images/20250408-19.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1909822132856705121", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1909420125587202386", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1909445327146680544", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1909839688938238164", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/FIRE_FOX_000/status/1920423194160214452", title: "拍摄的签名照片的原链接" }
     ]
   },
   {
-    hash_id: "XngwQ8PYLcL",
+    hash_id: "0wevztYEOi2",
     date: "2025/5/1",
-    title: "佐佐木李子合同live感想",
+    title: "佐佐木李子合同live 以sumimi衣装与Oblivionis衣装的高尾奏音合影",
     category: "personal",
-    description: "\"初華はアイドルになれますわ\"\n\nさきちゃん、そしてまなちゃん。\nありがとう。\n#バンドリ",
+    description: "“初华一定能成为偶像的”\n\n小祥，还有小真奈\n谢谢你们。",
     tag: "business_mjc",
     media: [
       { type: "image", src: "../images/20250501-6.webp" },
@@ -2409,7 +2436,7 @@ var timelineData = [
     date: "2025/5/1",
     title: "出演バンドリ TV LIVE #262",
     category: "personal",
-    description: "",
+    description: "佐佐木李子：バンドリTVLIVE\nりん🌸ぴよ🐈のん🎹りこ🎤\n谢谢大家！！\n从 #わかれ道のその先へ 到 #JAPANJAM🔥\n演出接连不断，简直太棒了！！一起尽情享受吧☺︎\n\n高尾奏音：バンドリTVLIVE\n玩得很开心☺️🧭🌙🩵",
     tag: "business_mjc",
     media: [
       { type: "image", src: "../images/20250501-1.webp" },
@@ -2421,7 +2448,11 @@ var timelineData = [
       { type: "image", src: "../images/20250501-8.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1917960123882119367", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1917824710542602578", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1917952814271303882", title: "佐佐木李子 X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1917952814271303882", title: "佐佐木李子 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1dugx6tEhs", caption: "我家李子桑在当偶像" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1qP3u6DEG2", caption: "颜首演reaction" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV12v3w6jETC", caption: "饭团公主" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1Y2gH62Ei1", caption: "一起住" }
     ]
   },
   {
@@ -2429,7 +2460,7 @@ var timelineData = [
     date: "2025/6/9",
     title: "坐飞机牵手",
     category: "personal",
-    description: "飛行機の離陸と着陸のときドキドキしちゃうから、りこに手を握っててもらいました🤝🥲\n\n行きも帰りもありがとう✈️💛🩵",
+    description: "飞机起飞和降落的时候总会紧张得心怦怦跳，所以就让りこ一直握着我的手🤝🥲\n去程和回程都谢谢你啦✈️💛🩵",
     tag: "private",
     media: [
       { type: "image", src: "../images/20250609-1.webp" },
@@ -3187,6 +3218,18 @@ var timelineData = [
     tag: "program",
     media: [
       { type: "image", src: "../images/2026新春大发表会-01.webp" }
+    ]
+  },
+  {
+    hash_id: "q5Bbusxm6FB",
+    date: "2026/11/26",
+    title: "外传漫画 『小祥家的晚餐 -BanG Dream! Ave Mujica外传-』",
+    category: "organization",
+    description: "／\n#AveMujica 外传漫画确定连载🎉\n……欢迎来到Ave Mujica的日常生活！\n＼\n离开富裕老家的大小姐·丰川祥子。\n等待着她的本该是艰苦的节俭生活……\n咦？怎么意外地乐在其中！？\n描绘朴素节俭却又莫名优雅（？）的日常生活，『Ave Mujica』官方外传喜剧漫画！\n『小祥家的晚餐 -BanG Dream! Ave Mujica外传-』\n11月26日（周四）起在Comic Growl开始连载🍚🌙\n※此后每月第二、第四个周四更新",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/小祥家的饭宣传.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2116343175539524038", title: "官推宣传地址" }
     ]
   },
   {

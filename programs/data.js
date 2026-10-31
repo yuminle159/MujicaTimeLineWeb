@@ -1,6 +1,61 @@
 // 由 generate_all.py 自动生成，请在 data.xlsx 的 programs 表维护。
 window.programsData = [
   {
+    "program_id": "program-20261105-493a0e03",
+    "program": "バンドリ！TV LIVE",
+    "episode": "#339",
+    "date": "2026-11-05",
+    "time": "22:00",
+    "timezone": "+09:00",
+    "title": "バンドリ！TV LIVE 2026 #339",
+    "video_url": "https://www.youtube.com/watch?v=b44WoK4ZjDg",
+    "cover": "../images/programs/program-20261105-493a0e03-b44WoK4ZjDg.webp",
+    "notes": "",
+    "performers": [
+      {
+        "name": "Raychell",
+        "order": 30,
+        "bands": [
+          "RAISE A SUILEN"
+        ],
+        "color": "#22CCCC",
+        "aliases": []
+      },
+      {
+        "name": "纺木吏佐",
+        "order": 34,
+        "bands": [
+          "RAISE A SUILEN"
+        ],
+        "color": "#22CCCC",
+        "aliases": [
+          "紡木吏佐"
+        ]
+      },
+      {
+        "name": "立石凛",
+        "order": 37,
+        "bands": [
+          "MyGO!!!!!"
+        ],
+        "color": "#3388BB",
+        "aliases": []
+      },
+      {
+        "name": "仲町阿拉蕾",
+        "order": 45,
+        "bands": [
+          "夢限大みゅーたいぷ"
+        ],
+        "color": "#FF7788",
+        "aliases": [
+          "仲町あられ"
+        ]
+      }
+    ],
+    "clips": []
+  },
+  {
     "program_id": "bdtv-0338",
     "program": "バンドリ！TV LIVE",
     "episode": "#338",
@@ -8,9 +63,9 @@ window.programsData = [
     "time": "21:30",
     "timezone": "+09:00",
     "title": "バンドリ！TV LIVE 2026 #338",
-    "video_url": "https://www.youtube.com/watch?v=euixQCD3Llg",
-    "cover": "../images/programs/bdtv-0338-euixQCD3Llg.webp",
-    "notes": "",
+    "video_url": "https://www.youtube.com/watch?v=Wy6Bf8EEjT8",
+    "cover": "../images/programs/bdtv-0338-Wy6Bf8EEjT8.webp",
+    "notes": "10/29: 官方因直播画面异常重传编辑回放；原视频：https://www.youtube.com/watch?v=euixQCD3Llg",
     "performers": [
       {
         "name": "工藤晴香",
