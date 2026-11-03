@@ -1357,3 +1357,13 @@ body {
   .tl-detail-media .tl-img-track { height:clamp(220px,36vh,360px); }
   .tl-detail-media .tl-img-track img { max-height:clamp(220px,36vh,360px); }
 }
+
+/* Persistent event navigation, separate from image/video carousels. */
+.tl-modal-body { min-height:0; flex:1 1 auto; }
+.tl-detail-navigation { display:flex; align-items:center; justify-content:space-between; gap:12px; flex:none; padding:14px 24px; border-top:1px solid #ffffff12; background:#111; }
+.tl-detail-navigation button { min-height:40px; padding:8px 12px; border:1px solid #ffffff18; border-radius:5px; background:transparent; color:#b9a58b; font:12px/1.5 "Noto Sans SC",sans-serif; cursor:pointer; }
+.tl-detail-navigation button:hover:not(:disabled) { border-color:#b9a58b70; background:#b9a58b0d; color:#ddcbb3; }
+.tl-detail-navigation button:disabled { color:#555; border-color:#ffffff08; cursor:default; }
+.tl-detail-navigation button:focus-visible { outline:2px solid #b9a58b; outline-offset:3px; }
+.tl-detail-navigation>span { color:#888; font:11px/1.5 "Space Grotesk","Noto Sans SC",sans-serif; text-align:center; }
+@media(max-width:760px) { .tl-detail-navigation { padding:12px 16px; gap:8px; } }

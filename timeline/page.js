@@ -404,10 +404,63 @@
   const tlModalOverlay = document.getElementById("tlModalOverlay");
   const tlModalBody = document.getElementById("tlModalBody");
   const tlModalClose = document.getElementById("tlModalClose");
+  let currentDetailIndex = -1;
+  const detailNavigation = document.createElement('nav');
+  detailNavigation.className = 'tl-detail-navigation';
+  detailNavigation.setAttribute('aria-label', '切换事件');
+  detailNavigation.innerHTML = '<button type="button" data-step="-1">← 上一条</button><span aria-live="polite"></span><button type="button" data-step="1">下一条 →</button>';
+  tlModalBody.after(detailNavigation);
+
+  function detailSequence() {
+    const dates = new Map();
+    eventGroups.filter(group => !group.classList.contains('hidden')).forEach(group => {
+      const date = Number(group.dataset.dateKey);
+      if (!dates.has(date)) dates.set(date, { organization: [], personal: [] });
+      const side = group.dataset.category === 'organization' ? 'organization' : 'personal';
+      dates.get(date)[side].push(Number(group.dataset.index));
+    });
+    const result = [];
+    [...dates.keys()].sort((a, b) => sortReverse ? b - a : a - b).forEach(date => {
+      const { organization, personal } = dates.get(date);
+      organization.sort((a, b) => a - b);
+      personal.sort((a, b) => a - b);
+      // Follow the timeline's same-day rows, reading left then right.
+      for (let i = 0; i < Math.max(organization.length, personal.length); i++) {
+        if (organization[i] !== undefined) result.push(organization[i]);
+        if (personal[i] !== undefined) result.push(personal[i]);
+      }
+    });
+    return result;
+  }
+
+  function updateDetailNavigation() {
+    const sequence = detailSequence();
+    const position = sequence.indexOf(currentDetailIndex);
+    detailNavigation.querySelector('span').textContent = position < 0 ? '当前事件不在筛选结果中' : `${position + 1} / ${sequence.length}`;
+    detailNavigation.querySelectorAll('button').forEach(button => {
+      const target = position + Number(button.dataset.step);
+      button.disabled = position < 0 || target < 0 || target >= sequence.length;
+      button.title = button.disabled ? '' : timelineData[sequence[target]].title;
+    });
+  }
+
+  detailNavigation.addEventListener('click', event => {
+    const button = event.target.closest('button[data-step]');
+    if (!button || button.disabled || document.getElementById('tlLightbox').classList.contains('active')) return;
+    const sequence = detailSequence();
+    const position = sequence.indexOf(currentDetailIndex);
+    const target = position + Number(button.dataset.step);
+    if (position < 0 || target < 0 || target >= sequence.length) return;
+    openTimelineModal(sequence[target]);
+    if (button.disabled) tlModalClose.focus({ preventScroll: true });
+  });
 
   function openTimelineModal(index) {
     const ev = timelineData[index];
     if (!ev) return;
+    tlModalBody.querySelectorAll('iframe').forEach(frame => { frame.src = ''; });
+    currentDetailIndex = index;
+    updateDetailNavigation();
     const eventStart = parseDate(ev.date);
     hidePageTop();
     history.replaceState(null, "", "#timeline=" + encodeURIComponent(ev.hash_id));
