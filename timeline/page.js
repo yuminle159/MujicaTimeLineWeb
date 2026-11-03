@@ -471,37 +471,76 @@
       }
     }
 
-    // 链接区域
+    let linksHTML = "";
+    const escapeDetail = value => String(value || "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    // 资源列表与媒体分区，长标题可以完整阅读。
     if (linkItems.length > 0) {
-      mediaHTML += '<div class="tl-modal-links">';
+      linksHTML += '<section class="tl-modal-resources"><h3>相关资源</h3><div class="tl-modal-links">';
       linkItems.forEach(l => {
-        mediaHTML += `<a class="tl-modal-link" href="${l.url}" target="_blank" rel="noopener">${l.title || l.url}</a>`;
+        let platform;
+        try { const url = new URL(l.url); if (!/^https?:$/.test(url.protocol)) return; platform = url.hostname.replace(/^www\./, ""); } catch (_) { return; }
+        linksHTML += `<a class="tl-modal-link" href="${escapeDetail(l.url)}" target="_blank" rel="noopener"><span><strong>${escapeDetail(l.title || l.url)}</strong><small>${escapeDetail(platform)}</small></span><span aria-hidden="true">↗</span></a>`;
       });
-      mediaHTML += '</div>';
+      linksHTML += '</div></section>';
     }
 
     // 切换按钮（同时有图片和视频时显示）
     let toggleHTML = "";
     if (hasBoth) {
       toggleHTML = `<div class="tl-modal-toggle">
-        <span class="tl-toggle-tab active" data-mode="image">Image</span>
-        <span class="tl-toggle-tab" data-mode="video">Video</span>
+        <button type="button" class="tl-toggle-tab active" data-mode="image" aria-pressed="true">图片</button>
+        <button type="button" class="tl-toggle-tab" data-mode="video" aria-pressed="false">视频</button>
       </div>`;
     }
 
+    const hasMedia = imageItems.length + videoItems.length > 0;
+    const hasDetails = !!(ev.description || linkItems.length);
+    const detailPanel = tlModalOverlay.querySelector('.tl-modal-container');
+    detailPanel.setAttribute('role', 'dialog');
+    detailPanel.setAttribute('aria-modal', 'true');
+    detailPanel.setAttribute('aria-labelledby', 'tlDetailTitle');
+    tlModalClose.setAttribute('aria-label', '关闭事件详情');
+    tlModalOverlay.querySelector('.tl-modal-container').classList.toggle('has-media', hasMedia);
     tlModalBody.innerHTML = `
-      <div class="tl-modal-title">${ev.title}</div>
-      <div class="tl-modal-header">
-        <div class="tl-modal-date-wrap"><div class="tl-modal-date">${ev.date}</div><span class="tl-modal-future" data-start="${eventStart.getTime()}" ${isFutureDate(eventStart) ? "" : "hidden"}>Coming Soon…</span></div>
-        ${toggleHTML}
-      </div>
-      <div class="tl-modal-desc">${(ev.description || "").replace(/\n/g, "<br>")}</div>
-      ${mediaHTML}
-    `;
+      <header class="tl-detail-heading">
+        <div class="tl-modal-date-wrap"><div class="tl-modal-date">${escapeDetail(ev.date)}</div><span class="tl-detail-type">${escapeDetail(TAG_NAMES[ev.tag] || ev.tag)}</span><span class="tl-modal-future" data-start="${eventStart.getTime()}" ${isFutureDate(eventStart) ? "" : "hidden"}>Coming Soon…</span></div>
+        <h2 class="tl-modal-title" id="tlDetailTitle">${escapeDetail(ev.title)}</h2>
+      </header>
+      <div class="tl-detail-layout${hasMedia && hasDetails ? ' has-sidebar' : ''}">
+        ${hasMedia ? `<section class="tl-detail-media" aria-label="事件媒体">${toggleHTML || `<div class="tl-modal-toggle"><span class="tl-toggle-tab active tl-toggle-static">${imageItems.length ? '图片' : '视频'}</span></div>`}${mediaHTML}</section>` : ''}
+        ${hasDetails ? `<aside class="tl-detail-info">${ev.description ? `<section><h3>事件说明</h3><div class="tl-modal-desc">${escapeDetail(ev.description).replace(/\n/g, '<br>')}</div></section>` : ''}${linksHTML}</aside>` : ''}
+      </div>`;
+    tlModalBody.scrollTop = 0;
+    if (imageItems.length > 1) {
+      const thumbs = document.createElement('div');
+      thumbs.className = 'tl-detail-thumbs';
+      imageItems.forEach((img, i) => {
+        const button = document.createElement('button');
+        button.type = 'button'; button.setAttribute('aria-label', `查看图片 ${i + 1}`);
+        button.setAttribute('aria-pressed', String(i === 0));
+        const thumbnail = document.createElement('img'); thumbnail.src = img.src; thumbnail.alt = ''; thumbnail.loading = 'lazy';
+        button.appendChild(thumbnail);
+        button.onclick = () => { const current = Array.from(tlModalBody.querySelectorAll('.tl-img-track img')).findIndex(el => el.classList.contains('active')); window.moveTlImg(i - current); };
+        thumbs.appendChild(button);
+      });
+      document.getElementById('tlImgCarousel').appendChild(thumbs);
+    }
+    if (videoItems.length > 1) {
+      const list = document.createElement('div'); list.className = 'tl-detail-video-list';
+      videoItems.forEach((video, i) => {
+        const button = document.createElement('button'); button.type = 'button';
+        button.textContent = `${i + 1}. ${video.caption || `视频 ${i + 1}`}`;
+        button.setAttribute('aria-pressed', String(i === 0));
+        button.onclick = () => { const current = Array.from(tlModalBody.querySelectorAll('.tl-carousel-video')).findIndex(el => el.classList.contains('active')); window.moveTlVideo(i - current); };
+        list.appendChild(button);
+      });
+      document.getElementById('tlVideoCarousel').appendChild(list);
+    }
 
     // H 列描述跟随当前视频，并按纯文本保留换行。
     tlModalBody.querySelectorAll(".tl-single-video, .tl-carousel-video").forEach((video, i) => {
       video.dataset.caption = videoItems[i].caption || "";
+      video.title = videoItems[i].caption || `事件视频 ${i + 1}`;
     });
     const videoCaption = tlModalBody.querySelector("#tlVideoCaption");
     if (videoCaption) {
@@ -519,6 +558,7 @@
           tlModalBody.classList.add("media-mode-" + mode);
           tlModalBody.querySelectorAll(".tl-toggle-tab").forEach(t => t.classList.remove("active"));
           this.classList.add("active");
+          tlModalBody.querySelectorAll('.tl-toggle-tab').forEach(t => t.setAttribute('aria-pressed', String(t === this)));
           // 切换到视频时延迟加载首帧
           if (mode === "video") {
             setTimeout(() => {
@@ -585,6 +625,7 @@
     const caption = track.querySelector("#tlVideoCaption");
     caption.textContent = videos[next].dataset.caption || "";
     caption.hidden = !caption.textContent;
+    track.querySelectorAll('.tl-detail-video-list button').forEach((button, i) => button.setAttribute('aria-pressed', String(i === next)));
   };
 
   // 模态框内图片轮播
@@ -602,6 +643,7 @@
     carousel.querySelector(".tl-img-counter").textContent = (next + 1) + " / " + total;
     const capEl = document.getElementById("tlImgCaption");
     if (capEl) capEl.textContent = imgs[next].alt || "";
+    carousel.querySelectorAll('.tl-detail-thumbs button').forEach((button, i) => button.setAttribute('aria-pressed', String(i === next)));
   };
 
   // ===== 灯箱 =====

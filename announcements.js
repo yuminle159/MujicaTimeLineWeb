@@ -11,6 +11,11 @@ window.ANNOUNCEMENTS = [
     "pinned": true
   },
   {
+    "date": "2026.11.3",
+    "msg": "timeline 样式更新",
+    "pinned": false
+  },
+  {
     "date": "2026.10.29",
     "msg": "Live - Live Statistics 新增 Venue Atlas（演出足迹）",
     "pinned": false
