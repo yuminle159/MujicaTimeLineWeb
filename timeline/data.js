@@ -2344,7 +2344,7 @@ var timelineData = [
     date: "2025/3/24",
     title: "弄李的小豆岛第五弹分享之视频（天使之路&兽道）",
     category: "personal",
-    description: "佐佐木李子：这兽道哦～！？\n#バンドリ #アニメムジカ\n\n高尾奏音：💛のんりこ小豆岛的回忆🩵\n之前去初华和祥子的圣地游玩时，拍了好多照片，所以之后可能还会陆陆续续分享给大家哦🕊️🌙\n#バンドリ #アニメムジカ",
+    description: "佐佐木李子：这是兽道哦～！？\n#バンドリ #アニメムジカ\n\n高尾奏音：💛のんりこ小豆岛的回忆🩵\n之前去初华和祥子的圣地游玩时，拍了好多照片，所以之后可能还会陆陆续续分享给大家哦🕊️🌙\n#バンドリ #アニメムジカ",
     tag: "private",
     media: [
       { type: "link", url: "https://x.com/Kanon_Takao/status/1904157867810132047", title: "高尾奏音 X链接" },
@@ -2473,13 +2473,14 @@ var timelineData = [
     date: "2025/6/29",
     title: "『異世界黙示録マイノグーラ ～破滅の文明で始める世界征服～』生放送第一弹",
     category: "personal",
-    description: "",
+    description: "弄李共演TV动画『異世界黙示録マイノグーラ ～破滅の文明で始める世界征服～』（均参与了配音，该动画OP也为佐佐木李子演唱的「Majestic Catastrophe」）\n该动画进行了两次番宣生放活动，均一同邀请了二人，此为第一次",
     tag: "business_others",
     media: [
       { type: "image", src: "../images/20250630-1.webp" },
-      { type: "link", url: "" },
+      { type: "image", src: "../images/20250630-2.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1939327395204583440", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1939528133088288788", title: "佐佐木李子 X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1939528133088288788", title: "佐佐木李子 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1DeiyBeE5i", caption: "freestyle battle" }
     ]
   },
   {
@@ -2487,64 +2488,46 @@ var timelineData = [
     date: "2025/7/16",
     title: "佐佐木李子回复高尾奏音午饭相关推文",
     category: "personal",
-    description: "高尾奏音：お昼ご飯はおにぎり…！🍙\n具を当ててみてください＼( 'ω')／ﾍｰｲ\n佐佐木李子：たか \"おかか\" のん！\n高尾奏音：これを正解にするために、おかかおにぎりをもう1個食べようか迷う！",
+    description: "推特回复",
     tag: "private",
     media: [
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1945307259149426993", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1945311729954775115", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1945332726703493192", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1945332726703493192", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/galleryless/20250716-推特回复.webp" }
     ]
   },
   {
-    hash_id: "i8SES59aUMT",
+    hash_id: "sQaPdR2Vv7M",
     date: "2025/7/28",
-    title: "双人Animate访谈from李子",
+    title: "双人Animate访谈的宣传",
     category: "personal",
-    description: "『アニメイトタイムズ』様にて、のん×りこでインタビューしていただきました🩵💛\n\nこれまでとこれからの #AveMujica についてや、5th LIVE #NovaHistoria への覚悟など。。\n\n是非読んでくださいね！\n記事のお写真どれも素敵。。のんすち🍒",
+    description: "佐佐木李子：接受了『Animate Times』的采访，这次是のん×りこ两个人一起🩵💛\n聊到了AveMujica 的过去与未来，以及面对5th LIVE NovaHistoria 的决心等等。。\n请大家一定要读读看哦！\n报道里的照片每一张都好棒。。稀饭のん🍒（のんすち🍒）\n\n高尾奏音：和りこ两个人一起接受了『Animate Times』的采访⚙️🌙\n关于我对AveMujica 的感情，以及对昨天的5th LIVE『NovaHistoria』的种种心情，我都用此刻自己的话语，坦率地表达了出来🕊️🩵🎹\n请大家一定要看看……！",
     tag: "business_mjc",
     media: [
       { type: "image", src: "../images/20250728.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1949810918298198235", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "ZPS4i8tVIGu",
-    date: "2025/7/28",
-    title: "双人Animate访谈from奏音",
-    category: "personal",
-    description: "「アニメイトタイムズ」様に、りこと2人でインタビューしていただきました⚙️🌙\n\n#AveMujica への気持ち、\n昨日の5th LIVE『#NovaHistoria』への思いなど、今の自分の言葉でまっすぐにお話しさせていただきました🕊️🩵🎹\n\nぜひご覧ください…！",
-    tag: "business_mjc",
-    media: [
+      { type: "link", url: "https://x.com/sasakirico/status/1949810918298198235", title: "佐佐木李子 X链接" },
       { type: "image", src: "../images/20250728-1.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1949798546959393167", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1949798546959393167", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://avemujica.wiki/interview/index.html#8OooM0J1zZR", title: "本网站内部访谈地址" }
     ]
   },
   {
-    hash_id: "Q7fvlBglQKp",
+    hash_id: "kk1nlFGcVbb",
     date: "2025/7/28",
-    title: "佐佐木李子5th祝花返图",
+    title: "弄李5th祝花返图",
     category: "personal",
-    description: "#AveMujica 5th LIVE #NovaHistoria\nコラボお祝い花🩵💛\n\n二人できゃっきゃしながら撮るこの時間も大好き。。！いつまでも見ていたくなる尊いお花&イラスト達!!ありがとうございます！",
+    description: "高尾奏音：5th LIVE『#NovaHistoria』收到的祝花②💐🕊️🌙\n真的非常感谢大家〜☺️💛🩵\n和りこ一起📸\n\n佐佐木李子①：#AveMujica 5th LIVE #NovaHistoria\n双人祝花🩵💛\n我也最喜欢两个人一起兴高采烈地拍照的这段时光了。。！\n这些让人想永远欣赏下去的珍贵祝花和插画！！谢谢大家！\n\n佐佐木李子②：#AveMujica 5th LIVE #NovaHistoria\n双人祝花💛💙和💛🩵\n设计得真棒〜！！\n大家的心意也都随着鲜花，全部传达给我们了哦！\n我们会把收到的爱倾注进音乐和歌声之中，再竭尽全力地回报给大家！\n谢谢各位！！",
     tag: "business_mjc",
     media: [
       { type: "image", src: "../images/20250728-2.webp" },
       { type: "image", src: "../images/20250728-3.webp" },
       { type: "image", src: "../images/20250728-4.webp" },
       { type: "image", src: "../images/20250728-5.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1949838403668971860", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "0sAwHDluGAK",
-    date: "2025/7/28",
-    title: "佐佐木李子5th祝花返图（2）",
-    category: "personal",
-    description: "#AveMujica 5th LIVE #NovaHistoria\nコラボお祝い花💛💙と💛🩵\n\nデザイン素敵〜！！\n想いもお花と共にぜーんぶ届いてるからね！受け取った愛を音や歌などに込め、また精一杯お返しします！皆さまありがとうございました!!",
-    tag: "business_mjc",
-    media: [
+      { type: "link", url: "https://x.com/sasakirico/status/1949838403668971860", title: "佐佐木李子 X链接①" },
       { type: "image", src: "../images/20250728-6.webp" },
       { type: "image", src: "../images/20250728-7.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1949839964155650239", title: "佐佐木李子 X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1949839964155650239", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1949844096304173336", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1949848025914032193", title: "高尾奏音 X链接②" }
     ]
   },
   {
@@ -2552,13 +2535,12 @@ var timelineData = [
     date: "2025/8/23",
     title: "从包里抓出独角仙之轶事",
     category: "personal",
-    description: "佐佐木李子：リボンをつけた可愛い女の子と一緒にカブトムシを捕まえた、幻の夏の思い出………\n高尾奏音：あなたの鞄からカブトムシが出てきたときは、本当にびっくりしましたわ\n佐佐木李子：驚いたり笑ってくれるかな…って想像しながらサプライズするの本当に大好き",
+    description: "突然回忆24年约会时候的李子 与回复了可爱惊喜小故事的奏音",
     tag: "private",
     media: [
       { type: "image", src: "../images/20250823.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1959210638364004721", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1959211282701430969", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1959214357075857863", title: "佐佐木李子 X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1959214357075857863", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/galleryless/20250823-推特回复.webp" }
     ]
   },
   {
@@ -2566,25 +2548,29 @@ var timelineData = [
     date: "2025/9/2",
     title: "『異世界黙示録マイノグーラ ～破滅の文明で始める世界征服～』生放送第二弹",
     category: "personal",
-    description: "",
+    description: "弄李共演TV动画『異世界黙示録マイノグーラ ～破滅の文明で始める世界征服～』（均参与了配音，该动画OP也为佐佐木李子演唱的「Majestic Catastrophe」）\n该动画进行了两次番宣生放活动，均一同邀请了二人，此为第二次",
     tag: "business_others",
     media: [
       { type: "image", src: "../images/20250902-1.webp" },
       { type: "image", src: "../images/20250902-2.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1962862116375027905", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1962864832476266761", title: "佐佐木李子 X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1962864832476266761", title: "佐佐木李子 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1JZkbBsEhM", caption: "一直在被逗笑" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV14hrUBDE4A", caption: "真的很会画画" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1mcrpBLEyS", caption: "展示眼镜" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV16ok7BxEeB", caption: "飞机牵手" }
     ]
   },
   {
-    hash_id: "GD9oLrbzaC5",
+    hash_id: "ym7BSqniPXV",
     date: "2025/9/10",
-    title: "高尾奏音生日",
+    title: "佐佐木李子单独发推庆祝高尾奏音生日",
     category: "personal",
-    description: "佐佐木李子：HAPPY BIRTHDAYのん🎂💘\n大好き…♡\nのんが奏でる音は特別。一緒に歌と音を重ねられることが幸せすぎる!!\nもし泣きたい時があったらいつでも頼ってほしいし、そばにいるし、絶対絶対笑わせる!!\n生まれてきてくれて、出会ってくれて本当にありがとう。永遠-とわ-に…よろしくお願いします♡またぜぇぇーーったいデートしよね🫶のんりこForever…\n高尾奏音：りこ、ありがとう✨🤭\n全部こちらこそ…🕊️\nりこがいつもそばにいてくれて心強い…出会えて幸せ🌙\nのんりこForever…\nねえねえ！！！！！！\n早くデートして！！！！！😾💛🩵笑",
+    description: "佐佐木李子：生日快乐，のん🎂💘\n最喜欢你了……♡\nのん奏出的音乐是特别的。能够和你一起让歌声与琴音交织在一起，真的幸福得不得了！！\n如果有想哭的时候，希望你随时都能依靠我，我会一直陪在你身边，而且绝对绝对会逗你笑！！\n真的谢谢你来到这个世界上，谢谢你与我相遇。\n直到永远（とわ）……今后也请多多关照♡\n我们一定一——定要再去约会哦🫶\nのんりこForever…\n\n高尾奏音：りこ，谢谢你✨🤭\n这些话全都是我想对你说的……🕊️\n有りこ一直陪在身边，真的让我觉得特别安心……能与你相遇真幸福🌙\nのんりこForever…\n喂喂！！！！！！\n快点和我去约会啦！！！！！😾💛🩵笑",
     tag: "private",
     media: [
       { type: "image", src: "../images/20250910.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1965503151215452388", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/galleryless/20250910-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1965605901437665619", title: "高尾奏音 X链接" }
     ]
   },
@@ -2593,7 +2579,7 @@ var timelineData = [
     date: "2025/9/17",
     title: "与米泽茜的下午茶",
     category: "personal",
-    description: "",
+    description: "和Mujica的成员们一起喝的冰淇淋苏打最好喝了🌙🍹🍒",
     tag: "private",
     media: [
       { type: "image", src: "../images/20250917.webp" },
@@ -2601,16 +2587,15 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "ioHxKtsYVfe",
+    hash_id: "xJ2NYLkqu2j",
     date: "2025/11/10",
-    title: "佐佐木李子生日",
+    title: "佐佐木李子生日 高尾奏音评论区回复",
     category: "personal",
-    description: "佐佐木李子：──── ⚡︎︎ ♡ ⚡︎︎ ────\n　　　2025.11.10\n　HAPPY BIRTHDAY!!!!!\n　　　Sasaki Rico\n──── ⚡︎︎ ♡ ⚡︎︎ ────\nこの広い地球で出逢えた奇跡！\n感謝の気持ちを力に、これからも夢へと歩み続けます✨\nお祝いリプライ、気まぐれでいいねしに行くよ❣️\n高尾奏音：りこ〜！お誕生日おめでとう☺️💛\n私、本当に佐々木李子さんのことが好きなんです…本当に…！！！！！✨\n素敵な一年になる魔法かけた🪄🧚\n佐佐木李子：のん〜😭❣️普段、のんきな私だけど。。のんがいたら、ノンストップに頑張れるし、時にはのんびり心穏やかになれる。そう。。この気持ちはノンフィクションなんだ！！！いつもありがのん🎀",
+    description: "佐佐木李子：\n──── ⚡︎︎ ♡ ⚡︎︎ ────\n2025.11.10\nHAPPY BIRTHDAY!!!!!\nSasaki Rico\n──── ⚡︎︎ ♡ ⚡︎︎ ────\n能够在这广阔的地球上相遇，简直就是奇迹！\n我会将感激之情化为力量，今后也继续朝着梦想迈进✨\n大家发来的生日祝福，我会随缘去点点赞哦❣️",
     tag: "private",
     media: [
       { type: "image", src: "../images/20251110.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1987535685998490046", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1987770922787647783", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/galleryless/20251110-推特回复.webp" },
       { type: "link", url: "https://x.com/sasakirico/status/1987893191736262884", title: "佐佐木李子 X链接" }
     ]
   },
@@ -3230,6 +3215,270 @@ var timelineData = [
     media: [
       { type: "image", src: "../images/小祥家的饭宣传.webp" },
       { type: "link", url: "https://x.com/bang_dream_info/status/2116343175539524038", title: "官推宣传地址" }
+    ]
+  },
+  {
+    hash_id: "fwd0FR2nnVm",
+    date: "2026/11/24",
+    title: "高尾奏音のハーモニーカフェ Guest：佐佐木李子",
+    category: "personal",
+    description: "高尾奏音个人节目 かのんカフェ 奏音咖啡厅一周年纪念生放送 嘉宾佐佐木李子",
+    tag: "business_others",
+    media: []
+  },
+  {
+    hash_id: "hs8oE6ZYkEK",
+    date: "2026/1/12",
+    title: "出席bushiroad新春大发表会",
+    category: "personal",
+    description: "佐佐木李子：#ブシロード新春 #バンドリ ステージ\nありがとうございました!!\n\nAve Mujica新作映画や、ゲーム『BanG Dream! Our Notes』など。。2026年も更にキラキラドキドキ✨心弾む時間を一緒に過ごそうね！\n\nのんのピアノ演奏も良すぎた。。🎹",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260112-1.webp" },
+      { type: "image", src: "../images/20260112-2.webp" },
+      { type: "image", src: "../images/20260112-3.webp" },
+      { type: "image", src: "../images/20260112-4.webp" },
+      { type: "image", src: "../images/20260112-5.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2010691330645565503" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2010699861272809925" }
+    ]
+  },
+  {
+    hash_id: "VvycwOsugNf",
+    date: "2026/2/24",
+    title: "ReReReTUNE预告",
+    category: "personal",
+    description: "佐佐木李子：#ReReReTUNE\n\nCover of\n宇多田ヒカル『First Love』\n\nVo.佐々木李子\nkey.高尾奏音\n\n二人で…🎧🎹🎤\n\n2026.2.25 17:30-\nComing Soon…\n高尾奏音：#ReReReTUNE 🎤🎹🤍\n\n「First Love」\n\nお楽しみに…。",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260224.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2026218463698858287" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2026217809211203654" }
+    ]
+  },
+  {
+    hash_id: "kqfpTnNpRg6",
+    date: "2026/2/25",
+    title: "ReReReTUNE正式发布",
+    category: "personal",
+    description: "佐佐木李子：You are always gonna be my love…\n#ReReReTUNE 第27弾にて、\n宇多田ヒカルさんの『First Love』\n歌わせていただきました！\n▶︎ https://www.youtube.com/watch?v=iX3OwPyPxII\n是非お楽しみください！\nのんのピアノでさらに気持ち溢れ出した。。ありがとう。。🎹\n高尾奏音：#ReReReTUNE 公開🎧🤍✨\nCover of 宇多田ヒカル「First Love」💐\nVo.佐々木李子🎤\nkey.高尾奏音🎹\n息を合わせ、心を込めて演奏させていただきました。",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260225-1.webp" },
+      { type: "image", src: "../images/20260225-2.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2026576783517393240" },
+      { type: "link", url: "https://x.com/sasakirico/status/2026576391614210263" }
+    ]
+  },
+  {
+    hash_id: "qOtvdilSAej",
+    date: "2026/2/25",
+    title: "镜子主题互拍",
+    category: "personal",
+    description: "佐佐木李子：🪞🖤🎧\n高尾奏音：🪞🤍❄️",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260225-3.webp" },
+      { type: "image", src: "../images/20260225-4.webp" },
+      { type: "image", src: "" },
+      { type: "image", src: "" }
+    ]
+  },
+  {
+    hash_id: "s1PTznikfLE",
+    date: "2026/4/12",
+    title: "台北公演彩排合照",
+    category: "personal",
+    description: "佐佐木李子：🩵\n高尾奏音：💛",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260412-1.webp" },
+      { type: "image", src: "../images/20260412-2.webp" },
+      { type: "link", url: "" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2043230326529675565" },
+      { type: "link", url: "https://x.com/sasakirico/status/2043230018378297797" }
+    ]
+  },
+  {
+    hash_id: "4LEqk3GJBSQ",
+    date: "2026/6/26",
+    title: "アワーノーツ 事前登録開始記念特番出演",
+    category: "personal",
+    description: "",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260626-1.webp" }
+    ]
+  },
+  {
+    hash_id: "AR0HyURxHNk",
+    date: "2026/6/26",
+    title: "三角初华生日，两人庆生",
+    category: "personal",
+    description: "佐佐木李子：今日が終わってしまう前に\n初華、改めておめでとう。。💛🩵",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260626-2.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2070522230573031916" }
+    ]
+  },
+  {
+    hash_id: "984GzSQ10K0",
+    date: "2026/7/30",
+    title: "出演バンドリ TV LIVE #325",
+    category: "personal",
+    description: "高尾奏音：#バンドリTVLIVE ありがとうございました🥰🌙\n\nりこさんとたまたま双子コーデっぽくなってびっくり❤️👭❤️\n髪型もおそろにしたよ✨\n\n劇場版もお楽しみに…⚙️",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260730-1.webp" },
+      { type: "image", src: "../images/20260730-2.webp" },
+      { type: "image", src: "../images/20260730-3.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2082846778362315014" }
+    ]
+  },
+  {
+    hash_id: "uOMDHLUbFsa",
+    date: "2026/8/11",
+    title: "对新发型的感想",
+    category: "personal",
+    description: "高尾奏音：久しぶりのボブ…！\n佐佐木李子：良すぎ…♣️♦️♠️♥️\n高尾奏音：ありがとねぇ☺️❤️",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260811.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2087170519749849379" }
+    ]
+  },
+  {
+    hash_id: "LExEFPMDVhr",
+    date: "2026/9/10",
+    title: "高尾奏音生日",
+    category: "personal",
+    description: "高尾奏音：24歳になりました🎂🎀\n沢山の皆さんに支えられていることを実感する23歳でした。\n失敗を恐れず、色々なことにチャレンジする24歳にしたいです✨\n今日は写真集の発売日でもあり、今週末はBirthdayEventもあり🎉\n皆さんのおかげで幸せな誕生日です☺️\n本当にありがとうございます🤍\n佐佐木李子：のんお誕生日おめでとう🎀✨\nこんなに尊敬する人と一緒にいられて、バンドもできて、これ以上の幸せはないよ。。😭\n神様、のんという神天使女神様に出逢わせてくださり、本当にありがとうございます。\nこれからもよろしくね!!ずっと大好きだーーー🫶🫶🫶\n高尾奏音：りこありがとう（ ;  ; ）！🎀✨\nこちらこそだし、私もりことバンドできて本当に幸せよ☺️\nりこに出会えたことに感謝…🤍\n大好きの倍返し！！！🫶",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260910.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2097701721774694554" }
+    ]
+  },
+  {
+    hash_id: "szm3X1L9hes",
+    date: "2026/9/13",
+    title: "佐佐木李子参加高尾奏音生日活动",
+    category: "personal",
+    description: "佐佐木李子：今日は、高尾奏音Birthday Event 2026『RIBBON🎀Anniversary』に行かせていただきました＼( 'ω')／ﾍｰｲ\n\nもおお愛おしすぎる!!\nトークコーナーでのんの素晴らしさを再確認…弾き語り、ライブパートで心鷲掴みされちゃった😭\nこれからも大好きだああああずっと一緒！約束🫶\n高尾奏音：愛！！！！！🎀\nあーたのことだぁーいすき！！！☺️🫶",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260913-1.webp" },
+      { type: "image", src: "../images/20260913-2.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2099128811233386595" }
+    ]
+  },
+  {
+    hash_id: "riz7B7aF0oV",
+    date: "2026/9/28",
+    title: "宣布出演早稻田祭",
+    category: "personal",
+    description: "",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260928-1.webp" },
+      { type: "image", src: "../images/20260928-2.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2104500925251588344" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2104510218034176281" }
+    ]
+  },
+  {
+    hash_id: "jXndAoYllz6",
+    date: "2026/9/28",
+    title: "宣布出演日本テレビ『夜バゲット』",
+    category: "personal",
+    description: "",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260928-3.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2104582070605611384" }
+    ]
+  },
+  {
+    hash_id: "lYolNQMaNOz",
+    date: "2026/10/8",
+    title: "在游戏协力中意外遇到的两人",
+    category: "personal",
+    description: "",
+    tag: "",
+    media: [
+      { type: "link", url: "https://x.com/sasakirico/status/2108087782417772961" },
+      { type: "link", url: "https://x.com/sasakirico/status/2108087782417772961" }
+    ]
+  },
+  {
+    hash_id: "qdwcMSevxTw",
+    date: "2026/10/16",
+    title: "SCREENα vol.10杂志发售",
+    category: "personal",
+    description: "",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20261016-1.webp" },
+      { type: "image", src: "../images/20261016-2.webp" },
+      { type: "image", src: "../images/20261016-3.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2111020157732851865" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2111026109911572905" }
+    ]
+  },
+  {
+    hash_id: "Rl2TMDC33Zm",
+    date: "2026/10/10",
+    title: "日本テレビ『夜バゲット』播出后续",
+    category: "personal",
+    description: "佐佐木李子：日本テレビ『夜バゲット』ご視聴ありがとうございました!!\nオブ様のんのウインク、一生懸命で激可愛すぎて永久保存。。!!okもらったので皆さんにもおすそ分け😉\n\n来週も #AveMujica 登場させていただきます🌙\n\n今回の放送内容の一部はこちら！▶︎https://m.youtube.com/watch?v=bHNAkO7IolY&ra=m",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20261010-1.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2108728934313628045" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2108866786200576224" }
+    ]
+  },
+  {
+    hash_id: "41UckDDOmzg",
+    date: "2026/10/12",
+    title: "Mujica 7th LIVE \"Virtus\"彩排",
+    category: "personal",
+    description: "",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20261012-1.webp" },
+      { type: "image", src: "../images/20261012-2.webp" },
+      { type: "image", src: "../images/20261012-3.webp" },
+      { type: "image", src: "../images/20261012-4.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2109625413911871960" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2109613726051766329" }
+    ]
+  },
+  {
+    hash_id: "DFicXVJ94TM",
+    date: "2026/9/23",
+    title: "约会预告",
+    category: "personal",
+    description: "佐佐木李子：今日もお疲れ様☔️\n高尾奏音：雨だけど頑張ろう〜！☔️🙂‍↕️",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260923-1.webp" },
+      { type: "image", src: "../images/20260923-2.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2102767632672076176" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2102647617499148773" }
+    ]
+  },
+  {
+    hash_id: "t0y2KSe0Cbh",
+    date: "2026/10/26",
+    title: "7th花篮返图（视频）",
+    category: "personal",
+    description: "",
+    tag: "",
+    media: [
+      { type: "link", url: "https://x.com/sasakirico/status/2114688606191432020" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2114689543018516912" }
     ]
   },
   {

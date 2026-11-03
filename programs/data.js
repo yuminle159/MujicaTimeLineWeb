@@ -124,7 +124,9 @@ window.programsData = [
         "aliases": []
       }
     ],
-    "clips": []
+    "clips": [
+      "【奏李组】贴 脸 开 大 邦TV#338切片=>https://www.bilibili.com/video/BV1Bhxx6METm"
+    ]
   },
   {
     "program_id": "program-20261026-695fc346",

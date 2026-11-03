@@ -115,10 +115,21 @@ def write_only_clip_cells(path, changes, digest):
         xml = original.read(name).decode('utf-8')
         for change in changes:
             address = 'I' + str(change['row'])
-            pattern = r'<c\b(?=[^>]*\br="' + address + r'")[^>]*(?:/>|>.*?</c>)'
+            pattern = r'<c\b(?=[^>]*\br="' + address + r'")[^>]*?(?:/>|>.*?</c>)'
             match = re.search(pattern, xml, re.S)
             if not match:
-                raise RuntimeError(f'Cannot find clip cell {address}')
+                # Spreadsheet editors may omit empty cells entirely.
+                row_pattern = r'<row\b(?=[^>]*\br="' + str(change['row']) + r'")[^>]*>.*?</row>'
+                row_match = re.search(row_pattern, xml, re.S)
+                if not row_match or change['before']:
+                    raise RuntimeError(f'Cannot find clip cell {address}')
+                row_xml = row_match.group()
+                following = next((cell for cell in re.finditer(r'<c\b[^>]*\br="([A-Z]+)\d+"', row_xml)
+                                  if (len(cell[1]), cell[1]) > (1, 'I')), None)
+                offset = following.start() if following else row_xml.rfind('</row>')
+                position = row_match.start() + offset
+                xml = xml[:position] + f'<c r="{address}"/>' + xml[position:]
+                match = re.search(pattern, xml, re.S)
             tag = re.sub(r'\s+t="[^"]*"', '', match.group().split('>', 1)[0].rstrip('/'))
             replacement = tag + ' t="inlineStr"><is><t xml:space="preserve">' + escape(change['after']) + '</t></is></c>'
             xml = xml[:match.start()] + replacement + xml[match.end():]
