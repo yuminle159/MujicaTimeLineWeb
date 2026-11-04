@@ -60,6 +60,9 @@
 }
 .quick-nav a:hover::after,.quick-nav a:focus-visible::after { opacity:1; transform:translate(-50%,0); }
 @media (max-width: 760px) {
+  body:has(#tlLightbox.active) .quick-nav,
+  body:has(.shared-interview-lightbox.active) .quick-nav,
+  body:has(.shared-live-kv-lightbox.shared-live-active) .quick-nav { display:none; }
   .quick-nav { top:auto; right:50%; bottom:max(10px,env(safe-area-inset-bottom)); transform:translateX(50%); background:rgba(10,10,12,.9); }
   .quick-nav a { width:31px; height:31px; }
   .quick-nav a.quick-nav-back { width:52px; }

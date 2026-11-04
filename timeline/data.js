@@ -101,6 +101,188 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "jAWGSuuMb2A",
+    date: "2023/8/26",
+    title: "弄李观看共友林鼓子参演的音乐剧「Neo Doll」",
+    category: "personal",
+    description: "处于声优未公开的阶段，两人一同观看林鼓子参演音乐剧「Neo Doll」，首次SNS公开互动",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20230826-1.webp" },
+      { type: "image", src: "../images/20230826-2.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1695354653582746087", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1695353330820899279", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "yctrOv1HyrD",
+    date: "2023/9/27",
+    title: "弄李与共友林鼓子的三人蔷薇园之行",
+    category: "personal",
+    description: "首次有记载的外出游玩\n佐佐木李子：和最喜欢的人们在玫瑰园度过了幸福的时光🌹\n高尾奏音・林鼓子・佐佐木李子组成的\nnoncocorico！\n高尾奏音：之前和林鼓子酱、佐佐木李子酱三个人一起去玫瑰园玩啦🌹✨\n玫瑰的世界实在太美了，超级感动＼( 'ω')／\nnoncocorico聚在一起，心里就会觉得暖洋洋的…🥰",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20230927-1.webp" },
+      { type: "image", src: "../images/20230927-2.webp" },
+      { type: "image", src: "../images/20230927-3.webp" },
+      { type: "image", src: "../images/20230927-4.webp" },
+      { type: "image", src: "../images/20230927-5.webp" },
+      { type: "image", src: "../images/20230927-6.webp" },
+      { type: "image", src: "../images/20230927-7.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1706880332233105477", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1706878641228190181", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "UWGoQ6ALzhw",
+    date: "2023/10/31",
+    title: "弄李与米泽茜一起喝万圣节下午茶",
+    category: "personal",
+    description: "佐佐木李子：Happy Halloween！\n前几天，我们去品尝了万圣节主题的“紫罗兰下午茶”🎃💜\n是和弄碳、也就是高尾奏音酱还有\n茜、也就是米泽茜酱一起去的☺︎\n我们一会儿像小孩子一样闹腾，一会儿又非常认真地聊着音乐。。Love.\n因为感觉意犹未尽没聊够，我们还在代代木公园散了会儿步哦！好想再一起出去玩啊～希望下次能5个人一起去‼︎\n高尾奏音：前阵子，我和佐佐木李子酱、米泽茜酱一起去喝了万圣节下午茶🎃🍬✨\n点心超级可爱呀～＼( 'ω')／\n之后我们三个人还一起去散了步哦～✌️\n希望下次AveMujica 全员能一起去…🥰⚙🌙",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20231031-5.webp" },
+      { type: "image", src: "../images/20231031-1.webp" },
+      { type: "image", src: "../images/20231031-2.webp" },
+      { type: "image", src: "../images/20231031-3.webp" },
+      { type: "image", src: "../images/20231031-4.webp" },
+      { type: "image", src: "../images/20231031-6.webp" },
+      { type: "image", src: "../images/20231031-7.webp" },
+      { type: "image", src: "../images/20231031-8.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1719212653686788414", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1719213232551039198", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "4hYS20L7VMv",
+    date: "2023/11/3",
+    title: "「青山祭 2023」学院祭观星",
+    category: "personal",
+    description: "2024年ゆづるか活动后本人暴露，当时未公开\n2024.11.02的佐佐木李子：去年（即2023年）和奏音碳一起去看的，青学祭里理工宇宙科学研究部的星象仪馆门票，到现在还一直珍藏着。。🌠",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20241102-3.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1852702392716026298", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "IcffuW35ka0",
+    date: "2023/11/6",
+    title: "Cos初祥约会",
+    category: "personal",
+    description: "佐佐木李子：和高尾奏音酱一起去玩了🎀和のんたん聊天的时候 总觉得心灵被救赎了呢。。！我们一直在发消息聊天，感觉就像几乎每天都在一起一样，真的很幸福。\n高尾奏音：前几天，和李子亲一起玩了🍅中途笑得太厉害，好几次肚子都笑痛了～谢谢你总是带给我这么幸福的时光😊✨我们俩还试着把衣服稍微搭配出了点初华和祥子的感觉……⚙💛💙🌙",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20231106-1.webp" },
+      { type: "image", src: "../images/20231106-2.webp" },
+      { type: "image", src: "../images/20231106-3.webp" },
+      { type: "image", src: "../images/20231106-4.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1721524275415232783", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1721376494658953388", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "4e3Sf32EUyk",
+    date: "2023/11/10",
+    title: "高尾奏音为佐佐木李子生日庆生",
+    category: "personal",
+    description: "佐佐木李子：11/10的今天，我迎来生日啦🎂\n一直以来非常感谢大家！！\n无论是唱歌、表演还是创作，我都会以“始终全力以赴”为座右铭！希望能给大家带来许多好消息！我想和大家共同分享着这份幸福，一起不断向前迈进✨\n今后也请多多关注李子亲哦☺︎\n大家发的生日祝福留言，我会去点赞的哦～！",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20231110.webp" },
+      { type: "image", src: "../images/galleryless/20231110-推特回复.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1722630161089355896", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "jY0LW8tgYXX",
+    date: "2023/11/20",
+    title: "圣地巡礼约会",
+    category: "personal",
+    description: "私下庆生，天文馆情侣座事件，初祥桥打卡\n高尾奏音：前几天，和佐佐木李子酱一起去约会了…＼( 'ω')／💛💙\n还去了BanG Dream!MyGO动画里初华和祥子碰头的那座桥和天文馆哦🕊💫\n楽既开心又有趣，一直笑个不停～❣️\n我们聊了很多，想要在 Ave Mujica 的活动中更加努力的心情也变得更加强烈了⚙🌙\n最爱李子亲了！🥰",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20231120-1.webp" },
+      { type: "image", src: "../images/20231120-2.webp" },
+      { type: "image", src: "../images/20231120-3.webp" },
+      { type: "image", src: "../images/20231120-4.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1726525962450563173", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "8NOzFfvwDkQ",
+    date: "2023/11/27",
+    title: "高尾奏音展示佐佐木李子赠送的家居服",
+    category: "personal",
+    description: "佐佐木李子赠送给高尾奏音白色马尔济斯图案的家居服，引用回复\n高尾奏音：这是我喜欢的家居服🐶\n这是李子亲给我的喔〜穿上它连心都暖呼呼的☺️🌙",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20231127.webp" },
+      { type: "image", src: "../images/galleryless/20231127-推特回复.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1729060860918964345", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "xr1tYC2kvN3",
+    date: "2023/12/22",
+    title: "弄李与米泽茜发表对彼此的印象感言",
+    category: "personal",
+    description: "李子→奏音：高尾奏音…是温柔与坚强兼具的圣人君子。是努力的化身。请放心，你一定会获得非常多的幸福。\n奏音→李子：佐佐木李子…拥有丰沛的才华与温暖的人格。华美的歌声与平日可爱的言辞之间的反差绝妙无比。内心深藏的热忱与对周围人的温柔，打动了所有人的心。",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20231222-1.webp" },
+      { type: "image", src: "../images/20231222-2.webp" },
+      { type: "image", src: "../images/20231222-3.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1738046322287218702", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1738033106849038614", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "HxW9ipemdLp",
+    date: "2023/12/27",
+    title: "Mujica年末出行游玩与年终总结",
+    category: "personal",
+    description: "玩水活动，全员在李子家聚会\n大家所在的地方，永远是我的能量圣地…🌙⚙☺️\n2023年与 Ave Mujica 的大家共同度过的回忆📸\n今年也非常感谢大家💙\n一个月后就是 1st LIVE 了…🎼\n希望明年也能和大家一起度过许多珍贵的时光🎹✨",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20231227-1.webp" },
+      { type: "image", src: "../images/20231227-2.webp" },
+      { type: "image", src: "../images/20231227-3.webp" },
+      { type: "image", src: "../images/20231227-4.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1739841229180014912", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "4gSfFvxe7b5",
+    date: "2023/12/31",
+    title: "Mujica年末读卖乐园之行",
+    category: "personal",
+    description: "结束全员行程后，两人进行了夜游，工厂游轮约会\n佐佐木李子：我们去读卖乐园看宝石灯光秀啦！\n和回老家探亲的 茜打了视频电话，用照片召唤了她。。成为了AveMujica 5个人一起度过的年末☺︎\n感谢的话怎么也说不完。。一直以来真的非常感谢大家!!\n2024年也要一起创造好多好多回忆哦！\n高尾奏音：年末也是和AveMujica 的成员们一起度过的🌙⚙️\n虽然茜碳回老家了没能见到面，但在灯光秀里跟她打了视频电话，能大家一起聊天真的好开心…！☺️\n正在计划下次5个人一起出去玩的日子🍀\n祝大家过个好年……🕊",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20231231-1.webp" },
+      { type: "image", src: "../images/20231231-2.webp" },
+      { type: "image", src: "../images/20231231-3.webp" },
+      { type: "image", src: "../images/20231231-4.webp" },
+      { type: "image", src: "../images/20231231-5.webp" },
+      { type: "image", src: "../images/20231231-6.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1741337107363438613", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1741289446589542635", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "6sNQx8Gaclk",
+    date: "2023/12/31",
+    title: "佐佐木李子挑战蹦极",
+    category: "personal",
+    description: "在读卖乐园挑战了蹦极，大家一起见证了，成为了日后一系列事情的伏笔\n佐佐木李子：梦想说出口就会实现🚀\n今年的梦想之一\n『想要去跳蹦极！』达成了！！！！\n(※跳下来的时候叫着“好喜欢！”)\n冒着严寒一直等我，一边为我应援一边帮我录视频，而且还愿意陪我一起飞（跳）……能有这样的朋友在身边，是多么幸福的一件事啊。谢谢。\n2023年、无悔了！！！",
+    tag: "private",
+    media: [
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV11g4y167FS" },
+      { type: "link", url: "https://x.com/sasakirico/status/1741410486938431510", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
     hash_id: "soKNVVx26dw",
     date: "2024/1/10",
     title: "弄李与共友林鼓子聚会",
@@ -132,143 +314,6 @@ var timelineData = [
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV18mLz6BECd" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1753061475294556163", title: "高尾奏音 X链接" },
       { type: "link", url: "https://x.com/sasakirico/status/1753062986447773793", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "iKi0aL0Tabc",
-    date: "2024/2/14",
-    title: "丰川祥子生日",
-    category: "personal",
-    description: "两人为丰川祥子庆生\n高尾奏音：2月14日是我在BanGDream 里配音的丰川祥子酱的生日哦…🎂🩵☕️\n我试着弹了一下祥子在BanGDream动画MyGO 第13集中弹的那首《月光》🎹\n祥子，生日快乐，祝你度过幸福的一年…",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20240214-1.webp" },
-      { type: "image", src: "../images/galleryless/20240214-庆生推特2.webp" },
-      { type: "image", src: "../images/galleryless/20240214-庆生推特1.webp" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV19B421z7wg" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1757419963822854213", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1757772519036330156", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "6n51gtrCr5y",
-    date: "2024/2/20",
-    title: "高尾奏音展示佐佐木李子拍摄的照片",
-    category: "personal",
-    description: "高尾奏音：李子亲给我拍了照片☺️💛🩵",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20240220-1.webp" },
-      { type: "image", src: "../images/20240220-2.webp" },
-      { type: "image", src: "../images/galleryless/20240220-推特回复.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1759884288571674932", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "MyDhK7iRn0K",
-    date: "2024/2/20",
-    title: "Mujica迪士尼游",
-    category: "personal",
-    description: "庆祝渡濑结月生日，成员共游迪士尼乐园",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20240220-3.webp" },
-      { type: "image", src: "../images/20240220-4.webp" },
-      { type: "image", src: "../images/20240220-5.webp" },
-      { type: "image", src: "../images/20240220-6.webp" },
-      { type: "image", src: "../images/20240220-7.webp" },
-      { type: "image", src: "../images/20240220-8.webp" },
-      { type: "image", src: "../images/20240220-9.webp" },
-      { type: "image", src: "../images/20240220-10.webp" },
-      { type: "image", src: "../images/20240220-11.webp" },
-      { type: "image", src: "../images/20240220-12.webp" },
-      { type: "image", src: "../images/20240220-13.webp" },
-      { type: "image", src: "../images/20240220-14.webp" },
-      { type: "image", src: "../images/20240220-15.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1759774884635578835", title: "高尾奏音 X链接①" },
-      { type: "link", url: "https://x.com/sasakirico/status/1759790155303653693", title: "佐佐木李子 X链接①" },
-      { type: "link", url: "https://x.com/sasakirico/status/1759774896669028805", title: "佐佐木李子 X链接②" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1759831952612552950", title: "高尾奏音 X链接②" }
-    ]
-  },
-  {
-    hash_id: "MekplMvTFIM",
-    date: "2024/2/21",
-    title: "佐佐木李子移籍Lantis",
-    category: "personal",
-    description: "高尾奏音评论区祝贺\n佐佐木李子：很高兴向大家宣布，这一次，我已决定作为 Lantis 旗下艺人全新出发\n同时，我也将演唱TV动画『Rinkai！』的OP，这首名为「Windshifter」的单曲会在5月22日正式发行！\n请大家期待加速并迈出全新一步的佐佐木李子吧🌀✨",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20240221-1.webp" },
-      { type: "image", src: "../images/galleryless/20240221-推特回复.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1760255621709135958", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "WTlTS9QXBey",
-    date: "2024/3/1",
-    title: "弄李与共友林鼓子同游京都",
-    category: "personal",
-    description: "京都之旅",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20240301-1.webp" },
-      { type: "image", src: "../images/20240301-2.webp" },
-      { type: "image", src: "../images/20240301-3.webp" },
-      { type: "image", src: "../images/20240301-4.webp" },
-      { type: "image", src: "../images/20240301-5.webp" },
-      { type: "image", src: "../images/20240301-6.webp" },
-      { type: "image", src: "../images/20240301-7.webp" },
-      { type: "image", src: "../images/20240301-8.webp" },
-      { type: "image", src: "../images/20240301-9.webp" },
-      { type: "image", src: "../images/20240301-10.webp" },
-      { type: "image", src: "../images/20240301-11.webp" },
-      { type: "image", src: "../images/20240301-12.webp" },
-      { type: "image", src: "../images/20240301-13.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1763394769789800652", title: "佐佐木李子 X链接①" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1763394274887127104", title: "高尾奏音 X链接①" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1763416215102570705", title: "高尾奏音 X链接②" },
-      { type: "link", url: "https://x.com/sasakirico/status/1765293975756583262", title: "佐佐木李子 X链接②" }
-    ]
-  },
-  {
-    hash_id: "YTmsQa82sMa",
-    date: "2024/3/9",
-    title: "MEGAVEGAS2024预热",
-    category: "personal",
-    description: "高尾奏音展示双月样式美甲\n高尾奏音：Doloris和Oblivionis的\n双月…🌙🌙\n\nMEGAVEGAS2024 还请各位多多关照…🎹⚙🩵",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20240309-1.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1766285230066036877", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "eVXilSPsvqh",
-    date: "2024/3/23",
-    title: "与米泽茜前往观看冈田梦以出演的舞台剧",
-    category: "personal",
-    description: "高尾奏音：李子亲也让我戴了她的猫耳帽子🐈笑",
-    tag: "private",
-    media: [
-      { type: "link", url: "https://x.com/sasakirico/status/1771485155535847621", title: "佐佐木李子 X链接①" },
-      { type: "link", url: "https://x.com/sasakirico/status/1771484194830454840", title: "佐佐木李子 X链接②" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1771485716557582606", title: "高尾奏音 X链接①" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1771478111802024143", title: "高尾奏音 X链接②" },
-      { type: "image", src: "../images/20240323-12.webp" },
-      { type: "image", src: "../images/20240323-1.webp" },
-      { type: "image", src: "../images/20240323-2.webp" },
-      { type: "image", src: "../images/20240323-3.webp" },
-      { type: "image", src: "../images/20240323-4.webp" },
-      { type: "image", src: "../images/20240323-5.webp" },
-      { type: "image", src: "../images/20240323-6.webp" },
-      { type: "image", src: "../images/20240323-7.webp" },
-      { type: "image", src: "../images/20240323-8.webp" },
-      { type: "image", src: "../images/20240323-9.webp" },
-      { type: "image", src: "../images/20240323-10.webp" },
-      { type: "image", src: "../images/20240323-11.webp" },
-      { type: "image", src: "../images/20240323-13.webp" },
-      { type: "image", src: "../images/20240323-14.webp" }
     ]
   },
   {
@@ -514,6 +559,143 @@ var timelineData = [
     tag: "anime",
     media: [
       { type: "image", src: "../images/logo/animemujica.webp", caption: "动画 Logo" }
+    ]
+  },
+  {
+    hash_id: "iKi0aL0Tabc",
+    date: "2024/2/14",
+    title: "丰川祥子生日",
+    category: "personal",
+    description: "两人为丰川祥子庆生\n高尾奏音：2月14日是我在BanGDream 里配音的丰川祥子酱的生日哦…🎂🩵☕️\n我试着弹了一下祥子在BanGDream动画MyGO 第13集中弹的那首《月光》🎹\n祥子，生日快乐，祝你度过幸福的一年…",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20240214-1.webp" },
+      { type: "image", src: "../images/galleryless/20240214-庆生推特2.webp" },
+      { type: "image", src: "../images/galleryless/20240214-庆生推特1.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV19B421z7wg" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1757419963822854213", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1757772519036330156", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "6n51gtrCr5y",
+    date: "2024/2/20",
+    title: "高尾奏音展示佐佐木李子拍摄的照片",
+    category: "personal",
+    description: "高尾奏音：李子亲给我拍了照片☺️💛🩵",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20240220-1.webp" },
+      { type: "image", src: "../images/20240220-2.webp" },
+      { type: "image", src: "../images/galleryless/20240220-推特回复.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1759884288571674932", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "MyDhK7iRn0K",
+    date: "2024/2/20",
+    title: "Mujica迪士尼游",
+    category: "personal",
+    description: "庆祝渡濑结月生日，成员共游迪士尼乐园",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20240220-3.webp" },
+      { type: "image", src: "../images/20240220-4.webp" },
+      { type: "image", src: "../images/20240220-5.webp" },
+      { type: "image", src: "../images/20240220-6.webp" },
+      { type: "image", src: "../images/20240220-7.webp" },
+      { type: "image", src: "../images/20240220-8.webp" },
+      { type: "image", src: "../images/20240220-9.webp" },
+      { type: "image", src: "../images/20240220-10.webp" },
+      { type: "image", src: "../images/20240220-11.webp" },
+      { type: "image", src: "../images/20240220-12.webp" },
+      { type: "image", src: "../images/20240220-13.webp" },
+      { type: "image", src: "../images/20240220-14.webp" },
+      { type: "image", src: "../images/20240220-15.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1759774884635578835", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1759790155303653693", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1759774896669028805", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1759831952612552950", title: "高尾奏音 X链接②" }
+    ]
+  },
+  {
+    hash_id: "MekplMvTFIM",
+    date: "2024/2/21",
+    title: "佐佐木李子移籍Lantis",
+    category: "personal",
+    description: "高尾奏音评论区祝贺\n佐佐木李子：很高兴向大家宣布，这一次，我已决定作为 Lantis 旗下艺人全新出发\n同时，我也将演唱TV动画『Rinkai！』的OP，这首名为「Windshifter」的单曲会在5月22日正式发行！\n请大家期待加速并迈出全新一步的佐佐木李子吧🌀✨",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20240221-1.webp" },
+      { type: "image", src: "../images/galleryless/20240221-推特回复.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1760255621709135958", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "WTlTS9QXBey",
+    date: "2024/3/1",
+    title: "弄李与共友林鼓子同游京都",
+    category: "personal",
+    description: "京都之旅",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20240301-1.webp" },
+      { type: "image", src: "../images/20240301-2.webp" },
+      { type: "image", src: "../images/20240301-3.webp" },
+      { type: "image", src: "../images/20240301-4.webp" },
+      { type: "image", src: "../images/20240301-5.webp" },
+      { type: "image", src: "../images/20240301-6.webp" },
+      { type: "image", src: "../images/20240301-7.webp" },
+      { type: "image", src: "../images/20240301-8.webp" },
+      { type: "image", src: "../images/20240301-9.webp" },
+      { type: "image", src: "../images/20240301-10.webp" },
+      { type: "image", src: "../images/20240301-11.webp" },
+      { type: "image", src: "../images/20240301-12.webp" },
+      { type: "image", src: "../images/20240301-13.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1763394769789800652", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1763394274887127104", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1763416215102570705", title: "高尾奏音 X链接②" },
+      { type: "link", url: "https://x.com/sasakirico/status/1765293975756583262", title: "佐佐木李子 X链接②" }
+    ]
+  },
+  {
+    hash_id: "YTmsQa82sMa",
+    date: "2024/3/9",
+    title: "MEGAVEGAS2024预热",
+    category: "personal",
+    description: "高尾奏音展示双月样式美甲\n高尾奏音：Doloris和Oblivionis的\n双月…🌙🌙\n\nMEGAVEGAS2024 还请各位多多关照…🎹⚙🩵",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20240309-1.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1766285230066036877", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "eVXilSPsvqh",
+    date: "2024/3/23",
+    title: "与米泽茜前往观看冈田梦以出演的舞台剧",
+    category: "personal",
+    description: "高尾奏音：李子亲也让我戴了她的猫耳帽子🐈笑",
+    tag: "private",
+    media: [
+      { type: "link", url: "https://x.com/sasakirico/status/1771485155535847621", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1771484194830454840", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1771485716557582606", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1771478111802024143", title: "高尾奏音 X链接②" },
+      { type: "image", src: "../images/20240323-12.webp" },
+      { type: "image", src: "../images/20240323-1.webp" },
+      { type: "image", src: "../images/20240323-2.webp" },
+      { type: "image", src: "../images/20240323-3.webp" },
+      { type: "image", src: "../images/20240323-4.webp" },
+      { type: "image", src: "../images/20240323-5.webp" },
+      { type: "image", src: "../images/20240323-6.webp" },
+      { type: "image", src: "../images/20240323-7.webp" },
+      { type: "image", src: "../images/20240323-8.webp" },
+      { type: "image", src: "../images/20240323-9.webp" },
+      { type: "image", src: "../images/20240323-10.webp" },
+      { type: "image", src: "../images/20240323-11.webp" },
+      { type: "image", src: "../images/20240323-13.webp" },
+      { type: "image", src: "../images/20240323-14.webp" }
     ]
   },
   {
@@ -767,190 +949,6 @@ var timelineData = [
       { type: "image", src: "../images/20250119.webp" },
       { type: "image", src: "../images/galleryless/20250119-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1880916523872887112", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "l5g0pT4vGGb",
-    date: "2025/1/22",
-    title: "弄李 出演 「SKE48・二次元同好会 好きが高じて少し暴走してしまうこともあるかもしれません！」第15回",
-    category: "personal",
-    description: "",
-    tag: "business_mjc",
-    media: [
-      { type: "image", src: "../images/20250122.webp" },
-      { type: "image", src: "../images/20250122-2.webp" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1C1viBcEeP", caption: "评价彼此的角色" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1N7qwBgELv", caption: "想去超市约会" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1NzihB9E9P", caption: "软糖小故事" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1QGB2B5Eay", caption: "各自的兴趣爱好" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1881913308317691905", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "4hfY7cYgJYW",
-    date: "2025/1/22",
-    title: "佐佐木李子 展示 高尾奏音画的李子",
-    category: "personal",
-    description: "高尾奏音评论区互动\n佐佐木李子：和すがわら・みよまる・弄一起♡\n聊了聊 #AveMujica动画 以及日常生活中的各种事情！\n休息的时候，弄还给我画了张肖像画💝 笑眯眯李子☺︎（にっこりこち）",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20250122-1.webp" },
-      { type: "image", src: "../images/galleryless/20250122-推特回复.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1881917947603792107", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "LPNU5nIC4Nt",
-    date: "2025/2/1",
-    title: "奇妙地劝慰失眠之人的佐佐木李子",
-    category: "personal",
-    description: "",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/galleryless/20250201-推特回复.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1885705318468096355", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "oTmP1Ivh7Ee",
-    date: "2025/2/14",
-    title: "2025年 丰川祥子生日",
-    category: "personal",
-    description: "佐佐木李子评论区互动\n高尾奏音：2月14日是 #丰川祥子 的生日🎂🕊🌙\n祈愿今后的祥子能够收获满满的幸福…\n我用钢琴演奏了 #AveMujica 的『Georgette Me, Georgette You』🎹⚙️\n祥子，生日快乐…🩵 能够与你相遇，真的很幸福。",
-    tag: "private",
-    media: [
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1890053441181143405", title: "高尾奏音 X链接" },
-      { type: "image", src: "../images/galleryless/20250214-推特回复.webp" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV18LKFesEYL" }
-    ]
-  },
-  {
-    hash_id: "tfLld17aolS",
-    date: "2025/3/1",
-    title: "两人星象馆与咖啡馆约会",
-    category: "personal",
-    description: "佐佐木李子：一起去了天象馆！\n感受着弄就在身边仰望的星空真是太棒了。。\n最后流星划过的时候，想象了一下弄许了什么愿望呢。。不知怎么的，特意没有问🌠愿你幸福\n咖啡馆也玩得太开心了，时间一眨眼就过去了！！\n下次再找时间慢慢聚哦",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20250301.webp" },
-      { type: "image", src: "../images/20250301-2.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1895751065368478094", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "E4eUztalaCV",
-    date: "2025/3/6",
-    title: "时隔5天之后 高尾奏音回复星象馆推文",
-    category: "personal",
-    description: "",
-    tag: "private",
-    media: [
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1897550474485616784", title: "高尾奏音 X链接" },
-      { type: "image", src: "../images/galleryless/20250306-推特回复.webp" }
-    ]
-  },
-  {
-    hash_id: "av3xCUtJTrb",
-    date: "2025/3/13",
-    title: "佐佐木李子&高尾奏音 预告两人小豆岛之行",
-    category: "personal",
-    description: "佐佐木李子：のんりこ的旅行！\n这是只在这里说的小秘密。。🍓\n弄还陪伴在我身边睡觉了\n\n高尾奏音：同款睡衣🍓🍓\n前几天のんりこ一起去旅行啦…✈️💛🩵\n至于去了哪些地方玩，之后再发照片给大家看哦～🤭",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20250313.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1900154861234381115", title: "佐佐木李子 X链接" },
-      { type: "image", src: "../images/20250313-2.webp" },
-      { type: "image", src: "../images/20250313-3.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1900138654317895759", title: "高尾奏音 X链接" },
-      { type: "image", src: "../images/galleryless/20250313-推特回复.webp" }
-    ]
-  },
-  {
-    hash_id: "Jz95RblgofT",
-    date: "2025/3/14",
-    title: "佐佐木李子回复粉丝MV COVER『君と僕の星』初祥ver.",
-    category: "personal",
-    description: "佐佐木李子：！！！！！\n我作词作曲的『君と僕の星』，竟然有特别版本！？MV COVER实在太棒了，在电车上看的时候一直忍着眼泪！！原来还可以这样理解这首歌啊。。\n谢谢你，鸟子🌌 希望它能和这首歌一起传播得更广！",
-    tag: "private",
-    media: [
-      { type: "link", url: "https://x.com/sasakirico/status/1900386015430291688", title: "佐佐木李子 X链接" },
-      { type: "image", src: "../images/galleryless/20250314-推特回复.webp" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1ihQ5YzESq" }
-    ]
-  },
-  {
-    hash_id: "JsrfjS0ufp6",
-    date: "2025/3/13",
-    title: "出演バンドリ TV LIVE #255",
-    category: "personal",
-    description: "佐佐木李子：虽然有点晚了。。\n感谢大家收看 #バンドリTVLIVE with あまのんりこ！\n明明平时花粉症都没那么严重的，为什么偏偏这次。。🌸 今天已经没事啦！！\n下周3月20日（周四）21:30开始的加长版，我也会出演！\n有好多关于 #AveMujica动画 第11集的事情想和大家聊聊！！\n\n高尾奏音：感谢大家收看 #バンドリTVLIVE 💙💛🩵\n和あまねす、李子一起，玩得很开心☺️🌸",
-    tag: "business_mjc",
-    media: [
-      { type: "image", src: "../images/20250314-1.webp" },
-      { type: "image", src: "../images/20250314-2.webp" },
-      { type: "image", src: "../images/20250314-3.webp" },
-      { type: "image", src: "../images/20250314-4.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1900353546157273419", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1900197144524407076", title: "高尾奏音 X链接" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1dYGE61EPQ", caption: "开场介绍" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1JDVN6DE14", caption: "闯祸" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1QhV866EaJ", caption: "工商放闪" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1gX7y64EkW", caption: "ep10副音轨" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1bqMM6bEGw", caption: "尊敬的人" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV13qNx6rEcr", caption: "万恶的花粉症" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1KEKB6TEgq", caption: "可爱工商" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1XRKH6iEf6", caption: "绿袖子概念" }
-    ]
-  },
-  {
-    hash_id: "79cuuriiGSM",
-    date: "2025/3/20",
-    title: "弄李的小豆岛第一弹分享之照片",
-    category: "personal",
-    description: "佐佐木李子：初&祥的回忆之地🏝️\n我们去了一趟小豆岛！\n满天繁星的夜空，真美啊。。🌠\n#三角初華 #豊川祥子\n#アニメムジカ #AveMujica\n\n高尾奏音：初华和祥子的回忆之地…💛🩵\nのんりこ，我们两个人一起去了小豆岛🕊️🌙\n#バンドリ #アニメムジカ #AveMujica",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20250320-1.webp" },
-      { type: "image", src: "../images/20250320-2.webp" },
-      { type: "image", src: "../images/20250320-3.webp" },
-      { type: "image", src: "../images/20250320-4.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1902740705275240514", title: "佐佐木李子 X链接" },
-      { type: "image", src: "../images/20250320-5.webp" },
-      { type: "image", src: "../images/20250320-6.webp" },
-      { type: "image", src: "../images/20250320-7.webp" },
-      { type: "image", src: "../images/20250320-8.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1902728244434190745", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "75UuSIvgEAi",
-    date: "2025/3/20",
-    title: "弄李的小豆岛第二弹分享之视频（船上大喊&后抱）",
-    category: "personal",
-    description: "高尾奏音：🚢💛🩵\n（真的在渡轮上试着喊出了第12集里祥子的那声呐喊…🕊️）\n\n佐佐木李子：🌌🕊️🚢",
-    tag: "private",
-    media: [
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1902728533786722763", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1902730571341840390", title: "佐佐木李子 X链接" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1RZXYYoEDi", caption: "去程" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1vZXYYoEgd", caption: "回程" }
-    ]
-  },
-  {
-    hash_id: "JORxdd0lBJn",
-    date: "2025/3/20",
-    title: "弄李的小豆岛第三弹分享之动画12集感想",
-    category: "personal",
-    description: "高尾奏音：我真的很喜欢 #AveMujica动画 第12集。\n每个人都有各自的人生和价值观，而这些能够彼此交汇，是一件无比珍贵、近乎奇迹的事情\n看到之物和说出之物并不代表一切，戴上面具也不是什么坏事\n遇见祥子之后，我开始希望自己能成为一个连自己和他人面具之下的一切都能去爱的人🕊️\n#バンドリ #AveMujica\n\n佐佐木李子：即使痛苦的过去再次笼罩，即使悲伤的现实迎面袭来，也要背负这一切，继续活下去。因为这就是我们…\nTV动画『BanG Dream! Ave Mujica』\n第12集 Fluctuat nec mergitur.\n下周，#AveMujica动画 即将迎来最终回。\n#バンドリ #AveMujica",
-    tag: "business_mjc",
-    media: [
-      { type: "image", src: "../images/20250320-9.webp" },
-      { type: "image", src: "../images/20250320-10.webp" },
-      { type: "image", src: "../images/20250320-11.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1902728973416886500", title: "高尾奏音 X链接" },
-      { type: "image", src: "../images/20250320-12.webp" },
-      { type: "image", src: "../images/20250320-13.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1902729137560899747", title: "佐佐木李子 X链接" }
     ]
   },
   {
@@ -1629,18 +1627,18 @@ var timelineData = [
     date: "2025/4/26",
     title: "明日方舟 x Ave Mujica 联动前瞻预告发表",
     category: "organization",
-    description: "",
+    description: "明日方舟 与 Ave Mujica的联动活动的预告",
     tag: "game",
     media: [
       { type: "image", src: "../images/logo/mjc粥联动前瞻.webp" }
     ]
   },
   {
-    hash_id: "yVzgMhEbViD",
+    hash_id: "YymaTfn3Iib",
     date: "2025/9/4",
-    title: "【明日方舟 × BanG Dream! Ave Mujica】SideStory「无忧梦呓」活动开启",
+    title: "【明日方舟 × BanG Dream! Ave Mujica】SideStory「无忧梦呓」国服 活动开启",
     category: "organization",
-    description: "",
+    description: "明日方舟 与 Ave Mujica的联动活动 明日方舟游戏本体提供Mujica五人作为干员抽取或赠送，推出服装、主题（带有arrange版本GMGY）、周边、活动剧情与关卡等，Mujica提供tie-op歌曲「in your blue eyes」",
     tag: "game",
     media: [
       { type: "image", src: "../images/mjc粥联动kv.webp" },
@@ -2256,17 +2254,20 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "6O03m9nrSKd",
-    date: "2025/3/22",
-    title: "弄李的小豆岛第四弹分享之互拍照片",
+    hash_id: "l5g0pT4vGGb",
+    date: "2025/1/22",
+    title: "弄李 出演 「SKE48・二次元同好会 好きが高じて少し暴走してしまうこともあるかもしれません！」第15回",
     category: "personal",
-    description: "配文均为：🌊✨",
-    tag: "private",
+    description: "",
+    tag: "business_mjc",
     media: [
-      { type: "image", src: "../images/20250322.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1903437525668205044", title: "高尾奏音 X链接" },
-      { type: "image", src: "../images/20250322-2.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1903291256802791627", title: "佐佐木李子 X链接" }
+      { type: "image", src: "../images/20250122.webp" },
+      { type: "image", src: "../images/20250122-2.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1C1viBcEeP", caption: "评价彼此的角色" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1N7qwBgELv", caption: "想去超市约会" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1NzihB9E9P", caption: "软糖小故事" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1QGB2B5Eay", caption: "各自的兴趣爱好" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1881913308317691905", title: "高尾奏音 X链接" }
     ]
   },
   {
@@ -2337,6 +2338,187 @@ var timelineData = [
       { type: "image", src: "../images/鸡狗1圣诞轰音放映会1.webp" },
       { type: "image", src: "../images/鸡狗1圣诞轰音放映会2.webp" },
       { type: "image", src: "../images/鸡狗1圣诞轰音放映会3.webp" }
+    ]
+  },
+  {
+    hash_id: "4hfY7cYgJYW",
+    date: "2025/1/22",
+    title: "佐佐木李子 展示 高尾奏音画的李子",
+    category: "personal",
+    description: "高尾奏音评论区互动\n佐佐木李子：和すがわら・みよまる・弄一起♡\n聊了聊 #AveMujica动画 以及日常生活中的各种事情！\n休息的时候，弄还给我画了张肖像画💝 笑眯眯李子☺︎（にっこりこち）",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20250122-1.webp" },
+      { type: "image", src: "../images/galleryless/20250122-推特回复.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1881917947603792107", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "LPNU5nIC4Nt",
+    date: "2025/2/1",
+    title: "奇妙地劝慰失眠之人的佐佐木李子",
+    category: "personal",
+    description: "",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/galleryless/20250201-推特回复.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1885705318468096355", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "oTmP1Ivh7Ee",
+    date: "2025/2/14",
+    title: "2025年 丰川祥子生日",
+    category: "personal",
+    description: "佐佐木李子评论区互动\n高尾奏音：2月14日是 #丰川祥子 的生日🎂🕊🌙\n祈愿今后的祥子能够收获满满的幸福…\n我用钢琴演奏了 #AveMujica 的『Georgette Me, Georgette You』🎹⚙️\n祥子，生日快乐…🩵 能够与你相遇，真的很幸福。",
+    tag: "private",
+    media: [
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1890053441181143405", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/galleryless/20250214-推特回复.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV18LKFesEYL" }
+    ]
+  },
+  {
+    hash_id: "tfLld17aolS",
+    date: "2025/3/1",
+    title: "两人星象馆与咖啡馆约会",
+    category: "personal",
+    description: "佐佐木李子：一起去了天象馆！\n感受着弄就在身边仰望的星空真是太棒了。。\n最后流星划过的时候，想象了一下弄许了什么愿望呢。。不知怎么的，特意没有问🌠愿你幸福\n咖啡馆也玩得太开心了，时间一眨眼就过去了！！\n下次再找时间慢慢聚哦",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20250301.webp" },
+      { type: "image", src: "../images/20250301-2.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1895751065368478094", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "E4eUztalaCV",
+    date: "2025/3/6",
+    title: "时隔5天之后 高尾奏音回复星象馆推文",
+    category: "personal",
+    description: "",
+    tag: "private",
+    media: [
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1897550474485616784", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/galleryless/20250306-推特回复.webp" }
+    ]
+  },
+  {
+    hash_id: "av3xCUtJTrb",
+    date: "2025/3/13",
+    title: "佐佐木李子&高尾奏音 预告两人小豆岛之行",
+    category: "personal",
+    description: "佐佐木李子：のんりこ的旅行！\n这是只在这里说的小秘密。。🍓\n弄还陪伴在我身边睡觉了\n\n高尾奏音：同款睡衣🍓🍓\n前几天のんりこ一起去旅行啦…✈️💛🩵\n至于去了哪些地方玩，之后再发照片给大家看哦～🤭",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20250313.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1900154861234381115", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/20250313-2.webp" },
+      { type: "image", src: "../images/20250313-3.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1900138654317895759", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/galleryless/20250313-推特回复.webp" }
+    ]
+  },
+  {
+    hash_id: "JsrfjS0ufp6",
+    date: "2025/3/13",
+    title: "出演バンドリ TV LIVE #255",
+    category: "personal",
+    description: "佐佐木李子：虽然有点晚了。。\n感谢大家收看 #バンドリTVLIVE with あまのんりこ！\n明明平时花粉症都没那么严重的，为什么偏偏这次。。🌸 今天已经没事啦！！\n下周3月20日（周四）21:30开始的加长版，我也会出演！\n有好多关于 #AveMujica动画 第11集的事情想和大家聊聊！！\n\n高尾奏音：感谢大家收看 #バンドリTVLIVE 💙💛🩵\n和あまねす、李子一起，玩得很开心☺️🌸",
+    tag: "business_mjc",
+    media: [
+      { type: "image", src: "../images/20250314-1.webp" },
+      { type: "image", src: "../images/20250314-2.webp" },
+      { type: "image", src: "../images/20250314-3.webp" },
+      { type: "image", src: "../images/20250314-4.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1900353546157273419", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1900197144524407076", title: "高尾奏音 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1dYGE61EPQ", caption: "开场介绍" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1JDVN6DE14", caption: "闯祸" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1QhV866EaJ", caption: "工商放闪" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1gX7y64EkW", caption: "ep10副音轨" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1bqMM6bEGw", caption: "尊敬的人" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV13qNx6rEcr", caption: "万恶的花粉症" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1KEKB6TEgq", caption: "可爱工商" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1XRKH6iEf6", caption: "绿袖子概念" }
+    ]
+  },
+  {
+    hash_id: "Jz95RblgofT",
+    date: "2025/3/14",
+    title: "佐佐木李子回复粉丝MV COVER『君と僕の星』初祥ver.",
+    category: "personal",
+    description: "佐佐木李子：！！！！！\n我作词作曲的『君と僕の星』，竟然有特别版本！？MV COVER实在太棒了，在电车上看的时候一直忍着眼泪！！原来还可以这样理解这首歌啊。。\n谢谢你，鸟子🌌 希望它能和这首歌一起传播得更广！",
+    tag: "private",
+    media: [
+      { type: "link", url: "https://x.com/sasakirico/status/1900386015430291688", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/galleryless/20250314-推特回复.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1ihQ5YzESq" }
+    ]
+  },
+  {
+    hash_id: "79cuuriiGSM",
+    date: "2025/3/20",
+    title: "弄李的小豆岛第一弹分享之照片",
+    category: "personal",
+    description: "佐佐木李子：初&祥的回忆之地🏝️\n我们去了一趟小豆岛！\n满天繁星的夜空，真美啊。。🌠\n#三角初華 #豊川祥子\n#アニメムジカ #AveMujica\n\n高尾奏音：初华和祥子的回忆之地…💛🩵\nのんりこ，我们两个人一起去了小豆岛🕊️🌙\n#バンドリ #アニメムジカ #AveMujica",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20250320-1.webp" },
+      { type: "image", src: "../images/20250320-2.webp" },
+      { type: "image", src: "../images/20250320-3.webp" },
+      { type: "image", src: "../images/20250320-4.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1902740705275240514", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/20250320-5.webp" },
+      { type: "image", src: "../images/20250320-6.webp" },
+      { type: "image", src: "../images/20250320-7.webp" },
+      { type: "image", src: "../images/20250320-8.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1902728244434190745", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "75UuSIvgEAi",
+    date: "2025/3/20",
+    title: "弄李的小豆岛第二弹分享之视频（船上大喊&后抱）",
+    category: "personal",
+    description: "高尾奏音：🚢💛🩵\n（真的在渡轮上试着喊出了第12集里祥子的那声呐喊…🕊️）\n\n佐佐木李子：🌌🕊️🚢",
+    tag: "private",
+    media: [
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1902728533786722763", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1902730571341840390", title: "佐佐木李子 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1RZXYYoEDi", caption: "去程" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1vZXYYoEgd", caption: "回程" }
+    ]
+  },
+  {
+    hash_id: "JORxdd0lBJn",
+    date: "2025/3/20",
+    title: "弄李的小豆岛第三弹分享之动画12集感想",
+    category: "personal",
+    description: "高尾奏音：我真的很喜欢 #AveMujica动画 第12集。\n每个人都有各自的人生和价值观，而这些能够彼此交汇，是一件无比珍贵、近乎奇迹的事情\n看到之物和说出之物并不代表一切，戴上面具也不是什么坏事\n遇见祥子之后，我开始希望自己能成为一个连自己和他人面具之下的一切都能去爱的人🕊️\n#バンドリ #AveMujica\n\n佐佐木李子：即使痛苦的过去再次笼罩，即使悲伤的现实迎面袭来，也要背负这一切，继续活下去。因为这就是我们…\nTV动画『BanG Dream! Ave Mujica』\n第12集 Fluctuat nec mergitur.\n下周，#AveMujica动画 即将迎来最终回。\n#バンドリ #AveMujica",
+    tag: "business_mjc",
+    media: [
+      { type: "image", src: "../images/20250320-9.webp" },
+      { type: "image", src: "../images/20250320-10.webp" },
+      { type: "image", src: "../images/20250320-11.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1902728973416886500", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/20250320-12.webp" },
+      { type: "image", src: "../images/20250320-13.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1902729137560899747", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "6O03m9nrSKd",
+    date: "2025/3/22",
+    title: "弄李的小豆岛第四弹分享之互拍照片",
+    category: "personal",
+    description: "配文均为：🌊✨",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20250322.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1903437525668205044", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/20250322-2.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1903291256802791627", title: "佐佐木李子 X链接" }
     ]
   },
   {
@@ -2579,7 +2761,7 @@ var timelineData = [
     date: "2025/9/17",
     title: "与米泽茜的下午茶",
     category: "personal",
-    description: "和Mujica的成员们一起喝的冰淇淋苏打最好喝了🌙🍹🍒",
+    description: "高尾奏音：和Mujica的成员们一起喝的冰淇淋苏打最好喝了🌙🍹🍒",
     tag: "private",
     media: [
       { type: "image", src: "../images/20250917.webp" },
@@ -2604,7 +2786,7 @@ var timelineData = [
     date: "2025/12/1",
     title: "Mujica6th最终彩排结束",
     category: "personal",
-    description: "#AveMujica 6th LIVE🎹\n「Ulterius Procedere」のゲネリハを終えました…🌙⚙️💠\n\nいよいよ２週間を切りましたね🔥\nお楽しみに…。",
+    description: "高尾奏音：AveMujica 6th LIVE🎹\n「Ulterius Procedere」的正式彩排结束了……🌙⚙️💠\n距离演出终于只剩不到两周了呢🔥\n敬请期待……。",
     tag: "business_mjc",
     media: [
       { type: "image", src: "../images/20251201-1.webp" },
@@ -2618,228 +2800,29 @@ var timelineData = [
     date: "2025/12/31",
     title: "跨年蹦极",
     category: "personal",
-    description: "高尾奏音：2025年ラストに🌙\nバンジージャンプ飛びました！！！🕊️✨\n(撮影:りこさん🌙)）\n佐佐木李子：飛んだ瞬間、年始にのんが書いた「鳥」の書き初め思い出したよ。。有言実行、素晴らし🕊️本当かっこよかった！！\n高尾奏音：撮ってくれてありがとう…鳥になりましたわ…",
+    description: "高尾奏音：在2025年的最后🌙\n我去挑战蹦极了！！！🕊️✨",
     tag: "private",
     media: [
-      { type: "link", url: "https://x.com/Kanon_Takao/status/2006355137770790975", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/2006378216467075295", title: "佐佐木李子 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1xEiuBZEf6" },
+      { type: "image", src: "../images/galleryless/20251231-推特回复.webp" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/2006379606736265295", title: "高尾奏音 X链接" }
     ]
   },
   {
-    hash_id: "xoa9mpRJF61",
-    date: "2026/10/9",
-    title: "佐佐木李子 & 高尾奏音 出演 日本テレビ「夜バゲット」第1回",
+    hash_id: "MhiF1Yd9PMN",
+    date: "2026/1/12",
+    title: "出席bushiroad新春大发表会",
     category: "personal",
-    description: "日本电视台播出的深夜综合娱乐资讯节目",
+    description: "高尾奏音：⚙️Mujica🌙\n\n佐佐木李子：#ブシロード新春 #バンドリ 舞台\n谢谢大家！！\nAve Mujica的新作电影，还有游戏『BanG Dream! Our Notes』等等……\n2026年也要一起度过更多闪闪发光、心动不已✨的美好时光哦！\nのん的钢琴演奏也实在太棒了……🎹",
     tag: "business_mjc",
     media: [
-      { type: "image", src: "../images/夜法棍宣传.webp" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1SRpn6vE7X" }
-    ]
-  },
-  {
-    hash_id: "M1oJY9u9g1h",
-    date: "2026/10/16",
-    title: "佐佐木李子 & 高尾奏音 出演 日本テレビ「夜バゲット」第2回",
-    category: "personal",
-    description: "日本电视台播出的深夜综合娱乐资讯节目",
-    tag: "business_mjc",
-    media: [
-      { type: "image", src: "../images/夜法棍宣传.webp" }
-    ]
-  },
-  {
-    hash_id: "AHowl6Dt8ma",
-    date: "2026/11/7",
-    title: "佐佐木李子 & 高尾奏音 出演「学生注目！のんりこオープンキャンパス in 早稲田祭2026」",
-    category: "personal",
-    description: "早稲田大学女性声優会主办的声优Talk Event",
-    tag: "business_others",
-    media: [
-      { type: "image", src: "../images/早稻田祭2026.webp" }
-    ]
-  },
-  {
-    hash_id: "UWGoQ6ALzhw",
-    date: "2023/10/31",
-    title: "弄李与米泽茜一起喝万圣节下午茶",
-    category: "personal",
-    description: "佐佐木李子：Happy Halloween！\n前几天，我们去品尝了万圣节主题的“紫罗兰下午茶”🎃💜\n是和弄碳、也就是高尾奏音酱还有\n茜、也就是米泽茜酱一起去的☺︎\n我们一会儿像小孩子一样闹腾，一会儿又非常认真地聊着音乐。。Love.\n因为感觉意犹未尽没聊够，我们还在代代木公园散了会儿步哦！好想再一起出去玩啊～希望下次能5个人一起去‼︎\n高尾奏音：前阵子，我和佐佐木李子酱、米泽茜酱一起去喝了万圣节下午茶🎃🍬✨\n点心超级可爱呀～＼( 'ω')／\n之后我们三个人还一起去散了步哦～✌️\n希望下次AveMujica 全员能一起去…🥰⚙🌙",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20231031-1.webp" },
-      { type: "image", src: "../images/20231031-2.webp" },
-      { type: "image", src: "../images/20231031-3.webp" },
-      { type: "image", src: "../images/20231031-4.webp" },
-      { type: "image", src: "../images/20231031-5.webp" },
-      { type: "image", src: "../images/20231031-6.webp" },
-      { type: "image", src: "../images/20231031-7.webp" },
-      { type: "image", src: "../images/20231031-8.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1719212653686788414", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1719213232551039198", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "4e3Sf32EUyk",
-    date: "2023/11/10",
-    title: "高尾奏音为佐佐木李子生日庆生",
-    category: "personal",
-    description: "佐佐木李子：11/10的今天，我迎来生日啦🎂\n一直以来非常感谢大家！！\n无论是唱歌、表演还是创作，我都会以“始终全力以赴”为座右铭！希望能给大家带来许多好消息！我想和大家共同分享着这份幸福，一起不断向前迈进✨\n今后也请多多关注李子亲哦☺︎\n大家发的生日祝福留言，我会去点赞的哦～！",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20231110.webp" },
-      { type: "image", src: "../images/galleryless/20231110-推特回复.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1722630161089355896", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "jY0LW8tgYXX",
-    date: "2023/11/20",
-    title: "圣地巡礼约会",
-    category: "personal",
-    description: "私下庆生，天文馆情侣座事件，初祥桥打卡\n高尾奏音：前几天，和佐佐木李子酱一起去约会了…＼( 'ω')／💛💙\n还去了BanG Dream!MyGO动画里初华和祥子碰头的那座桥和天文馆哦🕊💫\n楽既开心又有趣，一直笑个不停～❣️\n我们聊了很多，想要在 Ave Mujica 的活动中更加努力的心情也变得更加强烈了⚙🌙\n最爱李子亲了！🥰",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20231120-1.webp" },
-      { type: "image", src: "../images/20231120-2.webp" },
-      { type: "image", src: "../images/20231120-3.webp" },
-      { type: "image", src: "../images/20231120-4.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1726525962450563173", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "8NOzFfvwDkQ",
-    date: "2023/11/27",
-    title: "高尾奏音展示佐佐木李子赠送的家居服",
-    category: "personal",
-    description: "佐佐木李子赠送给高尾奏音白色马尔济斯图案的家居服，引用回复\n高尾奏音：这是我喜欢的家居服🐶\n这是李子亲给我的喔〜穿上它连心都暖呼呼的☺️🌙",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20231127.webp" },
-      { type: "image", src: "../images/galleryless/20231127-推特回复.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1729060860918964345", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "4hYS20L7VMv",
-    date: "2023/11/3",
-    title: "「青山祭 2023」学院祭观星",
-    category: "personal",
-    description: "2024年ゆづるか活动后本人暴露，当时未公开\n2024.11.02的佐佐木李子：去年（即2023年）和奏音碳一起去看的，青学祭里理工宇宙科学研究部的星象仪馆门票，到现在还一直珍藏着。。🌠",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20241102-3.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1852702392716026298", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "IcffuW35ka0",
-    date: "2023/11/6",
-    title: "Cos初祥约会",
-    category: "personal",
-    description: "佐佐木李子：和高尾奏音酱一起去玩了🎀和のんたん聊天的时候 总觉得心灵被救赎了呢。。！我们一直在发消息聊天，感觉就像几乎每天都在一起一样，真的很幸福。\n高尾奏音：前几天，和李子亲一起玩了🍅中途笑得太厉害，好几次肚子都笑痛了～谢谢你总是带给我这么幸福的时光😊✨我们俩还试着把衣服稍微搭配出了点初华和祥子的感觉……⚙💛💙🌙",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20231106-1.webp" },
-      { type: "image", src: "../images/20231106-2.webp" },
-      { type: "image", src: "../images/20231106-3.webp" },
-      { type: "image", src: "../images/20231106-4.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1721524275415232783", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1721376494658953388", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "xr1tYC2kvN3",
-    date: "2023/12/22",
-    title: "弄李与米泽茜发表对彼此的印象感言",
-    category: "personal",
-    description: "李子→奏音：高尾奏音…是温柔与坚强兼具的圣人君子。是努力的化身。请放心，你一定会获得非常多的幸福。\n奏音→李子：佐佐木李子…拥有丰沛的才华与温暖的人格。华美的歌声与平日可爱的言辞之间的反差绝妙无比。内心深藏的热忱与对周围人的温柔，打动了所有人的心。",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20231222-1.webp" },
-      { type: "image", src: "../images/20231222-2.webp" },
-      { type: "image", src: "../images/20231222-3.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1738046322287218702", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1738033106849038614", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "HxW9ipemdLp",
-    date: "2023/12/27",
-    title: "Mujica年末出行游玩与年终总结",
-    category: "personal",
-    description: "玩水活动，全员在李子家聚会\n大家所在的地方，永远是我的能量圣地…🌙⚙☺️\n2023年与 Ave Mujica 的大家共同度过的回忆📸\n今年也非常感谢大家💙\n一个月后就是 1st LIVE 了…🎼\n希望明年也能和大家一起度过许多珍贵的时光🎹✨",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20231227-1.webp" },
-      { type: "image", src: "../images/20231227-2.webp" },
-      { type: "image", src: "../images/20231227-3.webp" },
-      { type: "image", src: "../images/20231227-4.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1739841229180014912", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "4gSfFvxe7b5",
-    date: "2023/12/31",
-    title: "Mujica年末读卖乐园之行",
-    category: "personal",
-    description: "结束全员行程后，两人进行了夜游，工厂游轮约会\n佐佐木李子：我们去读卖乐园看宝石灯光秀啦！\n和回老家探亲的 茜打了视频电话，用照片召唤了她。。成为了AveMujica 5个人一起度过的年末☺︎\n感谢的话怎么也说不完。。一直以来真的非常感谢大家!!\n2024年也要一起创造好多好多回忆哦！\n高尾奏音：年末也是和AveMujica 的成员们一起度过的🌙⚙️\n虽然茜碳回老家了没能见到面，但在灯光秀里跟她打了视频电话，能大家一起聊天真的好开心…！☺️\n正在计划下次5个人一起出去玩的日子🍀\n祝大家过个好年……🕊",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20231231-1.webp" },
-      { type: "image", src: "../images/20231231-2.webp" },
-      { type: "image", src: "../images/20231231-3.webp" },
-      { type: "image", src: "../images/20231231-4.webp" },
-      { type: "image", src: "../images/20231231-5.webp" },
-      { type: "image", src: "../images/20231231-6.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1741337107363438613", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1741289446589542635", title: "高尾奏音 X链接" }
-    ]
-  },
-  {
-    hash_id: "6sNQx8Gaclk",
-    date: "2023/12/31",
-    title: "佐佐木李子挑战蹦极",
-    category: "personal",
-    description: "在读卖乐园挑战了蹦极，大家一起见证了，成为了日后一系列事情的伏笔\n佐佐木李子：梦想说出口就会实现🚀\n今年的梦想之一\n『想要去跳蹦极！』达成了！！！！\n(※跳下来的时候叫着“好喜欢！”)\n冒着严寒一直等我，一边为我应援一边帮我录视频，而且还愿意陪我一起飞（跳）……能有这样的朋友在身边，是多么幸福的一件事啊。谢谢。\n2023年、无悔了！！！",
-    tag: "private",
-    media: [
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV11g4y167FS" },
-      { type: "link", url: "https://x.com/sasakirico/status/1741410486938431510", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "jAWGSuuMb2A",
-    date: "2023/8/26",
-    title: "弄李观看共友林鼓子参演的音乐剧「Neo Doll」",
-    category: "personal",
-    description: "处于声优未公开的阶段，两人一同观看林鼓子参演音乐剧「Neo Doll」，首次SNS公开互动",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20230826-1.webp" },
-      { type: "image", src: "../images/20230826-2.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1695354653582746087", title: "高尾奏音 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1695353330820899279", title: "佐佐木李子 X链接" }
-    ]
-  },
-  {
-    hash_id: "yctrOv1HyrD",
-    date: "2023/9/27",
-    title: "弄李与共友林鼓子的三人蔷薇园之行",
-    category: "personal",
-    description: "首次有记载的外出游玩\n佐佐木李子：和最喜欢的人们在玫瑰园度过了幸福的时光🌹\n高尾奏音・林鼓子・佐佐木李子组成的\nnoncocorico！\n高尾奏音：之前和林鼓子酱、佐佐木李子酱三个人一起去玫瑰园玩啦🌹✨\n玫瑰的世界实在太美了，超级感动＼( 'ω')／\nnoncocorico聚在一起，心里就会觉得暖洋洋的…🥰",
-    tag: "private",
-    media: [
-      { type: "image", src: "../images/20230927-1.webp" },
-      { type: "image", src: "../images/20230927-2.webp" },
-      { type: "image", src: "../images/20230927-3.webp" },
-      { type: "image", src: "../images/20230927-4.webp" },
-      { type: "image", src: "../images/20230927-5.webp" },
-      { type: "image", src: "../images/20230927-6.webp" },
-      { type: "image", src: "../images/20230927-7.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1706880332233105477", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1706878641228190181", title: "高尾奏音 X链接" }
+      { type: "image", src: "../images/20260112-1.webp" },
+      { type: "image", src: "../images/20260112-2.webp" },
+      { type: "image", src: "../images/20260112-3.webp" },
+      { type: "image", src: "../images/20260112-4.webp" },
+      { type: "image", src: "../images/20260112-5.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2010691330645565503", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2010699861272809925", title: "高尾奏音 X链接" }
     ]
   },
   {
@@ -3218,108 +3201,83 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "fwd0FR2nnVm",
-    date: "2026/11/24",
-    title: "高尾奏音のハーモニーカフェ Guest：佐佐木李子",
-    category: "personal",
-    description: "高尾奏音个人节目 かのんカフェ 奏音咖啡厅一周年纪念生放送 嘉宾佐佐木李子",
-    tag: "business_others",
-    media: []
-  },
-  {
-    hash_id: "hs8oE6ZYkEK",
-    date: "2026/1/12",
-    title: "出席bushiroad新春大发表会",
-    category: "personal",
-    description: "佐佐木李子：#ブシロード新春 #バンドリ ステージ\nありがとうございました!!\n\nAve Mujica新作映画や、ゲーム『BanG Dream! Our Notes』など。。2026年も更にキラキラドキドキ✨心弾む時間を一緒に過ごそうね！\n\nのんのピアノ演奏も良すぎた。。🎹",
-    tag: "",
-    media: [
-      { type: "image", src: "../images/20260112-1.webp" },
-      { type: "image", src: "../images/20260112-2.webp" },
-      { type: "image", src: "../images/20260112-3.webp" },
-      { type: "image", src: "../images/20260112-4.webp" },
-      { type: "image", src: "../images/20260112-5.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/2010691330645565503" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/2010699861272809925" }
-    ]
-  },
-  {
-    hash_id: "VvycwOsugNf",
+    hash_id: "XRlocAO8NgB",
     date: "2026/2/24",
     title: "ReReReTUNE预告",
     category: "personal",
-    description: "佐佐木李子：#ReReReTUNE\n\nCover of\n宇多田ヒカル『First Love』\n\nVo.佐々木李子\nkey.高尾奏音\n\n二人で…🎧🎹🎤\n\n2026.2.25 17:30-\nComing Soon…\n高尾奏音：#ReReReTUNE 🎤🎹🤍\n\n「First Love」\n\nお楽しみに…。",
-    tag: "",
+    description: "佐佐木李子：\n#ReReReTUNE\n翻唱宇多田光的『First Love』\n主唱：佐佐木李子\n键盘：高尾奏音\n由我们两个人一起演绎……🎧🎹🎤\n2026.2.25 17:30 即将公开……\n\n高尾奏音：\n#ReReReTUNE 🎤🎹🤍\n「First Love」\n敬请期待……。",
+    tag: "business_others",
     media: [
       { type: "image", src: "../images/20260224.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/2026218463698858287" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/2026217809211203654" }
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1SWf2BbEhr" },
+      { type: "link", url: "https://x.com/sasakirico/status/2026218463698858287", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2026217809211203654", title: "高尾奏音 X链接" }
     ]
   },
   {
-    hash_id: "kqfpTnNpRg6",
+    hash_id: "3lSc2revfSb",
     date: "2026/2/25",
     title: "ReReReTUNE正式发布",
     category: "personal",
-    description: "佐佐木李子：You are always gonna be my love…\n#ReReReTUNE 第27弾にて、\n宇多田ヒカルさんの『First Love』\n歌わせていただきました！\n▶︎ https://www.youtube.com/watch?v=iX3OwPyPxII\n是非お楽しみください！\nのんのピアノでさらに気持ち溢れ出した。。ありがとう。。🎹\n高尾奏音：#ReReReTUNE 公開🎧🤍✨\nCover of 宇多田ヒカル「First Love」💐\nVo.佐々木李子🎤\nkey.高尾奏音🎹\n息を合わせ、心を込めて演奏させていただきました。",
-    tag: "",
+    description: "佐佐木李子：\nYou are always gonna be my love…\n在 #ReReReTUNE 第27期中，\n有幸演唱了宇多田光的『First Love』！\n请大家一定要欣赏！\n伴随着のん的钢琴演奏，心中的情感也愈发满溢而出……谢谢你……🎹\n\n高尾奏音：\n#ReReReTUNE 公开啦🎧🤍✨\n翻唱宇多田光的「First Love」💐\n主唱：佐佐木李子🎤\n键盘：高尾奏音🎹\n我们呼吸相合，倾注真心完成了这次演奏。",
+    tag: "business_others",
     media: [
       { type: "image", src: "../images/20260225-1.webp" },
       { type: "image", src: "../images/20260225-2.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/2026576783517393240" },
-      { type: "link", url: "https://x.com/sasakirico/status/2026576391614210263" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2026576783517393240", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/2026576391614210263", title: "佐佐木李子 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1M7fhBEEmC", caption: "翻唱本体" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1HZPczTEdC", caption: "采访" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1K3Pxz1E9R", caption: "幕后花絮" }
     ]
   },
   {
-    hash_id: "qOtvdilSAej",
+    hash_id: "TNEAVx45zN3",
     date: "2026/2/25",
     title: "镜子主题互拍",
     category: "personal",
     description: "佐佐木李子：🪞🖤🎧\n高尾奏音：🪞🤍❄️",
-    tag: "",
+    tag: "business_others",
     media: [
       { type: "image", src: "../images/20260225-3.webp" },
       { type: "image", src: "../images/20260225-4.webp" },
-      { type: "image", src: "" },
-      { type: "image", src: "" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2026615070596493817", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/2026661548954103830", title: "佐佐木李子 X链接" }
     ]
   },
   {
-    hash_id: "s1PTznikfLE",
+    hash_id: "WBydivtPB2d",
     date: "2026/4/12",
     title: "台北公演彩排合照",
     category: "personal",
     description: "佐佐木李子：🩵\n高尾奏音：💛",
-    tag: "",
+    tag: "business_mjc",
     media: [
       { type: "image", src: "../images/20260412-1.webp" },
       { type: "image", src: "../images/20260412-2.webp" },
       { type: "link", url: "" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/2043230326529675565" },
-      { type: "link", url: "https://x.com/sasakirico/status/2043230018378297797" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2043230326529675565", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/2043230018378297797", title: "佐佐木李子 X链接" }
     ]
   },
   {
-    hash_id: "4LEqk3GJBSQ",
+    hash_id: "bamGmKS4oz8",
     date: "2026/6/26",
-    title: "アワーノーツ 事前登録開始記念特番出演",
+    title: "アワーノーツ 事前登録開始記念特番出演 & 三角初华生日二人庆生",
     category: "personal",
-    description: "",
-    tag: "",
+    description: "Our Notes的第一次生放，邀请了各团主唱+α参与，生放当天正好为三角初华生日，弄李二人为三角初华进行了庆生\n\n佐佐木李子：趁今天还没结束，初华，再次祝你生日快乐……💛🩵",
+    tag: "business_mjc",
     media: [
-      { type: "image", src: "../images/20260626-1.webp" }
-    ]
-  },
-  {
-    hash_id: "AR0HyURxHNk",
-    date: "2026/6/26",
-    title: "三角初华生日，两人庆生",
-    category: "personal",
-    description: "佐佐木李子：今日が終わってしまう前に\n初華、改めておめでとう。。💛🩵",
-    tag: "",
-    media: [
+      { type: "image", src: "../images/20260626-5.webp" },
+      { type: "image", src: "../images/20260626-1.webp" },
+      { type: "image", src: "../images/20260626-3.webp" },
+      { type: "image", src: "../images/20260626-4.webp" },
       { type: "image", src: "../images/20260626-2.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/2070522230573031916" }
+      { type: "link", url: "https://x.com/sasakirico/status/2070522230573031916", title: "佐佐木李子 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1DF7L6gE86", caption: "为三角初华庆生" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV14iTe6wEfp", caption: "介绍主页" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1WXT46TEuw", caption: "介绍翻唱与卡面" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1y3Mc6AEMm", caption: "玩游戏环节" }
     ]
   },
   {
@@ -3374,6 +3332,20 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "DFicXVJ94TM",
+    date: "2026/9/23",
+    title: "约会预告",
+    category: "personal",
+    description: "佐佐木李子：今日もお疲れ様☔️\n高尾奏音：雨だけど頑張ろう〜！☔️🙂‍↕️",
+    tag: "",
+    media: [
+      { type: "image", src: "../images/20260923-1.webp" },
+      { type: "image", src: "../images/20260923-2.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2102767632672076176" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2102647617499148773" }
+    ]
+  },
+  {
     hash_id: "riz7B7aF0oV",
     date: "2026/9/28",
     title: "宣布出演早稻田祭",
@@ -3412,18 +3384,15 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "qdwcMSevxTw",
-    date: "2026/10/16",
-    title: "SCREENα vol.10杂志发售",
+    hash_id: "xoa9mpRJF61",
+    date: "2026/10/9",
+    title: "佐佐木李子 & 高尾奏音 出演 日本テレビ「夜バゲット」第1回",
     category: "personal",
-    description: "",
-    tag: "",
+    description: "日本电视台播出的深夜综合娱乐资讯节目",
+    tag: "business_mjc",
     media: [
-      { type: "image", src: "../images/20261016-1.webp" },
-      { type: "image", src: "../images/20261016-2.webp" },
-      { type: "image", src: "../images/20261016-3.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/2111020157732851865" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/2111026109911572905" }
+      { type: "image", src: "../images/夜法棍宣传.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1SRpn6vE7X" }
     ]
   },
   {
@@ -3456,17 +3425,29 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "DFicXVJ94TM",
-    date: "2026/9/23",
-    title: "约会预告",
+    hash_id: "M1oJY9u9g1h",
+    date: "2026/10/16",
+    title: "佐佐木李子 & 高尾奏音 出演 日本テレビ「夜バゲット」第2回",
     category: "personal",
-    description: "佐佐木李子：今日もお疲れ様☔️\n高尾奏音：雨だけど頑張ろう〜！☔️🙂‍↕️",
+    description: "日本电视台播出的深夜综合娱乐资讯节目",
+    tag: "business_mjc",
+    media: [
+      { type: "image", src: "../images/夜法棍宣传.webp" }
+    ]
+  },
+  {
+    hash_id: "qdwcMSevxTw",
+    date: "2026/10/16",
+    title: "SCREENα vol.10杂志发售",
+    category: "personal",
+    description: "",
     tag: "",
     media: [
-      { type: "image", src: "../images/20260923-1.webp" },
-      { type: "image", src: "../images/20260923-2.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/2102767632672076176" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/2102647617499148773" }
+      { type: "image", src: "../images/20261016-1.webp" },
+      { type: "image", src: "../images/20261016-2.webp" },
+      { type: "image", src: "../images/20261016-3.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2111020157732851865" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2111026109911572905" }
     ]
   },
   {
@@ -3479,6 +3460,37 @@ var timelineData = [
     media: [
       { type: "link", url: "https://x.com/sasakirico/status/2114688606191432020" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/2114689543018516912" }
+    ]
+  },
+  {
+    hash_id: "AHowl6Dt8ma",
+    date: "2026/11/7",
+    title: "佐佐木李子 & 高尾奏音 出演「学生注目！のんりこオープンキャンパス in 早稲田祭2026」",
+    category: "personal",
+    description: "早稲田大学女性声優会主办的声优Talk Event",
+    tag: "business_others",
+    media: [
+      { type: "image", src: "../images/早稻田祭2026.webp" }
+    ]
+  },
+  {
+    hash_id: "fwd0FR2nnVm",
+    date: "2026/11/24",
+    title: "高尾奏音のハーモニーカフェ Guest：佐佐木李子",
+    category: "personal",
+    description: "高尾奏音个人节目 かのんカフェ 奏音咖啡厅一周年纪念生放送 嘉宾佐佐木李子",
+    tag: "business_others",
+    media: []
+  },
+  {
+    hash_id: "o3iv25iM7mp",
+    date: "2026/2/10",
+    title: "アークナイツ × BanG Dream! Ave Mujica SIDE STORY「安らかな譫言」日服 活动开启",
+    category: "organization",
+    description: "与国服联动活动基本相同 全新物料为「KiLLKiSS (Covered by ロドスバンドガールズ)」",
+    tag: "game",
+    media: [
+      { type: "image", src: "../images/mjc粥联动kv日服.webp" }
     ]
   },
   {
