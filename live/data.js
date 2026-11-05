@@ -785,5 +785,19 @@ var livesData = [
     for_short: "bsr20 D2",
     setlist: [],
     backstage: []
+  },
+  {
+    name: "ANISAMA FUKUOKA 2027",
+    hash_id: "tBQsvm5Glmg",
+    date: "2027/3/14",
+    venue: "みずほPayPayドーム福岡",
+    tag: "Fes",
+    poster: "",
+    kv: "",
+    video_url: "",
+    description: "",
+    for_short: "ASL福冈2027",
+    setlist: [],
+    backstage: []
   }
 ];
