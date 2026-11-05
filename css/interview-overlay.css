@@ -283,7 +283,9 @@
 }
 
 .shared-interview-overlay .md-content h2 {
-  margin: 40px 0 16px;
+  margin: 48px 0 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(204, 41, 41, 0.22);
   color: var(--interview-primary);
   font-family: "Cinzel", serif;
   font-size: 20px;
@@ -293,10 +295,19 @@
 
 .shared-interview-overlay .md-content h3 {
   margin: 28px 0 12px;
-  color: #ddd;
+  color: #ddd6cb;
+  font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
   font-size: 16px;
   font-weight: 600;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
 }
+
+.shared-interview-overlay .md-content h2:first-child,
+.shared-interview-overlay .md-content h3:first-child { margin-top: 0; }
+.shared-interview-overlay .md-content h2 + h3 { margin-top: 18px; }
+.shared-interview-overlay .md-content h3 strong { color: inherit; font-weight: inherit; }
 
 .shared-interview-overlay .md-content p { margin: 0; }
 
@@ -736,7 +747,8 @@
   .shared-interview-overlay .md-content { font-size: 14px; }
   .shared-interview-overlay .md-content img { max-width: 100%; }
   .shared-interview-overlay .md-content h1 { font-size: 22px; }
-  .shared-interview-overlay .md-content h2 { font-size: 17px; }
+  .shared-interview-overlay .md-content h2 { margin-top: 36px; font-size: 17px; }
+  .shared-interview-overlay .md-content h3 { font-size: 15px; }
   .shared-interview-related { margin-top: 54px; }
 }
 
