@@ -1,6 +1,63 @@
 // 由 generate_all.py 自动生成，请在 data.xlsx 的 programs 表维护。
 window.programsData = [
   {
+    "program_id": "bdtv-0340",
+    "program": "バンドリ！TV LIVE",
+    "episode": "#340",
+    "date": "2026-11-12",
+    "time": "22:00",
+    "timezone": "+09:00",
+    "title": "バンドリ！TV LIVE 2026 #340",
+    "video_url": "https://www.youtube.com/watch?v=ZeuxTIgLM_M",
+    "cover": "../images/programs/bdtv-0340-ZeuxTIgLM_M.webp",
+    "notes": "",
+    "performers": [
+      {
+        "name": "大冢纱英",
+        "order": 1,
+        "bands": [
+          "Poppin'Party"
+        ],
+        "color": "#FF3377",
+        "aliases": [
+          "大塚紗英"
+        ]
+      },
+      {
+        "name": "樱川惠",
+        "order": 18,
+        "bands": [
+          "Roselia"
+        ],
+        "color": "#3344AA",
+        "aliases": [
+          "櫻川めぐ"
+        ]
+      },
+      {
+        "name": "志崎桦音",
+        "order": 19,
+        "bands": [
+          "Roselia"
+        ],
+        "color": "#3344AA",
+        "aliases": [
+          "志崎樺音"
+        ]
+      },
+      {
+        "name": "立石凛",
+        "order": 37,
+        "bands": [
+          "MyGO!!!!!"
+        ],
+        "color": "#3388BB",
+        "aliases": []
+      }
+    ],
+    "clips": []
+  },
+  {
     "program_id": "program-20261105-493a0e03",
     "program": "バンドリ！TV LIVE",
     "episode": "#339",
