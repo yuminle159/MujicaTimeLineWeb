@@ -374,7 +374,10 @@ var timelineData = [
     media: [
       { type: "image", src: "../images/20240214-1.webp" },
       { type: "image", src: "../images/galleryless/20240214-庆生推特2.webp" },
-      { type: "image", src: "../images/galleryless/20240214-庆生推特1.webp" }
+      { type: "image", src: "../images/galleryless/20240214-庆生推特1.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV19B421z7wg" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1757419963822854213", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1757772519036330156", title: "佐佐木李子 X链接" }
     ]
   },
   {
@@ -747,27 +750,6 @@ var timelineData = [
       { type: "link", url: "https://x.com/Kanon_Takao/status/1811400298591932472", title: "高尾奏音 X链接" },
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1c2Jk66EHo", caption: "预告视频" }
     ]
-  },
-  {
-    hash_id: "jcghhaDudEQ",
-    date: "2024/7/13",
-    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
-    category: "organization",
-    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
-    tag: "fes",
-    media: [
-      { type: "image", src: "../images/bml2024.webp", caption: "BML 2024" },
-      { type: "link", url: "", title: "Ave Mujica 在线观看" }
-    ]
-  },
-  {
-    hash_id: "7HUnWYTmUlV",
-    date: "2024/7/14",
-    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
-    category: "organization",
-    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
-    tag: "fes",
-    media: []
   },
   {
     hash_id: "Y9zHP26oCAw",
@@ -1168,10 +1150,9 @@ var timelineData = [
     description: "佐佐木李子评论区互动\n高尾奏音：之前在广播 #二次元同好会のすきぼう 里聊到的，\n去天象馆约会时坐的云朵座椅就是这个☁️😆🌠笑\n李子的睡颜好可爱🕊",
     tag: "private",
     media: [
+      { type: "image", src: "../images/20250109.webp" },
       { type: "image", src: "../images/galleryless/20250109-推特回复.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1877290479672304095", title: "高尾奏音 X链接" },
-      { type: "image", src: "../images/动画第2话先行图01.webp", caption: "动画先行图" },
-      { type: "image", src: "../images/动画第2话先行图02.webp", caption: "动画先行图" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1877290479672304095", title: "高尾奏音 X链接" }
     ]
   },
   {
@@ -1182,6 +1163,8 @@ var timelineData = [
     description: "「用结果说话。」\n在喵梦的算计之下，Ave Mujica的成员们于舞台之上被摘去了假面。\n以真容示人的她们，一时间成为世间瞩目的焦点。\n遭到暗算的祥子，冷眼讥笑的喵梦，心力交瘁的睦。\n失去假面的人偶们，即将迎来摘下面具后的第一场假面舞会……",
     tag: "anime",
     media: [
+      { type: "image", src: "../images/动画第2话先行图01.webp", caption: "动画先行图" },
+      { type: "image", src: "../images/动画第2话先行图02.webp", caption: "动画先行图" },
       { type: "image", src: "../images/动画第2话先行图03.webp", caption: "动画先行图" }
     ]
   },
@@ -1193,10 +1176,19 @@ var timelineData = [
     description: "",
     tag: "program",
     media: [
+      { type: "image", src: "../images/邦tv246-01.webp" },
+      { type: "image", src: "../images/邦tv246-02.webp" },
+      { type: "image", src: "../images/邦tv246-03.webp" },
+      { type: "image", src: "../images/邦tv246-04.webp" },
+      { type: "image", src: "../images/邦tv246-05.webp" },
       { type: "image", src: "../images/邦tv246-07.webp" },
       { type: "image", src: "../images/邦tv246-08.webp" },
       { type: "image", src: "../images/邦tv246-09.webp" },
-      { type: "image", src: "../images/邦tv246-10.webp" }
+      { type: "image", src: "../images/邦tv246-10.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1877375815219863979", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1877385990429352204", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1877390219382501409", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1877362746188058860", title: "高尾奏音 X链接" }
     ]
   },
   {
@@ -1219,9 +1211,20 @@ var timelineData = [
     description: "",
     tag: "program",
     media: [
+      { type: "image", src: "../images/2025新春大发表会-01.webp" },
       { type: "image", src: "../images/2025新春大发表会-02.webp" },
       { type: "image", src: "../images/2025新春大发表会-03.webp" },
-      { type: "image", src: "../images/2025新春大发表会-04.webp" }
+      { type: "image", src: "../images/2025新春大发表会-04.webp" },
+      { type: "image", src: "../images/2025新春大发表会-05.webp" },
+      { type: "image", src: "../images/2025新春大发表会-07.webp" },
+      { type: "image", src: "../images/2025新春大发表会-08.webp" },
+      { type: "image", src: "../images/2025新春大发表会-09.webp" },
+      { type: "image", src: "../images/2025新春大发表会-10.webp" },
+      { type: "image", src: "../images/2025新春大发表会-11.webp" },
+      { type: "image", src: "../images/2025新春大发表会-12.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1878772746802639241", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1878770156786372624", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1878772273953533955", title: "米泽茜 X链接" }
     ]
   },
   {
@@ -1297,7 +1300,23 @@ var timelineData = [
     description: "",
     tag: "business_mjc",
     media: [
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1881913308317691905", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/20250122.webp" },
+      { type: "image", src: "../images/20250122-2.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1C1viBcEeP", caption: "评价彼此的角色" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1N7qwBgELv", caption: "想去超市约会" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1NzihB9E9P", caption: "软糖小故事" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1QGB2B5Eay", caption: "各自的兴趣爱好" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1881913308317691905", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "4hfY7cYgJYW",
+    date: "2025/1/22",
+    title: "佐佐木李子 展示 高尾奏音画的李子",
+    category: "personal",
+    description: "高尾奏音评论区互动\n佐佐木李子：和すがわら・みよまる・弄一起♡\n聊了聊 #AveMujica动画 以及日常生活中的各种事情！\n休息的时候，弄还给我画了张肖像画💝 笑眯眯李子☺︎（にっこりこち）",
+    tag: "private",
+    media: [
       { type: "image", src: "../images/20250122-1.webp" },
       { type: "image", src: "../images/galleryless/20250122-推特回复.webp" },
       { type: "link", url: "https://x.com/sasakirico/status/1881917947603792107", title: "佐佐木李子 X链接" }
@@ -1311,6 +1330,7 @@ var timelineData = [
     description: "「演出已然落幕。」\n得益于睦在台前幕后的活跃表现，Ave Mujica的话题热度也愈发高涨。\n曾经的不和早已不见踪影，成员之间一派融洽。\n面对焕发出全新魅力的Ave Mujica，祥子却——",
     tag: "anime",
     media: [
+      { type: "image", src: "../images/动画第4话先行图01.webp", caption: "动画先行图" },
       { type: "image", src: "../images/动画第4话先行图02.webp", caption: "动画先行图" },
       { type: "image", src: "../images/动画第4话先行图03.webp", caption: "动画先行图" }
     ]
@@ -1525,8 +1545,12 @@ var timelineData = [
     description: "佐佐木李子：のんりこ的旅行！\n这是只在这里说的小秘密。。🍓\n弄还陪伴在我身边睡觉了\n\n高尾奏音：同款睡衣🍓🍓\n前几天のんりこ一起去旅行啦…✈️💛🩵\n至于去了哪些地方玩，之后再发照片给大家看哦～🤭",
     tag: "private",
     media: [
-      { type: "image", src: "../images/galleryless/20250313-推特回复.webp" },
-      { type: "image", src: "../images/20250314-1.webp" }
+      { type: "image", src: "../images/20250313.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1900154861234381115", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/20250313-2.webp" },
+      { type: "image", src: "../images/20250313-3.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1900138654317895759", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/galleryless/20250313-推特回复.webp" }
     ]
   },
   {
@@ -1537,8 +1561,20 @@ var timelineData = [
     description: "佐佐木李子：虽然有点晚了。。\n感谢大家收看 #バンドリTVLIVE with あまのんりこ！\n明明平时花粉症都没那么严重的，为什么偏偏这次。。🌸 今天已经没事啦！！\n下周3月20日（周四）21:30开始的加长版，我也会出演！\n有好多关于 #AveMujica动画 第11集的事情想和大家聊聊！！\n\n高尾奏音：感谢大家收看 #バンドリTVLIVE 💙💛🩵\n和あまねす、李子一起，玩得很开心☺️🌸",
     tag: "business_mjc",
     media: [
+      { type: "image", src: "../images/20250314-1.webp" },
       { type: "image", src: "../images/20250314-2.webp" },
-      { type: "image", src: "../images/20250314-3.webp" }
+      { type: "image", src: "../images/20250314-3.webp" },
+      { type: "image", src: "../images/20250314-4.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1900353546157273419", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1900197144524407076", title: "高尾奏音 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1dYGE61EPQ", caption: "开场介绍" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1JDVN6DE14", caption: "闯祸" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1QhV866EaJ", caption: "工商放闪" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1gX7y64EkW", caption: "ep10副音轨" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1bqMM6bEGw", caption: "尊敬的人" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV13qNx6rEcr", caption: "万恶的花粉症" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1KEKB6TEgq", caption: "可爱工商" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1XRKH6iEf6", caption: "绿袖子概念" }
     ]
   },
   {
@@ -1767,19 +1803,6 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "0mtKV0w8xuR",
-    date: "2025/4/26",
-    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」",
-    category: "organization",
-    description: "横K举办的MyGO!!!!! x Ave Mujica 第一次合同Live Sumimi暖场 CRYCHIC限定复活",
-    tag: "bandori_fes",
-    media: [
-      { type: "image", src: "../images/logo/横k鸡狗1logo.webp", caption: "横K合同Live Logo" },
-      { type: "image", src: "../images/鸡狗1横k kv.webp", caption: "横K合同Live 主视图" },
-      { type: "link", url: "https://www.bilibili.com/video/BV1RV2eBeEAd", title: "D1 在线观看" }
-    ]
-  },
-  {
     hash_id: "VJRQJ8owBRr",
     date: "2025/4/26",
     title: "明日方舟 x Ave Mujica 联动前瞻预告发表",
@@ -1788,17 +1811,6 @@ var timelineData = [
     tag: "game",
     media: [
       { type: "image", src: "../images/logo/mjc粥联动前瞻.webp" }
-    ]
-  },
-  {
-    hash_id: "4t9lCYEs0md",
-    date: "2025/4/27",
-    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」",
-    category: "organization",
-    description: "横K举办的MyGO!!!!! x Ave Mujica 第一次合同Live Sumimi暖场 CRYCHIC限定复活",
-    tag: "bandori_fes",
-    media: [
-      { type: "link", url: "https://www.acfun.cn/v/ac48829435", title: "D2 在线观看" }
     ]
   },
   {
@@ -1948,28 +1960,6 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "668I1heNy0G",
-    date: "2025/7/12",
-    title: "Ave Mujica 出演 BILIBILI MACRO LINK 2025 D2 & D3",
-    category: "organization",
-    description: "第二次参加BML 官方精选切片「KiLLKiSS」",
-    tag: "fes",
-    media: [
-      { type: "image", src: "../images/bml2025宣传图.webp" }
-    ]
-  },
-  {
-    hash_id: "HV7ufembb4B",
-    date: "2025/7/13",
-    title: "Ave Mujica 出演 BILIBILI MACRO LINK 2025 D2 & D3",
-    category: "organization",
-    description: "",
-    tag: "fes",
-    media: [
-      { type: "link", url: "https://www.bilibili.com/video/BV1Ac8yzxERF", title: "在线观看（仅kk）" }
-    ]
-  },
-  {
     hash_id: "8ApdB0SxHfr",
     date: "2025/7/16",
     title: "佐佐木李子回复高尾奏音午饭相关推文",
@@ -1990,30 +1980,6 @@ var timelineData = [
     tag: "offline",
     media: [
       { type: "image", src: "../images/completeness手渡会5.webp" }
-    ]
-  },
-  {
-    hash_id: "j6jFVo8mWxa",
-    date: "2025/7/26",
-    title: "Ave Mujica 5th LIVE「Nova Historia」",
-    category: "organization",
-    description: "「新的历史」",
-    tag: "oml",
-    media: [
-      { type: "image", src: "../images/logo/5thlogo原图.webp", caption: "5th Live Logo" },
-      { type: "image", src: "../images/5th kv.webp", caption: "5th Live 主视图" },
-      { type: "link", url: "https://www.acfun.cn/v/ac48848113", title: "D1 在线观看" }
-    ]
-  },
-  {
-    hash_id: "fnJ7B5kgbaS",
-    date: "2025/7/27",
-    title: "Ave Mujica 5th LIVE「Nova Historia」",
-    category: "organization",
-    description: "「新的历史」",
-    tag: "oml",
-    media: [
-      { type: "link", url: "https://www.acfun.cn/v/ac48737511", title: "D2 在线观看" }
     ]
   },
   {
@@ -2261,29 +2227,6 @@ var timelineData = [
     media: [
       { type: "image", src: "../images/元祖主题曲.webp" },
       { type: "link", url: "https://www.bilibili.com/video/BV1vsxyzNE6N", title: "在线试听" }
-    ]
-  },
-  {
-    hash_id: "x2vC3oESxL1",
-    date: "2025/10/11",
-    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同Live「分歧路口，前途漫漫」",
-    category: "organization",
-    description: "于上海 梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）举办的演出",
-    tag: "bandori_fes",
-    media: [
-      { type: "image", src: "../images/鸡狗1上海 kv.webp" },
-      { type: "link", url: "https://www.acfun.cn/v/ac48832641", title: "D1 在线观看" }
-    ]
-  },
-  {
-    hash_id: "knTOOsm5Ecn",
-    date: "2025/10/12",
-    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同Live「分歧路口，前途漫漫」",
-    category: "organization",
-    description: "于上海 梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）举办的演出",
-    tag: "bandori_fes",
-    media: [
-      { type: "link", url: "https://www.acfun.cn/v/ac48832628", title: "D2 在线观看" }
     ]
   },
   {
@@ -2850,30 +2793,6 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "VjgZhONYPPD",
-    date: "2026/6/19",
-    title: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL-",
-    category: "organization",
-    description: "「出口」",
-    tag: "oml",
-    media: [
-      { type: "image", src: "../images/logo/exituslogo彩.webp" },
-      { type: "image", src: "../images/exitus kv.webp" }
-    ]
-  },
-  {
-    hash_id: "O6gqgvHopbG",
-    date: "2026/6/20",
-    title: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL-",
-    category: "organization",
-    description: "「出口」",
-    tag: "oml",
-    media: [
-      { type: "link", url: "https://www.acfun.cn/v/ac48645465", title: "D1 在线观看" },
-      { type: "link", url: "https://www.acfun.cn/v/ac48644820", title: "D2 在线观看" }
-    ]
-  },
-  {
     hash_id: "bamGmKS4oz8",
     date: "2026/6/26",
     title: "アワーノーツ 事前登録開始記念特番出演 & 三角初华生日二人庆生",
@@ -3020,28 +2939,6 @@ var timelineData = [
       { type: "image", src: "../images/元祖第44集配布壁纸2.webp", caption: "配布壁纸手机" },
       { type: "image", src: "../images/元祖第44集staff绘.webp", caption: "Staff绘" },
       { type: "link", url: "https://www.bilibili.com/bangumi/play/ep5161246", title: "第44集 在线观看" }
-    ]
-  },
-  {
-    hash_id: "zutXvvwH5ly",
-    date: "2026/8/8",
-    title: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演",
-    category: "organization",
-    description: "「出口」",
-    tag: "oml",
-    media: [
-      { type: "image", src: "../images/logo/exituslogo彩.webp" }
-    ]
-  },
-  {
-    hash_id: "QAG9HtnsQeY",
-    date: "2026/8/9",
-    title: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演",
-    category: "organization",
-    description: "「出口」",
-    tag: "oml",
-    media: [
-      { type: "image", src: "../images/exitus kv.webp" }
     ]
   },
   {
@@ -3308,15 +3205,15 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "lYolNQMaNOz",
+    hash_id: "B1ieBRlYzvZ",
     date: "2026/10/8",
     title: "在游戏协力中意外遇到的两人",
     category: "personal",
-    description: "",
-    tag: "",
+    description: "弄弄抽出了开服Oblivionis SSR发推，李子回复",
+    tag: "private",
     media: [
-      { type: "link", url: "https://x.com/sasakirico/status/2108087782417772961" },
-      { type: "link", url: "https://x.com/sasakirico/status/2108087782417772961" }
+      { type: "link", url: "https://x.com/sasakirico/status/2108087782417772961", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/galleryless/20261008-推特回复.webp" }
     ]
   },
   {
@@ -3440,28 +3337,6 @@ var timelineData = [
     description: "",
     tag: "program",
     media: []
-  },
-  {
-    hash_id: "UqFQHfuQ2iJ",
-    date: "2026/10/24",
-    title: "Ave Mujica 7th LIVE「Virtus」",
-    category: "organization",
-    description: "「美德」",
-    tag: "oml",
-    media: [
-      { type: "image", src: "../images/logo/7thlivelogo.webp", caption: "7th Live Logo" }
-    ]
-  },
-  {
-    hash_id: "rqpq2o87le9",
-    date: "2026/10/25",
-    title: "Ave Mujica 7th LIVE「Virtus」",
-    category: "organization",
-    description: "「美德」",
-    tag: "oml",
-    media: [
-      { type: "image", src: "../images/7th kv.webp", caption: "7th Live 主视图" }
-    ]
   },
   {
     hash_id: "VhCZd9ulug0",
@@ -3590,26 +3465,6 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "MAkhxBdSONF",
-    date: "2026/12/1",
-    title: "Ave Mujica 出演 EVANESCENCE 2026 JAPAN 东京公演",
-    category: "organization",
-    description: "",
-    tag: "fes",
-    media: [
-      { type: "image", src: "../images/evanescence kv.webp" }
-    ]
-  },
-  {
-    hash_id: "2194x5PN4cu",
-    date: "2026/12/2",
-    title: "Ave Mujica 出演 EVANESCENCE 2026 JAPAN 东京公演",
-    category: "organization",
-    description: "",
-    tag: "fes",
-    media: []
-  },
-  {
     hash_id: "VRmkxFGvx6y",
     date: "2026/12/4",
     title: "Ave Mujica 出演 EVANESCENCE 2026 JAPAN 大阪公演",
@@ -3663,35 +3518,153 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "tE1zlLvWdhT",
-    date: "2027/5/29",
-    title: "Ave Mujica 8th LIVE「Discrimen Fati」",
+    hash_id: "5RbB2We6Qbb",
+    date: "2026/11/9",
+    title: "高尾奏音 出演 Bilibili限定 100万关注纪念直播",
     category: "organization",
-    description: "「命运的分岔点」",
-    tag: "oml",
-    media: []
+    description: "Bilibili官方账号 MyGO_AveMujica 100万关注达成直播 with 立石凛",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/galleryless/b限100万粉宣传.webp" }
+    ]
   },
   {
-    hash_id: "B9SaWALfnBu",
-    date: "2027/5/30",
-    title: "Ave Mujica 8th LIVE「Discrimen Fati」",
+    hash_id: "LJtN8QZh6U2",
+    date: "2026/11/30",
+    title: "高尾奏音 出演 JR東海×『BanG Dream! Our Notes』 推し旅联动 宣传视频",
     category: "organization",
-    description: "「命运的分岔点」",
-    tag: "oml",
-    media: []
+    description: "JR東海 与 『BanG Dream! Our Notes』的联动 推出了Cast Cross Talk Moive（声优谈话视频） 高尾奏音出演 with 小日向美香（from MyGO!!!!!）、千石由乃（from 夢限大みゅーたいぷ）、药师寺李有（from millsage）、橘芽衣（from 一家Dumb Rock!）",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/galleryless/jr东海ournotes联动宣传视频.webp" }
+    ]
   },
   {
-    hash_id: "XO8g9zAz0Wq",
-    date: "2027/6/12",
-    title: "Ave Mujica 出演 ブシロード20周年記念ライブ",
+    hash_id: "Fw4d2gH0TMY",
+    date: "2024/7/13 ~ 2024/7/14",
+    title: "Ave Mujica 出演 Bilibili Macro Link 2024",
+    category: "organization",
+    description: "首次海外演唱会 官方精选切片「Ave Mujica」",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/bml2024.webp", caption: "BML 2024" },
+      { type: "link", url: "", title: "Ave Mujica 在线观看" }
+    ]
+  },
+  {
+    hash_id: "wE1T14VImZV",
+    date: "2025/4/26 ~ 2025/4/27",
+    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」",
+    category: "organization",
+    description: "横K举办的MyGO!!!!! x Ave Mujica 第一次合同Live Sumimi暖场 CRYCHIC限定复活",
+    tag: "bandori_fes",
+    media: [
+      { type: "image", src: "../images/logo/横k鸡狗1logo.webp", caption: "横K合同Live Logo" },
+      { type: "image", src: "../images/鸡狗1横k kv.webp", caption: "横K合同Live 主视图" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1RV2eBeEAd", title: "D1 在线观看" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48829435", title: "D2 在线观看" }
+    ]
+  },
+  {
+    hash_id: "zpEMUrZP4YZ",
+    date: "2025/7/12 ~ 2025/7/13",
+    title: "Ave Mujica 出演 BILIBILI MACRO LINK 2025 D2 & D3",
+    category: "organization",
+    description: "第二次参加BML 官方精选切片「KiLLKiSS」",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/bml2025宣传图.webp" },
+      { type: "link", url: "https://www.bilibili.com/video/BV1Ac8yzxERF", title: "在线观看（仅kk）" }
+    ]
+  },
+  {
+    hash_id: "wXqD3AN71XE",
+    date: "2025/7/26 ~ 2025/7/27",
+    title: "Ave Mujica 5th LIVE「Nova Historia」",
+    category: "organization",
+    description: "「新的历史」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/5thlogo原图.webp", caption: "5th Live Logo" },
+      { type: "image", src: "../images/5th kv.webp", caption: "5th Live 主视图" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48848113", title: "D1 在线观看" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48737511", title: "D2 在线观看" }
+    ]
+  },
+  {
+    hash_id: "Z84QqalGK0c",
+    date: "2025/10/11 ~ 2025/10/12",
+    title: "Ave Mujica 出演 MyGO!!!!!×Ave Mujica 合同Live「分歧路口，前途漫漫」",
+    category: "organization",
+    description: "于上海 梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）举办的演出",
+    tag: "bandori_fes",
+    media: [
+      { type: "image", src: "../images/鸡狗1上海 kv.webp" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48832641", title: "D1 在线观看" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48832628", title: "D2 在线观看" }
+    ]
+  },
+  {
+    hash_id: "4vTsI40D8mc",
+    date: "2026/6/19 ~ 2026/6/20",
+    title: "Ave Mujica LIVE TOUR 2026「Exitus」-FINAL-",
+    category: "organization",
+    description: "「出口」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/exituslogo彩.webp" },
+      { type: "image", src: "../images/exitus kv.webp" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48645465", title: "D1 在线观看" },
+      { type: "link", url: "https://www.acfun.cn/v/ac48644820", title: "D2 在线观看" }
+    ]
+  },
+  {
+    hash_id: "OvnUSu8M99H",
+    date: "2026/8/8 ~ 2026/8/9",
+    title: "Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演",
+    category: "organization",
+    description: "「出口」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/exituslogo彩.webp" },
+      { type: "image", src: "../images/exitus kv.webp" }
+    ]
+  },
+  {
+    hash_id: "DUg5tBsLUex",
+    date: "2026/10/24 ~ 2026/10/25",
+    title: "Ave Mujica 7th LIVE「Virtus」",
+    category: "organization",
+    description: "「美德」",
+    tag: "oml",
+    media: [
+      { type: "image", src: "../images/logo/7thlivelogo.webp", caption: "7th Live Logo" },
+      { type: "image", src: "../images/7th kv.webp", caption: "7th Live 主视图" }
+    ]
+  },
+  {
+    hash_id: "Xjv8Ajud2aP",
+    date: "2026/12/1 ~ 2026/12/2",
+    title: "Ave Mujica 出演 EVANESCENCE 2026 JAPAN 东京公演",
     category: "organization",
     description: "",
-    tag: "bandori_fes",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/evanescence kv.webp" }
+    ]
+  },
+  {
+    hash_id: "z6gVOvLzwUL",
+    date: "2027/5/29 ~ 2027/5/30",
+    title: "Ave Mujica 8th LIVE「Discrimen Fati」",
+    category: "organization",
+    description: "「命运的分岔点」",
+    tag: "oml",
     media: []
   },
   {
-    hash_id: "i8q2UIQ7pA1",
-    date: "2027/6/13",
+    hash_id: "bXkTyztbPHI",
+    date: "2027/6/12 ~ 2027/6/13",
     title: "Ave Mujica 出演 ブシロード20周年記念ライブ",
     category: "organization",
     description: "",
