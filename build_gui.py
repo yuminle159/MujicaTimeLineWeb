@@ -1064,6 +1064,14 @@ class App:
 
 
 def main():
+    if '--check-project' in sys.argv:
+        report = maintenance.check_project(PROJECT_DIR)
+        output = Path(PROJECT_DIR) / '_reports' / 'project-check-exe.txt'
+        output.parent.mkdir(exist_ok=True)
+        output.write_text(maintenance.format_check_report(report), encoding='utf-8')
+        if report.errors:
+            raise SystemExit(1)
+        return
     if "--smoke-test-gallery-editor" in sys.argv:
         from gallery_editor import smoke_test
         smoke_test()

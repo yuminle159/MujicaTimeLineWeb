@@ -1,0 +1,23 @@
+{
+   "action": {
+      "default_popup": "index.html#/popup"
+   },
+   "background": {
+      "service_worker": "background.js"
+   },
+   "description": "只要通过浏览器，就可轻松利用 PDF 工具查看、编辑、转换、批注PDF文档，还能执行更多操作。",
+   "host_permissions": [ "\u003Call_urls>" ],
+   "icons": {
+      "128": "icons/pdf128.png",
+      "16": "icons/pdf16.png",
+      "48": "icons/pdf48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAycjdqYbw66I7JK1CeT6re2d2Vx0casueYA/ootMKbLDycVpOaDE8w8b+DV3X87gCevEVxvleU8hWZx3g3bXK2t4R3ze7z7YcyobhGXRgfwZHAXxdp160YXJ1rqCHg/Cif5qh0qEo1LrpGsllGXITFzNLN7SlGb/bZZufELrJqMU0qL6xzzSmsWnuSNTjpYATRnXSLEoe89nj6EOlqqYZpNYjjbPhP6uxi0SuZbrTgwp1deZod0cXsjA7zX3s3awgClaLlZVJnUreM21lxfA77wS/bmAM5+OhWTSIG8TuNsKJZdUZ9ItFLhnx0rHwLCST9zmAxQ5ezJb+bb9ROXFi1QIDAQAB",
+   "manifest_version": 3,
+   "name": "WPS PDF - 轻松查看、编辑、转换PDF",
+   "optional_permissions": [ "history", "downloads" ],
+   "options_page": "index.html#/options",
+   "permissions": [ "webRequest", "storage", "tabs", "cookies", "nativeMessaging", "declarativeNetRequest", "gcm" ],
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "1.2.1"
+}

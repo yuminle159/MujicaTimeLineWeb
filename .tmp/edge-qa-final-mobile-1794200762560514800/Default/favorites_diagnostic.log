@@ -1,0 +1,12 @@
+2026-11-09 05:06:03.174: [INFO] CurrentProfilePath: D:\yumin\web\MujicaTimeLineWeb\.tmp\edge-qa-final-mobile-1794200762560514800\Default
+2026-11-09 05:06:03.175: [INFO] Profiles total count: 1
+2026-11-09 05:06:03.175: [INFO] Profile: name=用户配置 1 path=D:\yumin\web\MujicaTimeLineWeb\.tmp\edge-qa-final-mobile-1794200762560514800\Default lastActive=2026-11-09T05:06:03.161Z
+2026-11-09 05:06:03.175: [INFO] LastUsedProfileDir: D:\yumin\web\MujicaTimeLineWeb\.tmp\edge-qa-final-mobile-1794200762560514800\Default
+2026-11-09 05:06:03.175: [INFO] MostRecentlyActiveProfile: name=用户配置 1 path=D:\yumin\web\MujicaTimeLineWeb\.tmp\edge-qa-final-mobile-1794200762560514800\Default lastActive=2026-11-09T05:06:03.161Z
+2026-11-09 05:06:03.175: [INFO] OnDoneLoading sync enabled: 0
+2026-11-09 05:06:03.175: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-11-09 05:06:03.175: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-11-09 05:06:03.175: [INFO] BookmarksSnapshot Startup total=2 bar=2 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-11-09 05:06:03.243: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-11-09 05:06:03.520: [INFO] VisibilityChanged: 0
+2026-11-09 05:06:07.815: [INFO] BookmarksSnapshot Shutdown total=2 bar=2 other=0 mobile=0 showBar=0 showBarNTP=1

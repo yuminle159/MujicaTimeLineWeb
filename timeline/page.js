@@ -405,6 +405,92 @@
   const tlModalBody = document.getElementById("tlModalBody");
   const tlModalClose = document.getElementById("tlModalClose");
   let currentDetailIndex = -1;
+  let detailOpener = null;
+  let detailScroll = 0;
+  const detailHistoryKey = `timeline-${Date.now()}`;
+
+  function highlightDetailSearch() {
+    if (!timelineSearchQuery) return;
+    let firstHit = null;
+    tlModalBody.querySelectorAll('.tl-modal-desc,.tl-speech-bubble,.tl-translation-note,.tl-modal-title,.tl-modal-link strong').forEach(container => {
+      const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT), nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => {
+        const value = node.nodeValue, lower = value.toLocaleLowerCase();
+        let start = 0, found = lower.indexOf(timelineSearchQuery);
+        if (found < 0) return;
+        const fragment = document.createDocumentFragment();
+        while (found >= 0) {
+          fragment.append(document.createTextNode(value.slice(start, found)));
+          const mark = document.createElement('mark'); mark.className = 'tl-search-hit';
+          mark.textContent = value.slice(found, found + timelineSearchQuery.length);
+          fragment.append(mark); firstHit ||= mark;
+          start = found + timelineSearchQuery.length;
+          found = lower.indexOf(timelineSearchQuery, start);
+        }
+        fragment.append(document.createTextNode(value.slice(start))); node.replaceWith(fragment);
+      });
+    });
+    if (firstHit) requestAnimationFrame(() => {
+      if (firstHit.isConnected && tlModalOverlay.classList.contains('open')) firstHit.scrollIntoView({block:'center'});
+    });
+  }
+
+  async function copyDetailLink(button) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(location.href);
+      else {
+        const input = document.createElement('textarea'); input.value = location.href;
+        input.style.cssText = 'position:fixed;opacity:0;width:1px;height:1px';
+        tlModalBody.append(input); input.select();
+        let copied;
+        try { copied = document.execCommand('copy'); } finally { input.remove(); button.focus(); }
+        if (!copied) throw new Error('copy failed');
+      }
+      button.textContent = '链接已复制';
+    } catch (_) { button.textContent = '复制失败，请复制地址栏链接'; }
+  }
+  // Only explicit speaker labels create speech bubbles; unlabelled prose stays intact.
+  function renderDescription(description) {
+    description = description.replace(/^引用[|｜]/gm, '回复|');
+    description = description.replace(/(佐佐木李子|高尾奏音)[①-⑳](?=[：:])/g, '$1');
+    description = description.replace(/^点赞([|｜])(佐佐木李子|高尾奏音)[ \t]*(?=\r?$)/gm, '点赞$1$2：');
+    const escapeDetail = value => String(value || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const people = {
+      '佐佐木李子': { id: 'sasakirico' },
+      '高尾奏音': { id: 'Kanon_Takao' }
+    };
+    const pattern = /^(?:(?:回复|点赞)[|｜])?(?:(\d{4}[./]\d{1,2}[./]\d{1,2})的)?(佐佐木李子|高尾奏音|李子→奏音|奏音→李子)[：:][ \t]*/gm;
+    const matches = [...description.matchAll(pattern)];
+    const prose = text => text.trim() ? `<section class="tl-editorial" aria-label="事件说明"><div class="tl-modal-desc">${text.trim().split(/\n\s*\n/).map(paragraph => `<p>${escapeDetail(paragraph).replace(/\n/g, '<br>')}</p>`).join('')}</div></section>` : '';
+    if (!matches.length) return prose(description);
+    let html = prose(description.slice(0, matches[0].index));
+    matches.forEach((match, index) => {
+      const name = match[2] === '李子→奏音' ? '佐佐木李子' : match[2] === '奏音→李子' ? '高尾奏音' : match[2];
+      const person = people[name];
+      const body = description.slice(match.index + match[0].length, matches[index + 1]?.index ?? description.length).trim();
+      if (/^点赞[|｜]/.test(match[0])) {
+        html += `<div class="tl-like"><img src="../images/avatars/${person.id}.webp" alt="" width="22" height="22"><span>${name}</span><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M12 21 3.4 12.5C-2 7 5.4-1 12 5.4 18.6-1 26 7 20.6 12.5Z"/></svg><span class="tl-like-label">已点赞</span>${body ? `<small>${escapeDetail(body).replace(/\n/g, '<br>')}</small>` : ''}</div>`;
+        return;
+      }
+      const annotation = body.match(/\n(?:译注[：:]([\s\S]+)|(（原文[：:][^\n]*）))$/);
+      const speech = annotation ? body.slice(0, annotation.index).trimEnd() : body;
+      const note = [match[1], match[2].includes('→') ? match[2] : '', '译文'].filter(Boolean).join(' · ');
+      const isReply = index > 0 && /^回复[|｜]/.test(match[0]);
+      const hasReply = /^回复[|｜]/.test(matches[index + 1]?.[0] || '');
+      html += `<article class="tl-speech${hasReply ? ' has-reply' : ''}${index > 0 && !isReply ? ' thread-start' : ''}"><img class="tl-speech-avatar" src="../images/avatars/${person.id}.webp" alt="${name}" width="36" height="36"><div class="tl-speech-main"><header class="tl-speech-author"><strong>${name}</strong><a href="https://x.com/${person.id}" target="_blank" rel="noopener noreferrer">@${person.id}</a><small>${escapeDetail(note)}${isReply ? ' · 回复' : ''}</small></header><blockquote class="tl-speech-bubble">${escapeDetail(speech).replace(/\n/g, '<br>')}</blockquote>${annotation ? `<p class="tl-translation-note"><span>译注</span>${escapeDetail(annotation[1] || annotation[2]).replace(/\n/g, '<br>')}</p>` : ''}</div></article>`;
+    });
+    return html;
+  }
+  function interactionImageLabel(media) {
+    if (media.type !== 'image') return '';
+    let filename = String(media.src || '').split('/').pop().split(/[?#]/)[0];
+    try { filename = decodeURIComponent(filename); } catch (_) { /* Keep literal filenames. */ }
+    if (/-推特回复[^.]*\.(webp|png|jpe?g)$/i.test(filename)) return 'X 回复 · 译图';
+    if (/-ins点赞[^.]*\.(webp|png|jpe?g)$/i.test(filename)) return 'Instagram · 点赞记录';
+    if (/-ins(?:[-_\d][^.]*)?\.(webp|png|jpe?g)$/i.test(filename)) return 'Instagram · 互动记录';
+    return '';
+  }
   const detailNavigation = document.createElement('nav');
   detailNavigation.className = 'tl-detail-navigation';
   detailNavigation.setAttribute('aria-label', '切换事件');
@@ -455,22 +541,31 @@
     if (button.disabled) tlModalClose.focus({ preventScroll: true });
   });
 
-  function openTimelineModal(index) {
+  function openTimelineModal(index, fromHistory = false) {
     const ev = timelineData[index];
     if (!ev) return;
+    const wasOpen = tlModalOverlay.classList.contains('open');
+    if (fromHistory && wasOpen && currentDetailIndex === index) return;
+    if (!wasOpen) { detailOpener = document.activeElement; detailScroll = window.scrollY; }
     tlModalBody.querySelectorAll('iframe').forEach(frame => { frame.src = ''; });
     currentDetailIndex = index;
     updateDetailNavigation();
     const eventStart = parseDate(ev.date);
     hidePageTop();
-    history.replaceState(null, "", "#timeline=" + encodeURIComponent(ev.hash_id));
+    if (!fromHistory) {
+      const state = {...history.state};
+      if (!wasOpen) state.timelineDetail = detailHistoryKey;
+      history[wasOpen ? 'replaceState' : 'pushState'](state, '', '#timeline=' + encodeURIComponent(ev.hash_id));
+    }
     document.body.style.overflow = "hidden";
+    document.querySelector('.timeline-page').inert = true;
 
     // 清除上一次模态框残留的 media-mode class，避免影响新内容
     tlModalBody.classList.remove("media-mode-image", "media-mode-video");
 
     const mediaItems = ev.media || [];
-    const imageItems = mediaItems.filter(m => m.type === "image");
+    const interactionItems = mediaItems.filter(m => interactionImageLabel(m));
+    const imageItems = mediaItems.filter(m => m.type === "image" && !interactionImageLabel(m));
     const videoItems = mediaItems.filter(m => m.type === "video");
     const linkItems = mediaItems.filter(m => m.type === "link");
     const hasBoth = imageItems.length > 0 && videoItems.length > 0;
@@ -547,7 +642,7 @@
     }
 
     const hasMedia = imageItems.length + videoItems.length > 0;
-    const hasDetails = !!(ev.description || linkItems.length);
+    const hasDetails = !!(ev.description || linkItems.length || interactionItems.length);
     const detailPanel = tlModalOverlay.querySelector('.tl-modal-container');
     detailPanel.setAttribute('role', 'dialog');
     detailPanel.setAttribute('aria-modal', 'true');
@@ -558,12 +653,37 @@
       <header class="tl-detail-heading">
         <div class="tl-modal-date-wrap"><div class="tl-modal-date">${escapeDetail(ev.date)}</div><span class="tl-detail-type">${escapeDetail(TAG_NAMES[ev.tag] || ev.tag)}</span><span class="tl-modal-future" data-start="${eventStart.getTime()}" ${isFutureDate(eventStart) ? "" : "hidden"}>Coming Soon…</span></div>
         <h2 class="tl-modal-title" id="tlDetailTitle">${escapeDetail(ev.title)}</h2>
+        <button type="button" class="tl-share-link" aria-live="polite">复制链接 ↗</button>
       </header>
       <div class="tl-detail-layout${hasMedia && hasDetails ? ' has-sidebar' : ''}">
         ${hasMedia ? `<section class="tl-detail-media" aria-label="事件媒体">${toggleHTML || `<div class="tl-modal-toggle"><span class="tl-toggle-tab active tl-toggle-static">${imageItems.length ? '图片' : '视频'}</span></div>`}${mediaHTML}</section>` : ''}
-        ${hasDetails ? `<aside class="tl-detail-info">${ev.description ? `<section><h3>事件说明</h3><div class="tl-modal-desc">${escapeDetail(ev.description).replace(/\n/g, '<br>')}</div></section>` : ''}${linksHTML}</aside>` : ''}
+        ${hasDetails ? `<aside class="tl-detail-info">${ev.description ? renderDescription(ev.description) : ''}${linksHTML}</aside>` : ''}
       </div>`;
+    if (interactionItems.length) {
+      const section = document.createElement('section');
+      section.className = 'tl-interactions';
+      section.setAttribute('aria-label', '互动图片');
+      interactionItems.forEach((item, i) => {
+        const figure = document.createElement('figure');
+        const caption = document.createElement('figcaption');
+        caption.textContent = interactionImageLabel(item);
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.setAttribute('aria-label', `放大${interactionImageLabel(item)} ${i + 1}`);
+        button.title = item.caption || `${interactionImageLabel(item)} · 点击放大`;
+        const img = document.createElement('img');
+        img.src = item.src; img.alt = item.caption || interactionImageLabel(item); img.loading = 'lazy';
+        button.appendChild(img);
+        button.onclick = () => window.openTlLightbox(item.src, interactionItems.map(m => m.src), i);
+        figure.append(button, caption); section.appendChild(figure);
+      });
+      const info = tlModalBody.querySelector('.tl-detail-info');
+      const editorial = info.querySelector('.tl-editorial');
+      if (editorial) editorial.appendChild(section);
+      else info.prepend(section);
+    }
     tlModalBody.scrollTop = 0;
+    tlModalBody.querySelector('.tl-share-link').onclick = event => copyDetailLink(event.currentTarget);
     if (imageItems.length > 1) {
       const thumbs = document.createElement('div');
       thumbs.className = 'tl-detail-thumbs';
@@ -635,23 +755,43 @@
     }
 
     tlModalOverlay.classList.add("open");
+    if (!wasOpen) tlModalClose.focus({preventScroll:true});
+    if (!wasOpen) setTimeout(() => {
+      if (tlModalOverlay.classList.contains('open') && document.activeElement === document.body) tlModalClose.focus({preventScroll:true});
+    }, 50);
+    highlightDetailSearch();
   }
 
-  function closeTimelineModal() {
+  function closeTimelineModal(fromHistory = false) {
+    if (!fromHistory && history.state?.timelineDetail === detailHistoryKey) { history.back(); return; }
     tlModalOverlay.classList.remove("open");
+    if (document.getElementById('tlLightbox').classList.contains('active')) closeTlLightbox();
     document.body.style.overflow = "";
-    if (location.hash.startsWith("#timeline=")) {
-      history.replaceState(null, "", location.pathname + location.search);
+    document.querySelector('.timeline-page').inert = false;
+    if (!fromHistory && location.hash.startsWith("#timeline=")) {
+      const state = {...history.state}; delete state.timelineDetail;
+      history.replaceState(state, "", location.pathname + location.search);
     }
     // 停止所有视频
     tlModalBody.querySelectorAll("iframe").forEach(f => { f.src = ""; });
+    if (detailOpener?.isConnected) detailOpener.focus({preventScroll:true});
+    window.scrollTo({top:detailScroll,behavior:'instant'});
   }
 
-  tlModalClose.addEventListener("click", closeTimelineModal);
+  tlModalClose.addEventListener("click", () => closeTimelineModal());
   tlModalOverlay.addEventListener("click", function(e) {
     if (e.target === tlModalOverlay) closeTimelineModal();
   });
   document.addEventListener("keydown", function(e) {
+    if (e.key === 'Tab' && tlModalOverlay.classList.contains('open')) {
+      const lightbox = document.getElementById('tlLightbox');
+      const scope = lightbox.classList.contains('active') ? lightbox : tlModalOverlay;
+      const controls = [...scope.querySelectorAll('button:not(:disabled),a[href],input,textarea,select,[tabindex="0"]')].filter(el => el.getClientRects().length);
+      const first = controls[0], last = controls[controls.length - 1];
+      if (first && (!scope.contains(document.activeElement) || (e.shiftKey && document.activeElement === first) || (!e.shiftKey && document.activeElement === last))) {
+        e.preventDefault(); (e.shiftKey ? last : first).focus();
+      }
+    }
     if (e.key === "Escape" && tlModalOverlay.classList.contains("open")) {
       if (document.getElementById("tlLightbox").classList.contains("active")) {
         closeTlLightbox();
@@ -1320,15 +1460,17 @@
 
   function openTimelineFromHash() {
     if (!location.hash.startsWith("#timeline=")) {
-      if (tlModalOverlay.classList.contains("open")) closeTimelineModal();
+      if (tlModalOverlay.classList.contains("open")) closeTimelineModal(true);
       return;
     }
-    const id = location.hash.slice(10);
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(10)); } catch (_) { return; }
     const index = timelineData.findIndex(event => event.hash_id === id);
-    if (index >= 0) openTimelineModal(index);
+    if (index >= 0) openTimelineModal(index, true);
   }
 
   window.addEventListener("hashchange", openTimelineFromHash);
+  window.addEventListener("popstate", openTimelineFromHash);
   openTimelineFromHash();
 
 })();

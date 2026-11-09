@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Callable
 
 import openpyxl
+from timeline_checks import check_timeline
 
 
 ROOT = Path(sys.executable).resolve().parent if getattr(sys, "frozen", False) else Path(__file__).resolve().parent
@@ -171,6 +172,10 @@ def check_project(root: Path | str = ROOT, log_func: Callable[[str], None] | Non
                             add("ERROR", location, f"{unique_field} 与第 {seen[value]} 行重复：{value}")
                         else:
                             seen[value] = row_number
+
+        if 'timeline' in workbook.sheetnames:
+            for severity, location, message in check_timeline(workbook['timeline'], root):
+                add(severity, location, message)
 
         songs = {_text(row.get("song_name")) for _, row in cached_rows.get("songs", [])}
         lives = {_text(row.get("live_name")) for _, row in cached_rows.get("lives", [])}

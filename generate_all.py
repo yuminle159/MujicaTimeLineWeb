@@ -942,6 +942,11 @@ def generate_live(wb):
 
 # =========================== 4. 时间轴 ===========================
 def generate_timeline(wb):
+    from timeline_checks import check_timeline
+    if 'timeline' in wb.sheetnames:
+        errors = [f'{location} · {message}' for level, location, message in check_timeline(wb['timeline'], ROOT) if level == 'ERROR']
+        if errors:
+            raise ValueError('Timeline 体检未通过：\n' + '\n'.join(errors))
     raw = read_sheet(wb, "timeline")
     if not raw:
         return 0

@@ -1,0 +1,74 @@
+[
+  {
+    "src": "images/月色之下流转之舞-01.webp",
+    "caption": "活动主视觉",
+    "source": "https://i0.hdslb.com/bfs/new_dyn/e49b5cb820a1615ec9cad40f432f9cee3706946530052970.jpg",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "src": "images/月色之下流转之舞-02.webp",
+    "caption": "「光辉殿堂的不朽篇章」招募主视觉",
+    "source": "https://i2.hdslb.com/bfs/archive/2ffbdbfdff4dde383a34cad7b8c7cb770f832c4c.jpg",
+    "size": [
+      2560,
+      1440
+    ]
+  },
+  {
+    "src": "images/月色之下流转之舞-03.webp",
+    "caption": "招募成员 SSR Mortis「辉煌的步伐」",
+    "source": "https://haneoka.org/assets/intl/Assets/AddressableResources/MemberCard/76/member_full(zh-Hans).png?release=r-ad5704b423dc19cd33bd",
+    "size": [
+      1440,
+      1920
+    ]
+  },
+  {
+    "src": "images/月色之下流转之舞-04.webp",
+    "caption": "招募成员 SSR Amoris「自王座俯瞰」",
+    "source": "https://haneoka.org/assets/intl/Assets/AddressableResources/MemberCard/77/member_full(zh-Hans).png?release=r-ad5704b423dc19cd33bd",
+    "size": [
+      1440,
+      1920
+    ]
+  },
+  {
+    "src": "images/月色之下流转之舞-05.webp",
+    "caption": "招募留影 SSR Mortis「空洞的眼眸」",
+    "source": "https://haneoka.org/assets/intl/Assets/AddressableResources/SupportCard/78/snap_full(zh-Hans).png?release=r-ad5704b423dc19cd33bd",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "src": "images/月色之下流转之舞-06.webp",
+    "caption": "招募留影 SSR Oblivionis「月啊，请赐予怜悯之光」",
+    "source": "https://haneoka.org/assets/intl/Assets/AddressableResources/SupportCard/79/snap_full(zh-Hans).png?release=r-ad5704b423dc19cd33bd",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "src": "images/月色之下流转之舞-07.webp",
+    "caption": "活动奖励成员 SR Doloris「单膝跪地，献上忠诚」",
+    "source": "https://haneoka.org/assets/intl/Assets/AddressableResources/MemberCard/78/member_full(zh-Hans).png?release=r-ad5704b423dc19cd33bd",
+    "size": [
+      1440,
+      1920
+    ]
+  },
+  {
+    "src": "images/月色之下流转之舞-08.webp",
+    "caption": "活动兑换留影 SR 海铃＆若麦「过近的距离」",
+    "source": "https://haneoka.org/assets/intl/Assets/AddressableResources/SupportCard/80/snap_full(zh-Hans).png?release=r-ad5704b423dc19cd33bd",
+    "size": [
+      1920,
+      1080
+    ]
+  }
+]

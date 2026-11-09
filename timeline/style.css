@@ -760,8 +760,7 @@ body {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1),
-              visibility 0.3s cubic-bezier(0.2, 0, 0, 1);
+  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1);
   padding: 24px;
 }
 
@@ -769,6 +768,7 @@ body {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1);
 }
 
 /* ===== 模态框容器 ===== */
@@ -1316,9 +1316,24 @@ body {
 .tl-detail-layout { display:grid; gap:28px; }
 .tl-detail-layout.has-sidebar { grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); align-items:start; }
 .tl-detail-media,.tl-detail-info { min-width:0; }
+.tl-share-link { margin-top:14px; border:0; border-bottom:1px solid #b9a58b40; background:transparent; color:#b9a58b; padding:5px 0; font:11px/1.6 "Noto Sans SC",sans-serif; cursor:pointer; }
+.tl-search-hit { background:#b9a58b30; color:#f0dfbf; border-radius:2px; padding:1px 0; }
+@media(min-width:761px) {
+  .tl-detail-layout.has-sidebar .tl-detail-media { position:sticky; top:0; max-height:calc(90dvh - 110px); overflow:auto; scrollbar-width:thin; scrollbar-color:#ffffff25 transparent; }
+}
 .tl-detail-info { display:grid; gap:26px; }
 .tl-detail-info h3 { margin:0 0 12px; font:500 12px/1.5 "Noto Sans SC",sans-serif; color:#b9a58b; letter-spacing:1px; }
-.tl-modal-desc { margin:0; color:#c1c1c1; line-height:1.95; overflow-wrap:anywhere; }
+.tl-editorial { padding:2px 0 2px 16px; border-left:1px solid #b9a58b40; }
+.tl-modal-desc { margin:0; color:#b9b6b1; font:400 13px/1.95 "Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif; letter-spacing:.025em; overflow-wrap:anywhere; }
+.tl-modal-desc p { margin:0 0 1em; }
+.tl-modal-desc p:last-child { margin-bottom:0; }
+.tl-interactions { display:flex; flex-wrap:wrap; gap:12px; }
+.tl-editorial .tl-interactions { margin-top:12px; }
+.tl-interactions figure { width:100px; max-width:100%; margin:0; }
+.tl-interactions figcaption { margin-top:5px; font:10px/1.5 "Noto Sans SC",sans-serif; color:#888; }
+.tl-interactions figure button { display:block; width:100%; height:76px; padding:3px; border:1px solid #ffffff20; background:#0c0c0c; cursor:zoom-in; border-radius:3px; overflow:hidden; }
+.tl-interactions figure button:hover { border-color:#b9a58b80; }
+.tl-interactions figure img { display:block; width:100%; height:100%; object-fit:contain; }
 .tl-modal-toggle { margin-bottom:14px; min-height:32px; align-items:center; }
 .tl-toggle-tab { border:0; border-bottom:2px solid transparent; background:transparent; padding:7px 12px; font:12px/1.5 "Noto Sans SC",sans-serif; }
 .tl-toggle-tab.active { color:#b9a58b; background:rgba(185,165,139,.08); border-bottom-color:#b9a58b; }
@@ -1365,6 +1380,35 @@ body {
 }
 
 /* Persistent event navigation, separate from image/video carousels. */
+.tl-speech { position:relative; display:grid; grid-template-columns:36px minmax(0,1fr); gap:12px; }
+.tl-speech.thread-start::after { content:""; position:absolute; top:-14px; left:48px; width:56px; height:1px; background:#b9a58b35; pointer-events:none; }
+.tl-speech.has-reply::before { content:""; position:absolute; left:17px; top:43px; bottom:-19px; width:1px; background:#b9a58b40; pointer-events:none; }
+.tl-like { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:-13px 0 0 48px; color:#aaa39a; font:11px/1.6 "Noto Sans SC",sans-serif; }
+.tl-like:first-child { margin-top:0; }
+.tl-like img { width:22px; height:22px; object-fit:cover; border-radius:50%; border:1px solid #b9a58b25; }
+.tl-like svg { fill:currentColor; color:#b67575; flex:none; }
+.tl-like-label,.tl-like small { color:#888; font-size:11px; }
+.tl-like small { flex-basis:100%; padding-left:29px; overflow-wrap:anywhere; }
+.tl-speech-avatar { width:36px; height:36px; object-fit:cover; border-radius:50%; border:1px solid #b9a58b40; box-sizing:border-box; }
+.tl-speech-main { min-width:0; }
+.tl-translation-note { margin:10px 0 0; color:#999; font:11px/1.8 "Noto Sans SC",sans-serif; overflow-wrap:anywhere; }
+.tl-translation-note span { color:#b9a58b; margin-right:6px; }
+.tl-speech-author { display:flex; flex-wrap:wrap; align-items:baseline; gap:3px 8px; margin:0 0 10px; line-height:1.6; }
+.tl-speech-author strong { font-size:13px; font-weight:500; color:#d5c5ae; }
+.tl-speech-author a { font:11px/1.6 "Space Grotesk",sans-serif; color:#999; text-decoration:none; overflow-wrap:anywhere; }
+.tl-speech-author a:hover { color:#ddcbb3; }
+.tl-speech-author a:focus-visible { outline:2px solid #b9a58b; outline-offset:3px; }
+.tl-speech-author small { font-size:10px; color:#888; }
+.tl-speech-bubble { position:relative; margin:0; padding:14px 16px; border:1px solid #b9a58b29; border-radius:2px 8px 8px 8px; background:#b9a58b08; color:#c7c4c0; font-size:13px; line-height:1.95; overflow-wrap:anywhere; }
+.tl-speech-bubble::before { content:""; position:absolute; left:-5px; top:12px; width:7px; height:7px; background:#191817; border-left:1px solid #b9a58b29; border-bottom:1px solid #b9a58b29; transform:rotate(45deg); }
+@media(max-width:480px) {
+  .tl-speech { grid-template-columns:30px minmax(0,1fr); gap:9px; }
+  .tl-speech.thread-start::after { left:39px; }
+  .tl-speech-avatar { width:30px; height:30px; }
+  .tl-speech.has-reply::before { left:14px; top:37px; }
+  .tl-like { margin-left:39px; }
+  .tl-speech-bubble { padding:12px; }
+}
 .tl-modal-body { min-height:0; flex:1 1 auto; }
 .tl-detail-navigation { display:flex; align-items:center; justify-content:space-between; gap:12px; flex:none; padding:14px 24px; border-top:1px solid #ffffff12; background:#111; }
 .tl-detail-navigation button { min-height:40px; padding:8px 12px; border:1px solid #ffffff18; border-radius:5px; background:transparent; color:#b9a58b; font:12px/1.5 "Noto Sans SC",sans-serif; cursor:pointer; }
