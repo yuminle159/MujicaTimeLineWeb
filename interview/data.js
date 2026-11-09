@@ -23,7 +23,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "1UhshAZcpdF",
     sections: [{"id": "section-01", "title": "母题为五大元素"}, {"id": "section-02", "title": "感觉变成了一个完整的故事"}, {"id": "section-03", "title": "决定接受邀请的关键因素是“她”的歌声"}, {"id": "section-04", "title": "01. Symbol I : △"}, {"id": "section-05", "title": "02. Symbol II : Air"}, {"id": "section-06", "title": "03. Symbol III : ▽"}, {"id": "section-07", "title": "04. Symbol IV : Earth"}, {"id": "section-08", "title": "05. Ether"}],
-    related: [{"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}],
+    related: [{"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}, {"id": "ah9vCSsyfX0", "reason": "共同受访者：Diggy-MO'"}],
     previous_id: "jqNjeOrIDQb",
     next_id: "NDm8tZaWJgu",
     article_path: "articles/1UhshAZcpdF.js"
@@ -75,7 +75,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "vg0aUAR0CnH",
     sections: [{"id": "section-01", "title": "「KiLLKiSS」"}, {"id": "section-02", "title": "「Georgette Me, Georgette You」"}, {"id": "section-03", "title": "「Imprisoned XII」"}, {"id": "section-04", "title": "「Crucifix X」"}, {"id": "section-05", "title": "「八芒星ダンス」"}, {"id": "section-06", "title": "「顔」"}, {"id": "section-07", "title": "「天球(そら)のMúsica」"}, {"id": "section-08", "title": "结语"}],
-    related: [{"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}],
+    related: [{"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "ah9vCSsyfX0", "reason": "共同受访者：Diggy-MO'"}],
     previous_id: "qDzrFr9bmoq",
     next_id: "D8V8YJOLbPX",
     article_path: "articles/vg0aUAR0CnH.js"
@@ -454,7 +454,20 @@ var interviewData = [
     sections: [{"id": "section-01", "title": "CAST INTERVIEW 冈田梦以 x 米泽茜"}, {"id": "section-02", "title": "STAFF INTERVIEW 监督 柿本广大"}, {"id": "section-03", "title": "CAST INTERVIEW 高尾奏音"}, {"id": "section-04", "title": "CAST INTERVIEW 佐佐木李子"}, {"id": "section-05", "title": "CAST INTERVIEW 渡濑结月"}],
     related: [{"id": "w3TAg0dpUjX", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：冈田梦以、渡濑结月"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "b3R0inuR9IR",
-    next_id: "",
+    next_id: "ah9vCSsyfX0",
     article_path: "articles/YVI5sCAKAiJ.js"
+  },
+  {
+    poster: "../images/261109Billboard-Diggy-MO前篇-01.webp",
+    date: "2026-11-09 00:00:00",
+    interviewee: "Diggy-MO'",
+    title: "2026/11/09-Billboard JAPAN-Diggy-MO'",
+    if_translated: "yes",
+    hash_id: "ah9vCSsyfX0",
+    sections: [{"id": "section-01", "title": "明确的愿景"}, {"id": "section-02", "title": "选择华丽礼服风格的首要原因，是“轮廓”"}, {"id": "section-03", "title": "创作中重要的“连接”"}, {"id": "section-04", "title": "人生的关键，是内心的兴奋与信念"}],
+    related: [{"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}, {"id": "w3TAg0dpUjX", "reason": "相近主题"}],
+    previous_id: "YVI5sCAKAiJ",
+    next_id: "",
+    article_path: "articles/ah9vCSsyfX0.js"
   }
 ];
