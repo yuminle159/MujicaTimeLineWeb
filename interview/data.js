@@ -23,7 +23,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "1UhshAZcpdF",
     sections: [{"id": "section-01", "title": "母题为五大元素"}, {"id": "section-02", "title": "感觉变成了一个完整的故事"}, {"id": "section-03", "title": "决定接受邀请的关键因素是“她”的歌声"}, {"id": "section-04", "title": "01. Symbol I : △"}, {"id": "section-05", "title": "02. Symbol II : Air"}, {"id": "section-06", "title": "03. Symbol III : ▽"}, {"id": "section-07", "title": "04. Symbol IV : Earth"}, {"id": "section-08", "title": "05. Ether"}],
-    related: [{"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}, {"id": "55LIbD9ToJD", "reason": "共同受访者：Diggy-MO'"}],
+    related: [{"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}, {"id": "55LIbD9ToJD", "reason": "共同受访者：Diggy-MO'"}, {"id": "M0XtVDMJWxX", "reason": "共同受访者：Diggy-MO'"}],
     previous_id: "jqNjeOrIDQb",
     next_id: "NDm8tZaWJgu",
     article_path: "articles/1UhshAZcpdF.js"
@@ -75,7 +75,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "vg0aUAR0CnH",
     sections: [{"id": "section-01", "title": "「KiLLKiSS」"}, {"id": "section-02", "title": "「Georgette Me, Georgette You」"}, {"id": "section-03", "title": "「Imprisoned XII」"}, {"id": "section-04", "title": "「Crucifix X」"}, {"id": "section-05", "title": "「八芒星ダンス」"}, {"id": "section-06", "title": "「顔」"}, {"id": "section-07", "title": "「天球(そら)のMúsica」"}, {"id": "section-08", "title": "结语"}],
-    related: [{"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "55LIbD9ToJD", "reason": "共同受访者：Diggy-MO'"}],
+    related: [{"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "M0XtVDMJWxX", "reason": "共同受访者：Diggy-MO'"}, {"id": "55LIbD9ToJD", "reason": "共同受访者：Diggy-MO'"}],
     previous_id: "qDzrFr9bmoq",
     next_id: "D8V8YJOLbPX",
     article_path: "articles/vg0aUAR0CnH.js"
@@ -465,9 +465,22 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "55LIbD9ToJD",
     sections: [{"id": "section-01", "title": "明确的愿景"}, {"id": "section-02", "title": "选择华丽礼服风格的首要原因，是“轮廓”"}, {"id": "section-03", "title": "创作中重要的“连接”"}, {"id": "section-04", "title": "人生的关键，是内心的兴奋与信念"}],
-    related: [{"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}, {"id": "w3TAg0dpUjX", "reason": "相近主题"}],
+    related: [{"id": "M0XtVDMJWxX", "reason": "同系列"}, {"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}],
     previous_id: "YVI5sCAKAiJ",
-    next_id: "",
+    next_id: "M0XtVDMJWxX",
     article_path: "articles/55LIbD9ToJD.js"
+  },
+  {
+    poster: "../images/261111Billboard-Diggy-MO中篇-01.webp",
+    date: "2026-11-11 00:00:00",
+    interviewee: "Diggy-MO'",
+    title: "2026年11月 Billboard JAPAN Diggy-MO'访谈（中篇）",
+    if_translated: "no",
+    hash_id: "M0XtVDMJWxX",
+    sections: [{"id": "section-01", "title": "成为挣脱种种束缚的契机"}, {"id": "section-02", "title": "超越以往 Ave Mujica 的全新震撼——「神の名を」"}, {"id": "section-03", "title": "不只要“唱得好”，还要“让人着迷”"}, {"id": "section-04", "title": "小时候，我们相信能把想象变成现实"}],
+    related: [{"id": "55LIbD9ToJD", "reason": "同系列"}, {"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}],
+    previous_id: "55LIbD9ToJD",
+    next_id: "",
+    article_path: "articles/M0XtVDMJWxX.js"
   }
 ];
