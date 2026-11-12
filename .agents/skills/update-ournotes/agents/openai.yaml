@@ -1,0 +1,4 @@
+interface:
+  display_name: "更新 Our Notes 活动"
+  short_description: "核对 Ave Mujica 游戏活动、招募预告与卡面，同步时间轴数据"
+  default_prompt: "使用 $update-ournotes 更新 ournotes 游戏中 Ave Mujica 相关的活动。"

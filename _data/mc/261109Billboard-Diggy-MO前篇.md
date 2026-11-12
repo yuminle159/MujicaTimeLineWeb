@@ -537,11 +537,3 @@ Diggy-MO’：まあ、ある程度でいいかなって（笑）。何かしら
 Diggy-MO’：うん、もちろんそういうのは嬉しいですよね。ありがたいなって。
 
 [/original]
-
-[br]
-
-![Diggy-MO’](../images/261109Billboard-Diggy-MO前篇-02.webp)
-
-*Diggy-MO’*
-
-[br]

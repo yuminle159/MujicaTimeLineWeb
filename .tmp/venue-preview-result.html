@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><base href="file:///D:/yumin/web/MujicaTimeLineWeb/live/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico">
+  <title>Live · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <script src="../js/font-loader.js?v=202611121628" data-font-url="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&amp;family=Noto+Sans+SC:wght@300;400;500;700&amp;family=Noto+Serif+SC:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;600&amp;display=swap"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&amp;family=Noto+Sans+SC:wght@300;400;500;700&amp;family=Noto+Serif+SC:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;600&amp;display=swap">
+  <link rel="stylesheet" href="style.css?v=202611121628">
+  <link rel="stylesheet" href="../css/venue-atlas.css?v=202611121628">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202611121628">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202611121628">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202611121628">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202611121628">
+  <link rel="stylesheet" href="../css/local-search.css?v=202611121628">
+  <link rel="stylesheet" href="../css/quick-nav.css?v=202611121628">
+  <link rel="stylesheet" href="../css/excerpt-card.css?v=202611121628">
+  <link rel="stylesheet" href="../css/emoji.css?v=202611121628">
+  <script defer="" src="../js/vendor/twemoji/twemoji.min.js?v=202611121628"></script>
+  <script defer="" src="../js/emoji.js?v=202611121628"></script>
+<style>.shared-interview-lightbox, .shared-live-kv-lightbox, #tlLightbox, #lightbox { overflow:hidden; touch-action:none; }
+    .shared-interview-lightbox img,.shared-live-kv-lightbox img,#tlLightbox img,#lightbox img { user-select:none; }</style><script src="file:///D:/yumin/web/MujicaTimeLineWeb/songs/data.js?v=202611121628" async="" data-data-module="songs"></script></head>
+<body data-check="{&quot;all&quot;:{&quot;metrics&quot;:&quot;26日本场馆9都道府县49已举行演出8未来演出&quot;,&quot;hasFukuoka&quot;:true},&quot;one-man&quot;:{&quot;metrics&quot;:&quot;16日本场馆7都道府县21已举行演出2未来演出&quot;,&quot;hasFukuoka&quot;:false},&quot;fes&quot;:{&quot;metrics&quot;:&quot;12日本场馆7都道府县19已举行演出4未来演出&quot;,&quot;hasFukuoka&quot;:true},&quot;bandori&quot;:{&quot;metrics&quot;:&quot;4日本场馆2都道府县9已举行演出2未来演出&quot;,&quot;hasFukuoka&quot;:false}}" style="overflow: hidden;">
+  <div class="live-page">
+    <header class="page-header">
+      <a class="back-nav" href="../index.html" aria-label="返回主页">←Home</a>
+      <h1>Live</h1>
+    </header>
+
+    <section class="upcoming-live-spotlight" id="upcomingLiveSpotlight" aria-label="即将举行的 Live">
+      <button class="upcoming-live-card is-rotating" type="button" data-live-index="50" aria-label="查看 EVANESCENCE 2026 JAPAN D2 的演出详情">
+        <span class="upcoming-live-visual" aria-hidden="true">
+          <img src="../images/evanescence kv.webp" alt="">
+        </span>
+        <span class="upcoming-live-content">
+          <span class="upcoming-live-kicker"><i></i> UPCOMING LIVE // 2026/12/2</span>
+          <strong class="upcoming-live-title">EVANESCENCE 2026 JAPAN D2</strong>
+          <span class="upcoming-live-details">
+            <span class="upcoming-live-meta">
+              <span class="upcoming-live-tag">Fes</span>
+              <span class="upcoming-live-venue">⌖ SGC HALL ARIAKE</span>
+              
+            </span>
+            <span class="upcoming-live-poster" aria-hidden="true"><img src="../images/logo/evanescenced2logo.webp" alt=""></span>
+          </span>
+          <span class="upcoming-live-open">EXPLORE LIVE <b data-native-emoji="" aria-hidden="true">↗︎</b></span>
+        </span>
+        <span class="upcoming-live-countdown" style="--upcoming-countdown-color: hsl(359 77% 61%); --upcoming-countdown-glow: rgba(255, 77, 85, 0.34);" aria-label="距离演出还有 20 天">
+          <small>COUNTDOWN</small><strong>20</strong><small>DAYS TO GO</small>
+        </span>
+        <span class="upcoming-live-pager" aria-hidden="true">02 / 08</span>
+      </button></section>
+
+    <div class="filter-bar" id="liveFilterBar"><div class="filter-group"><button class="main-tag active" data-tag=""><span class="diamond">◆</span> ALL</button></div><div class="separator"></div><div class="filter-group"><button class="main-tag" data-tag="BanG Dream!"><span class="diamond">◆</span> BanG Dream!</button></div><div class="separator"></div><div class="filter-group"><button class="main-tag" data-tag="Fes"><span class="diamond">◆</span> Fes</button></div><div class="separator"></div><div class="filter-group"><button class="main-tag" data-tag="One Man Live"><span class="diamond">◆</span> One Man Live</button></div><div class="filter-actions"><div class="search-box live-search-box"><span class="search-icon" aria-hidden="true">⌕</span><input type="search" placeholder="搜索 Live…" autocomplete="off"></div><span class="result-count" id="liveResultCount">57 条结果</span><button class="live-stats-trigger">Live Statistics</button><button class="sort-btn" style="margin-left: 0px;"><span>时间倒序</span></button></div></div>
+
+    <main class="gallery-container" id="gallery"><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(0)">
+          <img src="../images/logo/0th logo透明底.webp" alt="Ave Mujica 0th LIVE「Primo die in scaena」" loading="eager" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(0)">
+          <div class="card-date">2023/6/4</div>
+          <h2 class="card-title">Ave Mujica 0th LIVE「Primo die in scaena」</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">中野サンプラザホール</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(1)">
+          <img src="../images/logo/farbe logo.webp" alt="Roselia「Farbe」DAY2" loading="eager" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(1)">
+          <div class="card-date">2023/9/17</div>
+          <h2 class="card-title">Roselia「Farbe」DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">有明アリーナ</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(2)">
+          <img src="../images/logo/1st logo.webp" alt="Ave Mujica 1st LIVE 「Perdere Omnia」" loading="eager" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(2)">
+          <div class="card-date">2024/1/27</div>
+          <h2 class="card-title">Ave Mujica 1st LIVE 「Perdere Omnia」</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">横須賀芸術劇場</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(3)">
+          <img src="../images/logo/megavegas2024.webp" alt="MEGA VEGAS&nbsp;2024" loading="eager" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(3)">
+          <div class="card-date">2024/3/9</div>
+          <h2 class="card-title">MEGA VEGAS&nbsp;2024</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">神戸ワールド記念ホール</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(4)">
+          <img src="../images/logo/2ndlogo神奈川.webp" alt="Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(4)">
+          <div class="card-date">2024/6/8</div>
+          <h2 class="card-title">Ave Mujica 2nd LIVE「Quaerere Lumina」神奈川公演</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">神奈川県民ホール 大ホール</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(5)">
+          <img src="../images/logo/2ndlogo爱知.webp" alt="Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(5)">
+          <div class="card-date">2024/7/7</div>
+          <h2 class="card-title">Ave Mujica 2nd LIVE「Quaerere Lumina」爱知公演</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">愛知県芸術劇場 大ホール</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(6)">
+          <img src="../images/logo/bml2024d1.webp" alt="BILIBILI MACRO LINK 2024 DAY1" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(6)">
+          <div class="card-date">2024/7/13</div>
+          <h2 class="card-title">BILIBILI MACRO LINK 2024 DAY1</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">国家会展中心（上海）虹馆EH</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(7)">
+          <img src="../images/logo/bml2024d2.webp" alt="BILIBILI MACRO LINK 2024 DAY2" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(7)">
+          <div class="card-date">2024/7/14</div>
+          <h2 class="card-title">BILIBILI MACRO LINK 2024 DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">国家会展中心（上海）虹馆EH</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(8)">
+          <img src="../images/logo/asl2024logo.webp" alt="Animelo Summer Live 2024 -Stargazer-" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(8)">
+          <div class="card-date">2024/8/30</div>
+          <h2 class="card-title">Animelo Summer Live 2024 -Stargazer-</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">さいたまスーパーアリーナ</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(9)">
+          <img src="../images/logo/3rd logo.webp" alt="Ave Mujica 3rd LIVE「Veritas」" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(9)">
+          <div class="card-date">2024/10/13</div>
+          <h2 class="card-title">Ave Mujica 3rd LIVE「Veritas」</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">河口湖ステラシアター</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(10)">
+          <img src="../images/logo/animax2024logo.webp" alt="ANIMAX MUSIX 2024 FALL" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(10)">
+          <div class="card-date">2024/11/23</div>
+          <h2 class="card-title">ANIMAX MUSIX 2024 FALL</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">横浜アリーナ</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(11)">
+          <img src="../images/logo/roseliasnrnlogo.webp" alt="Roselia「Stille Nacht, Rosen Nacht」" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(11)">
+          <div class="card-date">2024/12/14</div>
+          <h2 class="card-title">Roselia「Stille Nacht, Rosen Nacht」</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">武蔵野の森総合スポーツプラザ</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(12)">
+          <img src="../images/logo/4th logo.webp" alt="Ave Mujica 4th LIVE「Adventus」" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(12)">
+          <div class="card-date">2024/12/15</div>
+          <h2 class="card-title">Ave Mujica 4th LIVE「Adventus」</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">武蔵野の森総合スポーツプラザ</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(13)">
+          <img src="../images/logo/lisani2025logo.webp" alt="リスアニ!LIVE&nbsp;2025 SATURDAY STAGE" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(13)">
+          <div class="card-date">2025/1/25</div>
+          <h2 class="card-title">リスアニ!LIVE&nbsp;2025 SATURDAY STAGE</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">日本武道館</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(14)">
+          <img src="../images/logo/kkfreelivelogo.webp" alt="Ave Mujica「KiLLKiSS」購入者限定フリーライブ" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(14)">
+          <div class="card-date">2025/2/2</div>
+          <h2 class="card-title">Ave Mujica「KiLLKiSS」購入者限定フリーライブ</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">KT Zepp Yokohama</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(15)">
+          <img src="../images/logo/鸡狗1d1logo.webp" alt="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(15)">
+          <div class="card-date">2025/4/26</div>
+          <h2 class="card-title">MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">Kアリーナ横浜</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(16)">
+          <img src="../images/logo/鸡狗1d2logo.webp" alt="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(16)">
+          <div class="card-date">2025/4/27</div>
+          <h2 class="card-title">MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">Kアリーナ横浜</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(17)">
+          <img src="../images/logo/japanjam2025logo.webp" alt="JAPAN JAM 2025" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(17)">
+          <div class="card-date">2025/5/5</div>
+          <h2 class="card-title">JAPAN JAM 2025</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">千葉市蘇我スポーツ公園</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(18)">
+          <img src="../images/logo/asl2025manlialogo.webp" alt="ANISAMA WORLD 2025 in MANILA" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(18)">
+          <div class="card-date">2025/6/7</div>
+          <h2 class="card-title">ANISAMA WORLD 2025 in MANILA</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">Smart Araneta Coliseum</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(19)">
+          <img src="../images/logo/bml2025d2logo.webp" alt="BILIBILI MACRO LINK 2025 DAY2" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(19)">
+          <div class="card-date">2025/7/12</div>
+          <h2 class="card-title">BILIBILI MACRO LINK 2025 DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">国家会展中心（上海）虹馆EH</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(20)">
+          <img src="../images/logo/bml2025d3logo.webp" alt="BILIBILI MACRO LINK 2025 DAY3" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(20)">
+          <div class="card-date">2025/7/13</div>
+          <h2 class="card-title">BILIBILI MACRO LINK 2025 DAY3</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">国家会展中心（上海）虹馆EH</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(21)">
+          <img src="../images/logo/5thd1logo.webp" alt="Ave Mujica 5th LIVE「Nova Historia」DAY1" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(21)">
+          <div class="card-date">2025/7/26</div>
+          <h2 class="card-title">Ave Mujica 5th LIVE「Nova Historia」DAY1</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">LaLa arena TOKYO-BAY</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(22)">
+          <img src="../images/logo/5thd2logo.webp" alt="Ave Mujica 5th LIVE「Nova Historia」DAY2" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(22)">
+          <div class="card-date">2025/7/27</div>
+          <h2 class="card-title">Ave Mujica 5th LIVE「Nova Historia」DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">LaLa arena TOKYO-BAY</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(23)">
+          <img src="../images/logo/ss2025logo.webp" alt="SUMMER SONIC 2025 TOKYO" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(23)">
+          <div class="card-date">2025/8/16</div>
+          <h2 class="card-title">SUMMER SONIC 2025 TOKYO</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">ZOZOマリンスタジアム＆幕張メッセ</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(24)">
+          <img src="../images/logo/asl2025logo.webp" alt="Animelo Summer Live 2025 “ThanXX!”" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(24)">
+          <div class="card-date">2025/8/30</div>
+          <h2 class="card-title">Animelo Summer Live 2025 “ThanXX!”</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">さいたまスーパーアリーナ</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(25)">
+          <img src="../images/logo/rockinjapan2025logo.webp" alt="rockin'on presents ROCK IN JAPAN FESTIVAL 2025" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(25)">
+          <div class="card-date">2025/9/20</div>
+          <h2 class="card-title">rockin'on presents ROCK IN JAPAN FESTIVAL 2025</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">千葉市蘇我スポーツ公園</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(26)">
+          <img src="../images/logo/鸡狗1上海d1logo.webp" alt="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(26)">
+          <div class="card-date">2025/10/11</div>
+          <h2 class="card-title">MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(27)">
+          <img src="../images/logo/鸡狗1上海d2logo.webp" alt="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(27)">
+          <div class="card-date">2025/10/12</div>
+          <h2 class="card-title">MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(28)">
+          <img src="../images/logo/6th东京logo.webp" alt="Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(28)">
+          <div class="card-date">2025/12/14</div>
+          <h2 class="card-title">Ave Mujica 6th LIVE 「Ulterius Procedere」 东京公演</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">東京国際フォーラム ホールA</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(29)">
+          <img src="../images/logo/abemaanison大赏2025logo.webp" alt="ABEMA 日本アニメトレンド大賞 2025" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(29)">
+          <div class="card-date">2025/12/26</div>
+          <h2 class="card-title">ABEMA 日本アニメトレンド大賞 2025</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">Studio</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(30)">
+          <img src="../images/logo/6th大阪logo.webp" alt="Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(30)">
+          <div class="card-date">2026/1/15</div>
+          <h2 class="card-title">Ave Mujica 6th LIVE 「Ulterius Procedere」 大阪公演</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">グランキューブ大阪 メインホール</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(31)">
+          <img src="../images/logo/邦邦10周年logo.webp" alt="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(31)">
+          <div class="card-date">2026/2/28</div>
+          <h2 class="card-title">BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">Kアリーナ横浜</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(32)">
+          <img src="../images/logo/横k鸡狗2logo.webp" alt="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(32)">
+          <div class="card-date">2026/3/1</div>
+          <h2 class="card-title">MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">Kアリーナ横浜</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(33)">
+          <img src="../images/logo/megavegas2026logo.webp" alt="MEGA VEGAS&nbsp;2026" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(33)">
+          <div class="card-date">2026/3/20</div>
+          <h2 class="card-title">MEGA VEGAS&nbsp;2026</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">神戸ワールド記念ホール</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(34)">
+          <img src="../images/logo/central2026logo.webp" alt="CENTRAL MUSIC &amp; ENTERTAINMENT FESTIVAL 2026" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(34)">
+          <div class="card-date">2026/4/4</div>
+          <h2 class="card-title">CENTRAL MUSIC &amp; ENTERTAINMENT FESTIVAL 2026</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">KT Zepp Yokohama</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(35)">
+          <img src="../images/logo/台北鸡狗2logo.webp" alt="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「" moment="" memory"」"="" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(35)">
+          <div class="card-date">2026/4/11</div>
+          <h2 class="card-title">BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「"moment / memory"」</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">台北・大佳河濱公園</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(36)">
+          <img src="../images/logo/exitus福冈logo.webp" alt="Ave Mujica LIVE TOUR 2026「Exitus」福冈公演" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(36)">
+          <div class="card-date">2026/4/17</div>
+          <h2 class="card-title">Ave Mujica LIVE TOUR 2026「Exitus」福冈公演</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">Zepp Fukuoka</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(37)">
+          <img src="../images/logo/exitus大阪logo.webp" alt="Ave Mujica LIVE TOUR 2026「Exitus」大阪公演" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(37)">
+          <div class="card-date">2026/4/26</div>
+          <h2 class="card-title">Ave Mujica LIVE TOUR 2026「Exitus」大阪公演</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">Zepp Namba</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(38)">
+          <img src="../images/logo/exitus爱知logo.webp" alt="Ave Mujica LIVE TOUR 2026「Exitus」爱知公演" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(38)">
+          <div class="card-date">2026/5/1</div>
+          <h2 class="card-title">Ave Mujica LIVE TOUR 2026「Exitus」爱知公演</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">Zepp Nagoya</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(39)">
+          <img src="../images/logo/exitus东京logo.webp" alt="Ave Mujica LIVE TOUR 2026「Exitus」东京公演" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(39)">
+          <div class="card-date">2026/5/4</div>
+          <h2 class="card-title">Ave Mujica LIVE TOUR 2026「Exitus」东京公演</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">Zepp Haneda (TOKYO)</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(40)">
+          <img src="../images/logo/exitusfld1logo.webp" alt="Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(40)">
+          <div class="card-date">2026/6/19</div>
+          <h2 class="card-title">Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY1</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">SGC HALL ARIAKE</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(41)">
+          <img src="../images/logo/exitusfld2logo.webp" alt="Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(41)">
+          <div class="card-date">2026/6/20</div>
+          <h2 class="card-title">Ave Mujica LIVE TOUR 2026「Exitus」-FINAL- DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">SGC HALL ARIAKE</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(42)">
+          <img src="../images/logo/beatax2026logo.webp" alt="BEAT AX -SUMMER EDITION 2026-" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(42)">
+          <div class="card-date">2026/7/12</div>
+          <h2 class="card-title">BEAT AX -SUMMER EDITION 2026-</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">Kアリーナ横浜</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(43)">
+          <img src="../images/logo/exitus台北d1logo.webp" alt="Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(43)">
+          <div class="card-date">2026/8/8</div>
+          <h2 class="card-title">Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY1</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">國立體育大學綜合體育館（林口體育館）</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(44)">
+          <img src="../images/logo/exitus台北d2logo.webp" alt="Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(44)">
+          <div class="card-date">2026/8/9</div>
+          <h2 class="card-title">Ave Mujica LIVE TOUR 2026「Exitus」台北追加公演 DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">國立體育大學綜合體育館（林口體育館）</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(45)">
+          <img src="../images/logo/ss2026大阪logo.webp" alt="SUMMER SONIC 2026 OSAKA" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(45)">
+          <div class="card-date">2026/8/14</div>
+          <h2 class="card-title">SUMMER SONIC 2026 OSAKA</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">万博記念公園</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-fes" onclick="openDrawer(46)">
+          <img src="../images/logo/ss2026东京logo.webp" alt="SUMMER SONIC 2026 TOKYO" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(46)">
+          <div class="card-date">2026/8/16</div>
+          <h2 class="card-title">SUMMER SONIC 2026 TOKYO</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">ZOZOマリンスタジアム＆幕張メッセ</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(47)">
+          <img src="../images/logo/7thlogod1.webp" alt="Ave Mujica 7th LIVE「Virtus」DAY1" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(47)">
+          <div class="card-date">2026/10/24</div>
+          <h2 class="card-title">Ave Mujica 7th LIVE「Virtus」DAY1</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">京王アリーナ TOKYO</span></div>
+        </div></article><article class="live-card">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(48)">
+          <img src="../images/logo/7thlogod2.webp" alt="Ave Mujica 7th LIVE「Virtus」DAY2" loading="lazy" decoding="async">
+          
+        </div>
+        <div class="card-info" onclick="openDrawer(48)">
+          <div class="card-date">2026/10/25</div>
+          <h2 class="card-title">Ave Mujica 7th LIVE「Virtus」DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">京王アリーナ TOKYO</span></div>
+        </div></article><article class="live-card is-upcoming">
+        <div class="card-image tag-fes" onclick="openDrawer(49)">
+          <img src="../images/logo/evanescenced1logo.webp" alt="EVANESCENCE 2026 JAPAN D1" loading="lazy" decoding="async">
+          <span class="card-upcoming-countdown">19 天后</span>
+        </div>
+        <div class="card-info" onclick="openDrawer(49)">
+          <div class="card-date">2026/12/1</div>
+          <h2 class="card-title">EVANESCENCE 2026 JAPAN D1</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">SGC HALL ARIAKE</span></div>
+        </div></article><article class="live-card is-upcoming">
+        <div class="card-image tag-fes" onclick="openDrawer(50)">
+          <img src="../images/logo/evanescenced2logo.webp" alt="EVANESCENCE 2026 JAPAN D2" loading="lazy" decoding="async">
+          <span class="card-upcoming-countdown">20 天后</span>
+        </div>
+        <div class="card-info" onclick="openDrawer(50)">
+          <div class="card-date">2026/12/2</div>
+          <h2 class="card-title">EVANESCENCE 2026 JAPAN D2</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">SGC HALL ARIAKE</span></div>
+        </div></article><article class="live-card is-upcoming">
+        <div class="card-image tag-fes" onclick="openDrawer(51)">
+          <img src="../images/logo/evanescenced3logo.webp" alt="EVANESCENCE 2026 JAPAN D3" loading="lazy" decoding="async">
+          <span class="card-upcoming-countdown">22 天后</span>
+        </div>
+        <div class="card-info" onclick="openDrawer(51)">
+          <div class="card-date">2026/12/4</div>
+          <h2 class="card-title">EVANESCENCE 2026 JAPAN D3</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">Zepp Osaka Bayside</span></div>
+        </div></article><article class="live-card is-upcoming">
+        <div class="card-image tag-fes" onclick="openDrawer(52)">
+          <div class="card-placeholder"><i></i><strong>ANISAMA FUKUOKA 2027</strong><small>UNKNOWN</small></div>
+          <span class="card-upcoming-countdown">122 天后</span>
+        </div>
+        <div class="card-info" onclick="openDrawer(52)">
+          <div class="card-date">2027/3/14</div>
+          <h2 class="card-title">ANISAMA FUKUOKA 2027</h2>
+          <div class="card-meta-row"><span class="card-tag">Fes</span><span class="card-venue">みずほPayPayドーム福岡</span></div>
+        </div></article><article class="live-card is-upcoming">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(53)">
+          <div class="card-placeholder"><i></i><strong>Ave Mujica 8th LIVE「Discrimen Fati」DAY1</strong><small>UNKNOWN</small></div>
+          <span class="card-upcoming-countdown">198 天后</span>
+        </div>
+        <div class="card-info" onclick="openDrawer(53)">
+          <div class="card-date">2027/5/29</div>
+          <h2 class="card-title">Ave Mujica 8th LIVE「Discrimen Fati」DAY1</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">Kアリーナ横浜</span></div>
+        </div></article><article class="live-card is-upcoming">
+        <div class="card-image tag-one-man-live" onclick="openDrawer(54)">
+          <div class="card-placeholder"><i></i><strong>Ave Mujica 8th LIVE「Discrimen Fati」DAY2</strong><small>UNKNOWN</small></div>
+          <span class="card-upcoming-countdown">199 天后</span>
+        </div>
+        <div class="card-info" onclick="openDrawer(54)">
+          <div class="card-date">2027/5/30</div>
+          <h2 class="card-title">Ave Mujica 8th LIVE「Discrimen Fati」DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">One Man Live</span><span class="card-venue">Kアリーナ横浜</span></div>
+        </div></article><article class="live-card is-upcoming">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(55)">
+          <img src="../images/logo/武士道20周年d1.webp" alt="ブシロード20周年記念ライブ DAY1" loading="lazy" decoding="async">
+          <span class="card-upcoming-countdown">212 天后</span>
+        </div>
+        <div class="card-info" onclick="openDrawer(55)">
+          <div class="card-date">2027/6/12</div>
+          <h2 class="card-title">ブシロード20周年記念ライブ DAY1</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">横浜アリーナ</span></div>
+        </div></article><article class="live-card is-upcoming">
+        <div class="card-image tag-bang-dream" onclick="openDrawer(56)">
+          <img src="../images/logo/武士道20周年d2.webp" alt="ブシロード20周年記念ライブ DAY2" loading="lazy" decoding="async">
+          <span class="card-upcoming-countdown">213 天后</span>
+        </div>
+        <div class="card-info" onclick="openDrawer(56)">
+          <div class="card-date">2027/6/13</div>
+          <h2 class="card-title">ブシロード20周年記念ライブ DAY2</h2>
+          <div class="card-meta-row"><span class="card-tag">BanG Dream!</span><span class="card-venue">横浜アリーナ</span></div>
+        </div></article></main>
+  </div>
+
+  <!-- 数据统计浮窗（全屏） -->
+  <div id="statsOverlay" class="stats-overlay active" aria-hidden="false" style="z-index: 10000;">
+    <div class="stats-header">
+      <div class="stats-title-block">
+        <div class="stats-file-id">FILE // LIVE_STATISTICS</div>
+        <h2>Live Statistics</h2>
+        <div class="stats-subtitle">PERFORMANCE RECORDS &amp; SETLIST ANALYSIS</div>
+      </div>
+      <button class="stats-close" id="statsCloseBtn" onclick="closeStats()">×</button>
+    </div>
+    <div class="stats-control-deck">
+      <div class="stats-filters" id="statsScopes">
+        <button class="stats-chip" data-scope="all">ALL</button>
+        <button class="stats-chip" data-scope="one-man">ONE MAN</button>
+        <button class="stats-chip" data-scope="fes">FES</button>
+        <button class="stats-chip active" data-scope="bandori">BANG DREAM!</button>
+      </div>
+      <div class="stats-tabs" id="statsTabs">
+        <button class="stats-tab" data-view="overview">OVERVIEW</button>
+        <button class="stats-tab" data-view="evolution">SETLIST EVOLUTION</button>
+        <button class="stats-tab" data-view="compare">LIVE COMPARISON</button>
+        <button class="stats-tab" data-view="repertoire">REPERTOIRE STATUS</button>
+        <button class="stats-tab active" data-view="venues">VENUE ATLAS</button>
+      </div>
+    </div>
+    <div class="stats-body" id="statsBody"><div class="stats-view" id="view-overview"><div class="metric-grid"><article class="metric"><div class="metric-label">Recorded Lives</div><div class="metric-value red">9</div><div class="metric-note">2023/09/17 — 2026/04/11</div></article><article class="metric"><div class="metric-label">Most Performed</div><div class="metric-value metric-value--title">KiLLKiSS</div><div class="metric-note">全档案演出次数最多的歌曲</div></article><article class="metric"><div class="metric-label">Longest Setlist</div><div class="metric-value">12</div><div class="metric-note">单场曲目最多的演出</div></article><article class="metric"><div class="metric-label">Active Repertoire</div><div class="metric-value">20</div><div class="metric-note">当前演出曲库中的原创曲目</div></article></div><section class="section"><div class="section-head"><div><div class="kicker">ARCHIVE RECORDS</div><h2>Live Records</h2></div><div class="section-note">演出级纪录集中置顶；筛选演出类型后，纪录和下方数据同步更新。</div></div><div class="records"><article class="record"><div class="record-index">REC // 01</div><strong>MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」</strong><span>LONGEST SETLIST · 12 TRACKS</span></article><article class="record"><div class="record-index">REC // 02</div><strong>MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor</strong><span>MOST LIVE DEBUTS · 5 TRACKS</span></article><article class="record"><div class="record-index">REC // 03</div><strong>Mas?uerade Rhapsody Re?uest</strong><span>LONGEST DORMANCY · 896 DAYS</span></article><article class="record"><div class="record-index">REC // 04</div><strong>Roselia「Stille Nacht, Rosen Nacht」</strong><span>LARGEST SETLIST SHIFT · 100%</span></article></div></section><div class="two-col"><section class="section"><div class="section-head"><div><div class="kicker">TRACK FREQUENCY</div><h2>Most Played Songs</h2></div></div><div class="bars"><div class="bar-row"><div class="bar-name" title="KiLLKiSS">KiLLKiSS</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-count">7</div></div><div class="bar-row"><div class="bar-name" title="顔">顔</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-count">7</div></div><div class="bar-row"><div class="bar-name" title="八芒星ダンス">八芒星ダンス</div><div class="bar-track"><div class="bar-fill" style="width:86%"></div></div><div class="bar-count">6</div></div><div class="bar-row"><div class="bar-name" title="Ave Mujica">Ave Mujica</div><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div><div class="bar-count">5</div></div><div class="bar-row"><div class="bar-name" title="Symbol I : 🜂">Symbol I : 🜂</div><div class="bar-track"><div class="bar-fill" style="width:57%"></div></div><div class="bar-count">4</div></div><div class="bar-row"><div class="bar-name" title="Crucifix X">Crucifix X</div><div class="bar-track"><div class="bar-fill" style="width:57%"></div></div><div class="bar-count">4</div></div><div class="bar-row"><div class="bar-name" title="Georgette Me, Georgette You">Georgette Me, Georgette You</div><div class="bar-track"><div class="bar-fill" style="width:57%"></div></div><div class="bar-count">4</div></div><div class="bar-row"><div class="bar-name" title="Imprisoned XII">Imprisoned XII</div><div class="bar-track"><div class="bar-fill" style="width:57%"></div></div><div class="bar-count">4</div></div><div class="bar-row"><div class="bar-name" title="天球（そら）のMúsica">天球（そら）のMúsica</div><div class="bar-track"><div class="bar-fill" style="width:57%"></div></div><div class="bar-count">4</div></div><div class="bar-row"><div class="bar-name" title="Mas?uerade Rhapsody Re?uest">Mas?uerade Rhapsody Re?uest</div><div class="bar-track"><div class="bar-fill" style="width:43%"></div></div><div class="bar-count">3</div></div></div></section><section class="section"><div class="section-head"><div><div class="kicker">POSITION FREQUENCY</div><h2>Openers &amp; Closers</h2></div></div><div class="split-list"><div><h3>[ OPENER ]</h3><ul class="data-list"><li><span>KiLLKiSS</span><span class="count">3</span></li><li><span>Imprisoned XII</span><span class="count">2</span></li><li><span>Choir 'S' Choir</span><span class="count">2</span></li><li><span>Ave Mujica</span><span class="count">1</span></li><li><span>Symbol I : 🜂</span><span class="count">1</span></li></ul></div><div><h3>[ CLOSER ]</h3><ul class="data-list"><li><span>Symbol I : 🜂</span><span class="count">3</span></li><li><span>Georgette Me, Georgette You</span><span class="count">2</span></li><li><span>天球（そら）のMúsica</span><span class="count">2</span></li><li><span>Mas?uerade Rhapsody Re?uest</span><span class="count">1</span></li><li><span>Ether</span><span class="count">1</span></li></ul></div></div></section></div><section class="section"><div class="section-head"><div><div class="kicker">SEQUENCE PATTERNS</div><h2>Frequent Combos</h2></div><div class="section-note">相邻出现次数最多的歌曲组合，用于观察固定衔接和 Setlist 编排习惯。</div></div><ul class="data-list"><li><span>Crucifix X <b class="combo-arrow">→</b> 八芒星ダンス</span><span class="count">4</span></li><li><span>顔 <b class="combo-arrow">→</b> 天球（そら）のMúsica</span><span class="count">4</span></li><li><span>Sophie <b class="combo-arrow">→</b> Symbol I : 🜂</span><span class="count">3</span></li><li><span>KiLLKiSS <b class="combo-arrow">→</b> Georgette Me, Georgette You</span><span class="count">2</span></li><li><span>Georgette Me, Georgette You <b class="combo-arrow">→</b> Ave Mujica</span><span class="count">2</span></li><li><span>Ave Mujica <b class="combo-arrow">→</b> Imprisoned XII</span><span class="count">2</span></li><li><span>Imprisoned XII <b class="combo-arrow">→</b> Crucifix X</span><span class="count">2</span></li><li><span>八芒星ダンス <b class="combo-arrow">→</b> 顔</span><span class="count">2</span></li></ul></section><section class="section"><div class="section-head"><div><div class="kicker">ACTIVITY BY MONTH</div><h2>Activity Heatmap</h2></div><div class="section-note">颜色表达当月演出次数；悬停格子显示数值。</div></div><div class="heatmap-wrap"><div class="heatmap"><span></span><span class="label">01</span><span class="label">02</span><span class="label">03</span><span class="label">04</span><span class="label">05</span><span class="label">06</span><span class="label">07</span><span class="label">08</span><span class="label">09</span><span class="label">10</span><span class="label">11</span><span class="label">12</span><span class="year">2023</span><span class="heat l0" title="2023.01 · 0 LIVES"></span><span class="heat l0" title="2023.02 · 0 LIVES"></span><span class="heat l0" title="2023.03 · 0 LIVES"></span><span class="heat l0" title="2023.04 · 0 LIVES"></span><span class="heat l0" title="2023.05 · 0 LIVES"></span><span class="heat l0" title="2023.06 · 0 LIVES"></span><span class="heat l0" title="2023.07 · 0 LIVES"></span><span class="heat l0" title="2023.08 · 0 LIVES"></span><span class="heat l1" title="2023.09 · 1 LIVE"></span><span class="heat l0" title="2023.10 · 0 LIVES"></span><span class="heat l0" title="2023.11 · 0 LIVES"></span><span class="heat l0" title="2023.12 · 0 LIVES"></span><span class="year">2024</span><span class="heat l0" title="2024.01 · 0 LIVES"></span><span class="heat l0" title="2024.02 · 0 LIVES"></span><span class="heat l0" title="2024.03 · 0 LIVES"></span><span class="heat l0" title="2024.04 · 0 LIVES"></span><span class="heat l0" title="2024.05 · 0 LIVES"></span><span class="heat l0" title="2024.06 · 0 LIVES"></span><span class="heat l0" title="2024.07 · 0 LIVES"></span><span class="heat l0" title="2024.08 · 0 LIVES"></span><span class="heat l0" title="2024.09 · 0 LIVES"></span><span class="heat l0" title="2024.10 · 0 LIVES"></span><span class="heat l0" title="2024.11 · 0 LIVES"></span><span class="heat l1" title="2024.12 · 1 LIVE"></span><span class="year">2025</span><span class="heat l0" title="2025.01 · 0 LIVES"></span><span class="heat l0" title="2025.02 · 0 LIVES"></span><span class="heat l0" title="2025.03 · 0 LIVES"></span><span class="heat l2" title="2025.04 · 2 LIVES"></span><span class="heat l0" title="2025.05 · 0 LIVES"></span><span class="heat l0" title="2025.06 · 0 LIVES"></span><span class="heat l0" title="2025.07 · 0 LIVES"></span><span class="heat l0" title="2025.08 · 0 LIVES"></span><span class="heat l0" title="2025.09 · 0 LIVES"></span><span class="heat l2" title="2025.10 · 2 LIVES"></span><span class="heat l0" title="2025.11 · 0 LIVES"></span><span class="heat l0" title="2025.12 · 0 LIVES"></span><span class="year">2026</span><span class="heat l0" title="2026.01 · 0 LIVES"></span><span class="heat l1" title="2026.02 · 1 LIVE"></span><span class="heat l1" title="2026.03 · 1 LIVE"></span><span class="heat l1" title="2026.04 · 1 LIVE"></span><span class="heat l0" title="2026.05 · 0 LIVES"></span><span class="heat l0" title="2026.06 · 0 LIVES"></span><span class="heat l0" title="2026.07 · 0 LIVES"></span><span class="heat l0" title="2026.08 · 0 LIVES"></span><span class="heat l0" title="2026.09 · 0 LIVES"></span><span class="heat l0" title="2026.10 · 0 LIVES"></span><span class="heat l0" title="2026.11 · 0 LIVES"></span><span class="heat l0" title="2026.12 · 0 LIVES"></span></div></div></section></div><div class="stats-view" id="view-evolution"><section class="section"><div class="section-head"><div><div class="kicker">SETLIST CHRONOLOGY</div><h2>Setlist Evolution</h2></div><div class="section-note">横轴为演出，纵轴为歌曲。D 为首次演奏，红色斜纹为开场曲，白色斜纹为收尾曲；同场重复演奏以 1/13 形式列出全部位置。</div></div><div class="matrix-tools"><div class="legend"><span><b>D</b> LIVE DEBUT</span><span><b class="swt swt-open"></b> OPENER</span><span><b class="swt swt-close"></b> CLOSER</span><span><b>01—</b> SETLIST POSITION</span><span><b>1/13</b> REPEATED</span></div><div class="stats-file-id">20 TRACKS × 9 LIVES</div></div><div class="matrix-scroll"><table class="matrix"><thead><tr><th>SONG / LIVE</th><th title="Roselia「Farbe」DAY2 · 2023/09/17">Roselia Farbe</th><th title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14">Roselia SNRN</th><th title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26">MyMuji1 横KD1</th><th title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27">MyMuji1 横KD2</th><th title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11">MyMuji1 梅奔D1</th><th title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12">MyMuji1 梅奔D2</th><th title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28">邦10周年</th><th title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01">MyMuji2 横K</th><th title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11">MyMuji2 台北</th></tr></thead><tbody><tr><td title="黒のバースデイ">黒のバースデイ</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+黒のバースデイ
+POSITION 3">3</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+黒のバースデイ
+POSITION 3">3</td></tr><tr><td title="Choir 'S' Choir">Choir 'S' Choir</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="played opener" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+Choir 'S' Choir
+POSITION 1 · OPENER">1</td><td class="played opener" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+Choir 'S' Choir
+POSITION 1 · OPENER">1</td></tr><tr><td title="神さま、バカ">神さま、バカ</td><td class="played" title="Roselia「Farbe」DAY2 · 2023/09/17
+神さま、バカ
+POSITION 2">2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td title="Mas?uerade Rhapsody Re?uest">Mas?uerade Rhapsody Re?uest</td><td class="played closer" title="Roselia「Farbe」DAY2 · 2023/09/17
+Mas?uerade Rhapsody Re?uest
+POSITION 3 · CLOSER">3</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+Mas?uerade Rhapsody Re?uest
+POSITION 5">5</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+Mas?uerade Rhapsody Re?uest
+POSITION 5">5</td></tr><tr><td title="Ave Mujica">Ave Mujica</td><td class="played opener" title="Roselia「Farbe」DAY2 · 2023/09/17
+Ave Mujica
+POSITION 1 · OPENER">1</td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26
+Ave Mujica
+POSITION 3">3</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27
+Ave Mujica
+POSITION 2">2</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11
+Ave Mujica
+POSITION 3">3</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12
+Ave Mujica
+POSITION 2">2</td><td></td><td></td><td></td></tr><tr><td title="Symbol I : 🜂">Symbol I : 🜂</td><td></td><td class="played opener" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14
+Symbol I : 🜂
+POSITION 1 · OPENER">1</td><td></td><td></td><td></td><td></td><td class="played closer" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28
+Symbol I : 🜂
+POSITION 4 · CLOSER">4</td><td class="played closer" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+Symbol I : 🜂
+POSITION 12 · CLOSER">12</td><td class="played closer" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+Symbol I : 🜂
+POSITION 12 · CLOSER">12</td></tr><tr><td title="Symbol II : 🜁">Symbol II : 🜁</td><td></td><td class="played" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14
+Symbol II : 🜁
+POSITION 2">2</td><td></td><td></td><td></td><td></td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+Symbol II : 🜁
+POSITION 7">7</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+Symbol II : 🜁
+POSITION 7">7</td></tr><tr><td title="Symbol III&nbsp;: 🜄">Symbol III&nbsp;: 🜄</td><td></td><td class="played" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14
+Symbol III&nbsp;: 🜄
+POSITION 3">3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td title="Symbol IV : 🜃">Symbol IV : 🜃</td><td></td><td class="played" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14
+Symbol IV : 🜃
+POSITION 4">4</td><td></td><td></td><td></td><td></td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+Symbol IV : 🜃
+POSITION 4">4</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+Symbol IV : 🜃
+POSITION 4">4</td></tr><tr><td title="Ether">Ether</td><td></td><td class="played closer" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14
+Ether
+POSITION 5 · CLOSER">5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td title="KiLLKiSS">KiLLKiSS</td><td></td><td></td><td class="played opener" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26
+KiLLKiSS
+POSITION 1 · OPENER">1</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27
+KiLLKiSS
+POSITION 5">5</td><td class="played opener" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11
+KiLLKiSS
+POSITION 1 · OPENER">1</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12
+KiLLKiSS
+POSITION 5">5</td><td class="played opener" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28
+KiLLKiSS
+POSITION 1 · OPENER">1</td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+KiLLKiSS
+POSITION 10">10</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+KiLLKiSS
+POSITION 10">10</td></tr><tr><td title="Georgette Me, Georgette You">Georgette Me, Georgette You</td><td></td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26
+Georgette Me, Georgette You
+POSITION 2">2</td><td class="played closer" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27
+Georgette Me, Georgette You
+POSITION 8 · CLOSER">8</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11
+Georgette Me, Georgette You
+POSITION 2">2</td><td class="played closer" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12
+Georgette Me, Georgette You
+POSITION 8 · CLOSER">8</td><td></td><td></td><td></td></tr><tr><td title="Crucifix X">Crucifix X</td><td></td><td></td><td class="debut" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26
+Crucifix X
+LIVE DEBUT · POSITION 5">D</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27
+Crucifix X
+POSITION 6">6</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11
+Crucifix X
+POSITION 5">5</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12
+Crucifix X
+POSITION 6">6</td><td></td><td></td><td></td></tr><tr><td title="Imprisoned XII">Imprisoned XII</td><td></td><td></td><td class="debut" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26
+Imprisoned XII
+LIVE DEBUT · POSITION 4">D</td><td class="played opener" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27
+Imprisoned XII
+POSITION 1 · OPENER">1</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11
+Imprisoned XII
+POSITION 4">4</td><td class="played opener" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12
+Imprisoned XII
+POSITION 1 · OPENER">1</td><td></td><td></td><td></td></tr><tr><td title="八芒星ダンス">八芒星ダンス</td><td></td><td></td><td class="debut" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26
+八芒星ダンス
+LIVE DEBUT · POSITION 6">D</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27
+八芒星ダンス
+POSITION 7">7</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11
+八芒星ダンス
+POSITION 6">6</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12
+八芒星ダンス
+POSITION 7">7</td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+八芒星ダンス
+POSITION 6">6</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+八芒星ダンス
+POSITION 6">6</td></tr><tr><td title="天球（そら）のMúsica">天球（そら）のMúsica</td><td></td><td></td><td class="debut closer" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26
+天球（そら）のMúsica
+LIVE DEBUT · POSITION 8 · CLOSER">D</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27
+天球（そら）のMúsica
+POSITION 4">4</td><td class="played closer" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11
+天球（そら）のMúsica
+POSITION 8 · CLOSER">8</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12
+天球（そら）のMúsica
+POSITION 4">4</td><td></td><td></td><td></td></tr><tr><td title="顔">顔</td><td></td><td></td><td class="debut" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26
+顔
+LIVE DEBUT · POSITION 7">D</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27
+顔
+POSITION 3">3</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11
+顔
+POSITION 7">7</td><td class="played" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12
+顔
+POSITION 3">3</td><td class="played" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28
+顔
+POSITION 2">2</td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+顔
+POSITION 2">2</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+顔
+POSITION 2">2</td></tr><tr><td title="DIVINE">DIVINE</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+DIVINE
+POSITION 8">8</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+DIVINE
+POSITION 8">8</td></tr><tr><td title="'S/' The Way">'S/' The Way</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+'S/' The Way
+POSITION 9">9</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+'S/' The Way
+POSITION 9">9</td></tr><tr><td title="Sophie">Sophie</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="played" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28
+Sophie
+POSITION 3">3</td><td class="played" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01
+Sophie
+POSITION 11">11</td><td class="played" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11
+Sophie
+POSITION 11">11</td></tr></tbody></table></div></section></div><div class="stats-view" id="view-compare"><section class="section"><div class="section-head"><div><div class="kicker">PAIR ANALYSIS</div><h2>Live Comparison</h2></div><div class="section-note">适合比较双日公演、巡演不同地区，以及专场与音乐节版本的差异。</div></div><div class="select-row"><label>Archive A<select id="statsSelectA"><option value="0">2023/09/17 · Roselia「Farbe」DAY2</option><option value="1">2024/12/14 · Roselia「Stille Nacht, Rosen Nacht」</option><option value="2">2025/04/26 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor</option><option value="3">2025/04/27 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin</option><option value="4">2025/10/11 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor</option><option value="5">2025/10/12 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin</option><option value="6">2026/02/28 · BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」</option><option value="7">2026/03/01 · MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」</option><option value="8">2026/04/11 · BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「"moment / memory"」</option></select></label><div class="versus">VS</div><label>Archive B<select id="statsSelectB"><option value="0" data-base-label="2023/09/17 · Roselia「Farbe」DAY2" class="stats-compare-anchor">↳ A · 2023/09/17 · Roselia「Farbe」DAY2</option><option value="1" data-base-label="2024/12/14 · Roselia「Stille Nacht, Rosen Nacht」">2024/12/14 · Roselia「Stille Nacht, Rosen Nacht」</option><option value="2" data-base-label="2025/04/26 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor">2025/04/26 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor</option><option value="3" data-base-label="2025/04/27 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin">2025/04/27 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin</option><option value="4" data-base-label="2025/10/11 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor">2025/10/11 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor</option><option value="5" data-base-label="2025/10/12 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin">2025/10/12 · MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin</option><option value="6" data-base-label="2026/02/28 · BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」">2026/02/28 · BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」</option><option value="7" data-base-label="2026/03/01 · MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」">2026/03/01 · MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」</option><option value="8" data-base-label="2026/04/11 · BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」">2026/04/11 · BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「"moment / memory"」</option></select></label></div><div class="comparison-metrics"><div class="mini-metric"><b id="statsSim">7%</b><span>SETLIST SIMILARITY</span></div><div class="mini-metric"><b id="statsCommon">1</b><span>COMMON TRACKS</span></div><div class="mini-metric"><b id="statsOnlyACount">2</b><span>ARCHIVE A ONLY</span></div><div class="mini-metric"><b id="statsOnlyBCount">11</b><span>ARCHIVE B ONLY</span></div></div><div class="compare-columns"><div class="compare-col"><h3>[ A ONLY ]</h3><ul id="statsOnlyA"><li>Ave Mujica</li><li>神さま、バカ</li></ul></div><div class="compare-col common"><h3>[ SHARED REPERTOIRE ]</h3><ul id="statsShared"><li><span>Mas?uerade Rhapsody Re?uest</span><small>A:03 / B:05</small></li></ul></div><div class="compare-col"><h3>[ B ONLY ]</h3><ul id="statsOnlyB"><li>Choir 'S' Choir</li><li>顔</li><li>黒のバースデイ</li><li>Symbol IV : 🜃</li><li>八芒星ダンス</li><li>Symbol II : 🜁</li><li>DIVINE</li><li>'S/' The Way</li><li>KiLLKiSS</li><li>Sophie</li><li>Symbol I : 🜂</li></ul></div></div></section></div><div class="stats-view" id="view-repertoire"><div class="comparison-metrics" style="margin-top:20px"><div class="mini-metric"><b>9</b><span>UNPLAYED TRACKS</span></div><div class="mini-metric"><b>5</b><span>TOP DORMANT TRACKS</span></div><div class="mini-metric"><b>7 LIVE</b><span>LONGEST CURRENT STREAK</span></div><div class="mini-metric"><b>40d</b><span>AVERAGE DEBUT GAP</span></div></div><section class="section"><div class="section-head"><div><div class="kicker">RELEASE / PERFORMANCE GAP</div><h2>Release → LIVE DEBUT</h2></div><div class="section-note">从初次公布到首次登台的间隔时间</div></div><div class="matrix-scroll"><table class="debut-table"><thead><tr><th>SONG</th><th>RELEASE</th><th>LIVE DEBUT</th><th>GAP</th><th>RELATIVE POSITION</th></tr></thead><tbody><tr><td>黒のバースデイ</td><td>2023/04/10</td><td>2023/06/04</td><td class="delta ">+55 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:6.875%"></span></div></td></tr><tr><td>ふたつの月 ~Deep Into The Forest~</td><td>2023/04/16</td><td>2023/06/04</td><td class="delta ">+49 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:6.125%"></span></div></td></tr><tr><td>Choir 'S' Choir</td><td>2023/04/23</td><td>2023/06/04</td><td class="delta ">+42 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:5.25%"></span></div></td></tr><tr><td>神さま、バカ</td><td>2023/05/07</td><td>2023/06/04</td><td class="delta ">+28 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:3.5%"></span></div></td></tr><tr><td>Mas?uerade Rhapsody Re?uest</td><td>2023/05/21</td><td>2023/06/04</td><td class="delta ">+14 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2%"></span></div></td></tr><tr><td>Ave Mujica</td><td>2023/06/04</td><td>2023/06/04</td><td class="delta ">SAME DAY</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2%"></span></div></td></tr><tr><td>素晴らしき世界 でも どこにもない場所</td><td>2023/12/30</td><td>2024/01/27</td><td class="delta ">+28 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:3.5%"></span></div></td></tr><tr><td>Angles</td><td>2024/01/07</td><td>2024/01/27</td><td class="delta ">+20 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2.5%"></span></div></td></tr><tr><td>Symbol I : 🜂</td><td>2024/04/07</td><td>2024/06/08</td><td class="delta ">+62 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:7.75%"></span></div></td></tr><tr><td>Symbol II : 🜁</td><td>2024/05/18</td><td>2024/06/08</td><td class="delta ">+21 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2.625%"></span></div></td></tr><tr><td>Symbol III&nbsp;: 🜄</td><td>2024/06/15</td><td>2024/07/07</td><td class="delta ">+22 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2.75%"></span></div></td></tr><tr><td>Symbol IV : 🜃</td><td>2024/07/08</td><td>2024/10/13</td><td class="delta ">+97 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:12.125%"></span></div></td></tr><tr><td>Ether</td><td>2024/08/30</td><td>2024/10/13</td><td class="delta ">+44 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:5.5%"></span></div></td></tr><tr><td>KiLLKiSS</td><td>2024/12/15</td><td>2024/12/15</td><td class="delta ">SAME DAY</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2%"></span></div></td></tr><tr><td>Georgette Me, Georgette You</td><td>2024/12/27</td><td>2025/01/25</td><td class="delta ">+29 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:3.625%"></span></div></td></tr><tr><td>DIVINE</td><td>2025/01/17</td><td>2025/07/26</td><td class="delta ">+190 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:23.75%"></span></div></td></tr><tr><td>Crucifix X</td><td>2025/03/06</td><td>2025/04/26</td><td class="delta ">+51 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:6.375%"></span></div></td></tr><tr><td>Imprisoned XII</td><td>2025/03/06</td><td>2025/04/26</td><td class="delta ">+51 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:6.375%"></span></div></td></tr><tr><td>八芒星ダンス</td><td>2025/03/27</td><td>2025/04/26</td><td class="delta ">+30 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:3.75%"></span></div></td></tr><tr><td>天球（そら）のMúsica</td><td>2025/03/27</td><td>2025/04/26</td><td class="delta ">+30 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:3.75%"></span></div></td></tr><tr><td>顔</td><td>2025/03/27</td><td>2025/04/26</td><td class="delta ">+30 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:3.75%"></span></div></td></tr><tr><td>'S/' The Way</td><td>2025/07/26</td><td>2025/07/26</td><td class="delta ">SAME DAY</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2%"></span></div></td></tr><tr><td>碧い瞳の中に</td><td>2025/09/04</td><td>2025/12/14</td><td class="delta ">+101 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:12.625%"></span></div></td></tr><tr><td>Sophie</td><td>2025/12/10</td><td>2025/12/14</td><td class="delta ">+4 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2%"></span></div></td></tr><tr><td>The Whole Blue World</td><td>2026/06/17</td><td>2026/10/24</td><td class="delta ">+129 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:16.125%"></span></div></td></tr><tr><td>A Song Of Romance</td><td>2026/09/14</td><td>2026/10/24</td><td class="delta ">+40 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:5%"></span></div></td></tr><tr><td>A Song Of Romance Pt.2</td><td>2026/10/16</td><td>—</td><td class="delta never">NOT PERFORMED</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style=""></span></div></td></tr><tr><td>BADDY BADDY</td><td>2026/10/16</td><td>2026/10/24</td><td class="delta ">+8 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2%"></span></div></td></tr><tr><td>神の名を</td><td>2026/10/16</td><td>2026/10/24</td><td class="delta ">+8 DAYS</td><td class="timeline-cell"><div class="time-track"><span class="time-fill" style="left:48%;width:2%"></span></div></td></tr></tbody></table></div></section><section class="section"><div class="section-head"><div><div class="kicker">RARE &amp; ABSENT</div><h2>Rarities &amp; Unplayed Tracks</h2></div><div class="section-note">左侧固定展示距离最后一次演出最久的 5 首；右侧展示尚未登台的歌曲。</div></div><div class="split-list"><div><h3>[ TOP 5 DORMANT ]</h3><ul class="data-list"><li><span>神さま、バカ<small>LAST · 2023/09/17</small></span><span class="count">1152d</span></li><li><span>Symbol III&nbsp;: 🜄<small>LAST · 2024/12/14</small></span><span class="count">698d</span></li><li><span>Ether<small>LAST · 2024/12/14</small></span><span class="count">698d</span></li><li><span>Ave Mujica<small>LAST · 2025/10/12</small></span><span class="count">396d</span></li><li><span>Georgette Me, Georgette You<small>LAST · 2025/10/12</small></span><span class="count">396d</span></li></ul></div><div><h3>[ UNPLAYED ]</h3><ul class="data-list"><li><span>ふたつの月 ~Deep Into The Forest~<small>RELEASE · 2023/04/16</small></span></li><li><span>素晴らしき世界 でも どこにもない場所<small>RELEASE · 2023/12/30</small></span></li><li><span>Angles<small>RELEASE · 2024/01/07</small></span></li><li><span>碧い瞳の中に<small>RELEASE · 2025/09/04</small></span></li><li><span>The Whole Blue World<small>RELEASE · 2026/06/17</small></span></li><li><span>A Song Of Romance<small>RELEASE · 2026/09/14</small></span></li><li><span>神の名を<small>RELEASE · 2026/10/16</small></span></li><li><span>A Song Of Romance Pt.2<small>RELEASE · 2026/10/16</small></span></li><li><span>BADDY BADDY<small>RELEASE · 2026/10/16</small></span></li></ul></div></div></section><section class="section"><div class="section-head"><div><div class="kicker">CONSECUTIVE APPEARANCES</div><h2>Song Streaks</h2></div><div class="section-note">每格代表一场完整演出。暗红为演奏，亮红为当前连续纪录，空格为缺席。</div></div><div class="streak-list"><div class="streak-row"><div class="streak-name">KiLLKiSS</div><div class="streak-number">CUR <b>7</b> · MAX <b>7</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 演奏"></i><i class="hot" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">顔</div><div class="streak-number">CUR <b>7</b> · MAX <b>7</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 演奏"></i><i class="hot" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">Symbol I : 🜂</div><div class="streak-number">CUR <b>3</b> · MAX <b>3</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="on" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="hot" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">Sophie</div><div class="streak-number">CUR <b>3</b> · MAX <b>3</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="hot" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">八芒星ダンス</div><div class="streak-number">CUR <b>2</b> · MAX <b>4</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">Mas?uerade Rhapsody Re?uest</div><div class="streak-number">CUR <b>2</b> · MAX <b>2</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="on" title="Roselia「Farbe」DAY2 · 2023/09/17 · 演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">Symbol II : 🜁</div><div class="streak-number">CUR <b>2</b> · MAX <b>2</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="on" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">Symbol IV : 🜃</div><div class="streak-number">CUR <b>2</b> · MAX <b>2</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="on" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">Choir 'S' Choir</div><div class="streak-number">CUR <b>2</b> · MAX <b>2</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">黒のバースデイ</div><div class="streak-number">CUR <b>2</b> · MAX <b>2</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">DIVINE</div><div class="streak-number">CUR <b>2</b> · MAX <b>2</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">'S/' The Way</div><div class="streak-number">CUR <b>2</b> · MAX <b>2</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 未演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="hot" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 演奏"></i><i class="hot" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 演奏"></i></div></div><div class="streak-row"><div class="streak-name">Ave Mujica</div><div class="streak-number">CUR <b>0</b> · MAX <b>4</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="on" title="Roselia「Farbe」DAY2 · 2023/09/17 · 演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 未演奏"></i><i class="" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 未演奏"></i></div></div><div class="streak-row"><div class="streak-name">Georgette Me, Georgette You</div><div class="streak-number">CUR <b>0</b> · MAX <b>4</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 未演奏"></i><i class="" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 未演奏"></i></div></div><div class="streak-row"><div class="streak-name">Imprisoned XII</div><div class="streak-number">CUR <b>0</b> · MAX <b>4</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 未演奏"></i><i class="" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 未演奏"></i></div></div><div class="streak-row"><div class="streak-name">Crucifix X</div><div class="streak-number">CUR <b>0</b> · MAX <b>4</b></div><div class="streak-track" style="grid-template-columns:repeat(9,1fr)"><i class="" title="Roselia「Farbe」DAY2 · 2023/09/17 · 未演奏"></i><i class="" title="Roselia「Stille Nacht, Rosen Nacht」 · 2024/12/14 · 未演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY1 : Petrichor · 2025/04/26 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」DAY2 : Geosmin · 2025/04/27 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY1 : Petrichor · 2025/10/11 · 演奏"></i><i class="on" title="MyGO!!!!!×Ave Mujica 合同ライブ「わかれ道の、その先へ」上海追加公演 DAY2 : Geosmin · 2025/10/12 · 演奏"></i><i class="" title="BanG Dream! 10th Anniversary LIVE「In the name of BanG Dream!」 · 2026/02/28 · 未演奏"></i><i class="" title="MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」 · 2026/03/01 · 未演奏"></i><i class="" title="BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「&quot;moment / memory&quot;」 · 2026/04/11 · 未演奏"></i></div></div></div></section></div><div class="stats-view active" id="view-venues" style="--va-detail-height: 160px;"><section class="venue-atlas"><header class="va-toolbar"><div class="va-metrics"><div><strong>4</strong><span>日本场馆</span></div><div><strong>2</strong><span>都道府县</span></div><div><strong>9</strong><span>已举行演出</span></div><div><strong>2</strong><span>未来演出</span></div></div><div class="va-period" aria-label="演出时间筛选"><button type="button" data-period="all" class="active" aria-pressed="true">全部</button><button type="button" data-period="past" aria-pressed="false">已举行</button><button type="button" data-period="future" aria-pressed="false">未来</button></div></header><div class="va-layout"><div class="va-explore"><div class="va-map-panel"><nav class="va-regions" aria-label="地图区域"><button type="button" data-region="japan" aria-pressed="false">日本概览</button><button type="button" data-region="kanto" class="active" aria-pressed="true">首都圈</button><button type="button" data-region="kansai" aria-pressed="false">关西</button><button type="button" data-region="chubu" aria-pressed="false">中部</button><button type="button" data-region="kyushu" aria-pressed="false">九州</button></nav><svg class="va-map" aria-label="日本主要岛屿场馆示意图，可在限定范围内拖动和缩放" tabindex="0" viewBox="11195 -3625 175 135"><g class="va-land"><path d="M10600.89,-3405.50L10591.64,-3391.45L10587.61,-3394.87L10586.55,-3410.98L10591.87,-3417.12L10589.81,-3436.23L10600.63,-3437.28L10592.35,-3439.27L10595.59,-3444.19L10610.46,-3437.28L10631.24,-3442.55L10646.68,-3466.19L10666.19,-3470.88L10729.45,-3528.76L10729.66,-3543.52L10766.89,-3560.37L10786.00,-3556.83L10780.17,-3551.31L10791.53,-3545.36L10805.58,-3553.03L10860.53,-3555.18L10884.03,-3566.99L10916.25,-3565.05L10939.54,-3577.92L10946.42,-3569.44L10937.12,-3557.15L10937.13,-3554.14L10942.11,-3559.89L10947.15,-3545.26L10958.87,-3560.35L10964.63,-3548.95L10974.97,-3554.76L10970.66,-3548.44L10979.64,-3548.47L10979.20,-3556.90L10988.57,-3553.80L10987.38,-3564.23L11000.79,-3563.01L11003.77,-3576.39L11008.21,-3566.25L11010.47,-3577.72L10999.48,-3599.76L11012.37,-3624.93L11036.02,-3641.98L11056.54,-3670.15L11064.43,-3690.21L11056.61,-3714.91L11063.56,-3736.43L11111.20,-3751.57L11103.27,-3730.75L11084.15,-3718.35L11076.44,-3722.66L11072.05,-3710.47L11080.99,-3704.80L11087.94,-3710.81L11082.07,-3687.16L11098.24,-3675.73L11209.00,-3737.83L11232.17,-3781.43L11279.65,-3817.68L11282.10,-3839.65L11306.73,-3880.08L11328.06,-3941.96L11328.74,-3980.53L11319.60,-3990.10L11306.20,-3985.71L11301.17,-3999.60L11316.94,-4000.28L11326.69,-4021.59L11328.06,-4034.04L11314.72,-4061.40L11325.98,-4074.52L11346.31,-4080.20L11352.17,-4104.59L11346.14,-4113.44L11353.46,-4126.05L11377.05,-4119.25L11385.25,-4083.21L11395.41,-4088.70L11397.21,-4100.97L11418.57,-4087.80L11429.40,-4115.51L11422.23,-4127.91L11387.90,-4114.54L11398.70,-4152.36L11428.44,-4135.64L11444.46,-4143.01L11438.48,-4116.99L11441.75,-4068.83L11472.97,-4027.07L11488.17,-3977.61L11483.69,-3959.17L11489.97,-3965.57L11493.67,-3954.87L11484.22,-3946.65L11492.71,-3947.19L11479.86,-3933.72L11487.61,-3935.22L11474.90,-3914.79L11481.47,-3910.51L11472.63,-3911.10L11477.73,-3906.51L11463.99,-3893.92L11457.61,-3900.08L11461.45,-3885.72L11454.92,-3888.73L11448.71,-3877.27L11452.54,-3874.05L11452.28,-3869.05L11442.90,-3867.25L11449.73,-3863.74L11444.21,-3857.42L11450.80,-3850.32L11443.66,-3843.76L11450.49,-3840.00L11449.31,-3827.19L11440.01,-3840.27L11428.63,-3841.96L11421.29,-3832.04L11413.73,-3838.08L11401.09,-3808.69L11410.40,-3748.12L11405.43,-3699.49L11390.83,-3689.38L11371.28,-3625.59L11380.59,-3589.72L11396.46,-3571.82L11379.01,-3568.81L11362.42,-3552.47L11352.39,-3514.01L11335.82,-3511.51L11320.19,-3491.01L11306.07,-3496.69L11314.50,-3500.34L11315.45,-3523.53L11308.24,-3531.50L11317.17,-3536.16L11318.33,-3543.20L11334.58,-3555.34L11322.46,-3568.24L11321.11,-3564.11L11317.72,-3561.67L11306.96,-3565.55L11309.35,-3551.18L11296.50,-3546.81L11300.98,-3543.92L11296.50,-3529.88L11305.50,-3525.32L11299.95,-3513.93L11288.45,-3530.79L11257.10,-3524.08L11250.71,-3505.64L11256.47,-3489.07L11244.06,-3465.79L11232.45,-3460.11L11224.00,-3468.99L11225.94,-3496.26L11237.33,-3504.53L11220.71,-3514.15L11209.24,-3510.13L11205.85,-3498.35L11193.10,-3491.46L11180.20,-3467.01L11182.54,-3459.46L11130.65,-3467.89L11084.72,-3457.83L11089.29,-3466.23L11108.07,-3467.89L11109.92,-3478.15L11085.51,-3477.73L11079.34,-3482.34L11081.45,-3493.65L11076.38,-3477.24L11081.03,-3469.57L11074.02,-3472.30L11068.83,-3488.37L11072.65,-3509.29L11070.82,-3503.40L11055.14,-3499.33L11044.82,-3468.29L11077.09,-3444.50L11075.19,-3427.61L11057.95,-3428.46L11061.08,-3434.01L11058.71,-3434.83L11051.33,-3425.83L11026.95,-3417.96L11026.47,-3408.65L11018.83,-3407.54L11024.36,-3397.31L11011.75,-3389.63L10998.97,-3358.06L10983.17,-3343.33L10957.61,-3354.91L10948.20,-3367.01L10953.67,-3371.88L10926.13,-3387.97L10935.34,-3403.27L10927.88,-3407.34L10937.02,-3414.58L10927.45,-3430.41L10957.39,-3455.35L10954.71,-3456.08L10954.02,-3459.99L10957.91,-3464.46L10947.95,-3472.36L10926.32,-3462.55L10878.29,-3480.40L10850.31,-3458.91L10840.19,-3461.29L10844.35,-3457.67L10835.20,-3445.13L10823.39,-3443.56L10815.78,-3454.02L10787.72,-3436.55L10780.59,-3443.92L10730.67,-3420.20L10722.30,-3419.37L10720.68,-3436.45L10707.88,-3435.95L10696.66,-3423.51L10690.44,-3383.35L10667.57,-3400.68L10659.48,-3397.51L10664.59,-3402.92L10658.71,-3407.03L10633.21,-3398.26L10629.19,-3404.78L10619.40,-3392.28L10600.89,-3405.50Z"><title>本州</title></path><path d="M11307.13,-4231.12L11315.41,-4266.65L11341.07,-4282.78L11350.58,-4277.86L11368.25,-4299.22L11352.37,-4322.17L11354.04,-4333.45L11366.19,-4337.35L11390.06,-4319.56L11408.25,-4323.96L11419.97,-4314.51L11441.15,-4332.85L11433.59,-4372.53L11457.49,-4392.01L11459.37,-4431.50L11471.01,-4464.34L11453.14,-4523.54L11459.14,-4545.07L11471.32,-4540.79L11483.20,-4552.25L11568.45,-4455.78L11613.97,-4425.33L11669.57,-4411.31L11682.50,-4394.52L11713.96,-4393.21L11758.47,-4433.93L11736.04,-4375.31L11751.58,-4361.14L11746.40,-4360.17L11762.03,-4329.29L11796.63,-4338.61L11776.65,-4328.30L11772.71,-4316.61L11742.36,-4314.52L11728.43,-4298.22L11714.35,-4305.89L11708.16,-4298.17L11712.27,-4293.36L11671.45,-4300.32L11643.10,-4287.48L11600.19,-4241.59L11588.94,-4192.55L11471.43,-4261.35L11447.07,-4260.39L11407.03,-4230.20L11383.45,-4258.35L11363.96,-4258.65L11349.25,-4225.32L11370.17,-4211.54L11387.51,-4211.71L11421.98,-4180.25L11404.30,-4171.09L11377.87,-4181.74L11362.02,-4168.52L11359.09,-4151.73L11342.14,-4139.86L11324.88,-4155.17L11335.74,-4200.29L11307.13,-4231.12Z"><title>北海道</title></path><path d="M10480.85,-3323.11L10482.04,-3337.71L10490.42,-3339.95L10504.76,-3329.12L10506.29,-3340.60L10499.43,-3345.41L10505.40,-3345.38L10504.47,-3355.53L10518.57,-3344.64L10533.88,-3366.71L10539.10,-3358.26L10549.55,-3361.08L10551.42,-3368.48L10545.79,-3364.34L10540.89,-3366.31L10540.40,-3368.64L10548.96,-3368.50L10555.55,-3385.78L10572.11,-3393.67L10583.15,-3392.29L10579.37,-3387.48L10599.45,-3396.29L10594.42,-3382.97L10606.72,-3361.87L10632.36,-3357.40L10640.11,-3368.41L10653.83,-3364.08L10657.60,-3346.49L10638.32,-3336.03L10639.23,-3326.99L10670.83,-3326.80L10662.89,-3312.83L10678.90,-3309.63L10669.88,-3299.04L10685.64,-3293.27L10677.09,-3292.16L10679.42,-3282.85L10669.84,-3280.33L10666.70,-3269.33L10653.96,-3256.74L10626.12,-3137.18L10606.67,-3147.48L10599.29,-3135.86L10608.14,-3127.52L10570.44,-3099.42L10581.84,-3133.66L10573.52,-3155.28L10564.77,-3158.65L10578.78,-3156.23L10583.44,-3165.62L10572.53,-3173.48L10558.52,-3148.91L10568.72,-3119.13L10534.33,-3124.91L10525.54,-3141.19L10538.96,-3142.59L10543.75,-3161.62L10530.43,-3179.38L10531.13,-3210.45L10541.99,-3210.85L10556.15,-3229.35L10560.59,-3253.32L10570.32,-3263.09L10553.44,-3262.31L10566.54,-3279.38L10552.86,-3291.45L10547.13,-3313.87L10535.52,-3319.58L10527.04,-3311.93L10534.78,-3295.95L10524.90,-3286.74L10544.38,-3285.61L10545.25,-3267.71L10530.58,-3259.08L10527.19,-3268.91L10533.68,-3275.25L10523.76,-3279.43L10495.87,-3256.92L10505.62,-3273.05L10486.59,-3295.23L10497.96,-3314.39L10489.88,-3310.15L10488.06,-3321.68L10480.85,-3323.11Z"><title>九州</title></path><path d="M10679.76,-3334.42L10732.23,-3370.73L10736.15,-3390.72L10753.23,-3406.71L10750.87,-3411.77L10769.12,-3392.68L10801.21,-3397.04L10810.96,-3407.16L10812.08,-3419.35L10804.77,-3426.13L10814.47,-3422.42L10834.69,-3438.96L10851.51,-3439.97L10876.16,-3420.80L10888.32,-3423.78L10888.45,-3401.07L10897.70,-3392.57L10891.82,-3386.33L10901.23,-3383.45L10865.75,-3357.56L10854.89,-3324.35L10835.24,-3348.66L10818.70,-3353.80L10785.43,-3335.50L10782.34,-3338.54L10777.69,-3315.31L10760.59,-3301.45L10755.57,-3285.62L10761.30,-3272.38L10729.61,-3276.37L10736.04,-3292.37L10716.99,-3290.67L10723.06,-3296.44L10717.61,-3304.60L10709.36,-3302.27L10719.29,-3312.84L10711.61,-3320.51L10723.45,-3323.36L10716.68,-3325.52L10721.02,-3331.43L10708.82,-3331.81L10712.32,-3346.13L10679.76,-3334.42Z"><title>四国</title></path></g><g class="va-map-labels"><text x="11283.932" y="-3583" font-size="3.375">東京都</text><text x="11263.707" y="-3542" font-size="3.375">神奈川県</text><text x="11342.18" y="-3554.9999999999995" font-size="3.375">千葉県</text><text x="11273.415" y="-3602.0000000000005" font-size="3.375">埼玉県</text><text x="11208.695000000002" y="-3570.0000000000005" font-size="3.375">山梨県</text></g><g class="va-points"><g role="button" tabindex="0" class="va-point cluster " data-cluster="0" aria-label="Kアリーナ横浜 / 横浜アリーナ" transform="translate(11296.05082 -3546.5600000000004)"><title>Kアリーナ横浜 / 横浜アリーナ</title><circle class="va-hit" r="6.136363636363637"></circle><circle class="va-halo" r="4.6022727272727275"></circle><circle class="va-core" r="3.375"></circle><text text-anchor="middle" dy="1.0738636363636365" font-size="3.0681818181818183">2</text></g><g role="button" tabindex="0" class="va-point past " data-venue="keio" aria-label="京王アリーナ TOKYO · 已举行 1 / 未来 0" transform="translate(11287.434970000002 -3566.7499999999995)"><title>京王アリーナ TOKYO · 已举行 1 / 未来 0</title><circle class="va-hit" r="6.136363636363637"></circle><circle class="va-halo" r="3.6818181818181817"></circle><circle class="va-core" r="1.5340909090909092"></circle></g><g role="button" tabindex="0" class="va-point past " data-venue="ariake" aria-label="有明アリーナ · 已举行 1 / 未来 0" transform="translate(11309.37505 -3564.3500000000004)"><title>有明アリーナ · 已举行 1 / 未来 0</title><circle class="va-hit" r="6.136363636363637"></circle><circle class="va-halo" r="3.6818181818181817"></circle><circle class="va-core" r="1.5340909090909092"></circle></g></g></svg><button type="button" class="va-locator-button" data-region="japan" aria-label="返回日本概览" aria-pressed="false"><svg class="va-locator" viewBox="10380 -4590 1500 1530" aria-hidden="true"><g><path d="M10600.89,-3405.50L10591.64,-3391.45L10587.61,-3394.87L10586.55,-3410.98L10591.87,-3417.12L10589.81,-3436.23L10600.63,-3437.28L10592.35,-3439.27L10595.59,-3444.19L10610.46,-3437.28L10631.24,-3442.55L10646.68,-3466.19L10666.19,-3470.88L10729.45,-3528.76L10729.66,-3543.52L10766.89,-3560.37L10786.00,-3556.83L10780.17,-3551.31L10791.53,-3545.36L10805.58,-3553.03L10860.53,-3555.18L10884.03,-3566.99L10916.25,-3565.05L10939.54,-3577.92L10946.42,-3569.44L10937.12,-3557.15L10937.13,-3554.14L10942.11,-3559.89L10947.15,-3545.26L10958.87,-3560.35L10964.63,-3548.95L10974.97,-3554.76L10970.66,-3548.44L10979.64,-3548.47L10979.20,-3556.90L10988.57,-3553.80L10987.38,-3564.23L11000.79,-3563.01L11003.77,-3576.39L11008.21,-3566.25L11010.47,-3577.72L10999.48,-3599.76L11012.37,-3624.93L11036.02,-3641.98L11056.54,-3670.15L11064.43,-3690.21L11056.61,-3714.91L11063.56,-3736.43L11111.20,-3751.57L11103.27,-3730.75L11084.15,-3718.35L11076.44,-3722.66L11072.05,-3710.47L11080.99,-3704.80L11087.94,-3710.81L11082.07,-3687.16L11098.24,-3675.73L11209.00,-3737.83L11232.17,-3781.43L11279.65,-3817.68L11282.10,-3839.65L11306.73,-3880.08L11328.06,-3941.96L11328.74,-3980.53L11319.60,-3990.10L11306.20,-3985.71L11301.17,-3999.60L11316.94,-4000.28L11326.69,-4021.59L11328.06,-4034.04L11314.72,-4061.40L11325.98,-4074.52L11346.31,-4080.20L11352.17,-4104.59L11346.14,-4113.44L11353.46,-4126.05L11377.05,-4119.25L11385.25,-4083.21L11395.41,-4088.70L11397.21,-4100.97L11418.57,-4087.80L11429.40,-4115.51L11422.23,-4127.91L11387.90,-4114.54L11398.70,-4152.36L11428.44,-4135.64L11444.46,-4143.01L11438.48,-4116.99L11441.75,-4068.83L11472.97,-4027.07L11488.17,-3977.61L11483.69,-3959.17L11489.97,-3965.57L11493.67,-3954.87L11484.22,-3946.65L11492.71,-3947.19L11479.86,-3933.72L11487.61,-3935.22L11474.90,-3914.79L11481.47,-3910.51L11472.63,-3911.10L11477.73,-3906.51L11463.99,-3893.92L11457.61,-3900.08L11461.45,-3885.72L11454.92,-3888.73L11448.71,-3877.27L11452.54,-3874.05L11452.28,-3869.05L11442.90,-3867.25L11449.73,-3863.74L11444.21,-3857.42L11450.80,-3850.32L11443.66,-3843.76L11450.49,-3840.00L11449.31,-3827.19L11440.01,-3840.27L11428.63,-3841.96L11421.29,-3832.04L11413.73,-3838.08L11401.09,-3808.69L11410.40,-3748.12L11405.43,-3699.49L11390.83,-3689.38L11371.28,-3625.59L11380.59,-3589.72L11396.46,-3571.82L11379.01,-3568.81L11362.42,-3552.47L11352.39,-3514.01L11335.82,-3511.51L11320.19,-3491.01L11306.07,-3496.69L11314.50,-3500.34L11315.45,-3523.53L11308.24,-3531.50L11317.17,-3536.16L11318.33,-3543.20L11334.58,-3555.34L11322.46,-3568.24L11321.11,-3564.11L11317.72,-3561.67L11306.96,-3565.55L11309.35,-3551.18L11296.50,-3546.81L11300.98,-3543.92L11296.50,-3529.88L11305.50,-3525.32L11299.95,-3513.93L11288.45,-3530.79L11257.10,-3524.08L11250.71,-3505.64L11256.47,-3489.07L11244.06,-3465.79L11232.45,-3460.11L11224.00,-3468.99L11225.94,-3496.26L11237.33,-3504.53L11220.71,-3514.15L11209.24,-3510.13L11205.85,-3498.35L11193.10,-3491.46L11180.20,-3467.01L11182.54,-3459.46L11130.65,-3467.89L11084.72,-3457.83L11089.29,-3466.23L11108.07,-3467.89L11109.92,-3478.15L11085.51,-3477.73L11079.34,-3482.34L11081.45,-3493.65L11076.38,-3477.24L11081.03,-3469.57L11074.02,-3472.30L11068.83,-3488.37L11072.65,-3509.29L11070.82,-3503.40L11055.14,-3499.33L11044.82,-3468.29L11077.09,-3444.50L11075.19,-3427.61L11057.95,-3428.46L11061.08,-3434.01L11058.71,-3434.83L11051.33,-3425.83L11026.95,-3417.96L11026.47,-3408.65L11018.83,-3407.54L11024.36,-3397.31L11011.75,-3389.63L10998.97,-3358.06L10983.17,-3343.33L10957.61,-3354.91L10948.20,-3367.01L10953.67,-3371.88L10926.13,-3387.97L10935.34,-3403.27L10927.88,-3407.34L10937.02,-3414.58L10927.45,-3430.41L10957.39,-3455.35L10954.71,-3456.08L10954.02,-3459.99L10957.91,-3464.46L10947.95,-3472.36L10926.32,-3462.55L10878.29,-3480.40L10850.31,-3458.91L10840.19,-3461.29L10844.35,-3457.67L10835.20,-3445.13L10823.39,-3443.56L10815.78,-3454.02L10787.72,-3436.55L10780.59,-3443.92L10730.67,-3420.20L10722.30,-3419.37L10720.68,-3436.45L10707.88,-3435.95L10696.66,-3423.51L10690.44,-3383.35L10667.57,-3400.68L10659.48,-3397.51L10664.59,-3402.92L10658.71,-3407.03L10633.21,-3398.26L10629.19,-3404.78L10619.40,-3392.28L10600.89,-3405.50Z"><title>本州</title></path><path d="M11307.13,-4231.12L11315.41,-4266.65L11341.07,-4282.78L11350.58,-4277.86L11368.25,-4299.22L11352.37,-4322.17L11354.04,-4333.45L11366.19,-4337.35L11390.06,-4319.56L11408.25,-4323.96L11419.97,-4314.51L11441.15,-4332.85L11433.59,-4372.53L11457.49,-4392.01L11459.37,-4431.50L11471.01,-4464.34L11453.14,-4523.54L11459.14,-4545.07L11471.32,-4540.79L11483.20,-4552.25L11568.45,-4455.78L11613.97,-4425.33L11669.57,-4411.31L11682.50,-4394.52L11713.96,-4393.21L11758.47,-4433.93L11736.04,-4375.31L11751.58,-4361.14L11746.40,-4360.17L11762.03,-4329.29L11796.63,-4338.61L11776.65,-4328.30L11772.71,-4316.61L11742.36,-4314.52L11728.43,-4298.22L11714.35,-4305.89L11708.16,-4298.17L11712.27,-4293.36L11671.45,-4300.32L11643.10,-4287.48L11600.19,-4241.59L11588.94,-4192.55L11471.43,-4261.35L11447.07,-4260.39L11407.03,-4230.20L11383.45,-4258.35L11363.96,-4258.65L11349.25,-4225.32L11370.17,-4211.54L11387.51,-4211.71L11421.98,-4180.25L11404.30,-4171.09L11377.87,-4181.74L11362.02,-4168.52L11359.09,-4151.73L11342.14,-4139.86L11324.88,-4155.17L11335.74,-4200.29L11307.13,-4231.12Z"><title>北海道</title></path><path d="M10480.85,-3323.11L10482.04,-3337.71L10490.42,-3339.95L10504.76,-3329.12L10506.29,-3340.60L10499.43,-3345.41L10505.40,-3345.38L10504.47,-3355.53L10518.57,-3344.64L10533.88,-3366.71L10539.10,-3358.26L10549.55,-3361.08L10551.42,-3368.48L10545.79,-3364.34L10540.89,-3366.31L10540.40,-3368.64L10548.96,-3368.50L10555.55,-3385.78L10572.11,-3393.67L10583.15,-3392.29L10579.37,-3387.48L10599.45,-3396.29L10594.42,-3382.97L10606.72,-3361.87L10632.36,-3357.40L10640.11,-3368.41L10653.83,-3364.08L10657.60,-3346.49L10638.32,-3336.03L10639.23,-3326.99L10670.83,-3326.80L10662.89,-3312.83L10678.90,-3309.63L10669.88,-3299.04L10685.64,-3293.27L10677.09,-3292.16L10679.42,-3282.85L10669.84,-3280.33L10666.70,-3269.33L10653.96,-3256.74L10626.12,-3137.18L10606.67,-3147.48L10599.29,-3135.86L10608.14,-3127.52L10570.44,-3099.42L10581.84,-3133.66L10573.52,-3155.28L10564.77,-3158.65L10578.78,-3156.23L10583.44,-3165.62L10572.53,-3173.48L10558.52,-3148.91L10568.72,-3119.13L10534.33,-3124.91L10525.54,-3141.19L10538.96,-3142.59L10543.75,-3161.62L10530.43,-3179.38L10531.13,-3210.45L10541.99,-3210.85L10556.15,-3229.35L10560.59,-3253.32L10570.32,-3263.09L10553.44,-3262.31L10566.54,-3279.38L10552.86,-3291.45L10547.13,-3313.87L10535.52,-3319.58L10527.04,-3311.93L10534.78,-3295.95L10524.90,-3286.74L10544.38,-3285.61L10545.25,-3267.71L10530.58,-3259.08L10527.19,-3268.91L10533.68,-3275.25L10523.76,-3279.43L10495.87,-3256.92L10505.62,-3273.05L10486.59,-3295.23L10497.96,-3314.39L10489.88,-3310.15L10488.06,-3321.68L10480.85,-3323.11Z"><title>九州</title></path><path d="M10679.76,-3334.42L10732.23,-3370.73L10736.15,-3390.72L10753.23,-3406.71L10750.87,-3411.77L10769.12,-3392.68L10801.21,-3397.04L10810.96,-3407.16L10812.08,-3419.35L10804.77,-3426.13L10814.47,-3422.42L10834.69,-3438.96L10851.51,-3439.97L10876.16,-3420.80L10888.32,-3423.78L10888.45,-3401.07L10897.70,-3392.57L10891.82,-3386.33L10901.23,-3383.45L10865.75,-3357.56L10854.89,-3324.35L10835.24,-3348.66L10818.70,-3353.80L10785.43,-3335.50L10782.34,-3338.54L10777.69,-3315.31L10760.59,-3301.45L10755.57,-3285.62L10761.30,-3272.38L10729.61,-3276.37L10736.04,-3292.37L10716.99,-3290.67L10723.06,-3296.44L10717.61,-3304.60L10709.36,-3302.27L10719.29,-3312.84L10711.61,-3320.51L10723.45,-3323.36L10716.68,-3325.52L10721.02,-3331.43L10708.82,-3331.81L10712.32,-3346.13L10679.76,-3334.42Z"><title>四国</title></path></g><rect x="11195" y="-3625" width="175" height="135"></rect></svg><span>JAPAN ↗︎</span></button><div class="va-zoom"><button type="button" data-zoom="0.65" aria-label="放大地图">+</button><button type="button" data-zoom="1.54" aria-label="缩小地图">−</button></div><div class="va-map-footer"><span class="va-map-count">当前视野 4 个场馆</span><span>场馆示意 · 点击圆点</span></div></div><div class="va-legend"><span><i class="va-dot past"></i>已到访</span><span><i class="va-dot future"></i>未来到访</span><span><i class="va-dot mixed"></i>再次前往</span><span>数字圆点可点击展开</span></div><section class="va-beyond"><span class="va-kicker">BEYOND JAPAN / 日本以外</span><div data-list="overseas"><button type="button" class="va-place " data-venue="mercedes" aria-pressed="false"><i class="va-dot past"></i><span><b>梅赛德斯-奔驰文化中心 （Mercedes-Benz Arena）</b><small>上海</small></span><em>2</em></button><button type="button" class="va-place " data-venue="dajia" aria-pressed="false"><i class="va-dot past"></i><span><b>台北・大佳河濱公園</b><small>台北</small></span><em>1</em></button></div></section><details class="va-unknown"><summary>未定位的演出记录</summary><div data-list="unknown"><p class="va-empty">当前筛选下没有记录</p></div></details><section class="va-directory"><header><span class="va-kicker">VENUE INDEX / 日本场馆</span><span class="va-list-count">6 个地点</span></header><input type="search" class="va-search" aria-label="搜索场馆或城市" placeholder="搜索场馆、城市或旧名称" value=""><div data-list="jp"><button type="button" class="va-place " data-venue="k-arena" aria-pressed="false"><i class="va-dot past"></i><span><b>Kアリーナ横浜</b><small>神奈川県 · 横滨市</small></span><em>4</em></button><button type="button" class="va-place " data-venue="yokohama" aria-pressed="false"><i class="va-dot future"></i><span><b>横浜アリーナ</b><small>神奈川県 · 横滨市</small></span><em>2</em></button><button type="button" class="va-place " data-venue="keio" aria-pressed="false"><i class="va-dot past"></i><span><b>京王アリーナ TOKYO</b><small>東京都 · 调布市</small></span><em>1</em></button><button type="button" class="va-place " data-venue="ariake" aria-pressed="false"><i class="va-dot past"></i><span><b>有明アリーナ</b><small>東京都 · 江东区</small></span><em>1</em></button></div></section><footer class="va-credit">按日本日期区分已举行与未来（含当天）；场次遵循上方演出类型筛选。<br>地图：<a href="https://www.gsi.go.jp/kankyochiri/gm_jpn.html" target="_blank" rel="noopener noreferrer">国土地理院・地球地図日本</a> / <a href="https://github.com/dataofjapan/land" target="_blank" rel="noopener noreferrer">dataofjapan</a>，仅示意四个主要岛屿；点位为场馆附近位置，其余场馆可从列表查看。</footer></div><aside class="va-detail" tabindex="0" aria-label="场馆介绍与演出履历" aria-live="polite"><span class="va-kicker">VENUE DOSSIER</span><div class="va-intro"><span class="va-cross">⌖</span><h3>欢迎来到，<br>Ave Mujica 的世界。</h3><p>点击地图上的场馆，或从下方列表选择，查看场馆介绍与演出履历。</p><div class="va-mini-legend"><span><i class="va-dot past"></i>已到访</span><span><i class="va-dot future"></i>未来到访</span><span><i class="va-dot mixed"></i>再次前往</span></div></div></aside></div></section></div></div>
+  </div>
+
+  <script src="../js/resource-error.js?v=202611121628"></script>
+  <script src="data.js?v=202611121628"></script>
+  <script src="../js/data-loader.js?v=202611121628"></script>
+  <script src="../js/renderMarkdown.js?v=202611121628"></script>
+  <script src="../js/overlay-manager.js?v=202611121628"></script>
+  <script src="../js/excerpt-card.js?v=202611121628"></script>
+  <script src="../js/interview-overlay.js?v=202611121628"></script>
+  <script src="../js/song-modal.js?v=202611121628"></script>
+  <script src="../js/live-drawer.js?v=202611121628"></script>
+  <script src="../js/discography-modal.js?v=202611121628"></script>
+  <script src="../js/venue-atlas-map.js?v=202611121628"></script>
+  <script src="../js/venue-atlas-data.js?v=202611121628"></script>
+  <script src="../js/venue-atlas.js?v=202611121628"></script>
+  <script src="../js/venue-atlas-map.js?v=202611121628"></script>
+  <script src="../js/venue-atlas-data.js?v=202611121628"></script>
+  <script src="../js/venue-atlas.js?v=202611121628"></script>
+  <script src="page.js?v=202611121628"></script><div class="shared-interview-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="sharedInterviewTitle"><div class="shared-interview-header"><div class="shared-interview-meta"><span class="shared-interview-date"></span><span class="shared-interview-title" id="sharedInterviewTitle"></span><span class="shared-interview-interviewee"></span></div><div class="shared-interview-actions"><button class="shared-interview-section-btn" type="button" aria-expanded="false" hidden="">章节</button><button class="shared-interview-restart-btn" type="button" hidden="">从头阅读</button><button class="shared-interview-original-btn" type="button" title="切换原文显示">原文显示</button><button class="shared-interview-close" type="button" aria-label="关闭">×</button><div class="shared-interview-section-popover" hidden=""><span class="shared-interview-section-kicker">CONTENTS / 章节</span><nav class="shared-interview-section-popover-list" aria-label="文章章节"></nav></div></div></div><div class="shared-interview-progress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><div class="shared-interview-body"></div></div><div class="shared-interview-lightbox" data-image-zoomed="false"><button class="shared-interview-lightbox-close" type="button" aria-label="关闭图片">×</button><button class="shared-interview-lightbox-arrow shared-interview-lightbox-prev" type="button" aria-label="上一张">❮</button><div class="shared-interview-lightbox-images"></div><span class="shared-interview-lightbox-counter"></span><button class="shared-interview-lightbox-arrow shared-interview-lightbox-next" type="button" aria-label="下一张">❯</button></div><button class="shared-interview-page-top" type="button">↑Page Top</button><div class="excerpt-selection-trigger" role="toolbar" aria-label="所选文字操作" hidden=""><button type="button" data-excerpt-action="excerpt">摘录</button><button type="button" data-excerpt-action="copy">复制</button></div>
+  <script src="../js/quick-nav.js?v=202611121628"></script><nav class="quick-nav" aria-label="快捷导航"><a class="quick-nav-back" href="file:///D:/yumin/web/MujicaTimeLineWeb/index.html" data-label="返回上一级" aria-label="返回上一级">←Back</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/index.html" data-label="主页" aria-label="主页">⌂</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/timeline/index.html" data-label="时间线" aria-label="时间线">TL</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/songs/index.html" data-label="曲目" aria-label="曲目">S</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/discography/index.html" data-label="唱片" aria-label="唱片">D</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/live/index.html" data-label="Live" aria-label="Live">L</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/interview/index.html" data-label="访谈" aria-label="访谈">I</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/gallery/index.html" data-label="画廊" aria-label="画廊">G</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/upcoming/index.html" data-label="Upcoming" aria-label="Upcoming">＋</a><a href="file:///D:/yumin/web/MujicaTimeLineWeb/programs/index.html" data-label="节目档案" aria-label="节目档案">P</a></nav>
+  <script src="../js/page-memory.js?v=202611121628"></script>
+  <script src="../js/image-zoom.js?v=202611121628"></script>
+<script>
+setTimeout(async()=>{try {
+ await WijipediaData.load('songs');
+ openStats();
+ await new Promise(resolve=>setTimeout(resolve,500));
+ document.querySelector('[data-view="venues"]').click();
+ const counts={};
+ for(const scope of ['all','one-man','fes','bandori']) {
+ document.querySelector('[data-scope="'+scope+'"]').click();
+ counts[scope]={metrics:document.querySelector('.va-metrics').textContent,hasFukuoka:!!document.querySelector('[data-list="jp"] [data-venue="fukuoka-dome"]')};
+ }
+ document.body.dataset.check=JSON.stringify(counts);
+}catch(e){document.body.dataset.check=e.stack}},1500);
+</script>
+
+</body></html>

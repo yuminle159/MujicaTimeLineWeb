@@ -347,7 +347,7 @@ var timelineData = [
     date: "2024/2/1",
     title: "弄李与林鼓子一同出演「バンドリ TV LIVE 2024」＃203",
     category: "personal",
-    description: "邦TV首次登场\n高尾奏音：「BanG Dream TV LIVE」＃203\n我作为丰川祥子 / Oblivionis 的役者出演了这期节目⚙️🌙\n和李子亲与鼓子亲在一起度过的幸福空间🪄\n和大家聊了关于Live的各种感想…🎹\nAveMujica 今后也请大家多多关照🩵\n特意试着穿了带有 Oblivionis 风格的衣服呢🕊\n佐佐木李子：『BanG Dream TV LIVE 2024』\n非常感谢大家的收看！\n也非常感谢弄碳和鼓子亲〜✨\n实在太开心了，感觉完全没聊够！！我们甚至都已经计划好了最近还要再聚一下哦☺︎\n能收到大家的来信和留言真的好开心！\n敬请期待接下来的MyGO和AveMujica ！",
+    description: "邦TV首次登场\n高尾奏音：「BanG Dream TV LIVE」＃203\n我作为丰川祥子 / Oblivionis 的扮演者出演了这期节目⚙️🌙\n和李子亲与鼓子亲在一起度过的幸福空间🪄\n和大家聊了关于Live的各种感想…🎹\nAveMujica 今后也请大家多多关照🩵\n特意试着穿了带有 Oblivionis 风格的衣服呢🕊\n佐佐木李子：『BanG Dream TV LIVE 2024』\n非常感谢大家的收看！\n也非常感谢弄碳和鼓子亲〜✨\n实在太开心了，感觉完全没聊够！！我们甚至都已经计划好了最近还要再聚一下哦☺︎\n能收到大家的来信和留言真的好开心！\n敬请期待接下来的MyGO和AveMujica ！",
     tag: "business_mjc",
     media: [
       { type: "image", src: "../images/20240201-1.webp" },
@@ -1053,9 +1053,9 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "8hWtPfLtA8t",
+    hash_id: "gQtzgjxOCQr",
     date: "2024/12/26",
-    title: "出演バンドリ TV LIVE #245",
+    title: "弄李 与 羊宫妃那 & 青木阳菜 一同出演「バンドリ TV LIVE 2024」＃245",
     category: "personal",
     description: "X评论区甜蜜互动中\n高尾奏音：和大家一起……☺️💚💙💛🩵\n#MyGO & #AveMujica 🧭🌙\n\n佐佐木李子：弄！\n🍿、让我给你喂，谢谢你\n今天也能待在你的身边，真的太幸福啦\n\n回复|高尾奏音：被投喂搞得我好害羞…☺️🍿\n下次要换我来喂你啦——！！！✨笑\n回复|佐佐木李子：我想被弄投喂哦🫶\n随时大欢迎",
     tag: "business_mjc",
@@ -1532,9 +1532,9 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "JsrfjS0ufp6",
+    hash_id: "keDahOhxvsJ",
     date: "2025/3/13",
-    title: "出演バンドリ TV LIVE #255",
+    title: "弄李 与 进藤天音 一同出演「バンドリ TV LIVE 2025」＃255",
     category: "personal",
     description: "佐佐木李子：虽然有点晚了。。\n感谢大家收看 #バンドリTVLIVE with あまのんりこ！\n明明平时花粉症都没那么严重的，为什么偏偏这次。。🌸 今天已经没事啦！！\n下周3月20日（周四）21:30开始的加长版，我也会出演！\n有好多关于 #AveMujica动画 第11集的事情想和大家聊聊！！\n\n高尾奏音：感谢大家收看 #バンドリTVLIVE 💙💛🩵\n和あまねす、李子一起，玩得很开心☺️🌸",
     tag: "business_mjc",
@@ -1698,9 +1698,9 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "ZGrqblK7LtQ",
+    hash_id: "PHwlaCvpdtw",
     date: "2025/4/3",
-    title: "出演バンドリ TV LIVE #258",
+    title: "弄李 与 进藤天音 一同出演「バンドリ TV LIVE 2025」＃258",
     category: "personal",
     description: "高尾奏音：バンドリTVLIVE 感谢大家的收看🌙⚙️\n“のんここりこ”三个人在一起，情绪简直嗨到了顶点呢🌸\n只要我们三个聚在一起，就总会忍不住闹腾起来☺️\n丰川祥子的客户服务中心也……\n玩得很开心呢……！！！📞🕊️🩵笑\n\n佐佐木李子：バンドリTV 和のんここりこ一起，感谢大家的收看！\n向右看，有为我指引方向的鼓子亲\n向左看，有无论何时都会对我微笑的のん\n向前看，有角色们，还有和我们一起享受其中的各位粉丝与工作人员\n我不禁心想，我这是有多幸福啊‼️",
     tag: "business_mjc",
@@ -1802,9 +1802,9 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "MHWmMu8joo1",
+    hash_id: "UF4zrLrEdF8",
     date: "2025/5/1",
-    title: "出演バンドリ TV LIVE #262",
+    title: "弄李 与 立石凛 & 青木阳菜 一同出演「バンドリ TV LIVE 2025」＃262",
     category: "personal",
     description: "佐佐木李子：バンドリTVLIVE\nりん🌸ぴよ🐈のん🎹りこ🎤\n谢谢大家！！\n从 #わかれ道のその先へ 到 #JAPANJAM🔥\n演出接连不断，简直太棒了！！一起尽情享受吧☺︎\n\n高尾奏音：バンドリTVLIVE\n玩得很开心☺️🧭🌙🩵",
     tag: "business_mjc",
@@ -2337,15 +2337,33 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "eVUC4JH5dhx",
+    hash_id: "Al6bklQulAc",
     date: "2025/12/31",
-    title: "跨年蹦极",
+    title: "跨年读卖乐园之旅 & 高尾奏音挑战蹦极",
     category: "personal",
-    description: "高尾奏音：在2025年的最后🌙\n我去挑战蹦极了！！！🕊️✨\n回复|高尾奏音：（拍摄：李子桑🌙）\n回复|佐佐木李子：のん跳下去的那一瞬间，我想起了你在年初写下的「鸟」字新年书法。。\n说到做到，太了不起了🕊️真的超级帅气！\n回复|高尾奏音：谢谢你帮我拍下来……我变成鸟了呢……",
+    description: "高尾奏音：年末和 #AveMujica 的成员们一起度过啦🌙⚙️\n（当然，心里也一直有めいしゃん在，所以我们还是五个人🐏下次一定要五个人聚齐一起玩哦✨）\n这次我和茜一起挑战了蹦极……\n留下了一段让我感受到难以言喻的深厚羁绊、终生难忘的回忆，所以希望以后有机会还能和大家聊聊这段经历🤭💜\n\n佐佐木李子：年末和 #AveMujica 的大家一起✨\n一起欣赏了灯光秀，还有之前都跳过蹦极的ゆづ和りこ，一起守望着のん和茜的挑战！\n那段时光简直就像在看一部电影一样……太感动了！！\n我们实时把视频和照片发给めいしゃん，她每次都会给我们回复，真的好开心♡\n今年也请多多关照哦！\n\n高尾奏音：✨🎍新年快乐🎍✨\n2026年，我也会继续努力精进＼( 'ω')／\n希望能为大家带来更多的“乐趣”！\n顺便一提，今年是我的本命年……🐴✨\n今年也要加油啦〜！\n年末和Mujica的成员们一起度过了🌙\n一起去蹦极，还欣赏了灯光秀🩵\n下次一定想五个人一起出去玩☺️\n今年也请大家多多关照✨\n#2026\n#AveMujica\n\n佐佐木李子：#AveMujica 灯光秀🌟\n玩得太开心了，时间简直一眨眼就过去了。。\nめいしゃん也远程参与了💌！\n今年也请多多关照哦！！一起大干一场吧😎\n#读卖乐园 #灯光秀\n#りこのトリコ\n\n高尾奏音：在2025年的最后🌙\n我去挑战蹦极了！！！🕊️✨\n回复|高尾奏音：（拍摄：李子桑🌙）\n回复|佐佐木李子：のん跳下去的那一瞬间，我想起了你在年初写下的「鸟」字新年书法。。\n说到做到，太了不起了🕊️真的超级帅气！\n回复|高尾奏音：谢谢你帮我拍下来……我变成鸟了呢……",
     tag: "private",
     media: [
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1xEiuBZEf6" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/2006379606736265295", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2006379606736265295", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/20251231-01.webp" },
+      { type: "image", src: "../images/20251231-02.webp" },
+      { type: "image", src: "../images/20251231-03.webp" },
+      { type: "image", src: "../images/20251231-04.webp" },
+      { type: "image", src: "../images/20251231-05.webp" },
+      { type: "image", src: "../images/20251231-06.webp" },
+      { type: "image", src: "../images/20251231-07.webp" },
+      { type: "image", src: "../images/20251231-08.webp" },
+      { type: "image", src: "../images/20251231-09.webp" },
+      { type: "image", src: "../images/20251231-10.webp" },
+      { type: "image", src: "../images/20251231-11.webp" },
+      { type: "image", src: "../images/20251231-12.webp" },
+      { type: "image", src: "../images/20251231-13.webp" },
+      { type: "image", src: "../images/20251231-14.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2006585995597385855", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/2006591348716220565", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://www.instagram.com/p/DS971FCD-f_", title: "高尾奏音 ig链接" },
+      { type: "link", url: "https://www.instagram.com/p/DTFp0rhAUYf", title: "佐佐木李子 ig链接" }
     ]
   },
   {
@@ -2877,9 +2895,9 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "RsmOt3KSSIY",
+    hash_id: "DU6wkI2YLgc",
     date: "2026/7/30",
-    title: "出演バンドリ TV LIVE #325",
+    title: "弄李 与 仲町阿拉蕾 & 藤都子 一同出演「バンドリ TV LIVE 2026」＃325",
     category: "personal",
     description: "高尾奏音：バンドリTVLIVE 感谢大家的收看🥰🌙\n没想到和りこ桑碰巧穿得像双胞胎一样，吓了一跳❤️👭❤️\n发型也特意弄成一样的了哦✨\n剧场版也敬请期待……⚙️",
     tag: "business_mjc",
@@ -3135,7 +3153,7 @@ var timelineData = [
     date: "2026/9/28",
     title: "宣布出演日本テレビ『夜バゲット』",
     category: "personal",
-    description: "高尾奏音：📺有消息要告诉大家📺\n我将作为 #AveMujica 的Oblivionis／丰川祥子的役者，出演日本电视台的「夜バゲット」✨🌙\n🕰️播出时间🕰️\n▶︎10月9日（周五）、10月16日（周五）25:59～\n节目中和りこ一起聊了很多很多🎸🎹\n请大家一定要收看哦⚙️\n\n佐佐木李子：我将作为Doloris／三角初华的役者，出演日本电视台的『夜バゲット』🌙\n#AveMujica 特辑！还会聊到电影的话题！\n和のん一起畅谈了许多⚙️\n敬请期待！\n播出时间：10月9日（周五）、10月16日（周五），周五25:59～\n#バンドリ",
+    description: "高尾奏音：📺有消息要告诉大家📺\n我将作为 #AveMujica 的Oblivionis／丰川祥子的扮演者，出演日本电视台的「夜バゲット」✨🌙\n🕰️播出时间🕰️\n▶︎10月9日（周五）、10月16日（周五）25:59～\n节目中和りこ一起聊了很多很多🎸🎹\n请大家一定要收看哦⚙️\n\n佐佐木李子：我将作为Doloris／三角初华的扮演者，出演日本电视台的『夜バゲット』🌙\n#AveMujica 特辑！还会聊到电影的话题！\n和のん一起畅谈了许多⚙️\n敬请期待！\n播出时间：10月9日（周五）、10月16日（周五），周五25:59～\n#バンドリ",
     tag: "business_mjc",
     media: [
       { type: "image", src: "../images/夜法棍宣传.webp" },
@@ -3406,6 +3424,7 @@ var timelineData = [
       { type: "image", src: "../images/早稻田祭2026.webp", caption: "海报" },
       { type: "image", src: "../images/20261107-12.webp", caption: "宣传图(两个人一起去日本电视台录节目时候拍的)" },
       { type: "image", src: "../images/20261107-13.webp", caption: "宣传图(两个人一起去日本电视台录节目时候拍的)" },
+      { type: "image", src: "../images/20261107-17.webp", caption: "宣传图(两个人一起去日本电视台录节目时候拍的)" },
       { type: "image", src: "../images/20261107-01.webp" },
       { type: "image", src: "../images/20261107-02.webp" },
       { type: "image", src: "../images/20261107-03.webp" },
@@ -3572,6 +3591,137 @@ var timelineData = [
       { type: "image", src: "../images/A day-HalloweenSnap-06.webp", caption: "招募留影 SSR 海铃＆睦＆若麦「幽灵之眼」" },
       { type: "image", src: "../images/A day-HalloweenSnap-07.webp", caption: "活动奖励成员 SR 要乐奈「猫咪们的万圣节」" },
       { type: "image", src: "../images/A day-HalloweenSnap-08.webp", caption: "活动兑换留影 SR 睦＆初华「搬运、装饰」" }
+    ]
+  },
+  {
+    hash_id: "rPmzFXtUOJx",
+    date: "2025/3/25",
+    title: "高尾奏音 大学毕业 全员一同出席毕业典礼",
+    category: "personal",
+    description: "米泽茜缺席以P图形式出席\n高尾奏音：#AveMujica 的成员们特意赶到青山学院大学，为我庆祝毕业……☺️🌸\n我最喜欢的大家……！！！！！\n在大学就读期间，Mujica的大家也一直给予我力量🌙\n真的真的非常感谢🌟\n（虽然这次时间没能凑上，但茜当然也送来了祝福哦💜）\n佐佐木李子：のん，恭喜毕业💐🎓\n一直看着你努力兼顾大学学业和工作的样子，每次都深受感动……！！无论在哪个方面都不惜付出努力的のん，真的让我非常敬佩！\n其实，毕业典礼那天我们大家一起去庆祝啦！のん毕业盛装的样子耀眼夺目，实在太可爱了……！！\n能够与你相遇，我感到无比骄傲！最喜欢你了♡今后也请多多关照哦！",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20250325-1.webp" },
+      { type: "image", src: "../images/20250325-2.webp" },
+      { type: "image", src: "../images/20250325-3.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1904473101687275834", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1904473513983111239", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "JAfYV5Fz2Qx",
+    date: "2025/1/16",
+    title: "佐佐木李子 & 冈田梦以 出演 「バンドリ！TVLIVE 2025」＃247",
+    category: "organization",
+    description: "与 反田叶月 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv247-01.webp" },
+      { type: "image", src: "../images/邦tv247-02.webp" },
+      { type: "image", src: "../images/邦tv247-03.webp" },
+      { type: "image", src: "../images/邦tv247-04.webp" },
+      { type: "image", src: "../images/邦tv247-05.webp" },
+      { type: "image", src: "../images/邦tv247-06.webp" },
+      { type: "image", src: "../images/邦tv247-07.webp" },
+      { type: "image", src: "../images/邦tv247-08.webp" },
+      { type: "image", src: "../images/邦tv247-09.webp" },
+      { type: "image", src: "../images/邦tv247-10.webp" },
+      { type: "image", src: "../images/邦tv247-11.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1879933725838045469", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1880578622937071983", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/tanda_hazuki/status/1879901158334169248", title: "反田叶月 X链接" }
+    ]
+  },
+  {
+    hash_id: "1QO8Anbg91y",
+    date: "2025/1/23",
+    title: "佐佐木李子 & 渡濑结月 & 米泽茜 出演 「バンドリ！TVLIVE 2025」＃248",
+    category: "organization",
+    description: "与 小泽亚李 & 工藤晴香 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv248-01.webp", caption: "预告宣传照（实为新春大发表会）" },
+      { type: "image", src: "../images/邦tv248-02.webp", caption: "预告宣传照（实为新春大发表会）" },
+      { type: "image", src: "../images/邦tv248-03.webp", caption: "预告宣传照" },
+      { type: "image", src: "../images/邦tv248-04.webp" },
+      { type: "image", src: "../images/邦tv248-05.webp" },
+      { type: "image", src: "../images/邦tv248-06.webp" },
+      { type: "image", src: "../images/邦tv248-07.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1882452405503279142", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1882317473787400368", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1882449876220584192", title: "米泽茜 X链接" }
+    ]
+  },
+  {
+    hash_id: "HEZR4F32RnQ",
+    date: "2025/1/30",
+    title: "全员 出演 「バンドリ！TVLIVE 2025」＃249 （第3次全员BanG TV）",
+    category: "organization",
+    description: "",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv249-01.webp" },
+      { type: "image", src: "../images/邦tv249-02.webp" },
+      { type: "image", src: "../images/邦tv249-03.webp" },
+      { type: "image", src: "../images/邦tv249-04.webp" },
+      { type: "image", src: "../images/邦tv249-07.webp" },
+      { type: "image", src: "../images/邦tv249-08.webp" },
+      { type: "image", src: "../images/邦tv249-09.webp" },
+      { type: "image", src: "../images/邦tv249-10.webp" },
+      { type: "image", src: "../images/邦tv249-11.webp" },
+      { type: "image", src: "../images/邦tv249-12.webp" },
+      { type: "image", src: "../images/邦tv249-13.webp" },
+      { type: "image", src: "../images/邦tv249-14.webp" },
+      { type: "image", src: "../images/邦tv249-15.webp" },
+      { type: "image", src: "../images/邦tv249-16.webp" },
+      { type: "image", src: "../images/邦tv249-17.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1884987546595385553", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1884993683906552104", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1884974589497000097", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1885183803771281409", title: "高尾奏音 X链接②" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1884997769510924617", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1884992780658995533", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1884978295571439942", title: "米泽茜 X链接①" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1885002122024104352", title: "米泽茜 X链接②" }
+    ]
+  },
+  {
+    hash_id: "ifq20zal7ym",
+    date: "2024/10/17",
+    title: "弄李 出演 「バンドリ！発表会 For 2025」",
+    category: "personal",
+    description: "全出演人员：爱美、西本里美、进藤天音、佐佐木李子、高尾奏音\n佐佐木李子：#バンドリ発表会 来自Mujica的かのん×りこ为大家带来！\n谢谢大家🍁\nPoppin'Party和Morfonica的Live也非常精彩……今后也很期待！\n然后，#AveMujica 的新消息更是接二连三地猛烈袭来！！\n各位共犯者，跟得上吗？\n没关系，没什么好害怕的。。\n让我们一同前行吧。🌙\n高尾奏音：作为丰川祥子／Oblivionis的扮演者出演了 #バンドリ発表会 🌙🩵\n很开心能和大家一起聊聊Live的幕后故事🕊\n也请一定要看看直播回放……🎹\nTV动画「BanG Dream! #AveMujica」的新情报也公开啦🔥\n这是一部连我在演绎角色的过程中，都深深被打动的作品。\n敬请期待播出⚙️\n#バンドリ",
+    tag: "business_mjc",
+    media: [
+      { type: "image", src: "../images/20241017-1.webp" },
+      { type: "image", src: "../images/20241017-2.webp" },
+      { type: "image", src: "../images/20241017-3.webp" },
+      { type: "image", src: "../images/20241017-4.webp" },
+      { type: "image", src: "../images/20241017-5.webp" },
+      { type: "image", src: "../images/20241017-6.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1846925825607979114", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1846939821874598045", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1846925777750892863", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "ViAQokXRcyl",
+    date: "2025/2/6",
+    title: "弄李 与 立石凛 & 米泽茜 一同出演「バンドリ TV LIVE 2025」＃250",
+    category: "personal",
+    description: "高尾奏音：#バンドリTVLIVE 感谢大家的收看🕊🩵🌙\n很开心能一起回顾 #AveMujicaフリーライブ 的演出🎹\n然后……#アニメムジカ 第6集……⚙️\n大家觉得怎么样呢……？？？\n睦……祥子……爽世……呜呜呜……\n下周，请大家绝对不要移开视线。\n绝对不要。\n#バンドリ #AveMujica\n佐佐木李子：大家一起组成了TGW Group哦🕊️\n就像总是带给大家治愈与活力的爱音一样，凛酱也总能让人感到平静与安心。。♡\n还有一如既往暴走的Mujica二人组あかのん，也谢谢你们啦！！\n#バンドリTV #アニメムジカ #AveMujica #MyGO",
+    tag: "business_mjc",
+    media: [
+      { type: "image", src: "../images/20250206-1.webp" },
+      { type: "image", src: "../images/20250206-2.webp" },
+      { type: "image", src: "../images/20250206-3.webp" },
+      { type: "image", src: "../images/20250206-4.webp" },
+      { type: "image", src: "../images/20250206-5.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1887509675983446343", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/1887527096312025243", title: "佐佐木李子 X链接" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1zsAbzzEQ6", caption: "ob入侵dolo领域" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1CrArzjEK4", caption: "首次去掉弦乐纯享二人版本water感想" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1C9PHz8EL7", caption: "拉雪橇" }
     ]
   },
   {

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29",
+  "updated": "2026-11-12",
   "venues": [
     {
       "id": "nakano",
@@ -687,6 +687,32 @@
       "description": "原始演出记录仅标注 Studio，保留履历，不推测具体地理位置。",
       "source": "",
       "checked": "2026-10-29"
+    },
+    {
+      "id": "fukuoka-dome",
+      "name": "みずほPayPayドーム福岡",
+      "aliases": [
+        "みずほPayPayドーム",
+        "福岡PayPayドーム",
+        "福岡ドーム"
+      ],
+      "region": "jp",
+      "area": "福岡県 · 福冈市",
+      "lon": 130.3622,
+      "lat": 33.5953,
+      "kind": "穹顶球场",
+      "capacity": "40,029 人（官网 2026-11-01 起定员；演唱会依配置）",
+      "capacity_source": "https://www.softbankhawks.co.jp/stadium/institution.html",
+      "description": "位于福冈市中央区地行滨的开闭式屋顶球场，1993 年开馆，为福冈软银鹰主场，也承办演唱会及展览。",
+      "source": "https://www.softbankhawks.co.jp/stadium/institution.html",
+      "checked": "2026-11-12",
+      "photo": "../images/venues/fukuoka-dome.webp",
+      "photo_caption": "福冈穹顶实景（非本档案演出照片；缩放并转换为 WebP）",
+      "photo_author": "Kanesue",
+      "photo_source": "https://commons.wikimedia.org/wiki/File:Mizuho_PayPay_Dome_FUKUOKA_(55564766882).jpg",
+      "photo_license": "CC BY 4.0",
+      "photo_license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "photo_original": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Mizuho_PayPay_Dome_FUKUOKA_%2855564766882%29.jpg"
     }
   ]
 }

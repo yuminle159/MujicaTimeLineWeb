@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><base href="file:///D:/yumin/web/MujicaTimeLineWeb/live/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico">
+  <title>Live · 唯鸡百科</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="../js/font-loader.js?v=202611121628" data-font-url="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap"></script>
+  <link rel="stylesheet" href="style.css?v=202611121628">
+  <link rel="stylesheet" href="../css/venue-atlas.css?v=202611121628">
+  <link rel="stylesheet" href="../css/live-drawer.css?v=202611121628">
+  <link rel="stylesheet" href="../css/song-modal.css?v=202611121628">
+  <link rel="stylesheet" href="../css/discography-modal.css?v=202611121628">
+  <link rel="stylesheet" href="../css/interview-overlay.css?v=202611121628">
+  <link rel="stylesheet" href="../css/local-search.css?v=202611121628">
+  <link rel="stylesheet" href="../css/quick-nav.css?v=202611121628">
+  <link rel="stylesheet" href="../css/excerpt-card.css?v=202611121628">
+  <link rel="stylesheet" href="../css/emoji.css?v=202611121628">
+  <script defer src="../js/vendor/twemoji/twemoji.min.js?v=202611121628"></script>
+  <script defer src="../js/emoji.js?v=202611121628"></script>
+</head>
+<body>
+  <div class="live-page">
+    <header class="page-header">
+      <a class="back-nav" href="../index.html" aria-label="返回主页">←Home</a>
+      <h1>Live</h1>
+    </header>
+
+    <section class="upcoming-live-spotlight" id="upcomingLiveSpotlight" aria-label="即将举行的 Live" hidden></section>
+
+    <div class="filter-bar" id="liveFilterBar"></div>
+
+    <main class="gallery-container" id="gallery">
+      <div class="no-results" id="noResults" style="display:none">没有找到匹配的演唱会</div>
+    </main>
+  </div>
+
+  <!-- 数据统计浮窗（全屏） -->
+  <div id="statsOverlay" class="stats-overlay">
+    <div class="stats-header">
+      <div class="stats-title-block">
+        <div class="stats-file-id">FILE // LIVE_STATISTICS</div>
+        <h2>Live Statistics</h2>
+        <div class="stats-subtitle">PERFORMANCE RECORDS &amp; SETLIST ANALYSIS</div>
+      </div>
+      <button class="stats-close" id="statsCloseBtn" onclick="closeStats()">&times;</button>
+    </div>
+    <div class="stats-control-deck">
+      <div class="stats-filters" id="statsScopes">
+        <button class="stats-chip active" data-scope="all">ALL</button>
+        <button class="stats-chip" data-scope="one-man">ONE MAN</button>
+        <button class="stats-chip" data-scope="fes">FES</button>
+        <button class="stats-chip" data-scope="bandori">BANG DREAM!</button>
+      </div>
+      <div class="stats-tabs" id="statsTabs">
+        <button class="stats-tab active" data-view="overview">OVERVIEW</button>
+        <button class="stats-tab" data-view="evolution">SETLIST EVOLUTION</button>
+        <button class="stats-tab" data-view="compare">LIVE COMPARISON</button>
+        <button class="stats-tab" data-view="repertoire">REPERTOIRE STATUS</button>
+        <button class="stats-tab" data-view="venues">VENUE ATLAS</button>
+      </div>
+    </div>
+    <div class="stats-body" id="statsBody">
+      <div class="stats-loading">Loading statistics...</div>
+    </div>
+  </div>
+
+  <script src="../js/resource-error.js?v=202611121628"></script>
+  <script src="data.js?v=202611121628"></script>
+  <script src="../js/data-loader.js?v=202611121628"></script>
+  <script src="../js/renderMarkdown.js?v=202611121628"></script>
+  <script src="../js/overlay-manager.js?v=202611121628"></script>
+  <script src="../js/excerpt-card.js?v=202611121628"></script>
+  <script src="../js/interview-overlay.js?v=202611121628"></script>
+  <script src="../js/song-modal.js?v=202611121628"></script>
+  <script src="../js/live-drawer.js?v=202611121628"></script>
+  <script src="../js/discography-modal.js?v=202611121628"></script>
+  <script src="../js/venue-atlas-map.js?v=202611121628"></script>
+  <script src="../js/venue-atlas-data.js?v=202611121628"></script>
+  <script src="../js/venue-atlas.js?v=202611121628"></script>
+  <script src="../js/venue-atlas-map.js?v=202611121628"></script>
+  <script src="../js/venue-atlas-data.js?v=202611121628"></script>
+  <script src="../js/venue-atlas.js?v=202611121628"></script>
+  <script src="page.js?v=202611121628"></script>
+  <script src="../js/quick-nav.js?v=202611121628"></script>
+  <script src="../js/page-memory.js?v=202611121628"></script>
+  <script src="../js/image-zoom.js?v=202611121628"></script>
+<script>
+setTimeout(async()=>{try {
+ await WijipediaData.load('songs');
+ openStats();
+ await new Promise(resolve=>setTimeout(resolve,500));
+ document.querySelector('[data-view="venues"]').click();
+ const counts={};
+ for(const scope of ['all','one-man','fes','bandori']) {
+ document.querySelector('[data-scope="'+scope+'"]').click();
+ counts[scope]={metrics:document.querySelector('.va-metrics').textContent,hasFukuoka:!!document.querySelector('[data-list="jp"] [data-venue="fukuoka-dome"]')};
+ }
+ document.body.dataset.check=JSON.stringify(counts);
+}catch(e){document.body.dataset.check=e.stack}},1500);
+</script></body>
+</html>
