@@ -4536,11 +4536,13 @@ var discographyData = [
     "title_jp": "MyGO!!!!!×Ave Mujica ツーマンライブ「“moment / memory”」台北追加公演 Blu-ray",
     "release_date": "2027/1/27",
     "type": "Blu-ray",
-    "formats": [],
-    "label": "",
-    "description": "",
-    "cover": "",
-    "search_keywords": "",
+    "formats": [
+      "BLU-RAY"
+    ],
+    "label": "Bushiroad Music",
+    "description": "收录了2026年4月11日在台北・大佳河濱公園举办的BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「“moment / memory”」的映像",
+    "cover": "../images/台鸡狗2cover.webp",
+    "search_keywords": "鸡狗2 台北 bd",
     "chart": {
       "first_day_rank": "",
       "first_week_sales": "",
@@ -4550,7 +4552,42 @@ var discographyData = [
     },
     "contents": [],
     "bonus_contents": [],
-    "editions": []
+    "editions": [
+      {
+        "name": "通常盤",
+        "type": "通常盘",
+        "catalog_no": "BRMM-11100",
+        "price": "11000",
+        "cover": "../images/台鸡狗2cover.webp",
+        "cover_gallery": [],
+        "format": "Blu-ray",
+        "distribution": "一般流通",
+        "limited": "无",
+        "bonus": [
+          "LIVE写真册（全48p）",
+          "特制三面包覆封套盒",
+          "早期预约特典：“moment / memory” 台北追加公演特制A3透明海报",
+          "店铺限定特典Goods"
+        ],
+        "features": {
+          "cd": false,
+          "bluray": true,
+          "box": false,
+          "goods": false
+        },
+        "contents": [
+          {
+            "disc_no": "01",
+            "disc_type": "BLU-RAY",
+            "track_no": "01",
+            "song_name": "",
+            "content_title": "BanG Dream! Special LIVE in TAIPEI DAY1 : MyGO!!!!!×Ave Mujica「\"moment / memory\"」",
+            "duration": "",
+            "note": ""
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "电影bd",

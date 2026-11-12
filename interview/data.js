@@ -471,7 +471,7 @@ var interviewData = [
     article_path: "articles/55LIbD9ToJD.js"
   },
   {
-    poster: "../images/261111Billboard-Diggy-MO中篇-01.webp",
+    poster: "../images/261109Billboard-Diggy-MO前篇-01.webp",
     date: "2026-11-11 00:00:00",
     interviewee: "Diggy-MO'",
     title: "2026年11月 Billboard JAPAN Diggy-MO'访谈（中篇）",
