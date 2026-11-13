@@ -536,7 +536,7 @@ CAST INTERVIEW
 
 [br]
 
-本杂志原本图：
+本杂志原图：
 
 [br]
 
