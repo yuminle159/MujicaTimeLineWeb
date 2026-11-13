@@ -531,7 +531,8 @@ var timelineData = [
       { type: "image", src: "../images/邦tv212-01.webp" },
       { type: "image", src: "../images/邦tv212-02.webp" },
       { type: "image", src: "../images/邦tv212-03.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1778435557825425791", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1778435557825425791", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/邦tv212-04.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -575,7 +576,8 @@ var timelineData = [
       { type: "image", src: "../images/邦tv215-06.webp" },
       { type: "image", src: "../images/邦tv215-07.webp" },
       { type: "link", url: "https://x.com/Watase_Yuzuki/status/1788583833375519131", title: "渡濑结月 X链接" },
-      { type: "link", url: "https://x.com/sasakirico/status/1788580361351705013", title: "佐佐木李子 X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1788580361351705013", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/邦tv215-08.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -652,7 +654,9 @@ var timelineData = [
       { type: "image", src: "../images/夏大发表2024-02.webp" },
       { type: "image", src: "../images/夏大发表2024-03.webp" },
       { type: "image", src: "../images/夏大发表2024-04.webp" },
-      { type: "link", url: "https://x.com/sasakirico/status/1808862866583531792", title: "佐佐木李子 X链接" }
+      { type: "link", url: "https://x.com/sasakirico/status/1808862866583531792", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/节目20240704-01.webp", caption: "官推现场合照" },
+      { type: "image", src: "../images/节目20240704-02.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -742,7 +746,8 @@ var timelineData = [
       { type: "link", url: "https://x.com/okada_mei0519/status/1811423552492675263", title: "冈田梦以 X链接" },
       { type: "link", url: "https://x.com/AkaneY_banu/status/1811410459964424285", title: "米泽茜 X链接" },
       { type: "link", url: "https://x.com/Kanon_Takao/status/1811400298591932472", title: "高尾奏音 X链接" },
-      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1c2Jk66EHo", caption: "预告视频" }
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1c2Jk66EHo", caption: "预告视频" },
+      { type: "image", src: "../images/邦tv223-26.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -765,7 +770,8 @@ var timelineData = [
     tag: "program",
     media: [
       { type: "image", src: "../images/邦tv229-01.webp" },
-      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1826629108803272815", title: "渡濑结月 X链接" }
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1826629108803272815", title: "渡濑结月 X链接" },
+      { type: "image", src: "../images/邦tv229-02.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -819,7 +825,8 @@ var timelineData = [
       { type: "image", src: "../images/邦tv231-05.webp" },
       { type: "image", src: "../images/邦tv231-06.webp" },
       { type: "image", src: "../images/邦tv231-07.webp" },
-      { type: "link", url: "https://x.com/okada_mei0519/status/1834253894966542442", title: "冈田梦以 X链接" }
+      { type: "link", url: "https://x.com/okada_mei0519/status/1834253894966542442", title: "冈田梦以 X链接" },
+      { type: "image", src: "../images/邦tv231-08.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -876,7 +883,8 @@ var timelineData = [
       { type: "image", src: "../images/邦tv235-01.webp" },
       { type: "image", src: "../images/邦tv235-02.webp" },
       { type: "image", src: "../images/邦tv235-03.webp" },
-      { type: "link", url: "https://x.com/Kanon_Takao/status/1844390783706898776", title: "高尾奏音 X链接" }
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1844390783706898776", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/邦tv235-04.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -976,7 +984,8 @@ var timelineData = [
       { type: "image", src: "../images/邦tv243-01.webp" },
       { type: "image", src: "../images/邦tv243-02.webp" },
       { type: "image", src: "../images/邦tv243-03.webp" },
-      { type: "link", url: "https://x.com/AkaneY_banu/status/1867221048850338259", title: "米泽茜 X链接" }
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1867221048850338259", title: "米泽茜 X链接" },
+      { type: "image", src: "../images/邦tv243-04.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -1023,7 +1032,8 @@ var timelineData = [
       { type: "image", src: "../images/邦tv244-09.webp" },
       { type: "image", src: "../images/邦tv244-10.webp" },
       { type: "link", url: "https://x.com/sasakirico/status/1869755372573212914", title: "佐佐木李子 X链接" },
-      { type: "link", url: "https://x.com/okada_mei0519/status/1869758235194069298", title: "冈田梦以 X链接" }
+      { type: "link", url: "https://x.com/okada_mei0519/status/1869758235194069298", title: "冈田梦以 X链接" },
+      { type: "image", src: "../images/邦tv244-11.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -1698,9 +1708,9 @@ var timelineData = [
     ]
   },
   {
-    hash_id: "PHwlaCvpdtw",
+    hash_id: "IIuB2hHfezp",
     date: "2025/4/3",
-    title: "弄李 与 进藤天音 一同出演「バンドリ TV LIVE 2025」＃258",
+    title: "弄李 与 林鼓子 一同出演「バンドリ TV LIVE 2025」＃258",
     category: "personal",
     description: "高尾奏音：バンドリTVLIVE 感谢大家的收看🌙⚙️\n“のんここりこ”三个人在一起，情绪简直嗨到了顶点呢🌸\n只要我们三个聚在一起，就总会忍不住闹腾起来☺️\n丰川祥子的客户服务中心也……\n玩得很开心呢……！！！📞🕊️🩵笑\n\n佐佐木李子：バンドリTV 和のんここりこ一起，感谢大家的收看！\n向右看，有为我指引方向的鼓子亲\n向左看，有无论何时都会对我微笑的のん\n向前看，有角色们，还有和我们一起享受其中的各位粉丝与工作人员\n我不禁心想，我这是有多幸福啊‼️",
     tag: "business_mjc",
@@ -3253,7 +3263,13 @@ var timelineData = [
     category: "organization",
     description: "",
     tag: "program",
-    media: []
+    media: [
+      { type: "image", src: "../images/邦tv336-01.webp" },
+      { type: "image", src: "../images/邦tv336-02.webp" },
+      { type: "image", src: "../images/邦tv336-03.webp" },
+      { type: "image", src: "../images/邦tv336-04.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2110753874126713254", title: "高尾奏音 X链接" }
+    ]
   },
   {
     hash_id: "U64bj9DdVIk",
@@ -3327,7 +3343,14 @@ var timelineData = [
     category: "organization",
     description: "",
     tag: "program",
-    media: []
+    media: [
+      { type: "image", src: "../images/邦tv337-01.webp" },
+      { type: "image", src: "../images/邦tv337-02.webp" },
+      { type: "image", src: "../images/邦tv337-03.webp" },
+      { type: "image", src: "../images/邦tv337-04.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/2113285610907799904", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2113291764207620118", title: "冈田梦以 X链接" }
+    ]
   },
   {
     hash_id: "VhCZd9ulug0",
@@ -3336,7 +3359,10 @@ var timelineData = [
     category: "organization",
     description: "与 橘芽衣 & 凉泉樱花 & 林鼓子 & 菱川花菜 共同出演",
     tag: "program",
-    media: []
+    media: [
+      { type: "image", src: "../images/节目20261026-01.webp" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2114720278655971658", title: "渡濑结月 X链接" }
+    ]
   },
   {
     hash_id: "60wd2K3NSEF",
@@ -3369,7 +3395,14 @@ var timelineData = [
     category: "organization",
     description: "与 工藤晴香 & 樱川惠 & 東雲はる & 柊優花 （from 魔法少女的魔女裁判） 共同出演",
     tag: "program",
-    media: []
+    media: [
+      { type: "image", src: "../images/邦tv338-01.webp" },
+      { type: "image", src: "../images/邦tv338-02.webp" },
+      { type: "image", src: "../images/邦tv338-03.webp" },
+      { type: "image", src: "../images/邦tv338-04.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/2115817251660255715", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2115959143198793832", title: "渡濑结月 X链接" }
+    ]
   },
   {
     hash_id: "QNO0qSIQHih",
@@ -3629,7 +3662,8 @@ var timelineData = [
       { type: "image", src: "../images/邦tv247-11.webp" },
       { type: "link", url: "https://x.com/sasakirico/status/1879933725838045469", title: "佐佐木李子 X链接" },
       { type: "link", url: "https://x.com/okada_mei0519/status/1880578622937071983", title: "冈田梦以 X链接" },
-      { type: "link", url: "https://x.com/tanda_hazuki/status/1879901158334169248", title: "反田叶月 X链接" }
+      { type: "link", url: "https://x.com/tanda_hazuki/status/1879901158334169248", title: "反田叶月 X链接" },
+      { type: "image", src: "../images/邦tv247-12.webp", caption: "官推现场合照" }
     ]
   },
   {
@@ -3722,6 +3756,476 @@ var timelineData = [
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1zsAbzzEQ6", caption: "ob入侵dolo领域" },
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1CrArzjEK4", caption: "首次去掉弦乐纯享二人版本water感想" },
       { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1C9PHz8EL7", caption: "拉雪橇" }
+    ]
+  },
+  {
+    hash_id: "ssSybvoPa9x",
+    date: "2025/2/13",
+    title: "渡濑结月 & 冈田梦以 出演 「バンドリ！TVLIVE 2025」＃251",
+    category: "organization",
+    description: "与 丰田萌绘 & 西尾夕香 & 西本里美 & 樱川惠 & 小日向美香 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv251-01.webp" },
+      { type: "image", src: "../images/邦tv251-02.webp" },
+      { type: "image", src: "../images/邦tv251-03.webp" },
+      { type: "image", src: "../images/邦tv251-04.webp" },
+      { type: "image", src: "../images/邦tv251-05.webp" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1890241095998795884", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1890068005394305049", title: "冈田梦以 X链接" },
+      { type: "image", src: "../images/邦tv251-06.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "N6IMStvaZws",
+    date: "2025/2/20",
+    title: "渡濑结月 & 高尾奏音 出演 「バンドリ！TVLIVE 2025」＃252",
+    category: "organization",
+    description: "与 羊宫妃那 & 小日向美香 & 林鼓子 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv252-01.webp" },
+      { type: "image", src: "../images/邦tv252-02.webp" },
+      { type: "image", src: "../images/邦tv252-03.webp" },
+      { type: "image", src: "../images/邦tv252-04.webp" },
+      { type: "image", src: "../images/邦tv252-05.webp" },
+      { type: "image", src: "../images/邦tv252-06.webp" },
+      { type: "image", src: "../images/邦tv252-07.webp" },
+      { type: "image", src: "../images/邦tv252-08.webp" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1892584551513305272", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1892581660647985294", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1892759667392029068", title: "高尾奏音 X链接②" },
+      { type: "image", src: "../images/邦tv252-09.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "wrF7DdsaCV2",
+    date: "2025/2/27",
+    title: "渡濑结月 & 冈田梦以 & 米泽茜 出演 「バンドリ！TVLIVE 2025」＃253",
+    category: "organization",
+    description: "与 青木阳菜 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv253-01.webp" },
+      { type: "image", src: "../images/邦tv253-02.webp" },
+      { type: "image", src: "../images/邦tv253-03.webp" },
+      { type: "image", src: "../images/邦tv253-04.webp" },
+      { type: "image", src: "../images/邦tv253-05.webp" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1895126260512366795", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1895138608795001172", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1895122228829921696", title: "米泽茜 X链接" },
+      { type: "image", src: "../images/邦tv253-06.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "4TJMQtLsCrh",
+    date: "2025/3/6",
+    title: "佐佐木李子 & 渡濑结月 & 冈田梦以 出演 「バンドリ！TVLIVE 2025」＃254",
+    category: "organization",
+    description: "",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv254-01.webp" },
+      { type: "image", src: "../images/邦tv254-02.webp" },
+      { type: "image", src: "../images/邦tv254-03.webp" },
+      { type: "image", src: "../images/邦tv254-04.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1897690338288087045", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1897685146725425383", title: "冈田梦以 X链接" },
+      { type: "image", src: "../images/邦tv254-05.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "GzoOVhEdFOQ",
+    date: "2025/3/20",
+    title: "佐佐木李子 & 米泽茜 出演 「バンドリ！TVLIVE 2025」＃256",
+    category: "organization",
+    description: "与 青木阳菜 & 小日向美香 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv256-01.webp" },
+      { type: "image", src: "../images/邦tv256-02.webp" },
+      { type: "image", src: "../images/邦tv256-03.webp" },
+      { type: "image", src: "../images/邦tv256-04.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1902888807537733807", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1902758287101268258", title: "米泽茜 X链接①" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1902916921663918498", title: "米泽茜 X链接②" },
+      { type: "image", src: "../images/邦tv256-05.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "z2SC2WZkHgm",
+    date: "2025/3/27",
+    title: "全员 出演 「バンドリ！TVLIVE 2025」＃257",
+    category: "organization",
+    description: "",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv257-01.webp" },
+      { type: "image", src: "../images/邦tv257-02.webp" },
+      { type: "image", src: "../images/邦tv257-03.webp" },
+      { type: "image", src: "../images/邦tv257-04.webp" },
+      { type: "image", src: "../images/邦tv257-05.webp" },
+      { type: "image", src: "../images/邦tv257-06.webp" },
+      { type: "image", src: "../images/邦tv257-07.webp" },
+      { type: "image", src: "../images/邦tv257-08.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1905505567038472461", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1905562516308046205", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1905438994051326304", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1905462327920787871", title: "高尾奏音 X链接" },
+      { type: "image", src: "../images/邦tv257-09.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "O1X5PBXqKnc",
+    date: "2025/4/10",
+    title: "渡濑结月 & 冈田梦以 出演 「バンドリ！TVLIVE 2025」＃259",
+    category: "organization",
+    description: "与 爱美 & 青木阳菜 & 小日向美香 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv259-01.webp" },
+      { type: "image", src: "../images/邦tv259-02.webp" },
+      { type: "image", src: "../images/邦tv259-03.webp" },
+      { type: "image", src: "../images/邦tv259-04.webp" },
+      { type: "image", src: "../images/邦tv259-05.webp" },
+      { type: "image", src: "../images/邦tv259-06.webp" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1910673402437714173", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1910350132098351130", title: "冈田梦以 X链接" },
+      { type: "image", src: "../images/邦tv259-07.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "O6bOcHk1Cy3",
+    date: "2025/4/24",
+    title: "佐佐木李子 & 米泽茜 出演 「バンドリ！TVLIVE 2025」＃261",
+    category: "organization",
+    description: "与 进藤天音 & Ayasa 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv261-01.webp" },
+      { type: "image", src: "../images/邦tv261-02.webp" },
+      { type: "image", src: "../images/邦tv261-03.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1915415814829953233", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1915411902479667565", title: "米泽茜 X链接①" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1915590846197751856", title: "米泽茜 X链接②" },
+      { type: "image", src: "../images/邦tv261-04.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "N0AIg8IgfxB",
+    date: "2025/5/8",
+    title: "米泽茜 出演 「バンドリ！TVLIVE 2025」＃263",
+    category: "organization",
+    description: "与 大冢纱英 & 西本里美 & 林鼓子 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv263-01.webp" },
+      { type: "image", src: "../images/邦tv263-02.webp" },
+      { type: "image", src: "../images/邦tv263-03.webp" },
+      { type: "image", src: "../images/邦tv263-04.webp" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1920488572949287109", title: "米泽茜 X链接①" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1920490081078665404", title: "米泽茜 X链接②" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1920506091445612876", title: "米泽茜 X链接③" },
+      { type: "image", src: "../images/邦tv263-05.webp", caption: "官推现场合照" }
+    ]
+  },
+  {
+    hash_id: "DpG8Wopu8XY",
+    date: "2025/7/24",
+    title: "全员 出演 「バンドリ！TVLIVE 2025」＃274",
+    category: "organization",
+    description: "",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv274-01.webp" },
+      { type: "image", src: "../images/邦tv274-02.webp" },
+      { type: "image", src: "../images/邦tv274-03.webp" },
+      { type: "image", src: "../images/邦tv274-04.webp" },
+      { type: "image", src: "../images/邦tv274-05.webp" },
+      { type: "image", src: "../images/邦tv274-06.webp" },
+      { type: "image", src: "../images/邦tv274-07.webp" },
+      { type: "image", src: "../images/邦tv274-08.webp" },
+      { type: "image", src: "../images/邦tv274-09.webp" },
+      { type: "image", src: "../images/邦tv274-10.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/1948389807081816226", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1948393075556110747", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1948400475742646298", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1948365956033769869", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1948392043786748056", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1948388562707349863", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1948393706127790513", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "hQuHrYXNz0m",
+    date: "2025/7/31",
+    title: "佐佐木李子 & 渡濑结月 & 米泽茜 出演 「バンドリ！TVLIVE 2025」＃275",
+    category: "organization",
+    description: "与 青木阳菜 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv275-01.webp" },
+      { type: "image", src: "../images/邦tv275-02.webp" },
+      { type: "image", src: "../images/邦tv275-03.webp" },
+      { type: "image", src: "../images/邦tv275-04.webp" },
+      { type: "image", src: "../images/邦tv275-05.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/1950931067260531025", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1950931848315515054", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1950938510006898800", title: "米泽茜 X链接" }
+    ]
+  },
+  {
+    hash_id: "AGCnCgk6W38",
+    date: "2025/8/14",
+    title: "佐佐木李子 出演 バンドリ！夏の発表会2025",
+    category: "organization",
+    description: "与 爱美 & 相羽爱奈 & mika & Raychell & 青木阳菜 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/节目20250814-01.webp" },
+      { type: "image", src: "../images/节目20250814-02.webp" },
+      { type: "image", src: "../images/节目20250814-03.webp" },
+      { type: "image", src: "../images/节目20250814-04.webp" },
+      { type: "image", src: "../images/节目20250814-05.webp", caption: "官推现场合照" },
+      { type: "image", src: "../images/节目20250814-06.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/1956002437749465581", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "pygeKGL82dt",
+    date: "2025/8/21",
+    title: "高尾奏音 出演 「バンドリ！TVLIVE 2025」＃277",
+    category: "organization",
+    description: "与 青木阳菜 & 峰月律 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv277-01.webp" },
+      { type: "image", src: "../images/邦tv277-02.webp" },
+      { type: "image", src: "../images/邦tv277-03.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1958537333818708038", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "oLB8MmgbgVP",
+    date: "2025/10/16",
+    title: "高尾奏音 出演 「バンドリ！TVLIVE 2025」＃285",
+    category: "organization",
+    description: "与 三泽纱千香 & 立石凛 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv285-01.webp" },
+      { type: "image", src: "../images/邦tv285-02.webp" },
+      { type: "image", src: "../images/邦tv285-03.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1978837887266238469", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "vuSMohyiap7",
+    date: "2025/10/30",
+    title: "米泽茜 出演 「バンドリ！TVLIVE 2025」＃287",
+    category: "organization",
+    description: "与 吉田有里 & 仲町阿拉蕾 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv287-01.webp" },
+      { type: "image", src: "../images/邦tv287-02.webp" },
+      { type: "image", src: "../images/邦tv287-03.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1983909171444773195", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1984099713344532874", title: "米泽茜 X链接" }
+    ]
+  },
+  {
+    hash_id: "WzfZ8ZzmbG3",
+    date: "2025/12/4",
+    title: "冈田梦以 出演 「バンドリ！TVLIVE 2025」＃292",
+    category: "organization",
+    description: "与 Raychell & 纺木吏佐 & 青木阳菜 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv292-01.webp" },
+      { type: "image", src: "../images/邦tv292-02.webp" },
+      { type: "image", src: "../images/邦tv292-03.webp" },
+      { type: "image", src: "../images/邦tv292-04.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1996601792889823486", title: "冈田梦以 X链接" }
+    ]
+  },
+  {
+    hash_id: "D3HCKTpXajF",
+    date: "2025/12/11",
+    title: "佐佐木李子 出演 「バンドリ！TVLIVE 2025」＃293",
+    category: "organization",
+    description: "与 仓知玲凤 & 立石凛 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv293-01.webp" },
+      { type: "image", src: "../images/邦tv293-02.webp" },
+      { type: "image", src: "../images/邦tv293-03.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/1999127503844356180", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "GCXmibW6K9c",
+    date: "2026/1/22",
+    title: "佐佐木李子 & 渡濑结月 & 米泽茜 出演 「バンドリ！TVLIVE 2026」＃298",
+    category: "organization",
+    description: "",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv298-01.webp" },
+      { type: "image", src: "../images/邦tv298-02.webp" },
+      { type: "image", src: "../images/邦tv298-03.webp" },
+      { type: "image", src: "../images/邦tv298-04.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/2014345789502525824", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2014346181321933241", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2014350328309965144", title: "米泽茜 X链接" }
+    ]
+  },
+  {
+    hash_id: "a2mG2NE1mOi",
+    date: "2026/2/26",
+    title: "高尾奏音 出演 「バンドリ！TVLIVE 2026」＃303",
+    category: "organization",
+    description: "与 大桥彩香 & mika & 纺木吏佐 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv303-01.webp" },
+      { type: "image", src: "../images/邦tv303-02.webp" },
+      { type: "image", src: "../images/邦tv303-03.webp" },
+      { type: "image", src: "../images/邦tv303-04.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2027040181564645652", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "wFUHXbxg0p6",
+    date: "2026/3/5",
+    title: "米泽茜 出演 「バンドリ！TVLIVE 2026」＃304",
+    category: "organization",
+    description: "与 西尾夕香 & 青木阳菜 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv304-01.webp" },
+      { type: "image", src: "../images/邦tv304-02.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2029565186827591843", title: "米泽茜 X链接" }
+    ]
+  },
+  {
+    hash_id: "H7V7QgGipsQ",
+    date: "2026/3/12",
+    title: "渡濑结月 出演 「バンドリ！TVLIVE 2026」＃305",
+    category: "organization",
+    description: "与 大桥彩香 & mika & 立石凛 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv305-01.webp" },
+      { type: "image", src: "../images/邦tv305-02.webp" },
+      { type: "image", src: "../images/邦tv305-03.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2032104214508552234", title: "渡濑结月 X链接" }
+    ]
+  },
+  {
+    hash_id: "QxIMuwwzrKB",
+    date: "2026/4/2",
+    title: "佐佐木李子 出演 「バンドリ！TVLIVE 2026」＃308",
+    category: "organization",
+    description: "与 丰田萌绘 & 仲町阿拉蕾 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv308-01.webp" },
+      { type: "image", src: "../images/邦tv308-02.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/2039711330345820433", title: "佐佐木李子 X链接" }
+    ]
+  },
+  {
+    hash_id: "TMfmtboUbLd",
+    date: "2026/4/9",
+    title: "佐佐木李子 & 冈田梦以 出演 「バンドリ！TVLIVE 2026」＃309",
+    category: "organization",
+    description: "与 相羽爱奈 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv309-01.webp" },
+      { type: "image", src: "../images/邦tv309-02.webp" },
+      { type: "image", src: "../images/邦tv309-03.webp" },
+      { type: "image", src: "../images/邦tv309-04.webp" },
+      { type: "image", src: "../images/邦tv309-05.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/2042252283573113304", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2042262832402849874", title: "冈田梦以 X链接" }
+    ]
+  },
+  {
+    hash_id: "ovGo2sI4v4v",
+    date: "2026/6/11",
+    title: "佐佐木李子 & 冈田梦以 出演 「バンドリ！TVLIVE 2026」＃318",
+    category: "organization",
+    description: "与 Raychell & 纺木吏佐 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv318-01.webp" },
+      { type: "image", src: "../images/邦tv318-02.webp" },
+      { type: "image", src: "../images/邦tv318-03.webp" },
+      { type: "image", src: "../images/邦tv318-04.webp" },
+      { type: "image", src: "../images/邦tv318-05.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/sasakirico/status/2065082623148609783", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2065088042852036830", title: "冈田梦以 X链接" }
+    ]
+  },
+  {
+    hash_id: "UxJQPyVC0Id",
+    date: "2026/6/25",
+    title: "渡濑结月 & 米泽茜 出演 「バンドリ！TVLIVE 2026」＃320",
+    category: "organization",
+    description: "与 中上育实 & 宫永野乃花 & 千石由乃 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv320-01.webp" },
+      { type: "image", src: "../images/邦tv320-02.webp" },
+      { type: "image", src: "../images/邦tv320-03.webp" },
+      { type: "image", src: "../images/邦tv320-04.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2070157873209061862", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2070157187503325332", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2070158102901768294", title: "米泽茜 X链接" }
+    ]
+  },
+  {
+    hash_id: "Utv1qEuw3Ph",
+    date: "2026/9/24",
+    title: "冈田梦以 出演 「バンドリ！TVLIVE 2026」＃333",
+    category: "organization",
+    description: "与 直田姬奈 & mika & Ayasa & 林鼓子 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/邦tv333-01.webp" },
+      { type: "image", src: "../images/邦tv333-02.webp" },
+      { type: "image", src: "../images/邦tv333-03.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2103144588957675732", title: "冈田梦以 X链接" }
+    ]
+  },
+  {
+    hash_id: "uerYVvGqGeW",
+    date: "2026/9/13",
+    title: "渡濑结月 出演 「バンドリ！アワーノーツ」リリース日決定特番",
+    category: "organization",
+    description: "与 羊宫妃那 & 宫永野乃花 & 结川麻希 & 菱川花菜 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/节目20260913-01.webp" },
+      { type: "image", src: "../images/节目20260913-02.webp" },
+      { type: "image", src: "../images/节目20260913-03.webp" },
+      { type: "image", src: "../images/节目20260913-04.webp" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2099151000162766867", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2099259552432898272", title: "渡濑结月 X链接" }
+    ]
+  },
+  {
+    hash_id: "PP5eeMNVsdR",
+    date: "2026/9/21",
+    title: "佐佐木李子 出演 「バンドリ！アワーノーツ」リリース直前グローバル特番",
+    category: "organization",
+    description: "与 羊宫妃那 & 仲町阿拉蕾 & 药师寺李有 & 橘芽衣 共同出演",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/节目20260921-01.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2102228738910154796", title: "佐佐木李子 X链接" }
     ]
   },
   {

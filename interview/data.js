@@ -153,7 +153,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "B0F4USdjUL8",
     sections: [{"id": "section-01", "title": "Ave Mujica给世界带来的冲击，以及粉丝的反应与回响"}, {"id": "section-02", "title": "“破坏”与“创造”——象征乐队故事与多面性的新曲们"}, {"id": "section-03", "title": "以角色身份进行舞台表现时，各自所注重的方面"}, {"id": "section-04", "title": "1st LIVE、配信单曲，永不停息燃烧着的Ave Mujica之火"}, {"id": "section-05", "title": "在乐队活动中各自找到的挑战与成就感"}, {"id": "section-06", "title": "终有一天走向世界！2nd LIVE，以及通往更远未来的Ave Mujica野心"}],
-    related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：冈田梦以、渡濑结月"}, {"id": "b3R0inuR9IR", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "w3TAg0dpUjX", "reason": "共同受访者：冈田梦以、米泽茜"}],
+    related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：冈田梦以、渡濑结月"}, {"id": "YVI5sCAKAiJ", "reason": "共同受访者：冈田梦以、渡濑结月"}, {"id": "b3R0inuR9IR", "reason": "共同受访者：冈田梦以、米泽茜"}],
     previous_id: "ZiWd1iURLsj",
     next_id: "jqNjeOrIDQb",
     article_path: "articles/B0F4USdjUL8.js"
@@ -244,7 +244,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "EGHiOMHcXyX",
     sections: [{"id": "section-01", "title": "「リスパレ！」力荐 Ave Mujica 的理由是什么？"}, {"id": "section-02", "title": "回顾那场伴随震撼惊喜一同呈现的4th LIVE"}, {"id": "section-03", "title": "聊聊热门OP「KiLLKiSS」与动画配音的幕后故事！"}, {"id": "section-04", "title": "也请留意歌词！让人直到最后都沉浸于动画世界的ED"}, {"id": "section-05", "title": "假如Ave Mujica要推出自己的专属广播节目的话……？"}],
-    related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：渡濑结月、高尾奏音"}, {"id": "tLoc6uej4kx", "reason": "共同受访者：渡濑结月"}, {"id": "qDzrFr9bmoq", "reason": "共同受访者：高尾奏音"}],
+    related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：渡濑结月、高尾奏音"}, {"id": "YVI5sCAKAiJ", "reason": "共同受访者：渡濑结月、高尾奏音"}, {"id": "tLoc6uej4kx", "reason": "共同受访者：渡濑结月"}],
     previous_id: "wlMKzDwspiJ",
     next_id: "BE9kJEFFOW6",
     article_path: "articles/EGHiOMHcXyX.js"
@@ -322,7 +322,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "f5ckErYJPuS",
     sections: [],
-    related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "m58tZySEck6", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
+    related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "RVUjb3gBhhx", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
     previous_id: "VsrmlhE1P27",
     next_id: "gUsOq9umi6w",
     article_path: "articles/f5ckErYJPuS.js"
@@ -400,7 +400,7 @@ var interviewData = [
     if_translated: "no",
     hash_id: "w3TAg0dpUjX",
     sections: [{"id": "section-01", "title": "「最初听到‘成为神’时，我满脑子都是疑问」（高尾）"}, {"id": "section-02", "title": "「这首歌的BPM可是200啊」（冈田）"}, {"id": "section-03", "title": "「我们会呈现音乐节版本的Mujica！」（米泽）"}],
-    related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "b3R0inuR9IR", "reason": "共同受访者：冈田梦以、米泽茜"}],
+    related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "YVI5sCAKAiJ", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：冈田梦以、米泽茜"}],
     previous_id: "DhvrDXRrWlS",
     next_id: "hloIGz0UBX8",
     article_path: "articles/w3TAg0dpUjX.js"
@@ -413,7 +413,7 @@ var interviewData = [
     if_translated: "no",
     hash_id: "2KtTbpuZnmj",
     sections: [{"id": "section-01", "title": "奇迹般的成员相聚而成的乐队＝Ave Mujica"}, {"id": "section-02", "title": "「‘S/’ The Way」给人的印象是劈开道路，不断前行"}, {"id": "section-03", "title": "「这不是歌，而是灵魂的呐喊」――Ave Mujica的新境界「Sophie」"}, {"id": "section-04", "title": "6th LIVE是“不做好觉悟就无法观看、无法聆听”的演出"}],
-    related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、米泽茜"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子"}],
+    related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：佐佐木李子、米泽茜"}, {"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、米泽茜"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子"}],
     previous_id: "MYRb5diekKM",
     next_id: "eoCADeAXqYd",
     article_path: "articles/2KtTbpuZnmj.js"
@@ -426,7 +426,7 @@ var interviewData = [
     if_translated: "no",
     hash_id: "VsrmlhE1P27",
     sections: [{"id": "section-01", "title": "寄宿于每一首歌曲中的记忆与爱"}, {"id": "section-02", "title": "新曲「The Whole Blue World」中“共同坠落的美”"}, {"id": "section-03", "title": "走向不可预测的“Exitus”前方"}, {"id": "section-04", "title": "因「Imprisoned XII」而重新浮现的历程"}],
-    related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "2KtTbpuZnmj", "reason": "共同受访者：佐佐木李子"}, {"id": "n7j1fu7Aamc", "reason": "共同受访者：佐佐木李子"}],
+    related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "2KtTbpuZnmj", "reason": "共同受访者：佐佐木李子"}],
     previous_id: "hHvY1EWykhY",
     next_id: "f5ckErYJPuS",
     article_path: "articles/VsrmlhE1P27.js"
@@ -452,7 +452,7 @@ var interviewData = [
     if_translated: "no",
     hash_id: "YVI5sCAKAiJ",
     sections: [{"id": "section-01", "title": "CAST INTERVIEW 冈田梦以 x 米泽茜"}, {"id": "section-02", "title": "STAFF INTERVIEW 监督 柿本广大"}, {"id": "section-03", "title": "CAST INTERVIEW 高尾奏音"}, {"id": "section-04", "title": "CAST INTERVIEW 佐佐木李子"}, {"id": "section-05", "title": "CAST INTERVIEW 渡濑结月"}],
-    related: [{"id": "w3TAg0dpUjX", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：冈田梦以、渡濑结月"}, {"id": "f5ckErYJPuS", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
+    related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "w3TAg0dpUjX", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：冈田梦以、渡濑结月"}],
     previous_id: "b3R0inuR9IR",
     next_id: "55LIbD9ToJD",
     article_path: "articles/YVI5sCAKAiJ.js"
@@ -467,7 +467,7 @@ var interviewData = [
     sections: [{"id": "section-01", "title": "明确的愿景"}, {"id": "section-02", "title": "选择华丽礼服风格的首要原因，是“轮廓”"}, {"id": "section-03", "title": "创作中重要的“连接”"}, {"id": "section-04", "title": "人生的关键，是内心的兴奋与信念"}],
     related: [{"id": "M0XtVDMJWxX", "reason": "同系列"}, {"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}],
     previous_id: "YVI5sCAKAiJ",
-    next_id: "M0XtVDMJWxX",
+    next_id: "RVUjb3gBhhx",
     article_path: "articles/55LIbD9ToJD.js"
   },
   {
@@ -479,8 +479,21 @@ var interviewData = [
     hash_id: "M0XtVDMJWxX",
     sections: [{"id": "section-01", "title": "成为挣脱种种束缚的契机"}, {"id": "section-02", "title": "超越以往 Ave Mujica 的全新震撼——「神の名を」"}, {"id": "section-03", "title": "不只要“唱得好”，还要“让人着迷”"}, {"id": "section-04", "title": "小时候，我们相信能把想象变成现实"}],
     related: [{"id": "55LIbD9ToJD", "reason": "同系列"}, {"id": "1UhshAZcpdF", "reason": "共同受访者：Diggy-MO'"}, {"id": "vg0aUAR0CnH", "reason": "共同受访者：Diggy-MO'"}],
-    previous_id: "55LIbD9ToJD",
+    previous_id: "RVUjb3gBhhx",
     next_id: "",
     article_path: "articles/M0XtVDMJWxX.js"
+  },
+  {
+    poster: "../images/galleryless/animedia202612月刊cover.webp",
+    date: "2026-11-10 00:00:00",
+    interviewee: "渡濑结月 x 高尾奏音、佐佐木李子 x 冈田梦以、米泽茜、柿本广大",
+    title: "Animedia 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
+    if_translated: "no",
+    hash_id: "RVUjb3gBhhx",
+    sections: [{"id": "section-01", "title": "Cast Interview 高尾奏音 x 渡濑结月"}, {"id": "section-02", "title": "Cast Interview 佐佐木李子"}, {"id": "section-03", "title": "Cast Interview 冈田梦以"}, {"id": "section-04", "title": "Cast Interview 米泽茜"}, {"id": "section-05", "title": "Cast Interview 佐佐木李子 x 冈田梦以 「作为 Ave Mujica 的觉悟」"}, {"id": "section-06", "title": "Special Comment 监督 & 音响监督 柿本广大"}],
+    related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：冈田梦以、渡濑结月"}, {"id": "w3TAg0dpUjX", "reason": "共同受访者：冈田梦以、米泽茜"}],
+    previous_id: "55LIbD9ToJD",
+    next_id: "M0XtVDMJWxX",
+    article_path: "articles/RVUjb3gBhhx.js"
   }
 ];
