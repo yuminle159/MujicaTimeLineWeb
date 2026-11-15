@@ -1,6 +1,28 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-15",
   "venues": [
+    {
+      "id": "duo-music-exchange",
+      "name": "duo MUSIC EXCHANGE",
+      "aliases": ["デュオ・ミュージック・エクスチェンジ", "渋谷duo MUSIC EXCHANGE"],
+      "region": "jp",
+      "area": "東京都 · 涩谷区",
+      "lon": 139.695485,
+      "lat": 35.658534,
+      "kind": "Live House",
+      "capacity": "站席 700 人；坐席 1 层约 260 席、中 2 层 60 席（依舞台配置可能有视线受限席）",
+      "capacity_source": "https://www.duomusicexchange.com/information/equipment-pdf/duo%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84250826.pdf",
+      "description": "位于涩谷道玄坂 O-EAST 大楼 1 层的 Live House，设主层与中 2 层观众区域，可采用站席或坐席布局。",
+      "source": "https://www.duomusicexchange.com/access/index.html",
+      "checked": "2026-11-15",
+      "photo": "../images/venues/duo-music-exchange.webp",
+      "photo_caption": "duo MUSIC EXCHANGE 场内舞台（官网设施照片，非本档案演出照片）",
+      "photo_author": "duo MUSIC EXCHANGE（官网提供，摄影者未署名）",
+      "photo_source": "https://www.duomusicexchange.com/information/",
+      "photo_license": "官方图片，版权归原权利人所有",
+      "photo_license_url": "https://www.duomusicexchange.com/information/",
+      "photo_original": "https://www.duomusicexchange.com/information/img/duo-stage-01.jpg"
+    },
     {
       "id": "nakano",
       "name": "中野サンプラザホール",

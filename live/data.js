@@ -799,5 +799,19 @@ var livesData = [
     for_short: "ASL福冈2027",
     setlist: [],
     backstage: []
+  },
+  {
+    name: "Ave Mujica 4th single リリース記念ライブ「Anima Incorrupta」",
+    hash_id: "lUkSmDeJcrU",
+    date: "2027/2/27",
+    venue: "duo MUSIC EXCHANGE",
+    tag: "",
+    poster: "",
+    kv: "",
+    video_url: "",
+    description: "",
+    for_short: "",
+    setlist: [],
+    backstage: []
   }
 ];

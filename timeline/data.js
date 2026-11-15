@@ -4229,6 +4229,580 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "AT0bzmmBmnu",
+    date: "2027/1/27",
+    title: "Ave Mujica 4th Single 发售",
+    category: "organization",
+    description: "",
+    tag: "album",
+    media: []
+  },
+  {
+    hash_id: "yos9ujuUwEX",
+    date: "2027/2/27",
+    title: "Ave Mujica 4th single リリース記念ライブ「Anima Incorrupta」",
+    category: "organization",
+    description: "「纯粹的灵魂」",
+    tag: "oml",
+    media: []
+  },
+  {
+    hash_id: "NhFNsgxpPhR",
+    date: "2026/11/10",
+    title: "佐佐木李子生日",
+    category: "personal",
+    description: "佐佐木李子：2026/11/10 迎来了自己的生日🎂\n新的一年，就从为大家带来新的歌声开始吧。。🎶\n一直以来谢谢大家！最喜欢你们啦——！！\n佐佐木李子\n回复|高尾奏音：りこぉぉぉぉぉ！生日快乐☺️✨🎂\n你的歌声也好，你的人品也好，一切的一切我都喜欢得不得了🕊️\n一直以来真的非常感谢你！\n我已经施下魔法，让りこ今后能遇到许许多多幸福的事情啦🧚🪄\n回复|佐佐木李子：我被施了魔法……🪄\nのん一直以来谢谢你！这样一来，这一年就可以安心了☺️\n今后也要长长久久地在一起哦！！",
+    tag: "private",
+    media: [
+      { type: "link", url: "https://x.com/sasakirico/status/2119977690786918594", title: "佐佐木李子 X链接" },
+      { type: "image", src: "../images/20261110-01.webp" }
+    ]
+  },
+  {
+    hash_id: "letaSfiE9qW",
+    date: "2026/11/10",
+    title: "全员在佐佐木李子生日当天去三丽鸥乐园游玩",
+    category: "personal",
+    description: "佐佐木李子：噗噗噗，布丁布丁\n我是布丁！🍮🐶💛\n高尾奏音：噗噗噗，布丁布丁🍮🐶💛\n佐佐木李子：大家一起去三丽鸥彩虹乐园玩啦🍮\nMujica内部最近也流行起了「ポムポムビート☆」，之前大家就一直说好想去，这次终于成行了，真的好开心！！而且还是生日当天！感动得想哭。\n除了布丁狗，我也很喜欢周围那些🐹小小的生命🐿️……\n下次一定要五个人聚齐哦🫶也想和ゆづ一起跳舞跳个通宵！\n译注：「ポムポムビート☆」布丁狗的一首曲子\n高尾奏音：和Mujica的大家一起去三丽鸥彩虹乐园啦🍮🌙\n（这次ゆづ因为工作没能来，下次一定要五个人一起再挑战一次！😭💚）\n最近，Mujica内部实在是太流行「ポムポムビート☆」了☺️",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20261111-05.webp" },
+      { type: "image", src: "../images/20261111-01.webp" },
+      { type: "image", src: "../images/20261111-02.webp" },
+      { type: "image", src: "../images/20261111-03.webp" },
+      { type: "image", src: "../images/20261111-04.webp" },
+      { type: "image", src: "../images/20261111-06.webp" },
+      { type: "image", src: "../images/20261111-07.webp" },
+      { type: "image", src: "../images/20261111-08.webp" },
+      { type: "image", src: "../images/20261111-09.webp" },
+      { type: "image", src: "../images/20261111-10.webp" },
+      { type: "image", src: "../images/20261111-11.webp" },
+      { type: "image", src: "../images/20261111-12.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2120357688504991879", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2120417435014832167", title: "高尾奏音 X链接②" },
+      { type: "link", url: "https://x.com/sasakirico/status/2120375131818344856", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/2120413912143376491", title: "佐佐木李子 X链接②" }
+    ]
+  },
+  {
+    hash_id: "ItXgTZiNd5V",
+    date: "2026/11/14",
+    title: "弄李就乘坐电梯进行互动",
+    category: "personal",
+    description: "佐佐木李子：要乘上来吗？\n回复|高尾奏音：要乘！\n回复|佐佐木李子：来吧🤝只会往上走哦\n回复|高尾奏音：我会一直跟着你，直到宇宙尽头🪐🤝",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20261114-01.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2121578287545917900", title: "高尾奏音 X链接" }
+    ]
+  },
+  {
+    hash_id: "9o7t6QSlRXI",
+    date: "2026/10/16",
+    title: "SCREENα vol.10 发售",
+    category: "organization",
+    description: "电影『BanG Dream! Ave Mujica prima aurora』卷首特集：佐佐木李子×高尾奏音对谈、制作人员访谈及角色关系图；封面为 Doloris 新绘插图。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1016SCREENαvol.10.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2111044307469926488", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "Pd8iKDJTI1l",
+    date: "2026/10/30",
+    title: "メガミマガジン 2026年12月号 发售",
+    category: "organization",
+    description: "电影『BanG Dream! Ave Mujica prima aurora』特集：冈田梦以×米泽茜对谈，以及佐佐木李子、渡濑结月、高尾奏音和柿本广大导演访谈；附若叶睦新绘大海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1030メガミマガジン12月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2116138050602578199", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "6GpznxWbXrJ",
+    date: "2026/11/10",
+    title: "アニメージュ 2026年12月号 发售",
+    category: "organization",
+    description: "电影『BanG Dream! Ave Mujica prima aurora』特集：佐佐木李子×冈田梦以对谈及柿本广大导演寄语，介绍配音、录音与动画制作幕后。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1110アニメージュ12月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2119980944270737673", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "0RAFOVwG7Ls",
+    date: "2026/11/10",
+    title: "アニメディア 2026年12月号 发售",
+    category: "organization",
+    description: "电影『BanG Dream! Ave Mujica prima aurora』特集：高尾奏音×渡濑结月对谈，以及佐佐木李子、冈田梦以、米泽茜访谈，介绍电影看点与乐曲；封底为 Oblivionis 新绘插图，附同图海报及 BanG Dream! 系列插图照片卡。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1110アニメディア12月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2120064069940219954", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "n7iOnb6LpPA",
+    date: "2026/7/31",
+    title: "全国バンド図鑑 vol.23 2026年下半期版 发行",
+    category: "organization",
+    description: "收录 Ave Mujica 乐队资料，与其他 BanG Dream! 乐队共同刊载。免费刊物，在日本各地 CD 店及 Village Vanguard 等门店配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0731全国バンド図鑑vol.23下半期.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2100479869033632004", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "ObzaWXyUyQA",
+    date: "2026/1/23",
+    title: "サウンド＆レコーディング・マガジン 2026年3月号 发售",
+    category: "organization",
+    description: "「コンサート見聞録」报道 Ave Mujica 6th LIVE「Ulterius Procedere」东京国际论坛 Hall A 公演，从现场音响角度介绍演出声音的制作，收录 PA 工程师评论及成员使用乐器的照片。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0123サウンド＆レコーディング・マガジン3月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2013481610633715765", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "odwxf8FHFhN",
+    date: "2026/1/31",
+    title: "全国バンド図鑑 vol.22 2026年上半期版 发行",
+    category: "organization",
+    description: "收录 Ave Mujica 乐队资料，与其他 BanG Dream! 乐队共同刊载。免费刊物，在日本各地 CD 店及 Village Vanguard 等门店配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0131全国バンド図鑑vol.22上半期.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2019229494062567530", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "u4QChGYsmKS",
+    date: "2026/3/16",
+    title: "リズム＆ドラム・マガジン 2026年4月号 发售",
+    category: "organization",
+    description: "Ave Mujica 鼓手米泽茜作为七位女性鼓手之一登上封面，并参与重型音乐鼓手特集，分享演奏风格的形成、鼓技核心及今后的课题与展望。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0316リズム＆ドラム・マガジン4月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2033470460093223243", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "WgbHwezBR5N",
+    date: "2025/10/30",
+    title: "ROCKIN’ON JAPAN 2025年12月号 发售",
+    category: "organization",
+    description: "附册 RIJF2025 收录 Ave Mujica 在 ROCK IN JAPAN FESTIVAL 2025 的演出内容。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1030ROCKIN’ONJAPAN12月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1983828724765147266", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "q0klsV6FVaR",
+    date: "2025/12/10",
+    title: "激ロック 2025年12月号 发行",
+    category: "organization",
+    description: "刊载 Ave Mujica 第三张单曲「‘S/’ The Way / Sophie」特集，介绍乐队的新篇章与乐曲。免费刊物，12 月 10 日发行，约 10～15 日起在各地陆续配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1210激ロック12月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1997931763633631654", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "s7UXn9X53Cp",
+    date: "2025/12/25",
+    title: "サウンド＆レコーディング・マガジン 2026年2月号 发售",
+    category: "organization",
+    description: "封面及卷首特集聚焦源自 Ave Mujica 的歌声数据库「夢ノ結唱 AVER」：AVER 新绘插图与佐佐木李子共同登上封面，收录李子、相关制作人、Synthesizer V 开发者及 Diggy-MO’ 的访谈。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1225サウンド＆レコーディング・マガジン2月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2004109808086274127", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "F00UQS5zUqT",
+    date: "2025/7/31",
+    title: "全国バンド図鑑 vol.21 2025年下半期版 发行",
+    category: "organization",
+    description: "收录 Ave Mujica 乐队资料，与其他 BanG Dream! 乐队共同刊载。免费刊物，在日本各地 CD 店及 Village Vanguard 等门店配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0731全国バンド図鑑vol.21下半期.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1957691501015888126", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "Dzbi4kuThzY",
+    date: "2025/5/30",
+    title: "ROCKIN’ON JAPAN 2025年7月号 发售",
+    category: "organization",
+    description: "附册「JAPAN JAM 2025 メモリアルブック」收录 Ave Mujica 在 JAPAN JAM 2025 的演出照片、报道及曲目单。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0530ROCKIN’ONJAPAN7月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1931576923877986310", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "iB4JmFEuMHN",
+    date: "2025/5/29",
+    title: "メガミマガジンデラックス vol.41 发售",
+    category: "organization",
+    description: "再录《メガミマガジン》等刊物曾刊载的 TV 动画「BanG Dream! Ave Mujica」插图，同时收录「It’s MyGO!!!!!」相关插图。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0529メガミマガジンデラックスvol.41.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1930902873518576114", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "BilFYi15ddX",
+    date: "2025/5/25",
+    title: "MC（ミューズクリップ）2025年5月25日号 发行",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」Blu-ray 登上封面，收录 Ave Mujica 五位成员的寄语。免费信息刊，在 CD 销售店、家电量贩店等配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0525MCミューズクリップ5月25日号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1924782152199094452", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "ZUdnITRvMlo",
+    date: "2025/4/30",
+    title: "メガミマガジン 2025年6月号 发售",
+    category: "organization",
+    description: "收录 TV 动画「BanG Dream! Ave Mujica」八幡海铃的新绘插页海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0430メガミマガジン6月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1917504322415517830", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "h9b0SoyZdQn",
+    date: "2025/4/10",
+    title: "激ロック 2025年4月号 发行",
+    category: "organization",
+    description: "刊载 Ave Mujica 特集专栏，介绍首张专辑「Completeness」的收录乐曲。免费刊物，4 月 10 日发行，约 10～15 日起在各地陆续配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0410激ロック4月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1910643469439398281", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "SQ18agyt11Q",
+    date: "2025/4/10",
+    title: "アニメージュ 2025年5月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」特集，收录佐佐木李子访谈，回顾迎来结局的动画。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0410アニメージュ5月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1910255299971457482", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "qaxEMVDuRa4",
+    date: "2025/4/10",
+    title: "アニメディア 2025年5月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」完结特集，收录出演声优访谈、柿本广大导演的分集解说及新绘插页海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0410アニメディア5月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1910173390712811555", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "lpY26vIkMTY",
+    date: "2025/3/28",
+    title: "メガミマガジン 2025年5月号 发售",
+    category: "organization",
+    description: "收录柿本广大导演的长篇访谈，谈及 TV 动画「BanG Dream! Ave Mujica」直至最终话的内容；附丰川祥子新绘大海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0328メガミマガジン5月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1905542197828555260", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "5LIdVEFOESj",
+    date: "2025/3/10",
+    title: "アニメージュ 2025年4月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」特集，收录佐佐木李子、冈田梦以、米泽茜的访谈。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0310アニメージュ4月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1899009858642579854", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "3QfLYdL8HWJ",
+    date: "2025/3/10",
+    title: "アニメディア 2025年4月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」封面及卷首特集，收录出演声优、柿本广大导演与 Diggy-MO’ 的访谈，附三次元制作的新绘海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0310アニメディア4月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1898992215462187287", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "GECF8FJApCA",
+    date: "2025/2/28",
+    title: "メガミマガジン 2025年4月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」封面及卷首特集，收录柿本广大导演访谈，以及渡濑结月、高尾奏音、小日向美香的座谈；封面为若叶睦与长崎素世的新绘插图。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0228メガミマガジン4月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1897195383610302471", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "fgpbdUV8aRf",
+    date: "2025/2/10",
+    title: "ニュータイプ 2025年3月号 发售",
+    category: "organization",
+    description: "收录 TV 动画「BanG Dream! Ave Mujica」看点介绍及高尾奏音访谈。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0210ニュータイプ3月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1888853083624788106", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "leYuu5NozgY",
+    date: "2025/2/10",
+    title: "アニメディア 2025年3月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」特集，收录冈田梦以与林鼓子的对谈，以及新绘插页海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0210アニメディア3月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1888830255340937399", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "HnyxoS2zAB1",
+    date: "2025/1/31",
+    title: "全国バンド図鑑 vol.20 2025年上半期版 发行",
+    category: "organization",
+    description: "收录 Ave Mujica 乐队资料，与其他 BanG Dream! 乐队共同刊载。免费刊物，在日本各地 CD 店及 Village Vanguard 等门店配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0131全国バンド図鑑vol.20上半期.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1886618180673572934", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "wQaQy4O8JZT",
+    date: "2025/1/31",
+    title: "VOICE Febri vol.1 发售",
+    category: "organization",
+    description: "Ave Mujica 五位成员登上封面及卷首特集，收录关于 TV 动画「BanG Dream! Ave Mujica」与乐队活动的访谈，以及全新拍摄的写真。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0131VOICEFebrivol.1.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1885231152895844603", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "RtRXvOsOleq",
+    date: "2025/1/30",
+    title: "メガミマガジン 2025年3月号 发售",
+    category: "organization",
+    description: "介绍 TV 动画「BanG Dream! Ave Mujica」的看点，附 Doloris／三角初华的新绘插页海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0130メガミマガジン3月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1884874191364562988", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "YWL7A0o0dQA",
+    date: "2025/1/23",
+    title: "TVガイドAStars vol.06 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」封底及卷末特集：高尾奏音写真与访谈、柿本广大导演的剧情解说；封底为丰川祥子新绘插图，附同图插页海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0123TVガイドAStarsvol.06.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1882360161928654979", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "KbzME2r8p0B",
+    date: "2025/1/9",
+    title: "アニメディア 2025年2月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」特集，收录渡濑结月访谈及 Mortis 的新绘插页海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0109アニメディア2月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1877233843696292129", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "AQ1byWR9P0d",
+    date: "2025/1/9",
+    title: "アニメージュ 2025年2月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」特集，收录高尾奏音与渡濑结月访谈，以及 Oblivionis 与 Mortis 的新绘插图。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0109アニメージュ2月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1877196094888681863", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "RQCMkWkGcJW",
+    date: "2025/2/10",
+    title: "アニメージュ 2025年3月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」剧情回顾特集，梳理若叶睦的异变及乐队解散等情节，为后半程故事作回顾。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0210アニメージュ3月号.webp" },
+      { type: "link", url: "https://x.com/animage_tokuma/status/1888007333021892730", title: "出处：アニメージュ 编辑部" }
+    ]
+  },
+  {
+    hash_id: "NWQfxgpmR73",
+    date: "2025/6/16",
+    title: "リズム＆ドラム・マガジン 2025年7月号 发售",
+    category: "organization",
+    description: "米泽茜首次登上本刊，访谈介绍开始打鼓的契机、影响她的鼓手，以及 Ave Mujica 与个人活动。该访谈亦收录于内容相同的 2025 年增刊 8 月号。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0616リズム＆ドラム・マガジン7月号.webp" },
+      { type: "link", url: "https://x.com/drumsmagazinejp/status/1949362162276925896", title: "出处：ドラム・マガジン 编辑部" }
+    ]
+  },
+  {
+    hash_id: "cERixySfJEv",
+    date: "2025/12/16",
+    title: "リズム＆ドラム・マガジン 2026年1月号 发售",
+    category: "organization",
+    description: "收录 Ave Mujica 鼓手米泽茜对 Zildjian「ALCHEM-E Perfect Tune」耳机的评测，分享日常聆听与录音监听中的使用体验。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1216リズム＆ドラム・マガジン1月号.webp" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2000829906784280657", title: "出处：米泽茜 X" }
+    ]
+  },
+  {
+    hash_id: "2nD32UWHnzO",
+    date: "2025/8/20",
+    title: "読売新聞 2025年8月20日夕刊「popstyle」 刊载 Ave Mujica 专访",
+    category: "organization",
+    description: "Ave Mujica 专访，收录成员访谈与全新拍摄的照片，介绍五人作为声优及金属乐队成员的活动与音乐魅力。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0820読売新聞夕刊popstyle.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1958046446004965642", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "s9ejjPb2Pw1",
+    date: "2024/12/27",
+    title: "メガミマガジン 2025年2月号 发售",
+    category: "organization",
+    description: "介绍 TV 动画「BanG Dream! Ave Mujica」的看点，收录祐天寺若麦的新绘插页海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1227メガミマガジン2月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1872583203795636485", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "mBLITmJS68j",
+    date: "2024/12/10",
+    title: "ニュータイプ 2025年1月号 发售",
+    category: "organization",
+    description: "介绍剧场版「BanG Dream! It’s MyGO!!!!!」与 TV 动画「BanG Dream! Ave Mujica」，收录羊宫妃那及柿本广大导演访谈。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1210ニュータイプ1月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1867136145651609710", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "51MlclLdD5t",
+    date: "2024/12/10",
+    title: "アニメージュ 2025年1月号 发售",
+    category: "organization",
+    description: "TV 动画「BanG Dream! Ave Mujica」开播前特集，收录柿本广大导演访谈。该访谈部分内容后经编辑部更正，另附官方勘误链接。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/1210アニメージュ1月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1866392653761479009", title: "出处：BanG Dream! 官推" },
+      { type: "link", url: "https://animageplus.jp/news/detail/96", title: "官方勘误：柿本广大导演访谈" }
+    ]
+  },
+  {
+    hash_id: "jluJKXYhKvF",
+    date: "2024/7/31",
+    title: "全国バンド図鑑 vol.19 2024年下半期版 发行",
+    category: "organization",
+    description: "收录 Ave Mujica 乐队资料，与其他 BanG Dream! 乐队共同刊载。免费刊物，在日本各地 CD 店、Village Vanguard 及 Live House 等处配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0731全国バンド図鑑vol.19下半期.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1818972445111435294", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "C1JYwRca3fG",
+    date: "2024/1/31",
+    title: "全国バンド図鑑 vol.18 2024年上半期版 发行",
+    category: "organization",
+    description: "收录 Ave Mujica 乐队资料，与其他 BanG Dream! 乐队共同刊载。免费刊物，在日本各地 CD 店、Village Vanguard 及 Live House 等处配布。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0131全国バンド図鑑vol.18上半期.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1752980106677493997", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "TTbW34AHQQs",
+    date: "2024/1/6",
+    title: "月刊ブシロード 2024年2月号 发售",
+    category: "organization",
+    description: "Ave Mujica 登上双封面及卷末特集，收录五位成员的写真与访谈，在首场 Live 前分享对乐队和成员的想法；附 Ave Mujica 封面插图 B2 海报。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0106月刊ブシロード2月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1738034807140155531", title: "出处：BanG Dream! 官推" }
+    ]
+  },
+  {
+    hash_id: "nFIDV2l901X",
+    date: "2023/7/7",
+    title: "月刊ブシロード 2023年8月号 发售",
+    category: "organization",
+    description: "BanG Dream! 专栏收录新乐队 Ave Mujica 的资讯。",
+    tag: "book",
+    media: [
+      { type: "image", src: "../images/0707月刊ブシロード8月号.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/1677283914992459776", title: "出处：BanG Dream! 官推" },
+      { type: "link", url: "https://prtimes.jp/main/html/rd/p/000006904.000014827.html", title: "出处：出版社发行公告（含 Ave Mujica 刊载说明）" }
+    ]
+  },
+  {
     hash_id: "Fw4d2gH0TMY",
     date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",

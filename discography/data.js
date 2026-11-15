@@ -4785,5 +4785,28 @@ var discographyData = [
         ]
       }
     ]
+  },
+  {
+    "id": "4th单曲",
+    "hash_id": "PnTpRuDZzjU",
+    "title": "Ave Mujica 4th Single",
+    "title_jp": "Ave Mujica 4th Single",
+    "release_date": "2027/1/27",
+    "type": "Single",
+    "formats": [],
+    "label": "",
+    "description": "",
+    "cover": "",
+    "search_keywords": "",
+    "chart": {
+      "first_day_rank": "",
+      "first_week_sales": "",
+      "first_week_rank": "",
+      "total_sales": "",
+      "source": ""
+    },
+    "contents": [],
+    "bonus_contents": [],
+    "editions": []
   }
 ];
