@@ -105,6 +105,7 @@
 .it-event[data-kind="live"] { background: linear-gradient(270deg, rgba(142,25,32,.09), transparent 85%); }
 .it-event[data-kind="anime"] { --event-accent: #a5a0c0; --event-line: #514b67; }
 .it-event[data-kind="film"] { --event-accent: #bba380; --event-line: #6e5c42; }
+.it-event[data-kind="album"] { --event-accent: #8fb7b0; --event-line: #466f68; }
 .it-event.is-key { border-color: var(--event-accent); }
 .it-event.is-future { border-right-style: dashed; }
 .it-event small { display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 7px; color: var(--event-accent); font: 10px/1.5 var(--it-mono); letter-spacing: .06em; }
