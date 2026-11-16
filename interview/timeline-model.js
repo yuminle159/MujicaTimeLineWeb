@@ -43,9 +43,10 @@
       const isEpisode = episode && Number(episode[1]) >= 1 && Number(episode[1]) <= 13 && title.includes("播出") && !title.includes("先行上映");
       const isMygo = /^TV动画「BanG Dream! It's MyGO!!!!!」#13\s/.test(title) && title.includes("播出");
       const isFilm = title === "电影「BanG Dream! Ave Mujica prima aurora」上映";
+      const isAlbum = item.category === "organization" && item.tag === "album";
       const date = dateKey(item.date);
-      if ((!isEpisode && !isMygo && !isFilm) || !date) return;
-      grouped.push({ date: date, endDate: date, title: title, kind: isFilm ? "FILM" : "ANIME", key: !!isFilm || !!isMygo || [1, 13].includes(Number(episode && episode[1])), ids: [item.hash_id] });
+      if ((!isEpisode && !isMygo && !isFilm && !isAlbum) || !date) return;
+      grouped.push({ date: date, endDate: date, title: title, kind: isAlbum ? "ALBUM" : isFilm ? "FILM" : "ANIME", key: isAlbum || !!isFilm || !!isMygo || [1, 13].includes(Number(episode && episode[1])), ids: [item.hash_id] });
     });
     return grouped.sort(function (a, b) { return a.date.localeCompare(b.date); });
   }

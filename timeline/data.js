@@ -3319,7 +3319,18 @@ var timelineData = [
     description: "放映电影前或后，声优登台进行的Talk活动，本日分两部\n会场：新宿バルト9",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/电影舞台问候时间表.webp" }
+      { type: "image", src: "../images/电影舞台问候时间表.webp" },
+      { type: "video", src: "https://player.bilibili.com/player.html?bvid=BV1B9nN6PEMU", caption: "2026/10/17 舞台挨拶" },
+      { type: "image", src: "../images/prima-aurora-20261017-01.webp" },
+      { type: "image", src: "../images/prima-aurora-20261017-02.webp" },
+      { type: "image", src: "../images/prima-aurora-20261017-03.webp" },
+      { type: "image", src: "../images/prima-aurora-20261017-04.webp" },
+      { type: "image", src: "../images/prima-aurora-20261017-05.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2111390935896719412", title: "BanG Dream! 官推 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/2111378638507815317", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2111365482238595565", title: "高尾奏音 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2111428204045209685", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2111385587970380245", title: "米泽茜 X链接" }
     ]
   },
   {
@@ -3421,7 +3432,13 @@ var timelineData = [
     description: "放映电影前或后，声优登台进行的Talk活动，情报后日公开\n地点：熊本",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/电影舞台问候时间表.webp" }
+      { type: "image", src: "../images/电影舞台问候时间表.webp" },
+      { type: "image", src: "../images/prima-aurora-20261102-01.webp" },
+      { type: "image", src: "../images/prima-aurora-20261102-02.webp", caption: "熊本场第二部纪念合照" },
+      { type: "image", src: "../images/prima-aurora-20261102-03.webp" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2117251575664271527", title: "BanG Dream! 官推 X链接" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2117581361464914248", title: "BanG Dream! 官推 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2117239309292237258", title: "米泽茜 X链接" }
     ]
   },
   {
@@ -3432,7 +3449,24 @@ var timelineData = [
     description: "放映电影前或后，声优登台进行的Talk活动，情报后日公开\n地点：大阪",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/电影舞台问候时间表.webp" }
+      { type: "image", src: "../images/电影舞台问候时间表.webp" },
+      { type: "image", src: "../images/prima-aurora-20261103-01.webp" },
+      { type: "image", src: "../images/prima-aurora-20261103-02.webp" },
+      { type: "image", src: "../images/prima-aurora-20261103-03.webp" },
+      { type: "image", src: "../images/prima-aurora-20261103-04.webp" },
+      { type: "image", src: "../images/prima-aurora-20261103-05.webp" },
+      { type: "image", src: "../images/prima-aurora-20261103-06.webp" },
+      { type: "image", src: "../images/prima-aurora-20261103-07.webp" },
+      { type: "image", src: "../images/prima-aurora-20261103-08.webp", caption: "大阪场后台欢迎牌" },
+      { type: "image", src: "../images/prima-aurora-20261103-09.webp", caption: "大阪场造型照" },
+      { type: "image", src: "../images/prima-aurora-20261103-10.webp", caption: "大阪场造型照" },
+      { type: "link", url: "https://x.com/bang_dream_info/status/2117579773404955113", title: "BanG Dream! 官推 X链接" },
+      { type: "link", url: "https://x.com/sasakirico/status/2117584175062728817", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2117605909874770303", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2117585154411831417", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2117530735829807441", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2117843508442870131", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2118202506870432014", title: "米泽茜 X链接" }
     ]
   },
   {
@@ -3573,7 +3607,11 @@ var timelineData = [
     description: "Bilibili官方账号 MyGO_AveMujica 100万关注达成直播 with 立石凛",
     tag: "program",
     media: [
-      { type: "image", src: "../images/galleryless/b限100万粉宣传.webp" }
+      { type: "image", src: "../images/galleryless/b限100万粉宣传.webp" },
+      { type: "image", src: "../images/bilibili-1m-20261109-01.webp" },
+      { type: "image", src: "../images/bilibili-1m-20261109-02.webp" },
+      { type: "image", src: "../images/bilibili-1m-20261109-03.webp" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2119797636698087775", title: "高尾奏音 X链接" }
     ]
   },
   {

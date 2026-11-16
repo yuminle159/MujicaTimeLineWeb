@@ -103,7 +103,7 @@
     card.dataset.kind = item.kind.toLowerCase();
     const range = item.endDate !== item.date ? " · " + item.date.slice(5).replace("-", "/") + "–" + item.endDate.slice(5).replace("-", "/") : "";
     const meta = element("small", "it-event-meta");
-    meta.appendChild(element("span", "it-kind", item.kind));
+    meta.appendChild(element("span", "it-kind", item.kind === "ALBUM" ? "Discography" : item.kind));
     if (range || future) meta.appendChild(element("span", "", range.replace(/^ · /, "") + (future ? (range ? " · " : "") + "预定" : "")));
     card.append(meta, element("h4", "", item.title));
     return card;
@@ -172,7 +172,7 @@
   function load() {
     if (loading || events) return;
     loading = true;
-    const message = element("p", "it-message", "正在载入演出与动画节点…");
+    const message = element("p", "it-message", "正在载入演出、动画与唱片发售节点…");
     message.setAttribute("role", "status");
     content.replaceChildren(message);
     WijipediaData.load(["live", "timeline"]).then(function (data) {

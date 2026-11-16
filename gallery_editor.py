@@ -15,7 +15,7 @@ from PIL import Image, ImageOps, ImageTk
 from generate_all import gallery_image_key, is_gallery_image, parse_gallery_tags
 
 DIMENSIONS = ('类型', 'LIVE', '人物', '关联人物', '作品', '节目', '来源')
-DEFAULT_TAGS = {'类型': ['Live返图', '访谈', '合照', '日常', '主视觉', '场刊', '唱片封面'],
+DEFAULT_TAGS = {'类型': ['Live返图', '访谈', '合照', '日常', '主视觉', '场刊', '唱片封面', '除外'],
                 '人物': ['佐佐木李子', '高尾奏音', '渡濑结月', '冈田梦以', '米泽茜']}
 
 
@@ -130,7 +130,6 @@ class GalleryStore:
 
 
 class GalleryEditor(tk.Toplevel):
-    PAGE_SIZE = 30
 
     def __init__(self, parent, root):
         super().__init__(parent)
@@ -146,7 +145,6 @@ class GalleryEditor(tk.Toplevel):
         self.minsize(960, 650)
         self.current = None
         self.filtered = list(range(len(self.store.entries)))
-        self.page = 0
         self.last_saved = None
         self.persisted = {entry['key']: entry['tags'] for entry in self.store.entries}
         self.pending = {}
@@ -216,19 +214,25 @@ class GalleryEditor(tk.Toplevel):
         self.tree = ttk.Treeview(tree_frame, show='tree', selectmode='browse', style='Gallery.Treeview')
         self.tree.column('#0', width=280, minwidth=180)
         scroll = ttk.Scrollbar(tree_frame, command=self.tree.yview)
-        self.tree.configure(yscrollcommand=scroll.set)
+        self.tree.configure(yscrollcommand=lambda first, last: self.list_scrolled(scroll, first, last))
         scroll.pack(side='right', fill='y')
         self.tree.pack(fill='both', expand=True)
         self.tree.bind('<<TreeviewSelect>>', self.select_entry)
+        self.tree.bind('<Configure>', lambda event: self.schedule_thumbnails())
         pager = ttk.Frame(left)
         pager.pack(fill='x', pady=(0, 8))
-        ttk.Button(pager, text='上一页', command=lambda: self.change_page(-1)).pack(side='left')
         self.page_label = ttk.Label(pager)
         self.page_label.pack(side='left', expand=True)
-        ttk.Button(pager, text='下一页', command=lambda: self.change_page(1)).pack(side='right')
 
-        self.filename_label = ttk.Label(right, text='没有图片，请先扫描图片写入画廊。', wraplength=780)
-        self.filename_label.grid(row=0, column=0, sticky='ew', padx=(12, 0))
+        image_header = ttk.Frame(right)
+        image_header.grid(row=0, column=0, sticky='ew', padx=(12, 0))
+        image_header.columnconfigure(0, weight=1)
+        self.filename_label = ttk.Label(image_header, text='没有图片，请先扫描图片写入画廊。', wraplength=520)
+        self.filename_label.grid(row=0, column=0, sticky='w')
+        self.exclude_button = tk.Button(image_header, text='除外 · 不在 Gallery 显示',
+                                        command=self.toggle_excluded, font=('Microsoft YaHei', 10, 'bold'),
+                                        padx=12, pady=7, relief='flat', cursor='hand2')
+        self.exclude_button.grid(row=0, column=1, sticky='e', padx=(8, 0))
         self.preview = tk.Canvas(right, bg='#171717', highlightthickness=0, height=300)
         self.preview.grid(row=1, column=0, sticky='nsew', padx=(12, 0), pady=6)
         self.preview.bind('<Configure>', self.schedule_preview)
@@ -245,7 +249,7 @@ class GalleryEditor(tk.Toplevel):
         self.new_tag.pack(side='left', fill='x', expand=True, padx=6)
         self.new_tag.bind('<Return>', lambda event: self.add_tag())
         ttk.Button(custom, text='添加标签', command=self.add_tag).pack(side='right')
-        ttk.Label(right, text='完整标签（可直接编辑，清空后保存即移除标签）').grid(row=5, column=0, sticky='w', padx=12, pady=(6, 0))
+        ttk.Label(right, text='完整标签（右上角可一键除外或恢复，并自动保存当前标签）').grid(row=5, column=0, sticky='w', padx=12, pady=(6, 0))
         ttk.Entry(right, textvariable=self.raw).grid(row=6, column=0, sticky='ew', padx=(12, 0), pady=4)
         self.inherit_frame = ttk.Frame(right)
         self.inherit_frame.grid(row=7, column=0, sticky='ew', padx=(12, 0))
@@ -266,6 +270,11 @@ class GalleryEditor(tk.Toplevel):
             vocabulary.setdefault(category, set()).update(values)
         if not vocabulary:
             vocabulary = {key: set(values) for key, values in DEFAULT_TAGS.items()}
+        vocabulary.pop('除外', None)
+        if '类型' in vocabulary:
+            vocabulary['类型'].discard('除外')
+            if not vocabulary['类型']:
+                vocabulary.pop('类型')
         signature = tuple(sorted((key, tuple(sorted(values))) for key, values in vocabulary.items()))
         if signature == self.vocabulary_signature:
             self.sync_checks()
@@ -311,8 +320,31 @@ class GalleryEditor(tk.Toplevel):
 
     def sync_checks(self, *_):
         groups = parse_gallery_tags(self.raw.get())
+        excluded = '除外' in groups or '除外' in groups.get('类型', [])
+        self.exclude_button.configure(
+            text='已除外 · 点击恢复' if excluded else '除外 · 不在 Gallery 显示',
+            bg='#a52b35' if excluded else '#f6dfc5', fg='white' if excluded else '#74310e',
+            activebackground='#84232b' if excluded else '#efc89f',
+            activeforeground='white' if excluded else '#74310e',
+            state='normal' if self.current is not None else 'disabled')
         for (category, value), variable in self.checks.items():
             variable.set(value in groups.get(category, []))
+
+    def toggle_excluded(self):
+        if self.current is None:
+            return
+        groups = parse_gallery_tags(self.raw.get())
+        excluded = '除外' in groups or '除外' in groups.get('类型', [])
+        groups.pop('除外', None)
+        values = [value for value in groups.get('类型', []) if value != '除外']
+        if not excluded:
+            values.append('除外')
+        if values:
+            groups['类型'] = values
+        else:
+            groups.pop('类型', None)
+        self.raw.set(format_tags(groups))
+        self.save()
 
     def toggle_tag(self, category, value):
         groups = parse_gallery_tags(self.raw.get())
@@ -344,7 +376,6 @@ class GalleryEditor(tk.Toplevel):
         self.filtered = [i for i, entry in enumerate(self.store.entries)
                          if (not self.only_empty.get() or not entry['tags'].strip())
                          and query in (entry['filename'] + ' ' + entry['tags']).casefold()]
-        self.page = 0
         self.refresh_list()
         self.show_entry(self.filtered[0] if self.filtered else None)
 
@@ -354,13 +385,39 @@ class GalleryEditor(tk.Toplevel):
         self.loading = True
         self.tree.delete(*self.tree.get_children())
         self.thumb_images.clear()
-        visible = self.filtered[self.page * self.PAGE_SIZE:(self.page + 1) * self.PAGE_SIZE]
+        visible = self.filtered
         for i in visible:
             entry = self.store.entries[i]
             self.tree.insert('', 'end', iid=str(i), text=('✓ ' if entry['tags'].strip() else '○ ') + Path(entry['filename']).name)
-        self.page_label.config(text=f'{self.page + 1}/{max(1, (len(self.filtered) + self.PAGE_SIZE - 1) // self.PAGE_SIZE)} · {len(self.filtered)} 张')
+        self.page_label.config(text=f'共 {len(self.filtered)} 张 · 上下滚动浏览全部图片')
         self.loading = False
-        self.render_thumbnails(visible)
+        self.schedule_thumbnails()
+
+    def list_scrolled(self, scrollbar, first, last):
+        scrollbar.set(first, last)
+        if not self.loading:
+            self.schedule_thumbnails()
+
+    def schedule_thumbnails(self):
+        if self.render_job:
+            self.after_cancel(self.render_job)
+        self.render_job = self.after(60, self.render_visible_thumbnails)
+
+    def render_visible_thumbnails(self):
+        self.render_job = None
+        first, last = self.tree.yview()
+        count = len(self.filtered)
+        start = max(0, int(first * count) - 4)
+        end = min(count, int(last * count) + 5)
+        visible = self.filtered[start:end]
+        # 释放离开视口的缩略图，只保留可见行及少量预加载。
+        keep = set(visible)
+        for index in list(self.thumb_images):
+            if index not in keep:
+                if self.tree.exists(str(index)):
+                    self.tree.item(str(index), image='')
+                del self.thumb_images[index]
+        self.render_thumbnails([i for i in visible if i not in self.thumb_images])
 
     def render_thumbnails(self, indices):
         self.render_job = None
@@ -450,19 +507,7 @@ class GalleryEditor(tk.Toplevel):
         if not 0 <= position < len(self.filtered):
             self.status.set('已经是第一张或最后一张。')
             return
-        page = position // self.PAGE_SIZE
-        if page != self.page:
-            self.page = page
-            self.refresh_list()
         self.show_entry(self.filtered[position])
-
-    def change_page(self, step):
-        page = self.page + step
-        if not 0 <= page < max(1, (len(self.filtered) + self.PAGE_SIZE - 1) // self.PAGE_SIZE) or not self.leave_current():
-            return
-        self.page = page
-        self.refresh_list()
-        self.show_entry(self.filtered[page * self.PAGE_SIZE])
 
     def inherit_tags(self):
         if self.last_saved is None:
@@ -701,6 +746,41 @@ def smoke_test():
             editor.close(on_closed=lambda: closed.append(True))
             until(lambda: bool(closed))
             assert GalleryStore(root).entries[0]['tags'] == '类型:合照'
+            # 超过旧的 30 张分页限制，滚到末尾后仍能返回开头；缩略图缓存有界。
+            workbook = openpyxl.load_workbook(root / '_data/data.xlsx')
+            for i in range(98):
+                name = f'extra-{i:03d}.webp'
+                Image.new('RGB', (120, 80), 'blue').save(root / 'images' / name)
+                workbook['gallery_images'].append(['../images/' + name, '类型:访谈'])
+            workbook.save(root / '_data/data.xlsx')
+            workbook.close()
+            editor = GalleryEditor(parent, root)
+            parent.update()
+            assert len(editor.tree.get_children()) == 100
+            assert ('类型', '除外') not in editor.checks
+            editor.exclude_button.invoke()
+            assert '除外' in parse_gallery_tags(editor.raw.get())['类型']
+            assert '已除外' in editor.exclude_button.cget('text')
+            editor.flush_pending()
+            until(lambda: not editor.pending and not editor.saving)
+            assert '除外' in GalleryStore(root).entries[0]['tags']
+            editor.exclude_button.invoke()
+            assert '除外' not in editor.raw.get()
+            editor.flush_pending()
+            until(lambda: not editor.pending and not editor.saving)
+            assert '除外' not in GalleryStore(root).entries[0]['tags']
+            editor.tree.yview_moveto(1)
+            until(lambda: 99 in editor.thumb_images)
+            assert len(editor.thumb_images) < 40
+            editor.tree.yview_moveto(0)
+            until(lambda: 0 in editor.thumb_images and 99 not in editor.thumb_images)
+            assert editor.tree.yview()[0] == 0
+            editor.show_entry(29)
+            editor.navigate(1)
+            assert editor.current == 30 and len(editor.tree.get_children()) == 100
+            editor.navigate(-1)
+            assert editor.current == 29
+            editor.close()
         finally:
             if editor.winfo_exists():
                 editor.close()

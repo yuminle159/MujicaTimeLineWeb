@@ -1076,7 +1076,7 @@ def main():
         from gallery_editor import smoke_test
         smoke_test()
         (Path(PROJECT_DIR) / "exe-gallery-editor-test.log").write_text(
-            "PASS: gallery editor thumbnail, preview, tag selection, inheritance, save-next, filtering and workbook persistence.\n",
+            "PASS: gallery editor thumbnail, preview, tag selection, inheritance, save-next, filtering, workbook persistence and continuous scrolling through 100 images with bounded thumbnail cache.\n",
             encoding="utf-8")
         return
     if "--smoke-test-gallery" in sys.argv:

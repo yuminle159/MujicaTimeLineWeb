@@ -24,6 +24,7 @@ class GalleryGenerationTests(unittest.TestCase):
             sheet.append(['filename', 'title', 'tags', 'description'])
             for name in ['../images/a.webp', 'images/b.webp', r'..\images\C.webp', 'd.webp']:
                 sheet.append([name, '手填标题', '人物:高尾奏音, 类型:合照', '手填说明'])
+            sheet['C5'] = '类型:除外, 人物:高尾奏音'
             before = list(sheet.values)
             path = root / 'data.xlsx'
             workbook.save(path)
@@ -59,6 +60,29 @@ class GalleryGenerationTests(unittest.TestCase):
                     self.assertEqual(result.count('filename:'), 1)
         self.assertEqual(len(list(generator.gallery_rows(workbook))), 1)
         self.assertEqual(list(sheet.values), before)
+        workbook.close()
+
+    def test_exclusion_hides_aliases_and_is_reversible(self):
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+        sheet.title = 'gallery_images'
+        sheet.append(['filename', 'tags'])
+        sheet.append(['../images/a.webp', '人物:高尾奏音'])
+        sheet.append(['images/A.webp', '类型:除外'])
+        sheet.append(['../images/b.webp', '除外'])
+        sheet.append(['../images/c.webp', '类型:合照'])
+        before = list(sheet.values)
+        self.assertEqual([r['filename'] for r in generator.gallery_rows(workbook)], ['../images/c.webp'])
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'data.js'
+            with patch.object(generator, 'ROOT', directory), patch.dict(generator.OUTPUTS, gallery=str(output)):
+                self.assertEqual(generator.generate_gallery(workbook), 1)
+                self.assertNotIn('a.webp', output.read_text(encoding='utf-8'))
+                self.assertNotIn('b.webp', output.read_text(encoding='utf-8'))
+        self.assertEqual(list(sheet.values), before)
+        sheet['B3'] = ''
+        sheet['B4'] = ''
+        self.assertEqual(len(list(generator.gallery_rows(workbook))), 3)
         workbook.close()
 
 

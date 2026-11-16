@@ -1132,13 +1132,20 @@ def gallery_image_key(filename):
 
 def gallery_rows(wb):
     """生成与搜索共用唯一图片列表；保留首次记录，不改写人工维护的表格。"""
+    rows = read_sheet(wb, "gallery_images")
+    # 保留工作簿中的记录用于扫描去重；同一图片任一记录标记除外即隐藏。
+    excluded = set()
+    for row in rows:
+        tags = parse_gallery_tags(row.get("tags", ""))
+        if "除外" in tags or "除外" in tags.get("类型", []):
+            excluded.add(gallery_image_key(row.get("filename")))
     seen = set()
-    for row in read_sheet(wb, "gallery_images"):
+    for row in rows:
         filename = row.get("filename")
         if not is_gallery_image(filename):
             continue
         key = gallery_image_key(filename)
-        if key not in seen:
+        if key not in seen and key not in excluded:
             seen.add(key)
             yield row
 
