@@ -369,6 +369,9 @@
   function closeLightbox() {
     if (!lightbox || !lightbox.classList.contains("shared-live-active")) return;
     lightbox.classList.remove("shared-live-active");
+    lightbox.querySelectorAll('.shared-live-kv-lightbox-img').forEach(function (image) {
+      image.classList.remove('shared-live-active');
+    });
     lightbox.setAttribute("aria-hidden", "true");
     lightboxGroup = null;
     lightboxIndex = 0;

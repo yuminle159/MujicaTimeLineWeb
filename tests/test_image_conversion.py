@@ -7,6 +7,21 @@ from build_gui import convert_images_to_webp
 
 
 class ConversionTests(unittest.TestCase):
+    def test_avif_tif_top_level_only(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            nested = root / 'nested'
+            nested.mkdir()
+            for name in ('sample.avif', 'sample_tif.tif'):
+                Image.new('RGB', (20, 10), 'blue').save(root / name)
+                Image.new('RGB', (20, 10), 'blue').save(nested / name)
+            self.assertEqual(convert_images_to_webp(folder, lambda _: None), 2)
+            for name in ('sample.webp', 'sample_tif.webp'):
+                with Image.open(root / name) as im:
+                    im.load()
+                    self.assertEqual(im.format, 'WEBP')
+                self.assertFalse((nested / name).exists())
+
     def test_remove_only_successfully_converted_originals(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder)

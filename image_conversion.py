@@ -4,7 +4,7 @@ import uuid
 from pathlib import Path
 from PIL import Image
 
-SUPPORTED_FORMATS = {'.png', '.jpg', '.jpeg', '.webp', '.bmp', '.tiff', '.tif'}
+SUPPORTED_FORMATS = {'.png', '.jpg', '.jpeg', '.webp', '.bmp', '.tiff', '.tif', '.avif'}
 
 def convert_image_files_to_webp(paths, log_func=None, *, remove_originals=False):
     log = log_func or print

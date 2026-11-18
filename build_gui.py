@@ -116,7 +116,7 @@ def convert_images_to_webp(folder_path, log_func=None):
     if not os.path.isdir(folder_path):
         (log_func or print)(f"  [跳过] 目录不存在: {folder_path}")
         return 0
-    paths = [Path(folder_path) / name for name in os.listdir(folder_path)]
+    paths = [path for path in Path(folder_path).iterdir() if path.is_file()]
     return len(convert_image_files_to_webp(paths, log_func)["created"])
 
 

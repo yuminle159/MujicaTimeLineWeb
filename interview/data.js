@@ -449,7 +449,7 @@ var interviewData = [
     date: "2026-10-30 00:00:00",
     interviewee: "冈田梦以 x 米泽茜、柿本广大、佐佐木李子、渡濑结月、高尾奏音",
     title: "Megami 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
-    if_translated: "no",
+    if_translated: "yes",
     hash_id: "YVI5sCAKAiJ",
     sections: [{"id": "section-01", "title": "CAST INTERVIEW 冈田梦以 x 米泽茜"}, {"id": "section-02", "title": "STAFF INTERVIEW 监督 柿本广大"}, {"id": "section-03", "title": "CAST INTERVIEW 高尾奏音"}, {"id": "section-04", "title": "CAST INTERVIEW 佐佐木李子"}, {"id": "section-05", "title": "CAST INTERVIEW 渡濑结月"}],
     related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "w3TAg0dpUjX", "reason": "共同受访者：冈田梦以、米泽茜"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：冈田梦以、渡濑结月"}],

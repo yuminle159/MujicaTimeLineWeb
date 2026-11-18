@@ -66,6 +66,8 @@ cmd = [
     "--hidden-import", "openpyxl.worksheet",
     "--hidden-import", "PIL",
     "--hidden-import", "PIL.Image",
+    "--hidden-import", "PIL.AvifImagePlugin",
+    "--hidden-import", "PIL.TiffImagePlugin",
     "--hidden-import", "tkinter",
     "--hidden-import", "tkinter.ttk",
     "--hidden-import", "_tkinter",

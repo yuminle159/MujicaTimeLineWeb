@@ -985,7 +985,7 @@
 
 
 
-.shared-live-kv-lightbox img.shared-live-active { opacity: 1; visibility: visible; pointer-events: auto; }
+.shared-live-kv-lightbox.shared-live-active img.shared-live-active { opacity: 1; visibility: visible; pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) {
   .shared-live-kv-lightbox img, .shared-live-photo-carousel .shared-live-carousel-track img { transition: none; }
 }
