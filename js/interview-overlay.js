@@ -585,7 +585,12 @@
       overlay.classList.add("active");
       overlay.setAttribute("aria-hidden", "false");
       restartButton.hidden = savedScrollTop <= 20;
-      if (savedReadingState && savedScrollTop > 20) {
+      const hit = global.SearchPassage?.take("#" + item.hash_id);
+      if (hit) {
+        global.SearchPassage.reveal(body.querySelectorAll(".md-content"), hit.needle, element => {
+          if (!showOriginal && element.closest(".md-original")) toggleOriginal();
+        });
+      } else if (savedReadingState && savedScrollTop > 20) {
         pendingReadingRestore = { item: item, state: savedReadingState };
         restoreReadingPosition();
         if (global.ResizeObserver) {

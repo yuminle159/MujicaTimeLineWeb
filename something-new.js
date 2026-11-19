@@ -1,6 +1,15 @@
 // 首页 Something New 数据（自动生成，请勿手动修改）
 window.SOMETHING_NEW = [
   {
+    "type": "interview",
+    "ref": "Animedia 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
+    "update_date": "2026/11/19",
+    "title": "Animedia 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
+    "subtitle": "渡濑结月 x 高尾奏音、佐佐木李子 x 冈田梦以、米泽茜、柿本广大 · 2026/11/10",
+    "image": "images/galleryless/animedia202612月刊cover.webp",
+    "href": "interview/index.html?interview=Animedia%202026%E5%B9%B412%E6%9C%88%E5%8F%B7%20%E7%94%B5%E5%BD%B1%E3%80%8CBanG%20Dream%21%20Ave%20Mujica%20prima%20aurora%E3%80%8D%E7%89%B9%E9%9B%86"
+  },
+  {
     "type": "live",
     "ref": "Ave Mujica 7th LIVE「Virtus」DAY1",
     "update_date": "2026/11/18",

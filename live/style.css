@@ -1267,3 +1267,5 @@ body {
   .stats-tabs { flex-wrap: nowrap; width: 100%; overflow-x: auto; padding-bottom: 5px; }
   .stats-tab { white-space: nowrap; }
 }
+
+::highlight(search-hit) { background-color: #ffe28a; color: #231b12; }

@@ -1563,6 +1563,9 @@ def generate_discography(wb):
 def search_plain_text(value):
     """把 Markdown / HTML 压缩为适合浏览器检索的纯文本。"""
     text = str(value or "")
+    text = re.sub(r"\[/?(?:br|translation)\]", " ", text)
+    text = re.sub(r"\[/?(?:original|c\d+)\]", "", text)
+    text = text.replace("**", "")
     text = re.sub(r"```[\s\S]*?```", " ", text)
     text = re.sub(r"!\[([^\]]*)\]\([^)]*\)", r" \1 ", text)
     text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r" \1 ", text)
@@ -1713,9 +1716,10 @@ def generate_search_indexes(wb):
             "url": url,
             "terms": search_plain_text(" ".join(str(value or "") for value in terms))
         })
-        body_text = search_plain_text(body)
-        if body_text:
-            bodies[key] = body_text
+        sections = [[part, search_plain_text(value)] for part, value in body]
+        sections = [section for section in sections if section[1]]
+        if sections:
+            bodies[key] = sections
 
     # 歌曲：歌词和评论进入按需正文索引。
     comments_by_song = {}
@@ -1737,8 +1741,9 @@ def generate_search_indexes(wb):
              row.get("type", ""), row.get("lyricist", ""), row.get("composer", ""),
              row.get("arranger", ""), row.get("first_stage", ""), row.get("search_keywords", ""),
              row.get("appearances", "")],
-            " ".join([row.get("lyrics_jp", ""), row.get("lyrics_cn", ""),
-                      *comments_by_song.get(name, [])])
+            [(f"{lang}-{i}", line) for lang in ("jp", "cn")
+             for i, line in enumerate(row.get("lyrics_" + lang, "").split(r"\n"))] +
+            [(f"comment-{i}", value.replace(r"\n", " ")) for i, value in enumerate(comments_by_song.get(name, []))]
         )
 
     # Live：曲目表放入轻量索引，较长的 MC 放入正文索引。
@@ -1755,14 +1760,14 @@ def generate_search_indexes(wb):
         item_id = hash_id(name, date, row.get("live_venue", ""))
         live_tracks = setlists.get(name, [])
         mc_parts = []
-        for track in live_tracks:
+        for i, track in enumerate(live_tracks):
             mc_file = track.get("mc_file", "").strip()
             if not mc_file:
                 continue
             md_path = os.path.join(ROOT, "_data", mc_file)
             if os.path.isfile(md_path):
                 with open(md_path, "r", encoding="utf-8") as file:
-                    mc_parts.append(file.read())
+                    mc_parts.append((f"mc-{i}", file.read()))
         add_record(
             "live", item_id, name,
             " · ".join(value for value in [date, row.get("live_venue", "")] if value), date,
@@ -1770,7 +1775,7 @@ def generate_search_indexes(wb):
             f"live/index.html#live={quote(item_id)}",
             [name, row.get("live_venue", ""), row.get("live_tag", ""), row.get("description", ""),
              row.get("for short", ""), *[track.get("track_title", "") for track in live_tracks]],
-            " ".join(mc_parts)
+            mc_parts
         )
 
     # 时间线：完全复用页面生成时的合并和 hash 规则。
@@ -1811,7 +1816,7 @@ def generate_search_indexes(wb):
                     body = file.read()
         add_record("interview", item_id, title, " · ".join(value for value in [interviewee, date] if value),
                    date, fix_path(row.get("poster", ""), "interview"),
-                   f"interview/index.html#{quote(item_id)}", [title, interviewee, date], body)
+                   f"interview/index.html#{quote(item_id)}", [title, interviewee, date], [("article", body)])
 
     # 唱片目录：版本、目录编号和收录内容都属于轻量元数据。
     editions_by_release = {}

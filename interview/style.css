@@ -319,3 +319,5 @@ body {
   .separator { display: none; }
   .gallery-container { grid-template-columns: 1fr; padding: 0 16px 40px; }
 }
+
+::highlight(search-hit) { background-color: #ffe28a; color: #231b12; }
