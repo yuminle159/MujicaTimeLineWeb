@@ -1264,3 +1264,5 @@ body {
   .lyrics-atlas-song-grid { grid-template-columns: 1fr; }
 }
 
+
+::highlight(search-hit) { background-color: #ffe28a; color: #231b12; }

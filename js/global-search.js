@@ -68,7 +68,7 @@
       .then(function () {
         fallbackBodies = {};
         Object.keys(window.WIJIPEDIA_SEARCH_BODIES || {}).forEach(function (key) {
-          fallbackBodies[key] = normalize(window.WIJIPEDIA_SEARCH_BODIES[key]);
+          fallbackBodies[key] = SearchPassage.prepare(window.WIJIPEDIA_SEARCH_BODIES[key], normalize);
         });
         status.textContent = "已启用歌词、访谈与 MC 正文检索";
         fallbackSearch();
@@ -109,16 +109,14 @@
       const queryCompact = query.replace(/\s+/g, "");
       const tokens = query.split(" ").filter(Boolean);
       matches = fallbackIndex.map(function (item) {
-        const body = fallbackBodies ? (fallbackBodies[item.key] || "") : "";
+        const body = fallbackBodies ? (fallbackBodies[item.key]?.body || "") : "";
         return { item: item, value: fallbackScore(item, query, queryCompact, tokens, body), body: body };
       }).filter(function (match) {
         return match.value > 0 && (activeType === "all" || match.item.type === activeType);
       }).sort(function (a, b) {
         return b.value - a.value || String(b.item.date).localeCompare(String(a.item.date));
       }).slice(0, 40).map(function (match) {
-        const position = match.body.indexOf(query);
-        const snippet = position >= 0 ? (position ? "…" : "") + match.body.slice(Math.max(0, position - 42), position + query.length + 76).trim() + "…" : (match.item.subtitle || "");
-        return { item: match.item, snippet: snippet };
+        return { item: match.item, ...SearchPassage.excerpt(fallbackBodies?.[match.item.key], query, rawQuery, match.item.subtitle) };
       });
       if (!fallbackBodies) loadFallbackBodies();
     }
@@ -173,7 +171,12 @@
     const meta = TYPE_META[item.type] || { label: item.type, code: item.type };
     const link = document.createElement("a");
     link.className = "global-search-result";
-    link.href = new URL(item.url, siteRoot).href;
+    const url = new URL(item.url, siteRoot);
+    if (match.needle) {
+      url.searchParams.set("hit", match.needle);
+      url.searchParams.set("part", match.part);
+    }
+    link.href = url.href;
     const visual = document.createElement("span");
     visual.className = "global-search-result-visual";
     if (item.image) {

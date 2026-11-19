@@ -270,6 +270,8 @@
       detailScroller().scrollTop = savedScrollTop;
       overlay.classList.add("open");
       overlay.setAttribute("aria-hidden", "false");
+      currentSearchHit = global.SearchPassage?.take("#song=" + song.hash_id);
+      revealSongHit(currentSearchHit);
     }
 
     if (global.OverlayManager) {
@@ -325,6 +327,23 @@
     else document.body.style.overflow = document.querySelector(".shared-live-drawer-overlay.shared-live-active, .shared-discography-modal-overlay.open") ? "hidden" : "";
   }
 
+  let currentSearchHit;
+
+  function revealSongHit(hit) {
+    if (!hit) return;
+    let roots;
+    if (/^comment-\d+$/.test(hit.part)) {
+      overlay.querySelector('[data-song-comment="' + Number(hit.part.slice(8)) + '"]')?.click();
+      roots = overlay.querySelectorAll(".shared-song-comment-text");
+    } else {
+      const [language, row] = hit.part.split("-");
+      if (!/^\d+$/.test(row)) return;
+      const column = language === "cn" ? 2 : 1;
+      roots = overlay.querySelectorAll(".shared-song-lyrics-row:nth-child(" + (Number(row) + 1) + ") > span:nth-child(" + column + ")");
+    }
+    global.SearchPassage.reveal(roots, hit.needle);
+  }
+
   function refreshContext(options) {
     if (!currentSong || !overlay || !overlay.classList.contains("open")) return;
     Object.assign(currentOptions, options);
@@ -342,6 +361,8 @@
     right.innerHTML = renderComments(currentSong) + renderLyrics(currentSong, !(currentSong.live_history || []).length) + renderHistory(currentSong) || '<div class="shared-song-empty">暂无更多信息</div>';
     wireActions();
     scroller.scrollTop = scrollTop;
+    revealSongHit(currentSearchHit);
+    currentSearchHit = null;
   }
 
   document.addEventListener("keydown", function (event) {

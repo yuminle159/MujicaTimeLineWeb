@@ -1,6 +1,7 @@
 "use strict";
 
 self.window = self;
+importScripts("search-passage.js" + self.location.search);
 importScripts("../search-index.js" + self.location.search);
 
 function normalize(value) {
@@ -23,7 +24,7 @@ function loadBodies() {
   if (bodiesReady) return;
   self.postMessage({ type: "body-loading" });
   importScripts("../search-bodies.js" + self.location.search);
-  Object.keys(self.WIJIPEDIA_SEARCH_BODIES || {}).forEach(function (key) { bodies[key] = normalize(self.WIJIPEDIA_SEARCH_BODIES[key]); });
+  Object.keys(self.WIJIPEDIA_SEARCH_BODIES || {}).forEach(function (key) { bodies[key] = SearchPassage.prepare(self.WIJIPEDIA_SEARCH_BODIES[key], normalize); });
   bodiesReady = true;
   self.WIJIPEDIA_SEARCH_BODIES = null;
   self.postMessage({ type: "body-ready" });
@@ -51,20 +52,6 @@ function score(item, query, queryCompact, tokens, body) {
 function cleanItem(item) {
   return { key: item.key, type: item.type, title: item.title, subtitle: item.subtitle, date: item.date, image: item.image, url: item.url };
 }
-function snippetFor(item, body, rawQuery) {
-  if (!body) return item.subtitle || item.terms || "";
-  const needles = [normalize(rawQuery)].concat(normalize(rawQuery).split(" ")).filter(Boolean);
-  let position = -1, needle = "";
-  for (let i = 0; i < needles.length; i += 1) {
-    position = body.indexOf(needles[i]);
-    if (position >= 0) { needle = needles[i]; break; }
-  }
-  if (position < 0) return item.subtitle || "";
-  const start = Math.max(0, position - 42);
-  const end = Math.min(body.length, position + needle.length + 76);
-  return (start ? "…" : "") + body.slice(start, end).trim() + (end < body.length ? "…" : "");
-}
-
 function findMatches(rawQuery, filter, includeBodies) {
   const query = normalize(rawQuery);
   if (!query) {
@@ -75,14 +62,14 @@ function findMatches(rawQuery, filter, includeBodies) {
   const queryCompact = query.replace(/\s+/g, "");
   const tokens = query.split(" ").filter(Boolean);
   return index.map(function (item) {
-    const body = includeBodies ? (bodies[item.key] || "") : "";
+    const body = includeBodies ? (bodies[item.key]?.body || "") : "";
     return { item: item, value: score(item, query, queryCompact, tokens, body), body: body };
   }).filter(function (match) {
     return match.value > 0 && (filter === "all" || match.item.type === filter);
   }).sort(function (a, b) {
     return b.value - a.value || String(b.item.date).localeCompare(String(a.item.date));
   }).slice(0, 40).map(function (match) {
-    return { item: cleanItem(match.item), snippet: snippetFor(match.item, match.body, rawQuery) };
+    return { item: cleanItem(match.item), ...SearchPassage.excerpt(bodies[match.item.key], query, rawQuery, match.item.subtitle) };
   });
 }
 

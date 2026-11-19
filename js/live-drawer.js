@@ -436,6 +436,14 @@
       drawerBody.scrollTop = savedScrollTop;
       overlay.classList.add("shared-live-active");
       overlay.setAttribute("aria-hidden", "false");
+      const hit = global.SearchPassage?.take("#live=" + live.hash_id);
+      if (hit && /^mc-\d+$/.test(hit.part)) {
+        const track = live.setlist[Number(hit.part.slice(3))];
+        if (track?.mc_content) {
+          openMc(track.mc_content);
+          global.SearchPassage.reveal([mcBody], hit.needle);
+        }
+      }
     }
 
     if (global.OverlayManager) {

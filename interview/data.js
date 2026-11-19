@@ -488,7 +488,7 @@ var interviewData = [
     date: "2026-11-10 00:00:00",
     interviewee: "渡濑结月 x 高尾奏音、佐佐木李子 x 冈田梦以、米泽茜、柿本广大",
     title: "Animedia 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
-    if_translated: "no",
+    if_translated: "yes",
     hash_id: "RVUjb3gBhhx",
     sections: [{"id": "section-01", "title": "Cast Interview 高尾奏音 x 渡濑结月"}, {"id": "section-02", "title": "Cast Interview 佐佐木李子"}, {"id": "section-03", "title": "Cast Interview 冈田梦以"}, {"id": "section-04", "title": "Cast Interview 米泽茜"}, {"id": "section-05", "title": "Cast Interview 佐佐木李子 x 冈田梦以 「作为 Ave Mujica 的觉悟」"}, {"id": "section-06", "title": "Special Comment 监督 & 音响监督 柿本广大"}],
     related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：冈田梦以、渡濑结月"}, {"id": "w3TAg0dpUjX", "reason": "共同受访者：冈田梦以、米泽茜"}],
