@@ -1,6 +1,52 @@
 // 由 generate_all.py 自动生成，请在 data.xlsx 的 programs 表维护。
 window.programsData = [
   {
+    "program_id": "bdtv-0342",
+    "program": "バンドリ！TV LIVE",
+    "episode": "#342",
+    "date": "2026-11-26",
+    "time": "22:00",
+    "timezone": "+09:00",
+    "title": "バンドリ！TV LIVE 2026 #342",
+    "video_url": "https://www.youtube.com/watch?v=i64CrvW6zng",
+    "cover": "../images/programs/bdtv-0342-i64CrvW6zng.webp",
+    "notes": "",
+    "performers": [
+      {
+        "name": "仓知玲凤",
+        "order": 33,
+        "bands": [
+          "RAISE A SUILEN"
+        ],
+        "color": "#22CCCC",
+        "aliases": [
+          "倉知玲鳳"
+        ]
+      },
+      {
+        "name": "仲町阿拉蕾",
+        "order": 45,
+        "bands": [
+          "夢限大みゅーたいぷ"
+        ],
+        "color": "#FF7788",
+        "aliases": [
+          "仲町あられ"
+        ]
+      },
+      {
+        "name": "藤都子",
+        "order": 48,
+        "bands": [
+          "夢限大みゅーたいぷ"
+        ],
+        "color": "#FF7788",
+        "aliases": []
+      }
+    ],
+    "clips": []
+  },
+  {
     "program_id": "bdtv-0341",
     "program": "バンドリ！TV LIVE",
     "episode": "#341",

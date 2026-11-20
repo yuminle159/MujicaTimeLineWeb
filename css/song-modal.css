@@ -182,3 +182,4 @@
   .shared-song-modal { width: 100vw; max-width: none; max-height: none; }
   .shared-song-section-head { align-items: flex-start; flex-direction: column; }
 }
+.shared-song-comment-entry + .shared-song-comment-entry { margin-top: 1em; padding-top: 1em; border-top: 1px solid currentColor; }
