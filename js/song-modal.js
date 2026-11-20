@@ -5,7 +5,7 @@
   let left;
   let right;
   let currentSong;
-  let currentComments = [];
+  let commentGroups = [];
   let currentOptions = {};
 
   function escapeHTML(value) {
@@ -67,7 +67,7 @@
       return '<div class="shared-song-source"><a href="' + escapeHTML(comment.source) + '" target="_blank" rel="noopener">&#128279; 出处</a></div>';
     }
     if (global.InterviewOverlay && global.InterviewOverlay.hasTitle(comment.source)) {
-      return '<div class="shared-song-source"><button type="button" data-song-interview="' + escapeHTML(comment.source) + '">&#128279; 采访出处</button></div>';
+      return '<div class="shared-song-source"><button type="button" data-song-interview="' + escapeHTML(comment.source).replace(/"/g, "&quot;") + '">&#128279; ' + escapeHTML(comment.source) + '</button></div>';
     }
     return '<div class="shared-song-source is-text">' + escapeHTML(comment.source) + '</div>';
   }
@@ -75,6 +75,36 @@
   function commentHTML(comment) {
     return (comment.date ? '<div class="shared-song-comment-date">' + escapeHTML(comment.date) + '</div>' : "") +
       escapeHTML(comment.text || "").replace(/\\n/g, "<br>") + sourceHTML(comment);
+  }
+
+  const memberOrder = ["佐佐木李子", "渡濑结月", "冈田梦以", "米泽茜", "高尾奏音"];
+
+  function commentTabOrder(names) {
+    if (names.length > 1) return memberOrder.length + 3;
+    const name = names[0];
+    if (/^(remark|tie-up|original(?:ly)? by)$/i.test(name)) return 0;
+    if (name === "全员") return 1;
+    const member = memberOrder.indexOf(name);
+    return member === -1 ? memberOrder.length + 2 : member + 2;
+  }
+
+  function groupComments(comments) {
+    const groups = new Map();
+    comments.forEach(function (comment, index) {
+      const from = comment.from || ("Comment " + (index + 1));
+      const names = from.split(/[&＆]/).map(name => name.trim()).filter(Boolean);
+      const key = JSON.stringify(names.slice().sort());
+      if (!groups.has(key)) groups.set(key, { name: names.join(" × "), order: commentTabOrder(names), entries: [] });
+      groups.get(key).entries.push({ ...comment, index });
+    });
+    return Array.from(groups.values(), function (group) {
+      group.entries.sort((a, b) => historyDateValue(String(a.date).replace(/-/g, "/")) - historyDateValue(String(b.date).replace(/-/g, "/")));
+      return group;
+    }).sort((a, b) => a.order - b.order);
+  }
+
+  function groupHTML(group) {
+    return group.entries.map(entry => '<div class="shared-song-comment-entry" data-comment-row="' + entry.index + '">' + commentHTML(entry) + '</div>').join("");
   }
 
   function handleModalClick(event) {
@@ -90,9 +120,9 @@
     const tab = event.target.closest("[data-song-comment]");
     if (tab) {
       const index = Number(tab.dataset.songComment);
-      const comment = currentComments[index];
+      const comment = commentGroups[index];
       const target = overlay.querySelector(".shared-song-comment-text");
-      if (comment && target) target.innerHTML = commentHTML(comment);
+      if (comment && target) target.innerHTML = groupHTML(comment);
       overlay.querySelectorAll("[data-song-comment]").forEach(function (item, itemIndex) {
         item.classList.toggle("active", itemIndex === index);
       });
@@ -145,13 +175,13 @@
   }
 
   function renderComments(song) {
-    currentComments = song.comments || [];
-    if (!currentComments.length) return "";
-    const tabs = currentComments.map(function (comment, index) {
-      return '<button type="button" class="shared-song-comment-tab' + (index === 0 ? ' active' : '') + '" data-song-comment="' + index + '">' + escapeHTML(comment.from || ('Comment ' + (index + 1))) + '</button>';
+    commentGroups = groupComments(song.comments || []);
+    if (!commentGroups.length) return "";
+    const tabs = commentGroups.map(function (comment, index) {
+      return '<button type="button" class="shared-song-comment-tab' + (index === 0 ? ' active' : '') + '" data-song-comment="' + index + '">' + escapeHTML(comment.name) + '</button>';
     }).join("");
     return '<section class="shared-song-section"><div class="shared-song-section-head shared-song-comment-head"><h3>Comment</h3><div class="shared-song-comment-tabs">' + tabs + '</div></div>' +
-      '<div class="shared-song-comment-body"><div class="shared-song-comment-text">' + commentHTML(currentComments[0]) + '</div></div></section>';
+      '<div class="shared-song-comment-body"><div class="shared-song-comment-text">' + groupHTML(commentGroups[0]) + '</div></div></section>';
   }
 
   function renderLyrics(song, expandForMissingHistory) {
@@ -294,7 +324,7 @@
         onRemove: function () {
           if (currentSong === song) {
             currentSong = null;
-            currentComments = [];
+            commentGroups = [];
             currentOptions = {};
           }
           if (typeof settings.afterClose === "function") settings.afterClose();
@@ -321,7 +351,7 @@
     overlay.setAttribute("aria-hidden", "true");
     if (options.updateHash && location.hash.startsWith("#song=")) history.replaceState(null, "", location.pathname + location.search);
     currentSong = null;
-    currentComments = [];
+    commentGroups = [];
     currentOptions = {};
     if (typeof options.afterClose === "function") options.afterClose();
     else document.body.style.overflow = document.querySelector(".shared-live-drawer-overlay.shared-live-active, .shared-discography-modal-overlay.open") ? "hidden" : "";
@@ -333,8 +363,10 @@
     if (!hit) return;
     let roots;
     if (/^comment-\d+$/.test(hit.part)) {
-      overlay.querySelector('[data-song-comment="' + Number(hit.part.slice(8)) + '"]')?.click();
-      roots = overlay.querySelectorAll(".shared-song-comment-text");
+      const index = Number(hit.part.slice(8));
+      const group = commentGroups.findIndex(g => g.entries.some(e => e.index === index));
+      overlay.querySelector('[data-song-comment="' + group + '"]')?.click();
+      roots = overlay.querySelectorAll('[data-comment-row="' + index + '"]');
     } else {
       const [language, row] = hit.part.split("-");
       if (!/^\d+$/.test(row)) return;
