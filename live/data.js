@@ -805,12 +805,26 @@ var livesData = [
     hash_id: "lUkSmDeJcrU",
     date: "2027/2/27",
     venue: "duo MUSIC EXCHANGE",
-    tag: "",
+    tag: "One Man Live",
     poster: "",
     kv: "",
     video_url: "",
     description: "",
-    for_short: "",
+    for_short: "4th Single",
+    setlist: [],
+    backstage: []
+  },
+  {
+    name: "ベストアーティスト 2026",
+    hash_id: "KmtnHKRAOZm",
+    date: "2026/11/28",
+    venue: "Studio",
+    tag: "Fes",
+    poster: "../images/logo/bestartist2026.webp",
+    kv: "../images/bestartist2026kv.webp",
+    video_url: "",
+    description: "",
+    for_short: "BA 2026",
     setlist: [],
     backstage: []
   }
