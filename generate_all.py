@@ -1017,11 +1017,18 @@ def generate_timeline(wb):
         first = rows[0]
         key = (merged_date, first["title"], first["category"], first["desc"], first["tag"])
         events[key] = []
+        images_by_src = {}
         for r in rows:
             mt = r["media_type"].lower()
             media = None
             if mt == "image":
-                media = {"type": "image", "src": fix_path(r["media_src"], "timeline")}
+                src = fix_path(r["media_src"], "timeline")
+                if src in images_by_src:
+                    if r["media_caption"]:
+                        images_by_src[src].setdefault("caption", r["media_caption"])
+                    continue
+                media = {"type": "image", "src": src}
+                images_by_src[src] = media
                 if r["media_caption"]:
                     media["caption"] = r["media_caption"]
             elif mt == "video":

@@ -3522,7 +3522,19 @@ var timelineData = [
     description: "放映电影前或后，声优登台进行的Talk活动，本场为昼夜两部\n地点：北海道新千歳空港国際アニメーション映画祭",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/电影舞台问候时间表.webp" }
+      { type: "image", src: "../images/电影舞台问候时间表.webp" },
+      { type: "image", src: "../images/prima-aurora-20261121-01.webp" },
+      { type: "image", src: "../images/prima-aurora-20261121-02.webp" },
+      { type: "image", src: "../images/prima-aurora-20261121-03.webp" },
+      { type: "image", src: "../images/prima-aurora-20261121-04.webp" },
+      { type: "image", src: "../images/prima-aurora-20261121-05.webp" },
+      { type: "image", src: "../images/prima-aurora-20261121-06.webp" },
+      { type: "image", src: "../images/prima-aurora-20261121-07.webp" },
+      { type: "image", src: "../images/prima-aurora-20261121-08.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2123987647966400768", title: "渡濑结月 X链接①" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2124107941137834409", title: "渡濑结月 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2123987790786601386", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2124105494638014971", title: "高尾奏音 X链接②" }
     ]
   },
   {
@@ -4841,6 +4853,18 @@ var timelineData = [
     ]
   },
   {
+    hash_id: "F1LAgfXshvH",
+    date: "2026/11/28",
+    title: "Ave Mujica 出演 日本电视台 Best Artist 2026",
+    category: "organization",
+    description: "ベストアーティスト是日本电视台自2001年起每年播出的大型年末音乐特别节目，也是日本年末最具代表性的音乐节目之一。",
+    tag: "fes",
+    media: [
+      { type: "image", src: "../images/bestartist2026宣传.webp" },
+      { type: "image", src: "../images/bestartist2026kv.webp" }
+    ]
+  },
+  {
     hash_id: "Fw4d2gH0TMY",
     date: "2024/7/13 ~ 2024/7/14",
     title: "Ave Mujica 出演 Bilibili Macro Link 2024",
@@ -4971,6 +4995,45 @@ var timelineData = [
     description: "",
     tag: "bandori_fes",
     media: []
+  },
+  {
+    hash_id: "U7zLb67mWjt",
+    date: "2026/11/23 ~ 2026/11/27",
+    title: "高尾奏音 出演 「望月理恵のエンタメ☆カフェ」",
+    category: "organization",
+    description: "与 林鼓子 一同出演 ，介绍MyGO!!!!!、Ave Mujica特集",
+    tag: "program",
+    media: []
+  },
+  {
+    hash_id: "LiqkmSDCXEf",
+    date: "2026/8/17 ~ 2026/8/21",
+    title: "米泽茜 出演 「望月理恵のエンタメ☆カフェ」第1期",
+    category: "organization",
+    description: "与 青木阳菜 一同出演 ，介绍MyGO!!!!!、Ave Mujica特集\n每日主题分别为：\n8/17 介绍两支乐队的角色\n8/18 青木阳菜谈 MyGO!!!!! 的魅力\n8/19 米泽茜谈 Ave Mujica 的魅力\n8/20 两位嘉宾在意哪位角色\n8/21 真人乐队 MyGO!!!!! 的魅力",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" },
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" },
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" },
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" },
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" }
+    ]
+  },
+  {
+    hash_id: "0drtaA4OIq1",
+    date: "2026/8/24 ~ 2026/8/28",
+    title: "米泽茜 出演 「望月理恵のエンタメ☆カフェ」第2期",
+    category: "organization",
+    description: "与 青木阳菜 一同出演 ，介绍MyGO!!!!!、Ave Mujica特集\n每日主题分别为：\n8/24 真人乐队 Ave Mujica 的魅力\n8/25 青木阳菜的声优与音乐人工作\n8/26 米泽茜的声优与音乐人工作\n8/27 动画配音趣事\n8/28 聊聊续作可能会如何发展",
+    tag: "program",
+    media: [
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" },
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" },
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" },
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" },
+      { type: "image", src: "../images/entame-cafe-202608-01.webp" }
+    ]
   }
 ];
 
