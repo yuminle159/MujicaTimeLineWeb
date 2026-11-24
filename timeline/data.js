@@ -1894,7 +1894,16 @@ var timelineData = [
     description: "佐佐木李子 x 冈田梦以",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/completeness手渡会1.webp" }
+      { type: "image", src: "../images/completeness手渡会1.webp" },
+      { type: "image", src: "../images/offline-20250615-01.webp" },
+      { type: "image", src: "../images/offline-20250615-02.webp" },
+      { type: "image", src: "../images/offline-20250615-03.webp" },
+      { type: "image", src: "../images/offline-20250615-04.webp" },
+      { type: "image", src: "../images/offline-20250615-05.webp" },
+      { type: "image", src: "../images/offline-20250615-06.webp" },
+      { type: "image", src: "../images/offline-20250615-07.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1934149846547726683", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1934159887157899412", title: "冈田梦以 X链接" }
     ]
   },
   {
@@ -1905,7 +1914,14 @@ var timelineData = [
     description: "米泽茜 x 高尾奏音",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/completeness手渡会2.webp" }
+      { type: "image", src: "../images/completeness手渡会2.webp" },
+      { type: "image", src: "../images/offline-20250621-01.webp" },
+      { type: "image", src: "../images/offline-20250621-02.webp" },
+      { type: "image", src: "../images/offline-20250621-03.webp" },
+      { type: "image", src: "../images/offline-20250621-04.webp" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1936340522681119024", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1936339388243526052", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1936344446322565478", title: "高尾奏音 X链接②" }
     ]
   },
   {
@@ -1916,7 +1932,19 @@ var timelineData = [
     description: "冈田梦以 x 高尾奏音",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/completeness手渡会3.webp" }
+      { type: "image", src: "../images/completeness手渡会3.webp" },
+      { type: "image", src: "../images/offline-20250628-01.webp" },
+      { type: "image", src: "../images/offline-20250628-02.webp" },
+      { type: "image", src: "../images/offline-20250628-05.webp" },
+      { type: "image", src: "../images/offline-20250628-06.webp" },
+      { type: "image", src: "../images/offline-20250628-07.webp" },
+      { type: "image", src: "../images/offline-20250628-03.webp" },
+      { type: "image", src: "../images/offline-20250628-04.webp" },
+      { type: "image", src: "../images/offline-20250628-08.webp" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1938897607155425368", title: "冈田梦以 X链接①" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1939298952375070926", title: "冈田梦以 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1938882565253009487", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1938886726157770830", title: "高尾奏音 X链接②" }
     ]
   },
   {
@@ -1942,7 +1970,14 @@ var timelineData = [
     description: "渡濑结月 x 高尾奏音",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/completeness手渡会4.webp" }
+      { type: "image", src: "../images/completeness手渡会4.webp" },
+      { type: "image", src: "../images/offline-20250706-01.webp" },
+      { type: "image", src: "../images/offline-20250706-02.webp" },
+      { type: "image", src: "../images/offline-20250706-03.webp" },
+      { type: "image", src: "../images/offline-20250706-04.webp" },
+      { type: "image", src: "../images/offline-20250706-05.webp" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1941776188298625351", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1941769679435141366", title: "高尾奏音 X链接" }
     ]
   },
   {
@@ -1964,7 +1999,13 @@ var timelineData = [
     description: "渡濑结月 x 米泽茜",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/completeness手渡会5.webp" }
+      { type: "image", src: "../images/completeness手渡会5.webp" },
+      { type: "image", src: "../images/offline-20250720-01.webp" },
+      { type: "image", src: "../images/offline-20250720-02.webp" },
+      { type: "image", src: "../images/offline-20250720-03.webp" },
+      { type: "image", src: "../images/offline-20250720-04.webp" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1946819431981838458", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1946820416485675282", title: "米泽茜 X链接" }
     ]
   },
   {
@@ -2021,7 +2062,15 @@ var timelineData = [
     description: "佐佐木李子 x 米泽茜",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/completeness手渡会6.webp" }
+      { type: "image", src: "../images/completeness手渡会6.webp" },
+      { type: "image", src: "../images/offline-20250809-03.webp" },
+      { type: "image", src: "../images/offline-20250809-01.webp" },
+      { type: "image", src: "../images/offline-20250809-02.webp" },
+      { type: "image", src: "../images/offline-20250809-04.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1954028622295314601", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/1954097549293293747", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1954095862604235193", title: "米泽茜 X链接①" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1954098418655089107", title: "米泽茜 X链接②" }
     ]
   },
   {
@@ -2222,7 +2271,29 @@ var timelineData = [
     media: [
       { type: "image", src: "../images/鸡狗1舞台问候1.webp" },
       { type: "image", src: "../images/鸡狗1舞台问候2.webp" },
-      { type: "link", url: "https://www.bilibili.com/video/BV1iLS1BCEGs", title: "在线观看（夜场片段）" }
+      { type: "link", url: "https://www.bilibili.com/video/BV1iLS1BCEGs", title: "在线观看（夜场片段）" },
+      { type: "image", src: "../images/offline-20251019-01.webp" },
+      { type: "image", src: "../images/offline-20251019-02.webp" },
+      { type: "image", src: "../images/offline-20251019-03.webp" },
+      { type: "image", src: "../images/offline-20251019-04.webp" },
+      { type: "image", src: "../images/offline-20251019-05.webp" },
+      { type: "image", src: "../images/offline-20251019-06.webp" },
+      { type: "image", src: "../images/offline-20251019-07.webp" },
+      { type: "image", src: "../images/offline-20251019-08.webp" },
+      { type: "image", src: "../images/offline-20251019-09.webp" },
+      { type: "image", src: "../images/offline-20251019-10.webp" },
+      { type: "image", src: "../images/offline-20251019-11.webp" },
+      { type: "image", src: "../images/offline-20251019-12.webp" },
+      { type: "image", src: "../images/offline-20251019-13.webp" },
+      { type: "image", src: "../images/offline-20251019-14.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/1979811826306339105", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/1979798189747343593", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/1979836160127185315", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1979819107907490063", title: "米泽茜 X链接①" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1979845370441306417", title: "米泽茜 X链接②" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/1980550574333653136", title: "米泽茜 X链接③" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1979796907284423072", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/1979846657463451929", title: "高尾奏音 X链接②" }
     ]
   },
   {
@@ -2330,7 +2401,22 @@ var timelineData = [
     media: [
       { type: "image", src: "../images/鸡狗1圣诞轰音放映会1.webp" },
       { type: "image", src: "../images/鸡狗1圣诞轰音放映会2.webp" },
-      { type: "image", src: "../images/鸡狗1圣诞轰音放映会3.webp" }
+      { type: "image", src: "../images/鸡狗1圣诞轰音放映会3.webp" },
+      { type: "image", src: "../images/offline-20251225-01.webp" },
+      { type: "image", src: "../images/offline-20251225-02.webp" },
+      { type: "image", src: "../images/offline-20251225-03.webp" },
+      { type: "image", src: "../images/offline-20251225-04.webp" },
+      { type: "image", src: "../images/offline-20251225-05.webp" },
+      { type: "image", src: "../images/offline-20251225-06.webp" },
+      { type: "image", src: "../images/offline-20251225-07.webp" },
+      { type: "image", src: "../images/offline-20251225-08.webp" },
+      { type: "image", src: "../images/offline-20251225-09.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2004185607510413578", title: "佐佐木李子 X链接" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2004191306156048725", title: "渡濑结月 X链接①" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2004200870041497774", title: "渡濑结月 X链接②" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2004200674821890504", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2004195291449512242", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2004195806971347279", title: "高尾奏音 X链接" }
     ]
   },
   {
@@ -2385,7 +2471,28 @@ var timelineData = [
     tag: "offline",
     media: [
       { type: "image", src: "../images/logo/unmasqueradelogo.webp" },
-      { type: "image", src: "../images/unmasquerade东京合照.webp" }
+      { type: "image", src: "../images/unmasquerade东京合照.webp" },
+      { type: "image", src: "../images/offline-20260110-04.webp" },
+      { type: "image", src: "../images/offline-20260110-05.webp" },
+      { type: "image", src: "../images/offline-20260110-01.webp" },
+      { type: "image", src: "../images/offline-20260110-02.webp" },
+      { type: "image", src: "../images/offline-20260110-03.webp" },
+      { type: "image", src: "../images/offline-20260110-06.webp" },
+      { type: "image", src: "../images/offline-20260110-07.webp" },
+      { type: "image", src: "../images/offline-20260110-08.webp" },
+      { type: "image", src: "../images/offline-20260110-09.webp" },
+      { type: "image", src: "../images/offline-20260110-10.webp" },
+      { type: "image", src: "../images/offline-20260110-11.webp" },
+      { type: "image", src: "../images/offline-20260110-12.webp" },
+      { type: "image", src: "../images/offline-20260110-13.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2009943649820483708", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/2009953954478891496", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2009949093192446462", title: "渡濑结月 X链接" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2009958871201456176", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2009942281286234569", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2009948836983455868", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2009954610027667893", title: "高尾奏音 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2010189238416101579", title: "高尾奏音 X链接③" }
     ]
   },
   {
@@ -2451,7 +2558,16 @@ var timelineData = [
     description: "第一次MyMuji合同Live电影化放映进行的舞台问候Talk活动，本场放送可站立，可应援发声，本日分两部\n场馆：飛行船シアター",
     tag: "offline",
     media: [
-      { type: "image", src: "../images/鸡狗1舞台问候米高.webp" }
+      { type: "image", src: "../images/鸡狗1舞台问候米高.webp" },
+      { type: "image", src: "../images/offline-20260208-01.webp" },
+      { type: "image", src: "../images/offline-20260208-02.webp" },
+      { type: "image", src: "../images/offline-20260208-03.webp" },
+      { type: "image", src: "../images/offline-20260208-04.webp" },
+      { type: "image", src: "../images/offline-20260208-05.webp", caption: "官推现场合照" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2020449442533450230", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2020447922433733016", title: "高尾奏音 X链接①" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2020451312630944195", title: "高尾奏音 X链接②" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2020508406361276663", title: "高尾奏音 X链接③" }
     ]
   },
   {
@@ -2489,7 +2605,29 @@ var timelineData = [
     tag: "offline",
     media: [
       { type: "image", src: "../images/logo/unmasqueradelogo.webp" },
-      { type: "image", src: "../images/unmasquerade大阪合照.webp" }
+      { type: "image", src: "../images/unmasquerade大阪合照.webp" },
+      { type: "image", src: "../images/offline-20260221-01.webp" },
+      { type: "image", src: "../images/offline-20260221-02.webp" },
+      { type: "image", src: "../images/offline-20260221-03.webp" },
+      { type: "image", src: "../images/offline-20260221-04.webp" },
+      { type: "image", src: "../images/offline-20260221-05.webp" },
+      { type: "image", src: "../images/offline-20260221-06.webp" },
+      { type: "image", src: "../images/offline-20260221-07.webp" },
+      { type: "image", src: "../images/offline-20260221-08.webp" },
+      { type: "image", src: "../images/offline-20260221-09.webp" },
+      { type: "image", src: "../images/offline-20260221-10.webp" },
+      { type: "image", src: "../images/offline-20260221-11.webp" },
+      { type: "image", src: "../images/offline-20260221-12.webp" },
+      { type: "image", src: "../images/offline-20260221-13.webp" },
+      { type: "image", src: "../images/offline-20260221-14.webp" },
+      { type: "image", src: "../images/offline-20260221-15.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2025173651801477291", title: "佐佐木李子 X链接①" },
+      { type: "link", url: "https://x.com/sasakirico/status/2025226037714620793", title: "佐佐木李子 X链接②" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2025191531062460480", title: "渡濑结月 X链接①" },
+      { type: "link", url: "https://x.com/Watase_Yuzuki/status/2025215317367279852", title: "渡濑结月 X链接②" },
+      { type: "link", url: "https://x.com/okada_mei0519/status/2025190312852029769", title: "冈田梦以 X链接" },
+      { type: "link", url: "https://x.com/AkaneY_banu/status/2025182615419109394", title: "米泽茜 X链接" },
+      { type: "link", url: "https://x.com/Kanon_Takao/status/2025175167576801375", title: "高尾奏音 X链接" }
     ]
   },
   {
@@ -4862,6 +5000,18 @@ var timelineData = [
     media: [
       { type: "image", src: "../images/bestartist2026宣传.webp" },
       { type: "image", src: "../images/bestartist2026kv.webp" }
+    ]
+  },
+  {
+    hash_id: "TApUUTrrQzI",
+    date: "2026/6/13",
+    title: "车上靠肩睡着事件",
+    category: "personal",
+    description: "据悉为渡濑结月拍摄 衣装推测为前往musicる录制的路上\n佐佐木李子：嘴角根本压不下来。\n#のんりこ",
+    tag: "private",
+    media: [
+      { type: "image", src: "../images/20260613.webp" },
+      { type: "link", url: "https://x.com/sasakirico/status/2065738513224794274", title: "佐佐木李子 X链接" }
     ]
   },
   {
