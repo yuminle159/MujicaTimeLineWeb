@@ -192,7 +192,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "hloIGz0UBX8",
     sections: [{"id": "section-01", "title": "乐队成员简介"}, {"id": "section-02", "title": "乐队成员Q & A"}, {"id": "section-03", "title": "终于能毫无保留地表现出来了，我想传达Ave Mujica灵魂的呐喊"}, {"id": "section-04", "title": "有种夹在小睦和Mortis之间的感觉"}, {"id": "section-05", "title": "海铃的那份笨拙也很可爱，我特别喜欢"}, {"id": "section-06", "title": "我一直有信心，最后大家一定会喜欢上若麦"}, {"id": "section-07", "title": "谢谢大家陪着我一起守望祥子的成长"}, {"id": "section-08", "title": "乐队成员寄语"}],
-    related: [{"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "HfJYreVxg8X", "reason": "同为全员访谈"}],
+    related: [{"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "EkCbuH7sivr", "reason": "同为全员访谈"}],
     previous_id: "w3TAg0dpUjX",
     next_id: "Aci7jBwVNAv",
     article_path: "articles/hloIGz0UBX8.js"
@@ -206,7 +206,7 @@ var interviewData = [
     hash_id: "HfJYreVxg8X",
     sections: [{"id": "section-01", "title": "佐佐木李子"}, {"id": "section-02", "title": "渡濑结月"}, {"id": "section-03", "title": "冈田梦以"}, {"id": "section-04", "title": "米泽茜"}, {"id": "section-05", "title": "高尾奏音"}],
     related: [{"id": "gUsOq9umi6w", "reason": "同为全员访谈"}, {"id": "MX8CI0pi7ii", "reason": "同为全员访谈"}, {"id": "wlMKzDwspiJ", "reason": "同为全员访谈"}],
-    previous_id: "BE9kJEFFOW6",
+    previous_id: "jMMYWoo7SyP",
     next_id: "tLoc6uej4kx",
     article_path: "articles/HfJYreVxg8X.js"
   },
@@ -246,7 +246,7 @@ var interviewData = [
     sections: [{"id": "section-01", "title": "「リスパレ！」力荐 Ave Mujica 的理由是什么？"}, {"id": "section-02", "title": "回顾那场伴随震撼惊喜一同呈现的4th LIVE"}, {"id": "section-03", "title": "聊聊热门OP「KiLLKiSS」与动画配音的幕后故事！"}, {"id": "section-04", "title": "也请留意歌词！让人直到最后都沉浸于动画世界的ED"}, {"id": "section-05", "title": "假如Ave Mujica要推出自己的专属广播节目的话……？"}],
     related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：渡濑结月、高尾奏音"}, {"id": "YVI5sCAKAiJ", "reason": "共同受访者：渡濑结月、高尾奏音"}, {"id": "tLoc6uej4kx", "reason": "共同受访者：渡濑结月"}],
     previous_id: "wlMKzDwspiJ",
-    next_id: "BE9kJEFFOW6",
+    next_id: "jMMYWoo7SyP",
     article_path: "articles/EGHiOMHcXyX.js"
   },
   {
@@ -279,23 +279,23 @@ var interviewData = [
     poster: "../images/galleryless/astarsvol6cover.webp",
     date: "2025-01-23 00:00:00",
     interviewee: "高尾奏音",
-    title: "“我当时想告诉祥子，身边的人其实会给你更多帮助的呀” TVガイド A Stars vol.06 高尾奏音访谈",
-    if_translated: "no",
-    hash_id: "BE9kJEFFOW6",
-    sections: [{"id": "section-01", "title": "处处都是全新体验的乐队活动，以及伙伴们的存在"}, {"id": "section-02", "title": "Ave Mujica 是祥子为了活下去的手段"}],
+    title: "“我当时很想告诉祥子，其实身边的人还可以帮你更多呀” TVガイド A Stars vol.06 高尾奏音访谈",
+    if_translated: "yes",
+    hash_id: "jMMYWoo7SyP",
+    sections: [{"id": "section-01", "title": "充满全新体验的乐队生活，以及一路相伴的伙伴"}, {"id": "section-02", "title": "Ave Mujica 是祥子为了活下去的手段"}],
     related: [{"id": "qDzrFr9bmoq", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "w3TAg0dpUjX", "reason": "共同受访者：高尾奏音"}],
     previous_id: "EGHiOMHcXyX",
     next_id: "HfJYreVxg8X",
-    article_path: "articles/BE9kJEFFOW6.js"
+    article_path: "articles/jMMYWoo7SyP.js"
   },
   {
     poster: "../images/20250130realsound渡濑结月访谈01.webp",
     date: "2025-01-30 00:00:00",
     interviewee: "渡濑结月",
     title: "Real Sound 『BanG Dream!』史上“最疯狂”的演技为何诞生？ 渡濑结月畅谈 Ave Mujica 的未来",
-    if_translated: "no",
+    if_translated: "yes",
     hash_id: "tLoc6uej4kx",
-    sections: [{"id": "section-01", "title": "以“孩子气”为核心，塑造与睦形成反差的 Mortis"}, {"id": "section-02", "title": "初华身上“或许藏着最深、最黑暗的东西”"}, {"id": "section-03", "title": "Ave Mujica 的现场表演是如何打造出来的？"}, {"id": "section-04", "title": "「KiLLKiSS」终于揭晓真容的 4th LIVE"}, {"id": "section-05", "title": "『Ave Mujica』的未来"}],
+    sections: [{"id": "section-01", "title": "以“孩子气”为核心，突出 Mortis 与睦之间的反差"}, {"id": "section-02", "title": "初华身上“或许藏着最深、最黑暗的东西”"}, {"id": "section-03", "title": "Ave Mujica 的现场表演是如何打造出来的？"}, {"id": "section-04", "title": "「KiLLKiSS」——终于以真容示人的 4th LIVE"}, {"id": "section-05", "title": "『Ave Mujica』的未来"}],
     related: [{"id": "EGHiOMHcXyX", "reason": "共同受访者：渡濑结月"}, {"id": "B0F4USdjUL8", "reason": "共同受访者：渡濑结月"}, {"id": "YVI5sCAKAiJ", "reason": "共同受访者：渡濑结月"}],
     previous_id: "HfJYreVxg8X",
     next_id: "qDzrFr9bmoq",
@@ -309,7 +309,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "qDzrFr9bmoq",
     sections: [{"id": "section-01", "title": "TV动画「BanG Dream! Ave Mujica」所交织出的、宛如悬疑作品般的人际关系"}, {"id": "section-02", "title": "高尾奏音的阅读方式与推荐书目"}],
-    related: [{"id": "BE9kJEFFOW6", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "w3TAg0dpUjX", "reason": "共同受访者：高尾奏音"}],
+    related: [{"id": "jMMYWoo7SyP", "reason": "共同受访者：高尾奏音"}, {"id": "EGHiOMHcXyX", "reason": "共同受访者：高尾奏音"}, {"id": "w3TAg0dpUjX", "reason": "共同受访者：高尾奏音"}],
     previous_id: "tLoc6uej4kx",
     next_id: "vg0aUAR0CnH",
     article_path: "articles/qDzrFr9bmoq.js"
@@ -323,7 +323,7 @@ var interviewData = [
     hash_id: "f5ckErYJPuS",
     sections: [],
     related: [{"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "RVUjb3gBhhx", "reason": "共同受访者：佐佐木李子、高尾奏音"}, {"id": "8OooM0J1zZR", "reason": "共同受访者：佐佐木李子、高尾奏音"}],
-    previous_id: "VsrmlhE1P27",
+    previous_id: "EkCbuH7sivr",
     next_id: "gUsOq9umi6w",
     article_path: "articles/f5ckErYJPuS.js"
   },
@@ -335,7 +335,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "yvFZ0YTSvaC",
     sections: [{"id": "section-01", "title": "MAIL INTERVIEW : Ave Mujica"}, {"id": "section-02", "title": "名副其实的“全新序幕”一般的作品"}, {"id": "section-03", "title": "希望能够始终以更好的状态呈现给大家，为此会竭尽全力"}, {"id": "section-04", "title": "从今往后，Ave Mujica也将不断超越Ave Mujica自身"}, {"id": "section-05", "title": "REVIEW : Ave Mujica『神の名を』"}],
-    related: [{"id": "gUsOq9umi6w", "reason": "同为全员访谈"}, {"id": "hloIGz0UBX8", "reason": "同为全员访谈"}, {"id": "MYRb5diekKM", "reason": "同为全员访谈"}],
+    related: [{"id": "gUsOq9umi6w", "reason": "同为全员访谈"}, {"id": "EkCbuH7sivr", "reason": "同为全员访谈"}, {"id": "hloIGz0UBX8", "reason": "同为全员访谈"}],
     previous_id: "gUsOq9umi6w",
     next_id: "b3R0inuR9IR",
     article_path: "articles/yvFZ0YTSvaC.js"
@@ -428,7 +428,7 @@ var interviewData = [
     sections: [{"id": "section-01", "title": "寄宿于每一首歌曲中的记忆与爱"}, {"id": "section-02", "title": "新曲「The Whole Blue World」中“共同坠落的美”"}, {"id": "section-03", "title": "走向不可预测的“Exitus”前方"}, {"id": "section-04", "title": "因「Imprisoned XII」而重新浮现的历程"}],
     related: [{"id": "RVUjb3gBhhx", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "YVI5sCAKAiJ", "reason": "共同受访者：佐佐木李子、冈田梦以"}, {"id": "2KtTbpuZnmj", "reason": "共同受访者：佐佐木李子"}],
     previous_id: "hHvY1EWykhY",
-    next_id: "f5ckErYJPuS",
+    next_id: "EkCbuH7sivr",
     article_path: "articles/VsrmlhE1P27.js"
   },
   {
@@ -439,7 +439,7 @@ var interviewData = [
     if_translated: "yes",
     hash_id: "gUsOq9umi6w",
     sections: [{"id": "section-01", "title": "三角初华役 佐佐木李子"}, {"id": "section-02", "title": "若叶睦役 渡濑结月"}, {"id": "section-03", "title": "八幡海铃役 冈田梦以"}, {"id": "section-04", "title": "祐天寺若麦役 米泽茜"}, {"id": "section-05", "title": "丰川祥子役 高尾奏音"}],
-    related: [{"id": "HfJYreVxg8X", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "YVI5sCAKAiJ", "reason": "相近主题"}],
+    related: [{"id": "HfJYreVxg8X", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "EkCbuH7sivr", "reason": "同为全员访谈"}],
     previous_id: "f5ckErYJPuS",
     next_id: "yvFZ0YTSvaC",
     article_path: "articles/gUsOq9umi6w.js"
@@ -508,5 +508,18 @@ var interviewData = [
     previous_id: "M0XtVDMJWxX",
     next_id: "",
     article_path: "articles/lIscTomQZxA.js"
+  },
+  {
+    poster: "../images/260821RollingStone东京夏日音速对谈-01.webp",
+    date: "2026-08-21 00:00:00",
+    interviewee: "Ave Mujica x METALVERSE",
+    title: "2026年8月 Rolling Stone Japan Ave Mujica × METALVERSE 访谈",
+    if_translated: "yes",
+    hash_id: "EkCbuH7sivr",
+    sections: [],
+    related: [{"id": "gUsOq9umi6w", "reason": "同为全员访谈"}, {"id": "yvFZ0YTSvaC", "reason": "同为全员访谈"}, {"id": "HfJYreVxg8X", "reason": "同为全员访谈"}],
+    previous_id: "VsrmlhE1P27",
+    next_id: "f5ckErYJPuS",
+    article_path: "articles/EkCbuH7sivr.js"
   }
 ];

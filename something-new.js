@@ -2,47 +2,29 @@
 window.SOMETHING_NEW = [
   {
     "type": "interview",
-    "ref": "Animedia 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
-    "update_date": "2026/11/19",
-    "title": "Animedia 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
-    "subtitle": "渡濑结月 x 高尾奏音、佐佐木李子 x 冈田梦以、米泽茜、柿本广大 · 2026/11/10",
-    "image": "images/galleryless/animedia202612月刊cover.webp",
-    "href": "interview/index.html?interview=Animedia%202026%E5%B9%B412%E6%9C%88%E5%8F%B7%20%E7%94%B5%E5%BD%B1%E3%80%8CBanG%20Dream%21%20Ave%20Mujica%20prima%20aurora%E3%80%8D%E7%89%B9%E9%9B%86"
-  },
-  {
-    "type": "live",
-    "ref": "Ave Mujica 7th LIVE「Virtus」DAY1",
-    "update_date": "2026/11/18",
-    "title": "Ave Mujica 7th LIVE「Virtus」DAY1",
-    "subtitle": "2026/10/24 · 京王アリーナ TOKYO",
-    "image": "images/7th kv.webp",
-    "href": "live/index.html?live=Ave%20Mujica%207th%20LIVE%E3%80%8CVirtus%E3%80%8DDAY1"
-  },
-  {
-    "type": "live",
-    "ref": "Ave Mujica 7th LIVE「Virtus」DAY2",
-    "update_date": "2026/11/18",
-    "title": "Ave Mujica 7th LIVE「Virtus」DAY2",
-    "subtitle": "2026/10/25 · 京王アリーナ TOKYO",
-    "image": "images/7th kv.webp",
-    "href": "live/index.html?live=Ave%20Mujica%207th%20LIVE%E3%80%8CVirtus%E3%80%8DDAY2"
+    "ref": "“我当时很想告诉祥子，其实身边的人还可以帮你更多呀” TVガイド A Stars vol.06 高尾奏音访谈",
+    "update_date": "2026/11/26",
+    "title": "“我当时很想告诉祥子，其实身边的人还可以帮你更多呀” TVガイド A Stars vol.06 高尾奏音访谈",
+    "subtitle": "高尾奏音 · 2025/1/23",
+    "image": "images/galleryless/astarsvol6cover.webp",
+    "href": "interview/index.html?interview=%E2%80%9C%E6%88%91%E5%BD%93%E6%97%B6%E5%BE%88%E6%83%B3%E5%91%8A%E8%AF%89%E7%A5%A5%E5%AD%90%EF%BC%8C%E5%85%B6%E5%AE%9E%E8%BA%AB%E8%BE%B9%E7%9A%84%E4%BA%BA%E8%BF%98%E5%8F%AF%E4%BB%A5%E5%B8%AE%E4%BD%A0%E6%9B%B4%E5%A4%9A%E5%91%80%E2%80%9D%20TV%E3%82%AC%E3%82%A4%E3%83%89%20A%20Stars%20vol.06%20%E9%AB%98%E5%B0%BE%E5%A5%8F%E9%9F%B3%E8%AE%BF%E8%B0%88"
   },
   {
     "type": "interview",
-    "ref": "Megami 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
-    "update_date": "2026/11/18",
-    "title": "Megami 2026年12月号 电影「BanG Dream! Ave Mujica prima aurora」特集",
-    "subtitle": "冈田梦以 x 米泽茜、柿本广大、佐佐木李子、渡濑结月、高尾奏音 · 2026/10/30",
-    "image": "images/megami26年12月刊cover.webp",
-    "href": "interview/index.html?interview=Megami%202026%E5%B9%B412%E6%9C%88%E5%8F%B7%20%E7%94%B5%E5%BD%B1%E3%80%8CBanG%20Dream%21%20Ave%20Mujica%20prima%20aurora%E3%80%8D%E7%89%B9%E9%9B%86"
+    "ref": "Real Sound 『BanG Dream!』史上“最疯狂”的演技为何诞生？ 渡濑结月畅谈 Ave Mujica 的未来",
+    "update_date": "2026/11/26",
+    "title": "Real Sound 『BanG Dream!』史上“最疯狂”的演技为何诞生？ 渡濑结月畅谈 Ave Mujica 的未来",
+    "subtitle": "渡濑结月 · 2025/1/30",
+    "image": "images/20250130realsound渡濑结月访谈01.webp",
+    "href": "interview/index.html?interview=Real%20Sound%20%E3%80%8EBanG%20Dream%21%E3%80%8F%E5%8F%B2%E4%B8%8A%E2%80%9C%E6%9C%80%E7%96%AF%E7%8B%82%E2%80%9D%E7%9A%84%E6%BC%94%E6%8A%80%E4%B8%BA%E4%BD%95%E8%AF%9E%E7%94%9F%EF%BC%9F%20%E6%B8%A1%E6%BF%91%E7%BB%93%E6%9C%88%E7%95%85%E8%B0%88%20Ave%20Mujica%20%E7%9A%84%E6%9C%AA%E6%9D%A5"
   },
   {
     "type": "interview",
-    "ref": "2026年10月 リスアニ！ 冈田梦以 x 米泽茜访谈",
-    "update_date": "2026/11/16",
-    "title": "2026年10月 リスアニ！ 冈田梦以 x 米泽茜访谈",
-    "subtitle": "冈田梦以 x 米泽茜 · 2026/10/22",
-    "image": "images/261022梅茜访谈-00.webp",
-    "href": "interview/index.html?interview=2026%E5%B9%B410%E6%9C%88%20%E3%83%AA%E3%82%B9%E3%82%A2%E3%83%8B%EF%BC%81%20%E5%86%88%E7%94%B0%E6%A2%A6%E4%BB%A5%20x%20%E7%B1%B3%E6%B3%BD%E8%8C%9C%E8%AE%BF%E8%B0%88"
+    "ref": "2026年8月 Rolling Stone Japan Ave Mujica × METALVERSE 访谈",
+    "update_date": "2026/11/26",
+    "title": "2026年8月 Rolling Stone Japan Ave Mujica × METALVERSE 访谈",
+    "subtitle": "Ave Mujica x METALVERSE · 2026/8/21",
+    "image": "images/260821RollingStone东京夏日音速对谈-01.webp",
+    "href": "interview/index.html?interview=2026%E5%B9%B48%E6%9C%88%20Rolling%20Stone%20Japan%20Ave%20Mujica%20%C3%97%20METALVERSE%20%E8%AE%BF%E8%B0%88"
   }
 ];
